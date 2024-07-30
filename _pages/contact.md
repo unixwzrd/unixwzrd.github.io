@@ -1,8 +1,11 @@
 ---
 layout: page
-title: Contact Us
+title: Contact
 permalink: /contact/
 ---
+
+## Contact Us
+
 If you have any questions or would like to collaborate with us, feel free to reach out:
 
-Email: <a href="mailto:unixwzrd@unixwzrd.ai">unixwzrd@unixwzrd.ai</a>
+Email: [unixwzrd@unixwzrd.ai](mailto:unixwzrd@unixwzrd.ai)
