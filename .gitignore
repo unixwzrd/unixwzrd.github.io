@@ -3,6 +3,6 @@ _site
 .jekyll-cache
 .jekyll-metadata
 vendor
-workspace.code-workspace
-tmp
+tmp/
+.vscode/
 .DS_Store

@@ -1,0 +1,87 @@
+# Site Configuration
+# -----------------
+# The site's title is set to "Distributed Thinking Systems".
+# The base URL for the site is set to "/".
+# The full URL for the site is set to "https://unixwzrd.ai"
+title: Distributed Thinking Systems
+description: >-
+  Distributed Thinking Systems: Innovating AI, machine learning, and distributed computing solutions. Explore our projects, blog, and more.
+
+# Site Author Information
+# ------------------------
+email: unixwzrd@unixwzrd.ai
+twitter_username: unixwzrd
+github_username: unixwzrd
+linkedin_username: unixwzrd
+
+# Site URL
+# --------
+url: https://unixwzrd.ai
+baseurl: ""
+
+
+# Build Settings
+# --------------
+# The source directory for the site is set to "." or the base directory of the repository.
+# The destination directory for the built site is set to "_site".
+# The encoding for the site is set to "utf-8".
+# The markdown extensions for site pages are set to "markdown,mkdown,mkdn,mkd,md".
+show_dir_listing: false
+source: .
+destination: _site
+encoding: utf-8
+markdown_ext: markdown,mkdown,mkdn,mkd,md
+permalink: /:title
+
+# Sass Settings
+# -------------
+# The Sass source directory is set to "_sass".
+# The Sass style is set to "compressed".
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Themes
+# ------
+# The site theme is set to `jekyll-minima`, which is a clean and minimal theme.
+# The `jekyll-feed`, `jekyll-seo-tag`, `jekyll-sitemap`, and `jekyll-redirect-from` plugins are used for generating RSS feeds, SEO tags, site maps, and redirecting from old URLs to new ones.
+# The `jemoji` plugin is used for adding emoji support to the site.
+theme: minima
+highlighter: rouge
+
+# Plugins
+# -------
+# The plugins used for the site are:
+#
+# - jekyll-feed: Generates an RSS feed for the site.
+# - jekyll-seo-tag: Generates SEO tags for improved SEO.
+# - jekyll-sitemap: Generates a site map for the site.
+# - jekyll-redirect-from: Allows redirection from old URLs to new ones.
+# - jemoji: Adds emoji support to the site.
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-redirect-from
+  - jemoji
+
+# Exclude
+# -------
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - .DS_Store
+  - .vscode/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - tmp/
+
+# Paginate
+# --------
+paginate: 5
+paginate_path: blog/page:num
