@@ -1,5 +1,5 @@
 ---
-title: Post
+title: Resources
 layout: default
 ---
 

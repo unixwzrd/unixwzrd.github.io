@@ -6,3 +6,4 @@ vendor
 tmp/
 .vscode/
 .DS_Store
+sitedoc.txt

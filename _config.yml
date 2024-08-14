@@ -80,6 +80,7 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - tmp/
+  - sitedoc.txt
 
 # Paginate
 # --------

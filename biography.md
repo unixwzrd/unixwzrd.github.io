@@ -3,4 +3,4 @@ title: Biography
 layout: default
 ---
 
-This is the biography page.
+This is a placeholder.

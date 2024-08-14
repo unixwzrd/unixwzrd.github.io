@@ -5,8 +5,6 @@ layout: default
 
 # Welcome to Distributed Thinking Systems
 
-Welcome to the Distributed Thinking Systems site!
-
 This is the homepage of Distributed Thinking Systems, a website dedicated to exploring the intersection of technology and society.
 
 ## About Us
@@ -17,7 +15,7 @@ Our goal is to make the world a better place by leveraging the power of distribu
 
 ## What We Do
 
-We write about topics such as artificial intelligence, blockchain, and cybersecurity, and how they affect our daily lives. We also explore the social and cultural implications of emerging technologies.
+We write about topics such as Artificial Intelligence, distributed computing, cybersecurity, and how they affect our daily lives. We also explore the social, cultural, ethical, economic, and environmental implications of emerging Artificial Intelligence technologies.
 
 ## Get Involved
 

@@ -3,4 +3,4 @@ title: Contact
 layout: default
 ---
 
-This is the contact page.
+This is a placeholder page.

@@ -3,4 +3,4 @@ title: Resume
 layout: default
 ---
 
-This is the resume page.
+This is a placeholder page.

@@ -1,0 +1,25 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+@import "minima";
+
+// Dark mode overrides
+@media (prefers-color-scheme: dark) {
+    body {
+      color: #cccccc !important;
+      background-color: #141414 !important;
+    }
+  
+    a {
+      color: #2e81ef !important;
+    }
+  
+    .table {
+      color: #e4e4e4 !important;
+    }
+  
+    .header {
+      background-color: lighten(#ababab, 40%) !important;
+    }
+  }

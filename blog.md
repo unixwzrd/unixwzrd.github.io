@@ -3,4 +3,4 @@ title: Blog
 layout: default
 ---
 
-This is the blog page.
+This is a placeholder page.
