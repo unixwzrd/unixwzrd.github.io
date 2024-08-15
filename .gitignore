@@ -3,7 +3,5 @@ _site
 .jekyll-cache
 .jekyll-metadata
 vendor
+prior-state/
 tmp/
-.vscode/
-.DS_Store
-sitedoc.txt

@@ -1,6 +1,0 @@
----
-title: Post
-layout: default
----
-
-This is a placeholder page.

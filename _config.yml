@@ -1,88 +1,55 @@
-# Site Configuration
-# -----------------
-# The site's title is set to "Distributed Thinking Systems".
-# The base URL for the site is set to "/".
-# The full URL for the site is set to "https://unixwzrd.ai"
-title: Distributed Thinking Systems
-description: >-
-  Distributed Thinking Systems: Innovating AI, machine learning, and distributed computing solutions. Explore our projects, blog, and more.
-
-# Site Author Information
-# ------------------------
-email: unixwzrd@unixwzrd.ai
-twitter_username: unixwzrd
-github_username: unixwzrd
-linkedin_username: unixwzrd
-
-# Site URL
-# --------
-url: https://unixwzrd.ai
-baseurl: ""
-
-
-# Build Settings
-# --------------
-# The source directory for the site is set to "." or the base directory of the repository.
-# The destination directory for the built site is set to "_site".
-# The encoding for the site is set to "utf-8".
-# The markdown extensions for site pages are set to "markdown,mkdown,mkdn,mkd,md".
-show_dir_listing: false
-source: .
-destination: _site
-encoding: utf-8
-markdown_ext: markdown,mkdown,mkdn,mkd,md
-permalink: /:title
-
-# Sass Settings
-# -------------
-# The Sass source directory is set to "_sass".
-# The Sass style is set to "compressed".
-sass:
-  sass_dir: _sass
-  style: compressed
-
-# Themes
-# ------
-# The site theme is set to `jekyll-minima`, which is a clean and minimal theme.
-# The `jekyll-feed`, `jekyll-seo-tag`, `jekyll-sitemap`, and `jekyll-redirect-from` plugins are used for generating RSS feeds, SEO tags, site maps, and redirecting from old URLs to new ones.
-# The `jemoji` plugin is used for adding emoji support to the site.
-theme: minima
-highlighter: rouge
-
-# Plugins
-# -------
-# The plugins used for the site are:
+# Welcome to Jekyll!
 #
-# - jekyll-feed: Generates an RSS feed for the site.
-# - jekyll-seo-tag: Generates SEO tags for improved SEO.
-# - jekyll-sitemap: Generates a site map for the site.
-# - jekyll-redirect-from: Allows redirection from old URLs to new ones.
-# - jemoji: Adds emoji support to the site.
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+#
+# If you need help with YAML syntax, here are some quick references for you:
+# https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
+# https://learnxinyminutes.com/docs/yaml/
+#
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+
+title: Your awesome title
+email: your-email@example.com
+description: >- # this means to ignore newlines until "baseurl:"
+  Write an awesome description for your new site here. You can edit this
+  line in _config.yml. It will appear in your document head meta (for
+  Google search results) and in your feed.xml site description.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+twitter_username: jekyllrb
+github_username:  jekyll
+
+# Build settings
+theme: minima
 plugins:
   - jekyll-feed
-  - jekyll-seo-tag
-  - jekyll-sitemap
-  - jekyll-redirect-from
-  - jemoji
 
-# Exclude
-# -------
-exclude:
-  - .sass-cache/
-  - .jekyll-cache/
-  - .DS_Store
-  - .vscode/
-  - gemfiles/
-  - Gemfile
-  - Gemfile.lock
-  - node_modules/
-  - vendor/bundle/
-  - vendor/cache/
-  - vendor/gems/
-  - tmp/
-  - sitedoc.txt
-
-# Paginate
-# --------
-paginate: 5
-paginate_path: blog/page:num
+# Exclude from processing.
+# The following items will not be processed, by default.
+# Any item listed under the `exclude:` key here will be automatically added to
+# the internal "default list".
+#
+# Excluded items can be processed by explicitly listing the directories or
+# their entries' file path in the `include:` list.
+#
+# exclude:
+#   - .sass-cache/
+#   - .jekyll-cache/
+#   - gemfiles/
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules/
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/
