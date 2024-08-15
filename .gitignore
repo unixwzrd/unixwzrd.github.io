@@ -1,3 +1,4 @@
+.DS_Store
 _site
 .sass-cache
 .jekyll-cache
@@ -5,3 +6,4 @@ _site
 vendor
 prior-state/
 tmp/
+.DS_Store
