@@ -18,21 +18,54 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Your awesome title
-email: your-email@example.com
-description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+title: Distributed Thinking Systems
+description: >-
+  Distributed Thinking Systems: Innovating AI, machine learning, and distributed computing solutions. Explore our projects, blog, and more.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
-github_username:  jekyll
+url: "https://unixwzrd.ai"
+
+encoding: utf-8
+markdown_ext: markdown,mkdown,mkdn,mkd,md
+timezone: America/New_York
+
+
+email: unixwzrd@unixwzrd.ai
+twitter_username: unixwzrd
+github_username: unixwzrd
+linkedin_username: unixwzrd
+# huggingface_username: unixwzrd
+# patreon_username: unixwzrd
+# kofi_username: unixwzrd
+# discord_username: unixwzrd
+# medium_username: unixwzrd
+# youtube_username: unixwzrd
+# stackoverflow_username: unixwzrd
+# quora_username: unixwzrd
+# geeks_for_geeks_username: unixwzrd
+# reddit_username: unixwzrd
+# wordpress_username: unixwzrd
+
+# Tagline
+tagline: "Mostly computing on and off."
 
 # Build settings
-theme: minima
+theme: jekyll-minima
+jekyll-minima:
+  skin: auto
+
+header_pages:
+  - index.md
+  - blog.md
+  - about.md
+
+google_analytics: G-QZSHSBP292
+
 plugins:
   - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-redirect-from
+  - jemoji
 
 # Exclude from processing.
 # The following items will not be processed, by default.
@@ -42,14 +75,19 @@ plugins:
 # Excluded items can be processed by explicitly listing the directories or
 # their entries' file path in the `include:` list.
 #
-# exclude:
-#   - .sass-cache/
-#   - .jekyll-cache/
-#   - gemfiles/
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules/
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+exclude:
+  - .DS_Store
+  - .jekyll-cache/
+  - .sass-cache/
+  - .vscode/
+  - Gemfile*
+  - gemfiles/
+  - node_modules/
+  - prior-state/
+  - sitedoc.txt
+  - stage/
+  - tmp/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
