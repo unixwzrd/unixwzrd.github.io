@@ -6,7 +6,6 @@ vendor
 prior-state/
 tmp/
 .vscode
-.DS_Store
 
 stage
 .DS_Store

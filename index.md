@@ -17,7 +17,9 @@ Our goal is to make the world a better place by leveraging the power of distribu
 
 We write about topics such as Artificial Intelligence, distributed computing, cybersecurity, and how they affect our daily lives. We also explore the social, cultural, ethical, economic, and environmental implications of emerging Artificial Intelligence technologies.
 
-I would love to assist you on any projects you have and am active seeking to help. We can help you achieve success with your projects, with many years of experience in many different industries, I can help you achieve success with your projects. [My resume can be found here.](/assets/documents/SullivanMichael_IT_Resume_202414030.pdf)
+## Get in Touch
+
+I would love to assist you on any projects you have and am active seeking to help. We can help you achieve success with your projects, with many years of experience in many different industries, I can help you achieve success with your projects. [My resume can be found here.](/assets/documents/SullivanMichael_IT_AI_ML_Unix_42020819.pdf)
 
 ## Get Involved
 
