@@ -1,7 +1,7 @@
 ---
-layout: site_blog
+layout: blog
 title: Blog
-permalink: /_pages/blog/
+permalink: /blog/
 ---
 
 <h1>Blog Posts</h1>

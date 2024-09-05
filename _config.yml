@@ -20,22 +20,31 @@
 
 title: Distributed Thinking Systems
 description: >-
+  Mostly computing on and off.
+  <br>
   Distributed Thinking Systems: Innovating AI, machine learning, and distributed computing solutions. Explore our projects, blog, and more.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://unixwzrd.ai"
+url: "https://unixwzrd.ai/"
+source: "html"
+show_dir_listing: false
 
 encoding: utf-8
 markdown_ext: markdown,mkdown,mkdn,mkd,md
 timezone: America/New_York
 
+author:
+  name: "Let us hear from you."
+  email: "unixwzrd@unixwzrd.ai"
 
-email: unixwzrd@unixwzrd.ai
+site.author.email: unixwzrd@unixwzrd.ai
+
+# Social links
 twitter_username: unixwzrd
 github_username: unixwzrd
 linkedin_username: unixwzrd
-# huggingface_username: unixwzrd
-# patreon_username: unixwzrd
-# kofi_username: unixwzrd
+huggingface_username: unixwzrd
+patreon_username: unixwzrd
+kofi_username: unixwzrd
 # discord_username: unixwzrd
 # medium_username: unixwzrd
 # youtube_username: unixwzrd
@@ -44,9 +53,16 @@ linkedin_username: unixwzrd
 # geeks_for_geeks_username: unixwzrd
 # reddit_username: unixwzrd
 # wordpress_username: unixwzrd
+minima:
+  social_links:
+    - { platform: github, user_url: "https://github.com/unixwzrd" }
+    - { platform: linkedin, user_url: "https://linkedin.com/in/unixwzrd" }
+    - { platform: twitter, user_url: "https://twitter.com/unixwzrd" }
+    - { platform: telegram, user_url: "https://telegram.me/unixwzrd" }
 
 # Tagline
 tagline: "Mostly computing on and off."
+page_excerpts: true
 
 # Build settings
 theme: jekyll-minima
@@ -54,13 +70,13 @@ jekyll-minima:
   skin: auto
 
 header_pages:
-  - index.md
   - blog.md
   - about.md
 
 google_analytics: G-QZSHSBP292
 
 plugins:
+  - jekyll-email-protect
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-sitemap
@@ -80,6 +96,7 @@ exclude:
   - .jekyll-cache/
   - .sass-cache/
   - .vscode/
+  - .gitignore
   - Gemfile*
   - gemfiles/
   - node_modules/
