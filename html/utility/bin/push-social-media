@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# Source tokens and credentials
+if [ -f ~/.tokens/tokens.txt ]; then
+  source ~/.tokens/tokens.txt
+fi
+
+# Define the social media services you're using
+services=("twitter" "linkedin" "reddit")
+
+# Loop through the services and execute their individual posting scripts
+for service in "${services[@]}"; do
+  if [ -f "./social_media/${service}_post.sh" ]; then
+    bash "./social_media/${service}_post.sh"
+  else
+    echo "No script found for $service"
+  fi
+done
