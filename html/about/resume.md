@@ -15,7 +15,7 @@ Experienced IT professional with over 30 years in the technology industry, inclu
 - Led the development of a distributed computing environment at Merrill Lynch, transitioning key financial systems from mainframes to Unix-based systems, which enhanced processing efficiency and data integrity across global operations.
 
 #### Unix and Oracle Implementations
-- Extensive work with SunOS 4.0, Oracle, and Sybase, contributing to the advancement of enterprise-level computing.
+- Extensive work with Solaris, SunOS 4.0, Oracle, and Sybase, contributing to the advancement of enterprise-level computing.
 
 #### AI & Modular Systems Development
 - Currently developing modular AI systems on macOS, using Pydantic, FastAPI, and object-oriented Python. Focused on decoupling system components to enable communication via message queues (pub-sub architecture), allowing flexible, scalable configurations across multiple hardware environments.
@@ -123,7 +123,7 @@ Experienced IT professional with over 30 years in the technology industry, inclu
 
 ### Contact Information
 
-- **Email:** [unixwzrd@unixwzrd.ai](mailto:unixwzrd@unixwzrd.ai)
+- **Email:**  <a href="mailto:{{ site.author.email | encode_email }}" title="Michael Sullivan">Michael Sullivan</a>
 - **LinkedIn:** [Michael Sullivan](https://www.linkedin.com/in/unixwzrd)
 - **GitHub:** [unixwzrd](https://github.com/unixwzrd)
 - **HuggingFace:** [unixwzrd](https://huggingface.co/unixwzrd)
