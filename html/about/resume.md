@@ -3,6 +3,8 @@ layout: page
 title: Resume
 ---
 
+Looking for an overview of my experience and expertise? Download my [PDF Resume](link_to_resume.pdf) here.
+
 ## Michael Sullivan
 
 ### Profile
@@ -15,14 +17,14 @@ Experienced IT professional with over 30 years in the technology industry, inclu
 - Led the development of a distributed computing environment at Merrill Lynch, transitioning key financial systems from mainframes to Unix-based systems, which enhanced processing efficiency and data integrity across global operations.
 
 #### Unix and Oracle Implementations
-- Extensive work with Solaris, SunOS 4.0, Oracle, and Sybase, contributing to the advancement of enterprise-level computing.
-
+- Worked extensively with SunOS 4.0 and early versions of Oracle and Sybase, contributing to the advancement of enterprise-level computing during a transformative period in the IT industry.
+- Developed a comprehensive options allocation model at Salomon Brothers, integrating data from various systems to ensure regulatory compliance for futures traders, significantly improving operational accuracy.
 #### AI & Modular Systems Development
 - Currently developing modular AI systems on macOS, using Pydantic, FastAPI, and object-oriented Python. Focused on decoupling system components to enable communication via message queues (pub-sub architecture), allowing flexible, scalable configurations across multiple hardware environments.
 - Integrating RouteL LLM into the modular AI architecture.
 
 #### Leadership in IT Communities
-- Co-founded the New York Systems Administrators group and the Tokyo OpenSolaris Users Group, fostering knowledge sharing and collaboration among professionals in the Unix and Linux communities.
+- Involved with the formation of The New York Systems Administrators group and the Tokyo OpenSolaris Users Group, fostering knowledge sharing and collaboration among professionals in the Unix and Linux communities.
 - Actively contributed to the growth of the Tokyo Linux Users Group, promoting open-source solutions and community-driven development in Japan.
 
 ### Experience
@@ -33,14 +35,18 @@ Experienced IT professional with over 30 years in the technology industry, inclu
 - Implementing machine learning models and tools on macOS.
 - Collaborating with clients to deliver custom AI solutions tailored to their needs.
 - Managing project timelines, resources, and deliverables to ensure high-quality outcomes.
+- Providing advanced digital forensics services, including audio restoration and enhancement using iZotope RX11 and Reaper, and developing custom scripts for AI-driven transcription and analysis of legal documents.
+- Extracting and restoring data from Apple devices, including recovering deleted messages and hidden files, with a focus on supporting legal cases and personal investigations.
+- Utilizing GPT-4o for analyzing text data to uncover patterns, inconsistencies, and key insights, particularly in court documents and communications.
 
-**UNIX SOLUTIONS ARCHITECT, ECS FEDERAL, MEMPHIS, TN** – NOV 2020 - AUG 2023
+#### UNIX SOLUTIONS ARCHITECT, ECS FEDERAL, MEMPHIS, TN — NOV 2020 - AUG 2023
 - Supported the US Postal Service's Unix/Linux environment.
 - Provided full-scale release management using ServiceNow.
-- Managed the applications release process in an Agile environment from development to production, ensuring quick and efficient delivery.
+- Managed the applications release process in an Agile environment from development to production, ensuring quick and efficient delivery with contingency plans.
 - Troubleshot logistics systems and applications issues across all environments for the US Postal Service.
 - Provided Unix Systems Support for 900 Unix/Linux servers in development, test, QA, and production environments.
 - Supported operating systems issues arising from applications, including performance tuning and permissions alignment.
+
 #### PRINCIPAL, CONSULTING SERVICES, DCS, LLC, NASHVILLE, TN — MAY 2009 - NOV 2020
 - Designed and implemented VPN and firewall services using pfSense, Snort, IPSec, and OpenVPN.
 - Led an international team to create an IaaS appliance, managing storage, compute, and control components in a single rack.

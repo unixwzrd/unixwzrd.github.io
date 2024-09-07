@@ -5,7 +5,9 @@ title: Distributed Thinking Systems
 
 # Welcome to Distributed Thinking Systems
 
-This is the homepage of Distributed Thinking Systems, a website dedicated to exploring the intersection of technology and society.
+Welcome to Distributed Thinking Systems, where we tackle complex challenges by harnessing the power of Artificial Intelligence, distributed computing, and innovative technology. Our mission is to apply these advanced tools to create impactful solutions for real-world problems.
+
+Explore our site to learn more about our projects, dive into our blog posts, and discover how we’re leveraging technology to drive meaningful change.
 
 ## About Us
 
