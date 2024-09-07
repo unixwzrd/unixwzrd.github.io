@@ -33,7 +33,7 @@ markdown_ext: markdown,mkdown,mkdn,mkd,md
 timezone: America/New_York
 
 author:
-  name: "Let us hear from you."
+  name: "Let's hear from you."
   email: "unixwzrd@unixwzrd.ai"
 
 site.author.email: unixwzrd@unixwzrd.ai
@@ -93,6 +93,7 @@ plugins:
 #
 exclude:
   - .DS_Store
+  - html/.jekyll-cache/
   - .jekyll-cache/
   - .sass-cache/
   - .vscode/
@@ -108,3 +109,4 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
+  - utils/

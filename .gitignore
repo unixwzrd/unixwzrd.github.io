@@ -11,3 +11,5 @@ stage
 .DS_Store
 sitedoc.txt
 sitedoc.txt
+Gemfile.lock
+*.bak
