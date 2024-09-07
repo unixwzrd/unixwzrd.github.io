@@ -17,7 +17,7 @@ Experienced IT professional with over 30 years in the technology industry, inclu
 - Led the development of a distributed computing environment at Merrill Lynch, transitioning key financial systems from mainframes to Unix-based systems, which enhanced processing efficiency and data integrity across global operations.
 
 #### Unix and Oracle Implementations
-- Worked extensively with SunOS 4.0 and early versions of Oracle and Sybase, contributing to the advancement of enterprise-level computing during a transformative period in the IT industry.
+- Extensive work with Solaris, SunOS 4.0, Oracle, and Sybase, contributing to the advancement of enterprise-level computing capabilities and transformative period in the IT industry.
 - Developed a comprehensive options allocation model at Salomon Brothers, integrating data from various systems to ensure regulatory compliance for futures traders, significantly improving operational accuracy.
 #### AI & Modular Systems Development
 - Currently developing modular AI systems on macOS, using Pydantic, FastAPI, and object-oriented Python. Focused on decoupling system components to enable communication via message queues (pub-sub architecture), allowing flexible, scalable configurations across multiple hardware environments.

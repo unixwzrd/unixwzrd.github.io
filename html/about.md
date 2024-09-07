@@ -6,7 +6,7 @@ permalink: /about/
 
 ## About Distributed Thinking Systems
 
-At Distributed Thinking Systems, we specialize in solving complex challenges by applying cutting-edge Artificial Intelligence, distributed computing, and advanced technology solutions. Led by [Michael Sullivan](resume), an expert with over 20 years of experience in technology and innovation, our goal is to leverage the full potential of these emerging fields to create meaningful solutions that benefit both businesses and society.
+At Distributed Thinking Systems, we specialize in solving complex challenges by applying cutting-edge Artificial Intelligence, distributed computing, and advanced technology solutions. Led by [Michael Sullivan](resume), an expert with over 30 years of experience in technology and innovation, our goal is to leverage the full potential of these emerging fields to create meaningful solutions that benefit both businesses and society.
 
 We are committed to exploring new horizons in AI and technology to address real-world issues, always pushing the boundaries of what’s possible while maintaining a focus on efficiency, creativity, and societal impact.
 
