@@ -6,9 +6,6 @@ title: Resume
 ## Michael Sullivan
 
 ### Profile
-Experienced IT professional with over 30 years in the technology industry, including 15 years of managerial experience in the financial sector. Expertise in IT financial transactions operations, regulatory compliance, budget management, and vendor relations. Strong background in architecture, development methodology, project management, and implementation for distributed UNIX/Linux and Oracle database systems. Proficient in client engagement, technology solution development, strategic planning, and risk management in the banking and financial services domain.
-
-### Profile
 Experienced IT professional with over 30 years in the technology industry, including 15 years of managerial experience in the financial sector. Expertise in IT financial transactions operations, regulatory compliance, budget management, and vendor relations. Strong background in architecture, development methodology, project management, and implementation for distributed UNIX/Linux, macOS, and Oracle database systems. Proficient in client engagement, technology solution development, strategic planning, and risk management in the banking and financial services domain.
 
 ### Career Highlights

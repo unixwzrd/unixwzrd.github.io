@@ -92,21 +92,22 @@ plugins:
 # their entries' file path in the `include:` list.
 #
 exclude:
+
   - .DS_Store
-  - html/.jekyll-cache/
+  - .gitignore
   - .jekyll-cache/
   - .sass-cache/
   - .vscode/
-  - .gitignore
   - Gemfile*
   - gemfiles/
+  - html/.jekyll-cache/
   - node_modules/
   - prior-state/
   - sitedoc.txt
   - stage/
   - tmp/
+  - utils/
   - vendor/bundle/
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
-  - utils/

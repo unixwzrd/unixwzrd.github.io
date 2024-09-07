@@ -25,7 +25,7 @@ As part of our commitment to innovation, Distributed Thinking Systems has develo
 
 ## Why Choose Us
 
-With decades of experience in the technology industry, our team brings a wealth of knowledge and practical expertise to every project. Whether you're looking for AI solutions, distributed computing systems, or advanced digital forensics, Distributed Thinking Systems is here to help you succeed.
+Founded by [Michael Sullivan](resume) with decades of experience in the technology industry, our team brings a wealth of knowledge and practical expertise to every project. Whether you're looking for AI solutions, distributed computing systems, or advanced digital forensics, Distributed Thinking Systems is here to help you succeed.
 
 ## Get In Touch
 
