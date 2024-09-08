@@ -3,7 +3,7 @@ layout: page
 title: Resume
 ---
 
-Looking for an overview of my experience and expertise? Download my [PDF Resume](link_to_resume.pdf) here.
+Looking for an overview of my experience and expertise? Download my [PDF Resume](/assets/documents/SullivanMichael_IT_AI_ML_Unix_42020819.pdf).
 
 ## Michael Sullivan
 

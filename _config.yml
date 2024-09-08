@@ -28,6 +28,8 @@ url: "https://unixwzrd.ai/"
 source: "html"
 show_dir_listing: false
 
+
+
 encoding: utf-8
 markdown_ext: markdown,mkdown,mkdn,mkd,md
 timezone: America/New_York
@@ -66,12 +68,13 @@ page_excerpts: true
 
 # Build settings
 theme: jekyll-minima
-jekyll-minima:
+minima:
   skin: auto
 
 header_pages:
   - blog.md
   - about.md
+
 
 google_analytics: G-QZSHSBP292
 

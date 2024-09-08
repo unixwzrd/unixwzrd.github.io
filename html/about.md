@@ -1,36 +1,30 @@
 ---
 layout: page
-title: About
+title: About Distributed Thinking Systems
+menu_item: About
 permalink: /about/
 ---
 
-## About Distributed Thinking Systems
+At Distributed Thinking Systems, we combine **Artificial Intelligence** and **distributed computing** to tackle complex challenges, with a focus on preventing **parental alienation**. Led by [Michael Sullivan](resume), who has over 30 years of experience in technology and innovation, our goal is to leverage AI tools to support families and reduce the emotional damage caused by high-conflict divorce.
 
-At Distributed Thinking Systems, we specialize in solving complex challenges by applying cutting-edge Artificial Intelligence, distributed computing, and advanced technology solutions. Led by [Michael Sullivan](resume), an expert with over 30 years of experience in technology and innovation, our goal is to leverage the full potential of these emerging fields to create meaningful solutions that benefit both businesses and society.
-
-We are committed to exploring new horizons in AI and technology to address real-world issues, always pushing the boundaries of what’s possible while maintaining a focus on efficiency, creativity, and societal impact.
+We are committed to exploring how AI and technology can address social and familial issues, always pushing the boundaries of what’s possible while maintaining a strong focus on ethics, efficiency, and social impact.
 
 ## Our Expertise
 
-At Distributed Thinking Systems, we specialize in:
-- **Artificial Intelligence & Machine Learning:** Developing custom AI solutions tailored to the unique needs of our clients. We work extensively on macOS and Unix-based systems, ensuring high performance and scalability.
-- **Distributed Computing Systems:** Designing and implementing scalable distributed systems for various industries, focusing on reliability, security, and efficiency.
-- **Digital Forensics & Data Recovery:** Offering advanced digital forensics services, including audio restoration and enhancement using tools like iZotope RX11 and Reaper. We also specialize in recovering and analyzing data from Apple products and Unix-based systems, supporting legal cases and personal investigations.
+Our primary areas of focus include:
+- **AI-Driven Parental Alienation Prevention**: Using machine learning to analyze communication patterns and detect early warning signs of alienation.
+- **Distributed Computing Systems**: Designing robust, scalable systems that process complex data sets in real time to provide actionable insights.
+- **Digital Forensics & Data Recovery**: Extracting, restoring, and analyzing data, particularly from Apple and Unix-based systems, to support legal investigations in family law cases.
 
-## Digital Forensics and AI Applications
+## AI and Forensic Solutions
 
-As part of our commitment to innovation, Distributed Thinking Systems has developed a unique capability in digital forensics and AI-driven data analysis. This includes:
-- **Digital Audio Restoration:** Enhancing and clarifying audio recordings, even those captured in less-than-ideal conditions, using industry-leading tools.
-- **AI-Driven Transcription:** Converting dialogue into transcripts with precise speaker identification and time marks, using a custom Python script and Assembly AI.
-- **Data Analytics:** Leveraging GPT-4o for analyzing text data to uncover patterns, inconsistencies, and key insights, particularly in legal documents and communications.
-- **Forensic Data Recovery:** Extracting and restoring data from Apple devices, including deleted messages and hidden files, using advanced Unix-based techniques.
+As part of our initiative, we offer advanced digital forensics and AI-based data analysis for family law cases:
+- **AI-Powered Communication Analysis**: Using AI to identify shifts in tone, content, and patterns in communication that may indicate parental alienation.
+- **Forensic Data Recovery**: Recovering data from personal devices and uncovering hidden or deleted communications that are critical in legal disputes.
+- **Digital Audio Restoration & Transcription**: Enhancing audio recordings for legal purposes and transcribing them with speaker identification and time-stamping.
 
 ## Why Choose Us
 
-Founded by [Michael Sullivan](resume) with decades of experience in the technology industry, our team brings a wealth of knowledge and practical expertise to every project. Whether you're looking for AI solutions, distributed computing systems, or advanced digital forensics, Distributed Thinking Systems is here to help you succeed.
+With decades of experience in technology, data analysis, and distributed computing, **Michael Sullivan** leads Distributed Thinking Systems in applying **AI for social good**, focusing on protecting families and children from the emotional toll of parental alienation. Through first-hand experience and technical expertise, we are uniquely positioned to offer impactful solutions.
 
-## Get In Touch
-
-Interested in learning more about how we can assist with your projects? Contact us today to discuss your needs and discover how Distributed Thinking Systems can help you achieve your goals.
-
-Stay connected through [GitHub](https://github.com/unixwzrd), [LinkedIn](https://www.linkedin.com/in/unixwzrd), and [Twitter](https://twitter.com/unixwzrd).
+{% include GetInTouch.html %}

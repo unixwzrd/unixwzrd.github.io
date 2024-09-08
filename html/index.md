@@ -1,30 +1,24 @@
 ---
 layout: home
-title: Distributed Thinking Systems
+title: Welcome to Distributed Thinking Systems
 ---
 
-# Welcome to Distributed Thinking Systems
+At Distributed Thinking Systems, we tackle some of the toughest challenges using Artificial Intelligence, distributed computing, and innovative technology. Our current mission is to apply these advanced tools to address the harmful impact of **parental alienation** in high-conflict divorce cases, providing solutions that prevent alienation before it takes root.
 
-Welcome to Distributed Thinking Systems, where we tackle complex challenges by harnessing the power of Artificial Intelligence, distributed computing, and innovative technology. Our mission is to apply these advanced tools to create impactful solutions for real-world problems.
-
-Explore our site to learn more about our projects, dive into our blog posts, and discover how we’re leveraging technology to drive meaningful change.
+Explore our site to learn more about our projects, read our blog posts, and see how we leverage technology to create meaningful change in the fight against parental alienation.
 
 ## About Us
 
-We are passionate about applying the principles of distributed thinking and systems to solve complex problems, leveraging our deep expertise in AI, distributed computing, and Unix/Linux environments. Our mission is to develop innovative solutions that drive positive change and empower organizations to thrive in the digital age.
+We are passionate about using AI and distributed computing to solve real-world problems. Our current project focuses on analyzing communication patterns, identifying early signs of parental alienation, with the goal of helping families and children avoiding its long-term emotional and psychological damage.
 
 ## What We Do
 
-We provide a range of technology solutions, including:
-- **Artificial Intelligence & Machine Learning**
-- **Data Analytics**
-- **Distributed Computing Systems** (Unix, Linux, Solaris, macOS)
-- **Digital Forensics & Data Recovery**
+We specialize in:
+- **Artificial Intelligence & Machine Learning**: Applying AI to uncover patterns and prevent parental alienation.
+- **Data Analytics**: Developing tools to analyze communications, legal documents, and family dynamics to highlight signs of alienation.
+- **Distributed Computing Systems**: Utilizing Unix/Linux environments to build scalable systems for AI-driven solutions.
+- **Digital Forensics & Data Recovery**: Offering advanced recovery and analysis, especially for legal and family support purposes.
 
-Our work spans various industries, from finance to legal support, helping clients harness the power of AI and technology to solve their most challenging problems. We offer insights and solutions in the realms of Artificial Intelligence, distributed computing, and cybersecurity, with a focus on the societal, ethical, and environmental impacts of these technologies.
+We’re working at the intersection of AI and family law, and are committed to protecting parents and children from the devastating emotional and psychological damage of alienation. Our solutions leverage cutting-edge AI to analyze communication shifts and prevent issues before they escalate.
 
-## Get In Touch
-
-I would love to assist you on any projects you have and am actively seeking to help. We can help you achieve success with your projects, with many years of experience in many different industries. Feel free to reach out by email or social media listed below.
-
-Stay connected through [GitHub](https://github.com/unixwzrd), [LinkedIn](https://www.linkedin.com/in/unixwzrd), and [Twitter](https://twitter.com/unixwzrd) for updates and new content.
+{% include GetInTouch.html %}
