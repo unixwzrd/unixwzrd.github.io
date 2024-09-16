@@ -9,6 +9,8 @@ Welcome to the Distributed Thinking Systems blog! Here, we dive into the cutting
 
 Stay connected for insights and articles from Michael Sullivan, sharing over 30 years of experience in technology and innovation. Our posts cover everything from real-world AI applications to thought-provoking takes on the future of tech. We’re excited to share our journey with you!
 
+If you have an idea you would like to see here, please get in touch, I want to build a community with all of us.
+
 <ul>
   {% for post in site.posts %}
     <li>
@@ -18,4 +20,4 @@ Stay connected for insights and articles from Michael Sullivan, sharing over 30 
 </ul>
 
 
-{% include GetInTouch.html %}
+{% include getintouch.html %}

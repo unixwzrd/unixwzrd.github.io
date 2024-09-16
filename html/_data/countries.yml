@@ -1,0 +1,36 @@
+countries:
+  - name: "USA"
+    services:
+      - { service: "Emergency Services", contact: "911" }
+      - { service: "National Suicide Hotline", contact: "1-800-273-8255" }
+      - { service: "Crisis Text Line", contact: "Text HOME to 741741" }
+  - name: "UK"
+    services:
+      - { service: "NHS Helpline", contact: "111" }
+      - { service: "Samaritans", contact: "116 123" }
+  - name: "Australia"
+    services:
+      - { service: "Lifeline Australia", contact: "13 11 14" }
+      - { service: "Beyond Blue", contact: "1300 22 4636" }
+  - name: "Germany"
+    services:
+      - { service: "Emergency Services", contact: "112" }
+      - { service: "Telefonseelsorge", contact: "0800 111 0 111" }
+  - name: "Canada"
+    services:
+      - { service: "Emergency Services", contact: "911" }
+      - { service: "Kids Help Phone", contact: "1-800-668-6868" }
+  - name: "France"
+    services:
+      - { service: "Emergency Services", contact: "112" }
+      - { service: "SOS Suicide", contact: "01 45 39 40 00" }
+  - name: "Japan"
+    services:
+      - { service: "Emergency Services", contact: "119" }
+      - { service: "Tell Lifeline", contact: "03 5774 0992" }
+  - name: "India"
+    services:
+      - { service: "Snehi Foundation", contact: "91-22-2772-6771" }
+  - name: "South Africa"
+    services:
+      - { service: "Lifeline Southern Africa", contact: "0861 322 322" }

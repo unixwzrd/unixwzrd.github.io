@@ -29,17 +29,61 @@
   }
 
   table {  
-    background-color: black;
+    $header-color: #000040;
+    $odd-row-color: darken($header-color, 5%);
+    $even-row-color: lighten($header-color, 2%);
+    $border-color: #cacaca;
+
+    border: 1px solid $border-color;
+
     th {
-      color:ghostwhite !important;
+      background-color: $header-color !important;
+      border: 1px solid $border-color;
       font-weight: bold !important;
+      padding: 12px;
     }
 
-    td {
-      color:#cfcfcf !important;
-      // background-color: #000000 !important;
+    tr {
+      border: 1px; /* Use the border color variable */
     }
-  }
+
+    // All cells have borders initially
+    td {
+      border: 1px solid $border-color;
+      padding: 12px;
+    }
+
+    // Odd row background color (for the odd country group and services)
+    .odd td {
+      background-color: $odd-row-color;
+    }
+
+    // Even row background color (for the even country group and services)
+    .even td {
+      background-color: $even-row-color;
+    }
+
+    // Remove top and bottom border for empty cells
+    td:empty {
+      border-top: none;
+      border-bottom: none;
+    }
+
+    // Remove bottom border for the first cell in the group (countries)
+    td:first-child {
+      border-bottom: none;
+    }
+
+    // Add bottom border to the last non-empty cell in the group in the first column
+    tr:last-of-type td:first-child:not(:empty) {
+      border-bottom: 1px; /* Use the border color variable */
+    }
+}
+
+    pre,
+    code {
+      background: #000000;
+    }
 
   // Custom wrapper styling
 .wrapper {
@@ -48,6 +92,7 @@
   max-width: 1000px; /* The maximum width of the wrapper */
   padding: 20px; /* Optional: Add padding for better spacing */
 }
+
 
 // Custom CSS for brand graphic
 .brand-graphic {

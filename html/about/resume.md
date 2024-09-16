@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Resume
+menu_item: Resume
 ---
 
 Looking for an overview of my experience and expertise? Download my [PDF Resume](/assets/documents/SullivanMichael_IT_AI_ML_Unix_42020819.pdf).
@@ -13,17 +14,26 @@ Experienced IT professional with over 30 years in the technology industry, inclu
 ### Career Highlights
 
 #### Wall Street Innovations
+
+- Working in UCCEL's Corporate Research and Development Division, developed an automated documentation generator using The CCASE tool PACBASE and its data dictionary, generating the technical reference and documentation for their Next Generation Banking Software effort.
+- Brought specialized knowledge of Software Development Methodologies and CASE Tool Development to Salomon Brothers integrating Excelerator with PACBASE as a proof of concept, and examined and evaluated CASE tools for the firm.
 - Pioneered LAN-based computing at Salomon Brothers, integrating PC environments with Unix systems, laying the groundwork for a unified network infrastructure that supported the firm's trading and financial operations.
 - Led the development of a distributed computing environment at Merrill Lynch, transitioning key financial systems from mainframes to Unix-based systems, which enhanced processing efficiency and data integrity across global operations.
-
+- 
 #### Unix and Oracle Implementations
-- Extensive work with Solaris, SunOS 4.0, Oracle, and Sybase, contributing to the advancement of enterprise-level computing capabilities and transformative period in the IT industry.
+
+- Extensive work with Solaris, SunOS, Linux, macOS, and Oracle, contributing to the advancement of enterprise-level computing capabilities and transformative period in the IT industry.
 - Developed a comprehensive options allocation model at Salomon Brothers, integrating data from various systems to ensure regulatory compliance for futures traders, significantly improving operational accuracy.
+- Architected the system for migrating Merry Lynch's balance sheet and general ledger onto an oracle database running on a Sequent Symmetry Symmetric Multi Processing system, taking advantage of its parallel processing capabilities.
+- Working as a consultant for Sun Microsystems, at NYNEX, designed and built the NYNEX VoiceMail Information System server infrastructure.
+ 
 #### AI & Modular Systems Development
+
 - Currently developing modular AI systems on macOS, using Pydantic, FastAPI, and object-oriented Python. Focused on decoupling system components to enable communication via message queues (pub-sub architecture), allowing flexible, scalable configurations across multiple hardware environments.
 - Integrating RouteL LLM into the modular AI architecture.
 
 #### Leadership in IT Communities
+
 - Involved with the formation of The New York Systems Administrators group and the Tokyo OpenSolaris Users Group, fostering knowledge sharing and collaboration among professionals in the Unix and Linux communities.
 - Actively contributed to the growth of the Tokyo Linux Users Group, promoting open-source solutions and community-driven development in Japan.
 
@@ -136,3 +146,5 @@ Experienced IT professional with over 30 years in the technology industry, inclu
 - **Twitter/X:** [unixwzrd](https://twitter.com/unixwzrd)
 - **Reddit:** [unixwzrd](https://reddit.com/u/unixwzrd)
 - **PDF Resume:** [unixwzrd](/assets/documents/SullivanMichael_IT_Resume_202414030.pdf)
+
+{% include codeium_stats.html %}

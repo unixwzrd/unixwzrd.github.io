@@ -1,30 +1,24 @@
 ---
+title: "About Us"
 layout: page
-title: About Distributed Thinking Systems
 menu_item: About
 permalink: /about/
 ---
 
-At Distributed Thinking Systems, we combine **Artificial Intelligence** and **distributed computing** to tackle complex challenges, with a focus on preventing **parental alienation**. Led by [Michael Sullivan](resume), who has over 30 years of experience in technology and innovation, our goal is to leverage AI tools to support families and reduce the emotional damage caused by high-conflict divorce.
+### Our Mission
 
-We are committed to exploring how AI and technology can address social and familial issues, always pushing the boundaries of what’s possible while maintaining a strong focus on ethics, efficiency, and social impact.
+Our primary technical focus is on **AI** and **distributed computing**. We are dedicated to applying these skills in ways that make a **positive societal impact**, particularly in **parental alienation**, a damaging form of child abuse where one parent manipulates a child to reject the other parent, sometimes creating false narratives or accusations. Utilizing **AI-driven insights** and **data analytics**, we work to detect and address early signs of alienation, preventing **emotional and psychological damage** before it takes root.
 
-## Our Expertise
+At **Distributed Thinking Systems**, we also leverage our technical expertise across sectors to drive **responsible AI innovation**. Our work extends beyond family law to include custom **AI solutions** for various industries, from **digital forensics** to **distributed computing systems** architecture, ensuring technology serves the greater good. This combination of social responsibility and cutting-edge technology drives our mission forward.
 
-Our primary areas of focus include:
-- **AI-Driven Parental Alienation Prevention**: Using machine learning to analyze communication patterns and detect early warning signs of alienation.
-- **Distributed Computing Systems**: Designing robust, scalable systems that process complex data sets in real time to provide actionable insights.
-- **Digital Forensics & Data Recovery**: Extracting, restoring, and analyzing data, particularly from Apple and Unix-based systems, to support legal investigations in family law cases.
+We believe **responsible AI** should not only solve today’s problems, but anticipate and prevent future harm. This core value drives everything we do: supporting AI in **Unix/Linux/macOS environments**, developing and integrating systems which prioritize **ethics**, and ensuring technology is both accessible and beneficial for everyone.
 
-## AI and Forensic Solutions
+We firmly believe all children need both parents in their lives. Forcing a child to reject one parent erases part of their personality and past without giving them the chance to understand why. Our mission is to ensure no child ever endures this experience again. **Children deserve to grow up free from abuse**, with the care and support of both parents.
 
-As part of our initiative, we offer advanced digital forensics and AI-based data analysis for family law cases:
-- **AI-Powered Communication Analysis**: Using AI to identify shifts in tone, content, and patterns in communication that may indicate parental alienation.
-- **Forensic Data Recovery**: Recovering data from personal devices and uncovering hidden or deleted communications that are critical in legal disputes.
-- **Digital Audio Restoration & Transcription**: Enhancing audio recordings for legal purposes and transcribing them with speaker identification and time-stamping.
+### Our Team
+- **[Michael Sullivan:](/about/resume)** Founder, with more than 30 years of experience providing distributed computing, database, and infrastructure solutions a diverse set of industries, now providing Artificial Intelligence, Data Analytics, and Distributed AI Solutions for your business. As an alienated parent for more than five years, he has seen the damage parents can cause and understands the complex family dynamics involved.
 
-## Why Choose Us
+{% include join_us.html %}
 
-With decades of experience in technology, data analysis, and distributed computing, **Michael Sullivan** leads Distributed Thinking Systems in applying **AI for social good**, focusing on protecting families and children from the emotional toll of parental alienation. Through first-hand experience and technical expertise, we are uniquely positioned to offer impactful solutions.
+{% include getintouch.html %}
 
-{% include GetInTouch.html %}

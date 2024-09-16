@@ -1,0 +1,21 @@
+
+# Navigation for the site
+menu:
+  - title: "Home"
+    url: "/"
+    menu_item: "Home"
+  - title: "About"
+    url: "/about/"
+    menu_item: "About"
+  - title: "Blog"
+    url: "/blog/"
+    menu_item: "Blog"
+  - title: "Resources"
+    url: "/resources/"
+    menu_item: "Resources"
+  - title: "Contact"
+    url: "/contact/"
+    menu_item: "Contact"
+  - title: "FAQ"
+    url: "/faq/"
+    menu_item: "FAQ"
