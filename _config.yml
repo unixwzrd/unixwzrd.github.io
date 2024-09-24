@@ -64,11 +64,14 @@ minima:
     - { platform: telegram, user_url: "https://telegram.me/unixwzrd" }
   skin: auto
 
+github:
+  username: unixwzrd
+
 # Tagline
 tagline: "Mostly computing on and off."
 page_excerpts:  false
 excerpt_separator: "<!--more-->"
-permalink: /:categories_first/:year/:month/:day/:title/
+permalink: /:categories/:year/:month/:day/:title/
 defaults:
   -
     scope:
