@@ -5,9 +5,11 @@ date: 2024-09-02 07:30:00 -0500
 categories: [coding, ai]
 ---
 
-# Getting This Site Online
+## Getting This Site Online
 
 I’ve been working for the past three weeks to make this site public. Although it’s still under construction, I’m happy to announce that it is now online. There was a lot to do to get it working—researching hosting options, web frameworks, and more. Throughout this process, I’ve relied on several AI assistants to help me get the site up and running. I primarily use macOS as my development platform with VS Code, and up until about a week ago, I was using GitHub Copilot along with GPT-4o. However, I recently discovered Codeium and have decided to switch over to it as my in-IDE coding assistant.
+
+<!--more-->
 
 What sets Codeium apart from other AI coding assistants is its ability to use context that you specify in the form of custom instructions, much like ChatGPT, but it also uses local context in the form of Retrieval-Augmented Generation (RAG) from directories and repositories on your local machine. This is great because it has access to your codebase while you’re working inside the IDE.
 

@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /hidden/
+
+Sitemap: {{ site.url }}/sitemap.xml

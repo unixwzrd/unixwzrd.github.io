@@ -78,29 +78,30 @@
     tr:last-of-type td:first-child:not(:empty) {
       border-bottom: 1px; /* Use the border color variable */
     }
-}
+  }
 
-    pre,
-    code {
-      background: #000000;
-    }
+  pre,
+  code {
+    background: #000000;
+  }
 
   // Custom wrapper styling
-.wrapper {
-  margin-left: 80px auto; /* Adds 40px margin to the top and bottom, auto centers horizontally */
-  margin-right: 80px auto; /* Adds 40px margin to the top and bottom, auto centers horizontally */
-  max-width: 1000px; /* The maximum width of the wrapper */
-  padding: 20px; /* Optional: Add padding for better spacing */
-}
+  .wrapper {
+    margin-left: 80px auto; /* Adds 40px margin to the top and bottom, auto centers horizontally */
+    margin-right: 80px auto; /* Adds 40px margin to the top and bottom, auto centers horizontally */
+    max-width: 1000px; /* The maximum width of the wrapper */
+    padding: 20px; /* Optional: Add padding for better spacing */
+
+  }
 
 
-// Custom CSS for brand graphic
-.brand-graphic {
-  width: 45px; /* Adjust the width as needed */
-  height: auto; /* Maintain aspect ratio */
-  margin-right: 20px; /* Increased space between the graphic and the company name */
-  vertical-align: middle; /* Align vertically with text */
-}
+  // Custom CSS for brand graphic
+  .brand-graphic {
+    width: 45px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 20px; /* Increased space between the graphic and the company name */
+    vertical-align: middle; /* Align vertically with text */
+  }
 
   .highlighter-rouge {
     .highlight pre {
@@ -111,12 +112,47 @@
       background: #000000;
     }
   }
-}
 
-#obfuscated-email a {
-  color: #0000CC;
-  text-decoration: underline;
-}
-#contact-link {
-  cursor: pointer;
+    /* Blog post title adjustments */
+  .post {
+    h3 {
+      font-size: 1.5rem;
+      line-height: 1.2;
+      margin-bottom: 0rem;
+      margin-top: 0.2rem;
+    }
+  
+    .post-date {
+      font-size: 0.9rem;
+      color: #aaaaaa;
+      display: inline-block;
+      margin-bottom: 0.5rem;
+    }
+
+    .post-excerpt {
+      margin-left: 10px;
+      margin-bottom: 0.2rem;
+    } 
+  
+    .p {
+      font-size: 1.1rem;
+      line-height: 1.5rem;
+      margin-bottom: 1.2rem;
+    }
+  
+    .btn {
+      margin-top: 0.0rem;
+      margin-bottom: 1.0rem;
+      display: inline-block;
+      font-size: 0.9rem;
+    }
+  }
+
+  #obfuscated-email a {
+    color: #0000CC;
+    text-decoration: underline;
+  }
+  #contact-link {
+    cursor: pointer;
+  }
 }

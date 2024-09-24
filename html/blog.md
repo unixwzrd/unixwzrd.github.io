@@ -1,23 +1,22 @@
 ---
-layout: blog
-title: Distributed Thinking Systems Blog
+title: "Distributed Thinking Systems Blog"
+layout: page
 menu_item: Blog
 permalink: /blog/
 ---
 
-Welcome to the Distributed Thinking Systems blog! Here, we dive into the cutting-edge world of artificial intelligence, distributed computing, and tech innovation. Whether you’re looking for the latest breakthroughs in AI research, project updates, or deep technical explorations, you’ll find it all here.
+Welcome to the **Distributed Thinking Systems Blog**, where we delve into topics at the intersection of **AI development**, **distributed computing**, and **technology innovations** in **Unix/Linux/macOS environments**. 
 
-Stay connected for insights and articles from Michael Sullivan, sharing over 30 years of experience in technology and innovation. Our posts cover everything from real-world AI applications to thought-provoking takes on the future of tech. We’re excited to share our journey with you!
+Beyond tech, we explore real-world applications of these advancements, such as addressing societal challenges like **parental alienation**. Dive into our latest articles and stay informed about our projects, research, and technical explorations.
 
-If you have an idea you would like to see here, please get in touch, I want to build a community with all of us.
-
-<ul>
-  {% for post in site.posts %}
-    <li>
-      <a href="{{ post.url }}">{{ post.title }}</a> - {{ post.date | date: "%B %d, %Y" }}
-    </li>
-  {% endfor %}
-</ul>
-
+{% for post in site.posts %}
+  <article class="post">
+    <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+    <span class="post-date">{{ post.date | date: "%B %d, %Y" }}</span>
+    {% assign excerpt = post.content | split: '<!--more-->' | first %}
+    {{ excerpt | truncatewords: 50 | markdownify | process_heading }}
+    <a href="{{ post.url | relative_url }}" class="btn">Read More</a>
+  </article>
+{% endfor %}
 
 {% include getintouch.html %}

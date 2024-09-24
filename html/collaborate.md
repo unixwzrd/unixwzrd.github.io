@@ -1,19 +1,22 @@
 ---
-title: Collaborate with Distributed Thinking Systems
 layout: page
+title: "Collaborate and Join the Community"
 menu_item: Collaborate
 permalink: /collaborate/
 ---
 
-We’re actively seeking collaboration and support to expand our work and further our mission. Whether you’re a legal professional, mental health expert, or simply someone who’s been affected by parental alienation, your contributions are invaluable.
+### Build With Us: Become Part of the Community
 
-### How You Can Collaborate
+**Distributed Thinking Systems** is about building a collaborative community where professionals and individuals come together to contribute their expertise, participate in projects, or support our work.
 
-- **Contribute Data**: Help us refine our models by providing data from past high-conflict divorce or parental alienation cases. We ensure confidentiality and data security.
-- **Partner in Research**: Work with us on research projects to explore AI-driven solutions to family law challenges.
-- **Sponsor Us**: Your [sponsorship and support](https://distributedthinking.systems/support/sponsorship/) helps keep our tools, research, and platform accessible to all families in need.
-- **Share Your Story**: Contribute your experiences to raise awareness about parental alienation and its long-term effects.
+Whether you're a **legal professional**, a **researcher**, or someone who wants to help push our mission forward, your involvement is invaluable.
 
-[Contact us](/contact) for more information about collaborating with us.
+#### Two Ways to Get Involved:
 
-{%include getintouch.html%}
+- **For Professionals**: If you’re seeking our services, sponsorship opportunities, or want to hire us for AI development, data analysis, or consulting, head over to our [Professional Services](/collaborate/professionals) page.
+  
+- **For Contributors & Participants**: Interested in joining our community, contributing data, collaborating on research, or getting involved with ongoing projects? Visit our [Community Collaboration](/collaborate/community) page.
+
+Join us in making an impact on the future of AI, parental alienation solutions, and technology. 
+
+{% include getintouch.html %}

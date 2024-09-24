@@ -31,7 +31,6 @@ source: "html"
 show_dir_listing: false
 
 
-
 encoding: utf-8
 markdown_ext: markdown,mkdown,mkdn,mkd,md
 timezone: America/New_York
@@ -67,7 +66,16 @@ minima:
 
 # Tagline
 tagline: "Mostly computing on and off."
-page_excerpts: true
+page_excerpts:  false
+excerpt_separator: "<!--more-->"
+permalink: /:categories_first/:year/:month/:day/:title/
+defaults:
+  -
+    scope:
+      path: ""  # This applies to all files
+      type: "posts"  # You can also specify other content types
+    values:
+      categories: "uncategorized"
 
 # Codeium Public Profile
 codeium_stats: https://codeium.com/profile/unixwzrd
@@ -118,7 +126,4 @@ exclude:
   - stage/
   - tmp/
   - utils/
-  - vendor/bundle/
-  - vendor/cache/
-  - vendor/gems/
-  - vendor/ruby/
+  - vendor/
