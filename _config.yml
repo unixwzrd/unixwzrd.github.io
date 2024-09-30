@@ -61,10 +61,10 @@ minima:
   social_links:
     - { platform: github, user_url: "https://github.com/unixwzrd" }
     - { platform: linkedin, user_url: "https://linkedin.com/in/unixwzrd" }
-    - { platform: huggingface, user_url: "https://huggingface.co/in/unixwzrd" }
+    - { platform: huggingface, user_url: "https://huggingface.co/unixwzrd" }
+    - { platform: wandb, user_url: "https://wandb.ai/unixwzrd" }  
     - { platform: twitter, user_url: "https://twitter.com/unixwzrd" }
     - { platform: telegram, user_url: "https://telegram.me/unixwzrd" }
-    - { platform: wandb, user_url: "https://wandb.ai/unixwzrd" }  
   skin: auto
 
 github:
