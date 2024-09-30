@@ -545,3 +545,6 @@ zsdoc/data
 
 tmp/
 file_layout.txt
+Gemfile.lock
+Gemfile.bak
+
