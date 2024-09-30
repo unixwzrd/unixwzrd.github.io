@@ -13,4 +13,4 @@ Coming soon: A description of Our [GitHub Projects.]{https://github.com/unixwzrd
 
 {% include join_us.html %}
 
-{include getintouch.html}
+{% include getintouch.html %}
