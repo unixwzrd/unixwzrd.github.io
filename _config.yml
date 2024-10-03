@@ -70,6 +70,11 @@ minima:
 github:
   username: unixwzrd
 
+collections:
+  previews:
+    output: true
+    permalink: /previews/:slug/
+
 # Tagline
 tagline: "Mostly computing on and off."
 page_excerpts:  false
@@ -93,6 +98,7 @@ header_pages:
   - about.md
   - services.md
   - collaborate.md
+  - projects.md
   - blog.md
   - resources.md
   - contact.md

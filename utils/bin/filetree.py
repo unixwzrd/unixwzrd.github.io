@@ -20,7 +20,7 @@ def is_ignored(item_name):
     :param item_name: The name of the item to check.
     :return: True if the item should be ignored, False otherwise.
     """
-    return item_name.startswith(('.', '_')) or item_name in args.exclude
+    return item_name.startswith(('.')) or item_name in args.exclude
 
 def add_items(root_dir, parent_tree):
     """
@@ -38,7 +38,7 @@ def add_items(root_dir, parent_tree):
             # Add directory with custom format and recursively add subdirectories
             dir_branch = parent_tree.add(f"{item_name}/")
             add_items(item_path, dir_branch)
-        elif item_name.endswith(('.html', '.md', '.py', '.js', '.css', '.sass', '.scss')):
+        elif item_name.endswith(('.html', '.md', '.py', '.js', '.css', '.sass', '.scss', '.rb')):
             # Add file with custom format for files
             parent_tree.add(item_name)
 

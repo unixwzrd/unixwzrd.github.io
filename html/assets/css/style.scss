@@ -96,7 +96,7 @@
   .wrapper {
     margin-left: 80px auto; /* Adds 40px margin to the top and bottom, auto centers horizontally */
     margin-right: 80px auto; /* Adds 40px margin to the top and bottom, auto centers horizontally */
-    max-width: 800px; /* The maximum width of the wrapper */
+    max-width: 900px; /* The maximum width of the wrapper */
     padding: 20px; /* Optional: Add padding for better spacing */
 
   }
@@ -153,6 +153,57 @@
       display: inline-block;
       font-size: 0.9rem;
     }
+  }
+
+  .project-table {
+    width: 100%;
+    margin-bottom: 20px;
+    border-spacing: 20px;
+    border: none !important; /* Ensure borders are fully removed */
+    padding: 5px;
+  }
+  
+  .project-image {
+    width: 50%; /* Increased width by 10% */
+    vertical-align: top;
+    border: none !important; /* Ensure no borders */
+    padding-left: none !important;
+  }
+  
+  .project-preview {
+    width: 100%;
+    height: auto;
+    max-height: 150px; /* Keep aspect ratio */
+    object-fit: cover;
+    border-radius: 0 !important;
+    border: none !important; /* Ensure no borders */
+  }
+  
+  .project-details {
+    width: 50%;
+    vertical-align: top;
+    padding-left: 10px;
+    padding-top: 0px !important; /* Remove top padding */
+    margin-top: 0px !important; /* Remove top margin */
+    border: none !important; /* Remove any default border */
+  }
+  
+  .project-details h2 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    margin-top: 0 !important; /* Ensure no space above the header */
+  }
+  
+  .github-link {
+    font-size: 1rem;
+    color: #00f;
+    text-decoration: none;
+  }
+  
+  .github-link {
+    font-size: 1rem;
+    color: #00f;
+    text-decoration: none;
   }
 
   #obfuscated-email a {

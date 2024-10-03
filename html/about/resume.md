@@ -4,7 +4,9 @@ title: Resume
 menu_item: Resume
 ---
 
-Looking for an overview of my experience and expertise? Download my [PDF Resume](/assets/documents/SullivanMichael_IT_AI_ML_Unix_42020819.pdf).
+Looking for an overview of my experience and expertise? Download my [PDF Resume.](/assets/documents/SullivanMichael_IT_AI_ML_Unix_42020819.pdf)
+<br>
+I have some [accreditations and certifications here.](/about/sullivan-michael-creds) 
 
 ## Michael Sullivan
 

@@ -1,0 +1,11 @@
+repositories:
+  - name: text-generation-webui-macos
+    owner: unixwzrd
+  - name: venvutil
+    owner: unixwzrd
+  - name: TokenSecure
+    owner: unixwzrd
+  - name: TorchDevice
+    owner: unixwzrd
+  - name: oobabooga-macOS
+    owner: unixwzrd
