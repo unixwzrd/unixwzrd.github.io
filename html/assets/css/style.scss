@@ -199,12 +199,20 @@
     color: #00f;
     text-decoration: none;
   }
-  
-  .github-link {
-    font-size: 1rem;
-    color: #00f;
-    text-decoration: none;
-  }
+
+  /* Style for the row containing the links */
+.links-row {
+  display: flex;
+  justify-content: space-between; /* This ensures equal spacing between the two links */
+  margin-top: 10px; /* Adds spacing between the description and links */
+}
+
+.project-blog-link, .github-link {
+  font-size: 1rem;
+  text-decoration: none;
+  color: #00f; /* Customize link color */
+  padding: 5px;
+}
 
   #obfuscated-email a {
     color: #0000CC;

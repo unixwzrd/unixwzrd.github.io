@@ -19,4 +19,6 @@ Beyond tech, we explore real-world applications of these advancements, such as a
   </article>
 {% endfor %}
 
+{% include join_us.html %}
+
 {% include getintouch.html %}

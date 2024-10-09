@@ -1,4 +1,10 @@
 repositories:
+#  - profile: true
+#    name: 'GitHub Profile'
+#    owner: unixwzrd
+#    repo_url: 'https://github.com/unixwzrd'
+#    image_url: 'https://avatars.githubusercontent.com/u/unixwzrd?s=460&v=4'
+#    description: 'This is the GitHub profile for Unixwzrd. Explore repositories, contributions, and more!'
   - name: text-generation-webui-macos
     owner: unixwzrd
   - name: venvutil

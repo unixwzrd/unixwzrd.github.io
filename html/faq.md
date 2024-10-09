@@ -24,4 +24,6 @@ menu_item: FAQ
 
     We’re always looking for **collaborators**, **sponsors**, and **partners** to expand our work. Reach out through our [Contact page](contact.md) to discuss opportunities.
 
+{% include join_us.html %}
+
 {% include getintouch.html %}

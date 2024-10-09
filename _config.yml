@@ -57,12 +57,14 @@ wandb_username: unixwzrd
 # geeks_for_geeks_username: unixwzrd
 # reddit_username: unixwzrd
 # wordpress_username: unixwzrd
+# https://music.apple.com/profile/unixwzrd
 minima:
   social_links:
     - { platform: github, user_url: "https://github.com/unixwzrd" }
     - { platform: linkedin, user_url: "https://linkedin.com/in/unixwzrd" }
     - { platform: huggingface, user_url: "https://huggingface.co/unixwzrd" }
     - { platform: wandb, user_url: "https://wandb.ai/unixwzrd" }  
+    - { platform: devdotto, user_url: "https://dev.to/unixwzrd" }
     - { platform: twitter, user_url: "https://twitter.com/unixwzrd" }
     - { platform: telegram, user_url: "https://telegram.me/unixwzrd" }
   skin: auto
@@ -87,6 +89,12 @@ defaults:
       type: "posts"  # You can also specify other content types
     values:
       categories: "uncategorized"
+
+# Other non-blog collections
+collections:
+  projects:
+    output: true
+    permalink: /projects/:path/
 
 # Codeium Public Profile
 codeium_stats: https://codeium.com/profile/unixwzrd

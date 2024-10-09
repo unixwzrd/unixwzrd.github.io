@@ -1,0 +1,19 @@
+---
+layout: default
+---
+<article class="post">
+
+  <header class="page-heading">
+    <h1 class="post-title">{{ page.title | escape }}</h1>
+    <p class="project-meta">
+      GitHub: <a href="{{ page.repo_url }}">{{ page.repo_url }}</a>
+    </p>
+  </header>
+
+  <div class="post-content">
+    <p>{{ page.description }}</p>
+    <img src="{{ page.image_url }}" alt="{{ page.title }} image">
+    {{ content }}
+  </div>
+
+</article>

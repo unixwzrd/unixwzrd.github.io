@@ -20,3 +20,5 @@ One of the standout features of Codeium is its ability to produce a set of refer
 You can check out Codeium on their website. They have a free version available, so give it a try—they are constantly updating and enhancing their capabilities. You might make the switch too.
 
 If you want to give Codeium a try head over to [Codeium](https://codeium.com) and check it out.
+
+Add your thoughts or questions about the topic [2024-08-02 AI Coding Assistants](https://github.com/unixwzrd/unixwzrd.github.io/discussions/5)

@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+
+# Because we are in utils/bin, we need to go up two to be in the BASE_DIR
+BASE_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")/../..")"
+my_name="${BASH_SOURCE[0]}"
+my_arg1="$1"
+
+pid_file="${BASE_DIR}/util/etc/jekyll.pid"
+
+check_running() {
+    if pgrep "${my_name}" | grep -q "$(cat "$pid_file" 2> /dev/null)" && { [ -f "$pid_file" ]; } > /dev/null; then
+        return 0
+    fi
+    return 1
+}
+
+
+startup_items() {
+    fetch_og_data.py  # Runs the Python script to update OG data
+    rm -rf html/.jekyll-cache/ _site/ # Clear the Jekyll cache
+    jekyll build --trace --verbose # Build the Jekyll site
+    echo $$ > "$pid_file"
+    bundle exec jekyll serve --host 0.0.0.0 --port 4000 --trace # Start the Jekyll server
+}
+
+
+start_service() {
+    if ! check_running; then
+        # Attempt to shutdown/restart the service
+        echo "Service is already running" >&2
+        stop_service
+    fi
+    startup_items &
+}
+
+
+stop_service() {
+    if check_running; then
+        # Shutdown the service if it is running
+        pid="$(cat "$pid_file")"
+        kill "$pid"
+    fi
+    rm -f "$pid_file"
+}
+
+
+case "$my_arg1" in
+    -h|--help)
+        echo "Usage: $my_name [start|stop|restart]"
+        ;;
+    start)
+        echo "Starting $my_name" >&2
+        start_service
+        ;;
+    stop)
+        echo "Stopping $my_name" >&2
+        stop_service
+        ;;
+    restart)
+        echo "Restarting $my_name" >&2
+        stop_service
+        start_service
+        ;;
+    *)
+        echo "Usage: $my_name [start|stop|restart]"
+        exit 1
+        ;;
+esac

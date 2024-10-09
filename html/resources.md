@@ -37,4 +37,6 @@ Helpful tools, organizations, and information related to parental alienation, AI
 - [Hugging Face](https://huggingface.co/) - Open-source AI tools.
 - [OpenAI](https://openai.com/) - AI research and development tools.
 
+{% include join_us.html %}
+
 {% include getintouch.html %}

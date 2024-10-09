@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-fetch_og_data.py  # Runs the Python script to update OG data
-rm -rf html/.jekyll-cache/ _site/
-jekyll build --trace --verbose
-bundle exec jekyll serve --host 0.0.0.0 --port 4000 --trace

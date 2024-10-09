@@ -1,21 +1,26 @@
 <div class="projects-list">
-    {% for project in site.data.github_projects.projects %}
-      <table class="project-table">
-        <tr>
-          <!-- First column: Image -->
-          <td class="project-image">
-            <a href="{{ project.repo_url }}">
-              <img class="project-preview" src="{{ project.image_url }}" alt="{{ project.title }} image">
-            </a>
-          </td>
-          
-          <!-- Second column: Text (Title, Description, GitHub link) -->
-          <td class="project-details">
-            <h2><a href="{{ project.repo_url }}">{{ project.title }}</a></h2>
-            <p>{{ project.description }}</p>
+  {% for project in site.data.github_projects.projects %}
+    <table class="project-table">
+      <tr>
+        <!-- First column: Image -->
+        <td class="project-image">
+          <a href="{{ project.repo_url }}">
+            <img class="project-preview" src="{{ project.image_url }}" alt="{{ project.title }} image">
+          </a>
+        </td>
+        
+        <!-- Second column: Text (Title, Description, GitHub link) -->
+        <td class="project-details">
+          <h2><a href="{{ project.repo_url }}">{{ project.title }}</a></h2>
+          <p>{{ project.description }}</p>
+
+          <!-- Nested row for links: Project Blog and GitHub -->
+          <div class="links-row">
+            <a class="project-blog-link" href="/projects/{{ project.title }}">Project Blog</a>
             <a class="github-link" href="{{ project.repo_url }}">View on GitHub</a>
-          </td>
-        </tr>
-      </table>
-    {% endfor %}
-  </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  {% endfor %}
+</div>
