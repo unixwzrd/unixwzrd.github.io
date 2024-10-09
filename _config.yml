@@ -20,16 +20,15 @@
 
 title: Distributed Thinking Systems
 description: >-
- Using AI for good.
+  Using AI for good.
   <br>
   Mostly computing on and off.
   <br>
   Distributed Thinking Systems: Innovating AI, machine learning, and distributed computing solutions.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://unixwzrd.ai/"
+url: "https://unixwzrd.ai"
 source: "html"
 show_dir_listing: false
-
 
 encoding: utf-8
 markdown_ext: markdown,mkdown,mkdn,mkd,md
@@ -38,8 +37,6 @@ timezone: America/New_York
 author:
   name: "Let's hear from you."
   email: "unixwzrd@unixwzrd.ai"
-
-site.author.email: unixwzrd@unixwzrd.ai
 
 # Social links
 twitter_username: unixwzrd
@@ -58,6 +55,7 @@ wandb_username: unixwzrd
 # reddit_username: unixwzrd
 # wordpress_username: unixwzrd
 # https://music.apple.com/profile/unixwzrd
+
 minima:
   social_links:
     - { platform: github, user_url: "https://github.com/unixwzrd" }
@@ -72,39 +70,37 @@ minima:
 github:
   username: unixwzrd
 
-collections:
-  previews:
-    output: true
-    permalink: /previews/:slug/
+# Codeium Public Profile
+codeium_stats: https://codeium.com/profile/unixwzrd
 
-# Tagline
+collections:
+  projects:
+    output: true
+    permalink: /projects/:name/
+  project_posts:
+    output: true
+    permalink: /projects/:project_name/:title/
+    defaults:
+      - scope:
+          path: ""
+          type: "project_posts"
+        values:
+          layout: post
+
 tagline: "Mostly computing on and off."
 page_excerpts:  false
 excerpt_separator: "<!--more-->"
 permalink: /:categories/:year/:month/:day/:title/
 defaults:
-  -
-    scope:
-      path: ""  # This applies to all files
-      type: "posts"  # You can also specify other content types
+  - scope:
+      path: ""  # Applies to all files
     values:
-      categories: "uncategorized"
+      layout: page
 
-# Other non-blog collections
-collections:
-  projects:
-    output: true
-    permalink: /projects/:path/
-
-# Codeium Public Profile
-codeium_stats: https://codeium.com/profile/unixwzrd
-
-# Build settings
 theme: jekyll-minima
 
 header_pages:
   - about.md
-  - services.md
   - collaborate.md
   - projects.md
   - blog.md
@@ -122,16 +118,7 @@ plugins:
   - jekyll-redirect-from
   - jemoji
 
-# Exclude from processing.
-# The following items will not be processed, by default.
-# Any item listed under the `exclude:` key here will be automatically added to
-# the internal "default list".
-#
-# Excluded items can be processed by explicitly listing the directories or
-# their entries' file path in the `include:` list.
-#
 exclude:
-
   - .DS_Store
   - .gitignore
   - .jekyll-cache/

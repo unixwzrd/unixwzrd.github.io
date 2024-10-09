@@ -9,7 +9,7 @@ permalink: /projects/
 
 At **Distributed Thinking Systems**, we are constantly pushing boundaries with innovative projects in AI, data science, and distributed computing.
 
-{% include github_projects.html %}
+{% include projects_list.html %}
 
 ## More to come
 

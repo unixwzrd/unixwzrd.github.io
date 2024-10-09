@@ -1,19 +1,35 @@
+<!-- _layouts/project.html -->
 ---
 layout: default
 ---
-<article class="post">
 
-  <header class="page-heading">
-    <h1 class="post-title">{{ page.title | escape }}</h1>
-    <p class="project-meta">
-      GitHub: <a href="{{ page.repo_url }}">{{ page.repo_url }}</a>
-    </p>
+<article class="project">
+  <header class="project-header">
+    <h1 class="project-title">{{ page.title | escape }}</h1>
+    {% if page.repo_url %}
+      <p class="project-meta">
+        GitHub: <a href="{{ page.repo_url }}">{{ page.repo_url }}</a>
+      </p>
+    {% endif %}
   </header>
 
-  <div class="post-content">
-    <p>{{ page.description }}</p>
-    <img src="{{ page.image_url }}" alt="{{ page.title }} image">
+  <div class="project-content">
+    {% if page.image_url %}
+      <img src="{{ page.image_url }}" alt="{{ page.title }} image" class="project-image">
+    {% endif %}
     {{ content }}
   </div>
 
+  {% if site.categories[page.project_name] %}
+    <h2>Project Blog Entries</h2>
+    {% for post in site.categories[page.project_name] %}
+      <article class="post">
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        <span class="post-date">{{ post.date | date: "%B %d, %Y" }}</span>
+        {% assign excerpt = post.content | split: '<!--more-->' | first %}
+        {{ excerpt | markdownify | process_heading }}
+        <a href="{{ post.url | relative_url }}" class="btn">Read More</a>
+      </article>
+    {% endfor %}
+  {% endif %}
 </article>
