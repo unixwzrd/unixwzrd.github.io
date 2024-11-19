@@ -1,9 +1,9 @@
 ---
 title: "TorchDevice"
-layout: page
+layout: project
+project_name: "TorchDevice"
 permalink: /projects/TorchDevice/
 ---
-
 ## TorchDevice
 
 Module contains class TorchDevice abstracting CUDA/MPS/CPU, intercepting, and redirecting calls to the available device to assist in porting code from CUDA to MPS. - unixwzrd/TorchDevice
@@ -12,12 +12,16 @@ Module contains class TorchDevice abstracting CUDA/MPS/CPU, intercepting, and re
 
 ## Project Blog Entries
 
-{% for post in site.categories.TorchDevice %}
+{% raw %}{% for post in site.categories.TorchDevice %}
   <article class="post">
-    <h3><a href="{ post.url | relative_url }">{ post.title }</a></h3>
-    <span class="post-date">{ post.date | date: "%B %d, %Y" }</span>
-    {% assign excerpt = post.content | split: '<!--more-->' | first %}
-    { excerpt | truncatewords: 50 | markdownify | process_heading }
-    <a href="{ post.url | relative_url }" class="btn">Read More</a>
+    <h3><a href="{ '{' } post.url | relative_url { '}' }">{ '{' } post.title { '}' }</a></h3>
+    <span class="post-date">{ '{' } post.date | date: "%B %d, %Y" { '}' }</span>
+    { '{' }% assign excerpt = post.content | split: '<!--more-->' | first %{ '}' }
+    { '{' } excerpt | truncatewords: 50 | markdownify | process_heading { '}' }
+    <a href="{ '{' } post.url | relative_url { '}' }" class="btn">Read More</a>
   </article>
-{% endfor %}
+{% endfor %}{% endraw %}
+
+{% raw %}{% include join_us.html %}{% endraw %}
+
+{% raw %}{% include getintouch.html %}{% endraw %}

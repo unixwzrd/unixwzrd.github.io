@@ -1,0 +1,132 @@
+INFO (genmd): /Users/mps/projects/AI-PROJECTS/DTS-WebSite/unixwzrd.github.io
+INFO (genmd): Configuration loaded from /Users/mps/projects/AI-PROJECTS/DTS-WebSite/unixwzrd.github.io/utils/etc/combined_source.grc
+Removing duplicates from array: dir_excludes
+Removing duplicates from array: file_excludes
+Removing duplicates from array: pattern_excludes
+Removing duplicates from array: file_includes
+Removing duplicates from array: settings_modes
+genmd current settings
+GENMD_FILE_EXCLUDES:    *.ico
+GENMD_DIR_EXCLUDES:    tmp
+GENMD_PATTERN_EXCLUDES:    
+GENMD_FILE_INCLUDES:    css
+GENMD_BASE:    /Users/mps/projects/AI-PROJECTS/DTS-WebSite/unixwzrd.github.io
+output_filename:    /Users/mps/projects/AI-PROJECTS/DTS-WebSite/unixwzrd.github.io/utils/output/combined_source.md
+dry_run:    false
+debug_level:    4
+verbose:    false
+INFO (genmd): Configuration saved to /Users/mps/projects/AI-PROJECTS/DTS-WebSite/unixwzrd.github.io/utils/etc/combined_source.grc
+DEBUG (genmd): Final directory exclusions: tmp .git utils _includes _data _posts js collaborates projects utils _includes _data _posts js collaborates projects
+INFO (genmd): Generating directory and file structure excluding: tmp .git utils _includes _data _posts js collaborates projects utils _includes _data _posts js collaborates projects
+DEBUG (genmd): Exclude directories patterns: tmp .git utils _includes _data _posts js collaborates projects utils _includes _data _posts js collaborates projects
+DEBUG (genmd): Exclude directories input pattern: tmp
+DEBUG (genmd): Exclude directories escaped pattern: tmp
+DEBUG (genmd): Exclude directories input pattern: .git
+DEBUG (genmd): Exclude directories escaped pattern: \.git
+DEBUG (genmd): Exclude directories input pattern: utils
+DEBUG (genmd): Exclude directories escaped pattern: utils
+DEBUG (genmd): Exclude directories input pattern: _includes
+DEBUG (genmd): Exclude directories escaped pattern: _includes
+DEBUG (genmd): Exclude directories input pattern: _data
+DEBUG (genmd): Exclude directories escaped pattern: _data
+DEBUG (genmd): Exclude directories input pattern: _posts
+DEBUG (genmd): Exclude directories escaped pattern: _posts
+DEBUG (genmd): Exclude directories input pattern: js
+DEBUG (genmd): Exclude directories escaped pattern: js
+DEBUG (genmd): Exclude directories input pattern: collaborates
+DEBUG (genmd): Exclude directories escaped pattern: collaborates
+DEBUG (genmd): Exclude directories input pattern: projects
+DEBUG (genmd): Exclude directories escaped pattern: projects
+DEBUG (genmd): Exclude directories input pattern: utils _includes _data _posts js collaborates projects
+DEBUG (genmd): Exclude directories escaped pattern: utils _includes _data _posts js collaborates projects
+DEBUG (genmd): Exclude directories final regex: tmp|\.git|utils|_includes|_data|_posts|js|collaborates|projects|utils _includes _data _posts js collaborates projects
+DEBUG (genmd): Excluding directories with regex: /tmp/|/\.git/|/utils/|/_includes/|/_data/|/_posts/|/js/|/collaborates/|/projects/|/utils _includes _data _posts js collaborates projects/
+DEBUG (genmd): Exclude files patterns: *.ico *.svg *.png *.pdf *.jpg *.htaccess *.webp *.jekyll .DS_Store *.JPG *.png *impression* professional.md *.png *impression* professional.md *.png
+DEBUG (genmd): Exclude files input pattern: *.ico
+DEBUG (genmd): Exclude files escaped pattern: .*\.ico
+DEBUG (genmd): Exclude files input pattern: *.svg
+DEBUG (genmd): Exclude files escaped pattern: .*\.svg
+DEBUG (genmd): Exclude files input pattern: *.png
+DEBUG (genmd): Exclude files escaped pattern: .*\.png
+DEBUG (genmd): Exclude files input pattern: *.pdf
+DEBUG (genmd): Exclude files escaped pattern: .*\.pdf
+DEBUG (genmd): Exclude files input pattern: *.jpg
+DEBUG (genmd): Exclude files escaped pattern: .*\.jpg
+DEBUG (genmd): Exclude files input pattern: *.htaccess
+DEBUG (genmd): Exclude files escaped pattern: .*\.htaccess
+DEBUG (genmd): Exclude files input pattern: *.webp
+DEBUG (genmd): Exclude files escaped pattern: .*\.webp
+DEBUG (genmd): Exclude files input pattern: *.jekyll
+DEBUG (genmd): Exclude files escaped pattern: .*\.jekyll
+DEBUG (genmd): Exclude files input pattern: .DS_Store
+DEBUG (genmd): Exclude files escaped pattern: \.DS_Store
+DEBUG (genmd): Exclude files input pattern: *.JPG
+DEBUG (genmd): Exclude files escaped pattern: .*\.JPG
+DEBUG (genmd): Exclude files input pattern: *.png
+DEBUG (genmd): Exclude files escaped pattern: .*\.png
+DEBUG (genmd): Exclude files input pattern: *impression*
+DEBUG (genmd): Exclude files escaped pattern: .*impression.*
+DEBUG (genmd): Exclude files input pattern: professional.md
+DEBUG (genmd): Exclude files escaped pattern: professional\.md
+DEBUG (genmd): Exclude files input pattern: *.png
+DEBUG (genmd): Exclude files escaped pattern: .*\.png
+DEBUG (genmd): Exclude files input pattern: *impression*
+DEBUG (genmd): Exclude files escaped pattern: .*impression.*
+DEBUG (genmd): Exclude files input pattern: professional.md
+DEBUG (genmd): Exclude files escaped pattern: professional\.md
+DEBUG (genmd): Exclude files input pattern: *.png
+DEBUG (genmd): Exclude files escaped pattern: .*\.png
+DEBUG (genmd): Exclude files final regex: .*\.ico|.*\.svg|.*\.png|.*\.pdf|.*\.jpg|.*\.htaccess|.*\.webp|.*\.jekyll|\.DS_Store|.*\.JPG|.*\.png|.*impression.*|professional\.md|.*\.png|.*impression.*|professional\.md|.*\.png
+DEBUG (genmd): Excluding files with regex: .*\.ico|.*\.svg|.*\.png|.*\.pdf|.*\.jpg|.*\.htaccess|.*\.webp|.*\.jekyll|\.DS_Store|.*\.JPG|.*\.png|.*impression.*|professional\.md|.*\.png|.*impression.*|professional\.md|.*\.png
+DEBUG (genmd): Include files patterns: css liquid css liquid
+DEBUG (genmd): Include files input pattern: css
+DEBUG (genmd): Include files escaped pattern: css
+DEBUG (genmd): Include files input pattern: liquid
+DEBUG (genmd): Include files escaped pattern: liquid
+DEBUG (genmd): Include files input pattern: css
+DEBUG (genmd): Include files escaped pattern: css
+DEBUG (genmd): Include files input pattern: liquid
+DEBUG (genmd): Include files escaped pattern: liquid
+DEBUG (genmd): Include files final regex: css|liquid|css|liquid
+DEBUG (genmd): Including files with regex: css|liquid|css|liquid
+DEBUG (genmd): Final files to process:
+  "./_site/assets/css/mineokai.scss"
+  "./_site/assets/css/monokai.scss"
+  "./_site/assets/css/style.css"
+  "./_site/assets/css/style.css.map"
+  "./_site/assets/css/style.scss"
+  "./html/assets/css/_base.scss"
+  "./html/assets/css/_components.scss"
+  "./html/assets/css/_layout.scss"
+  "./html/assets/css/_overrides.scss"
+  "./html/assets/css/_variables.scss"
+  "./html/assets/css/mineokai.scss"
+  "./html/assets/css/monokai.scss"
+  "./html/assets/css/style.scss"
+  "./html/assets/minima-social-icons.liquid"
+  "./new_files/assets/css/_base.scss"
+  "./new_files/assets/css/_components.scss"
+  "./new_files/assets/css/_layout.scss"
+  "./new_files/assets/css/_overrides.scss"
+  "./new_files/assets/css/_variables.scss"
+  "./new_files/assets/css/style.scss"
+INFO (genmd): Generating markdown for: ./_site/assets/css/mineokai.scss
+INFO (genmd): Generating markdown for: ./_site/assets/css/monokai.scss
+INFO (genmd): Generating markdown for: ./_site/assets/css/style.css
+INFO (genmd): Generating markdown for: ./_site/assets/css/style.css.map
+INFO (genmd): Generating markdown for: ./_site/assets/css/style.scss
+INFO (genmd): Generating markdown for: ./html/assets/css/_base.scss
+INFO (genmd): Generating markdown for: ./html/assets/css/_components.scss
+INFO (genmd): Generating markdown for: ./html/assets/css/_layout.scss
+INFO (genmd): Generating markdown for: ./html/assets/css/_overrides.scss
+INFO (genmd): Generating markdown for: ./html/assets/css/_variables.scss
+INFO (genmd): Generating markdown for: ./html/assets/css/mineokai.scss
+INFO (genmd): Generating markdown for: ./html/assets/css/monokai.scss
+INFO (genmd): Generating markdown for: ./html/assets/css/style.scss
+INFO (genmd): Generating markdown for: ./html/assets/minima-social-icons.liquid
+INFO (genmd): Generating markdown for: ./new_files/assets/css/_base.scss
+INFO (genmd): Generating markdown for: ./new_files/assets/css/_components.scss
+INFO (genmd): Generating markdown for: ./new_files/assets/css/_layout.scss
+INFO (genmd): Generating markdown for: ./new_files/assets/css/_overrides.scss
+INFO (genmd): Generating markdown for: ./new_files/assets/css/_variables.scss
+INFO (genmd): Generating markdown for: ./new_files/assets/css/style.scss

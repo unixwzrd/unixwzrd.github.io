@@ -1,0 +1,21 @@
+// assets/css/_layout.scss
+
+// Header and Site Title
+.header,
+.site-title,
+.site-header {
+  color: $text-color !important;
+  background: $header-background !important;
+}
+
+.site-header {
+  border-top: 1px !important;
+}
+
+// Brand Graphic Styling
+.brand-graphic {
+  width: $brand-graphic-width;
+  height: auto;
+  margin-right: $brand-graphic-margin-right;
+  vertical-align: middle;
+}
