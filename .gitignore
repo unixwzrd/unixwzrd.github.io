@@ -545,8 +545,16 @@ zsdoc/data
 
 tmp/
 file_layout.txt
-Gemfile.lock
+# Gemfile.lock
 Gemfile.bak
 _previews
 new_files/
 
+
+# Ignore project planning directory
+.master-planning
+.project-planning/
+output.txt
+utils/output
+*.grc
+*.pid

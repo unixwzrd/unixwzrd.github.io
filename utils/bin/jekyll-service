@@ -19,11 +19,18 @@ check_running() {
     fi
     return 1
 }
+    
+site_build() {
+    echo "Building $my_name" >&2
+    # rvm use ext-ruby-3.3.4@unixwzrd.github.io --default
+    # fetch_og_data.py  # Runs the Python script to update OG data
+    rm -rf html/.jekyll-cache/ _site/ # Clear the Jekyll cache
+    bundle exec jekyll build --trace --verbose # Build the Jekyll site
+}
 
 startup_items() {
-    fetch_og_data.py  # Runs the Python script to update OG data
-    rm -rf html/.jekyll-cache/ _site/ # Clear the Jekyll cache
-    jekyll build --trace --verbose # Build the Jekyll site
+    echo "Starting $my_name" >&2
+    site_build
     bundle exec jekyll serve --host 0.0.0.0 --port 4000 --trace & # Start Jekyll in background
     echo $! > "$pid_file" # Store Jekyll's PID
 }
@@ -37,6 +44,7 @@ start_service() {
 }
 
 stop_service() {
+    echo "Stopping $my_name" >&2
     if check_running; then
         pid=$(cat "$pid_file")
         kill "$pid"
@@ -53,14 +61,15 @@ stop_service() {
 
 case "$my_arg1" in
     -h|--help)
-        echo "Usage: $my_name [start|stop|restart]"
+        echo "Usage: $my_name [build|start|stop|restart]"
+        ;;
+    build)
+        site_build
         ;;
     start)
-        echo "Starting $my_name" >&2
         start_service
         ;;
     stop)
-        echo "Stopping $my_name" >&2
         stop_service
         ;;
     restart)
@@ -69,7 +78,7 @@ case "$my_arg1" in
         start_service
         ;;
     *)
-        echo "Usage: $my_name [start|stop|restart]"
+        echo "Usage: $my_name [build||start|stop|restart]"
         exit 1
         ;;
 esac

@@ -1,0 +1,7 @@
+// custom-styles.scss
+
+// Import customizations in the desired order
+@import "minima/customizations/base";
+@import "minima/customizations/layout";
+@import "minima/customizations/components";
+@import "minima/customizations/site-header";

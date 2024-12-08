@@ -1,0 +1,10 @@
+// Placeholder to allow overriding predefined variables smoothly.
+
+@use "sass:color";
+
+// Import custom variables
+@import "minima/customizations/variables";
+
+// Import syntax highlighting themes
+@import "minima/customizations/mineokai";
+@import "minima/customizations/monokai";

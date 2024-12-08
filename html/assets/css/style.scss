@@ -2,10 +2,5 @@
 ---
 ---
 @import
-  "minima/skins/{{ site.minima.skin | default: 'auto' }}",
   "minima/initialize",
-  "variables",
-  "base",
-  "layout",
-  "components",
-  "overrides";
+  "minima/skins/{{ site.minima.skin | default: 'auto' }}";

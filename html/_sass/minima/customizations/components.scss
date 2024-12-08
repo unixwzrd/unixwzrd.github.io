@@ -1,8 +1,8 @@
-// assets/css/_components.scss
+// components.scss
 
 // Blockquote Styling
 blockquote {
-  color: #60c0ee !important;
+  color: #60c0ee;
   background: #000000;
   border-left-color: #5592b4;
 }
@@ -12,14 +12,14 @@ table {
   border: 1px solid $border-color;
 
   th {
-    background-color: $header-color !important;
+    background-color: $header-color;
     border: 1px solid $border-color;
-    font-weight: bold !important;
+    font-weight: bold;
     padding: 12px;
   }
 
   tr {
-    border: 1px;
+    border: 1px solid $border-color;
   }
 
   td {
@@ -28,10 +28,11 @@ table {
   }
 
   // Odd and Even Row Backgrounds
-  .odd td {
+  tr:nth-child(odd) td {
     background-color: $odd-row-color;
   }
-  .even td {
+
+  tr:nth-child(even) td {
     background-color: $even-row-color;
   }
 
@@ -44,7 +45,7 @@ table {
     border-bottom: none;
   }
   tr:last-of-type td:first-child:not(:empty) {
-    border-bottom: 1px;
+    border-bottom: 1px solid $border-color;
   }
 }
 
@@ -75,7 +76,7 @@ code {
     margin-bottom: 0.2rem;
   }
 
-  .p {
+  p {
     font-size: 1.1rem;
     line-height: 1.5rem;
     margin-bottom: 1.2rem;
@@ -94,15 +95,15 @@ code {
   width: 100%;
   margin-bottom: 20px;
   border-spacing: 20px;
-  border: none !important;
+  border: none;
   padding: 5px;
 }
 
 .project-image {
   width: 50%;
   vertical-align: top;
-  border: none !important;
-  padding-left: none !important;
+  border: none;
+  padding-left: 0;
 }
 
 .project-preview {
@@ -110,23 +111,23 @@ code {
   height: auto;
   max-height: 150px;
   object-fit: cover;
-  border-radius: 0 !important;
-  border: none !important;
+  border-radius: 0;
+  border: none;
 }
 
 .project-details {
   width: 50%;
   vertical-align: top;
   padding-left: 10px;
-  padding-top: 0px !important;
-  margin-top: 0px !important;
-  border: none !important;
+  padding-top: 0;
+  margin-top: 0;
+  border: none;
 }
 
 .project-details h2 {
   font-size: $project-details-h2-font-size;
   margin-bottom: 10px;
-  margin-top: 0 !important;
+  margin-top: 0;
 }
 
 .github-link,
@@ -146,7 +147,7 @@ code {
 
 // Obfuscated Email Link
 #obfuscated-email a {
-  color: #0000CC;
+  color: #0000cc;
   text-decoration: underline;
 }
 

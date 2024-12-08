@@ -1,3 +1,4 @@
+---
 # Welcome to Jekyll!
 #
 # This config file is meant for settings that affect your whole blog, values
@@ -6,7 +7,8 @@
 # feature for the data you need to update frequently.
 #
 # For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+# 'bundle exec jekyll serve'. If you change this file, please restart the server
+# process.
 #
 # If you need help with YAML syntax, here are some quick references for you:
 # https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
@@ -24,8 +26,9 @@ description: >-
   <br>
   Mostly computing on and off.
   <br>
-  Distributed Thinking Systems: Innovating AI, machine learning, and distributed computing solutions.
-baseurl: "" # the subpath of your site, e.g. /blog
+  Distributed Thinking Systems: Innovating AI, machine learning, and
+  distributed computing solutions.
+baseurl: ""  # the subpath of your site, e.g. /blog
 url: "https://unixwzrd.ai"
 source: "html"
 show_dir_listing: false
@@ -58,13 +61,20 @@ wandb_username: unixwzrd
 
 minima:
   social_links:
-    - { platform: github, user_url: "https://github.com/unixwzrd" }
-    - { platform: linkedin, user_url: "https://linkedin.com/in/unixwzrd" }
-    - { platform: huggingface, user_url: "https://huggingface.co/unixwzrd" }
-    - { platform: wandb, user_url: "https://wandb.ai/unixwzrd" }  
-    - { platform: devdotto, user_url: "https://dev.to/unixwzrd" }
-    - { platform: twitter, user_url: "https://twitter.com/unixwzrd" }
-    - { platform: telegram, user_url: "https://telegram.me/unixwzrd" }
+    - platform: github
+      user_url: "https://github.com/unixwzrd"
+    - platform: linkedin
+      user_url: "https://linkedin.com/in/unixwzrd"
+    - platform: huggingface
+      user_url: "https://huggingface.co/unixwzrd"
+    - platform: wandb
+      user_url: "https://wandb.ai/unixwzrd"
+    - platform: devdotto
+      user_url: "https://dev.to/unixwzrd"
+    - platform: twitter
+      user_url: "https://twitter.com/unixwzrd"
+    - platform: telegram
+      user_url: "https://telegram.me/unixwzrd"
   skin: auto
 
 github:
@@ -88,7 +98,7 @@ collections:
           layout: post
 
 tagline: "Mostly computing on and off."
-page_excerpts:  false
+page_excerpts: false
 excerpt_separator: "<!--more-->"
 permalink: /:categories/:year/:month/:day/:title/
 defaults:
