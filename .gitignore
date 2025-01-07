@@ -553,7 +553,7 @@ new_files/
 
 # Ignore project planning directory
 .master-planning
-.project-planning/
+.project-planning
 output.txt
 utils/output
 *.grc
