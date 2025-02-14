@@ -2,6 +2,7 @@
 layout: project
 title: "chatgpt-chatlog-export"
 category: chatgpt-chatlog-export
+permalink: /projects/chatgpt-chatlog-export/
 ---
 
 ## chatgpt-chatlog-export

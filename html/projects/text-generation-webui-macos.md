@@ -2,6 +2,7 @@
 layout: project
 title: "text-generation-webui-macos"
 category: text-generation-webui-macos
+permalink: /projects/text-generation-webui-macos/
 ---
 
 ## text-generation-webui-macos

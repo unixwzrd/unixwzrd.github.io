@@ -2,6 +2,7 @@
 layout: project
 title: "TorchDevice"
 category: TorchDevice
+permalink: /projects/TorchDevice/
 ---
 
 ## TorchDevice

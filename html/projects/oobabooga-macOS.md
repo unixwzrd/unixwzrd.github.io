@@ -2,6 +2,7 @@
 layout: project
 title: "oobabooga-macOS"
 category: oobabooga-macOS
+permalink: /projects/oobabooga-macOS/
 ---
 
 ## oobabooga-macOS

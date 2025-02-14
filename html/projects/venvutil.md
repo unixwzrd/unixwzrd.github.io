@@ -2,6 +2,7 @@
 layout: project
 title: "venvutil"
 category: venvutil
+permalink: /projects/venvutil/
 ---
 
 ## venvutil
