@@ -220,7 +220,7 @@ def archive_project_data(project_data, web_root):
     """
     Add project to the archived projects YAML file with archive date.
     """
-    archive_data_file = os.path.join(web_root, '_data/archived_projects.yml')
+    archive_data_file = os.path.join(web_root, 'html/_data/archived_projects.yml')
     
     # Load existing archived projects
     archived_projects = []
@@ -314,8 +314,10 @@ def archive_unused_projects(web_root, active_projects):
                 if project_name not in active_projects:
                     try:
                         import shutil
-                        shutil.move(os.path.join(images_dir, image), 
-                                os.path.join(archive_images, image))
+                        shutil.move(
+                            os.path.join(images_dir, image),
+                            os.path.join(archive_images, image)
+                        )
                         mylog.info(f"Archived project image: {image}")
                     except Exception as e:
                         mylog.error(f"Failed to archive image {image}: {e}")
@@ -329,8 +331,10 @@ def archive_unused_projects(web_root, active_projects):
                 if project_name not in active_projects:
                     try:
                         import shutil
-                        shutil.move(os.path.join(includes_dir, include), 
-                                os.path.join(archive_includes, include))
+                        shutil.move(
+                            os.path.join(includes_dir, include),
+                            os.path.join(archive_includes, include)
+                        )
                         mylog.info(f"Archived project include: {include}")
                     except Exception as e:
                         mylog.error(f"Failed to archive include {include}: {e}")

@@ -1,0 +1,8 @@
+# Core dependencies
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+PyYAML>=6.0.1
+
+# Optional but recommended
+python-dotenv>=1.0.0  # For environment variable management
+logging>=0.4.9.6      # For better logging capabilities 

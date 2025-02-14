@@ -558,4 +558,5 @@ output.txt
 utils/output
 *.grc
 *.pid
-etc/
+*/etc/
+utils/etc/jekyll.pid
