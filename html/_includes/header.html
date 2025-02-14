@@ -6,13 +6,14 @@
     {%- assign default_paths = site.pages | map: "path" -%}
     {%- assign page_paths = site.header_pages | default: default_paths -%}
     {%- assign titles_size = site.pages | map: 'title' | join: '' | size -%}
-    <a class="site-title" rel="author" href="{{ "/" | relative_url }}">
-      <img src="{{ "/favicon-32x32.png" | relative_url }}" alt="Brand Graphic" class="brand-graphic">
+    <a class="site-title" rel="author" href="{{ " /" | relative_url }}">
+      <img src="{{  "/assets/images/IMG_1887-cropped-square.JPG" | relative_url }}" alt="Brand Graphic"
+        class="brand-graphic">
     </a>
     <a class="site-title" rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
 
     {%- if titles_size > 0 -%}
-      {%- include navigation.html -%}
+    {%- include navigation.html -%}
     {%- endif -%}
   </div>
 </header>

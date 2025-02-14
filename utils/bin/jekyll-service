@@ -4,6 +4,10 @@
 BASE_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")/../..")"
 my_name="$(basename "${BASH_SOURCE[0]}")"
 my_arg1="$1"
+my_arg2="$2"
+
+# Source project environment
+source "${BASE_DIR}/.env/project.env"
 
 pid_file="${BASE_DIR}/utils/etc/jekyll.pid"
 
@@ -19,28 +23,43 @@ check_running() {
     fi
     return 1
 }
-    
+
+refresh_og_data() {
+    echo "Refreshing OpenGraph data..." >&2
+    fetch_og_data.py
+}
+
 site_build() {
+    local skip_refresh=$1
     echo "Building $my_name" >&2
-    # rvm use ext-ruby-3.3.4@unixwzrd.github.io --default
-    # fetch_og_data.py  # Runs the Python script to update OG data
+    if [[ ! "$PATH" =~ "$HOME/.rvm/bin:" ]]; then export PATH="$HOME/.rvm/bin:$PATH"; fi
+    [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+    rvm use ext-ruby-3.3.4@unixwzrd.github.io --default
+    
+    # Only refresh OG data if not skipped
+    if [ "$skip_refresh" != "true" ]; then
+        refresh_og_data
+    fi
+    
     rm -rf html/.jekyll-cache/ _site/ # Clear the Jekyll cache
     bundle exec jekyll build --trace --verbose # Build the Jekyll site
 }
 
 startup_items() {
+    local skip_refresh=$1
     echo "Starting $my_name" >&2
-    site_build
+    site_build "$skip_refresh"
     bundle exec jekyll serve --host 0.0.0.0 --port 4000 --trace & # Start Jekyll in background
     echo $! > "$pid_file" # Store Jekyll's PID
 }
 
 start_service() {
+    local skip_refresh=$1
     if check_running; then
         echo "Service is already running. Restarting..." >&2
         stop_service
     fi
-    startup_items
+    startup_items "$skip_refresh"
 }
 
 stop_service() {
@@ -59,15 +78,31 @@ stop_service() {
     fi
 }
 
+# Check if we should skip refresh
+skip_refresh=false
+if [ "$my_arg2" = "-n" ] || [ "$my_arg2" = "--no-refresh" ]; then
+    skip_refresh=true
+fi
+
 case "$my_arg1" in
     -h|--help)
-        echo "Usage: $my_name [build|start|stop|restart]"
+        echo "Usage: $my_name [build|start|stop|restart|refresh] [-n|--no-refresh]"
+        echo ""
+        echo "Commands:"
+        echo "  build    - Build the site"
+        echo "  start    - Start the Jekyll server"
+        echo "  stop     - Stop the Jekyll server"
+        echo "  restart  - Restart the Jekyll server"
+        echo "  refresh  - Only refresh OpenGraph data"
+        echo ""
+        echo "Options:"
+        echo "  -n, --no-refresh  Skip refreshing OpenGraph data"
         ;;
     build)
-        site_build
+        site_build "$skip_refresh"
         ;;
     start)
-        start_service
+        start_service "$skip_refresh"
         ;;
     stop)
         stop_service
@@ -75,10 +110,13 @@ case "$my_arg1" in
     restart)
         echo "Restarting $my_name" >&2
         stop_service
-        start_service
+        start_service "$skip_refresh"
+        ;;
+    refresh)
+        refresh_og_data
         ;;
     *)
-        echo "Usage: $my_name [build||start|stop|restart]"
+        echo "Usage: $my_name [build|start|stop|restart|refresh] [-n|--no-refresh]"
         exit 1
         ;;
 esac

@@ -558,3 +558,4 @@ output.txt
 utils/output
 *.grc
 *.pid
+etc/

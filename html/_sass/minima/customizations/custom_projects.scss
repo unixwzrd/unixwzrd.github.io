@@ -1,0 +1,59 @@
+// Project list styling for the projects page and related components
+
+.projects-list {
+  .project-table {
+    width: 100%;
+    margin-bottom: 1.5rem;
+    border: 1px solid $border-color;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .project-image {
+    width: 200px;
+    padding: 1.5rem 1rem 1rem 1rem;
+    vertical-align: top;
+
+    img.project-preview {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+  }
+
+  .project-details {
+    padding: 0 1rem 1rem 1rem;
+    vertical-align: top;
+
+    h2 {
+      margin-top: 0;
+      font-size: $project-details-h2-font-size;
+    }
+
+    p {
+      margin: 1rem 0;
+    }
+
+    .links-row {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+
+      a {
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        text-decoration: none;
+        
+        &.project-blog-link {
+          background-color: $primary-color;
+          color: $background-color;
+        }
+        
+        &.github-link {
+          border: 1px solid $primary-color;
+          color: $primary-color;
+        }
+      }
+    }
+  }
+} 

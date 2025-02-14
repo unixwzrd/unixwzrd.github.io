@@ -1,35 +1,54 @@
-<!-- _layouts/project.html -->
 ---
 layout: default
 ---
 
-<article class="project">
-  <header class="project-header">
-    <h1 class="project-title">{{ page.title | escape }}</h1>
-    {% if page.repo_url %}
-      <p class="project-meta">
-        GitHub: <a href="{{ page.repo_url }}">{{ page.repo_url }}</a>
-      </p>
-    {% endif %}
+<article class="post">
+  <header class="page-heading">
+    <h1 class="post-title">{{ page.title }}</h1>
   </header>
 
-  <div class="project-content">
-    {% if page.image_url %}
-      <img src="{{ page.image_url }}" alt="{{ page.title }} image" class="project-image">
-    {% endif %}
-    {{ content }}
-  </div>
+  <div class="post-content">
+    {% assign project = site.data.github_projects.projects | where: "name", page.title | first %}
+    {% if project %}
+    <table class="project-table">
+      <tr>
+        <!-- First column: Image -->
+        <td class="project-image">
+          <a href="{{ project.repo_url }}" target="_blank" rel="noopener noreferrer">
+            <img class="project-preview" src="{{ project.image_url }}" alt="{{ project.title }} image">
+          </a>
+        </td>
+        
+        <!-- Second column: Text (Title, Description, GitHub link) -->
+        <td class="project-details">
+          <h2><a href="{{ project.repo_url }}" target="_blank" rel="noopener noreferrer">{{ project.title }}</a></h2>
+          <p>{{ project.description }}</p>
 
-  {% if site.categories[page.project_name] %}
-    <h2>Project Blog Entries</h2>
-    {% for post in site.categories[page.project_name] %}
-      <article class="post">
+          <!-- Nested row for links: GitHub first, then Project Blog (if not on project or post page) -->
+          <div class="links-row">
+            <a class="github-link" href="{{ project.repo_url }}" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+            {% unless page.layout == "project" or page.layout == "post" %}
+            <a class="project-blog-link" href="/projects/{{ project.name }}">Project Blog</a>
+            {% endunless %}
+          </div>
+        </td>
+      </tr>
+    </table>
+    {% endif %}
+
+    {{ content }}
+
+    {% if site.categories[page.category] %}
+    <h2>Latest Project Updates</h2>
+    {% for post in site.categories[page.category] %}
+      <article class="post-preview">
         <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
         <span class="post-date">{{ post.date | date: "%B %d, %Y" }}</span>
         {% assign excerpt = post.content | split: '<!--more-->' | first %}
-        {{ excerpt | markdownify | process_heading }}
+        {{ excerpt | truncatewords: 50 | markdownify }}
         <a href="{{ post.url | relative_url }}" class="btn">Read More</a>
       </article>
     {% endfor %}
-  {% endif %}
+    {% endif %}
+  </div>
 </article>

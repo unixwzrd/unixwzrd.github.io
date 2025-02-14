@@ -1,0 +1,27 @@
+<div class="archived-projects-list">
+  {% for project in site.data.archived_projects.projects %}
+    <table class="project-table archived">
+      <tr>
+        <!-- First column: Image -->
+        <td class="project-image">
+          <a href="{{ project.repo_url }}" target="_blank" rel="noopener noreferrer">
+            <img class="project-preview" src="/archives/projects/images/{{ project.name }}.png" alt="{{ project.title }} image">
+          </a>
+        </td>
+        
+        <!-- Second column: Text -->
+        <td class="project-details">
+          <h2><a href="{{ project.repo_url }}" target="_blank" rel="noopener noreferrer">{{ project.title }}</a></h2>
+          <p>{{ project.description }}</p>
+          <div class="archive-date">Archived: {{ project.archive_date }}</div>
+
+          <!-- Links -->
+          <div class="links-row">
+            <a class="archive-link" href="/archives/projects/{{ project.name }}">View Archive</a>
+            <a class="github-link" href="{{ project.repo_url }}" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+          </div>
+        </td>
+      </tr>
+    </table>
+  {% endfor %}
+</div> 

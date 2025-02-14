@@ -55,40 +55,6 @@ code {
   background: $code-background;
 }
 
-// Post Styling
-.post {
-  h3 {
-    font-size: $h3-font-size;
-    line-height: 1.2;
-    margin-bottom: 0rem;
-    margin-top: 0.2rem;
-  }
-
-  .post-date {
-    font-size: $post-date-font-size;
-    color: #aaaaaa;
-    display: inline-block;
-    margin-bottom: 0.5rem;
-  }
-
-  .post-excerpt {
-    margin-left: 10px;
-    margin-bottom: 0.2rem;
-  }
-
-  p {
-    font-size: 1.1rem;
-    line-height: 1.5rem;
-    margin-bottom: 1.2rem;
-  }
-
-  .btn {
-    margin-top: 0.0rem;
-    margin-bottom: 1.0rem;
-    display: inline-block;
-    font-size: $btn-font-size;
-  }
-}
 
 // Project Components
 .project-table {

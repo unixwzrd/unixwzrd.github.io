@@ -1,5 +1,5 @@
 //
-// The Site Header Values
+// Site Header Values
 //
 // Header and Site Title
 .header,
@@ -11,6 +11,7 @@
 
 .site-header {
   border-top: 1px !important;
+  padding-top: 5px !important;
 }
 
 .site-title {
@@ -19,8 +20,7 @@
   letter-spacing: -1px;
   margin-bottom: 0;
   float: left;
-  }
-  
+}
 
 // Brand Graphic Styling
 .brand-graphic {

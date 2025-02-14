@@ -4,8 +4,8 @@
 .header,
 .site-title,
 .site-header {
-  color: $text-color;
-  background: $header-background;
+    color: $text-color !important;
+    background: $header-background !important;
 }
 
 .site-header {

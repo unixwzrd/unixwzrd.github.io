@@ -28,7 +28,7 @@ description: >-
   <br>
   Distributed Thinking Systems: Innovating AI, machine learning, and
   distributed computing solutions.
-baseurl: ""  # the subpath of your site, e.g. /blog
+baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://unixwzrd.ai"
 source: "html"
 show_dir_listing: false
@@ -75,6 +75,12 @@ minima:
       user_url: "https://twitter.com/unixwzrd"
     - platform: telegram
       user_url: "https://telegram.me/unixwzrd"
+    - platform: bluesky
+      user_url: "https://bsky.app/profile/unixwzrd.bsky.social"
+    - platform: ko-fi
+      user_url: "https://ko-fi.com/unixwzrd"
+    - platform: patreon
+      user_url: "https://patreon.com/unixwzrd"
   skin: auto
 
 github:
@@ -103,7 +109,7 @@ excerpt_separator: "<!--more-->"
 permalink: /:categories/:year/:month/:day/:title/
 defaults:
   - scope:
-      path: ""  # Applies to all files
+      path: "" # Applies to all files
     values:
       layout: page
 
@@ -130,6 +136,7 @@ plugins:
 
 exclude:
   - .DS_Store
+  - .cursor/
   - .gitignore
   - .jekyll-cache/
   - .sass-cache/

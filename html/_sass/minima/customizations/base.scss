@@ -1,4 +1,4 @@
-// assets/css/_base.scss
+// assets/css/base.scss
 
 
 
@@ -29,32 +29,3 @@ a {
     background: $code-background;
   }
 }
-
-// assets/css/_overrides.scss
-
-  // Header and Site Title
-  .header,
-  .site-title,
-  .site-header {
-    color: $text-color !important;
-    background: $header-background !important;
-  }
-
-
-  // Highlighter Rouge Overrides (Repeated for Dark Mode)
-  .highlighter-rouge {
-    .highlight pre {
-      background: $code-background;
-    }
-    pre,
-    code {
-      background: $code-background;
-    }
-  }
-
-  // Custom styles for images
-  .brand-graphic {
-    width: 100px; // Adjust as needed
-    height: auto;
-    padding: 10px; // Adjust as needed
-  }

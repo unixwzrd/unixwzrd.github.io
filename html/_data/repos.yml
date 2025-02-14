@@ -5,13 +5,15 @@ repositories:
 #    repo_url: 'https://github.com/unixwzrd'
 #    image_url: 'https://avatars.githubusercontent.com/u/unixwzrd?s=460&v=4'
 #    description: 'This is the GitHub profile for Unixwzrd. Explore repositories, contributions, and more!'
-  - name: text-generation-webui-macos
+  - name: chatgpt-chatlog-export
     owner: unixwzrd
   - name: venvutil
     owner: unixwzrd
-#  - name: TokenSecure
-#    owner: unixwzrd
   - name: TorchDevice
     owner: unixwzrd
   - name: oobabooga-macOS
     owner: unixwzrd
+  - name: text-generation-webui-macos
+    owner: unixwzrd
+#  - name: TokenSecure
+#    owner: unixwzrd

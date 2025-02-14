@@ -1,7 +1,10 @@
 // custom-styles.scss
 
 // Import customizations in the desired order
-@import "minima/customizations/base";
-@import "minima/customizations/layout";
-@import "minima/customizations/components";
-@import "minima/customizations/site-header";
+@import "minima/customizations/custom_base";
+@import "minima/customizations/custom_layout";
+@import "minima/customizations/custom_components";
+@import "minima/customizations/custom_post";
+@import "minima/customizations/custom_header";
+@import "minima/customizations/custom_variables";
+@import "minima/customizations/custom_projects";  // New import for project styles

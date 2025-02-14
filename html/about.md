@@ -16,9 +16,9 @@ We believe **responsible AI** should not only solve today’s problems, but anti
 We firmly believe all children need both parents in their lives. Forcing a child to reject one parent erases part of their personality and past without giving them the chance to understand why. Our mission is to ensure no child ever endures this experience again. **Children deserve to grow up free from abuse**, with the care and support of both parents.
 
 ### Our Team
+
 - **[Michael Sullivan:](/about/resume)** Founder, with over 30 years of experience providing distributed computing, database, and infrastructure solutions across diverse industries. Now focusing on Artificial Intelligence, Data Analytics, and Distributed AI Solutions for businesses, Michael brings a wealth of technical expertise. As a parent personally affected by alienation for more than five years, experiencing the emotional impact this can have on families, and is committed to creating solutions that help prevent it.
 
 {% include join_us.html %}
 
 {% include getintouch.html %}
-
