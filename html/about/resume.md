@@ -2,6 +2,7 @@
 layout: page
 title: Resume
 menu_item: Resume
+permalink: /about/resume/
 ---
 
 Looking for an overview of my experience and expertise? Download my [PDF Resume.](/assets/documents/SullivanMichael_IT_AI_ML_Unix_42020819.pdf)
@@ -168,6 +169,6 @@ Experienced IT professional with over 30 years in the technology industry, inclu
 - **HuggingFace:** [unixwzrd](https://huggingface.co/unixwzrd)
 - **Twitter/X:** [unixwzrd](https://twitter.com/unixwzrd)
 - **Reddit:** [unixwzrd](https://reddit.com/u/unixwzrd)
-- **PDF Resume:** [unixwzrd](/assets/documents/SullivanMichael_IT_Resume_202414030.pdf)
+- **PDF Resume:** [unixwzrd](/assets/documents/SullivanMichael_IT_AI_ML_Unix_42020819.pdf)
 
 {% include codeium_stats.html %}

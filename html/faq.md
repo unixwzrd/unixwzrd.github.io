@@ -2,6 +2,7 @@
 layout: page
 title: Frequently Asked Questions
 menu_item: FAQ
+permalink: /FAQ/
 ---
 
 - ### What is Distributed Thinking Systems?
@@ -22,7 +23,7 @@ menu_item: FAQ
 
 - ### How can I get involved?
 
-    We’re always looking for **collaborators**, **sponsors**, and **partners** to expand our work. Reach out through our [Contact page](contact.md) to discuss opportunities.
+    We're always looking for **collaborators**, **sponsors**, and **partners** to expand our work. Reach out through our [Contact page](contact.md) to discuss opportunities.
 
 {% include join_us.html %}
 

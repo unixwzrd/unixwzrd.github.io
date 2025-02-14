@@ -1,6 +1,7 @@
 ---
 title: "Emergency Resources"
 layout: page
+permalink: /resources/emergency-resources/
 ---
 
 #### If you or someone you know is in immediate danger or experiencing a crisis, in the eUnited States, **CALL 911** or go to the nearest emergency room immediately.

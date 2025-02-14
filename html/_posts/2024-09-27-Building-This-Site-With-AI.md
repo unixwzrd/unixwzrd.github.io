@@ -56,7 +56,7 @@ I had to create my own variable in the front-matter for "menu-item" which would 
 {% endraw %}
 ```
 
-This fixed the issue, but created more items I need to put in my Font Matter for my Jekyll markdown. There were a number of places I had to come up with custom solutions, such as the [Emergency Services](/resources/emergency-recoveries.md) page.  I ended up using a data file, but getting the grouping to work out was a nightmare and several days of working with GPT-4o, and then the new o1 models came out and I decided to use it. The o1-preview had the issue solved in about 2 hours with a nice, fully functional solution..
+This fixed the issue, but created more items I need to put in my Font Matter for my Jekyll markdown. There were a number of places I had to come up with custom solutions, such as the [Emergency Services](/resources/emergency-resources/) page.  I ended up using a data file, but getting the grouping to work out was a nightmare and several days of working with GPT-4o, and then the new o1 models came out and I decided to use it. The o1-preview had the issue solved in about 2 hours with a nice, fully functional solution..
 
 I ended up using a data file structured like this:
 

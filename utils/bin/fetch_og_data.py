@@ -138,6 +138,7 @@ def create_project_intro(repo_name, description, repo_url, web_root):
 layout: project
 title: "{repo_name}"
 category: {repo_name}
+permalink: /projects/{repo_name}/
 ---
 
 ## {repo_name}

@@ -2,6 +2,7 @@
 layout: page
 title: Credentials and Certifications
 menu_item: Accreditation
+permalink: /about/credentials/
 ---
 
 ## Weights and Biases

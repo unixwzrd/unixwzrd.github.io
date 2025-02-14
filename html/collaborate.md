@@ -13,7 +13,7 @@ Whether you're a **legal professional**, a **researcher**, or someone who wants 
 
 #### Two Ways to Get Involved:
 
-- **For Professionals**: If you’re seeking our services, sponsorship opportunities, or want to hire us for AI development, data analysis, or consulting, head over to our [Professional Services](/collaborate/professionals) page.
+- **For Professionals**: If you're seeking our services, sponsorship opportunities, or want to hire us for AI development, data analysis, or consulting, head over to our [**Products and Services**](/collaborate/professional/) page.
   
 - **For Contributors & Participants**: Interested in joining our community, contributing data, collaborating on research, or getting involved with ongoing projects? Visit our [Community Collaboration](/collaborate/community) page.
 
