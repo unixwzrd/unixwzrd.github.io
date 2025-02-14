@@ -33,6 +33,13 @@ url: "https://unixwzrd.ai"
 source: "html"
 show_dir_listing: false
 
+# Strict URL configuration
+strict_front_matter: true
+permalink: pretty
+relative_links:
+  enabled: false
+  collections: true
+
 encoding: utf-8
 markdown_ext: markdown,mkdown,mkdn,mkd,md
 timezone: America/New_York

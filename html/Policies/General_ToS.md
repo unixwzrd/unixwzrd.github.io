@@ -1,6 +1,7 @@
 ---
 title: "Terms of Service"
 layout: page
+permalink: /policies/General_ToS/
 ---
 
 ## Terms of Service

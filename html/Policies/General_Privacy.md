@@ -1,6 +1,7 @@
 ---
 title: "General Privacy Policy"
 layout: page
+permalink: /policies/General_Privacy/
 ---
 
 ## Privacy Policy

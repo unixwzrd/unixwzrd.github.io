@@ -1,6 +1,7 @@
 ---
 title: "ChatGPT Chat History Download for Safari Privacy Policy"
 layout: page
+permalink: /policies/Privacy_ChatGPT_Chat_History_Download_for_Safari/
 ---
 
 ## Privacy Policy for ChatGPT Chat History Download (Safari Extension)
