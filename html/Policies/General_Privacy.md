@@ -1,5 +1,5 @@
 ---
-title: General Privacy Policy
+title: "General Privacy Policy"
 layout: page
 ---
 
@@ -19,7 +19,7 @@ This extension does not collect, store, transmit, or share any user data. It ope
 
 To function correctly, the extension requires minimal permissions:
 	•	Read ChatGPT chat logs – Allows the extension to download chat history.
-	•	File Access – Saves chat logs locally on the user’s device.
+	•	File Access – Saves chat logs locally on the user's device.
 
 This extension does not access or transmit any personal data.
 
@@ -31,7 +31,7 @@ This extension does not use:
 	•	Advertising networks
 	•	External data processing services
 
-All data remains on the user’s device and is never shared externally.
+All data remains on the user's device and is never shared externally.
 
 ### 5. Security
 
@@ -42,7 +42,7 @@ Since the extension does not collect or transmit any information:
 ### 6. User Rights (GDPR, CCPA, and Other Privacy Laws)
 
 While this extension does not process personal data, we respect privacy laws globally:
-	•	GDPR (EU & UK): No data is collected, making it outside GDPR’s scope. However, if you have questions, you may contact [Your Contact Email].
+	•	GDPR (EU & UK): No data is collected, making it outside GDPR's scope. However, if you have questions, you may contact [Your Contact Email].
 	•	CCPA (California, USA): No personal information is collected, shared, or sold.
 	•	Other Privacy Laws (LGPD - Brazil, PIPEDA - Canada, etc.): The extension adheres to global privacy principles due to its zero data collection policy.
 

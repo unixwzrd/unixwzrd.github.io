@@ -1,5 +1,5 @@
 ---
-title: "ChatGPT Chat History Download (Safari Extension)"
+title: "ChatGPT Chat History Download for Safari Privacy Policy"
 layout: page
 ---
 
@@ -23,7 +23,7 @@ Thank you for using ChatGPT Chat History Download for Safari. Your privacy is im
 ### 4. **Permissions**
 To function correctly, this extension requests minimal permissions:
 
-✅ “Active Tab” permission – Needed to detect and download chat data from ChatGPT.
+✅ "Active Tab" permission – Needed to detect and download chat data from ChatGPT.
 
 ✅ File Access – Required to save chat logs locally to your device.
 
@@ -51,7 +51,7 @@ Because this extension does not collect data:
 
 Even though this extension does not collect data, we respect global privacy standards:
 
-🟢 GDPR (EU/UK): No personal data is processed, so this extension is outside GDPR’s scope.
+🟢 GDPR (EU/UK): No personal data is processed, so this extension is outside GDPR's scope.
 
 🟢 CCPA (California): No personal information is collected, stored, or shared.
 
@@ -63,7 +63,7 @@ While this version of the extension does not collect data, future versions may i
 
 ### 9. **Changes to This Policy**
 
-If this privacy policy is updated, the changes will be reflected in the App Store listing and the extension’s settings page.
+If this privacy policy is updated, the changes will be reflected in the App Store listing and the extension's settings page.
 
 ### 10. **Contact Information**
 

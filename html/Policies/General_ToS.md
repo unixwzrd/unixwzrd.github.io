@@ -1,5 +1,5 @@
 ---
-title: "General Terms of service"
+title: "Terms of Service"
 layout: page
 ---
 

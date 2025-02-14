@@ -543,20 +543,26 @@ zsdoc/data
 
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
 
-tmp/
-file_layout.txt
+
+
 # Gemfile.lock
-Gemfile.bak
-_previews
-new_files/
-
-
 # Ignore project planning directory
-.master-planning
-.project-planning
-output.txt
-utils/output
 *.grc
 *.pid
 */etc/
+.cursor/
+.master-planning
+.master-planning/
+.project-core/
+.project-planning
+.project-planning/
+.ruby-lsp/
+file_layout.txt
+Gemfile.bak
+new_files/
+output.txt
+tmp/
 utils/etc/jekyll.pid
+utils/output
+_previews
+_site/

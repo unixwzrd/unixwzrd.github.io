@@ -137,12 +137,18 @@ plugins:
 exclude:
   - .DS_Store
   - .cursor/
+  - .git/
+  - .github/
   - .gitignore
   - .jekyll-cache/
+  - .master-planning/
+  - .project-core/
+  - .project-planning/
+  - .ruby-lsp/
   - .sass-cache/
   - .vscode/
-  - file_layout.txt
   - Gemfile*
+  - file_layout.txt
   - gemfiles/
   - html/.jekyll-cache/
   - node_modules/
