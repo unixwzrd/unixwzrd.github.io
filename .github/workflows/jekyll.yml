@@ -33,23 +33,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
-      - name: Install ruby-build dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y build-essential libssl-dev libreadline-dev zlib1g-dev
-          
-      - name: Build Ruby
-        run: |
-          sudo mkdir -p /opt/hostedtoolcache/Ruby/3.3.0/x64
-          wget https://cache.ruby-lang.org/pub/ruby/3.3/ruby-3.3.0.tar.gz
-          tar xzf ruby-3.3.0.tar.gz
-          cd ruby-3.3.0
-          ./configure --prefix=/opt/hostedtoolcache/Ruby/3.3.0/x64
-          make -j$(nproc)
-          sudo make install
-          sudo touch /opt/hostedtoolcache/Ruby/3.3.0/x64.complete
-          
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
