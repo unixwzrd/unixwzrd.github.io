@@ -5,16 +5,14 @@ menu_item: Contact
 permalink: /contact/
 ---
 
-### Get in Touch
+For inquiries, project discussions, or collaboration opportunities, reach out via:
 
-For inquiries or to discuss a project, please use the following contact details:
-
-- **Email**: [Request Information Here](mailto:{{ site.author.email | encode_email }})
+- **Email**: [Request Information](mailto:{{ site.author.email | encode_email }})
 - **Phone**: +1-901-471-0896 (Text only)
-- **Telegram**: [@unixwzrd](https://t.me/unixwzrd) (Direct message only)
+- **Telegram**: [@unixwzrd](https://t.me/unixwzrd)
 
-If you are a **legal service provider**, **trial consultant**, or **mental healthcare provider**, please visit our [Support for Professionals](/collaborate/professional/) page for tailored services.
+If you are a **legal service provider**, **trial consultant**, or **mental health professional**, visit our [Professional Services](/collaborate/professionals/) page.
 
-For general inquiries or support outside our scope, please visit our [Resources](/resources) page for additional help.
+For additional support resources, visit our [Resources](/resources) page.
 
 {% include join_us.html %}

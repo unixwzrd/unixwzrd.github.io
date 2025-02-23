@@ -1,0 +1,59 @@
+{% comment %}
+Parameters:
+- category: (optional) If provided, only shows posts from this category.
+- limit: (optional) Maximum number of posts to show.
+- show_project_link: (optional) Whether to show the project link for project posts.
+- heading: (optional) The heading to show above the blog list. Defaults to "Blog Entries" for general blog and "Project
+Blog Entries" for project blogs.
+{% endcomment %}
+
+<section class="blog-list-section">
+    <div class="blog-list-heading">
+            {% if include.category %}
+                <h2>Project Blog Entries</h2>
+            {% else %}
+                <h2>Blog Entries</h2>
+            {% endif %}
+    </div>
+
+    <div class="blog-list">
+        {% if include.category %}
+            <!-- Project blog listing -->
+            {% assign posts_to_show = site.categories[include.category] %}
+        {% else %}
+            <!-- General blog listing (excluding project blogs) -->
+            {% assign non_project_posts = '' | split: '' %}
+            {% for post in site.posts %}
+                {% unless post.url contains '/projects/' or post.url contains 'projects/' %}
+                    {% assign non_project_posts = non_project_posts | push: post %}
+                {% endunless %}
+            {% endfor %}
+            {% assign posts_to_show = non_project_posts %}
+        {% endif %}
+
+        {% if posts_to_show.size > 0 %}
+            {% for post in posts_to_show %}
+            <article class="post">
+                <h3>
+                    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                </h3>
+                <span class="post-date">{{ post.date | date: "%B %d, %Y" }}</span>
+
+                {% if post.content contains '<!--more-->' %}
+                    {% assign excerpt_text = post.content | split: '<!--more-->' | first %}
+                {% else %}
+                    {% assign excerpt_text = post.content %}
+                {% endif %}
+
+                <div class="post-excerpt">
+                    {{ excerpt_text | truncatewords: 50 | markdownify | process_heading }}
+                </div>
+
+                <a href="{{ post.url | relative_url }}" class="read-more">Read More...</a>
+            </article>
+            {% endfor %}
+        {% else %}
+            <p>No blog entries yet. Check back soon for updates!</p>
+        {% endif %}
+    </div>
+</section>

@@ -1,10 +1,20 @@
 // custom-styles.scss
 
-// Import customizations in the desired order
-@import "minima/customizations/custom_base";
-@import "minima/customizations/custom_layout";
-@import "minima/customizations/custom_components";
-@import "minima/customizations/custom_post";
-@import "minima/customizations/custom_header";
-@import "minima/customizations/custom_variables";
-@import "minima/customizations/custom_projects";  // New import for project styles
+// 1. Core variables and base styles
+@import "minima/customizations/custom_variables";    // Variables must come first
+@import "minima/customizations/custom_base";        // Base HTML element styles
+
+// 2. Layout framework
+@import "minima/customizations/custom_layout";      // Core layout structure
+@import "minima/customizations/custom_header";      // Header styles
+
+// 3. Shared components (used across multiple layouts)
+@import "minima/customizations/custom_components";  // Reusable components
+
+// 4. Content-specific styles
+@import "minima/customizations/custom_post";        // Blog and post styles
+@import "minima/customizations/custom_projects";    // Project-specific styles
+
+// Order is important: later imports can override earlier ones
+// Components used in multiple places should be in custom_components
+// Layout-specific styles should be in their respective files

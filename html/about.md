@@ -1,24 +1,28 @@
 ---
-title: "About Us"
 layout: page
+title: "About Us"
 menu_item: About
 permalink: /about/
 ---
 
-### Our Mission
+## Who We Are  
+Distributed Thinking Systems specializes in AI and data analytics to tackle real-world challenges, with a primary focus on detecting and preventing parental alienation. Our solutions assist legal professionals, mental health experts, and parents in identifying alienation patterns before they escalate.
 
-Our primary technical focus is on **AI** and **distributed computing**. We are dedicated to applying these skills in ways that make a **positive societal impact**, particularly in **parental alienation**, a damaging form of child abuse where one parent manipulates a child to reject the other parent, sometimes creating false narratives or accusations. Utilizing **AI-driven insights** and **data analytics**, we work to detect and address early signs of alienation, preventing **emotional and psychological damage** before it takes root.
+## Our Mission  
+- **Leverage AI to analyze communication patterns** for early detection of parental alienation.  
+- **Provide objective, data-driven insights** to support legal professionals in family court decisions.  
+- **Develop AI-based tools** to enhance fairness in high-conflict custody cases. 
 
-At **Distributed Thinking Systems**, we also leverage our technical expertise across sectors to drive **responsible AI innovation**. Our work extends beyond family law to include custom **AI solutions** for various industries, from **digital forensics** to **distributed computing systems** architecture, ensuring technology serves the greater good. This combination of social responsibility and cutting-edge technology drives our mission forward.
+## Why It Matters
+Parental alienation is **a serious form of psychological harm** that often goes unnoticed until it’s too late. Our AI-driven approach aims to provide **early warning signals** and **objective analysis** to prevent unnecessary family estrangement.
 
-We believe **responsible AI** should not only solve today’s problems, but anticipate and prevent future harm. This core value drives everything we do: supporting AI in **Unix/Linux/macOS environments**, developing and integrating systems which prioritize **ethics**, and ensuring technology is both accessible and beneficial for everyone.
+## Founder & Expertise
+Distributed Thinking Systems was founded by [Michael Sullivan](/about/resume), an expert in **AI-driven analytics, distributed computing, and legal technology**, with over 30 years of experience in computing and distributed systems.
 
-We firmly believe all children need both parents in their lives. Forcing a child to reject one parent erases part of their personality and past without giving them the chance to understand why. Our mission is to ensure no child ever endures this experience again. **Children deserve to grow up free from abuse**, with the care and support of both parents.
+## How You Can Get Involved
+- **Join the Community**: Share your story, contribute research, or collaborate on projects.
+- **Support Our Work**: Help sustain and expand our mission through sponsorship or financial contributions.
+- **Use Our Services**: We provide consulting, AI development, and data analysis solutions tailored for legal and forensic applications.
 
-### Our Team
+[Contact Us](/contact) for more details.
 
-- **[Michael Sullivan:](/about/resume)** Founder, with over 30 years of experience providing distributed computing, database, and infrastructure solutions across diverse industries. Now focusing on Artificial Intelligence, Data Analytics, and Distributed AI Solutions for businesses, Michael brings a wealth of technical expertise. As a parent personally affected by alienation for more than five years, experiencing the emotional impact this can have on families, and is committed to creating solutions that help prevent it.
-
-{% include join_us.html %}
-
-{% include getintouch.html %}

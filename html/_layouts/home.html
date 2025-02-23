@@ -9,21 +9,25 @@ layout: default
 
   {{ content }}
 
+  <!-- Debug: Checking if pagination is enabled -->
+  {% comment %}Pagination enabled: {{ site.paginate }}{% endcomment %}
 
-  {% if site.paginate %}
+  <!-- Debug: Assigning posts -->
+  {% if paginator and paginator.posts %}
+    <!-- Debug: Using paginated posts -->
     {% assign posts = paginator.posts %}
   {% else %}
-    {% assign posts = site.posts %}
+    <!-- Debug: Using limited site posts -->
+    {% assign posts = site.posts | slice: 0, 5 %}
   {% endif %}
 
-
+  <!-- Debug: Number of posts found: {{ posts.size }} -->
   {%- if posts.size > 0 -%}
-    {%- if page.list_title -%}
-      <h2 class="post-list-heading">{{ page.list_title }}</h2>
-    {%- endif -%}
+    <h2 class="post-list-heading">Latest Updates</h2>
     <ul class="post-list">
       {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
       {%- for post in posts -%}
+      <!-- Debug: Processing post: {{ post.title }} -->
       <li>
         <span class="post-meta">{{ post.date | date: date_format }}</span>
         <h3>
@@ -38,24 +42,38 @@ layout: default
       {%- endfor -%}
     </ul>
 
-    {% if site.paginate %}
-      <div class="pager">
-        <ul class="pagination">
-        {%- if paginator.previous_page %}
-          <li><a href="{{ paginator.previous_page_path | relative_url }}" class="previous-page">{{ paginator.previous_page }}</a></li>
-        {%- else %}
-          <li><div class="pager-edge">•</div></li>
-        {%- endif %}
-          <li><div class="current-page">{{ paginator.page }}</div></li>
-        {%- if paginator.next_page %}
-          <li><a href="{{ paginator.next_page_path | relative_url }}" class="next-page">{{ paginator.next_page }}</a></li>
-        {%- else %}
-          <li><div class="pager-edge">•</div></li>
-        {%- endif %}
-        </ul>
-      </div>
-    {%- endif %}
+    {% if paginator.total_pages > 1 %}
+      <!-- Debug: Pagination info - Current: {{ paginator.page }}, Total: {{ paginator.total_pages }} -->
+      <div class="pagination">
+        {% if paginator.previous_page %}
+          <a href="{{ paginator.previous_page_path | relative_url }}" class="previous">&laquo; Previous</a>
+        {% endif %}
 
+        {% for page in (1..paginator.total_pages) %}
+          {% if page == paginator.page %}
+            <em class="current-page">{{ page }}</em>
+          {% elsif page == 1 %}
+            <a href="{{ '/' | relative_url }}">{{ page }}</a>
+          {% else %}
+            <a href="{{ site.paginate_path | relative_url | replace: ':num', page }}">{{ page }}</a>
+          {% endif %}
+        {% endfor %}
+
+        {% if paginator.next_page %}
+          <a href="{{ paginator.next_page_path | relative_url }}" class="next">Next &raquo;</a>
+        {% endif %}
+      </div>
+    {% endif %}
   {%- endif -%}
 
+  <div class="home-footer">
+    <div class="join-us-section">
+      {% capture join_us_content %}{% include join_us.html %}{% endcapture %}
+      {{ join_us_content | markdownify }}
+    </div>
+    <div class="get-in-touch-section">
+      {% capture get_in_touch_content %}{% include getintouch.html %}{% endcapture %}
+      {{ get_in_touch_content | markdownify }}
+    </div>
+  </div>
 </div>

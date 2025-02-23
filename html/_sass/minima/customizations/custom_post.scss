@@ -36,3 +36,112 @@
 //   }
 // }
 //
+
+// Post and Blog Styling
+
+// Unified Blog List Section
+.blog-list-section {
+  margin: 2rem 0;
+  padding-top: 2rem;
+  border-top: 1px solid $border-color;
+
+  // Blog list heading
+  .blog-list-heading {
+    margin-bottom: 2rem;
+
+    h2 {
+      font-size: 2rem;
+      color: $text-color;
+      margin: 0;
+    }
+  }
+
+  // Blog list content
+  .blog-list {
+    article.post {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba($border-color, 0.3);
+
+      &:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+      }
+
+      h3 {
+        margin-bottom: 0.5rem;
+        
+        a {
+          color: $link-color;
+          text-decoration: none;
+          
+          &:hover, &:visited {
+            color: $link-color;
+            text-decoration: underline;
+          }
+        }
+      }
+
+      .post-date {
+        display: block;
+        font-size: $post-date-font-size;
+        color: $text-color;
+        margin-bottom: 0.5rem;
+        font-style: italic;
+      }
+
+      .post-excerpt {
+        margin: 0.5rem 0;
+        line-height: 1.5;
+        color: $text-color;
+      }
+
+      a.read-more {
+        display: inline-block;
+        margin-top: 0.5rem;  
+        color: $link-color;
+        text-decoration: none;
+        font-size: $post-date-font-size;
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+// Individual Post Styling (for full post pages)
+.post {
+  h1, h2, h3, h4, h5, h6 {
+    color: $text-color;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-size: $h3-font-size;
+    line-height: 1.2;
+  }
+
+  .post-date {
+    font-size: $post-date-font-size;
+    color: $text-color;
+    display: block;
+    margin-bottom: 0.5rem;
+    font-style: italic;
+  }
+
+  .post-excerpt {
+    margin: 0.5rem 0;
+    line-height: 1.5;
+    color: $text-color;
+  }
+
+  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+    color: $text-color;
+  }
+}

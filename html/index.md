@@ -1,7 +1,24 @@
 ---
 layout: home
-title: Welcome to Distributed Thinking Systems
+title: "Distributed Thinking Systems"
+menu_item: Home
+permalink: /
+paginate: true
 ---
+
+We are dedicated to developing AI solutions that make a positive impact. Our focus is on creating tools and systems that help people, particularly in challenging situations like parental alienation and high-conflict divorce cases.
+
+## Our Mission
+
+To harness the power of AI and distributed computing to:
+- Support families dealing with parental alienation
+- Assist legal professionals in case analysis
+- Create tools for mental health professionals
+- Develop innovative solutions for complex problems
+
+## Current Projects
+
+{% include projects_list.html visibility="private" %}
 
 ## Overview
 
@@ -9,7 +26,7 @@ At **Distributed Thinking Systems**, we specialize in solving complex challenges
 
 **Parental alienation** is an extremely harmful form of child abuse, where one parent manipulates a child to reject the other parent. This can fracture families, leading to long-term psychological and emotional damage. Despite its impact, parental alienation often goes unrecognized in family courts, leading to harmful custody decisions.
 
-Using **AI** and **data analytics**, we aim to identify early signs of alienation through patterns in communication and family dynamics. These tools offer new insights into custody decisions, ensuring they are made in the child’s best interest.
+Using **AI** and **data analytics**, we aim to identify early signs of alienation through patterns in communication and family dynamics. These tools offer new insights into custody decisions, ensuring they are made in the child's best interest.
 
 At **Distributed Thinking Systems**, we are committed to providing solutions that empower families and help children maintain healthy relationships with both parents.
 
@@ -29,7 +46,3 @@ We focus on applying **AI** and **distributed computing** to address real-world 
 If you are interested in contributing **data from past cases**, partnering in research, or supporting us in any capacity, please [collaborate with us](/collaborate/).
 
 At the intersection of AI and family law, we are committed to protecting parents and children from the long-lasting damage caused by alienation. By leveraging cutting-edge AI, we analyze shifts in communication to prevent problems before they escalate.
-
-{% include join_us.html %}
-
-{% include getintouch.html %}

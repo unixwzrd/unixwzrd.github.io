@@ -6,6 +6,8 @@ my_name="$(basename "${BASH_SOURCE[0]}")"
 my_arg1="$1"
 my_arg2="$2"
 
+cd "${BASE_DIR}" 
+
 # Source project environment
 source "${BASE_DIR}/.env/project.env"
 
@@ -26,7 +28,7 @@ check_running() {
 
 refresh_og_data() {
     echo "Refreshing OpenGraph data..." >&2
-    fetch_og_data.py
+    fetch_og.py
 }
 
 site_build() {
@@ -41,8 +43,14 @@ site_build() {
         refresh_og_data
     fi
     
-    rm -rf html/.jekyll-cache/ _site/ # Clear the Jekyll cache
-    bundle exec jekyll build --trace --verbose # Build the Jekyll site
+    echo "Clearing Jekyll cache and site..." >&2
+    rm -rf "${BASE_DIR}/html/.jekyll-cache/"
+    rm -rf "${BASE_DIR}/_site/"
+    rm -rf "${BASE_DIR}/html/_site/"
+    rm -rf "${BASE_DIR}/html/.sass-cache/"
+    
+    echo "Building Jekyll site..." >&2
+    cd "${BASE_DIR}" && bundle exec jekyll build --trace --verbose # Build the Jekyll site
 }
 
 startup_items() {

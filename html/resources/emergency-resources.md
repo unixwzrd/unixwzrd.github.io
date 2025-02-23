@@ -4,7 +4,7 @@ layout: page
 permalink: /resources/emergency-resources/
 ---
 
-#### If you or someone you know is in immediate danger or experiencing a crisis, in the eUnited States, **CALL 911** or go to the nearest emergency room immediately.
+#### If you or someone you know is in immediate danger or experiencing a crisis, in the United States, **CALL 911** or go to the nearest emergency room immediately.
 
 # Emergency Resources by Country
 
@@ -19,9 +19,10 @@ permalink: /resources/emergency-resources/
   <tbody>
     {% assign row_class = "odd" %}
     {% for country in site.data.countries.countries %}
+      {% assign service_count = country.services | size %}
       <!-- First service row for the country -->
       <tr class="{{ row_class }}">
-        <td><strong>{{ country.name }}</strong></td>
+        <td rowspan="{{ service_count }}"><strong>{{ country.name }}</strong></td>
         <td>{{ country.services[0].service }}</td>
         <td>{{ country.services[0].contact }}</td>
       </tr>
@@ -29,7 +30,6 @@ permalink: /resources/emergency-resources/
       <!-- Additional services for the country -->
       {% for service in country.services offset:1 %}
         <tr class="{{ row_class }}">
-          <td></td>
           <td>{{ service.service }}</td>
           <td>{{ service.contact }}</td>
         </tr>
@@ -48,5 +48,3 @@ permalink: /resources/emergency-resources/
 _Note_: In case of a mental health emergency, please seek immediate professional help.
 
 _Note_: If you notice any information missing or inaccurate on this page, please [contact us](/contact).
-
-{% include getintouch.html %}

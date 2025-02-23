@@ -5,20 +5,16 @@ menu_item: Blog
 permalink: /blog/
 ---
 
-Welcome to the **Distributed Thinking Systems Blog**, where we delve into topics at the intersection of **AI development**, **distributed computing**, and **technology innovations** in **Unix/Linux/macOS environments**. 
+## Welcome to the Distributed Thinking Systems Blog
+A platform for insights, updates, and discussions on **AI, parental alienation, and family law technology**.
 
-Beyond tech, we explore real-world applications of these advancements, such as addressing societal challenges like **parental alienation**. Dive into our latest articles and stay informed about our projects, research, and technical explorations.
+## Topics Covered
+ **Personal Stories & Case Studies**: Real-world experiences and success stories of families impacted by parental alienation.
+- **Legal & Psychological Insights**: Expert perspectives from family law professionals and mental health specialists.
+- **AI & Technology in Family Law**: How AI detects communication patterns linked to alienation, updates on our Case-Analytics project, and ethical considerations.
+- **Community & Advocacy**: Resources, policy discussions, and opportunities for collaboration.
 
-{% for post in site.posts %}
-  <article class="post">
-    <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-    <span class="post-date">{{ post.date | date: "%B %d, %Y" }}</span>
-    {% assign excerpt = post.content | split: '<!--more-->' | first %}
-    {{ excerpt | truncatewords: 50 | markdownify | process_heading }}
-    <a href="{{ post.url | relative_url }}" class="btn">Read More</a>
-  </article>
-{% endfor %}
+## Join the Conversation
+We welcome contributions from parents, professionals, and researchers. If you have a story, expert insights, or research to share, [contact us](/contact) to submit a post.
 
-{% include join_us.html %}
-
-{% include getintouch.html %}
+{% include blog_list.html %}

@@ -48,6 +48,3 @@ With a clearer path forward, my next steps include:
 These efforts require focus and perseverance, but they also provide opportunities to refine my craft and expand my capabilities.
 
 Thank you for joining me on this journey. If you’re facing similar challenges or have insights to share, I’d love to hear from you in the comments.
-
-{% include join_us.html %}
-{% include getintouch.html %}

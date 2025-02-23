@@ -6,6 +6,7 @@ import yaml
 import datetime
 from bs4 import BeautifulSoup as BS
 import logging
+import time
 
 # Set up logging
 logging.basicConfig(
@@ -84,51 +85,62 @@ def fetch_og_data(url):
 def cache_image(image_url, repo_name, web_root):
     """
     Cache the image at the given URL in the projects directory under BASEDIR.
-
-    Parameters
-    ----------
-    image_url : str
-        URL of the image to cache.
-    repo_name : str
-        Name of the repository the image is associated with.
-    web_root : str
-        Base directory where the image will be cached.
-
-    Returns
-    -------
-    image_path : str
-        Relative path to the cached image (for HTML use).
+    
+    Args:
+        image_url: URL or local path to the image
+        repo_name: Name of the repository the image is associated with
+        web_root: Base directory where the image will be cached
     """
-    # Store the image in {web_root}/assets/images/projects/
-    image_dir = os.path.join(web_root, "html/assets/images/projects/")
+    if not image_url:
+        mylog.warning("No image URL provided for %s", repo_name)
+        return '/assets/images/projects/default.png'
+
+    # If image_url is a local path, verify it exists
+    if image_url.startswith('/'):
+        local_image_path = os.path.join(web_root, 'html', image_url.lstrip('/'))
+        if os.path.exists(local_image_path):
+            mylog.debug("Using local image for %s: %s", repo_name, image_url)
+            return image_url
+        else:
+            mylog.error("Local image not found for %s: %s", repo_name, local_image_path)
+            return '/assets/images/projects/default.png'
+
+    # For remote URLs, always cache the image
+    image_dir = os.path.join(web_root, 'html/assets/images/projects')
     os.makedirs(image_dir, exist_ok=True)
     image_path = os.path.join(image_dir, f"{repo_name}.png")
 
-    # Cache the image locally if it doesn't already exist or overwrite the existing one
-    if image_url:
-        try:
-            img_data = requests.get(image_url, timeout=10).content
-            with open(image_path, 'wb') as handler:
-                handler.write(img_data)
-            mylog.info(f"Cached image for {repo_name}")
-        except requests.exceptions.RequestException as e:
-            mylog.error(f"Failed to download image for {repo_name}: {e}")
-            # Return a placeholder or default image path
-            return "/assets/images/projects/default.png"
-    else:
-        mylog.warning(f"No image URL for {repo_name}, using default image")
-        # Return a placeholder or default image path
-        return "/assets/images/projects/default.png"
+    try:
+        time.sleep(1)  # Rate limiting
+        response = requests.get(image_url, stream=True)
+        response.raise_for_status()
 
-    # Return the correct relative path for the HTML
-    return f"/assets/images/projects/{repo_name}.png"
+        content_type = response.headers.get('content-type', '')
+        if not content_type.startswith('image/'):
+            mylog.error(f"Invalid content type for {repo_name} image: {content_type}")
+            return '/assets/images/projects/default.png'
+
+        content = response.content
+        if len(content) < 1000:  # Minimum size check
+            mylog.error(f"Image content too small for {repo_name}, likely an error response")
+            return '/assets/images/projects/default.png'
+
+        # Always write the new image
+        with open(image_path, 'wb') as f:
+            f.write(content)
+            mylog.info(f"Cached image for {repo_name}")
+
+        return f'/assets/images/projects/{repo_name}.png'
+    except requests.RequestException as e:
+        mylog.error(f"Error caching image for {repo_name}: {e}")
+        return '/assets/images/projects/default.png'
 
 def create_project_intro(repo_name, description, repo_url, web_root):
     """
     Create a project introduction markdown file (projectname.md) if it doesn't exist.
     Acts as the index page for the project and lists its blog posts.
     """
-    projects_dir = os.path.join(web_root, 'html/projects')
+    projects_dir = os.path.join(web_root, 'projects')
     os.makedirs(projects_dir, exist_ok=True)
     project_file_path = os.path.join(projects_dir, f"{repo_name}.md")
 
@@ -182,7 +194,7 @@ def create_project_blog_entry(repo_name, web_root):
     """
     Create a placeholder project blog entry if it doesn't exist in the project directory.
     """
-    blog_dir = os.path.join(web_root, 'html/projects', repo_name)
+    blog_dir = os.path.join(web_root, 'projects', repo_name)
     os.makedirs(blog_dir, exist_ok=True)
     blog_file_path = os.path.join(blog_dir, f"{repo_name}-project-blog-entry.md")
 
@@ -340,6 +352,80 @@ def archive_unused_projects(web_root, active_projects):
                     except Exception as e:
                         mylog.error(f"Failed to archive include {include}: {e}")
 
+def fetch_github_repo_details(owner, repo):
+    """
+    Fetch GitHub repository details using GitHub API.
+
+    Parameters
+    ----------
+    owner : str
+        GitHub username/organization that owns the repository.
+    repo : str
+        Repository name.
+
+    Returns
+    -------
+    repo_data : dict
+        Repository data including visibility status.
+    """
+    url = f"https://api.github.com/repos/{owner}/{repo}"
+    try:
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+        data = response.json()
+        return {
+            "visibility": data.get("visibility", "private"),  # Default to public if not specified
+            "description": data.get("description", ""),
+            "html_url": data.get("html_url", "")
+        }
+    except requests.exceptions.RequestException as e:
+        mylog.error(f"Failed to fetch GitHub repository data for {owner}/{repo}: {e}")
+        return None
+
+def format_title(name: str) -> str:
+    """Format repository name into a clean title.
+    
+    Args:
+        name: Repository name to format
+        
+    Returns:
+        Formatted title string
+    """
+    # Special case replacements (add more as needed)
+    special_cases = {
+        'macos': 'macOS',
+        'cuda': 'CUDA',
+        'mps': 'MPS',
+        'cpu': 'CPU',
+        'gpt': 'GPT',
+        'chatgpt': 'ChatGPT',
+        'ui': 'UI',
+        'webui': 'WebUI',
+        'llama': 'LLaMA',
+        'venvutil': 'VenvUtil',
+        'torchdevice': 'TorchDevice',
+        'oobabooga': 'Oobabooga',
+    }
+    
+    # First replace hyphens with spaces
+    title = name.replace('-', ' ')
+    
+    # Split into words
+    words = title.split()
+    
+    # Process each word
+    formatted_words = []
+    for word in words:
+        word_lower = word.lower()
+        # Check if it's a special case
+        if word_lower in special_cases:
+            formatted_words.append(special_cases[word_lower])
+        else:
+            # Otherwise capitalize normally
+            formatted_words.append(word.capitalize())
+    
+    return ' '.join(formatted_words)
+
 def main():
     """
     Main function.
@@ -387,7 +473,8 @@ def main():
                     "description": profile_data["bio"] or "GitHub profile for " + profile_data["login"],
                     "image_url": image_path,
                     "repo_url": f"https://github.com/{repo['owner']}",
-                    "page_url": f"/projects/{profile_data['login']}/"
+                    "page_url": f"/projects/{profile_data['login']}/",
+                    "visibility": "public"  # Profile is always public
                 })
             else:
                 mylog.warning(f"Skipping GitHub profile for {repo['owner']} due to previous errors.")
@@ -395,7 +482,29 @@ def main():
         else:
             repo_url = f"https://github.com/{repo['owner']}/{repo['name']}"
             og_data = fetch_og_data(repo_url)
-            if og_data:
+            repo_details = fetch_github_repo_details(repo['owner'], repo['name'])
+            
+            # If repo is private or GitHub data is not available, use manual data
+            if (og_data is None or repo_details is None) and 'manual_data' in repo:
+                manual_data = repo['manual_data']
+                image_path = cache_image(manual_data.get('image_url', '/assets/images/projects/default.png'), repo['name'], web_root)
+
+                # Create project introduction and blog entries
+                create_project_intro(repo['name'], manual_data['description'], repo_url, web_root)
+                create_project_blog_entry(repo['name'], web_root)
+
+                projects.append({
+                    "name": repo['name'],
+                    "owner": repo['owner'],
+                    "description": manual_data['description'],
+                    "image_url": image_path,
+                    "page_url": f"/projects/{repo['name']}/",
+                    "title": manual_data['title'],
+                    "visibility": "private"
+                })
+                continue
+
+            if og_data and repo_details:
                 image_path = cache_image(og_data["image_url"], repo['name'], web_root)
 
                 # Create project introduction and blog entries
@@ -409,7 +518,8 @@ def main():
                     "description": og_data["description"],
                     "image_url": image_path,
                     "page_url": f"/projects/{repo['name']}/",
-                    "title": repo['name']
+                    "title": format_title(repo['name']),  # Format the title nicely
+                    "visibility": repo_details["visibility"]
                 })
             else:
                 mylog.warning(f"Skipping repository {repo['owner']}/{repo['name']} due to previous errors.")
@@ -419,6 +529,19 @@ def main():
     mylog.info("Writing projects data to _data/github_projects.yml...")
     try:
         with open(projects_file_path, 'w', encoding="utf-8") as f:
+            # Write warning header with timestamp
+            header = f"""# WARNING: DO NOT EDIT THIS FILE MANUALLY
+# This file is automatically generated by {os.path.basename(__file__)}
+# Any manual changes will be overwritten the next time the script runs.
+#
+# To update project information:
+# 1. Edit the repository configuration in html/_data/repos.yml
+# 2. Run {os.path.basename(__file__)} to regenerate this file
+#
+# Last generated: {datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
+
+"""
+            f.write(header)
             yaml.dump({"projects": projects}, f)
         mylog.info("Successfully wrote projects data to github_projects.yml")
     except Exception as e:

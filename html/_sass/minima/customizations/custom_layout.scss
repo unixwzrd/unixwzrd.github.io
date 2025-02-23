@@ -248,7 +248,7 @@
 }
 
 .post-content {
-  margin-bottom: $spacing-unit;
+  margin-bottom: 0.5rem;
 
   h1,
   h2,
@@ -311,25 +311,29 @@
  * Pagination navbar
  */
 .pagination {
-  margin-bottom: $spacing-unit;
-  @extend .social-media-list;
-  li {
-    a,
-    div {
-      min-width: 41px;
-      text-align: center;
-      box-sizing: border-box;
+  text-align: center;
+  padding: 1rem 0;
+  
+  a, em {
+    padding: 0.5rem 1rem;
+    margin: 0 0.25rem;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+    text-decoration: none;
+    
+    &:hover {
+      background-color: $border-color;
     }
-    div {
-      display: block;
-      padding: $spacing-unit * 0.25;
-      border: 1px solid transparent;
-
-      &.pager-edge {
-        color: $border-color-01;
-        border: 1px dashed;
-      }
-    }
+  }
+  
+  em.current-page {
+    background-color: $primary-color;
+    color: $background-color;
+    font-style: normal;
+  }
+  
+  .previous, .next {
+    font-weight: bold;
   }
 }
 
@@ -339,5 +343,66 @@
 @media screen and (min-width: $on-large) {
   .one-half {
     width: calc(50% - (#{$spacing-unit} / 2));
+  }
+}
+
+// Common footer styling for all layouts
+.page-footer,
+.post-footer,
+.project-footer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+
+  .join-us-section {
+    margin-bottom: 1.5rem;
+    
+    h3 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    ul {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .get-in-touch-section {
+    h3 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    a {
+      color: $link-color;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// Home footer styling
+.home-footer {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid $border-color;
+
+  .join-us-section {
+    margin-bottom: 2rem;
+  }
+
+  .get-in-touch-section {
+    margin-bottom: 1rem;
   }
 }

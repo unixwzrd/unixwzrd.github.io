@@ -2,53 +2,66 @@
 layout: default
 ---
 
-<article class="post">
+<article class="project">
   <header class="page-heading">
-    <h1 class="post-title">{{ page.title }}</h1>
+    <h1 class="project-title">{{ page.title }}</h1>
   </header>
 
-  <div class="post-content">
-    {% assign project = site.data.github_projects.projects | where: "name", page.title | first %}
+  < class="project-content">
+    {% assign project = site.data.github_projects.projects | where: "name", page.category | first %}
+
     {% if project %}
     <table class="project-table">
       <tr>
         <!-- First column: Image -->
         <td class="project-image">
+          {% if project.visibility == 'private' %}
+          <img class="project-preview" src="{{ project.image_url }}" alt="{{ project.title }} image">
+          {% else %}
           <a href="{{ project.repo_url }}" target="_blank" rel="noopener noreferrer">
             <img class="project-preview" src="{{ project.image_url }}" alt="{{ project.title }} image">
           </a>
+          {% endif %}
         </td>
-        
+
         <!-- Second column: Text (Title, Description, GitHub link) -->
         <td class="project-details">
-          <h2><a href="{{ project.repo_url }}" target="_blank" rel="noopener noreferrer">{{ project.title }}</a></h2>
+          <h2>
+            {% if project.visibility == 'private' %}
+            {{ project.title }}
+            {% else %}
+            <a href="{{ project.repo_url }}" target="_blank" rel="noopener noreferrer">{{ project.title }}</a>
+            {% endif %}
+          </h2>
           <p>{{ project.description }}</p>
 
-          <!-- Nested row for links: GitHub first, then Project Blog (if not on project or post page) -->
+          <!-- Nested row for links: GitHub link only for public projects -->
           <div class="links-row">
-            <a class="github-link" href="{{ project.repo_url }}" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-            {% unless page.layout == "project" or page.layout == "post" %}
-            <a class="project-blog-link" href="/projects/{{ project.name }}">Project Blog</a>
-            {% endunless %}
+            {% if project.visibility != 'private' %}
+            <a class="github-link" href="{{ project.repo_url }}" target="_blank" rel="noopener noreferrer">View on
+              GitHub</a>
+            {% endif %}
           </div>
         </td>
       </tr>
     </table>
     {% endif %}
 
-    {{ content }}
+    <div class="project-description">
+      {{ content | markdownify }}
+    </div>
 
-    {% if site.categories[page.category] %}
-    <h2>Latest Project Updates</h2>
-    {% for post in site.categories[page.category] %}
-      <article class="post-preview">
-        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-        <span class="post-date">{{ post.date | date: "%B %d, %Y" }}</span>
-        {% assign excerpt = post.content | split: '<!--more-->' | first %}
-        {{ excerpt | truncatewords: 50 | markdownify }}
-        <a href="{{ post.url | relative_url }}" class="btn">Read More</a>
-      </article>
-    {% endfor %}
-    {% endif %}
+    {% include blog_list.html category=page.category heading="" %}
+
+    <div class="project-footer">
+      <div class="join-us-section">
+        {% capture join_us_content %}{% include join_us.html %}{% endcapture %}
+        {{ join_us_content | markdownify }}
+      </div>
+      <div class="get-in-touch-section">
+        {% capture get_in_touch_content %}{% include getintouch.html %}{% endcapture %}
+        {{ get_in_touch_content | markdownify }}
+      </div>
+    </div>
   </div>
 </article>

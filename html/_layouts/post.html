@@ -30,6 +30,17 @@ layout: default
     {{ content }}
   </div>
 
+  <div class="post-footer">
+    <div class="join-us-section">
+      {% capture join_us_content %}{% include join_us.html %}{% endcapture %}
+      {{ join_us_content | markdownify }}
+    </div>
+    <div class="get-in-touch-section">
+      {% capture get_in_touch_content %}{% include getintouch.html %}{% endcapture %}
+      {{ get_in_touch_content | markdownify }}
+    </div>
+  </div>
+
   {%- if site.disqus.shortname -%}
     {%- include disqus_comments.html -%}
   {%- endif -%}

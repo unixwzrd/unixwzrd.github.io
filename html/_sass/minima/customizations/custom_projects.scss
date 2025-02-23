@@ -56,4 +56,30 @@
       }
     }
   }
+}
+
+// Individual project page styling
+.project {
+  .project-content {
+    margin-bottom: 2rem;
+  }
+
+  .project-footer {
+    margin-top: 2rem;
+    padding-top: 1rem;
+
+    .join-us-section {
+      margin-bottom: 2rem;
+      
+      h3 {
+        margin-top: 0;
+      }
+    }
+
+    .get-in-touch-section {
+      h3 {
+        margin-top: 0;
+      }
+    }
+  }
 } 

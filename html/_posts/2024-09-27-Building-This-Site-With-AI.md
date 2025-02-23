@@ -124,7 +124,3 @@ But it allowed me to make the grouping appear as it should.  All services in the
 
 
 Ultimately, I want to get back to coding and producing functional code for projects rather than a web site.
-
-{% include join_us.html %}
-
-{% include getintouch.html %}

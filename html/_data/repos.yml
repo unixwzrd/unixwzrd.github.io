@@ -1,10 +1,10 @@
 repositories:
-#  - profile: true
-#    name: 'GitHub Profile'
-#    owner: unixwzrd
-#    repo_url: 'https://github.com/unixwzrd'
-#    image_url: 'https://avatars.githubusercontent.com/u/unixwzrd?s=460&v=4'
-#    description: 'This is the GitHub profile for Unixwzrd. Explore repositories, contributions, and more!'
+  - name: Case-Analytics
+    owner: unixwzrd
+    manual_data:
+      title: "Case Analytics"
+      description: "AI-powered analysis tool for legal case documents, focusing on parental alienation detection and pattern recognition in high-conflict divorce cases."
+      image_url: "/assets/images/child-with-robot.png"
   - name: chatgpt-chatlog-export
     owner: unixwzrd
   - name: venvutil

@@ -10,6 +10,7 @@ blockquote {
 // Table Styling
 table {
   border: 1px solid $border-color;
+  border-collapse: collapse;
 
   th {
     background-color: $header-color;
@@ -25,14 +26,15 @@ table {
   td {
     border: 1px solid $border-color;
     padding: 12px;
+    vertical-align: top;
   }
 
   // Odd and Even Row Backgrounds
-  tr:nth-child(odd) td {
+  tr.odd td {
     background-color: $odd-row-color;
   }
 
-  tr:nth-child(even) td {
+  tr.even td {
     background-color: $even-row-color;
   }
 
@@ -54,7 +56,6 @@ pre,
 code {
   background: $code-background;
 }
-
 
 // Project Components
 .project-table {
@@ -121,18 +122,19 @@ code {
   cursor: pointer;
 }
 
+// Social Icons
 .social-icons {
   display: flex;
-  gap: 10px; // Space between icons
+  gap: 10px;
   align-items: center;
 
   img {
-    width: 24px; // Adjust size as needed
+    width: 24px;
     height: 24px;
     transition: transform 0.3s;
 
     &:hover {
-      transform: scale(1.1); // Slight zoom on hover
+      transform: scale(1.1);
     }
   }
 }

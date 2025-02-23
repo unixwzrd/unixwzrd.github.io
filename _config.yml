@@ -96,6 +96,10 @@ github:
 # Codeium Public Profile
 codeium_stats: https://codeium.com/profile/unixwzrd
 
+# Pagination settings
+paginate: 5  # Number of posts to show per page
+paginate_path: "/page/:num/"  # URL format for paginated pages
+
 collections:
   projects:
     output: true
@@ -103,22 +107,21 @@ collections:
   project_posts:
     output: true
     permalink: /projects/:project_name/:title/
-    defaults:
-      - scope:
-          path: ""
-          type: "project_posts"
-        values:
-          layout: post
 
 tagline: "Mostly computing on and off."
 page_excerpts: false
 excerpt_separator: "<!--more-->"
-permalink: /:categories/:year/:month/:day/:title/
+
 defaults:
   - scope:
       path: "" # Applies to all files
     values:
       layout: page
+  - scope:
+      path: ""
+      type: "project_posts"
+    values:
+      layout: post
 
 theme: jekyll-minima
 
@@ -140,6 +143,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-redirect-from
   - jemoji
+  - jekyll-paginate
 
 exclude:
   - .DS_Store
@@ -164,3 +168,4 @@ exclude:
   - tmp/
   - utils/
   - vendor/
+  - docs/

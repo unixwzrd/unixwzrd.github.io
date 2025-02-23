@@ -1,27 +1,45 @@
 <!-- _includes/projects_list.html -->
 <div class="projects-list">
   {% for project in site.data.github_projects.projects %}
+    {% if include.visibility == project.visibility %}
     <table class="project-table">
       <tr>
         <!-- First column: Image -->
         <td class="project-image">
-          <a href="{{ project.repo_url }}" target="_blank" rel="noopener noreferrer">
-            <img class="project-preview" src="{{ project.image_url }}" alt="{{ project.title }} image">
-          </a>
+          {% if project.visibility == 'private' %}
+            <a href="/projects/{{ project.name }}">
+              <img class="project-preview" src="{{ project.image_url }}" alt="{{ project.title }} image">
+            </a>
+          {% else %}
+            <a href="{{ project.repo_url }}" target="_blank" rel="noopener noreferrer">
+              <img class="project-preview" src="{{ project.image_url }}" alt="{{ project.title }} image">
+            </a>
+          {% endif %}
         </td>
         
         <!-- Second column: Text (Title, Description, GitHub link) -->
         <td class="project-details">
-          <h2><a href="{{ project.repo_url }}" target="_blank" rel="noopener noreferrer">{{ project.title }}</a></h2>
+          <h2>
+            {% if project.visibility == 'private' %}
+              <a href="/projects/{{ project.name }}">{{ project.title }}</a>
+            {% else %}
+              <a href="{{ project.repo_url }}" target="_blank" rel="noopener noreferrer">{{ project.title }}</a>
+            {% endif %}
+          </h2>
           <p>{{ project.description }}</p>
 
-          <!-- Nested row for links: Project Blog and GitHub -->
+          <!-- Nested row for links: GitHub first (if public), then Project Blog -->
           <div class="links-row">
+            {% if project.visibility != 'private' %}
+              <a class="github-link" href="{{ project.repo_url }}" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+            {% else %}
+              <span></span>
+            {% endif %}
             <a class="project-blog-link" href="/projects/{{ project.name }}">Project Blog</a>
-            <a class="github-link" href="{{ project.repo_url }}" target="_blank" rel="noopener noreferrer">View on GitHub</a>
           </div>
         </td>
       </tr>
     </table>
+    {% endif %}
   {% endfor %}
 </div>

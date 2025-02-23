@@ -18,13 +18,7 @@ permalink: /FAQ/
     We take privacy seriously and handle all data with strict confidentiality protocols. For more details, contact us directly.
 
 - ### How can AI prevent parental alienation?
-
     We use AI to analyze communication patterns and detect shifts in tone and content that may indicate early signs of parental alienation. This helps families and legal professionals address issues before they escalate.
 
 - ### How can I get involved?
-
     We're always looking for **collaborators**, **sponsors**, and **partners** to expand our work. Reach out through our [Contact page](contact.md) to discuss opportunities.
-
-{% include join_us.html %}
-
-{% include getintouch.html %}

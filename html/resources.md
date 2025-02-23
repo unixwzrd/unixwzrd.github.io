@@ -1,18 +1,16 @@
 ---
 layout: page
-title: Resources
+title: "Resources"
 menu_item: Resources
 permalink: /resources/
 ---
 
-**Information on crisis interventions - See [Emergency Resources](/resources/emergency-resources) page.**
+### **If your or someone else is in crisis now, use [Emergency Resources](/resources/emergency-resources).**
 
 Helpful tools, organizations, and information related to parental alienation, AI, and legal support below. If you have a resource you would like added, [contact us](/contact).
 
 | National Center for Missing and Exploited Children | 24-Hour Call Center | 1-800-THE-LOST<br> 1-800-843-5678 |
 
-## Table of Contents
-- [Table of Contents](#table-of-contents)
 - [AI and Technology Tools](#ai-and-technology-tools)
   - [AI Assisted Development Tools](#ai-assisted-development-tools)
   - [General AI Resources](#general-ai-resources)
@@ -34,7 +32,7 @@ Of these tools, I personally use Cursor adn Windsurf. If I had to pick a best be
 
 - [Cursor](https://www.cursor.com/) - AI-powered coding assistant built into a fork of VSCode. I use this product.
 - [GitHub Copilot](https://copilot.github.com/) - AI-powered coding assistant.
-- [Windsurf - Codeiu](https://codeium.com/) - AI-powered coding assistant built into a fork of VSCode. I use this product
+- [Windsurf - Codeium](https://codeium.com/) - AI-powered coding assistant built into a fork of VSCode. I use this product
 
 ### General AI Resources
 - [Anthropic Intelligence](https://www.anthropic.com/) - AI research and development tools.
@@ -54,7 +52,7 @@ Of these tools, I personally use Cursor adn Windsurf. If I had to pick a best be
 ## Parental Alienation Resources
 
 ### The United States
-- [National Center for Missing & Exploited Children](https://www.missingkids.org/) - NCMEC is the nation’s largest and most influential child protection organization.
+- [National Center for Missing & Exploited Children](https://www.missingkids.org/) - NCMEC is the nation's largest and most influential child protection organization.
 - [Family Abduction](https://www.missingkids.org/theissues/familyabduction) - A Family Abduction occurs when a child is taken, wrongfully retained, or concealed by a parent or other family member depriving another individual of their custody or visitation rights.
 - [Family Abduction: Prevention & Response](https://www.missingkids.org/theissues/familyabduction) - Helpful information on prevention and response involving family abductions.
 - [r/ParentalAlienation](https://www.reddit.com/r/ParentalAlienation/) - A community for family members who have experienced parental alienation to seek support and guidance. Whether you're an ex-partner, a child, or an extended family member, this is the place for you.
@@ -77,7 +75,3 @@ Of these tools, I personally use Cursor adn Windsurf. If I had to pick a best be
 - [American Bar Association Lawyer Referral](https://www.americanbar.org)
 - [National Legal Aid & Defender Association](https://www.nlada.org)
 - [Legal Aid Society](https://www.legalaid.org)
-
-{% include join_us.html %}
-
-{% include getintouch.html %}

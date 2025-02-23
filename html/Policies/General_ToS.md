@@ -4,8 +4,6 @@ layout: page
 permalink: /policies/General_ToS/
 ---
 
-## Terms of Service
-
 Effective Date: 2025-02-01
 
 ### 1.	**Acceptance of Terms**
@@ -50,10 +48,4 @@ We reserve the right to update these Terms at any time. Continued use of the Sit
 
 ### 10.	**Contact Us**
 
-For any questions regarding these Terms, please contact us at [Your Email].
-[Contact Us](/contact/)
-
-
-{% include join_us.html %}
-
-{% include getintouch.html %}
+For any questions regarding these Terms, please contact us at [Contact Us](/contact/).
