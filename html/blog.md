@@ -5,7 +5,6 @@ menu_item: Blog
 permalink: /blog/
 ---
 
-## Welcome to the Distributed Thinking Systems Blog
 A platform for insights, updates, and discussions on **AI, parental alienation, and family law technology**.
 
 ## Topics Covered

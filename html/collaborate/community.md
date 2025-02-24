@@ -31,5 +31,3 @@ Show your appreciation for my projects and the work I’m doing. Help keep the c
 
 - **[Ko-fi](https://ko-fi.com/unixwzrd)** – Make one-time donations or monthly support.
 - **[Patreon](https://patreon.com/unixwzrd)** – Subscribe for exclusive updates and perks.
-
-{% include getintouch.html %}

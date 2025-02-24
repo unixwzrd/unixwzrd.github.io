@@ -1,11 +1,14 @@
-
 <div class="content-footer">
+    {% unless page.url contains '/community/' %}
     <div class="join-us-section">
+        <hr>
         {% capture join_us_content %}{% include join_us.html %}{% endcapture %}
         {{ join_us_content | markdownify }}
     </div>
+    {% endunless %}
     {% unless page.url contains '/contact/' %}
     <div class="get-in-touch-section">
+        <hr>
         {% capture get_in_touch_content %}{% include getintouch.html %}{% endcapture %}
         {{ get_in_touch_content | markdownify }}
     </div>

@@ -14,5 +14,3 @@ For inquiries, project discussions, or collaboration opportunities, reach out vi
 If you are a **legal service provider**, **trial consultant**, or **mental health professional**, visit our [Professional Services](/collaborate/professionals/) page.
 
 For additional support resources, visit our [Resources](/resources) page.
-
-{% include join_us.html %}

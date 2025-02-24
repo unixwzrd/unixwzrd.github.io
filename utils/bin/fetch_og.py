@@ -149,7 +149,7 @@ def cache_image(image_url, repo_name, web_root):
 
 
 def generate_project_files(project_data: Dict, base_dir: Path) -> bool:
-    """Generate project page and blog entry."""
+    """Generate project page and blog entry if they don't already exist."""
     try:
         # Create project page
         project_dir = base_dir / 'html/projects'
@@ -167,11 +167,11 @@ def generate_project_files(project_data: Dict, base_dir: Path) -> bool:
         posts_dir = project_path / '_posts'
         posts_dir.mkdir(exist_ok=True)
 
-        # Generate project page
+        # Generate project page only if it doesn't exist
         project_page = project_dir / f"{project_data['name']}.md"
-        
-        # Generate minimal project page content
-        project_content = f"""---
+        if not project_page.exists():
+            # Generate minimal project page content
+            project_content = f"""---
 layout: project
 title: "{project_data['title']}"
 category: {project_data['name']}
@@ -179,7 +179,10 @@ permalink: /projects/{project_data['name']}/
 ---
 
 {project_data['description']}"""
-        project_page.write_text(project_content)
+            project_page.write_text(project_content)
+            logger.info(f"Created project page for {project_data['name']}")
+        else:
+            logger.info(f"Project page for {project_data['name']} already exists, skipping...")
 
         # Generate draft template
         draft_template = drafts_dir / "template-blog-entry.md"
@@ -433,8 +436,14 @@ def main():
                 repo_config=repo
             )
 
-            if generate_project_files(project_data, base_dir):
-                processed_projects.append(project_data)
+            # Only generate files if project doesn't exist
+            project_file = base_dir / 'html/projects' / f"{name}.md"
+            if not project_file.exists():
+                generate_project_files(project_data, base_dir)
+            else:
+                logger.info(f"Project {name} already exists, skipping file generation")
+
+            processed_projects.append(project_data)
 
         except Exception as e:
             logger.error("Failed to process repository %s: %s", name, e)
