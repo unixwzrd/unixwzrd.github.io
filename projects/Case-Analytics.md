@@ -5,30 +5,26 @@ category: Case-Analytics
 permalink: /projects/Case-Analytics/
 ---
 
-## Case-Analytics
+### AI-Powered Insights into Family Court Data
 
-AI-powered analysis tool for legal case documents, focusing on parental alienation detection and pattern recognition in high-conflict divorce cases.
+Family courts struggle to recognize patterns of **parental alienation, manipulation, and coercive control** due to the sheer volume of legal documents and communication records. **Case Analytics** leverages **AI-driven forensic analysis** to bring **clarity and objectivity** to these disputes.
 
-<!-- Placeholder for additional user supplied information >
-## This is some optional additional information on Case-Analytics
+### The Problem
 
-Some additional information as a placeholder for additional project information we can edit to appear on the page as well, in front of the blog entries.
-<!-- Placeholder for additional user supplied information -->
+High-conflict custody cases generate **massive amounts of data**—court filings, co-parenting messages, emails, and legal transcripts. Identifying **subtle patterns of alienation** is time-consuming and often **subject to human bias**.
 
-* [View on GitHub](https://github.com/unixwzrd/Case-Analytics){: target="_blank" rel="noopener noreferrer"}
+### The Solution
 
-## Project Blog Entries
+**Case Analytics** applies **AI-powered language modeling and behavioral analysis** to uncover **hidden patterns** in legal disputes by analyzing:
 
-{% for post in site.categories.Case-Analytics %}
-<article class="post">
-    <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-    <span class="post-date">{{ post.date | date: "%B %d, %Y" }}</span>
-    {% assign excerpt = post.content | split: '<!--more-->' | first %}
-    {{ excerpt | truncatewords: 50 | markdownify }}
-    <a href="{{ post.url | relative_url }}" class="btn">Read More</a>
-</article>
-{% endfor %}
+- **Court filings, parenting plans, and legal arguments**
+- **Co-parenting communications (e.g., Our Family Wizard)**
+- **Emails, text messages, and deposition transcripts**
 
-{% include join_us.html %}
+By detecting **shifts in sentiment, contradictions, and alienation tactics**, our system helps legal professionals, researchers, and affected families present **objective, data-driven evidence**.
 
-{% include getintouch.html %}
+### Next Steps: Controlled Alpha Testing
+
+We are preparing for an **alpha release**, refining AI models with real-world cases, and seeking **legal professionals, affected parents, and researchers** to contribute data and feedback.
+
+If you're interested in **testing, research collaboration, or sponsorship**, [get in touch](/contact). Our goal is simple: **make parental alienation visible—where it was once hidden.**

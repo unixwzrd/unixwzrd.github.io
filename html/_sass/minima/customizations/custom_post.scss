@@ -41,13 +41,14 @@
 
 // Unified Blog List Section
 .blog-list-section {
-  margin: 2rem 0;
-  padding-top: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-top: 1rem;
   border-top: 1px solid $border-color;
 
   // Blog list heading
   .blog-list-heading {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 
     h2 {
       font-size: 2rem;
@@ -72,12 +73,15 @@
         margin-bottom: 0.5rem;
         
         a {
-          color: $link-color;
+          color: $link-base-color;
           text-decoration: none;
           
-          &:hover, &:visited {
-            color: $link-color;
+          &:hover {
+            color: $link-hover-color;
             text-decoration: underline;
+          }
+          &:visited {
+            color: $link-visited-color;
           }
         }
       }
@@ -99,49 +103,15 @@
       a.read-more {
         display: inline-block;
         margin-top: 0.5rem;  
-        color: $link-color;
+        color: $link-base-color;
         text-decoration: none;
         font-size: $post-date-font-size;
         
         &:hover {
+          color: $link-hover-color;
           text-decoration: underline;
         }
       }
     }
-  }
-}
-
-// Individual Post Styling (for full post pages)
-.post {
-  h1, h2, h3, h4, h5, h6 {
-    color: $text-color;
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
-  }
-
-  h3 {
-    font-size: $h3-font-size;
-    line-height: 1.2;
-  }
-
-  .post-date {
-    font-size: $post-date-font-size;
-    color: $text-color;
-    display: block;
-    margin-bottom: 0.5rem;
-    font-style: italic;
-  }
-
-  .post-excerpt {
-    margin: 0.5rem 0;
-    line-height: 1.5;
-    color: $text-color;
-  }
-
-  p {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    margin-bottom: 1.2rem;
-    color: $text-color;
   }
 }

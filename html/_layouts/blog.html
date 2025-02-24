@@ -2,6 +2,10 @@
 layout: page
 ---
 
-<div class="blog-posts">
-  {{ content }}
-</div>
+<article class="blog">
+
+    {{ content | markdownify }}
+
+    {% include blog_list.html category=page.category heading="" %}
+
+</article>

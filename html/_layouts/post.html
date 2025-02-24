@@ -4,21 +4,21 @@ layout: default
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
+    <h1 class="post-title p-name" itemprop="name headline">{{ post.title | escape }}</h1>
     <p class="post-meta">
       {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-        {{ page.date | date: date_format }}
+      <time class="dt-published" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
+        {{ post.date | date: date_format }}
       </time>
-      {%- if page.modified_date -%}
+      {%- if post.modified_date -%}
         ~ 
-        {%- assign mdate = page.modified_date | date_to_xmlschema -%}
+        {%- assign mdate = post.modified_date | date_to_xmlschema -%}
         <time class="dt-modified" datetime="{{ mdate }}" itemprop="dateModified">
           {{ mdate | date: date_format }}
         </time>
       {%- endif -%}
-      {%- if page.author -%}
-        • {% for author in page.author %}
+      {%- if post.author -%}
+        • {% for author in post.author %}
           <span itemprop="author" itemscope itemtype="http://schema.org/Person">
             <span class="p-author h-card" itemprop="name">{{ author }}</span></span>
             {%- if forloop.last == false %}, {% endif -%}
@@ -30,20 +30,11 @@ layout: default
     {{ content }}
   </div>
 
-  <div class="post-footer">
-    <div class="join-us-section">
-      {% capture join_us_content %}{% include join_us.html %}{% endcapture %}
-      {{ join_us_content | markdownify }}
-    </div>
-    <div class="get-in-touch-section">
-      {% capture get_in_touch_content %}{% include getintouch.html %}{% endcapture %}
-      {{ get_in_touch_content | markdownify }}
-    </div>
-  </div>
+  {% include content_footer.html %}
 
   {%- if site.disqus.shortname -%}
     {%- include disqus_comments.html -%}
   {%- endif -%}
 
-  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+  <a class="u-url" href="{{ post.url | relative_url }}" hidden></a>
 </article>

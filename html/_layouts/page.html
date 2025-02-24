@@ -1,27 +1,16 @@
 ---
 layout: default
 ---
-<article class="post">
+<article class="page">
 
-  <header class="post-header">
-    <h1 class="post-title">{{ page.title | escape }}</h1>
+  <header class="page-header">
+    <h1 class="page-title">{{ page.title | escape }}</h1>
   </header>
 
-  <div class="post-content">
+  <div class="page-content">
     {{ content }}
   </div>
 
-  {% unless page.url contains '/contact/' %}
-  <div class="page-footer">
-    <div class="join-us-section">
-      {% capture join_us_content %}{% include join_us.html %}{% endcapture %}
-      {{ join_us_content | markdownify }}
-    </div>
-    <div class="get-in-touch-section">
-      {% capture get_in_touch_content %}{% include getintouch.html %}{% endcapture %}
-      {{ get_in_touch_content | markdownify }}
-    </div>
-  </div>
-  {% endunless %}
+  {% include content_footer.html %}
 
 </article>

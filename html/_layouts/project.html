@@ -1,13 +1,9 @@
 ---
-layout: default
+layout: page
 ---
 
 <article class="project">
-  <header class="page-heading">
-    <h1 class="project-title">{{ page.title }}</h1>
-  </header>
-
-  < class="project-content">
+  <div class="project-content">
     {% assign project = site.data.github_projects.projects | where: "name", page.category | first %}
 
     {% if project %}
@@ -47,21 +43,11 @@ layout: default
     </table>
     {% endif %}
 
-    <div class="project-description">
-      {{ content | markdownify }}
-    </div>
+    {{ content | markdownify }}
 
     {% include blog_list.html category=page.category heading="" %}
 
-    <div class="project-footer">
-      <div class="join-us-section">
-        {% capture join_us_content %}{% include join_us.html %}{% endcapture %}
-        {{ join_us_content | markdownify }}
-      </div>
-      <div class="get-in-touch-section">
-        {% capture get_in_touch_content %}{% include getintouch.html %}{% endcapture %}
-        {{ get_in_touch_content | markdownify }}
-      </div>
-    </div>
+    {% include content_footer.html %}
+
   </div>
 </article>
