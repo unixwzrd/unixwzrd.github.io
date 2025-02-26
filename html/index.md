@@ -45,7 +45,3 @@ We focus on applying **AI** and **distributed computing** to address real-world 
 If you are interested in contributing **data from past cases**, partnering in research, or supporting us in any capacity, please [collaborate with us](/collaborate/).
 
 At the intersection of AI and family law, we are committed to protecting parents and children from the long-lasting damage caused by alienation. By leveraging cutting-edge AI, we analyze shifts in communication to prevent problems before they escalate.
-
-{% include join_us.html %}
-
-{% include getintouch.html %}

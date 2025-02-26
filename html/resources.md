@@ -24,6 +24,7 @@ Helpful tools, organizations, and information related to parental alienation, AI
 - [Mental Health Resources](#mental-health-resources)
 - [Legal Resources](#legal-resources)
 
+<br>
 ## AI and Technology Tools
 
 ### AI Assisted Development Tools
@@ -49,6 +50,7 @@ Of these tools, I personally use Cursor adn Windsurf. If I had to pick a best be
 - [Kaggle](https://www.kaggle.com/) - A great resource for large data sets. They also have contests and challenges to help you learn and build your skills. Use thenm with Weights and Biases too!
 - [Weights and Biases](https://wandb.ai/) - AI research and development tools for building and training models. A great resource for learning and training machine learning models. They are free to use for individuals and also have free training and certification. I highly recommend this resource.
 
+<br>
 ## Parental Alienation Resources
 
 ### The United States
@@ -64,6 +66,7 @@ Of these tools, I personally use Cursor adn Windsurf. If I had to pick a best be
 - [KAREN WOODALL –](https://karenwoodall.blog/) Psychotherapist, Writer, Researcher, Trainer
 - [It's Almost Tuesday](https://itsalmosttuesday.com/) A blog about parental alienation and other family law issues run my [Molly Hayes](https://www.amazon.com/stores/Molly-Hayes/author/B0D9XNC1CV) who also has a book out she collaborated on available on Amazon - [Building Bridges of Hope: Overcoming Trauma in the Family Court System](https://www.amazon.com/Building-Bridges-Hope-Overcoming-Trauma/dp/B0D9RDG2D2/)
 
+<br>
 ## Mental Health Resources
 - [Crisis Text Line](https://www.crisistextline.org/) - Support for those in crisis.
 - [National Suicide Prevention Lifeline](https://suicidepreventionlifeline.org/) - Immediate help for those experiencing distress.
@@ -71,6 +74,7 @@ Of these tools, I personally use Cursor adn Windsurf. If I had to pick a best be
 - [BetterHelp](https://www.betterhelp.com)
 - [Therapy Aid for Financial Assistance](https://therapyaid.com)
 
+<br>
 ## Legal Resources
 - [American Bar Association Lawyer Referral](https://www.americanbar.org)
 - [National Legal Aid & Defender Association](https://www.nlada.org)
