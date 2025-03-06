@@ -1,5 +1,27 @@
 # Changelog
 
+## 20240223_02-rel: Blog Layout and Template Fixes
+
+### Bug Fixes
+- FIXED: Blog post layout issue where titles and dates weren't displaying correctly
+- FIXED: Post layout template now correctly uses page variables instead of post variables
+- FIXED: Join Us include file formatting issues
+- FIXED: Liquid syntax in footer template
+- FIXED: Dependabot URL gem vulnerability
+
+### Documentation
+- UPDATED: Documentation to reflect latest changes
+- IMPROVED: Worklog with details about template fixes
+
+## 20240223_01-rel: Unified Blog System and Pagination
+
+### Blog System Improvements
+- FIXED: Blog display on home page with proper pagination (5 posts per page)
+- MOVED: Latest Updates section to home layout template
+- ADDED: Proper pagination navigation
+- FIXED: Project blog integration
+- UPDATED: Templates for consistent blog display across site
+
 ## 20240220_01-rel: Major Site Structure and Process Updates
 
 ### Blog System Improvements

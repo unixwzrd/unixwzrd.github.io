@@ -1,5 +1,44 @@
 # TODO List
 
+## Completed
+- [x] Fix blog post layout to correctly display titles and dates
+- [x] Fix Liquid syntax issues in footer template
+- [x] Correct formatting in join_us.html include
+- [x] Implement proper pagination on home page
+- [x] Create unified blog styling
+- [x] Fix project blog integration
+- [x] Update documentation for blog system
+
+## High Priority
+- [ ] Review and update all project content
+- [ ] Create content for project landing pages
+- [ ] Write blog entries for each project before product release
+- [ ] Prepare social media announcements for site launch
+
+## Medium Priority
+- [ ] Improve mobile responsiveness
+- [ ] Add search functionality
+- [ ] Enhance SEO metadata
+- [ ] Create tag-based navigation for blog posts
+
+## Low Priority
+- [ ] Implement dark mode toggle
+- [ ] Add comment system for blog posts
+- [ ] Create author profile pages
+- [ ] Add related posts feature
+
+## Technical Debt
+- [ ] Refactor SCSS to use modern @use instead of @import
+- [ ] Optimize image loading and compression
+- [ ] Improve build performance
+- [ ] Add automated testing for templates
+
+## Content Creation
+- [ ] Write Case Analytics introduction blog post
+- [ ] Create TorchDevice documentation
+- [ ] Update venvutil usage examples
+- [ ] Write ChatGPT Chat Log Export tutorial
+
 ## Immediate Tasks
 - [ ] Complete project landing page content
 - [ ] Create initial blog entries for each project
@@ -13,16 +52,6 @@
 - [ ] Develop social media strategy
 - [ ] Plan content calendar
 - [ ] Create project documentation
-
-## Technical Debt
-- [ ] Further consolidate blog styles
-- [ ] Improve variable organization
-- [ ] Enhance theme support
-- [x] Optimize for mobile devices
-- [ ] Add performance checks to build process
-- [ ] Implement parallel check execution
-- [ ] Add dependency tracking
-- [ ] Enhance error reporting
 
 ## Documentation
 - [ ] Complete all tool documentation
