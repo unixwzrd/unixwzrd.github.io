@@ -17,7 +17,13 @@
     img.project-preview {
       width: 100%;
       height: auto;
-      border-radius: 4px;
+      border-radius: 8px;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+      
+      &:hover {
+        transform: scale(1.02);
+      }
     }
   }
 

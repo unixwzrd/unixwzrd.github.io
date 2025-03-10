@@ -76,10 +76,14 @@ code {
 .project-preview {
   width: 100%;
   height: auto;
-  max-height: 150px;
-  object-fit: cover;
-  border-radius: 0;
+  object-fit: contain;
+  border-radius: 8px;
   border: none;
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.02);
+  }
 }
 
 .project-details {

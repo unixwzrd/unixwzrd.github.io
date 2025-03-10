@@ -6,25 +6,15 @@
       <tr>
         <!-- First column: Image -->
         <td class="project-image">
-          {% if project.visibility == 'private' %}
-            <a href="/projects/{{ project.name }}">
-              <img class="project-preview" src="{{ project.image_url }}" alt="{{ project.title }} image">
-            </a>
-          {% else %}
-            <a href="{{ project.repo_url }}" target="_blank" rel="noopener noreferrer">
-              <img class="project-preview" src="{{ project.image_url }}" alt="{{ project.title }} image">
-            </a>
-          {% endif %}
+          <a href="/projects/{{ project.name }}" title="View {{ project.title }} Project Blog">
+            <img class="project-preview" src="{{ project.image_url }}" alt="{{ project.title }} image">
+          </a>
         </td>
         
         <!-- Second column: Text (Title, Description, GitHub link) -->
         <td class="project-details">
           <h2>
-            {% if project.visibility == 'private' %}
-              <a href="/projects/{{ project.name }}">{{ project.title }}</a>
-            {% else %}
-              <a href="{{ project.repo_url }}" target="_blank" rel="noopener noreferrer">{{ project.title }}</a>
-            {% endif %}
+            <a href="/projects/{{ project.name }}" title="View {{ project.title }} Project Blog">{{ project.title }}</a>
           </h2>
           <p>{{ project.description }}</p>
 
@@ -32,8 +22,6 @@
           <div class="links-row">
             {% if project.visibility != 'private' %}
               <a class="github-link" href="{{ project.repo_url }}" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-            {% else %}
-              <span></span>
             {% endif %}
             <a class="project-blog-link" href="/projects/{{ project.name }}">Project Blog</a>
           </div>
