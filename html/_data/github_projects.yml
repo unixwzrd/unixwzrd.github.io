@@ -19,7 +19,7 @@ projects:
 - description: "Python virtual environment management functions and script to build\
     \ and manage performance, compatibility, and regression test venv builds mostly\
     \ for AI - unixwzrd/venvutil"
-  image_url: /assets/images/projects/default.png
+  image_url: /assets/images/projects/venvutil.png
   name: venvutil
   owner: unixwzrd
   page_url: /projects/venvutil/
