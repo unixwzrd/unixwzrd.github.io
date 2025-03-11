@@ -3,7 +3,6 @@ title: "Announcing TorchDevice 0.0.5 Beta – Transparent Hardware Redirection f
 date: "2025-03-05"
 category: TorchDevice
 tags: [introduction, overview]
-draft: true
 published: true
 ---
 

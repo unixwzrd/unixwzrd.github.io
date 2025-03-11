@@ -567,3 +567,5 @@ utils/output
 _previews
 _site/
 .project-core/
+utils/etc/jekyll.pid
+utils/etc/jekyll.pid
