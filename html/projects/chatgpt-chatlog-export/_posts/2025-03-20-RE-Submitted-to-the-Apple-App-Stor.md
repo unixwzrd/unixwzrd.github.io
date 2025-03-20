@@ -9,6 +9,10 @@ published: true
 
 ![App Logo](/assets/images/projects/LogGPT/LogGPT.png)
 
+## UPDATE: [LogGPT Available Now on the Apple App Store Now!](https://apps.apple.com/us/app/loggpt/id6743342693)
+
+I've finally got LogGPT approved by Apple and it is now available on the App Store.
+
 ## **The Long Road to Resubmission**
 
 After what feels like an eternity, I’ve **finally** resubmitted the Safari extension to the Apple App Store. If you’ve ever dealt with Apple’s review process, you know the frustration that comes with seemingly arbitrary rejections. And yes, that happened to me. 
