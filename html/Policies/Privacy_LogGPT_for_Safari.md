@@ -1,5 +1,5 @@
 ---
-title: "LogGPT: ChatGPT Chat Download for Safari Privacy Policy"
+title: "LogGPT: Export ChatGPT conversation JSON logs for Safari Privacy Policy"
 layout: page
 permalink: /policies/Privacy_LogGPT_for_Safari/
 ---

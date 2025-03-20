@@ -35,6 +35,37 @@ Ensures consistent URL structure:
 - Checks for missing permalinks
 - Ensures unique URLs
 
+### 4. Link Checker (04_link_checker.sh)
+Validates internal links and identifies orphaned pages:
+```bash
+# Run link check only
+./utils/bin/check_site.sh --run 04_link_checker
+```
+- Checks for broken internal links
+- Identifies orphaned pages
+- Handles URL-encoded characters (spaces, special chars)
+  - Automatically decodes %20 and other encoded characters
+  - Properly verifies paths with spaces and special characters
+- Reports external links for review
+
+### Implementation Details
+The link checker uses a URL decoding function:
+```bash
+urldecode() {
+    local url_encoded="${1//+/ }"
+    printf '%b' "${url_encoded//%/\\x}"
+}
+```
+
+This function is called before checking file paths:
+```bash
+# Decode URL-encoded characters
+decoded_target=$(urldecode "$target")
+            
+# Remove trailing slash and add potential extensions
+base_target=${decoded_target%/}
+```
+
 [Additional checks documented similarly...]
 
 ## Usage
@@ -71,7 +102,14 @@ The checks are automatically run by the pre-commit hook:
    - Check for duplicate permalinks
    - Verify permalink format
 
-3. **Environment Check Fails**
+3. **Link Validation Fails**
+   - Check for typos in link URLs
+   - Verify files exist at the linked paths 
+   - For links with spaces or special characters, ensure proper URL encoding
+   - Check for case sensitivity issues in file paths
+   - If using special characters in filenames, test the link checker manually
+
+4. **Environment Check Fails**
    - Update Ruby gems
    - Install missing Python packages
    - Check environment variables

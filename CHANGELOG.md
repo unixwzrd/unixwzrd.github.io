@@ -1,5 +1,17 @@
 # Changelog
 
+## 20250320_01-rel: Link Checker Improvements and Blog Fixes
+
+### Bug Fixes
+- FIXED: Link checker to properly handle URL-encoded characters like %20 (spaces)
+- FIXED: Blog post date issue where future-dated posts weren't showing correctly
+- FIXED: Image display in project tables to avoid cropping
+
+### Improvements
+- IMPROVED: Project image styling with consistent rounded corners and hover effects
+- IMPROVED: Project link organization for both public and private repositories
+- UPDATED: Ensured all projects link to project blog (both title and image)
+
 ## 20240223_02-rel: Blog Layout and Template Fixes
 
 ### Bug Fixes

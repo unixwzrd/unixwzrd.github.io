@@ -8,6 +8,9 @@
 - [x] Create unified blog styling
 - [x] Fix project blog integration
 - [x] Update documentation for blog system
+- [x] Fix link checker to handle URL-encoded characters
+- [x] Improve project image display and styling
+- [x] Update pre-commit tool documentation
 
 ## High Priority
 - [ ] Review and update all project content
@@ -32,6 +35,7 @@
 - [ ] Optimize image loading and compression
 - [ ] Improve build performance
 - [ ] Add automated testing for templates
+- [ ] Review and fix Jekyll server deprecation warnings in logs
 
 ## Content Creation
 - [ ] Write Case Analytics introduction blog post

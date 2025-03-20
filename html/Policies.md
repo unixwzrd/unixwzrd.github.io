@@ -9,7 +9,7 @@ permalink: /policies/
 
 ### Privacy Policies
 - [General Privacy Policy](/policies/General_Privacy/)
-- [LogGPT: ChatGPT Chat Download for Safari](/policies/Privacy_LogGPT_for_Safari/)
+- [LogGPT: Export ChatGPT conversation JSON logs for Safari](/policies/Privacy_LogGPT_for_Safari/)
   - Covers both the OpenSource version in the [GitHub Repository](https://github.com/unixwzrd/chatgpt-chatlog-export) and the Apple App Store version.
 
 ### Terms of Service

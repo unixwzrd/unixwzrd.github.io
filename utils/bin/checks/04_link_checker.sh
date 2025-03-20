@@ -14,6 +14,12 @@ trap 'rm -rf "$TEMP_DIR"' EXIT
 
 echo "🔍 Running comprehensive link checks..."
 
+# Function to URL decode a string
+urldecode() {
+    local url_encoded="${1//+/ }"
+    printf '%b' "${url_encoded//%/\\x}"
+}
+
 # Find all pages
 find html -type f \( -name "*.md" -o -name "*.html" \) ! -path "*/\.*" ! -path "*/_site/*" -print > "$ALL_PAGES"
 
@@ -27,15 +33,19 @@ while IFS= read -r file; do
     grep -o "\[.*\]([^)]*)" "$file" | grep -v "^http" | grep -v "^#" | while read -r link; do
         target=$(echo "$link" | sed 's/.*(\(.*\))/\1/')
         if [[ $target == /* ]]; then
+            # Decode URL-encoded characters
+            decoded_target=$(urldecode "$target")
+            
             # Remove trailing slash and add potential extensions
-            base_target=${target%/}
+            base_target=${decoded_target%/}
+            
             # Add the target to linked pages
             echo "html${base_target}" >> "$LINKED_PAGES"
             echo "html${base_target}.md" >> "$LINKED_PAGES"
             echo "html${base_target}/index.md" >> "$LINKED_PAGES"
             echo "html${base_target}.html" >> "$LINKED_PAGES"
             
-            # Check if the target exists
+            # Check if the target exists (using the decoded path)
             if [ ! -f "html${base_target}" ] && [ ! -f "html${base_target}.md" ] && \
                [ ! -f "html${base_target}/index.md" ] && [ ! -f "html${base_target}.html" ]; then
                 echo "⚠️ Broken link in $file: $target" >> "$BROKEN_LINKS"
