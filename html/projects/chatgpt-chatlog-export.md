@@ -1,13 +1,13 @@
 ---
 layout: project
-title: "ChatGPT Chatlog Export"
+title: "LogGPT for Safari"
 category: chatgpt-chatlog-export
 permalink: /projects/chatgpt-chatlog-export/
 ---
 
 ## Easily Export and Archive Your ChatGPT Conversations  
 
-ChatGPT conversations often contain valuable insights, research, and discussions that users need to **preserve, organize, and analyze**. The **ChatGPT Chat Log Exporter** Safari extension allows users to **save entire conversations in structured JSON format**, making it easy to manage and integrate with AI-driven tools.
+ChatGPT conversations often contain valuable insights, research, and discussions that users need to **preserve, organize, and analyze**. The **LogGPT** for Safari extension allows users to **save entire conversations in structured JSON format**, making it easy to manage and integrate with AI-driven tools.
 
 This project is part of a broader effort to **enhance AI-powered workflows**, integrating seamlessly with **venvutil** and **chunking tools** for advanced text processing.
 

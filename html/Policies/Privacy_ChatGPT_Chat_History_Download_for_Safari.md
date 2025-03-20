@@ -1,13 +1,13 @@
 ---
-title: "ChatGPT Chat History Download for Safari Privacy Policy"
+title: "LogGPT: ChatGPT Chat Download for Safari Privacy Policy"
 layout: page
-permalink: /policies/Privacy_ChatGPT_Chat_History_Download_for_Safari/
+permalink: /policies/Privacy_LogGPT_for_Safari/
 ---
 
-Effective Date: 2025-02-02  
+Effective Date: 2025-03-20  
 
 ## 1. Introduction  
-Thank you for using ChatGPT Chat History Download for Safari. Your privacy is important to us. This extension is designed to allow users to download their ChatGPT conversation history securely and privately.  
+Thank you for using LogGPT for Safari. Your privacy is important to us. This extension is designed to allow users to download their ChatGPT conversation history securely and privately.  
 
 ## 2. Data Collection  
 This extension does not collect, store, transmit, or share any user data. It operates entirely within your browser and does not interact with external servers.  
