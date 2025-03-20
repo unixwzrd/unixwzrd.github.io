@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "RE: Submitted (Again) to the Apple App Store"
+title: "Submitted (Again) to the Apple App Store"
 date: "2025-03-20"
 category: chatgpt-chatlog-export
 tags: [update, apple-app-store, resubmission, development]
