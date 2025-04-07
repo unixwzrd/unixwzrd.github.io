@@ -7,14 +7,14 @@ projects:
   page_url: /projects/Case-Analytics/
   title: Case Analytics
   visibility: private
-- description: "LogGPT - Easily expoort your ChatGPT chatlogs from Safari, a lightweight method of exporting entire\
+- description: "ChatGPT - Chat Log Export, a lightweight method of exporting entire\
     \ ChatGPT conversations in JSON format. - unixwzrd/chatgpt-chatlog-export"
   image_url: /assets/images/projects/chatgpt-chatlog-export.png
   name: chatgpt-chatlog-export
   owner: unixwzrd
   page_url: /projects/chatgpt-chatlog-export/
   repo_url: https://github.com/unixwzrd/chatgpt-chatlog-export
-  title: LogGPT for Safari
+  title: ChatGPT Chatlog Export
   visibility: public
 - description: "Python virtual environment management functions and script to build\
     \ and manage performance, compatibility, and regression test venv builds mostly\
