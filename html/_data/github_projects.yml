@@ -38,7 +38,7 @@ projects:
   visibility: public
 - description: "Information on optimizing python libraries specifically for oobabooga\
     \ to take advantage of Apple Silicon and Accelerate Framework. - unixwzrd/oobabooga-macOS"
-  image_url: /assets/images/projects/default.png
+  image_url: /assets/images/projects/oobabooga-macOS.png
   name: oobabooga-macOS
   owner: unixwzrd
   page_url: /projects/oobabooga-macOS/
