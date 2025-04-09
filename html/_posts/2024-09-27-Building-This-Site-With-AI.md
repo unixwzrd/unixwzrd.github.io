@@ -1,8 +1,10 @@
 ---
+image: /assets/images/default-og-image.png
 layout: post
 title: "Building This Site With AI"
 date: 2024-09-27 17:30:00 -0500
 categories: [coding, ai, blog]
+excerpt: "Initially I wanted to use a web builder which would produce my HTML, CSS, and SCSS files, in a nice WISIWIG format and even tried out a couple of the web builder products. I mostly wanted something I could move to any hosting service available and did not want to get locked into a proprietary platform. I tried **Mobirise**, but didn't like their pricing model, you could buy lots of nice modules, but had to pay a recurring fee to use them, then I tried **Sparkle**, but there was a high learning curve for someone who is a s non-creative as me. I liked Sparkle, and might give it another ho sometime, but learning it was going to take a lot of effort."
 ---
 
 ## I managed to get this site up and running finally in spite of AI.
@@ -22,11 +24,15 @@ One instance was the menu bar items at the top of the page. It kept insisting to
 ```markdown
 {% raw %}
 ---
+excerpt: "image: /assets/images/default-og-image.png"
+image: /assets/images/default-og-image.png
 title: "Distributed Thinking Systems Blog"
 layout: page
 menu_item: Blog
 permalink: /blog/
 ---
+excerpt: "image: /assets/images/default-og-image.png"
+image: /assets/images/default-og-image.png
 {% endraw %}
 ```
 

@@ -3,6 +3,8 @@ title: "Policies"
 layout: page
 menu_item: Policies
 permalink: /policies/
+image: /assets/images/default-og-image.png
+excerpt: ""
 ---
 
 ## Distributed Thinking Systems LLC Policies

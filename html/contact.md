@@ -3,6 +3,8 @@ layout: page
 title: "Contact Us"
 menu_item: Contact
 permalink: /contact/
+image: /assets/images/default-og-image.png
+excerpt: "For inquiries, project discussions, or collaboration opportunities, reach out via:"
 ---
 
 For inquiries, project discussions, or collaboration opportunities, reach out via:

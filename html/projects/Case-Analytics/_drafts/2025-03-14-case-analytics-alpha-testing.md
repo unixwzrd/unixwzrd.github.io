@@ -1,4 +1,5 @@
 ---
+image: /assets/images/default-og-image.png
 title: "AI-Powered Communication Analysis for High-Conflict Divorce Cases"
 layout: post
 category: Case-Analytics
@@ -6,6 +7,7 @@ tags: [alpha-release, ai-analysis, parental-alienation, communication-analysis]
 date: 2024-03-14
 author: Michael Sullivan
 published: true
+excerpt: "We're excited to announce that Case Analytics has moved beyond proof-of-concept and is now entering its Alpha testing phase. This milestone represents a significant step forward in our mission to help families and legal professionals navigate high-conflict divorce situations using AI-powered analysis."
 ---
 
 We're excited to announce that Case Analytics has moved beyond proof-of-concept and is now entering its Alpha testing phase. This milestone represents a significant step forward in our mission to help families and legal professionals navigate high-conflict divorce situations using AI-powered analysis.

@@ -3,6 +3,8 @@ layout: project
 title: "VenvUtil"
 category: venvutil
 permalink: /projects/venvutil/
+image: /assets/images/default-og-image.png
+excerpt: "**VenvUtil** is a **Python virtual environment management toolkit** designed to simplify the creation, maintenance, and testing of virtual environments—particularly for **AI, machine learning, and performance benchmarking**."
 ---
 
 

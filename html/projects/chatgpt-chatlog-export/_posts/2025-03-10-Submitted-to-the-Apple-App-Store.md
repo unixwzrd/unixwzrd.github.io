@@ -1,10 +1,12 @@
 ---
+image: /assets/images/default-og-image.png
 layout: post
 title: "Introducing ChatGPT Chatlog Export"
 date: "2024-02-23"
 category: chatgpt-chatlog-export
 tags: [introduction, overview]
 published: true
+excerpt: "I submitted the app to the Apple App Store for review. I would appreciate it of you would buy a copy from teh app store to help offset the Apple Developer Tax (cost of my Apple Developer Account).  Whether that or you could drop me something in my Patreon or Ko-Fi."
 ---
 
 ## This App Submitted for Review

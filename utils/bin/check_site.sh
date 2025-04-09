@@ -71,14 +71,25 @@ done
 # Function to should_run_check
 should_run_check() {
     local check=$1
+    local i
     
     # If specific checks are specified, only run those
     if [ ${#CHECKS_TO_RUN[@]} -gt 0 ]; then
-        [[ " ${CHECKS_TO_RUN[@]} " =~ " ${check} " ]] && return 0 || return 1
+        for i in "${CHECKS_TO_RUN[@]}"; do
+            if [[ "$i" == "$check" ]]; then
+                return 0
+            fi
+        done
+        return 1
     fi
     
     # If check is in skip list, don't run it
-    [[ " ${SKIP_CHECKS[@]} " =~ " ${check} " ]] && return 1 || return 0
+    for i in "${SKIP_CHECKS[@]}"; do
+        if [[ "$i" == "$check" ]]; then
+            return 1
+        fi
+    done
+    return 0
 }
 
 # Run all check scripts in numerical order

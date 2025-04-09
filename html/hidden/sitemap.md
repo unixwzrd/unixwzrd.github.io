@@ -2,6 +2,8 @@
 layout: page
 title: "Sitemap"
 permalink: /hidden/sitemap/
+image: /assets/images/default-og-image.png
+excerpt: ""
 ---
 
 ## Sitemap

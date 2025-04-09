@@ -1,10 +1,12 @@
 ---
+image: /assets/images/default-og-image.png
 title: "New Case Analytics Update"
 layout: post
 category: Case-Analytics
 tags: [development, update]
 author: Michael Sullivan
 draft: true
+excerpt: "Brief introduction about this update (this will appear in previews)."
 ---
 
 Brief introduction about this update (this will appear in previews).

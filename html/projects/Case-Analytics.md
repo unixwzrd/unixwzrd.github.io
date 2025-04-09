@@ -3,6 +3,8 @@ layout: project
 title: "Case Analytics"
 category: Case-Analytics
 permalink: /projects/Case-Analytics/
+image: /assets/images/default-og-image.png
+excerpt: "Family courts struggle to recognize patterns of **parental alienation, manipulation, and coercive control** due to the sheer volume of legal documents and communication records. **Case Analytics** leverages **AI-driven forensic analysis** to bring **clarity and objectivity** to these disputes."
 ---
 
 ## AI-Powered Insights into Family Court Data

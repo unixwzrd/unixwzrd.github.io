@@ -193,6 +193,8 @@ title: "New {project_data['title']} Update"
 date: 2024-03-14
 category: {project_data['name']}
 tags: [development, update]
+excerpt: "Brief introduction about this update"
+image: /assets/images/projects/{project_data['name']}.png
 # author: Michael Sullivan
 # For drafts, use either:
 # published: false  (won't show up at all)
@@ -246,6 +248,8 @@ title: "Introducing {project_data['title']}"
 date: {current_date}
 category: {project_data['name']}
 tags: [introduction, overview]
+excerpt: "Welcome to the {project_data['title']} project blog. Here we'll share updates, insights, and progress on our development journey."
+image: /assets/images/projects/{project_data['name']}.png
 # author: Michael Sullivan
 # For drafts, use either:
 # published: false  (won't show up at all)

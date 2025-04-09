@@ -1,8 +1,10 @@
 ---
+image: /assets/images/default-og-image.png
 layout: post
 title: "Adapting and Advancing: Progress Across Projects"
 date: 2024-11-13 14:00:00 -0500
 categories: [coding, ai, blog]
+excerpt: "The past few months have been a whirlwind of progress, setbacks, and unexpected developments. From debugging web frameworks to crafting advanced tools for Python environments, I've been deeply immersed in a variety of projects. Today, I want to reflect on some key milestones and share insights from my journey."
 ---
 
 ## Overcoming Challenges and Tackling Diverse Projects

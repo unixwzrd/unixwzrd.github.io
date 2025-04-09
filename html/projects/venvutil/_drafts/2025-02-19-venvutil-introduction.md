@@ -1,10 +1,12 @@
 ---
+image: /assets/images/default-og-image.png
 layout: post
 title: "Introducing VenvUtil"
 category: venvutil
 tags: [introduction, overview]
 date: 2025-02-19
 published: false
+excerpt: "Welcome to the VenvUtil project blog. Here we'll share updates, insights, and progress on our development journey."
 ---
 
 Welcome to the VenvUtil project blog. Here we'll share updates, insights, and progress on our development journey.

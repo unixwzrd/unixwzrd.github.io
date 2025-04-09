@@ -1,10 +1,12 @@
 ---
+image: /assets/images/default-og-image.png
 title: "New Feature: Enhanced Audio Analysis in Case Analytics"
 layout: post
 category: Case-Analytics
 tags: [development, audio-analysis, feature-preview, speech-to-text]
 author: Michael Sullivan
 draft: true
+excerpt: "We're excited to share details about our enhanced audio analysis capabilities coming to Case Analytics. This new feature significantly improves our ability to analyze verbal communications in high-conflict situations."
 ---
 
 We're excited to share details about our enhanced audio analysis capabilities coming to Case Analytics. This new feature significantly improves our ability to analyze verbal communications in high-conflict situations.

@@ -3,6 +3,8 @@ title: "Professional Services & Consulting"
 layout: page
 menu_item: Professionals
 permalink: /collaborate/professionals/
+image: /assets/images/default-og-image.png
+excerpt: "Distributed Thinking Systems offers specialized AI-driven solutions, technical consulting, and expertise in **data analytics, distributed computing, and AI-powered forensic analysis.** We collaborate with professionals in **legal, psychological, and research fields** to enhance decision-making with **AI-enhanced insights.**"
 ---
 
 Distributed Thinking Systems offers specialized AI-driven solutions, technical consulting, and expertise in **data analytics, distributed computing, and AI-powered forensic analysis.** We collaborate with professionals in **legal, psychological, and research fields** to enhance decision-making with **AI-enhanced insights.**  

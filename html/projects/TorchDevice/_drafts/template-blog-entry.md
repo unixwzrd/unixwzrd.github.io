@@ -1,4 +1,5 @@
 ---
+image: /assets/images/default-og-image.png
 layout: post
 title: "New TorchDevice Update"
 category: TorchDevice
@@ -10,6 +11,7 @@ tags: [development, update]
 draft: true
 published: true
 date: 2024-03-14
+excerpt: "Brief introduction about this update (this will appear in previews)."
 ---
 
 Brief introduction about this update (this will appear in previews).

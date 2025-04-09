@@ -3,6 +3,8 @@ layout: page
 title: "Our Projects"
 menu_item: Projects
 permalink: /projects/
+image: /assets/images/default-og-image.png
+excerpt: "At **Distributed Thinking Systems**, we are constantly pushing boundaries with innovative projects in AI, data science, and distributed computing. We are committed to working on and supporting OpenSource Projects."
 ---
 
 ## Overview

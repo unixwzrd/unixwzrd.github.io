@@ -3,6 +3,8 @@ title: "Distributed Thinking Systems Blog"
 layout: page
 menu_item: Blog
 permalink: /blog/
+image: /assets/images/default-og-image.png
+excerpt: "A platform for insights, updates, and discussions on **AI, parental alienation, and family law technology**."
 ---
 
 A platform for insights, updates, and discussions on **AI, parental alienation, and family law technology**.

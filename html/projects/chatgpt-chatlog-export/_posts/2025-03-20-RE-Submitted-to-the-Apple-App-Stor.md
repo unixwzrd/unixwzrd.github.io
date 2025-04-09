@@ -1,10 +1,12 @@
 ---
+image: /assets/images/default-og-image.png
 layout: post
 title: "Submitted (Again) to the Apple App Store"
 date: "2025-03-20"
 category: chatgpt-chatlog-export
 tags: [update, apple-app-store, resubmission, development]
 published: true
+excerpt: "!App Logo"
 ---
 
 ![App Logo](/assets/images/projects/LogGPT/LogGPT.png)

@@ -3,6 +3,8 @@ layout: page
 title: "About Us"
 menu_item: About
 permalink: /about/
+image: /assets/images/default-og-image.png
+excerpt: "Contact Us for more details."
 ---
 
 ## Who We Are  

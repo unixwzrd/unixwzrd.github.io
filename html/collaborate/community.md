@@ -3,6 +3,8 @@ layout: page
 title: "Join Our Community"
 menu_item: Community
 permalink: /collaborate/community/
+image: /assets/images/default-og-image.png
+excerpt: "We’re building a thriving community of individuals who share their experiences, contribute to research, or collaborate on new and innovative tech projects."
 ---
 
 ### Join Our Community: Research, Projects & Contributions

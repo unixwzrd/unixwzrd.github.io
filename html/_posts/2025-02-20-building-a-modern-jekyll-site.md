@@ -1,9 +1,11 @@
 ---
+image: /assets/images/default-og-image.png
 layout: post
 title: "Harnessing AI for Change: The Next Chapter for Distributed Thinking Systems"
 date: 2025-02-20 15:00:00 -0500
 categories: [development, site-updates]
 tags: [AI, parental alienation, technology, advocacy]
+excerpt: "Parental alienation is a slow, insidious process, often unfolding in subtle shifts of language, repeated patterns of exclusion, and emotional manipulation hidden within everyday communication. The words that once carried love and trust become barriers, severing bonds between parents and children. For those affected, the experience is devastating. The pain lingers, compounded by the fact that so often, the signs go unnoticed until it is too late."
 ---
 
 Parental alienation is a slow, insidious process, often unfolding in subtle shifts of language, repeated patterns of exclusion, and emotional manipulation hidden within everyday communication. The words that once carried love and trust become barriers, severing bonds between parents and children. For those affected, the experience is devastating. The pain lingers, compounded by the fact that so often, the signs go unnoticed until it is too late.

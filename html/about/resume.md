@@ -3,6 +3,8 @@ layout: page
 title: Resume
 menu_item: Resume
 permalink: /about/resume/
+image: /assets/images/default-og-image.png
+excerpt: "Looking for an overview of my experience and expertise? Download my PDF Resume. I have some accreditations and certifications here."
 ---
 
 Looking for an overview of my experience and expertise? Download my [PDF Resume.](/assets/documents/SullivanMichael_IT_AI_ML_Unix_42020819.pdf)

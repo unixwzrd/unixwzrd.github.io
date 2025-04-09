@@ -3,6 +3,8 @@ layout: page
 title: "Resources"
 menu_item: Resources
 permalink: /resources/
+image: /assets/images/default-og-image.png
+excerpt: "Helpful tools, organizations, and information related to parental alienation, AI, and legal support below. If you have a resource you would like added, contact us."
 ---
 
 ### **If your or someone else is in crisis now, use [Emergency Resources](/resources/emergency-resources).**

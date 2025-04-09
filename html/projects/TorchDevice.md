@@ -3,6 +3,8 @@ layout: project
 title: "TorchDevice"
 category: TorchDevice
 permalink: /projects/TorchDevice/
+image: /assets/images/default-og-image.png
+excerpt: "TorchDevice is a Python library that enables transparent code portability between NVIDIA CUDA and Apple Silicon (MPS) hardware for PyTorch applications. It intercepts PyTorch calls related to GPU hardware, allowing developers to write code that works seamlessly on both hardware types without modification. TorchDevice is designed to assist in porting code from CUDA to MPS and vice versa, making it easier to develop cross-platform PyTorch applications."
 ---
 
 ## Seamless PyTorch Adaptation for Apple Silicon and CUDA  

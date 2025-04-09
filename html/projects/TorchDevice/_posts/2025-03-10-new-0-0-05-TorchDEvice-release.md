@@ -1,9 +1,11 @@
 ---
+image: /assets/images/default-og-image.png
 title: "Announcing TorchDevice 0.0.5 Beta – Transparent Hardware Redirection for PyTorch"
 date: "2025-03-05"
 category: TorchDevice
 tags: [introduction, overview]
 published: true
+excerpt: "We’re pleased to announce the release of **TorchDevice 0.0.5 Beta**, a significant milestone in simplifying hardware compatibility for PyTorch applications. This release introduces robust enhancements, thorough testing, and a powerful new **CPU override feature** to ensure seamless integration across CUDA and Apple Silicon (Metal) hardware."
 ---
 
 We’re pleased to announce the release of **TorchDevice 0.0.5 Beta**, a significant milestone in simplifying hardware compatibility for PyTorch applications. This release introduces robust enhancements, thorough testing, and a powerful new **CPU override feature** to ensure seamless integration across CUDA and Apple Silicon (Metal) hardware.

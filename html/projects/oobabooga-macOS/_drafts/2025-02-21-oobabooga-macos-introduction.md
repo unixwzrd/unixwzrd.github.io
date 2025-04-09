@@ -1,4 +1,5 @@
 ---
+image: /assets/images/default-og-image.png
 layout: post
 title: "Introducing Oobabooga macOS"
 date: 2025-02-21
@@ -10,6 +11,7 @@ tags: [introduction, overview]
 # draft: true      (will show up with --drafts flag)
 draft: true
 published: true
+excerpt: "Welcome to the Oobabooga macOS project blog. Here we'll share updates, insights, and progress on our development journey."
 ---
 
 Welcome to the Oobabooga macOS project blog. Here we'll share updates, insights, and progress on our development journey.

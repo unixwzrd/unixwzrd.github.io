@@ -2,6 +2,8 @@
 title: "Emergency Resources"
 layout: page
 permalink: /resources/emergency-resources/
+image: /assets/images/default-og-image.png
+excerpt: "A comprehensive list of emergency resources and contact numbers by country."
 ---
 
 #### If you or someone you know is in immediate danger or experiencing a crisis, in the United States, **CALL 911** or go to the nearest emergency room immediately.

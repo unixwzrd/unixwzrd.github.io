@@ -3,6 +3,8 @@ layout: home
 title: "Distributed Thinking Systems"
 menu_item: Home
 permalink: /
+image: /assets/images/default-og-image.png
+excerpt: "We are dedicated to developing AI solutions that make a positive impact. Our focus is on creating tools and systems that help people, particularly in challenging situations like parental alienation and high-conflict divorce cases."
 ---
 
 We are dedicated to developing AI solutions that make a positive impact. Our focus is on creating tools and systems that help people, particularly in challenging situations like parental alienation and high-conflict divorce cases.

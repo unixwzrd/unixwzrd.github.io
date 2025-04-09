@@ -3,6 +3,8 @@ layout: page
 title: "Collaborate and Join the Community"
 menu_item: Collaborate
 permalink: /collaborate/
+image: /assets/images/default-og-image.png
+excerpt: "**Distributed Thinking Systems** is about building a collaborative community where professionals and individuals come together to contribute their expertise, participate in projects, or support our work."
 ---
 
 ## Build With Us and the Community

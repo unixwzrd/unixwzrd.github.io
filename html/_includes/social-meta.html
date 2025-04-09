@@ -1,0 +1,40 @@
+{% if page.image %}
+  {% assign image_path = page.image %}
+{% else %}
+  {% assign image_path = "/assets/images/default-og-image.png" %}
+{% endif %}
+
+{% assign full_image_url = image_path | absolute_url %}
+{% assign page_title = page.title | default: site.title %}
+{% assign page_description = page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 160 %}
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="article">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta property="og:title" content="{{ page_title }}">
+<meta property="og:description" content="{{ page_description }}">
+<meta property="og:image" content="{{ full_image_url }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="{{ page.url | absolute_url }}">
+<meta name="twitter:title" content="{{ page_title }}">
+<meta name="twitter:description" content="{{ page_description }}">
+<meta name="twitter:image" content="{{ full_image_url }}">
+
+<!-- LinkedIn -->
+<meta property="og:site_name" content="{{ site.title }}">
+<meta name="author" content="{{ site.author.name }}">
+<meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+{% if page.category %}
+<meta property="article:section" content="{{ page.category }}">
+{% endif %}
+{% if page.tags %}
+<meta name="keywords" content="{{ page.tags | join: ', ' }}">
+{% endif %}
+
+<!-- Additional SEO -->
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<meta name="description" content="{{ page_description }}"> 

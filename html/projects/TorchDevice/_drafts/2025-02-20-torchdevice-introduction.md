@@ -1,4 +1,5 @@
 ---
+image: /assets/images/default-og-image.png
 layout: post
 title: "Introducing TorchDevice"
 date: 2025-02-20
@@ -10,6 +11,7 @@ tags: [introduction, overview]
 # draft: true      (will show up with --drafts flag)
 draft: true
 published: true
+excerpt: "Welcome to the TorchDevice project blog. Here we'll share updates, insights, and progress on our development journey."
 ---
 
 Welcome to the TorchDevice project blog. Here we'll share updates, insights, and progress on our development journey.

@@ -45,7 +45,7 @@ markdown_ext: markdown,mkdown,mkdn,mkd,md
 timezone: America/New_York
 
 author:
-  name: "Let's hear from you."
+  name: "Distributed Thinking Systems"
   email: "unixwzrd@unixwzrd.ai"
 
 # Social links
@@ -112,16 +112,42 @@ tagline: "Mostly computing on and off."
 page_excerpts: false
 excerpt_separator: "<!--more-->"
 
+# SEO specific settings
+title_separator: "|"
+logo: "/assets/images/logo.png"
+
+# Update existing social links section
+social:
+  name: Distributed Thinking Systems
+  links:
+    - https://github.com/unixwzrd
+    - https://linkedin.com/in/unixwzrd
+    - https://twitter.com/unixwzrd
+    - https://huggingface.co/unixwzrd
+    - https://wandb.ai/unixwzrd
+    - https://dev.to/unixwzrd
+    - https://bsky.app/profile/unixwzrd.bsky.social
+    - https://ko-fi.com/unixwzrd
+    - https://patreon.com/unixwzrd
+
+# Twitter card settings
+twitter:
+  username: unixwzrd
+  card: summary_large_image
+
+# Update existing defaults section to include image
 defaults:
   - scope:
       path: "" # Applies to all files
     values:
       layout: page
+      image: /assets/images/logo.png
   - scope:
       path: ""
       type: "project_posts"
     values:
       layout: post
+      image: /assets/images/logo.png
 
 theme: jekyll-minima
 
