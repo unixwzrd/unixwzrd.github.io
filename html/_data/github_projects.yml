@@ -29,7 +29,7 @@ projects:
 - description: "Module contains class TorchDevice abstracting CUDA/MPS/CPU, intercepting,\
     \ and redirecting calls to the available device to assist in porting code from\
     \ CUDA to MPS. - unixwzrd/TorchDevice"
-  image_url: /assets/images/projects/default.png
+  image_url: /assets/images/projects/TorchDevice.png
   name: TorchDevice
   owner: unixwzrd
   page_url: /projects/TorchDevice/

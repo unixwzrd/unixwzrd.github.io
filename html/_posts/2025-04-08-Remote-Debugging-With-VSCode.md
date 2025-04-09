@@ -10,7 +10,7 @@ tags: [debugging, vscode, remote, python]
 
 Recently, someone asked how to connect to a remote process and debug it. If you’re using VSCode—or any of its forks such as Cursor or Windsurf—the following method can save you hours of troubleshooting compared to relying on log files or print statements. A proper debugger lets you inspect variables, step through code, and quickly identify issues. Here’s how I set up remote debugging.
 
-!Vibing on the Remote – Debugging Python Remotely](/assets/images/vibing-remote-debugging.png)
+![Vibing on the Remote – Debugging Python Remotely](/assets/images/vibing-remote-debugging.png)
 
 ## The Setup
 
