@@ -29,7 +29,7 @@ projects:
 - description: "Module contains class TorchDevice abstracting CUDA/MPS/CPU, intercepting,\
     \ and redirecting calls to the available device to assist in porting code from\
     \ CUDA to MPS. - unixwzrd/TorchDevice"
-  image_url: /assets/images/projects/TorchDevice.png
+  image_url: /assets/images/projects/default.png
   name: TorchDevice
   owner: unixwzrd
   page_url: /projects/TorchDevice/
@@ -38,7 +38,7 @@ projects:
   visibility: public
 - description: "Information on optimizing python libraries specifically for oobabooga\
     \ to take advantage of Apple Silicon and Accelerate Framework. - unixwzrd/oobabooga-macOS"
-  image_url: /assets/images/projects/oobabooga-macOS.png
+  image_url: /assets/images/projects/default.png
   name: oobabooga-macOS
   owner: unixwzrd
   page_url: /projects/oobabooga-macOS/
