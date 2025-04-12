@@ -56,15 +56,15 @@ huggingface_username: unixwzrd
 patreon_username: unixwzrd
 kofi_username: unixwzrd
 wandb_username: unixwzrd
-# discord_username: unixwzrd
-# medium_username: unixwzrd
-# youtube_username: unixwzrd
-# stackoverflow_username: unixwzrd
-# quora_username: unixwzrd
-# geeks_for_geeks_username: unixwzrd
-# reddit_username: unixwzrd
-# wordpress_username: unixwzrd
-# https://music.apple.com/profile/unixwzrd
+discord_username: unixwzrd
+medium_username: unixwzrd
+youtube_username: unixwzrd
+stackoverflow_username: unixwzrd
+quora_username: unixwzrd
+geeks_for_geeks_username: unixwzrd
+reddit_username: unixwzrd
+wordpress_username: unixwzrd
+paypal_username: unixwzrd
 
 minima:
   social_links:

@@ -5,10 +5,14 @@ date: "2025-03-05"
 category: TorchDevice
 tags: [introduction, overview]
 published: true
-excerpt: "We’re pleased to announce the release of **TorchDevice 0.0.5 Beta**, a significant milestone in simplifying hardware compatibility for PyTorch applications. This release introduces robust enhancements, thorough testing, and a powerful new **CPU override feature** to ensure seamless integration across CUDA and Apple Silicon (Metal) hardware."
+excerpt: "We're pleased to announce the release of **TorchDevice 0.0.5 Beta**, a significant milestone in simplifying hardware compatibility for PyTorch applications. This release introduces robust enhancements, thorough testing, and a powerful new **CPU override feature** to ensure seamless integration across CUDA and Apple Silicon (Metal) hardware."
 ---
 
-We’re pleased to announce the release of **TorchDevice 0.0.5 Beta**, a significant milestone in simplifying hardware compatibility for PyTorch applications. This release introduces robust enhancements, thorough testing, and a powerful new **CPU override feature** to ensure seamless integration across CUDA and Apple Silicon (Metal) hardware.
+![TorchDevice](/assets/images/projects/TorchDevice/TorchDevice001.png)
+
+TorchDevice is a PyTorch extension that allows transparent hardware redirection for PyTorch applications. This release introduces robust enhancements, thorough testing, and a powerful new **CPU override feature** to ensure seamless integration across CUDA and Apple Silicon (Metal) hardware.
+
+We're pleased to announce the release of **TorchDevice 0.0.5 Beta**, a significant milestone in simplifying hardware compatibility for PyTorch applications. This release introduces robust enhancements, thorough testing, and a powerful new **CPU override feature** to ensure seamless integration across CUDA and Apple Silicon (Metal) hardware.
 
 ## Why TorchDevice?
 
@@ -44,12 +48,12 @@ TorchDevice 0.0.5 is extensively tested using HuggingFace Transformers, successf
 
 Comprehensive Documentation & Examples
 
-We’ve expanded the documentation to clearly guide developers through installation, configuration, and troubleshooting, making adoption effortless.
+We've expanded the documentation to clearly guide developers through installation, configuration, and troubleshooting, making adoption effortless.
   - Detailed README
   - Practical usage examples and tutorials
   - Open community support and contributions via GitHub issues and pull requests
 
-What’s Next?
+What's Next?
 
 Our future plans include:
   - Enhanced runtime flexibility for CPU overrides
@@ -66,4 +70,4 @@ If you find this useful help support my work;
   - [Patreon](https://patreon.com/unixwzrd)
   - [Ko-Fi](https://ko-fi.com/unixwzrd)
 
-Your feedback drives our roadmap. Let’s make PyTorch more accessible and efficient for everyone.
+Your feedback drives our roadmap. Let's make PyTorch more accessible and efficient for everyone.
