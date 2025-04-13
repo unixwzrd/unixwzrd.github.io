@@ -22,12 +22,12 @@
 
 title: Distributed Thinking Systems
 description: >-
-  Using AI for good.
-  <br>
-  Mostly computing on and off.
-  <br>
   Distributed Thinking Systems: Innovating AI, machine learning, and
   distributed computing solutions.
+  <br>
+  >Mostly computing on and off.
+  <br>
+  Using AI for good.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://unixwzrd.ai"
 source: "html"
