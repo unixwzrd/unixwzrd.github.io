@@ -14,7 +14,7 @@ projects:
   owner: unixwzrd
   page_url: /projects/LogGPT/
   repo_url: https://github.com/unixwzrd/LogGPT
-  title: Loggpt
+  title: LogGPT Chatlog Export
   visibility: public
 - description: "Python virtual environment management functions and script to build\
     \ and manage performance, compatibility, and regression test venv builds mostly\

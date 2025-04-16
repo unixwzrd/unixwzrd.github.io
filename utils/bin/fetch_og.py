@@ -350,6 +350,7 @@ def format_title(name: str) -> str:
         'venvutil': 'VenvUtil',
         'torchdevice': 'TorchDevice',
         'oobabooga': 'Oobabooga',
+        'loggpt': 'LogGPT Chatlog Export',
     }
     
     # First replace hyphens with spaces
