@@ -1,7 +1,7 @@
 ---
 image: /assets/images/default-og-image.png
 layout: post
-title: "New ChatGPT Chatlog Export Update"
+title: "New LogGPT ChatGPT Chatlog Exportort Update"
 category: LogGPT
 tags: [development, update]
 # author: Michael Sullivan

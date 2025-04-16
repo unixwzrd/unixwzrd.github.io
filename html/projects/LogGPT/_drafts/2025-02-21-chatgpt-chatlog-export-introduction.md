@@ -1,7 +1,7 @@
 ---
 image: /assets/images/default-og-image.png
 layout: post
-title: "Introducing ChatGPT Chatlog Export"
+title: "Introducing LogGPT ChatGPT Chatlog Exportort"
 date: 2025-02-21
 category: LogGPT
 tags: [introduction, overview]
@@ -11,14 +11,14 @@ tags: [introduction, overview]
 # draft: true      (will show up with --drafts flag)
 draft: true
 published: true
-excerpt: "Welcome to the ChatGPT Chatlog Export project blog. Here we'll share updates, insights, and progress on our development journey."
+excerpt: "Welcome to the LogGPT ChatGPT Chatlog Exportort project blog. Here we'll share updates, insights, and progress on our development journey."
 ---
 
-Welcome to the ChatGPT Chatlog Export project blog. Here we'll share updates, insights, and progress on our development journey.
+Welcome to the LogGPT ChatGPT Chatlog Exportort project blog. Here we'll share updates, insights, and progress on our development journey.
 
 <!--more-->
 
-## About ChatGPT Chatlog Export
+## About LogGPT ChatGPT Chatlog Exportort
 
 ChatGPT - Chat Log Export, a lightweight method of exporting entire ChatGPT conversations in JSON format. - unixwzrd/LogGPT
 

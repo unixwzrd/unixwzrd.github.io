@@ -1,7 +1,7 @@
 ---
 image: /assets/images/default-og-image.png
 layout: post
-title: "Introducing ChatGPT Chatlog Export"
+title: "Introducing LogGPT ChatGPT Chatlog Exportort"
 date: "2024-02-23"
 category: LogGPT
 tags: [introduction, overview]
