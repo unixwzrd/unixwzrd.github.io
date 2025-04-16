@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "Introducing Loggpt"
+title: "Introducing LogGPT Chatlog Export"
 date: 2025-04-16
 category: LogGPT
 tags: [introduction, overview]
-excerpt: "Welcome to the Loggpt project blog. Here we'll share updates, insights, and progress on our development journey."
+excerpt: "Welcome to the LogGPT Chatlog Export project blog. Here we'll share updates, insights, and progress on our development journey."
 image: /assets/images/projects/LogGPT.png
 # author: Michael Sullivan
 # For drafts, use either:
@@ -14,11 +14,11 @@ draft: true
 published: true
 ---
 
-Welcome to the Loggpt project blog. Here we'll share updates, insights, and progress on our development journey.
+Welcome to the LogGPT Chatlog Export project blog. Here we'll share updates, insights, and progress on our development journey.
 
 <!--more-->
 
-## About Loggpt
+## About LogGPT Chatlog Export
 
 ChatGPT - Chat Log Export, a lightweight method of exporting entire ChatGPT conversations in JSON format. - unixwzrd/LogGPT
 
