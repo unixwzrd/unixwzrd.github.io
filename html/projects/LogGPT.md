@@ -3,7 +3,7 @@ layout: project
 title: "LogGPT for Safari"
 category: LogGPT
 permalink: /projects/LogGPT/
-image: /assets/images/default-og-image.png
+image: /assets/images/projects/LogGPT.png
 excerpt: "ChatGPT conversations often contain valuable insights, research, and discussions that users need to **preserve, organize, and analyze**. The **LogGPT** for Safari extension allows users to **save entire conversations in structured JSON format**, making it easy to manage and integrate with AI-driven tools."
 ---
 
