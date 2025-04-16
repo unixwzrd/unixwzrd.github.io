@@ -5,7 +5,7 @@ repositories:
       title: "Case Analytics"
       description: "AI-powered analysis tool for legal case documents, focusing on parental alienation detection and pattern recognition in high-conflict divorce cases."
       image_url: "/assets/images/child-with-robot.png"
-  - name: chatgpt-chatlog-export
+  - name: LogGPT
     owner: unixwzrd
   - name: venvutil
     owner: unixwzrd

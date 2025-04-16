@@ -2,7 +2,7 @@
 image: /assets/images/default-og-image.png
 layout: post
 title: "Introducing ChatGPT Chatlog Export"
-category: chatgpt-chatlog-export
+category: LogGPT
 tags: [introduction, overview]
 date: 2025-02-19
 published: false
@@ -15,7 +15,7 @@ Welcome to the ChatGPT Chatlog Export project blog. Here we'll share updates, in
 
 ## About ChatGPT Chatlog Export
 
-ChatGPT - Chat Log Export, a lightweight method of exporting entire ChatGPT conversations in JSON format. - unixwzrd/chatgpt-chatlog-export
+ChatGPT - Chat Log Export, a lightweight method of exporting entire ChatGPT conversations in JSON format. - unixwzrd/LogGPT
 
 ## Current Features
 

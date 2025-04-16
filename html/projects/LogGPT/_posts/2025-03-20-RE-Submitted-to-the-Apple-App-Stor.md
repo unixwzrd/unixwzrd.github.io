@@ -3,7 +3,7 @@ image: /assets/images/default-og-image.png
 layout: post
 title: "Submitted (Again) to the Apple App Store"
 date: "2025-03-20"
-category: chatgpt-chatlog-export
+category: LogGPT
 tags: [update, apple-app-store, resubmission, development]
 published: true
 excerpt: "!App Logo"
@@ -59,7 +59,7 @@ If you're comfortable with the command line, check out my [VenvUtil](https://git
 
 ## Feeling Adventurous?
 
-If you want to build it yourself, you may download the source code as well as a pre-compiled binary of the app on my [GitHub Repository page](https://github.com/unixwzrd/chatgpt-chatlog-export). There is a release there as well you may download and install it on your system.
+If you want to build it yourself, you may download the source code as well as a pre-compiled binary of the app on my [GitHub Repository page](https://github.com/unixwzrd/LogGPT). There is a release there as well you may download and install it on your system.
 
 ## **Support My Work**
 
