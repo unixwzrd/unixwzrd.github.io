@@ -37,6 +37,6 @@ We will soon introduce **tiered access options** for those seeking:
 - Priority support & consulting  
 - Data processing & AI-enhanced analysis  
 
-**Consulting rates are determined by project scope, complexity, and required expertise.** While I’m happy to discuss project needs and deliverables, my rates reflect the value and experience I bring to each engagement.  
+**Consulting rates are determined by project scope, complexity, and required expertise.** While we are⁠ happy to discuss project needs and deliverables, our rates reflect the value and experience we bring to each engagement.  
 
 If you're interested in **consulting, special projects, or testing our AI tools**, please [contact us](/contact) to discuss your needs.
