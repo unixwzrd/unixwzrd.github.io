@@ -9,7 +9,7 @@ projects:
   visibility: private
 - description: "ChatGPT - Chat Log Export, a lightweight method of exporting entire\
     \ ChatGPT conversations in JSON format. - unixwzrd/LogGPT"
-  image_url: /assets/images/projects/LogGPT.png
+  image_url: /assets/images/projects/default.png
   name: LogGPT
   owner: unixwzrd
   page_url: /projects/LogGPT/
@@ -35,6 +35,15 @@ projects:
   page_url: /projects/TorchDevice/
   repo_url: https://github.com/unixwzrd/TorchDevice
   title: TorchDevice
+  visibility: public
+- description: "Normalizes Unicode to ASCII equivalents. Contribute to unixwzrd/UnicodeFix\
+    \ development by creating an account on GitHub."
+  image_url: /assets/images/projects/UnicodeFix.png
+  name: UnicodeFix
+  owner: unixwzrd
+  page_url: /projects/UnicodeFix/
+  repo_url: https://github.com/unixwzrd/UnicodeFix
+  title: Unicodefix
   visibility: public
 - description: "Information on optimizing python libraries specifically for oobabooga\
     \ to take advantage of Apple Silicon and Accelerate Framework. - unixwzrd/oobabooga-macOS"

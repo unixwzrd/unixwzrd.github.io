@@ -11,6 +11,8 @@ repositories:
     owner: unixwzrd
   - name: TorchDevice
     owner: unixwzrd
+  - name: UnicodeFix
+    owner: unixwzrd
   - name: oobabooga-macOS
     owner: unixwzrd
   - name: text-generation-webui-macos
