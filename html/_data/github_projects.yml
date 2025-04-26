@@ -9,7 +9,7 @@ projects:
   visibility: private
 - description: "ChatGPT - Chat Log Export, a lightweight method of exporting entire\
     \ ChatGPT conversations in JSON format. - unixwzrd/LogGPT"
-  image_url: /assets/images/projects/LogGPT.png
+  image_url: /assets/images/projects/default.png
   name: LogGPT
   owner: unixwzrd
   page_url: /projects/LogGPT/
@@ -19,7 +19,7 @@ projects:
 - description: "Python virtual environment management functions and script to build\
     \ and manage performance, compatibility, and regression test venv builds mostly\
     \ for AI - unixwzrd/venvutil"
-  image_url: /assets/images/projects/venvutil.png
+  image_url: /assets/images/projects/default.png
   name: venvutil
   owner: unixwzrd
   page_url: /projects/venvutil/
@@ -43,7 +43,7 @@ projects:
   owner: unixwzrd
   page_url: /projects/UnicodeFix/
   repo_url: https://github.com/unixwzrd/UnicodeFix
-  title: Unicodefix
+  title: UnicodeFix
   visibility: public
 - description: "Information on optimizing python libraries specifically for oobabooga\
     \ to take advantage of Apple Silicon and Accelerate Framework. - unixwzrd/oobabooga-macOS"

@@ -5,55 +5,68 @@ category: UnicodeFix
 permalink: /projects/UnicodeFix/
 ---
 
-**UnicodeFix** is a lightweight, open-source utility that cleans up messy text by converting strange or invisible Unicode characters into clean, readable **ASCII**. If you've ever pasted content into your code editor and had it break because of curly quotes, non-breaking spaces, or hidden characters — this tool can save your sanity.
+**UnicodeFix** is a lightweight, open-source tool that normalizes text by converting problematic or invisible Unicode characters into clean, reliable **ASCII**.
 
-Whether you're a developer, writer, or just someone who copies and pastes from the internet, UnicodeFix helps normalize your text so it behaves.
-
----
-
-## 🔧 What Does It Do?
-
-- Replaces smart quotes, em/en dashes, ellipses, and other Unicode punctuation with standard ASCII
-- Removes invisible Unicode characters like:
-  - `U+200B` (Zero-width space)  
-  - `U+200C` (Non-joiner)  
-  - `U+200D` (Joiner)
-- Makes AI-generated or copied web content safer to paste into your terminal, editor, or scripts
-- Avoids hidden errors in YAML, JSON, Markdown, and other plain text formats
+If you've ever encountered hidden characters — such as curly quotes, non-breaking spaces, or zero-width joiners — that break code, YAML, Markdown, or configuration files, UnicodeFix is designed to make your text safe, predictable, and portable.
 
 ---
 
-## ✅ Platform Compatibility
+## What UnicodeFix Does
+
+- Converts smart quotes, em-dashes, en-dashes, ellipses, and other punctuation into standard ASCII equivalents
+- Removes invisible or disruptive Unicode characters, including:
+- `U+200B` (Zero-Width Space)  
+- `U+200C` (Zero-Width Non-Joiner)  
+- `U+200D` (Zero-Width Joiner)  
+- `U+2018` (Left Single Quotation Mark ‘ )  
+- `U+2019` (Right Single Quotation Mark ’ )  
+- `U+201C` (Left Double Quotation Mark “ )  
+- `U+201D` (Right Double Quotation Mark ” )  
+- `U+2013` (En Dash – )  
+- `U+2014` (Em Dash — )  
+- `U+2026` (Horizontal Ellipsis … )
+- Cleans AI-generated, copied, or web-sourced content to prevent downstream parsing errors
+- Reduces risks when working across editors, file formats, and systems
+
+**Bonus Trouble makers**
+
+- `U+FEFF` (Byte Order Mark, BOM) — invisible but can totally screw up parsing in some languages.
+- `U+00A0` (Non-Breaking Space) — looks like a regular space but acts differently in many contexts.
+
+---
+
+## Platform Compatibility
 
 UnicodeFix has been developed and tested on **macOS**.  
-It should work on **Linux** and **Windows (via WSL or Python)**, but is **not yet officially tested** on those platforms. Contributions or testing feedback welcome!
+It is expected to work on **Linux** and **Windows** (via WSL or Python), but has not yet been officially tested across all environments.  
+Contributions and testing feedback are welcome.
 
 ---
 
-## 🚀 Get Started
+## How to Use
 
-Run it as a CLI tool with a simple one-liner:
+Use it as a command-line tool:
 
 ```bash
 python cleanup-text.py input.txt -o output.txt
 ```
 
-Or pipe directly from stdin and back to stdout:
+Or directly in pipelines:
 
 ```bash
 cat input.txt | python cleanup-text.py
 ```
 
-More details and usage examples on GitHub:
+For detailed installation instructions and examples, see:
 
-👉 [**View the GitHub Project**](https://github.com/unixwzrd/UnicodeFix)
-
----
-
-## 💬 Tip
-
-Combine with tools like **VS Code**, **Hex Fiend**, or **Clipboard managers** to debug and sanitize tricky copy-pasted text.
+* [**View the UnicodeFix Project on GitHub**](https://github.com/unixwzrd/UnicodeFix)
 
 ---
 
-Built by [unixwzrd](https://unixwzrd.ai) — bringing clarity back to your clipboard, one invisible character at a time.
+## Additional Tools
+
+UnicodeFix can be combined with editors like **VS Code**, hex editors like **Hex Fiend**, or clipboard managers to sanitize content at various stages of your workflow.
+
+---
+
+**Built and maintained by [unixwzrd](https://unixwzrd.ai)** — helping ensure clarity, integrity, and trust in your text, one invisible character at a time.

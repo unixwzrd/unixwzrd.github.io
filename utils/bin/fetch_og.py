@@ -351,6 +351,7 @@ def format_title(name: str) -> str:
         'torchdevice': 'TorchDevice',
         'oobabooga': 'Oobabooga',
         'loggpt': 'LogGPT Chatlog Export',
+        'unicodefix': 'UnicodeFix',
     }
     
     # First replace hyphens with spaces
@@ -375,10 +376,20 @@ def format_title(name: str) -> str:
 
 def create_project_entry(data: Optional[Dict], owner: str, name: str, base_dir: Path, repo_config: Dict) -> Dict:
     """Create a project entry from GitHub repository data or manual configuration."""
+    # Check if project image already exists
+    project_image = base_dir / 'html/assets/images/projects' / f"{name}.png"
+    existing_image_url = None
+    if project_image.exists():
+        existing_image_url = f"/assets/images/projects/{name}.png"
+
     # If repo is private or GitHub data is not available, use manual data
     if data is None:
         manual_data = repo_config.get('manual_data', {})
-        image_url = manual_data.get('image_url', '/assets/images/projects/default.png')
+        image_url = manual_data.get('image_url')
+        if not image_url and existing_image_url:
+            image_url = existing_image_url
+        elif not image_url:
+            image_url = '/assets/images/projects/default.png'
         
         # Always try to cache the image, even for private repos
         cached_image = cache_image(image_url, name, base_dir)
@@ -395,7 +406,9 @@ def create_project_entry(data: Optional[Dict], owner: str, name: str, base_dir: 
 
     # For public repos, use GitHub/OpenGraph data
     image_url = data.get('image_url', data.get('owner', {}).get('avatar_url', ''))
-    if not image_url:
+    if not image_url and existing_image_url:
+        image_url = existing_image_url
+    elif not image_url:
         image_url = '/assets/images/projects/default.png'
     
     logger.debug("Project %s image URL: %s", name, image_url)

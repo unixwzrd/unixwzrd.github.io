@@ -1,5 +1,7 @@
 {% if page.image %}
   {% assign image_path = page.image %}
+{% elsif page.category %}
+  {% assign image_path = "/assets/images/projects/" | append: page.category | append: ".png" %}
 {% else %}
   {% assign image_path = "/assets/images/default-og-image.png" %}
 {% endif %}
