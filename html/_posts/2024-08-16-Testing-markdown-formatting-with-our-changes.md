@@ -1,10 +1,12 @@
 ---
+image: /assets/images/default-og-image.png
 layout: post
 title:  "Dark Mode Test Post"
 date:   2024-08-15 23:45:00 -0500
 categories: test
 excerpt: "This is a paragraph with some **bold text** and _italic text_. Here's a link."
 ---
+image: /assets/images/default-og-image.png
 
 ## Just a test page here, testing formats
 
