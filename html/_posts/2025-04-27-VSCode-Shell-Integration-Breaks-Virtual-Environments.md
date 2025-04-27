@@ -1,4 +1,5 @@
 ---
+excerpt: "## Background"
 image: 
 layout: post
 title: "How Cursor/VSCode Terminal Shell Integration Python VENV's - Plus Fixs"
@@ -7,6 +8,7 @@ categories: [coding, ai, blog]
 tags: [debugging, vscode, remote, python]
 published: true
 ---
+excerpt: "## Background"
 
 ## Background
 
@@ -17,3 +19,4 @@ This post walks through how my Conda environment became impossible to activate w
 If you're encountering strange issues with Conda activation, broken PS1 prompts, or inconsistent environment inheritance inside Cursor/VSCode, this guide may save you hours of frustration.
 
 ---
+excerpt: "## Background"
