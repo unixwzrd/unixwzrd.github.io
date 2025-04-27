@@ -103,9 +103,24 @@ def cache_image(image_url, repo_name, web_root):
         repo_name: Name of the repository the image is associated with
         web_root: Base directory where the image will be cached
     """
+    fallback_images = [
+        '/assets/images/ImageNotFound.png',
+        '/assets/images/NoImageFound.png',
+    ]
+
+    def get_first_existing_fallback():
+        for fallback in fallback_images:
+            fallback_path = web_root / 'html' / fallback.lstrip('/')
+            if fallback_path.exists():
+                logger.warning("Using fallback image for %s: %s", repo_name, fallback)
+                return fallback
+        logger.error("No fallback image found for %s, using default path.", repo_name)
+        return '/assets/images/projects/default.png'
+
+    # If no image_url is provided, use fallback
     if not image_url:
         logger.warning("No image URL provided for %s", repo_name)
-        return '/assets/images/projects/default.png'
+        return get_first_existing_fallback()
 
     # If image_url is a local path, verify it exists
     if image_url.startswith('/'):
@@ -115,7 +130,7 @@ def cache_image(image_url, repo_name, web_root):
             return image_url
         else:
             logger.error("Local image not found for %s: %s", repo_name, local_image_path)
-            return '/assets/images/projects/default.png'
+            return get_first_existing_fallback()
 
     # For remote URLs, always cache the image
     image_dir = web_root / 'html/assets/images/projects'
@@ -130,14 +145,21 @@ def cache_image(image_url, repo_name, web_root):
         content_type = response.headers.get('content-type', '')
         if not content_type.startswith('image/'):
             logger.error(f"Invalid content type for {repo_name} image: {content_type}")
-            return '/assets/images/projects/default.png'
+            # If a local image already exists, use it
+            if image_path.exists():
+                logger.warning("Keeping existing image for %s: %s", repo_name, image_path)
+                return f'/assets/images/projects/{repo_name}.png'
+            return get_first_existing_fallback()
 
         content = response.content
         if len(content) < 1000:  # Minimum size check
             logger.error(f"Image content too small for {repo_name}, likely an error response")
-            return '/assets/images/projects/default.png'
+            if image_path.exists():
+                logger.warning("Keeping existing image for %s: %s", repo_name, image_path)
+                return f'/assets/images/projects/{repo_name}.png'
+            return get_first_existing_fallback()
 
-        # Always write the new image
+        # Only write the new image if it is valid
         with open(image_path, 'wb') as f:
             f.write(content)
             logger.info(f"Cached image for {repo_name}")
@@ -145,7 +167,11 @@ def cache_image(image_url, repo_name, web_root):
         return f'/assets/images/projects/{repo_name}.png'
     except requests.RequestException as e:
         logger.error(f"Error caching image for {repo_name}: {e}")
-        return '/assets/images/projects/default.png'
+        # If a local image already exists, use it
+        if image_path.exists():
+            logger.warning("Keeping existing image for %s: %s", repo_name, image_path)
+            return f'/assets/images/projects/{repo_name}.png'
+        return get_first_existing_fallback()
 
 
 def generate_project_files(project_data: Dict, base_dir: Path) -> bool:

@@ -1,5 +1,5 @@
 ---
-image: /assets/images/default-og-image.png
+image: /assets/images/vibing-remote-debugging.png
 layout: post
 title: "Remote Debugger With VSCode and Its Derivatives"
 date: 2025-04-08 17:30:00 -0500
@@ -7,8 +7,6 @@ categories: [coding, ai, blog]
 tags: [debugging, vscode, remote, python]
 excerpt: "!Vibing on the Remote – Debugging Python Remotely"
 ---
-
-![Vibing on the Remote – Debugging Python Remotely](/assets/images/vibing-remote-debugging.png)
 
 ## How to Debug Remotely with VSCode
 

@@ -3,7 +3,7 @@ layout: post
 title: "AI Coding Assistants"
 date: 2024-09-02 07:30:00 -0500
 categories: [coding, ai]
-image: /assets/images/default-og-image.png
+image: /assets/images/AI-assistant.png
 excerpt: "I've been working for the past three weeks to make this site public. Although it's still under construction, I'm happy to announce that it is now online. There was a lot to do to get it working—researching hosting options, web frameworks, and more. Throughout this process, I've relied on several AI assistants to help me get the site up and running. I primarily use macOS as my development platform with VS Code, and up until about a week ago, I was using GitHub Copilot along with GPT-4o. However, I recently discovered Codeium and have decided to switch over to it as my in-IDE coding assistant."
 ---
 

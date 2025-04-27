@@ -1,5 +1,5 @@
 ---
-image: /assets/images/default-og-image.png
+image: /assets/images/boy-robot-road-unizwzrd-mia-watching.png
 layout: post
 title: "Harnessing AI for Change: The Next Chapter for Distributed Thinking Systems"
 date: 2025-02-20 15:00:00 -0500

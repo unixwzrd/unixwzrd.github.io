@@ -141,13 +141,11 @@ defaults:
       path: "" # Applies to all files
     values:
       layout: page
-      image: /assets/images/logo.png
   - scope:
       path: ""
       type: "project_posts"
     values:
       layout: post
-      image: /assets/images/logo.png
 
 theme: jekyll-minima
 

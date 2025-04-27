@@ -1,5 +1,5 @@
 ---
-image: /assets/images/default-og-image.png
+image: /assets/images/projects/LogGPT/LogGPT.png
 layout: post
 title: "Submitted (Again) to the Apple App Store"
 date: "2025-03-20"
@@ -8,8 +8,6 @@ tags: [update, apple-app-store, resubmission, development]
 published: true
 excerpt: "!App Logo"
 ---
-
-![App Logo](/assets/images/projects/LogGPT/LogGPT.png)
 
 ## UPDATE: [LogGPT Available Now on the Apple App Store Now!](https://apps.apple.com/us/app/loggpt/id6743342693)
 

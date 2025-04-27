@@ -15,7 +15,11 @@
 <meta property="og:url" content="{{ page.url | absolute_url }}">
 <meta property="og:title" content="{{ page_title }}">
 <meta property="og:description" content="{{ page_description }}">
+{% if page.image and page.image != "" %}
+<meta property="og:image" content="{{ page.image }}">
+{% else %}
 <meta property="og:image" content="{{ full_image_url }}">
+{% endif %}
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 
@@ -24,7 +28,11 @@
 <meta name="twitter:url" content="{{ page.url | absolute_url }}">
 <meta name="twitter:title" content="{{ page_title }}">
 <meta name="twitter:description" content="{{ page_description }}">
+{% if page.image and page.image != "" %}
+<meta name="twitter:image" content="{{ page.image }}">
+{% else %}
 <meta name="twitter:image" content="{{ full_image_url }}">
+{% endif %}
 
 <!-- LinkedIn -->
 <meta property="og:site_name" content="{{ site.title }}">
