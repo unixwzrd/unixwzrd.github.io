@@ -36,8 +36,8 @@ projects:
   repo_url: https://github.com/unixwzrd/TorchDevice
   title: TorchDevice
   visibility: public
-- description: "Normalizes Unicode to ASCII equivalents. Contribute to unixwzrd/UnicodeFix\
-    \ development by creating an account on GitHub."
+- description: "Normalizes Unicode to ASCII equivalents and remove Unicode from AI\
+    \ generated text from ChatGPT, Anthropic, Google and more. - unixwzrd/UnicodeFix"
   image_url: /assets/images/projects/UnicodeFix.png
   name: UnicodeFix
   owner: unixwzrd

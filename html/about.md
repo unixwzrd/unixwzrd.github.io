@@ -3,7 +3,6 @@ layout: page
 title: "About Us"
 menu_item: About
 permalink: /about/
-image: /assets/images/default-og-image.png
 excerpt: "Contact Us for more details."
 ---
 
@@ -16,7 +15,7 @@ Distributed Thinking Systems specializes in AI and data analytics to tackle real
 - **Develop AI-based tools** to enhance fairness in high-conflict custody cases. 
 
 ## Why It Matters
-Parental alienation is **a serious form of psychological harm** that often goes unnoticed until it’s too late. Our AI-driven approach aims to provide **early warning signals** and **objective analysis** to prevent unnecessary family estrangement.
+Parental alienation is **a serious form of psychological harm** that often goes unnoticed until it's too late. Our AI-driven approach aims to provide **early warning signals** and **objective analysis** to prevent unnecessary family estrangement.
 
 ## Founder & Expertise
 Distributed Thinking Systems was founded by [Michael Sullivan](/about/resume), an expert in **AI-driven analytics, distributed computing, and legal technology**, with over 30 years of experience in computing and distributed systems.

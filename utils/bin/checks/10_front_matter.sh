@@ -25,11 +25,10 @@ process_file() {
 
     # Check and add missing image
     if ! grep -q "^image:" <<< "$frontmatter"; then
-        # Create a temporary file for the sed operation
-        sed "/^---$/a\\
-image: $DEFAULT_IMAGE" "$file" > "${file}.tmp" && \
+        # Option 1: Add empty image field
+        sed "/^---$/a\\\nimage: " "$file" > "${file}.tmp" && \
         mv "${file}.tmp" "$file"
-        echo "➕ Added default image to $file"
+        echo "➕ Added empty image field to $file"
         modified=true
     fi
 

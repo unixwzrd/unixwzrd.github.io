@@ -568,3 +568,4 @@ _previews
 _site/
 .project-core/
 utils/etc/
+bashexpsh*.txt

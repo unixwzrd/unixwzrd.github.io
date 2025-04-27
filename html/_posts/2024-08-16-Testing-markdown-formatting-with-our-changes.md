@@ -1,5 +1,4 @@
 ---
-image: /assets/images/default-og-image.png
 layout: post
 title:  "Dark Mode Test Post"
 date:   2024-08-15 23:45:00 -0500

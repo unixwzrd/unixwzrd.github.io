@@ -26,10 +26,15 @@ layout: default
       {%- endif -%}</p>
   </header>
 
-  {% if page.image and page.image != "" %}
-  <div class="post-banner-image">
-    <img src="{{ page.image }}" alt="Post banner image" style="max-width:100%;height:auto;display:block;margin:0 auto 2rem auto;" />
-  </div>
+  {% assign default_image = "/assets/images/default-og-image.png" %}
+  {% if page.image == 'default' %}
+    <div class="post-banner-image">
+      <img src="{{ default_image }}" alt="Post banner image" style="max-width:100%;height:auto;display:block;margin:0 auto 2rem auto;" />
+    </div>
+  {% elsif page.image and page.image != '' and page.image != 'default' %}
+    <div class="post-banner-image">
+      <img src="{{ page.image }}" alt="Post banner image" style="max-width:100%;height:auto;display:block;margin:0 auto 2rem auto;" />
+    </div>
   {% endif %}
 
   <div class="post-content e-content" itemprop="articleBody">
