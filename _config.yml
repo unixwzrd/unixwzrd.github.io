@@ -25,7 +25,7 @@ description: >-
   Distributed Thinking Systems: Innovating AI, machine learning, and
   distributed computing solutions.
   <br>
-  >Mostly computing on and off.
+  Mostly computing on and off.
   <br>
   Using AI for good.
 baseurl: "" # the subpath of your site, e.g. /blog
@@ -86,6 +86,8 @@ minima:
       user_url: "https://bsky.app/profile/unixwzrd.bsky.social"
     - platform: ko-fi
       user_url: "https://ko-fi.com/unixwzrd"
+    - platform: buymeacoffee
+      user_url: "https://buymeacoffee.com/unixwzrd"
     - platform: patreon
       user_url: "https://patreon.com/unixwzrd"
   skin: auto

@@ -30,5 +30,6 @@ Ready to get involved? [Contact Us](/contact) or visit our [Projects Page](/proj
 
 Show your appreciation for my projects and the work I'm doing. Help keep the community growing and the projects going through any of the following ways:
 
+- **[Buy Me a Coffee](https://buymeacoffee.com/unixwzrd)** – Make one-time donations or monthly support.
 - **[Ko-fi](https://ko-fi.com/unixwzrd)** – Make one-time donations or monthly support.
 - **[Patreon](https://patreon.com/unixwzrd)** – Subscribe for exclusive updates and perks.
