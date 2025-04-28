@@ -65,6 +65,7 @@ OpenAI's ChatGPT interface does not provide a native way to export all your conv
 - **Cross-platform:** Works on macOS, Windows, and Linux.
 - **Open-source:** Transparent, community-driven development.
 - **CLI support:** Command-line tools available for Markdown extraction, chunking, long-context loading.
+- **Complimentary Tools:** Tools for Markdown and HTML extraction are available in my [Virtual Environment Utilities](https://github.com/unixwzrd/venvutils) repository.
 
 ## Roadmap
 
