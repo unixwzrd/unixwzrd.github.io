@@ -2,7 +2,6 @@
 layout: page
 title: "Archived Projects"
 permalink: /archives/
-image: /assets/images/default-og-image.png
 excerpt: "These are historical or inactive projects that are no longer actively maintained. While they may still be valuable for reference or research purposes, please note that they may not be current or actively supported."
 ---
 
