@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'yaml'
+require 'date'
 
 def check_front_matter(file_path)
   errors = []
