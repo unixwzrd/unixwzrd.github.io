@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "LogGPT: Your ChatGPT Conversations, Exported with Privacy & Ease"
+title: "LogGPT: NEW 1.0.5 - Your ChatGPT Conversations, Exported with Privacy & Ease"
 date: 2025-06-11
 category: LogGPT
 tags: [LogGPT, ChatGPT export, privacy, Safari extension, Apple App Store, AI tools, JSON, macOS]
