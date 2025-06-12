@@ -191,3 +191,24 @@ You either figure it out or you don't.
 But when it finally worked — being able to select a bunch of files in Finder, right-click, and instantly strip all Unicode quirks without even touching the Terminal — **that was magic**.
 
 It felt like something that belonged in macOS all along.
+
+---
+
+## Pro-tip
+
+If you're using a VS Code type editor like Cursor, Windsurf, or any others with the Vim extension installed, macVim, vim, vi, or any other editors which can use external programs as a filter, you can simply paste your text into the editor and then do the following:
+
+```vim
+:%!cleanup-text
+```
+This will filter all the Unicode/UTF-8 and replace it with the closest ASCII characters.
+
+## Get It
+If you found all this helpful, you may download the GitHub repository from the link below. If you find the tools useful, it would be great if you could help support our work at:
+
+- [Patreon](https://patreon.com/unixwzrd)
+- [Ko-Fi](https://ko-fi.com/unixwzrd)
+
+Get it on my GitHub: [https://github.com/unixwzrd/UnicodeFix](https://github.com/unixwzrd/UnicodeFix)
+
+Let us know what features you might like to see in the future.

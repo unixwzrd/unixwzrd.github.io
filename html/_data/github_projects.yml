@@ -7,8 +7,8 @@ projects:
   page_url: /projects/Case-Analytics/
   title: Case Analytics
   visibility: private
-- description: "ChatGPT - Chat Log Export, a lightweight method of exporting entire\
-    \ ChatGPT conversations in JSON format. - unixwzrd/LogGPT"
+- description: "LogGPT - Safari ChatGPT Chat Log Export Extension, a lightweight method\
+    \ of exporting entire ChatGPT conversations in JSON format. - unixwzrd/LogGPT"
   image_url: /assets/images/projects/LogGPT.png
   name: LogGPT
   owner: unixwzrd
