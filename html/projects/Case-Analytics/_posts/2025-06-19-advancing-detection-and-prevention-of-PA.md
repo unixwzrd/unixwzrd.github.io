@@ -1,4 +1,5 @@
 ---
+excerpt: "Parental alienation remains one of the most difficult and heartbreaking challenges in high-conflict family dynamics. When one parent actively undermines the child's relationship with the other, the consequences can be devastating. Unfortunately, these behaviors often manifest subtly-through messages, emails, transcripts, and voice communications-that are difficult to analyze manually."
 image: /projects/Case-Analytics/images/boy-robot-road-unizwzrd-mia-watching.png
 title: "Parental Alienation Detection and Prevention using Artificial Intelligence Analytics"
 layout: post
