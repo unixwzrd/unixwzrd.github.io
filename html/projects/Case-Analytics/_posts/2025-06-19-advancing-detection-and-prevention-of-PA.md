@@ -19,7 +19,7 @@ To address this, we have developed an advanced, privacy-first AI system designed
 
 Our system ingests and normalizes diverse data types, including court documents, transcripts, emails, text messages, co-parenting app reports, and recorded voice conversations. It processes these locally to maintain strict privacy controls, applying sophisticated sentiment and emotion analysis across entire conversations, rather than isolated statements. Vocal tone and inflection analysis add an important layer of understanding that goes beyond words alone.
 
-Parental alienation remains one of the most difficult and heartbreaking challenges in high-conflict family dynamics. When one parent actively undermines the child's relationship with the other, the consequences can be devastating. Unfortunately, these behaviors often manifest subtly—through messages, emails, transcripts, and voice communications—that are difficult to analyze manually.
+Parental alienation remains one of the most difficult and heartbreaking challenges in high-conflict family dynamics. When one parent actively undermines the child's relationship with the other, the consequences can be devastating. Unfortunately, these behaviors often manifest subtly - through messages, emails, transcripts, and voice communications which are difficult to analyze manually.
 
 The core engine combines modular pipelines for text and audio processing, enriched with explainability features so every flagged concern can be traced back to the original source. This traceability is crucial for transparency, legal admissibility, and building trust among users and professionals alike.
 
