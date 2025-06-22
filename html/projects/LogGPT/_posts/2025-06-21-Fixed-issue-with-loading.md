@@ -24,7 +24,7 @@ This release is mostly about fixing the DOM change, but I also took the opportun
 
 As for the Safari extension lifecycle: unfortunately, the Safari API doesn't allow deactivation events to cleanly unload JavaScript from the extension. It's not ideal, but at least now, reactivating the extension doesn't spin up multiple instances, and you can always reload the window for a clean slate.
 
-You can grab the new version from the [LogGPT GitHub repo](https://github.com/unixwzrd/LogGPT) or (soon) directly from the App Store. If you already have it, an update will be pushed out once Apple gives the final approval.
+You can grab the new version from the [LogGPT GitHub repo](https://github.com/unixwzrd/LogGPT) it was approved early this morning, and now available on the App Store (see the link above). If you already have it, an update will be pushed out once Apple gives the final approval.
 
 ### Bonus
 LogGPT pairs nicely with my command-line Python Virtual Environment Utilities for AI/ML workflows. With [`venvutil`](https://github.com/unixwzrd/venvutil), you can extract your ChatGPT logs as Markdown, move between contexts, or migrate sessions when you hit limits or want to swap models. The tool has an easy installer (`./setup.sh`) - just clone, cd, and run.
