@@ -35,7 +35,7 @@ Here's the prompt I use to reconstitute ChatGPT context after hitting session li
 ```markdown
 # Context Move Instructions
 
-Our conversation exceeded the length restrictions. I am uploading our previous conversation so we can continue with the same context. Please **review and internally reconstruct the discussion** but **do not summarize back to me** unless requested. Read teh files carefully as I will reference items from them conversation in the future, so make sure you have an understanding of everything.
+Our conversation exceeded the length restrictions. I am uploading our previous conversation so we can continue with the same context. Please **review and internally reconstruct the discussion** but **do not summarize back to me** unless requested. Read the files carefully as I will reference items from them conversation in the future, so make sure you have an understanding of everything.
 
 The files are in markdown format, numbered sequentially and contain overlapping content (512 Bytes) to ensure continuity. Pay special attention to the **last file**, as it contains our most recent exchanges. If any chunks are missing or unclear, let me know.
 
