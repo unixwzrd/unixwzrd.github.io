@@ -1,4 +1,5 @@
 ---
+layout: post
 image: /assets/images/projects/TorchDevice/TorchDevice001.png
 title: "Announcing TorchDevice 0.0.5 Beta – Transparent Hardware Redirection for PyTorch"
 date: "2025-03-05"

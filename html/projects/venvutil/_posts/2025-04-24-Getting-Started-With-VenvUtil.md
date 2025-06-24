@@ -1,5 +1,5 @@
 ---
-image: /assets/images/VenvUtil/Conjuring-VenvUtil.png
+image: /projects/venvutil/images/Conjuring-VenvUtil.png
 title: "Powerful Tools for Python Virtual Environment Management"
 layout: post
 date: "2025-03-10"
