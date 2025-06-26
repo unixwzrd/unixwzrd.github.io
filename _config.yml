@@ -99,8 +99,8 @@ github:
 codeium_stats: https://codeium.com/profile/unixwzrd
 
 # Pagination settings
-# paginate: 5  # Number of posts to show per page
-# paginate_path: "/page/:num/"  # URL format for paginated pages
+paginate: 7
+paginate_path: "/page/:num/"
 
 collections:
   projects:
@@ -113,6 +113,7 @@ collections:
 tagline: "Mostly computing on and off."
 page_excerpts: false
 excerpt_separator: "<!--more-->"
+show_excerpts: true
 
 # SEO specific settings
 title_separator: "|"

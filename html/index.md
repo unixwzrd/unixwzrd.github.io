@@ -46,3 +46,22 @@ We focus on applying **AI** and **distributed computing** to address real-world 
 If you are interested in contributing **data from past cases**, partnering in research, or supporting us in any capacity, please [collaborate with us](/collaborate/).
 
 At the intersection of AI and family law, we are committed to protecting parents and children from the long-lasting damage caused by alienation. By leveraging cutting-edge AI, we analyze shifts in communication to prevent problems before they escalate.
+
+## Latest Updates
+
+<ul class="post-list">
+  {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+  {%- for post in site.posts limit: 7 -%}
+    <li>
+      <span class="post-meta">{{ post.date | date: date_format }}</span>
+      <h3>
+        <a class="post-link" href="{{ post.url | relative_url }}">
+          {{ post.title | escape }}
+        </a>
+      </h3>
+    </li>
+  {%- endfor -%}
+</ul>
+<p class="blog-index-link">
+  <a href="{{ '/blog/' | relative_url }}">View all blog posts →</a>
+</p>

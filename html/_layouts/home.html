@@ -9,16 +9,9 @@ layout: default
 
   {{ content }}
 
-  {% if site.paginate %}
-    {% assign posts = paginator.posts %}
-  {% else %}
-    {% assign posts = site.posts %}
-  {% endif %}
-
+  {%- assign posts = paginator.posts -%}
   {%- if posts.size > 0 -%}
-    {%- if page.list_title -%}
-      <h2 class="post-list-heading">{{ page.list_title }}</h2>
-    {%- endif -%}
+    <h2 class="post-list-heading">Latest Updates</h2>
     <ul class="post-list">
       {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
       {%- for post in posts -%}
@@ -35,30 +28,36 @@ layout: default
       </li>
       {%- endfor -%}
     </ul>
-
-    {% if site.paginate %}
+    <p class="blog-index-link">
+      <a href="{{ '/blog/' | relative_url }}">View all blog posts →</a>
+    </p>
+    <p class="rss-subscribe">
+      <a href="{{ "/feed.xml" | relative_url }}">
+        <svg class="svg-icon orange">
+          <use xlink:href="{{ 'assets/minima-social-icons.svg#rss' | relative_url }}"></use>
+        </svg>
+        <span>Subscribe to our RSS feed</span>
+      </a>
+    </p>
+    {%- if paginator.total_pages > 1 -%}
       <div class="pagination">
-        {% if paginator.total_pages > 1 %}
-          {% if paginator.previous_page %}
-            <a href="{{ paginator.previous_page_path | relative_url }}" class="previous">&laquo; Previous</a>
-          {% endif %}
-
-          {% for page in (1..paginator.total_pages) %}
-            {% if page == paginator.page %}
-              <em class="current-page">{{ page }}</em>
-            {% elsif page == 1 %}
-              <a href="{{ '/' | relative_url }}">{{ page }}</a>
-            {% else %}
-              <a href="{{ site.paginate_path | relative_url | replace: ':num', page }}">{{ page }}</a>
-            {% endif %}
-          {% endfor %}
-
-          {% if paginator.next_page %}
-            <a href="{{ paginator.next_page_path | relative_url }}" class="next">Next &raquo;</a>
-          {% endif %}
-        {% endif %}
+        {%- if paginator.previous_page %}
+          <a href="{{ paginator.previous_page_path | relative_url }}" class="previous">« Previous</a>
+        {%- endif %}
+        {%- for page_num in (1..paginator.total_pages) -%}
+          {%- if page_num == paginator.page -%}
+            <em class="current-page">{{ page_num }}</em>
+          {%- elsif page_num == 1 -%}
+            <a href="{{ '/' | relative_url }}">{{ page_num }}</a>
+          {%- else -%}
+            <a href="{{ site.paginate_path | relative_url | replace: ':num', page_num }}">{{ page_num }}</a>
+          {%- endif -%}
+        {%- endfor -%}
+        {%- if paginator.next_page %}
+          <a href="{{ paginator.next_page_path | relative_url }}" class="next">Next »</a>
+        {%- endif %}
       </div>
-    {%- endif %}
+    {%- endif -%}
   {%- endif -%}
 
   {% include content_footer.html %}
