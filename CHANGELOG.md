@@ -1,5 +1,21 @@
 # Changelog
 
+## 20250626_01-rel: Critical Build Fixes and Image Path Corrections
+
+### Critical Fixes
+- FIXED: Missing jekyll-seo-tag plugin causing build failures
+- FIXED: Image path reference in Case-Analytics related post
+  - Corrected `/assets/images/boy-robot-road-unizwzrd-mia-watching.png` to `/projects/Case-Analytics/images/boy-robot-road-unizwzrd-mia-watching.png`
+
+### Build System
+- ADDED: jekyll-seo-tag plugin to Gemfile for proper SEO functionality
+- VERIFIED: Site builds successfully without critical errors
+- CONFIRMED: All external links are functioning (social media rate limiting is expected)
+
+### Documentation
+- UPDATED: Pre-commit checklist with resolved issues
+- DOCUMENTED: False positive Liquid syntax warning in footer template
+
 ## 20250320_01-rel: Link Checker Improvements and Blog Fixes
 
 ### Bug Fixes

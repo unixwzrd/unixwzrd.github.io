@@ -99,8 +99,8 @@ github:
 codeium_stats: https://codeium.com/profile/unixwzrd
 
 # Pagination settings
-paginate: 5  # Number of posts to show per page
-paginate_path: "/page/:num/"  # URL format for paginated pages
+# paginate: 5  # Number of posts to show per page
+# paginate_path: "/page/:num/"  # URL format for paginated pages
 
 collections:
   projects:
@@ -169,7 +169,6 @@ plugins:
   - jekyll-sitemap
   - jekyll-redirect-from
   - jemoji
-  - jekyll-paginate
 
 exclude:
   - .DS_Store

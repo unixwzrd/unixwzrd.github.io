@@ -12,9 +12,10 @@ This documentation covers all aspects of the website development, maintenance, a
 
 ## Quick Start
 1. [Development Environment Setup](guides/environment-setup.md)
-2. [Local Development](guides/local-development.md)
-3. [Content Publishing](guides/content-publishing.md)
-4. [Project Management](guides/project-management.md)
+2. [Site Operations Guide](guides/site-operations.md) - **Internal operations documentation**
+3. [Local Development](guides/local-development.md)
+4. [Content Publishing](guides/content-publishing.md)
+5. [Project Management](guides/project-management.md)
 
 ## Common Tasks
 - [Creating a New Project](workflows/new-project.md)
@@ -36,4 +37,11 @@ This documentation covers all aspects of the website development, maintenance, a
 ## Process Documentation
 - [Release Process](workflows/release-process.md)
 - [Documentation Standards](guides/documentation-standards.md)
-- [Code Review Process](workflows/code-review.md) 
+- [Code Review Process](workflows/code-review.md)
+
+## Internal Operations
+- **[Site Operations Guide](guides/site-operations.md)** - Complete technical operations manual
+- Environment setup and RVM management
+- Jekyll service management with `--no-refresh` option
+- Troubleshooting and maintenance procedures
+- **Note**: This is internal documentation only, not for public consumption 

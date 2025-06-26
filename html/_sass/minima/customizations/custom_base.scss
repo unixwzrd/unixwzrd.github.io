@@ -295,3 +295,8 @@ table {
     -ms-overflow-style: -ms-autohiding-scrollbar;
   }
 }
+
+// Add extra space below code blocks to prevent scrollbars from crowding following text
+pre, .highlight {
+  margin-bottom: $spacing-unit * 1.5; // 15px, more than the default 8px
+}

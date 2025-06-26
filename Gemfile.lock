@@ -199,6 +199,7 @@ DEPENDENCIES
   jekyll-minima
   jekyll-paginate
   jekyll-redirect-from
+  jekyll-seo-tag
   jekyll-sitemap
   jemoji
   mdl

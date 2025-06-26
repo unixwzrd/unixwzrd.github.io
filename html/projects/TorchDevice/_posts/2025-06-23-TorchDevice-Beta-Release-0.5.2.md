@@ -35,6 +35,12 @@ Let's be clear: **Transformers is relentless**. It will find every device-handli
 - **Cleaner Device Override Semantics**: `cpu:-1` and related overrides now work as advertised, everywhere, every time.
 - **Verbose Logging (for now)**: TorchDevice logs nearly everything it does, by design. This is going to get dialed back in future releases, but for now, it's invaluable for tracking device redirection.
 
+## Bridge Building Between CUDA and MPS
+
+<div style="text-align: center">
+![Making a Bridge FOR AI](/projects/TorchDevice/images/Making_a_Bridge_For_AI.png)
+</div>
+
 ### Not Just for Show: Real TTS and LLM Workflows
 
 TorchDevice isn't just a science project-I've used it to run real TTS models and smaller language models (see the `demos/` directory). It's saved me time on every project where I'd otherwise have to rewrite code for "the other" device backend. Some of my current text-to-speech and audio analysis tools now run out of the box on my M-series Macs, and I've stopped dreading codebases that assume CUDA.

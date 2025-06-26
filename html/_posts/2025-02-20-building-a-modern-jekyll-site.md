@@ -1,5 +1,5 @@
 ---
-image: /assets/images/boy-robot-road-unizwzrd-mia-watching.png
+image: /projects/Case-Analytics/images/boy-robot-road-unizwzrd-mia-watching.png
 layout: post
 title: "Harnessing AI for Change: The Next Chapter for Distributed Thinking Systems"
 date: 2025-02-20 15:00:00 -0500
@@ -16,7 +16,7 @@ At **Distributed Thinking Systems**, we believe technology can illuminate what i
 
 Every high-conflict custody case leaves behind a digital footprint: **text messages, emails, communication logs within court-mandated parenting apps**—all of it forming a complex puzzle. But making sense of these fragmented pieces is a daunting task for any individual. AI, however, is capable of parsing thousands of messages, recognizing **recurring patterns of manipulation**, and flagging **emotionally coercive tactics** that might otherwise be dismissed or overlooked.
 
-Imagine a system that can sift through years of communication, highlighting moments where one parent is subtly erased from a child’s world. A missed greeting here, a repeated exclusion there—individually, these may seem insignificant. But in aggregate, they reveal a devastating picture. With **linguistic analysis, sentiment detection, and behavioral pattern recognition**, AI is making it possible to **bring these hidden dynamics into the light**.
+Imagine a system that can sift through years of communication, highlighting moments where one parent is subtly erased from a child's world. A missed greeting here, a repeated exclusion there—individually, these may seem insignificant. But in aggregate, they reveal a devastating picture. With **linguistic analysis, sentiment detection, and behavioral pattern recognition**, AI is making it possible to **bring these hidden dynamics into the light**.
 
 ## Turning Raw Data Into Actionable Insights
 
@@ -30,7 +30,7 @@ The first phase of this technology is already taking shape, and over the next fe
 
 During this early access period, we will be working with:
 
-- **Legal professionals and forensic psychologists** to validate the AI’s findings and refine its ability to detect alienation-related patterns.
+- **Legal professionals and forensic psychologists** to validate the AI's findings and refine its ability to detect alienation-related patterns.
 - **Researchers in behavioral and linguistic studies**, who can use anonymized datasets to further explore how communication changes in alienation cases.
 - **Affected parents** willing to contribute their communication records to help train and improve the AI models.
 
@@ -48,5 +48,5 @@ Parental alienation is not just a legal issue; it is an emotional and psychologi
 
 This is a turning point. The technology is here. The need is urgent. And the time to act is now.
 
-Stay tuned for updates as we move into the next phase, and if you believe in this mission, let’s work together to bring this vision to life.
+Stay tuned for updates as we move into the next phase, and if you believe in this mission, let's work together to bring this vision to life.
 

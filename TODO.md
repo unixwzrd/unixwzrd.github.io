@@ -30,6 +30,19 @@
 - [ ] Create author profile pages
 - [ ] Add related posts feature
 
+## Content Organization (Future)
+- [ ] **Split main blog into separate blogs:**
+  - [ ] Create separate technical blog for AI/ML/development content
+  - [ ] Create separate personal blog for Parental Alienation content
+  - [ ] Update navigation to reflect separate blog sections
+  - [ ] Ensure proper audience targeting for each blog
+- [ ] **Create blog index and collection pages:**
+  - [ ] Build tag-based index page for all blog posts
+  - [ ] Create chronological index of all posts
+  - [ ] Add category-based filtering and navigation
+  - [ ] Implement search functionality across all blogs
+  - [ ] Create "Recent Posts" sections for each blog type
+
 ## Technical Debt
 - [ ] Refactor SCSS to use modern @use instead of @import
 - [ ] Optimize image loading and compression
