@@ -42,6 +42,18 @@
     - [Essential Commands](#essential-commands)
     - [File Locations](#file-locations)
     - [URLs](#urls)
+  - [Image Path Automation for Social Sharing](#image-path-automation-for-social-sharing)
+    - [Usage](#usage)
+    - [What It Does](#what-it-does)
+    - [Future Integration](#future-integration)
+    - [Why This Matters](#why-this-matters)
+    - [Next Steps](#next-steps)
+  - [Google Analytics \& SEO Status](#google-analytics--seo-status)
+    - [Current Setup](#current-setup)
+    - [Critical Issues Found](#critical-issues-found)
+    - [What's Working](#whats-working)
+    - [What Needs to be Done](#what-needs-to-be-done)
+    - [Priority Actions](#priority-actions)
 
 ## Overview
 This guide covers all technical operations for running and maintaining the Distributed Thinking Systems website. This is **internal documentation only** and should not be publicly served.
@@ -363,6 +375,80 @@ source .env/project.env
 ### URLs
 - **Development**: `http://localhost:4000`
 - **Production**: `https://unixwzrd.ai`
+
+---
+
+## Image Path Automation for Social Sharing
+
+To ensure all images (front matter and embedded Markdown) use absolute URLs for social sharing and local development, use the script:
+
+    utils/bin/fix_image_paths.py
+
+### Usage
+
+- **Local development:**
+  ```bash
+  python3 utils/bin/fix_image_paths.py --base-url http://localhost:4000
+  ```
+  This rewrites all image links to use localhost, so you can verify images render correctly before publishing.
+
+- **Pre-commit/production:**
+  ```bash
+  python3 utils/bin/fix_image_paths.py --base-url https://unixwzrd.ai
+  ```
+  This rewrites all image links to use the production domain for correct social previews.
+
+### What It Does
+- Rewrites both front matter `image:` fields and Markdown-embedded images (`![alt](/path/to/image.png)`) to use the specified base URL.
+- Only rewrites links that start with `/` and not already with the base URL.
+
+### Future Integration
+- We plan to integrate this script with a file watcher (e.g., watchdog) so it runs automatically on Markdown changes during local dev.
+- The script will also be part of the pre-commit workflow to ensure all images are correct before publishing.
+
+### Why This Matters
+- Ensures local and production environments are consistent.
+- Prevents broken images and missing social previews on Twitter, LinkedIn, etc.
+- Catches issues before they go live.
+
+### Next Steps
+- Test the script on your next new post.
+- After validation, integrate with a file watcher and the Jekyll service script.
+- See TODO and site-improvement-checklist for tracking progress.
+
+---
+
+## Google Analytics & SEO Status
+
+### Current Setup
+- **Google Analytics ID**: `G-QZSHSBP292` (configured in `_config.yml`)
+- **SEO Plugin**: `jekyll-seo-tag` installed and active
+- **Sitemap**: `jekyll-sitemap` plugin generating `/sitemap.xml`
+- **Robots.txt**: Configured with sitemap reference
+- **Social Meta Tags**: Basic implementation in `social-meta.html`
+
+### Critical Issues Found
+1. **Missing Google Analytics Include File**: The `html/_includes/google-analytics.html` file is missing, so GA tracking is not working despite the ID being configured.
+2. **Basic SEO Implementation**: While the SEO plugin is installed, we're not using advanced features like structured data or enhanced meta descriptions.
+
+### What's Working
+- Basic SEO plugin functionality
+- Sitemap generation
+- Robots.txt configuration
+- Social media meta tags (Open Graph, Twitter Cards)
+
+### What Needs to be Done
+1. **Create Google Analytics Include File**: Add proper GA4 tracking code
+2. **Enhanced SEO**: Add structured data, optimize meta descriptions, implement breadcrumbs
+3. **Conversion Tracking**: Set up goals for contact form submissions, resource downloads
+4. **Google Search Console**: Integrate for monitoring and optimization
+
+### Priority Actions
+1. **High Priority**: Create the missing `google-analytics.html` file to enable tracking
+2. **Medium Priority**: Enhance SEO with structured data and better meta descriptions
+3. **Low Priority**: Set up advanced tracking and conversion goals
+
+See TODO.md and site-improvement-checklist.md for detailed task breakdown.
 
 ---
 

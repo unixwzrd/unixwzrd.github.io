@@ -1,0 +1,31 @@
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '{{ site.google_analytics }}', {
+    page_title: '{{ page.title | default: site.title }}',
+    page_location: '{{ page.url | absolute_url }}',
+    {% if page.category %}custom_map: {'custom_dimension1': 'category'},{% endif %}
+    {% if page.tags %}custom_map: {'custom_dimension2': 'tags'},{% endif %}
+  });
+
+  // Enhanced tracking for blog posts
+  {% if page.layout == 'post' %}
+  gtag('event', 'page_view', {
+    'custom_dimension1': 'blog_post',
+    'custom_dimension2': '{{ page.category | default: "general" }}',
+    'custom_dimension3': '{{ page.tags | join: "," }}'
+  });
+  {% endif %}
+
+  // Enhanced tracking for project pages
+  {% if page.layout == 'page' and page.url contains '/projects/' %}
+  gtag('event', 'page_view', {
+    'custom_dimension1': 'project_page',
+    'custom_dimension2': '{{ page.category | default: "project" }}'
+  });
+  {% endif %}
+</script> 

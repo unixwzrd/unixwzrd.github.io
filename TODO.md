@@ -11,12 +11,34 @@
 - [x] Fix link checker to handle URL-encoded characters
 - [x] Improve project image display and styling
 - [x] Update pre-commit tool documentation
+- [x] Home page now uses index.md for proper Markdown rendering and formatting
+- [x] Added 'Latest Updates' section to home page with 7 most recent blog post headlines (no excerpts)
+- [x] Added 'View all blog posts' link to consolidated blog index at the bottom of the home page
+- [x] Blog index (/blog/) now lists all posts from all sources with excerpts
+- [x] Improved navigation and user experience for blog discovery
+- [x] Resolved issues with Markdown not rendering on home page
+- [x] Ensured only one root index file exists for correct Jekyll processing
 
 ## High Priority
 - [ ] Review and update all project content
 - [ ] Create content for project landing pages
 - [ ] Write blog entries for each project before product release
 - [ ] Prepare social media announcements for site launch
+- [ ] Integrate image path fixer script (utils/bin/fix_image_paths.py) into pre-commit and local dev workflow
+- [ ] Set up file watcher (watchdog) to run image fixer script on Markdown changes during local dev
+- [ ] Overhaul image management and standardize image handling for posts and projects
+- [ ] **Google Analytics Setup & Optimization**
+  - [x] Create missing google-analytics.html include file with proper GA4 tracking code
+  - [ ] Verify GA4 measurement ID (G-QZSHSBP292) is correctly configured
+  - [ ] Add enhanced tracking for blog posts, project pages, and user interactions
+  - [ ] Set up conversion tracking for key user actions (contact form, resource downloads)
+- [ ] **SEO Optimization & Enhancement**
+  - [ ] Review and enhance meta descriptions for all pages
+  - [x] Add structured data (JSON-LD) for blog posts and projects
+  - [ ] Optimize page titles and headings for better search visibility
+  - [x] Implement breadcrumb navigation for better SEO
+  - [ ] Add Open Graph and Twitter Card meta tags optimization
+  - [ ] Set up Google Search Console integration and monitoring
 
 ## Medium Priority
 - [ ] Improve mobile responsiveness

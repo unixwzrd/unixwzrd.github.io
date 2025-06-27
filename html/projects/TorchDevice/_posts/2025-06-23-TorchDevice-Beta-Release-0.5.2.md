@@ -38,9 +38,8 @@ Let's be clear: **Transformers is relentless**. It will find every device-handli
 ## Bridge Building Between CUDA and MPS
 
 <div style="text-align: center">
-![Making a Bridge FOR AI](/projects/TorchDevice/images/Making_a_Bridge_For_AI.png)
+<img src="/projects/TorchDevice/images/Making_a_Bridge_For_AI.png" alt="Making a Bridge FOR AI">
 </div>
-
 ### Not Just for Show: Real TTS and LLM Workflows
 
 TorchDevice isn't just a science project-I've used it to run real TTS models and smaller language models (see the `demos/` directory). It's saved me time on every project where I'd otherwise have to rewrite code for "the other" device backend. Some of my current text-to-speech and audio analysis tools now run out of the box on my M-series Macs, and I've stopped dreading codebases that assume CUDA.

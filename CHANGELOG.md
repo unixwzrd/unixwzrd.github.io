@@ -1,5 +1,19 @@
 # Changelog
 
+
+## 20250626_02-home-blog-improvements: Home Page and Blog Index Enhancements
+
+### Improvements
+- Home page now uses index.md for proper Markdown rendering and formatting
+- Added 'Latest Updates' section to home page with 7 most recent blog post headlines (no excerpts)
+- Added 'View all blog posts' link to consolidated blog index at the bottom of the home page
+- Blog index (/blog/) now lists all posts from all sources with excerpts
+- Improved navigation and user experience for blog discovery
+
+### Fixes
+- Resolved issues with Markdown not rendering on home page
+- Ensured only one root index file exists for correct Jekyll processing 
+
 ## 20250626_01-rel: Critical Build Fixes and Image Path Corrections
 
 ### Critical Fixes
@@ -92,4 +106,4 @@
 - Update existing project posts to new structure
 - Set up pre-commit hooks
 - Update permalinks to meet new requirements
-- Add required front matter to all pages 
+- Add required front matter to all pages

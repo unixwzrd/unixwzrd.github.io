@@ -1,0 +1,100 @@
+{% comment %}
+  Structured Data (JSON-LD) for SEO
+  This include provides structured data for blog posts and other content
+{% endcomment %}
+
+{% if page.layout == 'post' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ page.title | escape }}",
+  "description": "{{ page.excerpt | default: page.description | default: site.description | strip_html | strip_newlines | truncate: 160 | escape }}",
+  "image": "{{ page.image | default: site.logo | absolute_url }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ site.author.name }}",
+    "url": "{{ site.url }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ site.title }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ site.logo | absolute_url }}"
+    }
+  },
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ page.url | absolute_url }}"
+  },
+  {% if page.category %}
+  "articleSection": "{{ page.category }}",
+  {% endif %}
+  {% if page.tags %}
+  "keywords": "{{ page.tags | join: ', ' | escape }}",
+  {% endif %}
+  "url": "{{ page.url | absolute_url }}"
+}
+</script>
+{% endif %}
+
+{% if page.layout == 'page' and page.url contains '/projects/' %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "{{ page.title | escape }}",
+  "description": "{{ page.excerpt | default: page.description | default: site.description | strip_html | strip_newlines | truncate: 160 | escape }}",
+  "image": "{{ page.image | default: site.logo | absolute_url }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ site.author.name }}",
+    "url": "{{ site.url }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ site.title }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ site.logo | absolute_url }}"
+    }
+  },
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ page.url | absolute_url }}"
+  },
+  "url": "{{ page.url | absolute_url }}",
+  "applicationCategory": "{{ page.category | default: 'Software' }}"
+}
+</script>
+{% endif %}
+
+{% comment %}
+  Organization structured data for the site
+{% endcomment %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "{{ site.title }}",
+  "url": "{{ site.url }}",
+  "logo": "{{ site.logo | absolute_url }}",
+  "description": "{{ site.description | strip_html | strip_newlines | escape }}",
+  "sameAs": [
+    "https://github.com/{{ site.github_username }}",
+    "https://twitter.com/{{ site.twitter_username }}",
+    "https://linkedin.com/in/{{ site.linkedin_username }}",
+    "https://huggingface.co/{{ site.huggingface_username }}"
+  ],
+  "founder": {
+    "@type": "Person",
+    "name": "{{ site.author.name }}",
+    "email": "{{ site.author.email }}"
+  }
+}
+</script> 
