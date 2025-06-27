@@ -1,6 +1,40 @@
 # Changelog
 
 
+## 20250626_04-rel: Service Script Improvements and Sass Reversion
+
+### Critical Fixes
+- FIXED: Jekyll service script process management and restart functionality
+- REVERTED: Failed Sass migration attempt back to working `@import` and `adjust-color()` syntax
+- FIXED: Service script now properly handles missing PID files and port conflicts
+
+### Service Script Improvements
+- IMPROVED: `utils/bin/jekyll-service` with better process management
+- ADDED: Port conflict detection and automatic cleanup of existing processes
+- ADDED: Graceful handling of missing PID files during restart operations
+- ENHANCED: Process termination with both SIGTERM and SIGKILL fallback
+- VERIFIED: Service script now works reliably for start/stop/restart operations
+
+### Sass/SCSS Status
+- REVERTED: All SCSS files back to working `@import` syntax
+- MAINTAINED: `adjust-color()` functions (deprecation warnings accepted for now)
+- DECIDED: To address Sass modernization as separate planned project
+- CONFIRMED: Site builds and serves correctly with current Sass setup
+
+### Technical Details
+- UPDATED: Service script to check for port conflicts before starting
+- IMPROVED: Error handling for process management edge cases
+- MAINTAINED: Working site functionality while planning future Sass improvements
+- DOCUMENTED: Decision to accept deprecation warnings temporarily
+
+## 20250626_03-rel: Sass Migration Attempt (REVERTED)
+
+### Note: This migration was attempted but reverted due to compatibility issues
+- ATTEMPTED: Migration to Dart Sass module system with `@use "sass:color"`
+- ENCOUNTERED: Jekyll Sass converter compatibility issues with Dart Sass modules
+- REVERTED: Back to working `@import` and `adjust-color()` syntax
+- DECIDED: To address Sass modernization as separate planned project
+
 ## 20250626_02-home-blog-improvements: Home Page and Blog Index Enhancements
 
 ### Improvements

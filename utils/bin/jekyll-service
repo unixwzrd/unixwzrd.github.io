@@ -24,6 +24,33 @@ check_running() {
     return 1
 }
 
+check_port_in_use() {
+    # Check if port 4000 is in use by any process
+    if lsof -i :4000 > /dev/null 2>&1; then
+        return 0
+    fi
+    return 1
+}
+
+kill_process_on_port() {
+    echo "Port 4000 is in use. Attempting to kill existing process..." >&2
+    # Find and kill any process using port 4000
+    pids=$(lsof -ti :4000 2>/dev/null)
+    if [ -n "$pids" ]; then
+        for pid in $pids; do
+            echo "Killing process $pid on port 4000" >&2
+            kill -TERM "$pid" 2>/dev/null
+            sleep 2
+            # Force kill if still running
+            if ps -p "$pid" > /dev/null 2>&1; then
+                echo "Force killing process $pid" >&2
+                kill -KILL "$pid" 2>/dev/null
+            fi
+        done
+        sleep 1
+    fi
+}
+
 refresh_og_data() {
     echo "Refreshing OpenGraph data..." >&2
     fetch_og.py
@@ -48,14 +75,20 @@ site_build() {
     rm -rf "${BASE_DIR}/html/.sass-cache/"
     
     echo "Building Jekyll site..." >&2
-    cd "${BASE_DIR}" && bundle exec jekyll build --trace --verbose # Build the Jekyll site
+    cd "${BASE_DIR}" && bundle exec jekyll build --trace --verbose # Build the Jekyll site from base directory
 }
 
 startup_items() {
     local skip_refresh=$1
     echo "Starting $my_name" >&2
+    
+    # Check if port is in use and kill existing processes
+    if check_port_in_use; then
+        kill_process_on_port
+    fi
+    
     site_build "$skip_refresh"
-    bundle exec jekyll serve --host 0.0.0.0 --port 4000 --trace & # Start Jekyll in background
+    cd "${BASE_DIR}" && bundle exec jekyll serve --host 0.0.0.0 --port 4000 --trace & # Start Jekyll in background from base directory
     echo $! > "$pid_file" # Store Jekyll's PID
 }
 
@@ -80,7 +113,11 @@ stop_service() {
         fi
         rm -f "$pid_file"
     else
-        echo "Service is not running."
+        echo "Service is not running (no valid PID file found)."
+        # Try to kill any process on port 4000 anyway
+        if check_port_in_use; then
+            kill_process_on_port
+        fi
     fi
 }
 

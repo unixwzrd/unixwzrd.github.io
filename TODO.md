@@ -18,15 +18,29 @@
 - [x] Improved navigation and user experience for blog discovery
 - [x] Resolved issues with Markdown not rendering on home page
 - [x] Ensured only one root index file exists for correct Jekyll processing
+- [x] **Service Script Improvements**
+  - [x] Enhanced Jekyll service script with better process management
+  - [x] Added port conflict detection and automatic cleanup
+  - [x] Fixed restart functionality with missing PID file handling
+  - [x] Improved error handling for process termination
 
 ## High Priority
+- [ ] **Sass Modernization (Planned Project)**
+  - [ ] Research Jekyll Sass converter compatibility with Dart Sass modules
+  - [ ] Plan migration strategy for `@import` to `@use` syntax
+  - [ ] Test Dart Sass module system with Jekyll in isolated environment
+  - [ ] Create rollback plan before attempting migration
+  - [ ] Address deprecation warnings systematically
+- [ ] **Image Path Management**
+  - [ ] Review and test image path fixer script (utils/bin/fix_image_paths.py)
+  - [ ] Integrate image fixer script into pre-commit workflow
+  - [ ] Set up file watcher (watchdog) to run image fixer script on Markdown changes during local dev
+  - [ ] Overhaul image management and standardize image handling for posts and projects
+  - [ ] Verify all image links are working correctly across the site
 - [ ] Review and update all project content
 - [ ] Create content for project landing pages
 - [ ] Write blog entries for each project before product release
 - [ ] Prepare social media announcements for site launch
-- [ ] Integrate image path fixer script (utils/bin/fix_image_paths.py) into pre-commit and local dev workflow
-- [ ] Set up file watcher (watchdog) to run image fixer script on Markdown changes during local dev
-- [ ] Overhaul image management and standardize image handling for posts and projects
 - [ ] **Google Analytics Setup & Optimization**
   - [x] Create missing google-analytics.html include file with proper GA4 tracking code
   - [ ] Verify GA4 measurement ID (G-QZSHSBP292) is correctly configured
@@ -66,11 +80,14 @@
   - [ ] Create "Recent Posts" sections for each blog type
 
 ## Technical Debt
-- [ ] Refactor SCSS to use modern @use instead of @import
 - [ ] Optimize image loading and compression
 - [ ] Improve build performance
 - [ ] Add automated testing for templates
 - [ ] Review and fix Jekyll server deprecation warnings in logs
+- [ ] **Sass Deprecation Warnings** (Accepted temporarily)
+  - [ ] Monitor for Jekyll Sass converter updates
+  - [ ] Plan systematic migration when compatibility improves
+  - [ ] Document current warnings for future reference
 
 ## Content Creation
 - [ ] Write Case Analytics introduction blog post
