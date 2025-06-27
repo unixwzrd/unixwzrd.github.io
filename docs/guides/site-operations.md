@@ -48,6 +48,13 @@
     - [What It Does](#what-it-does)
     - [Why This Matters](#why-this-matters)
     - [Next Steps](#next-steps)
+  - [File Watcher System](#file-watcher-system)
+    - [Overview](#overview-1)
+    - [Usage](#usage-1)
+    - [Available Watchers](#available-watchers)
+    - [Adding New Watchers](#adding-new-watchers)
+    - [Example Watcher](#example-watcher)
+    - [Integration with Development Workflow](#integration-with-development-workflow)
   - [Google Analytics \& SEO Status](#google-analytics--seo-status)
     - [Current Setup](#current-setup)
     - [Critical Issues Found](#critical-issues-found)
@@ -422,6 +429,74 @@ To ensure all images (front matter and embedded Markdown) use absolute URLs for 
 - Test the script on your next new post.
 - After validation, integrate with a file watcher and the Jekyll service script.
 - See TODO and site-improvement-checklist for tracking progress.
+
+---
+
+## File Watcher System
+
+*Last updated 2024-06-26: General file watcher system for automatic script execution on file changes.*
+
+The file watcher system automatically runs scripts when files change during development, providing real-time feedback and automation.
+
+### Overview
+
+- **Main Watcher**: `utils/bin/file_watcher.py`
+- **Watcher Scripts**: `utils/bin/watchers/*.py`
+- **Target Directory**: `html/` (configurable)
+
+### Usage
+
+```bash
+# Start the file watcher
+python utils/bin/file_watcher.py
+
+# List available watchers
+python utils/bin/file_watcher.py --list-watchers
+
+# Watch a different directory
+python utils/bin/file_watcher.py --target-dir some/other/dir
+```
+
+### Available Watchers
+
+- **image_path_fixer.py**: Automatically fixes image paths in Markdown files
+- Add more watchers by creating Python scripts in `utils/bin/watchers/`
+
+### Adding New Watchers
+
+1. Create a Python script in `utils/bin/watchers/`
+2. Script should accept: `file_path` and `event_type` arguments
+3. Script receives environment variables: `WATCHER_FILE`, `WATCHER_EVENT`, `WATCHER_NAME`
+4. Use `print()` for success messages
+5. Return 0 for success, non-zero for failure
+
+### Example Watcher
+
+```python
+#!/usr/bin/env python3
+import os
+import sys
+
+def main():
+    file_path = sys.argv[1]
+    event_type = sys.argv[2]
+    
+    if not file_path.endswith('.md'):
+        return
+    
+    print(f"Processing {file_path}")
+    # Your watcher logic here
+
+if __name__ == "__main__":
+    main()
+```
+
+### Integration with Development Workflow
+
+- Run the file watcher alongside your Jekyll development server
+- Watchers provide immediate feedback on file changes
+- Automatically catch and fix common issues during development
+- No need to manually run scripts after each file change
 
 ---
 

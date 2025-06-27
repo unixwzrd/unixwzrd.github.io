@@ -1,6 +1,34 @@
 # Changelog
 
+## 20250626_07-rel: File Watcher System Implementation
 
+### New Features
+- ADDED: General file watcher system for automatic script execution on file changes
+  - Main watcher: `utils/bin/file_watcher.py`
+  - Watcher scripts directory: `utils/bin/watchers/`
+  - Automatically runs scripts when files in `html/` directory change
+- ADDED: Image path fixer watcher script (`utils/bin/watchers/image_path_fixer.py`)
+  - Automatically fixes image paths in Markdown files when they are modified
+  - Runs during development to catch image path issues in real-time
+- ADDED: Comprehensive documentation for the watcher system
+  - README in `utils/bin/watchers/` explaining how to add new watchers
+  - Updated operations guide with file watcher system documentation
+
+### Technical Details
+- USED: watchdog library for file system monitoring
+- IMPLEMENTED: Debouncing to prevent multiple rapid executions
+- PROVIDED: Environment variables to watcher scripts (WATCHER_FILE, WATCHER_EVENT, WATCHER_NAME)
+- SUPPORTED: Easy addition of new watchers by dropping Python scripts in watchers directory
+
+## 20250626_06-rel: Incremental Image Path Check & Pre-commit Performance Planning
+
+### Enhancements
+- IMPROVED: Image path check script now uses incremental mode with timestamp tracking
+  - Only scans Markdown files modified since the last check, greatly improving pre-commit speed
+  - Timestamp file stored in utils/etc/.image_paths_last_check
+  - Full scan can be forced with --full option
+- PLANNED: Added TODO for performance review and optimization of all check scripts and pre-commit hooks
+  
 ## 20250626_05-rel: Image Path Fix for VenvUtil Blog Post
 
 ### Bug Fixes
@@ -155,11 +183,4 @@
 - Update permalinks to meet new requirements
 - Add required front matter to all pages
 
-## 20250626_06-rel: Incremental Image Path Check & Pre-commit Performance Planning
 
-### Enhancements
-- IMPROVED: Image path check script now uses incremental mode with timestamp tracking
-  - Only scans Markdown files modified since the last check, greatly improving pre-commit speed
-  - Timestamp file stored in utils/etc/.image_paths_last_check
-  - Full scan can be forced with --full option
-- PLANNED: Added TODO for performance review and optimization of all check scripts and pre-commit hooks

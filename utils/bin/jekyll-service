@@ -10,6 +10,7 @@ cd "${BASE_DIR}"
 source "${BASE_DIR}/.env/project.env"
 
 pid_file="${BASE_DIR}/utils/etc/jekyll.pid"
+watcher_pid_file="${BASE_DIR}/utils/etc/file_watcher.pid"
 
 check_running() {
     if [ -f "$pid_file" ]; then
@@ -17,6 +18,19 @@ check_running() {
         if ps -p "$pid" > /dev/null 2>&1; then
             # Optionally, verify it's a Jekyll process
             if ps -p "$pid" -o comm= | grep -q 'jekyll'; then
+                return 0
+            fi
+        fi
+    fi
+    return 1
+}
+
+check_watcher_running() {
+    if [ -f "$watcher_pid_file" ]; then
+        pid=$(cat "$watcher_pid_file")
+        if ps -p "$pid" > /dev/null 2>&1; then
+            # Verify it's a Python process running the file watcher
+            if ps -p "$pid" -o comm= | grep -q 'python'; then
                 return 0
             fi
         fi
@@ -90,6 +104,32 @@ startup_items() {
     site_build "$skip_refresh"
     cd "${BASE_DIR}" && bundle exec jekyll serve --host 0.0.0.0 --port 4000 --trace & # Start Jekyll in background from base directory
     echo $! > "$pid_file" # Store Jekyll's PID
+    
+    # Start file watcher
+    start_file_watcher
+}
+
+start_file_watcher() {
+    echo "Starting file watcher..." >&2
+    cd "${BASE_DIR}" && python utils/bin/file_watcher.py > /dev/null 2>&1 & # Start file watcher in background
+    echo $! > "$watcher_pid_file" # Store file watcher's PID
+    echo "File watcher started (PID: $(cat "$watcher_pid_file"))"
+}
+
+stop_file_watcher() {
+    echo "Stopping file watcher..." >&2
+    if check_watcher_running; then
+        pid=$(cat "$watcher_pid_file")
+        kill "$pid"
+        if [ $? -eq 0 ]; then
+            echo "File watcher (PID: $pid) stopped successfully."
+        else
+            echo "Failed to stop file watcher (PID: $pid)." >&2
+        fi
+        rm -f "$watcher_pid_file"
+    else
+        echo "File watcher is not running (no valid PID file found)."
+    fi
 }
 
 start_service() {
@@ -119,6 +159,9 @@ stop_service() {
             kill_process_on_port
         fi
     fi
+    
+    # Stop file watcher
+    stop_file_watcher
 }
 
 # Parse arguments
@@ -131,13 +174,13 @@ while [[ $# -gt 0 ]]; do
             skip_refresh=true
             shift
             ;;
-        build|start|stop|restart|refresh|-h|--help)
+        build|start|stop|restart|refresh|watcher-start|watcher-stop|watcher-status|-h|--help)
             command="$1"
             shift
             ;;
         *)
             echo "Unknown option: $1"
-            echo "Usage: $my_name [build|start|stop|restart|refresh] [-n|--no-refresh]"
+            echo "Usage: $my_name [build|start|stop|restart|refresh|watcher-start|watcher-stop|watcher-status] [-n|--no-refresh]"
             exit 1
             ;;
     esac
@@ -145,20 +188,23 @@ done
 
 # If no command was provided
 if [ -z "$command" ]; then
-    echo "Usage: $my_name [build|start|stop|restart|refresh] [-n|--no-refresh]"
+    echo "Usage: $my_name [build|start|stop|restart|refresh|watcher-start|watcher-stop|watcher-status] [-n|--no-refresh]"
     exit 1
 fi
 
 case "$command" in
     -h|--help)
-        echo "Usage: $my_name [build|start|stop|restart|refresh] [-n|--no-refresh]"
+        echo "Usage: $my_name [build|start|stop|restart|refresh|watcher-start|watcher-stop|watcher-status] [-n|--no-refresh]"
         echo ""
         echo "Commands:"
-        echo "  build    - Build the site"
-        echo "  start    - Start the Jekyll server"
-        echo "  stop     - Stop the Jekyll server"
-        echo "  restart  - Restart the Jekyll server"
-        echo "  refresh  - Only refresh OpenGraph data"
+        echo "  build           - Build the site"
+        echo "  start           - Start the Jekyll server and file watcher"
+        echo "  stop            - Stop the Jekyll server and file watcher"
+        echo "  restart         - Restart the Jekyll server and file watcher"
+        echo "  refresh         - Only refresh OpenGraph data"
+        echo "  watcher-start   - Start only the file watcher"
+        echo "  watcher-stop    - Stop only the file watcher"
+        echo "  watcher-status  - Check file watcher status"
         echo ""
         echo "Options:"
         echo "  -n, --no-refresh  Skip refreshing OpenGraph data"
@@ -179,5 +225,18 @@ case "$command" in
         ;;
     refresh)
         refresh_og_data
+        ;;
+    watcher-start)
+        start_file_watcher
+        ;;
+    watcher-stop)
+        stop_file_watcher
+        ;;
+    watcher-status)
+        if check_watcher_running; then
+            echo "File watcher is running (PID: $(cat "$watcher_pid_file"))"
+        else
+            echo "File watcher is not running (no valid PID file found)."
+        fi
         ;;
 esac

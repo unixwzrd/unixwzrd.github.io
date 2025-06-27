@@ -28,6 +28,8 @@
   - [x] Fixed image display issue in VenvUtil Summer Update blog post
   - [x] Fixed 3 additional image path issues across the site (localhost URLs to absolute paths)
   - [x] Verified all image links are working correctly across the site
+  - [x] Integrate image fixer script into pre-commit workflow
+  - [x] Set up file watcher (watchdog) to run image fixer script on Markdown changes during local dev
 - [x] **Google Analytics Setup & Optimization**
   - [x] Create missing google-analytics.html include file with proper GA4 tracking code
   - [x] Verify GA4 measurement ID (G-QZSHSBP292) is correctly configured
