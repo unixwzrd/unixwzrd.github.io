@@ -6,6 +6,13 @@ This directory contains scripts that are automatically run by the general file w
 
 The general file watcher (`utils/bin/file_watcher.py`) monitors the `html/` directory for file changes and automatically runs all Python scripts in this directory.
 
+## Dynamic Reloading
+
+**No restart required!** The file watcher automatically detects when you add, modify, or remove scripts in this directory and reloads them immediately. You'll see messages like:
+- `🆕 New watcher script detected: my_new_watcher.py`
+- `🔄 Watcher script modified: existing_watcher.py`
+- `🗑️ Watcher script removed: old_watcher.py`
+
 ## Adding a New Watcher
 
 1. Create a new Python script in this directory

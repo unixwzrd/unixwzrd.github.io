@@ -1,5 +1,36 @@
 # Changelog
 
+## 20250626_08-rel: File Watcher System Testing and Verification
+
+### Testing Implementation
+- ADDED: Comprehensive test suite for file watcher system (`utils/bin/test_file_watcher.py`)
+  - Tests file watcher startup and shutdown
+  - Tests dynamic watcher script reloading
+  - Tests watcher script execution
+  - Tests Jekyll service integration
+  - Tests error handling with broken scripts
+- ADDED: Quick test script for fast verification (`utils/bin/quick_test.py`)
+  - Basic functionality tests for rapid feedback
+  - Suitable for CI/CD pipelines and development workflow
+- ADDED: Comprehensive testing documentation (`docs/guides/testing.md`)
+  - Manual testing procedures
+  - Automated test suite usage
+  - Troubleshooting guide
+  - Success/failure indicators
+
+### Verification Results
+- VERIFIED: File watcher system works correctly in all tested scenarios
+- CONFIRMED: Jekyll service integration with `-j` and `-w` flags functions properly
+- TESTED: Dynamic script loading detects new watcher scripts automatically
+- VALIDATED: Image path fixer watcher processes files correctly in real-time
+- CONFIRMED: Error handling prevents watcher crashes from broken scripts
+
+### Documentation Updates
+- UPDATED: Testing procedures and verification methods
+- DOCUMENTED: Manual testing steps for ongoing development
+- PROVIDED: Troubleshooting guide for common issues
+- ESTABLISHED: Testing standards for future development
+
 ## 20250626_07-rel: File Watcher System Implementation
 
 ### New Features
@@ -13,12 +44,17 @@
 - ADDED: Comprehensive documentation for the watcher system
   - README in `utils/bin/watchers/` explaining how to add new watchers
   - Updated operations guide with file watcher system documentation
+- INTEGRATED: File watcher with Jekyll service script
+  - File watcher starts/stops automatically with Jekyll server
+  - Added `-W` and `-J` flags for selective service control
+  - Proper PID management for both services
 
 ### Technical Details
 - USED: watchdog library for file system monitoring
 - IMPLEMENTED: Debouncing to prevent multiple rapid executions
 - PROVIDED: Environment variables to watcher scripts (WATCHER_FILE, WATCHER_EVENT, WATCHER_NAME)
 - SUPPORTED: Easy addition of new watchers by dropping Python scripts in watchers directory
+- ENHANCED: Jekyll service script with selective service management
 
 ## 20250626_06-rel: Incremental Image Path Check & Pre-commit Performance Planning
 

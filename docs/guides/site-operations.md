@@ -55,6 +55,7 @@
     - [Adding New Watchers](#adding-new-watchers)
     - [Example Watcher](#example-watcher)
     - [Integration with Development Workflow](#integration-with-development-workflow)
+    - [Jekyll Service Integration](#jekyll-service-integration)
   - [Google Analytics \& SEO Status](#google-analytics--seo-status)
     - [Current Setup](#current-setup)
     - [Critical Issues Found](#critical-issues-found)
@@ -497,6 +498,40 @@ if __name__ == "__main__":
 - Watchers provide immediate feedback on file changes
 - Automatically catch and fix common issues during development
 - No need to manually run scripts after each file change
+
+### Jekyll Service Integration
+
+The file watcher is now integrated with the Jekyll service script for seamless management:
+
+```bash
+# Start both Jekyll server and file watcher (default)
+./utils/bin/jekyll-service start
+
+# Start only Jekyll server
+./utils/bin/jekyll-service start -j
+
+# Start only file watcher
+./utils/bin/jekyll-service start -w
+
+# Stop both services
+./utils/bin/jekyll-service stop
+
+# Stop only Jekyll server
+./utils/bin/jekyll-service stop -j
+
+# Stop only file watcher
+./utils/bin/jekyll-service stop -w
+
+# Restart both services
+./utils/bin/jekyll-service restart
+```
+
+This integration ensures that:
+- File watcher starts automatically with Jekyll development server
+- Both services are properly managed with PID tracking
+- Clean shutdown of both services when stopping
+- Easy selective control of individual services
+- **Dynamic watcher reloading**: New watcher scripts are automatically detected and loaded without restarting the file watcher
 
 ---
 
