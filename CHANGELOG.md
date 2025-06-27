@@ -1,6 +1,19 @@
 # Changelog
 
 
+## 20250626_05-rel: Image Path Fix for VenvUtil Blog Post
+
+### Bug Fixes
+- FIXED: Image display issue in VenvUtil Summer Update blog post
+  - Converted Markdown image syntax inside HTML div to proper HTML img tag
+  - Changed `![Order From Chaos](/projects/venvutil/images/Ordering_Venvs.png)` to `<img src="/projects/venvutil/images/Ordering_Venvs.png" alt="Order From Chaos">`
+  - Image now displays correctly instead of appearing briefly and disappearing
+
+### Technical Details
+- USED: `utils/bin/fix_image_paths.py` script to automatically detect and fix the issue
+- CONFIRMED: Site builds successfully with the corrected image syntax
+- VERIFIED: Image path is correct and image file exists in expected location
+
 ## 20250626_04-rel: Service Script Improvements and Sass Reversion
 
 ### Critical Fixes
@@ -141,3 +154,12 @@
 - Set up pre-commit hooks
 - Update permalinks to meet new requirements
 - Add required front matter to all pages
+
+## 20250626_06-rel: Incremental Image Path Check & Pre-commit Performance Planning
+
+### Enhancements
+- IMPROVED: Image path check script now uses incremental mode with timestamp tracking
+  - Only scans Markdown files modified since the last check, greatly improving pre-commit speed
+  - Timestamp file stored in utils/etc/.image_paths_last_check
+  - Full scan can be forced with --full option
+- PLANNED: Added TODO for performance review and optimization of all check scripts and pre-commit hooks

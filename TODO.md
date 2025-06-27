@@ -23,6 +23,15 @@
   - [x] Added port conflict detection and automatic cleanup
   - [x] Fixed restart functionality with missing PID file handling
   - [x] Improved error handling for process termination
+- [x] **Image Path Management**
+  - [x] Review and test image path fixer script (utils/bin/fix_image_paths.py)
+  - [x] Fixed image display issue in VenvUtil Summer Update blog post
+  - [x] Fixed 3 additional image path issues across the site (localhost URLs to absolute paths)
+  - [x] Verified all image links are working correctly across the site
+- [x] **Google Analytics Setup & Optimization**
+  - [x] Create missing google-analytics.html include file with proper GA4 tracking code
+  - [x] Verify GA4 measurement ID (G-QZSHSBP292) is correctly configured
+  - [x] Add enhanced tracking for blog posts, project pages, and user interactions
 
 ## High Priority
 - [ ] **Sass Modernization (Planned Project)**
@@ -32,7 +41,6 @@
   - [ ] Create rollback plan before attempting migration
   - [ ] Address deprecation warnings systematically
 - [ ] **Image Path Management**
-  - [ ] Review and test image path fixer script (utils/bin/fix_image_paths.py)
   - [ ] Integrate image fixer script into pre-commit workflow
   - [ ] Set up file watcher (watchdog) to run image fixer script on Markdown changes during local dev
   - [ ] Overhaul image management and standardize image handling for posts and projects
@@ -41,11 +49,6 @@
 - [ ] Create content for project landing pages
 - [ ] Write blog entries for each project before product release
 - [ ] Prepare social media announcements for site launch
-- [ ] **Google Analytics Setup & Optimization**
-  - [x] Create missing google-analytics.html include file with proper GA4 tracking code
-  - [ ] Verify GA4 measurement ID (G-QZSHSBP292) is correctly configured
-  - [ ] Add enhanced tracking for blog posts, project pages, and user interactions
-  - [ ] Set up conversion tracking for key user actions (contact form, resource downloads)
 - [ ] **SEO Optimization & Enhancement**
   - [ ] Review and enhance meta descriptions for all pages
   - [x] Add structured data (JSON-LD) for blog posts and projects
@@ -88,6 +91,10 @@
   - [ ] Monitor for Jekyll Sass converter updates
   - [ ] Plan systematic migration when compatibility improves
   - [ ] Document current warnings for future reference
+- [ ] **Review and optimize performance of all check scripts and pre-commit hooks**
+  - [ ] Audit runtime of each check script
+  - [ ] Identify and refactor any slow operations
+  - [ ] Ensure pre-commit workflow is as fast as possible for developer experience
 
 ## Content Creation
 - [ ] Write Case Analytics introduction blog post

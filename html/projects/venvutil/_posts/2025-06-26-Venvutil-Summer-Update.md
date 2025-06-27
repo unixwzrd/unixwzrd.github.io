@@ -1,5 +1,5 @@
 ---
-image: /projects/venvutil/images/Ordering_Venvs.png
+image: /projects/venvutil/images/Herding-Cats-and-Virtual-Environments.png
 title: "VenvUtil Update: Smarter Shell-Based Python Environment Management"
 layout: post
 date: "2025-06-25"
@@ -44,7 +44,7 @@ VenvUtil ships with extras that make modern Python dev (especially for AI/ML) mu
 There's a lot under the hood. If you want robust shell tools for Python, you can use VenvUtil's libraries in your own automation scripts.
 
 <div style="text-align: center">
-<img src="/projects/venvutil/images/Herding-Cats-and-Virtual-Environments.png" alt="Herding Cats and Virtual Environments" style="max-width: 100%; height: auto;">
+<img src="/projects/venvutil/images/Ordering_Venvs.png" alt="Order From Chaos">
 </div>
 
 ## Example: Audit, Clone, Roll Back - Tale of Two Logs

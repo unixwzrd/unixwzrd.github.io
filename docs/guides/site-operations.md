@@ -44,8 +44,8 @@
     - [URLs](#urls)
   - [Image Path Automation for Social Sharing](#image-path-automation-for-social-sharing)
     - [Usage](#usage)
+    - [Incremental Pre-commit Integration](#incremental-pre-commit-integration)
     - [What It Does](#what-it-does)
-    - [Future Integration](#future-integration)
     - [Why This Matters](#why-this-matters)
     - [Next Steps](#next-steps)
   - [Google Analytics \& SEO Status](#google-analytics--seo-status)
@@ -380,6 +380,8 @@ source .env/project.env
 
 ## Image Path Automation for Social Sharing
 
+*Last updated 2024-06-26: Now uses incremental checking with timestamp tracking for pre-commit speed.*
+
 To ensure all images (front matter and embedded Markdown) use absolute URLs for social sharing and local development, use the script:
 
     utils/bin/fix_image_paths.py
@@ -398,13 +400,18 @@ To ensure all images (front matter and embedded Markdown) use absolute URLs for 
   ```
   This rewrites all image links to use the production domain for correct social previews.
 
+### Incremental Pre-commit Integration
+- The image path check now runs in **incremental mode** by default during pre-commit checks.
+- Only Markdown files modified since the last check are scanned, greatly improving speed.
+- The last check timestamp is stored in `utils/etc/.image_paths_last_check`.
+- To force a full scan (e.g., after a mass refactor), run:
+  ```bash
+  ./utils/bin/checks/12_image_paths.sh --full
+  ```
+
 ### What It Does
 - Rewrites both front matter `image:` fields and Markdown-embedded images (`![alt](/path/to/image.png)`) to use the specified base URL.
 - Only rewrites links that start with `/` and not already with the base URL.
-
-### Future Integration
-- We plan to integrate this script with a file watcher (e.g., watchdog) so it runs automatically on Markdown changes during local dev.
-- The script will also be part of the pre-commit workflow to ensure all images are correct before publishing.
 
 ### Why This Matters
 - Ensures local and production environments are consistent.
