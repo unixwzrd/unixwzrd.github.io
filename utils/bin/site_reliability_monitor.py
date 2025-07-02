@@ -54,7 +54,7 @@ class SiteReliabilityMonitor:
             'images': {'checked': 0, 'passed': 0, 'failed': 0, 'failed_items': []},
             'external_links': {'checked': 0, 'passed': 0, 'failed': 0, 'failed_items': []}
         }
-        
+
         # Log which site we're testing
         if self.verbose:
             logger.info(f"   🎯 Testing site: {self.site_url}")
@@ -65,11 +65,11 @@ class SiteReliabilityMonitor:
             try:
                 with open(self.config_file, 'r') as f:
                     config = json.load(f)
-                
+
                 # Sort critical pages for consistency
                 if 'health_checks' in config and 'critical_pages' in config['health_checks']:
                     config['health_checks']['critical_pages'].sort()
-                
+
                 # Ensure external_links config exists with all required fields
                 if 'external_links' not in config:
                     config['external_links'] = {
@@ -98,7 +98,7 @@ class SiteReliabilityMonitor:
                         external_links['critical_slow_threshold'] = 15
                     if 'link_metrics' not in external_links:
                         external_links['link_metrics'] = {}
-                
+
                 return config
             except Exception as e:
                 logger.error(f"Failed to load config: {e}")
@@ -151,17 +151,17 @@ class SiteReliabilityMonitor:
             # Ensure critical pages are sorted before saving
             if 'health_checks' in config and 'critical_pages' in config['health_checks']:
                 config['health_checks']['critical_pages'].sort()
-            
+
             # Create backup of current config
             backup_file = self.config_file.with_suffix('.json.backup')
             if self.config_file.exists():
                 import shutil
                 shutil.copy2(self.config_file, backup_file)
-            
+
             # Write new config
             with open(self.config_file, 'w') as f:
                 json.dump(config, f, indent=4)
-            
+
             if self.verbose:
                 logger.info(f"Configuration saved to {self.config_file}")
             return True
@@ -211,6 +211,18 @@ class SiteReliabilityMonitor:
             response_time = time.time() - start_time
 
             if response.status_code == 200:
+                # Check for directory listing content (Jekyll shows this when pages are missing)
+                content = response.text.lower()
+                directory_indicators = ['index of', 'directory listing', 'parent directory',
+                                       'name</a>', 'last modified']
+                if any(indicator in content for indicator in directory_indicators):
+                    if self.verbose:
+                        logger.error(f"  ❌ {url}: Directory listing detected (page missing) ({response_time:.2f}s)")
+                    else:
+                        logger.error(f"  ❌ {url}: Directory listing detected (page missing)")
+                    self.issues.append(f"Directory listing detected for {url} (page missing)")
+                    return False, response_time
+
                 max_time = self.config['health_checks']['max_response_time']
                 if response_time <= max_time:
                     if self.verbose:
@@ -261,9 +273,7 @@ class SiteReliabilityMonitor:
         else:
             failed_count = self.check_results['pages']['failed']
             total_count = self.check_results['pages']['checked']
-            logger.error(f"  ❌ {failed_count} pages failed out of {total_count} checked:")
-            for item in self.check_results['pages']['failed_items']:
-                logger.error(f"    - {item}")
+            logger.error(f"  ❌ {failed_count} pages failed out of {total_count} checked.")
 
         return all_good
 
@@ -271,7 +281,7 @@ class SiteReliabilityMonitor:
         """Check that images on a page are loading correctly."""
         try:
             response = requests.get(page_url, timeout=10)
-            
+
             # Handle 404 responses that serve our custom 404 page
             if response.status_code == 404:
                 content = response.text.lower()
@@ -336,9 +346,7 @@ class SiteReliabilityMonitor:
         else:
             failed_count = self.check_results['images']['failed']
             total_count = self.check_results['images']['checked']
-            logger.error(f"  ❌ {failed_count} images failed out of {total_count} checked:")
-            for item in self.check_results['images']['failed_items']:
-                logger.error(f"    - {item}")
+            logger.error(f"  ❌ {failed_count} images failed out of {total_count} checked.")
 
         return all_good
 
@@ -362,12 +370,12 @@ class SiteReliabilityMonitor:
         # Check for localhost URLs
         if url.startswith('http://localhost:') or url.startswith('https://localhost:'):
             return True
-        
+
         # Check for our domain URLs
         site_domain = self._get_site_domain()
         if site_domain in url:
             return True
-        
+
         return False
 
     def _is_placeholder_link(self, url: str) -> bool:
@@ -384,7 +392,7 @@ class SiteReliabilityMonitor:
             'demo',
             'test'
         ]
-        
+
         url_lower = url.lower()
         return any(pattern in url_lower for pattern in placeholder_patterns)
 
@@ -394,7 +402,7 @@ class SiteReliabilityMonitor:
             'development_url': 'http://localhost:4000',
             'production_url': None
         }
-        
+
         try:
             # Read from _config.yml
             config_path = Path('_config.yml')
@@ -405,8 +413,20 @@ class SiteReliabilityMonitor:
         except Exception as e:
             logger.warning(f"Could not read Jekyll config: {e}")
             server_info['production_url'] = 'https://unixwzrd.ai'
-        
+
         return server_info
+
+    def _get_metrics_key(self, url: str) -> str:
+        """Generate a unique key for link metrics that includes environment information."""
+        # For internal URLs, include the environment in the key
+        if self._is_internal_url(url):
+            if self.local_mode:
+                return f"LOCAL:{url}"
+            else:
+                return f"REMOTE:{url}"
+        else:
+            # For external URLs, use the URL as-is
+            return url
 
     def check_external_links(self) -> bool:
         """Check external links are working with comprehensive metrics tracking."""
@@ -414,21 +434,21 @@ class SiteReliabilityMonitor:
             return True
 
         logger.info("    🔗 Checking external links...")
-        
+
         # Find all markdown files
         markdown_files = []
         for pattern in ['**/*.md', 'html/**/*.md']:
             markdown_files.extend(Path('.').glob(pattern))
-        
+
         if not markdown_files:
             logger.warning("⚠️ No markdown files found to check for external links")
             return True
-        
+
         # Extract external links from markdown files with source tracking
         external_links = {}  # url -> list of source pages
         internal_links = set()
         placeholder_links = set()
-        
+
         for md_file in markdown_files:
             try:
                 with open(md_file, 'r', encoding='utf-8') as f:
@@ -449,35 +469,35 @@ class SiteReliabilityMonitor:
                             external_links[url].append(str(md_file))
             except Exception as e:
                 logger.warning(f"⚠️ Could not read {md_file}: {e}")
-        
+
         if self.verbose and placeholder_links:
             logger.info(f"   🔗 Found {len(placeholder_links)} placeholder links (filtered out)")
             for url in sorted(placeholder_links):
                 logger.info(f"    🔗 Placeholder: {url}")
-        
+
         if self.verbose and internal_links:
             logger.info(f"   🔗 Found {len(internal_links)} internal links (filtered out)")
             for url in sorted(internal_links):
                 logger.info(f"    🔗 Internal: {url}")
-        
+
         if not external_links:
             logger.info("   ℹ️ No external links found in markdown files")
             return True
-        
+
         if self.verbose:
             logger.info(f"   📋 Found {len(external_links)} unique external links to check")
-        
+
         # Initialize link metrics if not exists
         if 'link_metrics' not in self.config['external_links']:
             self.config['external_links']['link_metrics'] = {}
-        
+
         # Check each external link with comprehensive tracking
         all_good = True
         checked_count = 0
         passed_count = 0
         failed_count = 0
         link_results = {}
-        
+
         for url in sorted(external_links.keys()):
             source_pages = external_links[url]
             if self.verbose:
@@ -485,10 +505,13 @@ class SiteReliabilityMonitor:
                 for page in source_pages:
                     logger.info(f"      📄 Source: {page}")
             checked_count += 1
-            
+
+            # Generate metrics key that includes environment information
+            metrics_key = self._get_metrics_key(url)
+
             # Initialize metrics for this URL if not exists
-            if url not in self.config['external_links']['link_metrics']:
-                self.config['external_links']['link_metrics'][url] = {
+            if metrics_key not in self.config['external_links']['link_metrics']:
+                self.config['external_links']['link_metrics'][metrics_key] = {
                     'total_checks': 0,
                     'successful_checks': 0,
                     'failed_checks': 0,
@@ -503,29 +526,29 @@ class SiteReliabilityMonitor:
                 }
             else:
                 # Update source pages if new ones found
-                existing_pages = self.config['external_links']['link_metrics'][url].get('source_pages', [])
+                existing_pages = self.config['external_links']['link_metrics'][metrics_key].get('source_pages', [])
                 for page in source_pages:
                     if page not in existing_pages:
                         existing_pages.append(page)
-                self.config['external_links']['link_metrics'][url]['source_pages'] = existing_pages
-            
-            metrics = self.config['external_links']['link_metrics'][url]
+                self.config['external_links']['link_metrics'][metrics_key]['source_pages'] = existing_pages
+
+            metrics = self.config['external_links']['link_metrics'][metrics_key]
             metrics['total_checks'] += 1
             metrics['last_check'] = datetime.now().isoformat()
-            
+
             try:
                 start_time = time.time()
                 response = requests.head(url, timeout=10, allow_redirects=True)
                 response_time = time.time() - start_time
-                
+
                 # Update response time metrics
                 metrics['last_response_time'] = response_time
                 metrics['total_response_time'] += response_time
                 metrics['average_response_time'] = metrics['total_response_time'] / metrics['total_checks']
-                
+
                 # Determine status and update metrics
                 slow_threshold = self.config['external_links']['slow_threshold']
-                
+
                 if response.status_code < 400:
                     # Success
                     metrics['successful_checks'] += 1
@@ -533,51 +556,52 @@ class SiteReliabilityMonitor:
                     metrics['last_response_time'] = response_time
                     metrics['last_error'] = None
                     status = 'up'
-                    
+
                     # Check if slow
                     if response_time > slow_threshold:
                         # Only increment if under max limit
                         max_slow_count = self.config['external_links']['max_slow_count']
                         critical_slow_threshold = self.config['external_links']['critical_slow_threshold']
-                        
+
                         if metrics['slow_checks'] < max_slow_count:
                             metrics['slow_checks'] += 1
                             status = 'slow'
-                            
+
                             # Determine the problem type and message
                             problem_type = f"Slow {metrics['slow_checks']} times"
-                            
+
                             # Build the main message line
                             main_msg = f"🐌 {url}: HTTP {response.status_code} ({response_time:.2f}s)"
-                            
+
                             # Build the detail line with criticality first
                             if metrics['slow_checks'] >= critical_slow_threshold:
                                 detail_msg = f"🚨 CRITICAL: {problem_type}"
                             else:
                                 detail_msg = problem_type
-                            
+
                             # Always show source pages for slow links on separate line
                             source_pages = metrics.get('source_pages', [])
                             if source_pages:
                                 # Fixed indentation to align with HTTPS part of URL
                                 indent_spaces = " " * 41  # Increased indentation to align with HTTPS
-                                
+
                                 source_info = ""
                                 for page in source_pages:
                                     source_info += f"\n{indent_spaces}📄 {page}"
                             else:
                                 source_info = ""
-                            
+
                             logger.warning(f"{main_msg}\n{indent_spaces}{detail_msg}{source_info}")
                         else:
                             # At max limit
-                            max_msg = f"🐌 {url}: HTTP {response.status_code} ({response_time:.2f}s) - SLOW (MAX SLOW COUNT REACHED: {max_slow_count})"
+                            max_msg = (f"🐌 {url}: HTTP {response.status_code} ({response_time:.2f}s) - "
+                                      f"SLOW (MAX SLOW COUNT REACHED: {max_slow_count})")
                             logger.warning(max_msg)
                     else:
                         status = 'up'
                         if self.verbose:
                             logger.info(f"    ✅ {url}: HTTP {response.status_code} ({response_time:.2f}s)")
-                    
+
                     passed_count += 1
                 else:
                     failed_count += 1
@@ -588,11 +612,11 @@ class SiteReliabilityMonitor:
                         metrics['last_status'] = 'down'
                         metrics['last_error'] = f"HTTP {response.status_code}"
                         status = 'down'
-                        
+
                         # Check if we should investigate this link
                         max_failures = self.config['external_links']['max_failures_before_investigation']
                         critical_threshold = self.config['external_links']['critical_failure_threshold']
-                        
+
                         # Check robots.txt for failed sites
                         robots_info = ""
                         if response.status_code in [403, 404, 503]:
@@ -603,13 +627,13 @@ class SiteReliabilityMonitor:
                                 robots_info = " (BLOCKED by robots.txt for our user-agent)"
                             elif robots_check['exists']:
                                 robots_info = " (robots.txt exists but doesn't block us)"
-                        
+
                         # Format the error message with proper descriptions
                         main_msg, problem_type = self._format_error_message(
-                            url, "http", response.status_code, response_time, 
+                            url, "http", response.status_code, response_time,
                             metrics['failed_checks'], robots_info
                         )
-                        
+
                         # Build the detail line with criticality first
                         if metrics['failed_checks'] >= critical_threshold:
                             detail_msg = f"🚨 CRITICAL: {problem_type}"
@@ -617,29 +641,29 @@ class SiteReliabilityMonitor:
                             detail_msg = f"INVESTIGATE: {problem_type}"
                         else:
                             detail_msg = problem_type
-                        
+
                         # Always show source pages for failed links on separate line
                         source_pages = metrics.get('source_pages', [])
                         if source_pages:
                             # Fixed indentation to align with HTTPS part of URL
                             indent_spaces = " " * 41  # Increased indentation to align with HTTPS
-                            
+
                             source_info = ""
                             for page in source_pages:
                                 source_info += f"\n{indent_spaces}📄 {page}"
                         else:
                             source_info = ""
-                        
+
                         logger.error(f"{main_msg}\n{indent_spaces}{detail_msg}{source_info}")
                     else:
                         # At max limit
                         max_msg = f"  ❌ {url}: HTTP {response.status_code} ({response_time:.2f}s) - DOWN (MAX FAILURE COUNT REACHED: {max_failure_count})"
                         logger.error(max_msg)
-                    
+
                     self.check_results['external_links']['failed_items'].append(
                         f"{url}: HTTP {response.status_code} ({response_time:.2f}s)")
                     all_good = False
-                    
+
             except requests.exceptions.Timeout:
                 failed_count += 1
                 # Only increment if under max limit
@@ -649,13 +673,13 @@ class SiteReliabilityMonitor:
                     metrics['last_status'] = 'timeout'
                     metrics['last_error'] = 'Timeout'
                     status = 'timeout'
-                    
+
                     # Format the error message with proper descriptions
                     main_msg, problem_type = self._format_error_message(
-                        url, "timeout", response_time=response_time, 
+                        url, "timeout", response_time=response_time,
                         count=metrics['failed_checks']
                     )
-                    
+
                     # Build the detail line with criticality first
                     if metrics['failed_checks'] >= critical_threshold:
                         detail_msg = f"🚨 CRITICAL: {problem_type}"
@@ -663,28 +687,28 @@ class SiteReliabilityMonitor:
                         detail_msg = f"INVESTIGATE: {problem_type}"
                     else:
                         detail_msg = problem_type
-                    
+
                     # Always show source pages for failed links on separate line
                     source_pages = metrics.get('source_pages', [])
                     if source_pages:
                         # Fixed indentation to align with HTTPS part of URL
                         indent_spaces = " " * 41  # Increased indentation to align with HTTPS
-                        
+
                         source_info = ""
                         for page in source_pages:
                             source_info += f"\n{indent_spaces}📄 {page}"
                     else:
                         source_info = ""
-                    
+
                     logger.error(f"{main_msg}\n{indent_spaces}{detail_msg}{source_info}")
                 else:
                     # At max limit
                     max_msg = f"  ❌ {url}: Timeout (MAX FAILURE COUNT REACHED: {max_failure_count})"
                     logger.error(max_msg)
-                
+
                 self.check_results['external_links']['failed_items'].append(f"{url}: Timeout")
                 all_good = False
-                
+
             except requests.exceptions.ConnectionError:
                 failed_count += 1
                 # Only increment if under max limit
@@ -694,25 +718,25 @@ class SiteReliabilityMonitor:
                     metrics['last_status'] = 'connection_error'
                     metrics['last_error'] = 'Connection error'
                     status = 'connection_error'
-                    
+
                     # Always show source pages for failed links
                     source_pages = metrics.get('source_pages', [])
                     if source_pages:
                         # Fixed indentation to align with HTTPS part of URL
                         indent_spaces = " " * 41  # Increased indentation to align with HTTPS
-                        
+
                         source_info = ""
                         for page in source_pages:
                             source_info += f"\n{indent_spaces}📄 {page}"
                     else:
                         source_info = ""
-                    
+
                     # Format the error message with proper descriptions
                     main_msg, problem_type = self._format_error_message(
-                        url, "connection_error", response_time=response_time, 
+                        url, "connection_error", response_time=response_time,
                         count=metrics['failed_checks']
                     )
-                    
+
                     # Build the detail line with criticality first
                     if metrics['failed_checks'] >= critical_threshold:
                         detail_msg = f"🚨 CRITICAL: {problem_type}"
@@ -720,28 +744,28 @@ class SiteReliabilityMonitor:
                         detail_msg = f"INVESTIGATE: {problem_type}"
                     else:
                         detail_msg = problem_type
-                    
+
                     # Always show source pages for failed links on separate line
                     source_pages = metrics.get('source_pages', [])
                     if source_pages:
                         # Fixed indentation to align with HTTPS part of URL
                         indent_spaces = " " * 41  # Increased indentation to align with HTTPS
-                        
+
                         source_info = ""
                         for page in source_pages:
                             source_info += f"\n{indent_spaces}📄 {page}"
                     else:
                         source_info = ""
-                    
+
                     logger.error(f"{main_msg}\n{indent_spaces}{detail_msg}{source_info}")
                 else:
                     # At max limit
                     max_msg = f"  ❌ {url}: Connection error (MAX FAILURE COUNT REACHED: {max_failure_count})"
                     logger.error(max_msg)
-                
+
                 self.check_results['external_links']['failed_items'].append(f"{url}: Connection error")
                 all_good = False
-                
+
             except Exception as e:
                 failed_count += 1
                 # Only increment if under max limit
@@ -751,25 +775,25 @@ class SiteReliabilityMonitor:
                     metrics['last_status'] = 'error'
                     metrics['last_error'] = str(e)
                     status = 'error'
-                    
+
                     # Always show source pages for failed links
                     source_pages = metrics.get('source_pages', [])
                     if source_pages:
                         # Fixed indentation to align with HTTPS part of URL
                         indent_spaces = " " * 41  # Increased indentation to align with HTTPS
-                        
+
                         source_info = ""
                         for page in source_pages:
                             source_info += f"\n{indent_spaces}📄 {page}"
                     else:
                         source_info = ""
-                    
+
                     error_msg = f"  ❌ {url}: {str(e)} (been down {metrics['failed_checks']} times){source_info}"
-                    
+
                     # Check thresholds for investigation
                     max_failures = self.config['external_links']['max_failures_before_investigation']
                     critical_threshold = self.config['external_links']['critical_failure_threshold']
-                    
+
                     if metrics['failed_checks'] >= critical_threshold:
                         critical_msg = f"{error_msg} - 🚨 CRITICAL: INVESTIGATE IMMEDIATELY!"
                         logger.error(critical_msg)
@@ -782,10 +806,10 @@ class SiteReliabilityMonitor:
                     # At max limit
                     max_msg = f"  ❌ {url}: {str(e)} (MAX FAILURE COUNT REACHED: {max_failure_count})"
                     logger.error(max_msg)
-                
+
                 self.check_results['external_links']['failed_items'].append(f"{url}: {str(e)}")
                 all_good = False
-            
+
             # Store current result
             link_results[url] = {
                 'status': status,
@@ -794,22 +818,22 @@ class SiteReliabilityMonitor:
                 'error': metrics['last_error'],
                 'metrics': metrics
             }
-        
+
         # Update check results
         self.check_results['external_links']['checked'] = checked_count
         self.check_results['external_links']['passed'] = passed_count
         self.check_results['external_links']['failed'] = failed_count
-        
+
         # Save updated metrics to config
         self._save_config(self.config)
-        
+
         # Only show summary if not in verbose mode (to avoid redundancy)
         if not self.verbose:
             if not all_good:
                 logger.error(f"  ❌ {failed_count} external links failed out of {checked_count} checked")
             else:
                 logger.info(f"   ✅ All {checked_count} external links are working")
-        
+
         return all_good
 
     def run_health_checks(self) -> bool:
@@ -827,9 +851,9 @@ class SiteReliabilityMonitor:
         critical_pages_ok = self.check_critical_pages()
         if not critical_pages_ok:
             # Check if the index page specifically failed
-            site_domain = self._get_site_domain()
             index_failed = any(
-                "http://localhost:4000/" in item or f"{site_domain}/" in item 
+                item.endswith("http://localhost:4000/ (HTTP error)") or
+                item.endswith(f"{self.site_url} (HTTP error)")
                 for item in self.check_results['pages']['failed_items']
             )
             if index_failed:
@@ -845,10 +869,14 @@ class SiteReliabilityMonitor:
         if not images_ok:
             logger.warning("⚠️ Some images failed, but continuing with other checks...")
 
-        # External links check
-        external_links_ok = self.check_external_links()
-        if not external_links_ok:
-            logger.warning("⚠️ Some external links failed, but continuing with other checks...")
+        # External links check (skip in site mode for speed)
+        if hasattr(self, 'mode') and self.mode == 'site':
+            logger.info("   ⏭️ Skipping external links check (site mode)")
+            external_links_ok = True
+        else:
+            external_links_ok = self.check_external_links()
+            if not external_links_ok:
+                logger.warning("⚠️ Some external links failed, but continuing with other checks...")
 
         # Custom health checks
         for check in self.health_checks:
@@ -872,7 +900,7 @@ class SiteReliabilityMonitor:
         else:
             logger.warning(f"⚠️ Health checks completed with {total_issues} issues")
             logger.info("Please review and fix the issues listed above.")
-        
+
         return total_issues == 0
 
     def send_alert_email(self, subject: str, body: str) -> bool:
@@ -970,16 +998,16 @@ Please investigate these issues.
             from urllib.parse import urlparse
             parsed = urlparse(url)
             robots_url = f"{parsed.scheme}://{parsed.netloc}/robots.txt"
-            
+
             response = requests.get(robots_url, timeout=5, headers={
                 'User-Agent': 'SiteReliabilityMonitor/1.0'
             })
-            
+
             if response.status_code == 200:
                 robots_content = response.text.lower()
                 user_agent_blocked = 'user-agent: *' in robots_content and 'disallow: /' in robots_content
                 specific_blocked = 'user-agent: sitereliabilitymonitor' in robots_content and 'disallow: /' in robots_content
-                
+
                 return {
                     'exists': True,
                     'blocks_all': user_agent_blocked,
@@ -1003,17 +1031,17 @@ Please investigate these issues.
 
     def reset_external_link_stats(self, reset_type: str = "all") -> bool:
         """Reset external link statistics.
-        
+
         Args:
             reset_type: "all", "failed", "slow", "timeout", "connection_error", or "error"
         """
         if 'link_metrics' not in self.config['external_links']:
             logger.info("   ℹ️ No external link statistics to reset")
             return True
-        
+
         reset_count = 0
         link_metrics = self.config['external_links']['link_metrics']
-        
+
         for url, metrics in link_metrics.items():
             if reset_type == "all":
                 # Reset all counters
@@ -1044,13 +1072,13 @@ Please investigate these issues.
                     metrics['failed_checks'] = 0
                     metrics['last_error'] = None
                     reset_count += 1
-        
+
         if reset_count > 0:
             self._save_config(self.config)
             logger.info(f"   ✅ Reset {reset_count} external link statistics for type: {reset_type}")
         else:
             logger.info(f"   ℹ️ No statistics found to reset for type: {reset_type}")
-        
+
         return True
 
     def _get_http_status_description(self, status_code):
@@ -1093,20 +1121,37 @@ Please investigate these issues.
             else:
                 time_str = f"({response_time:.2f}s)" if response_time else "(N/A)"
                 main_msg = f"  ❌ {url}: {error_type.title()} error (N/A) {time_str}"
-        
+
         # Determine the problem type and message (proper capitalization)
         if robots_info and "BLOCKED by robots.txt" in robots_info:
             problem_type = f"Blocked by robots.txt {count} times"
         else:
             problem_type = f"Down {count} times"
-        
+
         return main_msg, problem_type
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Site Reliability Monitor')
-    parser.add_argument('--mode', choices=['health', 'post-commit', 'periodic', 'reset'],
-                        default='health', help='Monitoring mode')
+    parser = argparse.ArgumentParser(
+        description='Site Reliability Monitor - Comprehensive website health checking tool',
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Monitoring Modes:
+  health      Comprehensive health check (pages, images, external links)
+  site        Fast site check (pages and images only, skips external links)
+  post-commit Verify site after deployment (waits for deployment, then runs health checks)
+  periodic    Run periodic health check and send email alerts if issues found
+  reset       Reset external link statistics in config file
+
+Examples:
+  %(prog)s --mode health --local --verbose    # Full local health check
+  %(prog)s --mode site --local                # Fast local check
+  %(prog)s --mode post-commit --commit-hash abc123  # Post-deployment verification
+  %(prog)s --mode reset --reset all           # Reset all external link stats
+        """
+    )
+    parser.add_argument('--mode', choices=['health', 'site', 'post-commit', 'periodic', 'reset'],
+                        default='health', help='Monitoring mode (default: health)')
     parser.add_argument('--commit-hash', help='Commit hash for post-commit verification')
     parser.add_argument('--config', default='utils/etc/site_monitor_config.json',
                         help='Configuration file path')
@@ -1120,8 +1165,9 @@ def main():
     args = parser.parse_args()
 
     monitor = SiteReliabilityMonitor(args.config, local_mode=args.local, verbose=args.verbose)
+    monitor.mode = args.mode  # Store mode for conditional checks
 
-    if args.mode == 'health':
+    if args.mode in ['health', 'site']:
         success = monitor.run_health_checks()
         sys.exit(0 if success else 1)
     elif args.mode == 'post-commit':
