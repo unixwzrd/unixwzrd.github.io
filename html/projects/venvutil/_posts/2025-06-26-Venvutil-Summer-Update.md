@@ -2,6 +2,8 @@
 image: /projects/venvutil/images/Herding-Cats-and-Virtual-Environments.png
 title: "VenvUtil Update: Smarter Shell-Based Python Environment Management"
 layout: post
+redirect_from:
+  - /projects/venvutil/2025/06/26/Venvutil-Summer-Update/
 date: "2025-06-25"
 category: venvutil
 tags: [update, virtualenv, conda, devtools]

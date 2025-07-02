@@ -2,6 +2,8 @@
 image: /projects/Case-Analytics/images/boy-robot-road-unizwzrd-mia-watching.png
 layout: post
 title: "Harnessing AI for Change: The Next Chapter for Distributed Thinking Systems"
+redirect_from:
+  - /2025/02/20/building-a-modern-jekyll-site/
 date: 2025-02-20 15:00:00 -0500
 categories: [development, site-updates]
 tags: [AI, parental alienation, technology, advocacy]

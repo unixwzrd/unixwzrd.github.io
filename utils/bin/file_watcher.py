@@ -15,6 +15,7 @@ import sys
 import time
 import subprocess
 import logging
+import signal
 from pathlib import Path
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
@@ -26,6 +27,13 @@ logging.basicConfig(
     datefmt='%H:%M:%S'
 )
 logger = logging.getLogger(__name__)
+
+
+def signal_handler(signum, frame):
+    """Handle termination signals gracefully."""
+    logger.info(f"\n🛑 Received signal {signum}, stopping watcher...")
+    sys.exit(0)
+
 
 class FileWatcherHandler(FileSystemEventHandler):
     """Handle file system events and run appropriate watchers."""
@@ -144,14 +152,19 @@ class FileWatcherHandler(FileSystemEventHandler):
             except Exception as e:
                 logger.error(f"❌ {script_file.stem}: Failed to run - {e}")
 
+
 def main():
+    # Set up signal handlers for graceful shutdown
+    signal.signal(signal.SIGTERM, signal_handler)
+    signal.signal(signal.SIGINT, signal_handler)
+    
     parser = argparse.ArgumentParser(description='Watch files and run watcher scripts automatically')
     parser.add_argument('--target-dir', default='html',
-                       help='Directory to watch (default: html)')
+                        help='Directory to watch (default: html)')
     parser.add_argument('--watchers-dir', default='utils/bin/watchers',
-                       help='Directory containing watcher scripts (default: utils/bin/watchers)')
+                        help='Directory containing watcher scripts (default: utils/bin/watchers)')
     parser.add_argument('--list-watchers', action='store_true',
-                       help='List available watchers and exit')
+                        help='List available watchers and exit')
     
     args = parser.parse_args()
     
@@ -179,10 +192,10 @@ def main():
                     print(f"  - {watcher.stem}")
         return
     
-    logger.info(f"🔍 Starting file watcher...")
+    logger.info("🔍 Starting file watcher...")
     logger.info(f"   Target directory: {args.target_dir}")
     logger.info(f"   Watchers directory: {args.watchers_dir}")
-    logger.info(f"   Press Ctrl+C to stop")
+    logger.info("   Press Ctrl+C to stop")
     
     # Set up the event handler and observer
     event_handler = FileWatcherHandler(args.target_dir, args.watchers_dir)
@@ -206,6 +219,7 @@ def main():
         
     observer.join()
     logger.info("✅ Watcher stopped")
+
 
 if __name__ == "__main__":
     main() 

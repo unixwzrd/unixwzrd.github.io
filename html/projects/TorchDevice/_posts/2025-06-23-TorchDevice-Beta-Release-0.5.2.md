@@ -1,6 +1,8 @@
 ---
 layout: post
 title: "TorchDevice 0.5.2: Still Beta, but Three Months of Refactoring, Testing, and Real-World Breakthroughs"
+redirect_from:
+  - /projects/TorchDevice/2025/06/23/TorchDevice-Beta-Release-0.5.2/
 image: /projects/TorchDevice/images/TorchDevice-HF-Transformers.png
 date: 2025-06-22
 category: TorchDevice

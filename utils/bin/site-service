@@ -1,0 +1,142 @@
+#!/usr/bin/env bash
+
+# site-service: Orchestrate jekyll-site and file_watcher
+# Usage:
+#   site-service [start|stop|restart] [--jekyll|--watcher] [extra args]
+#   Passes -n/--no-refresh and -r/--refresh to jekyll-site, passes watcher args to file_watcher
+#
+# TODO: Future enhancement - Replace watcher command-line args with config file approach:
+#       - Config file for watcher actions (create, modify, delete)
+#       - Signal-based config refresh instead of restart
+#       - More flexible event handling
+
+BASE_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")/../..")"
+cd "${BASE_DIR}"
+
+JEKYLL_SCRIPT="utils/bin/jekyll-site"
+WATCHER_SCRIPT="utils/bin/file_watcher"
+
+show_help() {
+    cat << EOF
+Site Service Orchestration Script
+
+Manages both Jekyll site and file watcher services together or individually.
+
+Usage: site-service [COMMAND] [SERVICE] [OPTIONS]
+
+COMMANDS:
+    start     Start services
+    stop      Stop services  
+    restart   Restart services
+    -h, --help Show this help message
+
+SERVICE SELECTION:
+    -j, --jekyll    Only manage Jekyll site service
+    -w, --watcher   Only manage file watcher service
+    (default: manage both services)
+
+OPTIONS:
+    -n, --no-refresh  Skip OpenGraph data refresh (faster builds)
+    -r, --refresh     Force OpenGraph data refresh (slower builds)
+        Note: -n and -r are incompatible. If both specified, -n takes precedence.
+    --target-dir DIR  Set target directory for file watcher
+    --watchers-dir DIR Set watchers directory for file watcher
+
+EXAMPLES:
+    site-service start              # Start both services (complete mode)
+    site-service start -n           # Start both services (fast mode, no OG refresh)
+    site-service restart            # Restart both (fast mode, no OG refresh)
+    site-service restart -r         # Restart both with OG refresh (complete mode)
+    site-service -j restart         # Restart only Jekyll (fast mode)
+    site-service -w start           # Start only file watcher
+    site-service stop               # Stop both services
+
+DEFAULT BEHAVIOR:
+    - start: Refresh OG data (complete mode)
+    - restart: Skip OG data refresh (fast mode)
+    - Conflicting flags: -n takes precedence, operation continues with warning
+EOF
+}
+
+# Defaults
+do_jekyll=true
+do_watcher=true
+jekyll_args=()
+watcher_args=()
+command=""
+
+# Parse arguments
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        start|stop|restart)
+            command="$1"; shift;;
+        -j|--jekyll)
+            do_jekyll=true; do_watcher=false; shift;;
+        -w|--watcher)
+            do_jekyll=false; do_watcher=true; shift;;
+        -n|--no-refresh|-r|--refresh)
+            jekyll_args+=("$1"); shift;;
+        --target-dir|--watchers-dir)
+            watcher_args+=("$1" "$2"); shift 2;;
+        -h|--help)
+            show_help; exit 0;;
+        *)
+            # Pass unknown args to both for now
+            jekyll_args+=("$1"); watcher_args+=("$1"); shift;;
+    esac
+done
+
+if [ -z "$command" ]; then
+    show_help
+    exit 1
+fi
+
+case "$command" in
+    start)
+        pids=()
+        if [ "$do_jekyll" = true ]; then
+            echo "Starting Jekyll-site..."
+            "$JEKYLL_SCRIPT" start "${jekyll_args[@]}" &
+            pids+=("$!")
+        fi
+        if [ "$do_watcher" = true ]; then
+            echo "Starting file_watcher..."
+            "$WATCHER_SCRIPT" start "${watcher_args[@]}" &
+            pids+=("$!")
+        fi
+        for pid in "${pids[@]}"; do wait "$pid"; done
+        ;;
+    stop)
+        pids=()
+        if [ "$do_jekyll" = true ]; then
+            echo "Stopping Jekyll-site..."
+            "$JEKYLL_SCRIPT" stop &
+            pids+=("$!")
+        fi
+        if [ "$do_watcher" = true ]; then
+            echo "Stopping file_watcher..."
+            "$WATCHER_SCRIPT" stop &
+            pids+=("$!")
+        fi
+        for pid in "${pids[@]}"; do wait "$pid"; done
+        ;;
+    restart)
+        pids=()
+        if [ "$do_jekyll" = true ]; then
+            echo "Restarting Jekyll-site..."
+            "$JEKYLL_SCRIPT" restart "${jekyll_args[@]}" &
+            pids+=("$!")
+        fi
+        if [ "$do_watcher" = true ]; then
+            echo "Restarting file_watcher..."
+            "$WATCHER_SCRIPT" restart "${watcher_args[@]}" &
+            pids+=("$!")
+        fi
+        for pid in "${pids[@]}"; do wait "$pid"; done
+        ;;
+    *)
+        echo "Unknown command: $command"
+        show_help
+        exit 1
+        ;;
+esac 

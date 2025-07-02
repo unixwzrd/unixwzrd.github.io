@@ -2,6 +2,8 @@
 image: /assets/images/default-og-image.png
 layout: post
 title: "Adapting and Advancing: Progress Across Projects"
+redirect_from:
+  - /2024/12/08/Adapting-and-Advancing-Progress-Across-all-Projects/
 date: 2024-11-13 14:00:00 -0500
 categories: [coding, ai, blog]
 excerpt: "The past few months have been a whirlwind of progress, setbacks, and unexpected developments. From debugging web frameworks to crafting advanced tools for Python environments, I've been deeply immersed in a variety of projects. Today, I want to reflect on some key milestones and share insights from my journey."
@@ -43,9 +45,9 @@ Through all this, AI has been a key collaborator. From debugging SCSS to refinin
 What’s Next?
 
 With a clearer path forward, my next steps include:
- • Completing analytics for an ongoing project involving communication data.
- • Reassessing and improving NumPy compilation processes.
- • Developing new blog content to share progress and engage with the broader developer community.
+- Completing analytics for an ongoing project involving communication data.
+- Reassessing and improving NumPy compilation processes.
+- Developing new blog content to share progress and engage with the broader developer community.
 
 These efforts require focus and perseverance, but they also provide opportunities to refine my craft and expand my capabilities.
 

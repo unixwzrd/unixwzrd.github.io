@@ -1,6 +1,8 @@
 ---
 layout: post
 title: "Building This Site With AI"
+redirect_from:
+  - /2024/09/27/Building-This-Site-With-AI/
 image: /assets/images/Working-With-AI-Assistant.png
 date: 2024-09-27 17:30:00 -0500
 categories: [coding, ai, blog]

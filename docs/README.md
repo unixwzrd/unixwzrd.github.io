@@ -1,47 +1,121 @@
-# Project Documentation
+# Documentation Index
 
-## Overview
-This documentation covers all aspects of the website development, maintenance, and publishing process. It's designed to help anyone pick up the project and continue development with minimal ramp-up time.
+*Your central hub for all project documentation*
 
-## Documentation Structure
-- `tools/` - Documentation for project utilities and automation tools
-- `workflows/` - Common development and publishing workflows
-- `guides/` - Step-by-step guides for common tasks
-- `templates/` - Templates for posts, projects, and other content
-- `maintenance/` - System maintenance and troubleshooting
+## 🚀 Quick Start
 
-## Quick Start
-1. [Development Environment Setup](guides/environment-setup.md)
-2. [Site Operations Guide](guides/site-operations.md) - **Internal operations documentation**
-3. [Local Development](guides/local-development.md)
-4. [Content Publishing](guides/content-publishing.md)
-5. [Project Management](guides/project-management.md)
+### For New Contributors
+1. **Project Overview** → `PROJECT_OVERVIEW.md` - High-level summary, current status, and roadmap
+2. **Getting Started** → `guides/site-operations.md` - How to work with the site
+3. **Active Tasks** → `../TODO.md` - What's being worked on
 
-## Common Tasks
-- [Creating a New Project](workflows/new-project.md)
-- [Publishing Blog Posts](workflows/blog-publishing.md)
-- [Managing Project Blogs](workflows/project-blogs.md)
-- [Site Maintenance](maintenance/routine-tasks.md)
+### For Daily Operations
+1. **Site Health Check** → `guides/site-reliability-checklist.md` - Emergency procedures
+2. **Content Publishing** → `workflows/blog-publishing.md` - How to publish content
+3. **Testing** → `guides/testing.md` - How to test changes
 
-## Tools and Utilities
-- [Jekyll Service Management](tools/jekyll-service.md)
-- [Pre-commit Checks](tools/pre-commit-checks.md)
-- [Project Data Management](tools/project-data.md)
-- [OpenGraph Data Tools](tools/opengraph-tools.md)
+## 📚 Documentation Structure
 
-## Templates
-- [Project Templates](templates/project.md)
-- [Blog Post Templates](templates/blog-post.md)
-- [Project Blog Templates](templates/project-blog.md)
+### 🎯 **Project Overview & Status**
+- **[PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md)** - Complete project summary, current status, roadmap, and technical stack
+- **[TODO.md](../TODO.md)** - Active tasks and priorities
 
-## Process Documentation
-- [Release Process](workflows/release-process.md)
-- [Documentation Standards](guides/documentation-standards.md)
-- [Code Review Process](workflows/code-review.md)
+### 🛠️ **Guides & How-To**
+- **[guides/site-operations.md](guides/site-operations.md)** - Site maintenance and daily operations
+- **[guides/site-reliability-monitoring.md](guides/site-reliability-monitoring.md)** - Monitoring system setup and usage
+- **[guides/site-reliability-checklist.md](guides/site-reliability-checklist.md)** - Emergency procedures and troubleshooting
+- **[guides/testing.md](guides/testing.md)** - Testing procedures and validation
+- **[guides/monitoring-strategy.md](guides/monitoring-strategy.md)** - Monitoring best practices and strategies
 
-## Internal Operations
-- **[Site Operations Guide](guides/site-operations.md)** - Complete technical operations manual
-- Environment setup and RVM management
-- Jekyll service management with `--no-refresh` option
-- Troubleshooting and maintenance procedures
-- **Note**: This is internal documentation only, not for public consumption 
+### 🔧 **Tools & Systems**
+- **[tools/pre-commit-checks.md](tools/pre-commit-checks.md)** - Pre-commit quality assurance system
+- **[workflows/blog-publishing.md](workflows/blog-publishing.md)** - Content publishing workflow
+- **[templates/blog-templates.md](templates/blog-templates.md)** - Blog post templates and examples
+
+## 🔍 Navigation by Task
+
+### I want to...
+- **Understand the project** → `PROJECT_OVERVIEW.md`
+- **See what's happening now** → `PROJECT_OVERVIEW.md` (Current State section)
+- **Fix a broken site** → `guides/site-reliability-checklist.md`
+- **Publish content** → `workflows/blog-publishing.md`
+- **Set up monitoring** → `guides/site-reliability-monitoring.md`
+- **Test changes** → `guides/testing.md`
+- **Configure pre-commit** → `tools/pre-commit-checks.md`
+- **Add new features** → `../TODO.md`
+
+### I need to...
+- **Check site health** → `guides/site-reliability-checklist.md`
+- **Fix image issues** → `guides/testing.md` (image path section)
+- **Monitor external links** → `guides/site-reliability-monitoring.md`
+- **Update documentation** → `guides/site-operations.md`
+- **Deploy changes** → `workflows/blog-publishing.md`
+
+## 📋 Quick Reference
+
+### Essential Commands
+```bash
+# Site health check
+utils/bin/site_reliability_monitor.py --mode health
+
+# Test external links
+utils/bin/test_external_links.py
+
+# Fix image paths
+utils/bin/fix_image_case_sensitivity.py
+
+# Manage missing pages
+utils/bin/manage_missing_pages.py --list
+```
+
+### Key Files
+- **Configuration**: `utils/etc/site_monitor_config.json`
+- **Monitoring**: `utils/bin/site_reliability_monitor.py`
+- **Maintenance**: `utils/bin/scheduled_tasks.py`
+- **Logs**: `utils/log/` directory
+
+### Emergency Contacts
+- **Site Down**: `guides/site-reliability-checklist.md`
+- **Broken Images**: `guides/testing.md`
+- **Broken Links**: `guides/site-reliability-monitoring.md`
+- **Build Issues**: `guides/site-operations.md`
+
+## 🔄 Documentation Maintenance
+
+### Update Frequency
+- **PROJECT_OVERVIEW.md** - After each development session or major changes
+- **TODO.md** - Continuously as tasks are added/completed
+- **Guides** - When procedures change
+- **CHANGELOG.md** - After each release/update
+
+### Contributing to Documentation
+1. Update relevant guides when procedures change
+2. Add new guides for new systems/processes
+3. Update this index when adding new documentation
+4. Keep PROJECT_OVERVIEW.md current with recent work and status
+5. Update TODO.md as tasks are completed or added
+
+## 📖 Related Documentation
+
+### External Resources
+- **[CHANGELOG.md](../CHANGELOG.md)** - Complete change history
+- **[TODO.md](../TODO.md)** - Active tasks and priorities
+- **[.project-planning/site-improvement-checklist.md](../.project-planning/site-improvement-checklist.md)** - Site improvement checklist
+- **[.project-planning/Site-automation-article-thoughts.md](../.project-planning/Site-automation-article-thoughts.md)** - Automation article planning
+- **[Gemfile](../Gemfile)** - Ruby dependencies
+- **[requirements.txt](../requirements.txt)** - Python dependencies
+
+### Project Structure
+```
+docs/
+├── README.md                    # This file - Documentation index
+├── PROJECT_OVERVIEW.md          # High-level project summary and current status
+├── guides/                      # How-to guides and procedures
+├── tools/                       # Tool documentation
+├── workflows/                   # Process documentation
+└── templates/                   # Templates and examples
+```
+
+---
+
+*This index is maintained to provide clear navigation through all project documentation. Update it when adding new docs or reorganizing existing ones.* 

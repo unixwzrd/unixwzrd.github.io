@@ -2,6 +2,8 @@
 image: /projects/venvutil/images/Conjuring-VenvUtil.png
 title: "Powerful Tools for Python Virtual Environment Management"
 layout: post
+redirect_from:
+  - /projects/venvutil/2025/04/24/Getting-Started-With-VenvUtil/
 date: "2025-03-10"
 category: venvutil
 tags: [introduction, overview]

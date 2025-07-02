@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Image Path Checker - Incremental Mode
-# Automatically fixes image paths for local development or production
+# Automatically fixes image paths and case sensitivity issues for local development or production
 # Uses timestamp tracking to only check modified files since last run
 
 set -e
@@ -32,14 +32,57 @@ else
     fi
 fi
 
-echo "🔍 Checking image paths for $ENV_NAME environment (base URL: $BASE_URL)"
+echo "🔍 Checking image paths and case sensitivity for $ENV_NAME environment (base URL: $BASE_URL)"
+
+# Function to run image path fixes
+run_image_path_fixes() {
+    local files_to_check="$1"
+    local check_type="$2"
+    
+    echo "🔧 Running $check_type image path fixes..."
+    
+    if [[ -n "$files_to_check" ]]; then
+        # Process specific files
+        echo "$files_to_check" | while read -r file; do
+            if [[ -n "$file" ]]; then
+                echo "  📝 Processing: $file"
+                python3 utils/bin/fix_image_paths.py --base-url "$BASE_URL" --target-dir "$TARGET_DIR" --file-filter "$(basename "$file")"
+            fi
+        done
+    else
+        # Process all files
+        python3 utils/bin/fix_image_paths.py --base-url "$BASE_URL" --target-dir "$TARGET_DIR"
+    fi
+}
+
+# Function to run case sensitivity checks
+run_case_sensitivity_checks() {
+    local files_to_check="$1"
+    local check_type="$2"
+    
+    echo "🔍 Running $check_type case sensitivity checks..."
+    
+    if [[ -n "$files_to_check" ]]; then
+        # Process specific files
+        echo "$files_to_check" | while read -r file; do
+            if [[ -n "$file" ]]; then
+                echo "  📝 Checking case sensitivity in: $file"
+                python3 utils/bin/fix_image_case_sensitivity.py --target-file "$file"
+            fi
+        done
+    else
+        # Process all files
+        python3 utils/bin/fix_image_case_sensitivity.py
+    fi
+}
 
 # Check if we should run incremental or full scan
 if [[ "$1" == "--full" ]] || [[ "$2" == "--full" ]]; then
-    echo "📋 Running full image path scan..."
-    python3 utils/bin/fix_image_paths.py --base-url "$BASE_URL" --target-dir "$TARGET_DIR"
+    echo "📋 Running full image path and case sensitivity scan..."
+    run_image_path_fixes "" "full"
+    run_case_sensitivity_checks "" "full"
     echo "$(date +%s)" > "$TIMESTAMP_FILE"
-    echo "✅ Full image path check completed"
+    echo "✅ Full image path and case sensitivity check completed"
 else
     # Incremental mode - only check files modified since last run
     if [[ -f "$TIMESTAMP_FILE" ]]; then
@@ -49,7 +92,7 @@ else
         else
             LAST_CHECK_DATE="unknown time"
         fi
-        echo "📋 Running incremental image path scan (since $LAST_CHECK_DATE)..."
+        echo "📋 Running incremental image path and case sensitivity scan (since $LAST_CHECK_DATE)..."
         
         # Find modified Markdown files since last check
         MODIFIED_FILES=$(find "$TARGET_DIR" -name "*.md" -newer "$TIMESTAMP_FILE" 2>/dev/null || true)
@@ -60,22 +103,21 @@ else
                 echo "  - $file"
             done
             
-            # Run image fixer on modified files only
-            echo "$MODIFIED_FILES" | while read -r file; do
-                if [[ -n "$file" ]]; then
-                    echo "🔧 Checking image paths in: $file"
-                    python3 utils/bin/fix_image_paths.py --base-url "$BASE_URL" --target-dir "$TARGET_DIR" --file-filter "$(basename "$file")"
-                fi
-            done
+            # Run image path fixes on modified files
+            run_image_path_fixes "$MODIFIED_FILES" "incremental"
+            
+            # Run case sensitivity checks on modified files
+            run_case_sensitivity_checks "$MODIFIED_FILES" "incremental"
         else
             echo "📝 No modified Markdown files found since last check"
         fi
     else
         echo "📋 No previous check timestamp found, running full scan..."
-        python3 utils/bin/fix_image_paths.py --base-url "$BASE_URL" --target-dir "$TARGET_DIR"
+        run_image_path_fixes "" "full"
+        run_case_sensitivity_checks "" "full"
     fi
     
     # Update timestamp
     echo "$(date +%s)" > "$TIMESTAMP_FILE"
-    echo "✅ Incremental image path check completed"
+    echo "✅ Incremental image path and case sensitivity check completed"
 fi 

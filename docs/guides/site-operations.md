@@ -11,11 +11,19 @@
       - [3. Project Dependencies](#3-project-dependencies)
       - [4. Environment Variables](#4-environment-variables)
   - [Jekyll Service Management](#jekyll-service-management)
-    - [Using the Jekyll Service Script](#using-the-jekyll-service-script)
-      - [Available Commands](#available-commands)
-      - [Command Line Options](#command-line-options)
-      - [What the Service Script Does](#what-the-service-script-does)
-      - [Service Status](#service-status)
+    - [Using the Service Management Scripts](#using-the-service-management-scripts)
+      - [1. **Site Service (Orchestrator)**](#1-site-service-orchestrator)
+      - [2. **Jekyll Site (Standalone)**](#2-jekyll-site-standalone)
+      - [3. **File Watcher (Standalone)**](#3-file-watcher-standalone)
+    - [Service Management Options](#service-management-options)
+      - [Refresh Control Flags](#refresh-control-flags)
+      - [Service Selection Flags](#service-selection-flags)
+      - [Default Behaviors](#default-behaviors)
+    - [What the Service Scripts Do](#what-the-service-scripts-do)
+      - [Site Service (Orchestrator)](#site-service-orchestrator)
+      - [Jekyll Site (Standalone)](#jekyll-site-standalone)
+      - [File Watcher (Standalone)](#file-watcher-standalone)
+    - [Service Status and Monitoring](#service-status-and-monitoring)
   - [Development Workflow](#development-workflow)
     - [Daily Development](#daily-development)
     - [Content Updates](#content-updates)
@@ -136,54 +144,131 @@ source .env/project.env
 
 ## Jekyll Service Management
 
-### Using the Jekyll Service Script
+### Using the Service Management Scripts
 
-The `utils/bin/jekyll-service` script provides automated Jekyll management:
+The project now uses a modular service management system with three main scripts:
 
-#### Available Commands
+#### 1. **Site Service (Orchestrator)**
+The `utils/bin/site-service` script manages both Jekyll and file watcher services:
+
 ```bash
-# Start the Jekyll server (with OpenGraph refresh)
-./utils/bin/jekyll-service start
+# Start both services
+./utils/bin/site-service start
 
-# Start without OpenGraph refresh (faster)
-./utils/bin/jekyll-service start --no-refresh
+# Start both services (fast mode, no OG refresh)
+./utils/bin/site-service start -n
 
-# Stop the server
-./utils/bin/jekyll-service stop
+# Start both services (complete mode, with OG refresh)
+./utils/bin/site-service start -r
 
-# Restart the server
-./utils/bin/jekyll-service restart
+# Restart both services (fast mode by default)
+./utils/bin/site-service restart
 
-# Build only (no server)
-./utils/bin/jekyll-service build
+# Restart both services (complete mode)
+./utils/bin/site-service restart -r
 
-# Refresh OpenGraph data only
-./utils/bin/jekyll-service refresh
+# Stop both services
+./utils/bin/site-service stop
+
+# Manage individual services
+./utils/bin/site-service -j start    # Jekyll only
+./utils/bin/site-service -w start    # File watcher only
+./utils/bin/site-service -j restart  # Restart Jekyll only
 
 # Help
-./utils/bin/jekyll-service --help
+./utils/bin/site-service --help
 ```
 
-#### Command Line Options
-- `-n, --no-refresh`: Skip OpenGraph data refresh (faster startup)
-- `build`: Build the site without starting server
-- `start`: Start the Jekyll server
-- `stop`: Stop the running server
-- `restart`: Restart the server
-- `refresh`: Only refresh OpenGraph data
+#### 2. **Jekyll Site (Standalone)**
+The `utils/bin/jekyll-site` script manages Jekyll independently:
 
-#### What the Service Script Does
+```bash
+# Start Jekyll server (complete mode)
+./utils/bin/jekyll-site start
+
+# Start Jekyll server (fast mode)
+./utils/bin/jekyll-site start -n
+
+# Restart Jekyll server (fast mode by default)
+./utils/bin/jekyll-site restart
+
+# Restart Jekyll server (complete mode)
+./utils/bin/jekyll-site restart -r
+
+# Build only (complete mode)
+./utils/bin/jekyll-site build
+
+# Build only (fast mode)
+./utils/bin/jekyll-site build -n
+
+# Stop Jekyll server
+./utils/bin/jekyll-site stop
+
+# Help
+./utils/bin/jekyll-site --help
+```
+
+#### 3. **File Watcher (Standalone)**
+The `utils/bin/file_watcher` script manages file watching independently:
+
+```bash
+# Start file watcher
+./utils/bin/file_watcher start
+
+# Restart file watcher
+./utils/bin/file_watcher restart
+
+# Stop file watcher
+./utils/bin/file_watcher stop
+
+# Help
+./utils/bin/file_watcher --help
+```
+
+### Service Management Options
+
+#### Refresh Control Flags
+- `-n, --no-refresh`: Skip OpenGraph data refresh (faster builds)
+- `-r, --refresh`: Force OpenGraph data refresh (slower builds)
+- **Note**: `-n` and `-r` are incompatible. If both specified, `-n` takes precedence.
+
+#### Service Selection Flags
+- `-j, --jekyll`: Manage only Jekyll service
+- `-w, --watcher`: Manage only file watcher service
+- (default: manage both services)
+
+#### Default Behaviors
+- **`start`**: Complete mode (with OG refresh)
+- **`restart`**: Fast mode (no OG refresh) - optimized for speed
+- **`build`**: Complete mode (with OG refresh)
+
+### What the Service Scripts Do
+
+#### Site Service (Orchestrator)
+1. **Service Coordination**: Manages both Jekyll and file watcher
+2. **Flag Passing**: Passes refresh flags to Jekyll service
+3. **Parallel Management**: Starts/stops services in parallel
+4. **Error Handling**: Continues operation even if one service fails
+
+#### Jekyll Site (Standalone)
 1. **Environment Setup**: Sources project environment variables
-2. **OpenGraph Refresh**: Runs `fetch_og.py` to update project metadata (unless `--no-refresh`)
+2. **OpenGraph Control**: Conditionally runs `fetch_og.py` based on flags
 3. **Cache Clearing**: Removes Jekyll cache and build artifacts
 4. **Site Building**: Builds the Jekyll site with verbose output
-5. **Server Start**: Starts Jekyll server on port 4000
+5. **Server Management**: Starts/stops Jekyll server on port 4000
 6. **PID Management**: Stores server PID for proper shutdown
 
-#### Service Status
-- **PID File**: `utils/etc/jekyll.pid`
+#### File Watcher (Standalone)
+1. **File Monitoring**: Watches for changes in specified directories
+2. **Action Execution**: Runs configured actions on file changes
+3. **Process Management**: Manages watcher processes independently
+
+### Service Status and Monitoring
+- **Jekyll PID File**: `utils/etc/jekyll.pid`
+- **Watcher PID File**: `utils/etc/file_watcher.pid`
 - **Server URL**: `http://localhost:4000`
 - **Logs**: Check terminal output for build and server logs
+- **Health Monitoring**: Use `utils/bin/site_reliability_monitor.py --mode health --local`
 
 ---
 
@@ -196,13 +281,13 @@ conda activate python-website-dev
 # OR using VenvUtil
 cact python-website-dev
 
-# 2. Start development server
-./utils/bin/jekyll-service start
+# 2. Start development server (fast mode)
+./utils/bin/site-service start -n
 
 # 3. Make changes to content/templates
 
 # 4. Server auto-reloads (or restart if needed)
-./utils/bin/jekyll-service restart
+./utils/bin/site-service restart
 
 # 5. Run pre-commit checks before committing
 ./utils/bin/check_site.sh
@@ -210,11 +295,14 @@ cact python-website-dev
 
 ### Content Updates
 ```bash
-# For content-only changes (no OpenGraph refresh needed)
-./utils/bin/jekyll-service start --no-refresh
+# For content-only changes (fast mode, no OG refresh)
+./utils/bin/site-service start -n
 
-# For project updates (refresh OpenGraph data)
-./utils/bin/jekyll-service start
+# For project updates (complete mode, with OG refresh)
+./utils/bin/site-service start -r
+
+# Quick restart for content changes
+./utils/bin/site-service restart
 ```
 
 ### Production Deployment
@@ -222,8 +310,8 @@ cact python-website-dev
 # 1. Run full validation
 ./utils/bin/check_site.sh
 
-# 2. Build for production
-./utils/bin/jekyll-service build
+# 2. Build for production (complete mode)
+./utils/bin/jekyll-site build
 
 # 3. Deploy (GitHub Pages or other hosting)
 ```
@@ -311,7 +399,7 @@ python3 utils/bin/fetch_og.py
 rm -f utils/etc/jekyll.pid
 
 # Restart service
-./utils/bin/jekyll-service restart
+./utils/bin/site-service restart
 ```
 
 #### Server Won't Stop
@@ -361,10 +449,10 @@ conda activate python-website-dev
 cact python-website-dev
 
 # Start development
-./utils/bin/jekyll-service start
+./utils/bin/site-service start
 
 # Quick content update
-./utils/bin/jekyll-service start --no-refresh
+./utils/bin/site-service start -n
 
 # Full validation
 ./utils/bin/check_site.sh
@@ -374,7 +462,7 @@ source .env/project.env
 ```
 
 ### File Locations
-- **Service Script**: `utils/bin/jekyll-service`
+- **Service Script**: `utils/bin/site-service`
 - **Environment**: `.env/project.env`
 - **PID File**: `utils/etc/jekyll.pid`
 - **Site Source**: `html/`
@@ -505,25 +593,25 @@ The file watcher is now integrated with the Jekyll service script for seamless m
 
 ```bash
 # Start both Jekyll server and file watcher (default)
-./utils/bin/jekyll-service start
+./utils/bin/site-service start
 
 # Start only Jekyll server
-./utils/bin/jekyll-service start -j
+./utils/bin/site-service start -j
 
 # Start only file watcher
-./utils/bin/jekyll-service start -w
+./utils/bin/site-service start -w
 
 # Stop both services
-./utils/bin/jekyll-service stop
+./utils/bin/site-service stop
 
 # Stop only Jekyll server
-./utils/bin/jekyll-service stop -j
+./utils/bin/site-service stop -j
 
 # Stop only file watcher
-./utils/bin/jekyll-service stop -w
+./utils/bin/site-service stop -w
 
 # Restart both services
-./utils/bin/jekyll-service restart
+./utils/bin/site-service restart
 ```
 
 This integration ensures that:

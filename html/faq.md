@@ -2,7 +2,7 @@
 layout: page
 title: Frequently Asked Questions
 menu_item: FAQ
-permalink: /FAQ/
+permalink: /faq/
 image: /assets/images/default-og-image.png
 excerpt: "Distributed Thinking Systems is focused on solving complex problems using AI and distributed computing with a focus on parental alienation."
 ---

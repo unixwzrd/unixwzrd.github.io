@@ -2,7 +2,7 @@
 title: "Policies"
 layout: page
 menu_item: Policies
-permalink: /policies/
+permalink: /Policies/
 image: /assets/images/default-og-image.png
 excerpt: ""
 ---

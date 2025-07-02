@@ -2,6 +2,8 @@
 layout: post
 image: /assets/images/projects/TorchDevice/TorchDevice001.png
 title: "Announcing TorchDevice 0.0.5 Beta – Transparent Hardware Redirection for PyTorch"
+redirect_from:
+  - /projects/TorchDevice/2025/03/10/new-0-0-05-TorchDEvice-release/
 date: "2025-03-05"
 category: TorchDevice
 tags: [introduction, overview]

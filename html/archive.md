@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Archived Projects"
-permalink: /archives/
+permalink: /archive/
 excerpt: "These are historical or inactive projects that are no longer actively maintained. While they may still be valuable for reference or research purposes, please note that they may not be current or actively supported."
 ---
 

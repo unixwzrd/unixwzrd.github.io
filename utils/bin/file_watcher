@@ -1,0 +1,98 @@
+#!/usr/bin/env bash
+
+# file_watcher: Standalone file watcher start/stop/restart script
+# No Jekyll logic included
+
+BASE_DIR="$(realpath "$(dirname "${BASH_SOURCE[0]}")/../..")"
+cd "${BASE_DIR}"
+
+watcher_pid_file="${BASE_DIR}/utils/etc/file_watcher.pid"
+
+check_watcher_running() {
+    if [ -f "$watcher_pid_file" ]; then
+        pid=$(cat "$watcher_pid_file")
+        if ps -p "$pid" > /dev/null 2>&1; then
+            if ps -p "$pid" -o comm= | grep -q 'python'; then
+                return 0
+            fi
+        fi
+    fi
+    return 1
+}
+
+start_file_watcher() {
+    local target_dir="html"
+    local watchers_dir="utils/bin/watchers"
+    local extra_args=()
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --target-dir)
+                target_dir="$2"; shift 2;;
+            --watchers-dir)
+                watchers_dir="$2"; shift 2;;
+            *)
+                extra_args+=("$1"); shift;;
+        esac
+    done
+    echo "Starting file watcher..." >&2
+    cd "${BASE_DIR}" && python utils/bin/file_watcher.py --target-dir "$target_dir" --watchers-dir "$watchers_dir" "${extra_args[@]}" > /dev/null 2>&1 &
+    echo $! > "$watcher_pid_file"
+    echo "File watcher started (PID: $(cat "$watcher_pid_file"))"
+}
+
+stop_file_watcher() {
+    echo "Stopping file watcher..." >&2
+    watcher_pids=$(pgrep -u "$USER" -f "file_watcher.py")
+    if [ -n "$watcher_pids" ]; then
+        for pid in $watcher_pids; do
+            echo "Killing file watcher process (PID: $pid)" >&2
+            kill -TERM "$pid"
+            sleep 1
+            if ps -p "$pid" > /dev/null 2>&1; then
+                echo "File watcher (PID: $pid) did not terminate, sending KILL..." >&2
+                kill -KILL "$pid"
+            fi
+        done
+        echo "All file watcher processes stopped."
+    else
+        echo "No running file watcher processes found."
+    fi
+    rm -f "$watcher_pid_file"
+}
+
+# Parse arguments
+command=""
+extra_args=()
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        start|stop|restart|-h|--help)
+            command="$1"; shift;;
+        *)
+            extra_args+=("$1"); shift;;
+    esac
+done
+
+if [ -z "$command" ]; then
+    echo "Usage: file_watcher [start|stop|restart] [--target-dir DIR] [--watchers-dir DIR] [other args]"
+    exit 1
+fi
+
+case "$command" in
+    -h|--help)
+        echo "Usage: file_watcher [start|stop|restart] [--target-dir DIR] [--watchers-dir DIR] [other args]"
+        ;;
+    start)
+        start_file_watcher "${extra_args[@]}"
+        ;;
+    stop)
+        stop_file_watcher
+        ;;
+    restart)
+        stop_file_watcher
+        start_file_watcher "${extra_args[@]}"
+        ;;
+    *)
+        echo "Unknown command: $command"
+        exit 1
+        ;;
+esac 

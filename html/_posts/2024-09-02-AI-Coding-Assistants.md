@@ -1,6 +1,8 @@
 ---
 layout: post
 title: "AI Coding Assistants"
+redirect_from:
+  - /2024/09/02/AI-Coding-Assistants/
 date: 2024-09-02 07:30:00 -0500
 categories: [coding, ai]
 image: /assets/images/AI-assistant.png
