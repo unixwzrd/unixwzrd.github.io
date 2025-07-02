@@ -1,7 +1,7 @@
 ---
 title: "Terms of Service"
 layout: page
-permalink: /policies/General_ToS/
+permalink: /Policies/General_ToS/
 image: /assets/images/default-og-image.png
 excerpt: "Effective Date: 2025-02-01"
 ---
@@ -10,7 +10,7 @@ Effective Date: 2025-02-01
 
 ### 1.	**Acceptance of Terms**
 
-By accessing or using the Distributed Thinking Systems website (“the Site”), you agree to be bound by these Terms of Service (“TOS”). If you do not agree, you should discontinue use immediately.
+By accessing or using the Distributed Thinking Systems website ("the Site"), you agree to be bound by these Terms of Service ("TOS"). If you do not agree, you should discontinue use immediately.
 
 ### 2.	**Informational Purpose Only**
 

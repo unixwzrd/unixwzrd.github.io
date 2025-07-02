@@ -1,7 +1,7 @@
 ---
 title: "General Privacy Policy"
 layout: page
-permalink: /policies/General_Privacy/
+permalink: /Policies/General_Privacy/
 image: /assets/images/default-og-image.png
 excerpt: "Effective Date: 2025-02-01"
 ---
@@ -19,8 +19,8 @@ This extension does not collect, store, transmit, or share any user data. It ope
 ### 3. Permissions
 
 To function correctly, the extension requires minimal permissions:
-- Read ChatGPT chat logs – Allows the extension to download chat history.
-- File Access – Saves chat logs locally on the user's device.
+- Read ChatGPT chat logs - Allows the extension to download chat history.
+- File Access - Saves chat logs locally on the user's device.
 
 This extension does not access or transmit any personal data.
 
@@ -49,7 +49,7 @@ While this extension does not process personal data, we respect privacy laws glo
 
 ### 7. Updates & Changes
 
-If this Privacy Policy is updated, changes will be reflected in future versions of the extension. However, the fundamental principle remains unchanged—this extension does not collect, process, or share any user data.
+If this Privacy Policy is updated, changes will be reflected in future versions of the extension. However, the fundamental principle remains unchanged-this extension does not collect, process, or share any user data.
 
 ### 8. Contact Information
 

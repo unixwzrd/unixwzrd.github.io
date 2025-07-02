@@ -29,8 +29,14 @@
     - [Content Updates](#content-updates)
     - [Production Deployment](#production-deployment)
   - [Environment Variables and Configuration](#environment-variables-and-configuration)
-    - [Project Environment (`.env/project.env`)](#project-environment-envprojectenv)
-    - [Jekyll Configuration (`_config.yml`)](#jekyll-configuration-_configyml)
+    - [Project Environment ([.env/project.env](../../.env/project.env))](#project-environment-envprojectenv)
+    - [Jekyll Configuration ([_config.yml](../../_config.yml))](#jekyll-configuration-_configyml)
+    - Key settings for operations:
+      - **Source**: [html/](../../html/) (site source directory)
+      - **Destination**: [_site/](../../_site/) (build output)
+      - **Pagination**: Disabled (no blog posts on homepage)
+      - **Collections**: Projects and project posts
+      - **Plugins**: Email protection, feed, SEO, sitemap
   - [Troubleshooting](#troubleshooting)
     - [Common Issues](#common-issues)
       - [RVM Issues](#rvm-issues)
@@ -149,7 +155,7 @@ source .env/project.env
 The project now uses a modular service management system with three main scripts:
 
 #### 1. **Site Service (Orchestrator)**
-The `utils/bin/site-service` script manages both Jekyll and file watcher services:
+The [utils/bin/site-service](../utils/bin/site-service) script manages both Jekyll and file watcher services:
 
 ```bash
 # Start both services
@@ -180,7 +186,7 @@ The `utils/bin/site-service` script manages both Jekyll and file watcher service
 ```
 
 #### 2. **Jekyll Site (Standalone)**
-The `utils/bin/jekyll-site` script manages Jekyll independently:
+The [utils/bin/jekyll-site](../utils/bin/jekyll-site) script manages Jekyll independently:
 
 ```bash
 # Start Jekyll server (complete mode)
@@ -209,7 +215,7 @@ The `utils/bin/jekyll-site` script manages Jekyll independently:
 ```
 
 #### 3. **File Watcher (Standalone)**
-The `utils/bin/file_watcher` script manages file watching independently:
+The [utils/bin/file_watcher](../utils/bin/file_watcher) script manages file watching independently:
 
 ```bash
 # Start file watcher
@@ -264,11 +270,11 @@ The `utils/bin/file_watcher` script manages file watching independently:
 3. **Process Management**: Manages watcher processes independently
 
 ### Service Status and Monitoring
-- **Jekyll PID File**: `utils/etc/jekyll.pid`
-- **Watcher PID File**: `utils/etc/file_watcher.pid`
+- **Jekyll PID File**: [utils/etc/jekyll.pid](../utils/etc/jekyll.pid)
+- **Watcher PID File**: [utils/etc/file_watcher.pid](../utils/etc/file_watcher.pid)
 - **Server URL**: `http://localhost:4000`
 - **Logs**: Check terminal output for build and server logs
-- **Health Monitoring**: Use `utils/bin/site_reliability_monitor.py --mode health --local`
+- **Health Monitoring**: Use [utils/bin/site_reliability_monitor.py](../utils/bin/site_reliability_monitor.py) --mode health --local
 
 ---
 
@@ -320,7 +326,7 @@ cact python-website-dev
 
 ## Environment Variables and Configuration
 
-### Project Environment (`.env/project.env`)
+### Project Environment ([.env/project.env](../../.env/project.env))
 ```bash
 # RVM Configuration
 export PATH="$HOME/.rvm/bin:$PATH"
@@ -338,10 +344,10 @@ export JEKYLL_SERVE_HOST=0.0.0.0
 export JEKYLL_SERVE_PORT=4000
 ```
 
-### Jekyll Configuration (`_config.yml`)
+### Jekyll Configuration ([_config.yml](../../_config.yml))
 Key settings for operations:
-- **Source**: `html/` (site source directory)
-- **Destination**: `_site/` (build output)
+- **Source**: [html/](../../html/) (site source directory)
+- **Destination**: [_site/](../../_site/) (build output)
 - **Pagination**: Disabled (no blog posts on homepage)
 - **Collections**: Projects and project posts
 - **Plugins**: Email protection, feed, SEO, sitemap
@@ -462,11 +468,11 @@ source .env/project.env
 ```
 
 ### File Locations
-- **Service Script**: `utils/bin/site-service`
-- **Environment**: `.env/project.env`
-- **PID File**: `utils/etc/jekyll.pid`
-- **Site Source**: `html/`
-- **Build Output**: `_site/`
+- **Service Script**: [utils/bin/site-service](../utils/bin/site-service)
+- **Environment**: [.env/project.env](../../.env/project.env)
+- **PID File**: [utils/etc/jekyll.pid](../utils/etc/jekyll.pid)
+- **Site Source**: [html/](../../html/)
+- **Build Output**: [_site/](../../_site/)
 
 ### URLs
 - **Development**: `http://localhost:4000`
@@ -480,7 +486,7 @@ source .env/project.env
 
 To ensure all images (front matter and embedded Markdown) use absolute URLs for social sharing and local development, use the script:
 
-    utils/bin/fix_image_paths.py
+[utils/bin/fix_image_paths.py](../utils/bin/fix_image_paths.py)
 
 ### Usage
 
@@ -499,7 +505,7 @@ To ensure all images (front matter and embedded Markdown) use absolute URLs for 
 ### Incremental Pre-commit Integration
 - The image path check now runs in **incremental mode** by default during pre-commit checks.
 - Only Markdown files modified since the last check are scanned, greatly improving speed.
-- The last check timestamp is stored in `utils/etc/.image_paths_last_check`.
+- The last check timestamp is stored in [utils/etc/.image_paths_last_check](../utils/etc/.image_paths_last_check).
 - To force a full scan (e.g., after a mass refactor), run:
   ```bash
   ./utils/bin/checks/12_image_paths.sh --full
@@ -529,9 +535,9 @@ The file watcher system automatically runs scripts when files change during deve
 
 ### Overview
 
-- **Main Watcher**: `utils/bin/file_watcher.py`
-- **Watcher Scripts**: `utils/bin/watchers/*.py`
-- **Target Directory**: `html/` (configurable)
+- **Main Watcher**: [utils/bin/file_watcher.py](../utils/bin/file_watcher.py)
+- **Watcher Scripts**: [utils/bin/watchers/](../utils/bin/watchers/)/*.py
+- **Target Directory**: [html/](../../html/) (configurable)
 
 ### Usage
 
@@ -569,10 +575,10 @@ import sys
 def main():
     file_path = sys.argv[1]
     event_type = sys.argv[2]
-    
+
     if not file_path.endswith('.md'):
         return
-    
+
     print(f"Processing {file_path}")
     # Your watcher logic here
 

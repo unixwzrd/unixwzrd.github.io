@@ -5,14 +5,14 @@
 ## 🚀 Quick Start
 
 ### For New Contributors
-1. **Project Overview** → `PROJECT_OVERVIEW.md` - High-level summary, current status, and roadmap
-2. **Getting Started** → `guides/site-operations.md` - How to work with the site
-3. **Active Tasks** → `../TODO.md` - What's being worked on
+1. **Project Overview** → [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md) - High-level summary, current status, and roadmap
+2. **Getting Started** → [guides/site-operations.md](guides/site-operations.md) - How to work with the site
+3. **Active Tasks** → [../TODO.md](../TODO.md) - What's being worked on
 
 ### For Daily Operations
-1. **Site Health Check** → `guides/site-reliability-checklist.md` - Emergency procedures
-2. **Content Publishing** → `workflows/blog-publishing.md` - How to publish content
-3. **Testing** → `guides/testing.md` - How to test changes
+1. **Site Health Check** → [guides/site-reliability-checklist.md](guides/site-reliability-checklist.md) - Emergency procedures
+2. **Content Publishing** → [workflows/blog-publishing.md](workflows/blog-publishing.md) - How to publish content
+3. **Testing** → [guides/testing.md](guides/testing.md) - How to test changes
 
 ## 📚 Documentation Structure
 
@@ -35,21 +35,21 @@
 ## 🔍 Navigation by Task
 
 ### I want to...
-- **Understand the project** → `PROJECT_OVERVIEW.md`
-- **See what's happening now** → `PROJECT_OVERVIEW.md` (Current State section)
-- **Fix a broken site** → `guides/site-reliability-checklist.md`
-- **Publish content** → `workflows/blog-publishing.md`
-- **Set up monitoring** → `guides/site-reliability-monitoring.md`
-- **Test changes** → `guides/testing.md`
-- **Configure pre-commit** → `tools/pre-commit-checks.md`
-- **Add new features** → `../TODO.md`
+- **Understand the project** → [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md)
+- **See what's happening now** → [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md) (Current State section)
+- **Fix a broken site** → [guides/site-reliability-checklist.md](guides/site-reliability-checklist.md)
+- **Publish content** → [workflows/blog-publishing.md](workflows/blog-publishing.md)
+- **Set up monitoring** → [guides/site-reliability-monitoring.md](guides/site-reliability-monitoring.md)
+- **Test changes** → [guides/testing.md](guides/testing.md)
+- **Configure pre-commit** → [tools/pre-commit-checks.md](tools/pre-commit-checks.md)
+- **Add new features** → [../TODO.md](../TODO.md)
 
 ### I need to...
-- **Check site health** → `guides/site-reliability-checklist.md`
-- **Fix image issues** → `guides/testing.md` (image path section)
-- **Monitor external links** → `guides/site-reliability-monitoring.md`
-- **Update documentation** → `guides/site-operations.md`
-- **Deploy changes** → `workflows/blog-publishing.md`
+- **Check site health** → [guides/site-reliability-checklist.md](guides/site-reliability-checklist.md)
+- **Fix image issues** → [guides/testing.md](guides/testing.md) (image path section)
+- **Monitor external links** → [guides/site-reliability-monitoring.md](guides/site-reliability-monitoring.md)
+- **Update documentation** → [guides/site-operations.md](guides/site-operations.md)
+- **Deploy changes** → [workflows/blog-publishing.md](workflows/blog-publishing.md)
 
 ## 📋 Quick Reference
 
@@ -69,31 +69,31 @@ utils/bin/manage_missing_pages.py --list
 ```
 
 ### Key Files
-- **Configuration**: `utils/etc/site_monitor_config.json`
-- **Monitoring**: `utils/bin/site_reliability_monitor.py`
-- **Maintenance**: `utils/bin/scheduled_tasks.py`
-- **Logs**: `utils/log/` directory
+- **Configuration**: [utils/etc/site_monitor_config.json](../utils/etc/site_monitor_config.json)
+- **Monitoring**: [utils/bin/site_reliability_monitor.py](../utils/bin/site_reliability_monitor.py)
+- **Maintenance**: [utils/bin/scheduled_tasks.py](../utils/bin/scheduled_tasks.py)
+- **Logs**: [utils/log/](../utils/log/) directory
 
 ### Emergency Contacts
-- **Site Down**: `guides/site-reliability-checklist.md`
-- **Broken Images**: `guides/testing.md`
-- **Broken Links**: `guides/site-reliability-monitoring.md`
-- **Build Issues**: `guides/site-operations.md`
+- **Site Down**: [guides/site-reliability-checklist.md](guides/site-reliability-checklist.md)
+- **Broken Images**: [guides/testing.md](guides/testing.md)
+- **Broken Links**: [guides/site-reliability-monitoring.md](guides/site-reliability-monitoring.md)
+- **Build Issues**: [guides/site-operations.md](guides/site-operations.md)
 
 ## 🔄 Documentation Maintenance
 
 ### Update Frequency
-- **PROJECT_OVERVIEW.md** - After each development session or major changes
-- **TODO.md** - Continuously as tasks are added/completed
+- **[PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md)** - After each development session or major changes
+- **[TODO.md](../TODO.md)** - Continuously as tasks are added/completed
 - **Guides** - When procedures change
-- **CHANGELOG.md** - After each release/update
+- **[CHANGELOG.md](../CHANGELOG.md)** - After each release/update
 
 ### Contributing to Documentation
 1. Update relevant guides when procedures change
 2. Add new guides for new systems/processes
 3. Update this index when adding new documentation
-4. Keep PROJECT_OVERVIEW.md current with recent work and status
-5. Update TODO.md as tasks are completed or added
+4. Keep [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md) current with recent work and status
+5. Update [TODO.md](../TODO.md) as tasks are completed or added
 
 ## 📖 Related Documentation
 

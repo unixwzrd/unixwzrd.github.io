@@ -1,0 +1,21 @@
+# Disable directory listings
+Options -Indexes
+
+# Redirect directory requests to index files
+DirectoryIndex index.html index.htm
+
+# Custom error pages
+ErrorDocument 404 /404.html
+
+# Security headers
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Prevent access to sensitive files
+<FilesMatch "\.(bak|backup|old|tmp|temp|log)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch> 
