@@ -20,9 +20,9 @@ def convert_md_image_to_html(match):
 def fix_image_paths(file_path, base_url=None, absolute_path_only=False, dry_run=False):
     with open(file_path, "r") as f:
         content = f.read()
-    
+
     changes = []
-    
+
     # Fix front matter image URLs
     def fix_front_matter_image(match):
         current_path = match.group(2)
@@ -30,48 +30,48 @@ def fix_image_paths(file_path, base_url=None, absolute_path_only=False, dry_run=
             path_part = '/' + '/'.join(current_path.split('/')[3:])
         else:
             path_part = current_path
-        
+
         if absolute_path_only:
             new_url = path_part  # Just use the absolute path
         else:
             new_url = f"{base_url}{path_part}"
-        
+
         if current_path != new_url:
             changes.append(f"Front matter: {current_path} -> {new_url}")
             return f"{match.group(1)}{new_url}"
         return match.group(0)
-    
+
     content = IMAGE_RE.sub(fix_front_matter_image, content)
-    
+
     # Fix Markdown images and convert those inside HTML blocks
     lines = content.split('\n')
     in_html_block = False
     new_lines = []
-    
+
     for i, line in enumerate(lines):
         # Check if we're entering/exiting HTML blocks
         if HTML_DIV_RE.search(line):
             in_html_block = True
         elif HTML_CLOSE_DIV_RE.search(line):
             in_html_block = False
-        
+
         # Process Markdown images
         if MD_IMAGE_RE.search(line):
             def process_md_image(match):
                 alt_text = match.group(2)
                 current_url = match.group(3)
-                
+
                 # Fix URL
                 if current_url.startswith('http'):
                     path_part = '/' + '/'.join(current_url.split('/')[3:])
                 else:
                     path_part = current_url
-                
+
                 if absolute_path_only:
                     new_url = path_part  # Just use the absolute path
                 else:
                     new_url = f"{base_url}{path_part}"
-                
+
                 if in_html_block:
                     # Convert to HTML img tag
                     changes.append(f"Line {i+1}: Converted Markdown to HTML img tag")
@@ -81,14 +81,14 @@ def fix_image_paths(file_path, base_url=None, absolute_path_only=False, dry_run=
                     if current_url != new_url:
                         changes.append(f"Line {i+1}: {current_url} -> {new_url}")
                     return f'![{alt_text}]({new_url})'
-            
+
             new_line = MD_IMAGE_RE.sub(process_md_image, line)
             new_lines.append(new_line)
         else:
             new_lines.append(line)
-    
+
     content = '\n'.join(new_lines)
-    
+
     if changes:
         if dry_run:
             print(f"\nWould fix image paths in: {file_path}")
@@ -123,10 +123,10 @@ def main():
         for file in files:
             if file.endswith(".md"):
                 file_path = os.path.join(root, file)
-                
+
                 if args.file_filter and args.file_filter.lower() not in file_path.lower():
                     continue
-                
+
                 processed_files += 1
                 if fix_image_paths(file_path, args.base_url, args.absolute_path_only, args.dry_run):
                     changed_files += 1
