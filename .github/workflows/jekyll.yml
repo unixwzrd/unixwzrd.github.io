@@ -41,7 +41,7 @@ jobs:
           cache-version: 1
       - name: Setup Pages
         id: pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v4
       - name: Validate Jekyll Configuration
         run: |
           bundle exec jekyll doctor
