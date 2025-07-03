@@ -42,20 +42,18 @@ jobs:
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3
-      - name: Validate Jekyll Configuration
+      - name: Build with Jekyll
+        # Build from root directory (source is set to "html" in _config.yml)
         run: |
           bundle exec jekyll doctor
-          bundle exec jekyll build --strict_front_matter --trace
-        env:
-          JEKYLL_ENV: production
-      - name: Build with Jekyll
-        # Outputs to the './_site' directory by default
-        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+          bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}" --strict_front_matter
         env:
           JEKYLL_ENV: production
       - name: Upload artifact
-        # Automatically uploads an artifact from the './_site' directory by default
+        # Upload from the _site directory (Jekyll creates this in root when source is "html")
         uses: actions/upload-pages-artifact@v3
+        with:
+          path: './_site'
 
   # Deployment job
   deploy_main_pages:
@@ -68,3 +66,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v3
+        timeout-minutes: 10
