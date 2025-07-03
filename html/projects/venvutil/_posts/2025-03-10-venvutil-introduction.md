@@ -1,7 +1,7 @@
 ---
 image: /assets/images/default-og-image.png
 title: "Powerful Tools for Python Virtual Environment Management"
-redirected_from:
+redirect_from:
   - /projects/venvutil/2025/03/10/Getting-Started-With-VenvUtil/
 layout: post
 date: "2025-03-10"

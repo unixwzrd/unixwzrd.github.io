@@ -4,15 +4,17 @@ title: "Introducing LogGPT: One-Click ChatGPT Conversation Export with Full Priv
 date: 2025-04-16
 category: LogGPT
 tags: [LogGPT, ChatGPT export, privacy, AI tools, Safari extension, GitHub, JSON, macOS, open source]
-excerpt: "LogGPT is a streamlined, privacy-first tool for exporting your entire ChatGPT conversation history in JSON format—no spyware, no adware, no data collection."
+excerpt: "LogGPT is a streamlined, privacy-first tool for exporting your entire ChatGPT conversation history in JSON format-no spyware, no adware, no data collection."
 image: /assets/images/projects/LogGPT.png
 draft: true
 published: true
+redirect_from:
+  - /projects/LogGPT/2025/04/16/loggpt-introduction/
 ---
 
 Have you ever wanted to save, search, or analyze your ChatGPT conversations outside of the OpenAI interface? LogGPT is here to help. LogGPT is an open-source, lightweight, and privacy-focused tool designed to make exporting your ChatGPT chat history simple, fast, and reliable.
 
-**At Distributed Thinking Systems, your privacy is our priority. LogGPT contains absolutely no spyware, adware, or data collection—your chat history stays on your device, and your privacy is always our top concern.**
+**At Distributed Thinking Systems, your privacy is our priority. LogGPT contains absolutely no spyware, adware, or data collection-your chat history stays on your device, and your privacy is always our top concern.**
 
 <!--more-->
 
@@ -24,7 +26,7 @@ This official version offers a seamless experience for Mac users, with one-click
 
 **Key Features:**
 - One-click export of entire ChatGPT conversations as structured JSON files
-- **Privacy-first:** No tracking, no data collection, no spyware or adware—your chat history stays yours
+- **Privacy-first:** No tracking, no data collection, no spyware or adware-your chat history stays yours
 - Simple, lightweight, and easy to use
 - Cross-platform compatibility (Safari, Chrome, Firefox builds available)
 
@@ -40,7 +42,7 @@ You can also build LogGPT from source if you prefer the open-source route:
   <p style="font-size: 0.95em;">
     <em>
       The circled icon in the menubar indicates the extension is "On."<br>
-      The download button appears on ChatGPT sessions—press it to download your chat history.
+      The download button appears on ChatGPT sessions-press it to download your chat history.
     </em>
   </p>
 </div>
@@ -51,12 +53,12 @@ If you're comfortable with the command line, you can use the tools in the reposi
 
 OpenAI's ChatGPT interface does not provide a native way to export all your conversations in a structured format. LogGPT fills this gap by allowing users to download their entire chat history as JSON, enabling:
 
-- Personal archiving and backup  
-- Data analysis and visualization  
-- Migration to other platforms  
-- Research and compliance needs  
-- AI context transfer  
-- AI training data collection  
+- Personal archiving and backup
+- Data analysis and visualization
+- Migration to other platforms
+- Research and compliance needs
+- AI context transfer
+- AI training data collection
 
 ## Key Features
 
@@ -74,7 +76,7 @@ OpenAI's ChatGPT interface does not provide a native way to export all your conv
 
 ## Get Involved
 
-We welcome contributions, feedback, and feature requests!  
-- Visit our [GitHub repository](https://github.com/unixwzrd/LogGPT)  
-- Open an issue or pull request  
-- Join the discussion and help shape the future of LogGPT  
+We welcome contributions, feedback, and feature requests!
+- Visit our [GitHub repository](https://github.com/unixwzrd/LogGPT)
+- Open an issue or pull request
+- Join the discussion and help shape the future of LogGPT

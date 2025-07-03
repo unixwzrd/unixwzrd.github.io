@@ -7,6 +7,8 @@ category: Case-Analytics
 tags: [alpha-release, alpha-testing, ai-analysis, parental-alienation, communication-analysis]
 date: 2025-06-19
 published: true
+redirect_from:
+  - /projects/Case-Analytics/2025/06/19/advancing-detection-and-prevention-of-PA/
 ---
 
 Parental alienation remains one of the most difficult and heartbreaking challenges in high-conflict family dynamics. When one parent actively undermines the child's relationship with the other, the consequences can be devastating. Unfortunately, these behaviors often manifest subtly-through messages, emails, transcripts, and voice communications-that are difficult to analyze manually.
@@ -25,7 +27,7 @@ The core engine combines modular pipelines for text and audio processing, enrich
 
 A custom AI knowledge base is built for each case, enabling personalized analysis and contextual understanding. The system also incorporates threat scoring aligned with psychological risk levels to help prioritize intervention needs.
 
-![system diagram](http://localhost:4000/projects/Case-Analytics/images/system-diagram.png)
+![system diagram](/projects/Case-Analytics/images/system-diagram.png)
 
 ### System Design Overview
 
