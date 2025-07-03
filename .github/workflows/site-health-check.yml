@@ -29,6 +29,9 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+        echo "Verifying pyyaml installation..."
+        python -c "import yaml; print('PyYAML version:', yaml.__version__)" || pip install pyyaml
+        pip list | grep -i yaml
 
     - name: Run site health check
       id: health-check
@@ -119,6 +122,9 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+        echo "Verifying pyyaml installation..."
+        python -c "import yaml; print('PyYAML version:', yaml.__version__)" || pip install pyyaml
+        pip list | grep -i yaml
 
     - name: Run post-commit verification
       id: post-commit
