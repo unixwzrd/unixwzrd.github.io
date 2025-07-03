@@ -27,7 +27,7 @@ The core engine combines modular pipelines for text and audio processing, enrich
 
 A custom AI knowledge base is built for each case, enabling personalized analysis and contextual understanding. The system also incorporates threat scoring aligned with psychological risk levels to help prioritize intervention needs.
 
-![system diagram](/projects/Case-Analytics/images/system-diagram.png)
+![system diagram](http://localhost:4000/projects/Case-Analytics/images/system-diagram.png)
 
 ### System Design Overview
 
