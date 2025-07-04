@@ -3,7 +3,7 @@ image: /projects/venvutil/images/Conjuring-VenvUtil.png
 title: "Getting Started with VenvUtil: Python Virtual Environment Management"
 layout: post
 redirect_from:
-  - /projects/venvutil/2025/04/24/venvutil-introduction/
+  - /projects/venvutil/2025/04/24/Getting-Started-With-VenvUtil/
 date: "2025-04-24"
 category: venvutil
 tags: [introduction, overview]
