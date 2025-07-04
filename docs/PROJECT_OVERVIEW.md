@@ -245,6 +245,10 @@ docs/
 - **Monitoring**: Check [utils/log/](../utils/log/) for system logs
 - **Configuration**: Review [utils/etc/](../utils/etc/) for settings
 
+## Deployment Branches (Summary)
+
+For details on how GitHub Pages deployment branches work (including `gh-pages` and best practices), see [Site Operations Guide](guides/site-operations.md#github-pages-deployment-branches).
+
 ---
 
 *Last Updated: July 2025*

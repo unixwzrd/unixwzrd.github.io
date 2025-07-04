@@ -9,7 +9,9 @@ category: venvutil
 tags: [introduction, overview]
 draft: false
 published: true
-excerpt: "Managing Python virtual environments sounds simple - until your projects grow, your dependencies tangle, and suddenly you're knee-deep in broken builds and lost environments."
+excerpt: "Managing Python virtual environments sounds simple - until your projects grow, your dependencies tangle, and suddenly you're knee-deep in broken builds and lost environments.
+
+**Venvutil** started as a small set of Bash scripts to make managing virtual environments a little less painful. It has since evolved into a powerful toolkit that handles everything from creating, activating, and cloning environments to logging every change and enabling full environment rollbacks - all without leaving your shell."
 ---
 
 Managing Python virtual environments sounds simple - until your projects grow, your dependencies tangle, and suddenly you're knee-deep in broken builds and lost environments.
