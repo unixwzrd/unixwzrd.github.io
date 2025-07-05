@@ -3,7 +3,7 @@ image: /assets/images/default-og-image.png
 layout: post
 title: "Introducing LogGPT ChatGPT Chatlog Export"
 redirect_from:
-  - /projects/LogGPT/2025/03/10/Submitted-to-the-Apple-App-Store/
+  - /projects/LogGPT/2025/02/23/Submitted-to-the-Apple-App-Store/
 date: "2025-02-23"
 category: LogGPT
 tags: [introduction, overview]

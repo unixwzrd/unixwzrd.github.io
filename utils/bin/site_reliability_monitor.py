@@ -140,7 +140,7 @@ class SiteReliabilityMonitor:
                 'link_metrics': {}
             },
             'deployment': {
-                'check_delay_minutes': 10,
+                'check_delay_minutes': 1,
                 'max_deployment_time': 15
             }
         }
@@ -928,14 +928,10 @@ class SiteReliabilityMonitor:
             return False
 
     def post_commit_verification(self, commit_hash: str = None) -> bool:
-        """Verify site after a commit with delay for deployment."""
+        """Verify site after a commit."""
         logger.info("   🚀 Starting post-commit verification...")
 
-        delay_minutes = self.config['deployment']['check_delay_minutes']
-        logger.info(f"   ⏳ Waiting {delay_minutes} minutes for deployment...")
-        time.sleep(delay_minutes * 60)
-
-        # Run health checks
+        # Run health checks immediately (deployment is already complete)
         success = self.run_health_checks()
 
         if success:

@@ -196,6 +196,9 @@ jobs:
   post-deployment-health-check:
     runs-on: ubuntu-latest
     if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push'
+    concurrency:
+      group: "post-deployment-health-check"
+      cancel-in-progress: true
 
     steps:
     - name: Checkout repository
@@ -219,10 +222,10 @@ jobs:
         mkdir -p utils/log
         mkdir -p utils/etc
 
-    - name: Wait for deployment
+    - name: Wait for deployment propagation
       run: |
-        echo "⏳ Waiting 2 minutes for deployment to complete..."
-        sleep 120
+        echo "⏳ Waiting 30 seconds for deployment to propagate..."
+        sleep 30
 
     - name: Run post-deployment health check
       id: post-deployment
