@@ -28,7 +28,7 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('utils/etc/site_monitor.log'),
+        logging.FileHandler('utils/log/site_monitor.log'),
         logging.StreamHandler()
     ]
 )

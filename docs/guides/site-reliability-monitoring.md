@@ -251,7 +251,7 @@ monitor.add_health_check(my_custom_check, "Custom Check Name", critical=True)
 ## Logging
 
 All monitoring activity is logged to:
-- **File**: `utils/etc/site_monitor.log`
+- **File**: `utils/log/site_monitor.log`
 - **Console**: Real-time output during execution
 
 Log levels:
