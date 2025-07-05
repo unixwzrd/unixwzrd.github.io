@@ -24,14 +24,12 @@ jobs:
 
       - name: Clean old site and cache
         run: |
-          rm -rf _site .jekyll-cache
+          rm -rf _site
+          rm -rf html/.jekyll-cache
 
       - name: Build with Jekyll
         run: |
-          bundle exec jekyll doctor
-          bundle exec jekyll build
-        env:
-          JEKYLL_ENV: production
+          JEKYLL_ENV=production bundle exec jekyll build --trace --verbose
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
