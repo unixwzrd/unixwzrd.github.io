@@ -22,6 +22,10 @@ jobs:
           ruby-version: '3.3'
           bundler-cache: true
 
+      - name: Clean old site and cache
+        run: |
+          rm -rf _site .jekyll-cache
+
       - name: Build with Jekyll
         run: |
           bundle exec jekyll doctor
