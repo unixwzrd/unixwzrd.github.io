@@ -18,7 +18,7 @@ from datetime import datetime
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from pathlib import Path
-from typing import Dict, Tuple
+from typing import Dict, Tuple, List
 import json
 import logging
 import yaml
@@ -37,6 +37,7 @@ logger = logging.getLogger(__name__)
 
 class SiteReliabilityMonitor:
     def __init__(self, config_file: str = "utils/etc/site_monitor_config.json", local_mode: bool = False, verbose: bool = False):
+        self.verbose = verbose
         self.config_file = Path(config_file)
         self.config = self._load_config()
         self.local_mode = local_mode
@@ -59,16 +60,128 @@ class SiteReliabilityMonitor:
         if self.verbose:
             logger.info(f"   🎯 Testing site: {self.site_url}")
 
+    def _discover_critical_pages(self) -> List[str]:
+        """Auto-discover critical pages from Jekyll file structure."""
+        critical_pages = set()
+
+        # Always include core pages
+        core_pages = ['/', '/blog/', '/projects/', '/about/', '/contact/']
+        critical_pages.update(core_pages)
+
+        try:
+            # Discover main pages from html/ directory
+            html_dir = Path('html')
+            if html_dir.exists():
+                # Find all .md files that could be pages
+                for md_file in html_dir.glob('*.md'):
+                    if md_file.stem not in ['index', '404']:  # Skip index and 404
+                        page_path = f"/{md_file.stem}/"
+                        critical_pages.add(page_path)
+
+                # Discover project pages
+                projects_dir = html_dir / 'projects'
+                if projects_dir.exists():
+                    for project_dir in projects_dir.iterdir():
+                        if project_dir.is_dir():
+                            project_name = project_dir.name
+                            # Add project main page
+                            critical_pages.add(f"/projects/{project_name}/")
+
+                            # Add project posts
+                            posts_dir = project_dir / '_posts'
+                            if posts_dir.exists():
+                                for post_file in posts_dir.glob('*.md'):
+                                    if post_file.stem.startswith('20'):  # Date-based posts
+                                        # Extract date and title from filename
+                                        # Format: YYYY-MM-DD-title.md
+                                        parts = post_file.stem.split('-', 3)
+                                        if len(parts) >= 4:
+                                            year, month, day, title = parts[0], parts[1], parts[2], parts[3]
+                                            # Generate the expected URL based on Jekyll permalink structure
+                                            # This matches the case_preserving_permalinks.rb plugin format
+                                            post_url = f"/projects/{project_name}/{year}/{month}/{day}/{title}/"
+                                            critical_pages.add(post_url)
+
+                # Discover general blog posts
+                posts_dir = html_dir / '_posts'
+                if posts_dir.exists():
+                    for post_file in posts_dir.glob('*.md'):
+                        if post_file.stem.startswith('20'):  # Date-based posts
+                            parts = post_file.stem.split('-', 3)
+                            if len(parts) >= 4:
+                                year, month, day, title = parts[0], parts[1], parts[2], parts[3]
+                                post_url = f"/{year}/{month}/{day}/{title}/"
+                                critical_pages.add(post_url)
+
+            # Convert to sorted list
+            return sorted(list(critical_pages))
+
+        except Exception as e:
+            logger.warning(f"⚠️ Error discovering critical pages: {e}")
+            # Fall back to core pages only
+            return sorted(core_pages)
+
     def _load_config(self) -> Dict:
-        """Load configuration from JSON file."""
+        """Load configuration from JSON file with auto-discovery of critical pages."""
         if self.config_file.exists():
             try:
                 with open(self.config_file, 'r') as f:
                     config = json.load(f)
 
-                # Sort critical pages for consistency
-                if 'health_checks' in config and 'critical_pages' in config['health_checks']:
-                    config['health_checks']['critical_pages'].sort()
+                # Auto-discover critical pages and merge with existing ones
+                discovered_pages = self._discover_critical_pages()
+
+                # Get existing critical pages from config
+                existing_pages = config.get('health_checks', {}).get('critical_pages', [])
+
+                # Find stale pages (existing pages that are no longer in the file system)
+                stale_pages = set(existing_pages) - set(discovered_pages)
+
+                # Merge discovered pages with existing ones (preserve any manually added ones)
+                all_pages = set(existing_pages + discovered_pages)
+                config['health_checks']['critical_pages'] = sorted(list(all_pages))
+
+                # Log stale pages for cleanup
+                if stale_pages and self.verbose:
+                    logger.warning(f"   🧹 Found {len(stale_pages)} stale pages that may need cleanup:")
+                    for page in sorted(stale_pages):
+                        logger.warning(f"      📄 Stale: {page}")
+
+                # Auto-cleanup stale pages (remove pages that no longer exist in file system)
+                if stale_pages:
+                    # Only remove pages that are clearly auto-generated (not manually added)
+                    auto_generated_patterns = [
+                        r'^/\d{4}/\d{2}/\d{2}/',  # Date-based blog posts
+                        r'^/projects/[^/]+/\d{4}/\d{2}/\d{2}/',  # Date-based project posts
+                    ]
+
+                    import re
+                    pages_to_remove = []
+                    for page in stale_pages:
+                        if any(re.match(pattern, page) for pattern in auto_generated_patterns):
+                            pages_to_remove.append(page)
+
+                    if pages_to_remove:
+                        config['health_checks']['critical_pages'] = [
+                            page for page in config['health_checks']['critical_pages']
+                            if page not in pages_to_remove
+                        ]
+                        if self.verbose:
+                            logger.info(f"   🧹 Auto-removed {len(pages_to_remove)} stale auto-generated pages")
+                            for page in pages_to_remove:
+                                logger.info(f"      🗑️ Removed: {page}")
+
+                # Log discovery results
+                if self.verbose:
+                    logger.info(f"   🔍 Auto-discovered {len(discovered_pages)} critical pages")
+                    logger.info(f"   📋 Total critical pages: {len(config['health_checks']['critical_pages'])}")
+                    if discovered_pages:
+                        logger.info(f"   📄 New pages: {', '.join(discovered_pages)}")
+
+                # Auto-save updated configuration if new pages were discovered
+                if discovered_pages:
+                    logger.info(f"   💾 Auto-saving updated configuration with {len(discovered_pages)} new pages")
+                    self._save_config(config)
 
                 # Ensure external_links config exists with all required fields
                 if 'external_links' not in config:

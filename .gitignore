@@ -549,7 +549,6 @@ zsdoc/data
 # Ignore project planning directory
 *.grc
 *.pid
-*/etc/
 .cursor/
 .master-planning
 .master-planning/
@@ -567,5 +566,4 @@ utils/output
 _previews
 _site/
 .project-core/
-utils/etc/
 bashexpsh*.txt
