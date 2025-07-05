@@ -20,7 +20,7 @@ text_files=""
 for file in $all_changed_files; do
     # Skip binary files and certain directories
     if [[ "$file" =~ \.(md|txt|py|sh|yml|yaml|json|html|css|scss|js|rb)$ ]] && \
-       [[ ! "$file" =~ ^(_site|.git|node_modules|vendor)/ ]] && \
+       [[ ! "$file" =~ ^(_site|node_modules|vendor)/ ]] && \
        [ -f "$file" ]; then
         text_files="$text_files $file"
     fi
