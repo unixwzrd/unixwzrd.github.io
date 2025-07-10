@@ -7,6 +7,14 @@ projects:
   page_url: /projects/Case-Analytics/
   title: Case Analytics
   visibility: private
+- description: "Parental Alienation Awareness: A data-driven look at the scope, impact,\
+    \ and damage to children, families, and society."
+  image_url: /assets/images/projects/PA-devastation-1.png
+  name: PA-Awareness-1
+  owner: unixwzrd
+  page_url: /projects/PA-Awareness-1/
+  title: Parental Alienation Awareness
+  visibility: private
 - description: "LogGPT - Safari ChatGPT Chat Log Export Extension, a lightweight method\
     \ of exporting entire ChatGPT conversations in JSON format. - unixwzrd/LogGPT"
   image_url: /assets/images/projects/LogGPT.png

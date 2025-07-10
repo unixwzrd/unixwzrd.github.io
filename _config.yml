@@ -20,6 +20,8 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
+
+
 title: Distributed Thinking Systems
 description: >-
   Distributed Thinking Systems: Innovating AI, machine learning, and
@@ -113,6 +115,9 @@ tagline: "Mostly computing on and off."
 page_excerpts: false
 excerpt_separator: "<!--more-->"
 show_excerpts: true
+excerpt_word_limit: 50
+site_blogs_count: 10
+project_blog_count: 5
 
 # SEO specific settings
 title_separator: "|"

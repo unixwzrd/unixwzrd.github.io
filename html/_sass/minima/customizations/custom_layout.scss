@@ -333,6 +333,40 @@
   }
 }
 
+// Blog Pagination Controls
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+  margin: 2rem 0 2rem 0;
+}
+
+.page-info {
+  font-size: 1.1rem;
+  color: #fff;
+  letter-spacing: 0.03em;
+}
+
+.pagination-btn {
+  background: #222;
+  color: #fff;
+  border: 1px solid #555;
+  border-radius: 6px;
+  padding: 0.4em 1.2em;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+}
+
+.pagination-btn:hover,
+.pagination-btn:focus {
+  background: #fff;
+  color: #111;
+  border: 1px solid #fff;
+  outline: none;
+}
+
 /**
  * Grid helpers
  */
@@ -352,7 +386,7 @@
 
   .join-us-section {
     margin-bottom: 1.5rem;
-    
+
     h3 {
       margin-top: 0;
       margin-bottom: 1rem;

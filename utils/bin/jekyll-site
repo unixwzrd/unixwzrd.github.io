@@ -82,8 +82,9 @@ start_service() {
     # Jekyll serve flags - easily configurable
     local serve_flags="--host 0.0.0.0 --port 4000 --trace"
     # Note: Directory listings are disabled by default in Jekyll
+    # Set environment to development to enable draft posts and other dev features
     
-    cd "${BASE_DIR}" && bundle exec jekyll serve $serve_flags &
+    cd "${BASE_DIR}" && JEKYLL_ENV=development bundle exec jekyll serve $serve_flags &
     echo $! > "$pid_file"
     echo "Jekyll server started (PID: $(cat "$pid_file"))"
     echo "Serve flags: $serve_flags"

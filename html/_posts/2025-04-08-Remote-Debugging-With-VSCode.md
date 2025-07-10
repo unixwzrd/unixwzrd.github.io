@@ -1,4 +1,5 @@
 ---
+excerpt: "## How to Debug Remotely with VSCode"
 image: /assets/images/vibing-remote-debugging.png
 layout: post
 title: "Remote Debugger With VSCode and Its Derivatives"
@@ -7,12 +8,12 @@ redirect_from:
 date: 2025-04-08 17:30:00 -0500
 categories: [coding, ai, blog]
 tags: [debugging, vscode, remote, python]
-excerpt: "!Vibing on the Remote – Debugging Python Remotely"
 ---
+excerpt: "## How to Debug Remotely with VSCode"
 
 ## How to Debug Remotely with VSCode
 
-Recently, someone asked how to connect to a remote process and debug it. If you’re using VSCode—or any of its forks such as Cursor or Windsurf—the following method can save you hours of troubleshooting compared to relying on log files or print statements. A proper debugger lets you inspect variables, step through code, and quickly identify issues. Here’s how I set up remote debugging.
+Recently, someone asked how to connect to a remote process and debug it. If you're using VSCode-or any of its forks such as Cursor or Windsurf-the following method can save you hours of troubleshooting compared to relying on log files or print statements. A proper debugger lets you inspect variables, step through code, and quickly identify issues. Here's how I set up remote debugging.
 
 ## The Setup
 
@@ -79,7 +80,7 @@ if args.remote_debug:
 ### Running the Debugger
 
 1.	Start your Python application on the remote host (or locally under a different user).
-2.	In VSCode, go to the “Run and Debug” view and select your “Python: Attach to Process” configuration.
+2.	In VSCode, go to the "Run and Debug" view and select your "Python: Attach to Process" configuration.
 3.	Press the run button in VSCode.
 4.	The remote process will block at debugpy.wait_for_client() until VSCode attaches.
 5.	Once attached, your code continues execution, and you can begin interactive debugging.
@@ -90,7 +91,7 @@ Keep in mind that exposing a debug server can be a significant security risk:
 - Restrict Network Access:
 In a secure environment, bind the debug server only to localhost or use SSH tunneling.
 - Disable Debugging When Not Needed:
-Always disable remote debugging when it’s not actively required for troubleshooting.
+Always disable remote debugging when it's not actively required for troubleshooting.
 - Use a Non-Default Port:
 If necessary, choose a port that is not commonly targeted.
 
@@ -104,7 +105,7 @@ Increase your debugger or application log level for more detailed diagnostics if
 
 ## Why Remote Debugging?
 
-Remote debugging provides an interactive, real-time view into your application’s state. Rather than sifting through log files or inserting temporary print statements, a debugger lets you:
+Remote debugging provides an interactive, real-time view into your application's state. Rather than sifting through log files or inserting temporary print statements, a debugger lets you:
 - Step through your code.
 - Inspect variables.
 - Evaluate expressions on the fly.
@@ -118,7 +119,7 @@ Further Resources
 I hope this guide helps you set up a more efficient and effective remote debugging workflow using VSCode or its variants. Happy debugging!
 
 
-## Additional Information 
+## Additional Information
 
 1. Security Considerations
 
@@ -136,7 +137,7 @@ Emphasize that remote debugging should only be enabled when needed for troublesh
 
 2. More Detailed Explanation of pathMappings
 
-Many users might not be familiar with pathMappings in the launch.json. You could explain how localRoot and remoteRoot work—i.e. that they help map the file system structure between the remote host and your local development environment, ensuring breakpoints are placed in the correct files.
+Many users might not be familiar with pathMappings in the launch.json. You could explain how localRoot and remoteRoot work-i.e. that they help map the file system structure between the remote host and your local development environment, ensuring breakpoints are placed in the correct files.
 
 3. Troubleshooting Tips
 

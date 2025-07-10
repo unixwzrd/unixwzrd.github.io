@@ -16,18 +16,4 @@ A platform for insights, updates, and discussions on **AI, parental alienation, 
 - **AI & Technology in Family Law**: How AI detects communication patterns linked to alienation, updates on our Case-Analytics project, and ethical considerations.
 - **Community & Advocacy**: Resources, policy discussions, and opportunities for collaboration.
 
-
-<ul class="post-list">
-  {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-  {%- for post in site.posts -%}
-    <li>
-      <span class="post-meta">{{ post.date | date: date_format }}</span>
-      <h3>
-        <a class="post-link" href="{{ post.url | relative_url }}">
-          {{ post.title | escape }}
-        </a>
-      </h3>
-      {{ post.excerpt }}
-    </li>
-  {%- endfor -%}
-</ul>
+{% include blog_list.html %}

@@ -47,6 +47,7 @@ Of these tools, I personally use Cursor adn Windsurf. If I had to pick a best be
 
 ### Speech to Text
 - [AssemblyAI](https://www.assemblyai.com/) - Speech to text. The best Speech to Text generation and more. I use this product for audio transcription for analyzing interpersonal dynamics to detect signs of parental alienation.
+- [Willow Voice](https://willowvoice.com/?ref=MSULLIVAN1) - Lightning-fast speech-to-text with advanced spelling, grammar, and a self-learning dictionary. Integrates with any app, pairs great with Cursor and Windsurf. Free month of Pro with my link; free trial available-give it a spin!
 
 ### Training and Tuning
 - [Kaggle](https://www.kaggle.com/) - A great resource for large data sets. They also have contests and challenges to help you learn and build your skills. Use thenm with Weights and Biases too!
@@ -65,7 +66,7 @@ Of these tools, I personally use Cursor adn Windsurf. If I had to pick a best be
 - [Parental Alienation Awareness…](https://paawareness.co.uk/) Supporting survivors, raising awareness, reducing isolation
 
 ### Other Support Groups and People
-- [KAREN WOODALL –](https://karenwoodall.blog/) Psychotherapist, Writer, Researcher, Trainer
+- [KAREN WOODALL -](https://karenwoodall.blog/) Psychotherapist, Writer, Researcher, Trainer
 - [It's Almost Tuesday](https://itsalmosttuesday.com/) A blog about parental alienation and other family law issues run my [Molly Hayes](https://www.amazon.com/stores/Molly-Hayes/author/B0D9XNC1CV) who also has a book out she collaborated on available on Amazon - [Building Bridges of Hope: Overcoming Trauma in the Family Court System](https://www.amazon.com/Building-Bridges-Hope-Overcoming-Trauma/dp/B0D9RDG2D2/)
 
 <br>

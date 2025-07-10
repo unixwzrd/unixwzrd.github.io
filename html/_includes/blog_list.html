@@ -7,53 +7,146 @@ Parameters:
 Blog Entries" for project blogs.
 {% endcomment %}
 
-<section class="blog-list-section">
-    <div class="blog-list-heading">
-            {% if include.category %}
-                <h2>Project Blog Entries</h2>
-            {% else %}
-                <h2>Blog Entries</h2>
-            {% endif %}
-    </div>
+{% if include.category %}
+    <h2>Project Blog Entries</h2>
+{% else %}
+    <h2>Blog Entries</h2>
+{% endif %}
 
-    <div class="blog-list">
-        {% if include.category %}
-            <!-- Project blog listing -->
+<ul class="post-list">
+    {% if include.category %}
+        <!-- Project blog listing -->
+        {% if jekyll.environment == "development" %}
+            <!-- In development: include all posts in category, including drafts -->
             {% assign posts_to_show = site.categories[include.category] %}
         {% else %}
-            <!-- General blog listing (excluding project blogs) -->
-            {% assign non_project_posts = '' | split: '' %}
-            {% for post in site.posts %}
-                {% unless post.url contains '/projects/' or post.url contains 'projects/' %}
-                    {% assign non_project_posts = non_project_posts | push: post %}
+            <!-- In production: exclude draft posts -->
+            {% assign posts_to_show = '' | split: '' %}
+            {% for post in site.categories[include.category] %}
+                {% unless post.draft %}
+                    {% assign posts_to_show = posts_to_show | push: post %}
                 {% endunless %}
             {% endfor %}
-            {% assign posts_to_show = non_project_posts %}
         {% endif %}
-
-        {% if posts_to_show.size > 0 %}
-            {% for post in posts_to_show %}
-            <article class="post">
-                <h3>
-                    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-                </h3>
-                <span class="post-date">{{ post.date | date: "%B %d, %Y" }}</span>
-
-                {% if post.content contains '<!--more-->' %}
-                    {% assign excerpt_text = post.content | split: '<!--more-->' | first %}
-                {% else %}
-                    {% assign excerpt_text = post.content %}
-                {% endif %}
-
-                <div class="post-excerpt">
-                    {{ excerpt_text | truncatewords: 50 | markdownify | process_heading }}
-                </div>
-
-                <a href="{{ post.url | relative_url }}" class="read-more">Read More...</a>
-            </article>
+    {% else %}
+        <!-- General blog listing (including ALL posts) -->
+        {% if jekyll.environment == "development" %}
+            <!-- Include all posts in development (but exclude _drafts directory) -->
+            {% assign posts_to_show = '' | split: '' %}
+            {% for post in site.posts %}
+                {% unless post.url contains '/_drafts/' or post.url contains '_drafts/' %}
+                    {% assign posts_to_show = posts_to_show | push: post %}
+                {% endunless %}
             {% endfor %}
         {% else %}
-            <p>No blog entries yet. Check back soon for updates!</p>
+            <!-- Exclude draft posts in production -->
+            {% assign posts_to_show = '' | split: '' %}
+            {% for post in site.posts %}
+                {% unless post.draft %}
+                    {% assign posts_to_show = posts_to_show | push: post %}
+                {% endunless %}
+            {% endfor %}
         {% endif %}
-    </div>
-</section>
+    {% endif %}
+
+    {% if posts_to_show.size > 0 %}
+        {% if include.category %}
+            {% assign max_posts = page.project_blog_count | default: site.project_blog_count %}
+        {% else %}
+            {% assign max_posts = page.site_blogs_count | default: site.site_blogs_count %}
+        {% endif %}
+
+        {% assign total_pages = posts_to_show.size | divided_by: max_posts | ceil %}
+
+        <div class="blog-pagination-container" data-posts-per-page="{{ max_posts }}" data-total-pages="{{ total_pages }}">
+            {% for post in posts_to_show %}
+            <div class="blog-post-item" data-post-index="{{ forloop.index0 }}">
+                <li>
+                    <span class="post-meta">{{ post.date | date: "%B %-d, %Y" }}</span>
+                    <h3>
+                        <a class="post-link" href="{{ post.url | relative_url }}">
+                            {{ post.title | escape }}
+                        </a>
+                    </h3>
+                    <div class="post-excerpt">
+                        {{ post.content | strip_images | truncatewords: site.excerpt_word_limit | markdownify | process_heading }}
+                    </div>
+                </li>
+            </div>
+            {% endfor %}
+
+            <!-- Pagination -->
+            {% if total_pages > 1 %}
+            <div class="pagination">
+                <button class="pagination-btn prev-btn" onclick="changePage(-1)" style="display: none;">← Previous</button>
+                <span class="page-info">Page <span id="current-page">1</span> of {{ total_pages }}</span>
+                <button class="pagination-btn next-btn" onclick="changePage(1)">Next →</button>
+            </div>
+            {% endif %}
+        </div>
+
+        <script>
+        let currentPage = 1;
+        const postsPerPage = {{ max_posts }};
+        const totalPages = {{ total_pages }};
+
+        function showPage(pageNum) {
+            const container = document.querySelector('.blog-pagination-container');
+            const posts = container.querySelectorAll('.blog-post-item');
+            const startIndex = (pageNum - 1) * postsPerPage;
+            const endIndex = startIndex + postsPerPage;
+
+            posts.forEach((post, index) => {
+                if (index >= startIndex && index < endIndex) {
+                    post.style.display = 'block';
+                } else {
+                    post.style.display = 'none';
+                }
+            });
+
+            document.getElementById('current-page').textContent = pageNum;
+
+            // Show/hide pagination buttons
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+
+            if (pageNum === 1) {
+                prevBtn.style.display = 'none';
+            } else {
+                prevBtn.style.display = 'inline-block';
+            }
+
+            if (pageNum === totalPages) {
+                nextBtn.style.display = 'none';
+            } else {
+                nextBtn.style.display = 'inline-block';
+            }
+
+            // Update URL without reloading
+            const url = new URL(window.location);
+            url.searchParams.set('page', pageNum);
+            window.history.pushState({}, '', url);
+        }
+
+        function changePage(delta) {
+            const newPage = currentPage + delta;
+            if (newPage >= 1 && newPage <= totalPages) {
+                currentPage = newPage;
+                showPage(currentPage);
+            }
+        }
+
+        // Initialize pagination
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const pageParam = urlParams.get('page');
+            if (pageParam) {
+                currentPage = parseInt(pageParam);
+            }
+            showPage(currentPage);
+        });
+        </script>
+    {% else %}
+        <p>No blog entries yet. Check back soon for updates!</p>
+    {% endif %}
+</ul>

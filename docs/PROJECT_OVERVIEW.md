@@ -67,7 +67,7 @@ A Jekyll-based website showcasing AI projects, technical content, and resources 
   - Summary counts and verbose mode
   - Early exit logic for site downtime
   - Smart 404 page handling
-- **Documentation**: [docs/guides/site-reliability-monitoring.md](guides/site-reliability-monitoring.md)
+- **Documentation**: [docs/guides/monitoring.md](guides/monitoring.md)
 
 #### 5. **Service Management System**
 - **Status**: ✅ Production Ready

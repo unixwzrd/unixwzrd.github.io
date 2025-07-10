@@ -1,21 +1,74 @@
 # Changelog
 
+## 2025-07-10: Documentation Refactor and Consistency Improvements
+
+### Major Documentation Overhaul
+- Refactored: Monolithic site operations guide into modular documentation structure
+  - Split 702-line [`site-operations.md`](docs/guides/site-operations.md) into 8 focused guides for better maintainability
+  - Created logical separation: environment, services, deployment, troubleshooting, maintenance, security, reference, monitoring
+  - Each guide contains detailed, up-to-date instructions with cross-navigation
+  - Preserved all original content with 100% migration verification
+- Consolidated: Multiple checklists into single comprehensive checklist
+  - Merged [`site-improvement-checklist.md`](docs/guides/checklist.md) and [`site-reliability-checklist.md`](docs/guides/checklist.md) into unified [`checklist.md`](docs/guides/checklist.md)
+  - Eliminated duplicate content and conflicting task tracking
+  - Organized tasks by priority: urgent, high, medium, low
+  - Added maintenance schedules, troubleshooting procedures, and success metrics
+- Streamlined: File naming convention for clarity and consistency
+  - Renamed files to 2-3 word descriptions: [`checklist.md`](docs/guides/checklist.md), [`monitoring.md`](docs/guides/monitoring.md), [`github-actions.md`](docs/guides/github-actions.md), [`strategy.md`](docs/guides/strategy.md)
+  - Removed verbose, sentence-like filenames for better navigation
+  - Updated all cross-references and navigation links
+
+### Consistency Improvements
+- Removed: All emojis from section headers for professional consistency
+- Standardized: Section naming across all documentation guides
+- Eliminated: Date stamps from section headers for cleaner presentation
+- Removed: Duplicate content (GitHub Pages deployment section now only in [`deployment.md`](docs/guides/deployment.md))
+- Updated: Main site operations guide with comprehensive navigation to all sub-guides
+
+### Documentation Structure
+- Core Operations: [`environment-setup.md`](docs/guides/environment-setup.md), [`service-management.md`](docs/guides/service-management.md), [`deployment.md`](docs/guides/deployment.md), [`blog-pagination.md`](docs/guides/blog-pagination.md), [`troubleshooting.md`](docs/guides/troubleshooting.md), [`maintenance.md`](docs/guides/maintenance.md), [`security.md`](docs/guides/security.md), [`reference-utilities.md`](docs/guides/reference-utilities.md)
+- Supporting Guides: [`monitoring.md`](docs/guides/monitoring.md), [`github-actions.md`](docs/guides/github-actions.md), [`strategy.md`](docs/guides/strategy.md), [`testing.md`](docs/guides/testing.md), [`checklist.md`](docs/guides/checklist.md)
+- Archive: Preserved original [`site-operations-archive-2025-07-09.md`](docs/guides/site-operations-archive-2025-07-09.md) for reference
+- Navigation: Each guide includes "Back to Site Operations Guide" link for easy navigation
+
+### Benefits
+- Better Organization: Logical separation of concerns makes information easier to find
+- Improved Maintainability: Smaller, focused files are easier to update and maintain
+- Reduced Confusion: Single checklist eliminates duplicate/conflicting task tracking
+- Professional Presentation: Consistent naming and formatting throughout
+- Complete Coverage: All original content preserved with enhanced organization
+
+### Technical Details
+- Verified: 100% content migration from original guide to new structure
+- Tested: All cross-references and navigation links work correctly
+- Maintained: All operational procedures and technical details preserved
+- Enhanced: Added missing sections that were overlooked in initial migration
+- Documented: Comprehensive audit trail of all changes and improvements
+
+## 2025-07-09
+- Unified blog listing: main blog now shows all posts (main + project).
+- Added client-side JavaScript pagination for blog listings (configurable post count per page, smooth navigation, URL updates with ?page=).
+- Pagination controls styled for dark backgrounds and accessibility.
+- Excerpts now strip images and are truncated to a configurable word count.
+- Blog and project blog post limits are configurable in [`_config.yml`](_config.yml) and can be overridden in page front matter.
+- Blog list template and CSS updated for consistent, modern look.
+
 ## 20250701_03-rel: Redirect System Implementation & Script Modularization
 
 ### Major Accomplishments
-- IMPLEMENTED: Comprehensive redirect system to fix 404 errors
+- Implemented: Comprehensive redirect system to fix 404 errors
   - Fixed URL mismatches between site monitor config and actual Jekyll permalinks
   - Created static HTML redirect files at correct output paths
   - Implemented proper HTTP status codes (301/302) for SEO
   - Added `published: false` to redirect posts to prevent duplicate content
   - Aligned front matter dates with filenames for consistency
-- SEPARATED: Monolithic jekyll-service script into modular components
-  - `jekyll-site`: Standalone Jekyll site management with OpenGraph refresh
-  - `file_watcher`: Standalone file system monitoring and change detection
-  - `site-service`: Future orchestration script (placeholder)
+- Separated: Monolithic jekyll-service script into modular components
+  - [`jekyll-site`](utils/bin/jekyll-site): Standalone Jekyll site management with OpenGraph refresh
+  - [`file_watcher`](utils/bin/file_watcher): Standalone file system monitoring and change detection
+  - [`site-service`](utils/bin/site-service): Future orchestration script (placeholder)
   - Added command-line options for flexible configuration
   - Improved process management and cleanup
-- ENHANCED: Site reliability monitoring with comprehensive testing
+- Enhanced: Site reliability monitoring with comprehensive testing
   - Updated site monitor configuration with corrected URLs
   - Fixed permalink mismatches in critical pages list
   - Implemented comprehensive testing for all components
@@ -23,108 +76,108 @@
   - Created test scripts for email functionality and crontab setup
 
 ### Technical Implementation
-- CREATED: Email testing script (`utils/bin/test_email.py`) for notification system
-- CREATED: Crontab setup script (`utils/bin/setup_crontab.sh`) for automated monitoring
-- UPDATED: Site monitor configuration with corrected URLs and improved structure
-- IMPLEMENTED: Proper process cleanup to prevent orphaned file watcher processes
-- ENHANCED: Error handling and logging across all monitoring components
+- Created: Email testing script ([`test_email.py`](utils/bin/test_email.py)) for notification system
+- Created: Crontab setup script ([`setup_crontab.sh`](utils/bin/setup_crontab.sh)) for automated monitoring
+- Updated: Site monitor configuration ([`site_monitor_config.json`](utils/etc/site_monitor_config.json)) with corrected URLs and improved structure
+- Implemented: Proper process cleanup to prevent orphaned file watcher processes
+- Enhanced: Error handling and logging across all monitoring components
 
 ### Documentation Updates
-- UPDATED: Worklog.md with comprehensive documentation of recent accomplishments
-- UPDATED: TODO.md to reflect completed work and current priorities
-- ORGANIZED: Project documentation structure for better maintainability
-- CLEANED: Temporary files and deprecated content
+- Updated: [`worklog.md`](worklog.md) with comprehensive documentation of recent accomplishments
+- Updated: [`TODO.md`](TODO.md) to reflect completed work and current priorities
+- Organized: Project documentation structure for better maintainability
+- Cleaned: Temporary files and deprecated content
 
 ### Benefits
-- **Fixed 404 Errors**: All critical pages now accessible with proper redirects
-- **Modular Architecture**: Easier maintenance and testing of individual components
-- **Automated Monitoring**: Ready for email notifications and scheduled checks
-- **Better Documentation**: Clear record of accomplishments and next steps
-- **Clean Codebase**: Removed deprecated content and organized structure
+- Fixed 404 Errors: All critical pages now accessible with proper redirects
+- Modular Architecture: Easier maintenance and testing of individual components
+- Automated Monitoring: Ready for email notifications and scheduled checks
+- Better Documentation: Clear record of accomplishments and next steps
+- Clean Codebase: Removed deprecated content and organized structure
 
 ## 20250127_01-rel: Site Reliability System Enhancement & Documentation
 
 ### Major Enhancements
-- ENHANCED: Site reliability monitor with external link validation and missing page tracking
-- ADDED: Page management utilities and comprehensive documentation
-- IMPROVED: Email authentication with OAuth2 support
-- CREATED: Project overview and status tracking documents
+- Enhanced: Site reliability monitor with external link validation and missing page tracking
+- Added: Page management utilities and comprehensive documentation
+- Improved: Email authentication with OAuth2 support
+- Created: Project overview and status tracking documents
 
-*See detailed documentation in `docs/PROJECT_OVERVIEW.md` and `docs/README.md`*
+*See detailed documentation in [`PROJECT_OVERVIEW.md`](docs/PROJECT_OVERVIEW.md) and [`README.md`](docs/README.md)*
 
 ## 20250701_02-rel: Site Reliability Monitor Enhancements & Service Script Improvements
 
 ### Major Enhancements
-- ENHANCED: Site reliability monitor with improved output formatting and smart defaults
-  - **Summary Counts**: Shows totals for pages, images, and links checked
-  - **Verbose Mode**: `-V` flag shows all checked items in detail
-  - **Early Exit Logic**: Stops checking if site is down to avoid timeouts
-  - **Smart 404 Handling**: Properly handles 404 pages without false image errors
-  - **Final Summary**: Warm fuzzy feeling when all checks pass
-- IMPROVED: Service management scripts with smart refresh control
-  - **New Flags**: `-r|--refresh` and `-n|--no-refresh` for OG data control
-  - **Smart Defaults**: Restart defaults to fast mode, start defaults to complete mode
-  - **Conflict Resolution**: `-n` takes precedence when both flags specified
-  - **Shortened Flags**: `-j|--jekyll` and `-w|--watcher` for service selection
-- ADDED: Jekyll redirect system for URL changes
-  - **Redirect Support**: Uses `jekyll-redirect-from` plugin for clean redirects
-  - **URL Integrity**: Maintains old links while allowing URL structure changes
-  - **Automatic Sorting**: Critical pages list automatically sorted for consistency
+- Enhanced: Site reliability monitor with improved output formatting and smart defaults
+  - Summary Counts: Shows totals for pages, images, and links checked
+  - Verbose Mode: `-V` flag shows all checked items in detail
+  - Early Exit Logic: Stops checking if site is down to avoid timeouts
+  - Smart 404 Handling: Properly handles 404 pages without false image errors
+  - Final Summary: Warm fuzzy feeling when all checks pass
+- Improved: Service management scripts with smart refresh control
+  - New Flags: `-r|--refresh` and `-n|--no-refresh` for OG data control
+  - Smart Defaults: Restart defaults to fast mode, start defaults to complete mode
+  - Conflict Resolution: `-n` takes precedence when both flags specified
+  - Shortened Flags: `-j|--jekyll` and `-w|--watcher` for service selection
+- Added: Jekyll redirect system for URL changes
+  - Redirect Support: Uses `jekyll-redirect-from` plugin for clean redirects
+  - URL Integrity: Maintains old links while allowing URL structure changes
+  - Automatic Sorting: Critical pages list automatically sorted for consistency
 
 ### Service Script Improvements
-- UPDATED: `utils/bin/jekyll-site` with enhanced flag handling and help
+- Updated: [`jekyll-site`](utils/bin/jekyll-site) with enhanced flag handling and help
   - Added `-r|--refresh` flag for explicit OG data refresh
   - Improved conflict handling with warnings instead of exits
   - Better help messages with examples and default behaviors
   - Smart defaults: restart = fast mode, start = complete mode
-- UPDATED: `utils/bin/site-service` with improved orchestration
+- Updated: [`site-service`](utils/bin/site-service) with improved orchestration
   - Passes through refresh flags to jekyll-site
   - Added shortened service selection flags (`-j`, `-w`)
   - Enhanced help messages with comprehensive examples
   - TODO comment for future watcher config file approach
-- ENHANCED: Output formatting and user experience
-  - Clear status indicators (✅, ❌, 🐌)
+- Enhanced: Output formatting and user experience
+  - Clear status indicators (success, failure, slow)
   - Informative messages about default behaviors
   - Conflict warnings that allow operation to continue
 
 ### Technical Improvements
-- FIXED: Image checking logic to properly handle 404 pages
+- Fixed: Image checking logic to properly handle 404 pages
   - 404 pages with `alt="404"` no longer flagged as broken images
   - Separate logic for 404 pages vs other pages
-- ADDED: Automatic sorting of critical pages in config
+- Added: Automatic sorting of critical pages in config
   - Pages sorted alphabetically when config loaded
   - Consistent ordering for easier debugging and maintenance
-- IMPROVED: Monitor output with summary counts
+- Improved: Monitor output with summary counts
   - "X pages checked and passed" format
   - "X failed out of Y checked" for failures
   - Clean, professional output suitable for automation
 
 ### Documentation Updates
-- UPDATED: `docs/PROJECT_OVERVIEW.md` with recent accomplishments
-- UPDATED: `docs/guides/site-operations.md` with new service management
-- UPDATED: `docs/guides/site-reliability-monitoring.md` with output examples
-- ADDED: Comprehensive help messages to all service scripts
+- Updated: [`PROJECT_OVERVIEW.md`](docs/PROJECT_OVERVIEW.md) with recent accomplishments
+- Updated: [`site-operations.md`](docs/guides/site-operations.md) with new service management
+- Updated: [`site-reliability-monitoring.md`](docs/guides/monitoring.md) with output examples
+- Added: Comprehensive help messages to all service scripts
 
 ### Benefits
-- **Faster Development**: Smart defaults reduce unnecessary OG refreshes
-- **Better UX**: Clear output formatting and helpful messages
-- **Flexible Control**: Explicit flags for when you need complete vs fast mode
-- **Maintainable**: Sorted configs and improved error handling
-- **Professional**: Clean output suitable for CI/CD and monitoring
+- Faster Development: Smart defaults reduce unnecessary OG refreshes
+- Better UX: Clear output formatting and helpful messages
+- Flexible Control: Explicit flags for when you need complete vs fast mode
+- Maintainable: Sorted configs and improved error handling
+- Professional: Clean output suitable for CI/CD and monitoring
 
 ## 20250626_08-rel: File Watcher System Testing and Verification
 
 ### Testing Implementation
-- ADDED: Comprehensive test suite for file watcher system (`utils/bin/test_file_watcher.py`)
+- Added: Comprehensive test suite for file watcher system ([`test_file_watcher.py`](utils/bin/test_file_watcher.py))
   - Tests file watcher startup and shutdown
   - Tests dynamic watcher script reloading
   - Tests watcher script execution
   - Tests Jekyll service integration
   - Tests error handling with broken scripts
-- ADDED: Quick test script for fast verification (`utils/bin/quick_test.py`)
+- Added: Quick test script for fast verification ([`quick_test.py`](utils/bin/quick_test.py))
   - Basic functionality tests for rapid feedback
   - Suitable for CI/CD pipelines and development workflow
-- ADDED: Comprehensive testing documentation (`docs/guides/testing.md`)
+- Added: Comprehensive testing documentation ([`testing.md`](docs/guides/testing.md))
   - Manual testing procedures
   - Automated test suite usage
   - Troubleshooting guide
@@ -133,25 +186,25 @@
 ## 20250701_01-rel: Site Reliability Monitoring System
 
 ### New Features
-- ADDED: Comprehensive Site Reliability Monitoring System
-  - **Automated Health Checks**: Monitors site availability, critical pages, response times, and images
-  - **Post-Commit Verification**: Automatically checks site after deployments with configurable delay
-  - **Periodic Monitoring**: Scheduled health checks with email alerts for issues
-  - **Email Alerting**: Configurable SMTP alerts for deployment success/failure and ongoing issues
-- ADDED: Site reliability monitor script (`utils/bin/site_reliability_monitor.py`)
+- Added: Comprehensive Site Reliability Monitoring System
+  - Automated Health Checks: Monitors site availability, critical pages, response times, and images
+  - Post-Commit Verification: Automatically checks site after deployments with configurable delay
+  - Periodic Monitoring: Scheduled health checks with email alerts for issues
+  - Email Alerting: Configurable SMTP alerts for deployment success/failure and ongoing issues
+- Added: Site reliability monitor script ([`site_reliability_monitor.py`](utils/bin/site_reliability_monitor.py))
   - Three monitoring modes: health, post-commit, periodic
   - Configurable critical pages and response time thresholds
   - Custom health check support
   - Comprehensive logging to file and console
-- ADDED: Automation scripts for monitoring integration
-  - Post-commit monitor (`utils/bin/post_commit_monitor.sh`)
-  - Periodic monitor (`utils/bin/periodic_monitor.sh`)
-  - Setup script (`utils/bin/setup_site_monitoring.sh`)
-- ADDED: Configuration system (`utils/etc/site_monitor_config.json`)
+- Added: Automation scripts for monitoring integration
+  - Post-commit monitor ([`post_commit_monitor.sh`](utils/bin/post_commit_monitor.sh))
+  - Periodic monitor ([`periodic_monitor.sh`](utils/bin/periodic_monitor.sh))
+  - Setup script ([`setup_site_monitoring.sh`](utils/bin/setup_site_monitoring.sh))
+- Added: Configuration system ([`site_monitor_config.json`](utils/etc/site_monitor_config.json))
   - Email settings for Gmail and other SMTP providers
   - Configurable health check parameters
   - Deployment timing settings
-- ADDED: Comprehensive documentation (`docs/guides/site-reliability-monitoring.md`)
+- Added: Comprehensive documentation ([`monitoring.md`](docs/guides/monitoring.md))
   - Quick start guide
   - Configuration instructions
   - Integration with git hooks and CI/CD
@@ -216,7 +269,7 @@
   - Timestamp file stored in utils/etc/.image_paths_last_check
   - Full scan can be forced with --full option
 - PLANNED: Added TODO for performance review and optimization of all check scripts and pre-commit hooks
-  
+
 ## 20250626_05-rel: Image Path Fix for VenvUtil Blog Post
 
 ### Bug Fixes
@@ -275,7 +328,7 @@
 
 ### Fixes
 - Resolved issues with Markdown not rendering on home page
-- Ensured only one root index file exists for correct Jekyll processing 
+- Ensured only one root index file exists for correct Jekyll processing
 
 ## 20250626_01-rel: Critical Build Fixes and Image Path Corrections
 

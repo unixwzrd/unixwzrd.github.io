@@ -6,7 +6,6 @@ date: "2025-03-20"
 category: LogGPT
 tags: [update, apple-app-store, resubmission, development]
 published: true
-excerpt: "!App Logo"
 redirect_from:
   - /projects/LogGPT/2025/03/20/RE-Submitted-to-the-Apple-App-Stor/
 ---
@@ -44,7 +43,7 @@ I personally use this extension for:
 - Archiving conversations for future use.
 - **Splitting** exported files and uploading them into a new ChatGPT session to **continue conversations seamlessly** (I'll be writing more about that technique soon).
 
-![App Screenshot](http://localhost:4000/assets/images/projects/LogGPT/Screenshot%202025-03-19%20at%2016.56.28.png)
+![App Screenshot](/assets/images/projects/LogGPT/Screenshot%202025-03-19%20at%2016.56.28.png)
 
 ## **Used Just Today for AI Context Transfer**
 
