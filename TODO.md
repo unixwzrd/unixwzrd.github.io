@@ -22,7 +22,7 @@
 - [x] Standardize project directory structure
 - [x] Add pre-commit checks
 - [x] Update nokogiri for security
-- [x] Create documentation structure 
+- [x] Create documentation structure
 - [x] **Service Script Improvements**
   - [x] Enhanced Jekyll service script with better process management
   - [x] Added port conflict detection and automatic cleanup
@@ -198,6 +198,12 @@
 ### File Watcher System Enhancement
 - [ ] **Make file watcher configurable and centralized**
   - Create single configurable watcher instead of individual file watchers
+
+### Excerpt Processing Issues
+- [ ] **Fix image tags breaking excerpts in blog listings**
+  - Current `strip_images` filter enhanced to handle links but image tags still causing issues
+  - Need to investigate why image tags are still appearing in excerpts despite filter
+  - May need to adjust filter order or add additional processing steps
   - Add configuration file for watcher events and scripts
   - Support multiple event types (create, update, delete) per script
   - Ensure only one watcher process runs at a time
@@ -364,7 +370,7 @@
 - **Double threshold**: When failure count reaches 2x the critical threshold, consider auto-exclusion
 - **No-checklist**: Sites that consistently fail get moved to manual review list
 - **Ignore list**: Configurable list of sites to permanently exclude
-- **Smart escalation**: 
+- **Smart escalation**:
   - Regular failure → "INVESTIGATE!"
   - Critical threshold → "🚨 CRITICAL: INVESTIGATE IMMEDIATELY!"
   - Double threshold → Consider auto-exclusion
