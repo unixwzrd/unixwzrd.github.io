@@ -69,7 +69,11 @@ Blog Entries" for project blogs.
                         </a>
                     </h3>
                     <div class="post-excerpt">
-                        {{ post.content | strip_images | truncatewords: site.excerpt_word_limit | markdownify | process_heading }}
+                        {% if post.excerpt %}
+                            {{ post.excerpt | strip_images | markdownify | process_heading }}
+                        {% else %}
+                            {{ post.content | strip_images | truncatewords: site.excerpt_word_limit | markdownify | process_heading }}
+                        {% endif %}
                     </div>
                 </li>
             </div>

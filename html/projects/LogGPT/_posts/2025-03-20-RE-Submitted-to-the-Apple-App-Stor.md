@@ -1,4 +1,5 @@
 ---
+excerpt: "## UPDATE: [LogGPT Available Now on the Apple App Store Now!](https://apps.apple.com/us/app/loggpt/id6743342693)"
 image: /assets/images/projects/LogGPT/LogGPT.png
 layout: post
 title: "Submitted (Again) to the Apple App Store"
@@ -9,6 +10,7 @@ published: true
 redirect_from:
   - /projects/LogGPT/2025/03/20/RE-Submitted-to-the-Apple-App-Stor/
 ---
+excerpt: "## UPDATE: [LogGPT Available Now on the Apple App Store Now!](https://apps.apple.com/us/app/loggpt/id6743342693)"
 
 ## UPDATE: [LogGPT Available Now on the Apple App Store Now!](https://apps.apple.com/us/app/loggpt/id6743342693)
 

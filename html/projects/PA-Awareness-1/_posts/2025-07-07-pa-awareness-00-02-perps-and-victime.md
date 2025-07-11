@@ -9,7 +9,7 @@ parts: 7
 date: 2025-07-07
 published: true
 draft: true
-excerpt: " Common perpetrators: Parental alienation can be perpetrated by mothers or fathers - both genders engage in alienating behavior at comparable rates in modern samples. The stereotype of the vengeful divorced mother turning the kids against the father (which arose in the 1980s when mothers often had primary custody) is no longer the whole story. Dr. Richard Gardner, who first coined "Parental Alienation Syndrome," initially believed mothers were the alienators in 90% of cases, but he later revised that to 50/50 as societal roles shifted. Today's research consistently finds..."
+excerpt: 'Common perpetrators: Parental alienation can be perpetrated by mothers or fathers - both genders engage in alienating behavior at comparable rates in modern samples. The stereotype of the vengeful divorced mother turning the kids against the father (which arose in the 1980s when mothers often had primary custody) is no longer the whole story. Dr. Richard Gardner, who first coined "Parental Alienation Syndrome," initially believed mothers were the alienators in 90% of cases, but he later revised that to 50/50 as societal roles shifted. Today''s research consistently finds...'
 ---
 
 image:
