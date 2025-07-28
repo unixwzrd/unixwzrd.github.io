@@ -9,35 +9,45 @@
     <li class="breadcrumb-item">
       <a href="{{ '/' | relative_url }}" class="breadcrumb-link">Home</a>
     </li>
-    
-    {% comment %} Handle blog posts {% endcomment %}
-    {% if page.layout == 'post' %}
-      <li class="breadcrumb-item">
-        <a href="{{ '/blog/' | relative_url }}" class="breadcrumb-link">Blog</a>
-      </li>
-      {% if page.category %}
-        <li class="breadcrumb-item">
-          <a href="{{ '/blog/' | append: page.category | relative_url }}" class="breadcrumb-link">{{ page.category | capitalize }}</a>
-        </li>
-      {% endif %}
-      <li class="breadcrumb-item breadcrumb-current" aria-current="page">
-        {{ page.title }}
-      </li>
-    
-    {% comment %} Handle project pages {% endcomment %}
-    {% elsif page.url contains '/projects/' %}
+
+    {% comment %} Handle project blog posts (posts in projects/ProjectName/_posts/) {% endcomment %}
+    {% if page.layout == 'post' and page.url contains '/projects/' %}
       <li class="breadcrumb-item">
         <a href="{{ '/projects/' | relative_url }}" class="breadcrumb-link">Projects</a>
       </li>
       {% if page.category %}
         <li class="breadcrumb-item">
-          <a href="{{ '/projects/' | append: page.category | relative_url }}" class="breadcrumb-link">{{ page.category | capitalize }}</a>
+          <a href="{{ '/projects/' | append: page.category | append: '/' | relative_url }}" class="breadcrumb-link">{{ page.category | capitalize }}</a>
         </li>
       {% endif %}
       <li class="breadcrumb-item breadcrumb-current" aria-current="page">
         {{ page.title }}
       </li>
-    
+
+    {% comment %} Handle general blog posts (posts in _posts/) {% endcomment %}
+    {% elsif page.layout == 'post' %}
+      <li class="breadcrumb-item">
+        <a href="{{ '/blog/' | relative_url }}" class="breadcrumb-link">Blog</a>
+      </li>
+      <li class="breadcrumb-item breadcrumb-current" aria-current="page">
+        {{ page.title }}
+      </li>
+
+    {% comment %} Handle project pages {% endcomment %}
+    {% elsif page.url contains '/projects/' and page.layout != 'post' %}
+      <li class="breadcrumb-item">
+        <a href="{{ '/projects/' | relative_url }}" class="breadcrumb-link">Projects</a>
+      </li>
+      {% if page.category %}
+        <li class="breadcrumb-item breadcrumb-current" aria-current="page">
+          {{ page.title }}
+        </li>
+      {% else %}
+        <li class="breadcrumb-item breadcrumb-current" aria-current="page">
+          {{ page.title }}
+        </li>
+      {% endif %}
+
     {% comment %} Handle other pages {% endcomment %}
     {% else %}
       {% assign path_parts = page.url | split: '/' %}
@@ -59,3 +69,4 @@
   </ol>
 </nav>
 {% endif %} 
+
