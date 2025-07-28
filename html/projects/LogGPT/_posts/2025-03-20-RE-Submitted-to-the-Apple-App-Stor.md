@@ -73,3 +73,4 @@ This has been an exhausting process, and I'm just glad to finally have it back i
 If you are looking fro someone to help you with a project, I am available for hire. I have a wide range of skills and can be a great asset to your team. My specialties are Unix/Linux/macOS system and database administration, automation, and application development and am rather adept with Python, Bash, and a variety of other tools.
 
 
+
