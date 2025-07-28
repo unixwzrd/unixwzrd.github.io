@@ -24,4 +24,3 @@ cat résumé.txt | cleanup-text > resume.txt
 Stay human. Stay global. UnicodeFix it.
 
 * *Mia & the Unixwzrd*
-

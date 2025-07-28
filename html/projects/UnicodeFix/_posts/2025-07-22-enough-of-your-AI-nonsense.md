@@ -58,7 +58,7 @@ Don't want to touch the Terminal? No problem.
 
 Here's how it looks in action:
 
-![UnicodeFix Finder Shortcut Screenshot](http://localhost:4000/assets/images/projects/UnicodeFix/Screenshot 2025-04-25 at 05.47.51.png)
+![UnicodeFix Finder Shortcut Screenshot](/assets/images/projects/UnicodeFix/Screenshot 2025-04-25 at 05.47.51.png)
 
 *Setup is fast. The [README](https://github.com/unixwzrd/UnicodeFix#shortcut-for-macos) walks you through it step by step, with more screenshots.*
 
@@ -190,6 +190,7 @@ Or just spread the word - the Unicode war isn't over, but at least we have some 
 **Enough of your AI nonsense. Time to clean up.**
 
 [Grab it here.](https://github.com/unixwzrd/UnicodeFix)
+
 
 
 
