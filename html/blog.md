@@ -6,7 +6,7 @@ permalink: /blog/
 image: /assets/images/default-og-image.png
 ---
 
-![Default Image](/assets/images/default-og-image.png)
+![Default Image](http://localhost:4000/assets/images/default-og-image.png)
 
 A platform for insights, updates, and discussions on **AI, parental alienation, and family law technology**.
 
@@ -17,3 +17,5 @@ A platform for insights, updates, and discussions on **AI, parental alienation, 
 - **Community & Advocacy**: Resources, policy discussions, and opportunities for collaboration.
 
 {% include blog_list.html %}
+
+
