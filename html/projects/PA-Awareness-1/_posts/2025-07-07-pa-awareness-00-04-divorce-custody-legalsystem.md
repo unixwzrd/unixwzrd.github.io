@@ -20,7 +20,7 @@ Parental alienation often comes to the forefront in the context of divorce and c
 
 Divorce rates and custody context: In the United States, divorce has been relatively common, though it's declining in recent years. As of 2020, there were approximately 630,000 divorces nationwide (covering 45 states and D.C.), and by 2022 the annual number of divorces was around 674,000 (2.4 divorces per 1,000 population) . This represents a significant decline from a decade earlier - the divorce rate was about 3.6 per 1,000 in 2010 versus 2.4 in 2022  (see Figure 1). Fewer marriages are ending in divorce now than in the 1980s-2000s. However, the majority of divorces that do occur involve children. Estimates vary, but roughly 50-65% of divorces include at least one child under 18. In other words, every year hundreds of thousands of American children experience their parents' separation, and a subset of those separations devolve into high-conflict custody disputes.
 
-![FIgure 1. US Divorce Rate per 1,000 People, 2010-2022](http://localhost:4000/assets//images/PA-Awareness-1/divorce-rate-by-year.jpg)
+![FIgure 1. US Divorce Rate per 1,000 People, 2010-2022](/assets//images/PA-Awareness-1/divorce-rate-by-year.jpg)
 
 Figure 1: U.S. Divorce Rate per 1,000 People, 2010-2022. The divorce rate has declined over the past decade (from about 3.6 in 2010 to 2.3-2.5 in recent years) . However, a persistent minority of divorces remain high-conflict, often leading to protracted custody battles.
 
@@ -48,5 +48,3 @@ The error rate in alienation-related cases is difficult to quantify, but experts
 
 
 Overall, the legal system is in a delicate balancing act: how to protect children from an alienating parent's emotional abuse, without inadvertently punishing a parent who may be protecting a child from genuine abuse. The trend in policy is toward better training - encouraging judges to consider both possibilities. We are also seeing more cases where courts do take decisive action in clear alienation scenarios (e.g., changing custody to the targeted parent, ordering therapy). Such interventions can be very effective if done early - many formerly alienated children have recovered relationships when courts enforced reunification and the alienator's influence was checked. However, heavy-handed or misinformed interventions can cause harm too (e.g., removing a child from a primary caregiver wrongly). This underscores why data-driven, educated approaches are so crucial. The next section will look at the broader societal implications, but one key point here is: family courts are beginning to recognize parental alienation as a serious child welfare issue, yet the implementation is still evolving amid debate and the need for safeguards.
-
-
