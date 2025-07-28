@@ -13,7 +13,7 @@ published: true
 
 Quick update: **UnicodeFix now handles extended 8-bit ASCII.** If you're dealing with files from Europe or anywhere special characters roam - like "München," "façade," "Niño," or "straße" - they'll now get cleaned up right along with the Unicode ghosts.
 
-We also patched a VS Code quirk: UnicodeFix now ensures your files end with a clean, honest newline, no matter how your editor behaves.
+We also patched a VS Code quirk: UnicodeFix now ensures your files end with a clean, honest newline, no matter how your editor behaves. VS Code had a few issues about either stripping or respecting newlines at the end of file.
 
 Tested on text from around the world - no more missed accents, broken umlauts, or mystery bytes.
 
