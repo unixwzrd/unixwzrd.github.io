@@ -115,6 +115,7 @@ Characters that rendered fine on macOS or a web page, but blew up inside Python,
 And the real kicker? They were almost impossible to spot unless you were *really* looking - or digging with a hex editor.
 
 I realized it wasn't just an inconvenience. It could affect *everything*:
+
 - Code execution
 - Web rendering
 - AI detection
@@ -142,7 +143,7 @@ No semantic loss. Just clarity, restored.
 This wasn't a one-off patch anymore - it was shaping up to be a reliable bridge between messy, over-encoded text and what a compiler, parser, or linter actually expects.
 
 That's when we knew: we weren't just solving *our* problem.
-We were solving a growing, urgent problem for *everyone* - and doing it fast.
+We were solving a growing, urgent problem for *everyone* - and doing it fast
 ---
 
 ## Building a Smarter, Tougher Tool
@@ -157,6 +158,7 @@ We kept the script lightweight.
 No crazy dependencies. Just the standard `argparse`, `re`, a tiny bit of filesystem handling, and the excellent `unidecode` library to fill in the heavy lifting.
 
 After a few iterations - and a lot of piping weird Unicode test blobs through it - the core script was done. It:
+
 - Normalized all smart quotes and dashes
 - Stripped hidden Unicode like zero-width spaces and BOMs
 - Worked on any file or STDIN
@@ -175,6 +177,7 @@ Enter macOS **Shortcuts**.
 
 This was an unexpected turn. I hadn't seriously touched Shortcuts before - not since the old Automator days.
 But digging into it, I realized Shortcuts could:
+
 - Trigger from the Finder right-click menu
 - Pass selected files as arguments
 - Run shell scripts in the background without opening a terminal window
@@ -183,6 +186,7 @@ It sounded perfect... and it almost was.
 Shortcuts is powerful, but getting it to correctly invoke a bash login shell, preserve the environment, and pass file arguments properly took some serious trial and error.
 
 We had to:
+
 - Force Shortcuts to launch `bash -l -c`
 - Source the `.bashrc` to set up the Conda Python environment
 - Handle quoting and argument expansion carefully so multiple files could be passed cleanly
@@ -200,12 +204,14 @@ It felt like something that belonged in macOS all along.
 
 If you're using a VS Code type editor like Cursor, Windsurf, or any others with the Vim extension installed, macVim, vim, vi, or any other editors which can use external programs as a filter, you can simply paste your text into the editor and then do the following:
 
-```vim
+\```vim
 :%!cleanup-text
-```
+\```
+
 This will filter all the Unicode/UTF-8 and replace it with the closest ASCII characters.
 
 ## Get It
+
 If you found all this helpful, you may download the GitHub repository from the link below. If you find the tools useful, it would be great if you could help support our work at:
 
 - [Patreon](https://patreon.com/unixwzrd)
