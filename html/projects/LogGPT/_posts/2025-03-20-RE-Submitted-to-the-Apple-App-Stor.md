@@ -20,7 +20,7 @@ I've finally got LogGPT approved by Apple and it is now available on the App Sto
 
 After what feels like an eternity, I've **finally** resubmitted the Safari extension to the Apple App Store. If you've ever dealt with Apple's review process, you know the frustration that comes with seemingly arbitrary rejections. And yes, that happened to me.
 
-Initially, my app was rejected because the screenshot **looked too much like ChatGPT**. Well… yeah, because it's a Safari extension for ChatGPT! The extension simply lets you **download your ChatGPT conversation history** as a JSON file. Nothing more, nothing less.
+Initially, my app was rejected because the screenshot **looked too much like ChatGPT**. Well... yeah, because it's a Safari extension for ChatGPT! The extension simply lets you **download your ChatGPT conversation history** as a JSON file. Nothing more, nothing less.
 
 ## **Fixing the Issues & Jumping Through Hoops**
 

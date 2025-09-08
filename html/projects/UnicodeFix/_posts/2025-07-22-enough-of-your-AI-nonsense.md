@@ -13,7 +13,7 @@ published: true
 
 It's 2025, and if you write code, email, documentation, or blog posts, you're already caught in a strange war. It's not just AI vs. AI. It's *you* vs. invisible digital fingerprints - tiny Unicode "tells" that LLMs, chatbots, and code assistants sneak into everything you touch.
 
-Every time I copy code from Cursor, Windsurf, or ChatGPT, my files end up with more than logic. They're carrying… **AI poo**: zero-width spaces, curly quotes, EM dashes, oddball hyphens, and mysterious joiners that make my code, prose, and configs a mess. Sometimes, these are just annoyances. Sometimes, they're linter errors, broken pipelines, or reasons your work gets flagged as "AI-generated" - even when you wrote it yourself.
+Every time I copy code from Cursor, Windsurf, or ChatGPT, my files end up with more than logic. They're carrying... **AI poo**: zero-width spaces, curly quotes, EM dashes, oddball hyphens, and mysterious joiners that make my code, prose, and configs a mess. Sometimes, these are just annoyances. Sometimes, they're linter errors, broken pipelines, or reasons your work gets flagged as "AI-generated" - even when you wrote it yourself.
 
 You know what?
 I got tired of it.
