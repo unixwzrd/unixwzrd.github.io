@@ -1,4 +1,4 @@
-# UnixWzrd Website
+# unixwzrd.ai Website
 
 A Jekyll-based website showcasing AI projects, technical content, and resources focused on AI/ML development tools, parental alienation detection, and open source contributions.
 
@@ -39,4 +39,4 @@ This project is open source. See individual project directories for specific lic
 
 ---
 
-**Built with ❤️ using Jekyll, Python, and automation** 
+**Built with ❤️ using Jekyll, Python, and automation**
