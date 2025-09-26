@@ -6,25 +6,26 @@ permalink: /projects/PA-Awareness-1/
 excerpt: "If you've landed here, you probably know the feeling: losing a child not to fate, but to lies, manipulation, and a broken system that looks the other way."
 ---
 
-This is a series of posts about parental alienation, presenting the facts, the numbers, the effects, and the damage done when one parent uses a child as a weapon against the other parent.
+If you've landed here, you probably know the feeling: losing a child not to fate, but to lies, manipulation, and a broken system that looks the other way. Maybe it happened overnight. Maybe it happened slowly, until one day your son or daughter stopped calling, stopped visiting, or stopped calling you "dad" or "mom" at all.
 
-*If you've landed here, you probably know the feeling: losing a child not to fate, but to lies, manipulation, and a broken system that looks the other way. Maybe it happened overnight. Maybe it happened right in front of you, slow and silent, until one day your kid stopped calling you "dad" or "mom" at all.*
+That's what happened to me. I'm Mike Sullivan. I'm not a lawyer, not a therapist, not a lobbyist. I'm a dad. A loving, caring parent who raised his son with every ounce of devotion I had. And yet, it's been more than six years since I've seen or spoken to him. Six years of birthdays missed. Six years of silence. Six years where one parent's manipulation and a family court system unwilling to act have left me cut out of my own child's life.
 
-I'm Mike Sullivan, and I'm not a lawyer, a therapist, or a lobbyist. I'm a dad-a caring, loving parent, just like many of you.
+For anyone who thinks this is just a family spat or a bad divorce, let me tell you: this is a grief unlike any other. It is losing a child without closure, like watching them vanish on a ship lost at sea. They are alive, somewhere, but unreachable. Every day that goes by, the chance of healing slips further away.
 
-It's been a little over six years since my son was taken from me-abducted, really, in violation of court orders and common sense. Six years of silence. Six years where I've missed birthdays, milestones, all the little things that should have been ours. If you're here, you probably get it-this isn't just some family spat. It's a kind of grief you don't get over.
+For a while, I thought I was alone in this nightmare. Then I learned the truth: there are *millions* of us. Parents, grandparents, siblings, even children themselves. Parental alienation doesn't care about money, language, or background. It is abuse, pure and simple. And it is happening everywhere.
 
-For a while, I thought I was the only one living this nightmare. Then I found out-there are *millions* of us. Parents, grandparents, siblings, even kids themselves. It's an epidemic, hiding in plain sight. It doesn't care what language you speak, how much money you make, or who you are.
+That's why I built this project and wrote this paper. Silence helps nobody but the abusers. The research is clear. The numbers are staggering. The harm is lifelong. And the system is failing far too many families.
 
-I built this project because if nobody talks about this, nothing ever changes. The research is clear-parental alienation is abuse. The numbers are staggering. The stories are heartbreaking. And the system, as it stands, is failing far too many families.
+Here's what you'll find in the pages that follow:
+- **Prevalence and scope** - how widespread parental alienation really is, and why it matters.
+- **Perpetrators and victims** - who alienates, who gets alienated, and the patterns behind it.
+- **Harms and consequences** - the damage it does to children and to parents, both immediate and long-term.
+- **Divorce, custody disputes, and the legal system** - why our courts so often fail to protect families.
+- **Systemic and societal impact** - what this epidemic is costing all of us, not just the families directly involved.
 
-So, what is this place? It's a living resource:
-- I'm digging into the real data-how big this problem is, who it happens to, what it does to people.
-- I'm sharing the facts, but I'm also sharing the human side-my story, and the stories of others who are fighting back.
-- You'll find research summaries, resources, and maybe some hope.
-- And you'll find a call to action, because if we don't raise our voices, who will?
+Children need both caring parents. They are not weapons. They are not bargaining chips. No parent should have to live this way, and no child should have to deny half of who they are just to survive.
 
-Children need both caring and loving parents. They are not weapons. There are no winners in this-only the scattered wreckage of families torn apart. No one deserves this: not the children who have to repress their feelings and emotions to survive, while denying an entire part of their lives ever existed. No parent should have to experience this. It is losing a child without any closure. As I try to resolve it in my mind, it is like having a child on a ship lost at sea, whereabouts unknown-no closure, no answers, no way to know if they are alive or dead. The longer they are away, the worse it becomes for both child and parent, with the chances of reunification slipping away with each passing day.
+This project is a call to action. If we don't raise our voices, nothing changes. If we don't shine a light on this abuse, it keeps thriving in the dark. My story is one of millions, but together, our voices can't be ignored.
 
 ---
 

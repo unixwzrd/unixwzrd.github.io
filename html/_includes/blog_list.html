@@ -50,6 +50,36 @@ Blog Entries" for project blogs.
     {% endif %}
 
     {% if posts_to_show.size > 0 %}
+        <!-- Sort posts: by sequence for project blogs, by date for general blog -->
+        {% if include.category %}
+            <!-- Project blog: sort by sequence if available, otherwise by date -->
+            {% assign sorted_posts = posts_to_show | sort: 'sequence' %}
+        {% else %}
+            <!-- General blog: sort by date (newest first), then by sequence for same dates -->
+            {% assign sorted_posts = posts_to_show | sort: 'date' | reverse %}
+            <!-- For posts with the same date, sort by sequence -->
+            {% assign date_groups = '' | split: '' %}
+            {% assign current_date = '' %}
+            {% assign current_group = '' | split: '' %}
+            {% for post in sorted_posts %}
+                {% if current_date == '' or current_date != post.date %}
+                    {% if current_date != '' %}
+                        {% assign current_group_sorted = current_group | sort: 'sequence' %}
+                        {% assign date_groups = date_groups | concat: current_group_sorted %}
+                    {% endif %}
+                    {% assign current_date = post.date %}
+                    {% assign current_group = '' | split: '' %}
+                {% endif %}
+                {% assign current_group = current_group | push: post %}
+            {% endfor %}
+            {% if current_group.size > 0 %}
+                {% assign current_group_sorted = current_group | sort: 'sequence' %}
+                {% assign date_groups = date_groups | concat: current_group_sorted %}
+            {% endif %}
+            {% assign sorted_posts = date_groups %}
+        {% endif %}
+        {% assign posts_to_show = sorted_posts %}
+
         {% if include.category %}
             {% assign max_posts = page.project_blog_count | default: site.project_blog_count %}
         {% else %}
@@ -62,12 +92,12 @@ Blog Entries" for project blogs.
             {% for post in posts_to_show %}
             <div class="blog-post-item" data-post-index="{{ forloop.index0 }}">
                 <li>
-                    <span class="post-meta">{{ post.date | date: "%B %-d, %Y" }}</span>
                     <h3>
                         <a class="post-link" href="{{ post.url | relative_url }}">
                             {{ post.title | escape }}
                         </a>
                     </h3>
+                    <span class="post-meta">{{ post.date | date: "%B %-d, %Y" }}</span>
                     <div class="post-excerpt">
                         {% if post.excerpt %}
                             {{ post.excerpt | strip_images | markdownify | process_heading }}
