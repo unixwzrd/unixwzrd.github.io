@@ -4,6 +4,7 @@ title: "Parental Alienation Awareness"
 category: PA-Awareness-1
 permalink: /projects/PA-Awareness-1/
 excerpt: "If you've landed here, you probably know the feeling: losing a child not to fate, but to lies, manipulation, and a broken system that looks the other way."
+image: /assets/images/projects/PA-devastation-1.png
 ---
 
 If you've landed here, you probably know the feeling: losing a child not to fate, but to lies, manipulation, and a broken system that looks the other way. Maybe it happened overnight. Maybe it happened slowly, until one day your son or daughter stopped calling, stopped visiting, or stopped calling you "dad" or "mom" at all.
@@ -17,6 +18,7 @@ For a while, I thought I was alone in this nightmare. Then I learned the truth: 
 That's why I built this project and wrote this paper. Silence helps nobody but the abusers. The research is clear. The numbers are staggering. The harm is lifelong. And the system is failing far too many families.
 
 Here's what you'll find in the pages that follow:
+
 - **Prevalence and scope** - how widespread parental alienation really is, and why it matters.
 - **Perpetrators and victims** - who alienates, who gets alienated, and the patterns behind it.
 - **Harms and consequences** - the damage it does to children and to parents, both immediate and long-term.
