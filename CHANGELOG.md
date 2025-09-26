@@ -1,5 +1,16 @@
 # Changelog
 
+## 2025-09-26: PA Awareness references integrity and link checks
+
+### Fixes
+- Restored missing reference anchors in `html/projects/PA-Awareness-1/_posts/2025-09-25-parental-alienation-awareness-part-5.md` (23 `ref-source-...` ids) to match master drafts.
+- Validated forward/backward references against drafts (`html/projects/PA-Awareness-1/_drafts/2025-09-25-pa-paper-*.md`); no changes made to drafts.
+- Rebuilt site and reran link checks; PA-Awareness internal links (including fragment anchors) now pass.
+
+### Notes
+- Only anchors were appended (non-intrusive) at the end of Part 5; post content unchanged.
+- URL structure remains Jekyll-generated; no permalinks added.
+
 ## 2025-07-10: Documentation Refactor and Consistency Improvements
 
 ### Major Documentation Overhaul
