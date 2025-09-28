@@ -52,7 +52,13 @@ The **error rate** in alienation-related cases is difficult to quantify, but exp
 
 Overall, the legal system is in a delicate balancing act: **how to protect children from an alienating parent's emotional abuse**, without **inadvertently punishing a parent who may be protecting a child from genuine abuse**. The trend in policy is toward better training - encouraging judges to consider both possibilities. We are also seeing more cases where courts **do take decisive action** in clear alienation scenarios (e.g., changing custody to the targeted parent, ordering therapy). Such interventions can be very effective if done early - many formerly alienated children have recovered relationships when courts enforced reunification and the alienator's influence was checked. However, heavy-handed or misinformed interventions can cause harm too (e.g., removing a child from a primary caregiver wrongly). This underscores why **data-driven, educated approaches** are so crucial. The next section will look at the broader societal implications, but one key point here is: **family courts are beginning to recognize parental alienation as a serious child welfare issue**, yet the implementation is still evolving amid debate and the need for safeguards.
 
+---
+
 ## Navigation
 
-**Previous Section:** [Part 3: Harms and Consequences](/projects/PA-Awareness-1/2025/09/25/parental-alienation-awareness-part-3/)
-**Next Section:** [Part 5: Systemic and Societal Impact](/projects/PA-Awareness-1/2025/09/25/parental-alienation-awareness-part-5/)
+<table style="width: 100%; table-layout: fixed;">
+<tr>
+<td style="width: 50%; text-align: left;"><a href="/projects/PA-Awareness-1/2025/09/25/parental-alienation-awareness-part-3/">← Part 3: Harms and Consequences</a></td>
+<td style="width: 50%; text-align: right;"><a href="/projects/PA-Awareness-1/2025/09/25/parental-alienation-awareness-part-5/">Part 5: Systemic and Societal Impact →</a></td>
+</tr>
+</table>

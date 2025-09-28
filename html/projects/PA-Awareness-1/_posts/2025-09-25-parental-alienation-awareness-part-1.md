@@ -31,7 +31,13 @@ International data echo these patterns. A 2025 U.K. survey of 1,000 separated pa
 
 ---
 
+---
+
 ## Navigation
 
-**Previous Section:** [Introduction](/projects/PA-Awareness-1/2025/09/25/parental-alienation-awareness-introduction/)
-**Next Section:** [Part 2: Perpetrators and Victims](/projects/PA-Awareness-1/2025/09/25/parental-alienation-awareness-part-2/)
+<table style="width: 100%; table-layout: fixed;">
+<tr>
+<td style="width: 50%; text-align: left;"><a href="/projects/PA-Awareness-1/2025/09/25/parental-alienation-awareness-introduction/">← Introduction</a></td>
+<td style="width: 50%; text-align: right;"><a href="/projects/PA-Awareness-1/2025/09/25/parental-alienation-awareness-part-2/">Part 2: Perpetrators and Victims →</a></td>
+</tr>
+</table>
