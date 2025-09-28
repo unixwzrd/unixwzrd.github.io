@@ -61,8 +61,8 @@ We welcome contributions and feedback. Here's how you can get involved:
 
 ## Navigation
 
-<div style="text-align: center; margin: 20px 0;">
-
-<a href="/projects/PA-Awareness-1/2025/09/25/parental-alienation-awareness-part-1/">Part 1: Prevalence and Scope of Parental Alienation →</a>
-
-</div>
+<table style="width: 100%; table-layout: fixed;">
+<tr>
+<td style="width: 100%; text-align: center;"><a href="/projects/PA-Awareness-1/2025/09/25/parental-alienation-awareness-part-1/">Part 1: Prevalence and Scope of Parental Alienation →</a></td>
+</tr>
+</table>
