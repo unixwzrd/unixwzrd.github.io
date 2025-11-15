@@ -9,11 +9,12 @@ excerpt: "Looking for an overview of my experience and expertise? Download my PD
 
 Looking for an overview of my experience and expertise? Download my [PDF Resume.](/assets/documents/SullivanMichael_IT_AI_ML_Unix_52050111.pdf)
 <br>
-I have some [accreditations and certifications here.](/about/sullivan-michael-creds) 
+I have some [accreditations and certifications here.](/about/credentials/)
 
 ## Michael Sullivan
 
 ### Profile
+
 Experienced IT professional with over 30 years in the technology industry, including 15 years of managerial experience in the financial sector. Expertise in IT financial transactions operations, regulatory compliance, budget management, and vendor relations. Strong background in architecture, development methodology, project management, and implementation for distributed UNIX/Linux, macOS, and Oracle database systems. Proficient in client engagement, technology solution development, strategic planning, and risk management in the banking and financial services domain.
 
 ### Career Highlights
@@ -24,14 +25,14 @@ Experienced IT professional with over 30 years in the technology industry, inclu
 - Brought specialized knowledge of Software Development Methodologies and CASE Tool Development to Salomon Brothers integrating Excelerator with PACBASE as a proof of concept, and examined and evaluated CASE tools for the firm.
 - Pioneered LAN-based computing at Salomon Brothers, integrating PC environments with Unix systems, laying the groundwork for a unified network infrastructure that supported the firm's trading and financial operations.
 - Led the development of a distributed computing environment at Merrill Lynch, transitioning key financial systems from mainframes to Unix-based systems, which enhanced processing efficiency and data integrity across global operations.
-- 
+
 #### Unix and Oracle Implementations
 
 - Extensive work with Solaris, SunOS, Linux, macOS, and Oracle, contributing to the advancement of enterprise-level computing capabilities and transformative period in the IT industry.
 - Developed a comprehensive options allocation model at Salomon Brothers, integrating data from various systems to ensure regulatory compliance for futures traders, significantly improving operational accuracy.
 - Architected the system for migrating Merry Lynch's balance sheet and general ledger onto an oracle database running on a Sequent Symmetry Symmetric Multi Processing system, taking advantage of its parallel processing capabilities.
 - Working as a consultant for Sun Microsystems, at NYNEX, designed and built the NYNEX VoiceMail Information System server infrastructure.
- 
+
 #### AI & Modular Systems Development
 
 - Currently developing modular AI systems on macOS, using Pydantic, FastAPI, and object-oriented Python. Focused on decoupling system components to enable communication via message queues (pub-sub architecture), allowing flexible, scalable configurations across multiple hardware environments.
@@ -44,7 +45,8 @@ Experienced IT professional with over 30 years in the technology industry, inclu
 
 ### Experience
 
-**FOUNDER AND PRINCIPAL, DISTRIBUTED THINKING SYSTEMS LLC, MEMPHIS, TN** – AUG 2023 - PRESENT
+**FOUNDER AND PRINCIPAL, DISTRIBUTED THINKING SYSTEMS LLC, MEMPHIS, TN** - AUG 2023 - PRESENT
+
 - Leading the development of AI-based solutions and open-source projects.
 - Developing modular AI systems using FastAPI, Pydantic, and distributed messaging.
 - Implementing machine learning models and tools on macOS.
@@ -54,7 +56,8 @@ Experienced IT professional with over 30 years in the technology industry, inclu
 - Extracting and restoring data from Apple devices, including recovering deleted messages and hidden files, with a focus on supporting legal cases and personal investigations.
 - Utilizing GPT-4o for analyzing text data to uncover patterns, inconsistencies, and key insights, particularly in court documents, email and text messages.
 
-#### UNIX SOLUTIONS ARCHITECT, ECS FEDERAL, MEMPHIS, TN — NOV 2020 - AUG 2023
+#### UNIX SOLUTIONS ARCHITECT, ECS FEDERAL, MEMPHIS, TN - NOV 2020 - AUG 2023
+
 <details>
 - Supported the US Postal Service's Unix/Linux environment.
 - Provided full-scale release management using ServiceNow.
@@ -64,7 +67,8 @@ Experienced IT professional with over 30 years in the technology industry, inclu
 - Supported operating systems issues arising from applications, including performance tuning and permissions alignment.
 </details>
 
-#### PRINCIPAL, DISTRIBUTED COMPUTING SYSTEMS LLC, NASHVILLE, TN — MAY 2009 - NOV 2020
+#### PRINCIPAL, DISTRIBUTED COMPUTING SYSTEMS LLC, NASHVILLE, TN - MAY 2009 - NOV 2020
+
 <details>
 - Designed and implemented VPN and firewall services using pfSense, Snort, IPSec, and OpenVPN.
 - Led an international team to create an IaaS appliance, managing storage, compute, and control components in a single rack.
@@ -72,33 +76,37 @@ Experienced IT professional with over 30 years in the technology industry, inclu
 - Developed a backup service for DaaS cloud-based storage.
 </details>
 
-#### MANAGER - PRODUCTION DIV., AOZORA INFORMATION SYSTEMS, TOKYO — FEB 2006 - MAY 2009
+#### MANAGER - PRODUCTION DIV., AOZORA INFORMATION SYSTEMS, TOKYO - FEB 2006 - MAY 2009
+
 <details>
 - Managed a $33M budget and prepared reports for senior executives.
 - Reduced costs through consolidation using VMware on Linux, achieving a 15% year-over-year savings for two years.
 - Co-managed a team of 25 administrators and led project work.
 - Built a CMDB for cataloging datacenter and desktop hardware, and implemented a cost allocation model for IT services.
 </details>
-#### PRINCIPAL, CONSULTING SERVICES, DCS, LLC, TOKYO — MAY 2005 - FEB 2006
+#### PRINCIPAL, CONSULTING SERVICES, DCS, LLC, TOKYO - MAY 2005 - FEB 2006
 <details>
 - Managed the migration of internet services, including software upgrades and system configuration for a data center relocation.
 - Created a proprietary online trading system for a private hedge fund in Tokyo.
 </details>
 
-#### ASSOCIATE DIRECTOR - HEAD OF SYSTEMS, KBC SECURITIES JAPAN, TOKYO — MAY 2002 - MAY 2005
+#### ASSOCIATE DIRECTOR - HEAD OF SYSTEMS, KBC SECURITIES JAPAN, TOKYO - MAY 2002 - MAY 2005
+
 <details>
 - Managed a team of 5 employees and provided daily systems operations support.
 - Supported global standardization of systems architecture and infrastructure.
 - Managed market data support for Bloomberg and Reuters platforms.
 </details>
 
-#### MANAGER OF DISTRIBUTED UNIX SYSTEMS, CABLEVISION, LONG ISLAND, NY — OCT 2001 - APR 2002
+#### MANAGER OF DISTRIBUTED UNIX SYSTEMS, CABLEVISION, LONG ISLAND, NY - OCT 2001 - APR 2002
+
 <details>
 - Managed a team of 15 UNIX Systems Administrators providing 24/7 support for critical operations.
 - Oversaw a $1.5M annual budget and provided mentorship to junior staff.
 </details>
 
-#### PRINCIPAL, CONSULTING SERVICES, DCS, LLC, NEW YORK METROPOLITAN AREA — OCT 1994 - OCT 2001
+#### PRINCIPAL, CONSULTING SERVICES, DCS, LLC, NEW YORK METROPOLITAN AREA - OCT 1994 - OCT 2001
+
 <details>
 - Managed teams of 4 to 15 UNIX Systems and Database Administrators.
 - Designed and implemented strategic information system architecture for internet commerce applications.
@@ -106,28 +114,33 @@ Experienced IT professional with over 30 years in the technology industry, inclu
 - Clients: NYNEX, Sun Microsystems, SkyMall.com, Recollections Inc. (Zing), InsureMyTrip.com
 </details>
 
-#### VICE PRESIDENT/SYSTEMS ARCHITECT, MERRILL LYNCH, NEW YORK, NY — APR 1992 - OCT 1994
+#### VICE PRESIDENT/SYSTEMS ARCHITECT, MERRILL LYNCH, NEW YORK, NY - APR 1992 - OCT 1994
+
 <details>
 - Led the development and implementation of applications and systems architecture for a financial systems migration project.
 - Provided development support and training to a staff of 200 developers.
 
 **Awards:**
 
-- Merrill Lynch President's Award for Excellence - First Quarter 1993 
+- Merrill Lynch President's Award for Excellence - First Quarter 1993
+
 </details>
 
-#### PROJECT MANAGER, SALOMON BROTHERS INC., NEW YORK, NY — AUG 1987 - APR 1992 
+#### PROJECT MANAGER, SALOMON BROTHERS INC., NEW YORK, NY - AUG 1987 - APR 1992
+
 <details>
-- Designed, implemented, and supported a national network infrastructure for investment banking. 
-- Managed a staff of 12 administrators and developers, and successfully managed the relocation of the investment banking group to a new headquarters. 
+- Designed, implemented, and supported a national network infrastructure for investment banking.
+- Managed a staff of 12 administrators and developers, and successfully managed the relocation of the investment banking group to a new headquarters.
 
 **Awards:**
 
-- Business Technology Organization Communications Award – Feb 1991 
-- Business Technology Organization Communications Award – Feb 1990.
+- Business Technology Organization Communications Award - Feb 1991
+- Business Technology Organization Communications Award - Feb 1990.
+
 </details>
 
 ### Technical Skills
+
 <details>
 - **Software:** iZotope RX11, Reaper DAW, Visual Studio Code, ServiceNow (Incident, Change, and Release Management), FastAPI, Pydantic, X Window System, ZFS, GFS, Veritas, Sun Disk Suite, Apache, Tomcat, LDAP, DNS, NIS, Sendmail, Git/GitHub, Subversion, CVS, NFS, CIFS, Secure Shell (SSH), Tripwire, NMAP, Snort, pfSense (Firewall, VPN, IDS), F5 Load Balancing.
 - **Database:** Oracle 10g, 9i, 8i, PostgreSQL, MySQL, SQLite, Redis, Berkeley DB.
@@ -139,22 +152,26 @@ Experienced IT professional with over 30 years in the technology industry, inclu
 </details>
 
 ### Education
+
 <details>
 - **Vanderbilt University, Nashville, TN** - Post Graduate (PhD work), Neuroscience/Psychiatry, 2014 - 2016
 - **University of Texas, Arlington, TX** - BBA, Information Systems, 1987
 </details>
 
 ### Languages
+
 <details>
 - **English:** Native
 - **Japanese:** Basic
 </details>
 
 ### Licenses and Clearances
+
 <details>
 
 - **USPS Public Trust Clearance** - valid through November 2025
 - **FAA License:** Private Pilot, Airplane Single/Multi Engine Land - Instrument Airplane
+
 </details>
 
 ### Professional Involvement

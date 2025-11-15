@@ -1,5 +1,5 @@
 ---
-image: /projects/Case-Analytics/images/boy-robot-road-unizwzrd-mia-watching.png
+image: /assets/images/projects/Case-Analytics/boy-robot-road-unizwzrd-mia-watching.png
 layout: post
 title: "Harnessing AI for Change: The Next Chapter for Distributed Thinking Systems"
 redirect_from:
@@ -12,19 +12,19 @@ excerpt: "Parental alienation is a slow, insidious process, often unfolding in s
 
 Parental alienation is a slow, insidious process, often unfolding in subtle shifts of language, repeated patterns of exclusion, and emotional manipulation hidden within everyday communication. The words that once carried love and trust become barriers, severing bonds between parents and children. For those affected, the experience is devastating. The pain lingers, compounded by the fact that so often, the signs go unnoticed until it is too late.
 
-At **Distributed Thinking Systems**, we believe technology can illuminate what is otherwise invisible. AI-driven solutions have the power to uncover the patterns buried deep within conversations, identifying warning signs of alienation before they escalate into permanent estrangement. This is not about replacing human judgment—it is about equipping families, legal professionals, and researchers with **clarity** where confusion and manipulation thrive.
+At **Distributed Thinking Systems**, we believe technology can illuminate what is otherwise invisible. AI-driven solutions have the power to uncover the patterns buried deep within conversations, identifying warning signs of alienation before they escalate into permanent estrangement. This is not about replacing human judgment - it is about equipping families, legal professionals, and researchers with **clarity** where confusion and manipulation thrive.
 
 ## Decoding the Language of Alienation
 
-Every high-conflict custody case leaves behind a digital footprint: **text messages, emails, communication logs within court-mandated parenting apps**—all of it forming a complex puzzle. But making sense of these fragmented pieces is a daunting task for any individual. AI, however, is capable of parsing thousands of messages, recognizing **recurring patterns of manipulation**, and flagging **emotionally coercive tactics** that might otherwise be dismissed or overlooked.
+Every high-conflict custody case leaves behind a digital footprint: **text messages, emails, communication logs within court-mandated parenting apps** - all of it forming a complex puzzle. But making sense of these fragmented pieces is a daunting task for any individual. AI, however, is capable of parsing thousands of messages, recognizing **recurring patterns of manipulation**, and flagging **emotionally coercive tactics** that might otherwise be dismissed or overlooked.
 
-Imagine a system that can sift through years of communication, highlighting moments where one parent is subtly erased from a child's world. A missed greeting here, a repeated exclusion there—individually, these may seem insignificant. But in aggregate, they reveal a devastating picture. With **linguistic analysis, sentiment detection, and behavioral pattern recognition**, AI is making it possible to **bring these hidden dynamics into the light**.
+Imagine a system that can sift through years of communication, highlighting moments where one parent is subtly erased from a child's world. A missed greeting here, a repeated exclusion there - individually, these may seem insignificant. But in aggregate, they reveal a devastating picture. With **linguistic analysis, sentiment detection, and behavioral pattern recognition**, AI is making it possible to **bring these hidden dynamics into the light**.
 
 ## Turning Raw Data Into Actionable Insights
 
-Building such a system is no small feat. It is not enough to analyze words alone—context matters. Our AI-powered detection tools work by **structuring conversations**, mapping language trends over time, and distinguishing between **natural disagreements and coercive influence**. To achieve this, we have developed a **message parsing engine** capable of extracting key interactions, trained AI models to recognize **nuanced forms of alienation-related speech**, and implemented detection frameworks that track evolving patterns over time.
+Building such a system is no small feat. It is not enough to analyze words alone - context matters. Our AI-powered detection tools work by **structuring conversations**, mapping language trends over time, and distinguishing between **natural disagreements and coercive influence**. To achieve this, we have developed a **message parsing engine** capable of extracting key interactions, trained AI models to recognize **nuanced forms of alienation-related speech**, and implemented detection frameworks that track evolving patterns over time.
 
-The result is a system that does more than just collect data—it **transforms communication history into a structured narrative**, one that can be used in legal settings, research studies, or personal reflection to better understand what has transpired.
+The result is a system that does more than just collect data - it **transforms communication history into a structured narrative**, one that can be used in legal settings, research studies, or personal reflection to better understand what has transpired.
 
 ## The Road Ahead: Controlled Alpha Release
 
@@ -46,7 +46,7 @@ If you want to be part of this effort, [get in touch](/contact). Together, we ca
 
 ## A Future Where AI Supports Advocacy
 
-Parental alienation is not just a legal issue; it is an emotional and psychological one. By harnessing the power of AI, we are not just developing a piece of software—we are **creating a tool for advocacy, clarity, and change**. AI has the potential to surface the truth hidden in thousands of messages, allowing courts, legal experts, and families to see the full picture—not just the distorted version presented by those seeking to control the narrative.
+Parental alienation is not just a legal issue; it is an emotional and psychological one. By harnessing the power of AI, we are not just developing a piece of software - we are **creating a tool for advocacy, clarity, and change**. AI has the potential to surface the truth hidden in thousands of messages, allowing courts, legal experts, and families to see the full picture - not just the distorted version presented by those seeking to control the narrative.
 
 This is a turning point. The technology is here. The need is urgent. And the time to act is now.
 

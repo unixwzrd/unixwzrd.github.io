@@ -3,7 +3,7 @@ layout: post
 title: "TorchDevice 0.5.2: Still Beta, but Three Months of Refactoring, Testing, and Real-World Breakthroughs"
 redirect_from:
   - /projects/TorchDevice/2025/06/23/TorchDevice-Beta-Release-0.5.2/
-image: /projects/TorchDevice/images/TorchDevice-HF-Transformers.png
+image: /assets/images/projects/TorchDevice/TorchDevice-HF-Transformers.png
 date: 2025-06-22
 category: TorchDevice
 tags: [PyTorch, Apple Silicon, CUDA, MPS, open source, AI infrastructure]
@@ -40,7 +40,7 @@ Let's be clear: **Transformers is relentless**. It will find every device-handli
 ## Bridge Building Between CUDA and MPS
 
 <div style="text-align: center">
-<img src="/projects/TorchDevice/images/Making_a_Bridge_For_AI.png" alt="Making a Bridge FOR AI">
+<img src="/assets/images/projects/TorchDevice/Making_a_Bridge_For_AI.png" alt="Making a Bridge FOR AI">
 </div>
 ### Not Just for Show: Real TTS and LLM Workflows
 

@@ -5,7 +5,7 @@ date: 2025-06-11
 category: LogGPT
 tags: [LogGPT, ChatGPT export, privacy, Safari extension, Apple App Store, AI tools, JSON, macOS]
 excerpt: "After a long journey through Apple's review process, I'm thrilled to announce that **LogGPT**, the Safari extension designed to let you **export your entire ChatGPT conversation history as structured JSON files**, is now officially available on the Apple App Store!"
-image: /projects/LogGPT/images/Icon-512-download.png
+image: /assets/images/projects/LogGPT/Icon-512-download.png
 published: true
 redirect_from:
   - /projects/LogGPT/2025/06/11/Second-release-approved/

@@ -141,7 +141,7 @@
                 "average_response_time": 0.0019205808639526367,
                 "total_response_time": 0.0038411617279052734
             },
-            "http://localhost:4000/projects/Case-Analytics/images/system-diagram.png": {
+            "http://localhost:4000/assets/images/projects/Case-Analytics/system-diagram.png": {
                 "total_checks": 2,
                 "successful_checks": 2,
                 "failed_checks": 0,

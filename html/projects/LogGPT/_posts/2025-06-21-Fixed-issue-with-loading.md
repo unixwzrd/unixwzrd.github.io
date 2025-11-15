@@ -5,7 +5,7 @@ date: 2025-06-21
 category: LogGPT
 tags: [LogGPT, ChatGPT export, privacy, Safari extension, Apple App Store, AI tools, JSON, macOS]
 excerpt: "Just as Apple approved the second release of LogGPT, OpenAI quietly changed the Document Object Model (DOM) on ChatGPT's site-breaking the download button injection."
-image: /projects/LogGPT/images/Icon-512-download.png
+image: /assets/images/projects/LogGPT/Icon-512-download.png
 published: true
 redirect_from:
   - /projects/LogGPT/2025/06/21/Fixed-issue-with-loading/

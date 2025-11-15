@@ -13,7 +13,7 @@ layout: default
         {{ page.date | date: date_format }}
       </time>
       {%- if page.modified_date -%}
-        ~ 
+        ~
         {%- assign mdate = page.modified_date | date_to_xmlschema -%}
         <time class="dt-modified" datetime="{{ mdate }}" itemprop="dateModified">
           {{ mdate | date: date_format }}
@@ -28,16 +28,17 @@ layout: default
       {%- endif -%}</p>
   </header>
 
-  {% assign default_image = "/assets/images/default-og-image.png" %}
-  {% if page.image == 'default' %}
-    <div class="post-banner-image">
-      <img src="{{ default_image }}" alt="Post banner image" style="max-width:100%;height:auto;display:block;margin:0 auto 2rem auto;" />
-    </div>
-  {% elsif page.image and page.image != '' and page.image != 'default' %}
-    <div class="post-banner-image">
-      <img src="{{ page.image }}" alt="Post banner image" style="max-width:100%;height:auto;display:block;margin:0 auto 2rem auto;" />
-    </div>
+  {% assign fallback_image = "/assets/images/default-og-image.png" %}
+  {% assign hero_image = page.image %}
+  {% if hero_image == nil or hero_image == '' or hero_image == 'default' %}
+    {% assign hero_image = fallback_image %}
   {% endif %}
+  <div class="post-banner-image">
+    <img src="{{ hero_image }}"
+         alt="{{ page.title | escape }}"
+         style="max-width:100%;height:auto;display:block;margin:0 auto 2rem auto;"
+         onerror="this.onerror=null;this.src='{{ fallback_image }}';" />
+  </div>
 
   <div class="post-content e-content" itemprop="articleBody">
     {{ content }}

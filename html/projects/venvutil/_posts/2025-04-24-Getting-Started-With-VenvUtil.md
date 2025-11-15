@@ -1,5 +1,5 @@
 ---
-image: /projects/venvutil/images/Conjuring-VenvUtil.png
+image: /assets/images/projects/venvutil/Conjuring-VenvUtil.png
 title: "Getting Started with VenvUtil: Python Virtual Environment Management"
 layout: post
 redirect_from:

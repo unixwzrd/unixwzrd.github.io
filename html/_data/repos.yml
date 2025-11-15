@@ -13,11 +13,11 @@ repositories:
       image_url: "/assets/images/projects/PA-devastation-1.png"
   - name: LogGPT
     owner: unixwzrd
+  - name: UnicodeFix
+    owner: unixwzrd
   - name: venvutil
     owner: unixwzrd
   - name: TorchDevice
-    owner: unixwzrd
-  - name: UnicodeFix
     owner: unixwzrd
   - name: oobabooga-macOS
     owner: unixwzrd

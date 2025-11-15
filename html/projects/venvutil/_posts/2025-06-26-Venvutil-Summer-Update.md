@@ -1,5 +1,5 @@
 ---
-image: /projects/venvutil/images/Herding-Cats-and-Virtual-Environments.png
+image: /assets/images/projects/venvutil/Herding-Cats-and-Virtual-Environments.png
 title: "VenvUtil Update: Smarter Shell-Based Python Environment Management"
 layout: post
 redirect_from:
@@ -12,7 +12,7 @@ published: true
 excerpt: "The VenvUtil shell toolkit is evolving fast: improved command logging, smarter environment rollbacks, easier cloning, and real-world robustness for anyone working in Python on macOS or Linux."
 ---
 
-Python environment chaos-everyone's been there. Broken builds, mismatched dependencies, mysterious bugs after a 'quick' pip install… and then you realize your environment is borked and your rollback is, well, 🤷.
+Python environment chaos-everyone's been there. Broken builds, mismatched dependencies, mysterious bugs after a 'quick' pip install... and then you realize your environment is borked and your rollback is, well, 🤷.
 
 That's why I built **VenvUtil**: to make managing and recovering Python environments as painless (and transparent) as possible-right in the shell.
 
@@ -46,7 +46,7 @@ VenvUtil ships with extras that make modern Python dev (especially for AI/ML) mu
 There's a lot under the hood. If you want robust shell tools for Python, you can use VenvUtil's libraries in your own automation scripts.
 
 <div style="text-align: center">
-<img src="/projects/venvutil/images/Ordering_Venvs.png" alt="Order From Chaos">
+<img src="/assets/images/projects/venvutil/Ordering_Venvs.png" alt="Order From Chaos">
 </div>
 
 ## Example: Audit, Clone, Roll Back - Tale of Two Logs

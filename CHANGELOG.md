@@ -286,7 +286,7 @@
 ### Bug Fixes
 - FIXED: Image display issue in VenvUtil Summer Update blog post
   - Converted Markdown image syntax inside HTML div to proper HTML img tag
-  - Changed `![Order From Chaos](/projects/venvutil/images/Ordering_Venvs.png)` to `<img src="/projects/venvutil/images/Ordering_Venvs.png" alt="Order From Chaos">`
+  - Changed `![Order From Chaos](/assets/images/projects/venvutil/Ordering_Venvs.png)` to `<img src="/assets/images/projects/venvutil/Ordering_Venvs.png" alt="Order From Chaos">`
   - Image now displays correctly instead of appearing briefly and disappearing
 
 ### Technical Details
@@ -346,7 +346,7 @@
 ### Critical Fixes
 - FIXED: Missing jekyll-seo-tag plugin causing build failures
 - FIXED: Image path reference in Case-Analytics related post
-  - Corrected `/assets/images/boy-robot-road-unizwzrd-mia-watching.png` to `/projects/Case-Analytics/images/boy-robot-road-unizwzrd-mia-watching.png`
+  - Corrected `/assets/images/boy-robot-road-unizwzrd-mia-watching.png` to `/assets/images/projects/Case-Analytics/boy-robot-road-unizwzrd-mia-watching.png`
 
 ### Build System
 - ADDED: jekyll-seo-tag plugin to Gemfile for proper SEO functionality

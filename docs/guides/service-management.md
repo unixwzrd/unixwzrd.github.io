@@ -10,6 +10,7 @@
       - [3. **File Watcher (Standalone)**](#3-file-watcher-standalone)
     - [Service Management Options](#service-management-options)
       - [Refresh Control Flags](#refresh-control-flags)
+      - [Verification Flags](#verification-flags)
       - [Service Selection Flags](#service-selection-flags)
       - [Default Behaviors](#default-behaviors)
     - [What the Service Scripts Do](#what-the-service-scripts-do)
@@ -24,6 +25,7 @@ This section covers scripts and workflows for starting, stopping, and monitoring
 The project now uses a modular service management system with three main scripts:
 
 #### 1. **Site Service (Orchestrator)**
+
 The [utils/bin/site-service](../utils/bin/site-service) script manages both Jekyll and file watcher services:
 
 ```bash
@@ -55,6 +57,7 @@ The [utils/bin/site-service](../utils/bin/site-service) script manages both Jeky
 ```
 
 #### 2. **Jekyll Site (Standalone)**
+
 The [utils/bin/jekyll-site](../utils/bin/jekyll-site) script manages Jekyll independently:
 
 ```bash
@@ -66,9 +69,13 @@ The [utils/bin/jekyll-site](../utils/bin/jekyll-site) script manages Jekyll inde
 
 # Restart Jekyll server (fast mode by default)
 ./utils/bin/jekyll-site restart
+
+# Build once and run HTMLProofer link checks
+./utils/bin/jekyll-site build -c
 ```
 
 #### 3. **File Watcher (Standalone)**
+
 The [utils/bin/file-watcher](../utils/bin/file-watcher) script manages the file watcher independently:
 
 ```bash
@@ -85,20 +92,29 @@ The [utils/bin/file-watcher](../utils/bin/file-watcher) script manages the file 
 ### Service Management Options
 
 #### Refresh Control Flags
+
 - `-n`: Fast mode (no OpenGraph refresh)
 - `-r`: Complete mode (with OpenGraph refresh)
 
+#### Verification Flags
+
+- `-c`: Run HTMLProofer on the generated `_site/` output after each build (catches real 404s and missing anchors)
+
 #### Service Selection Flags
+
 - `-j`: Jekyll only
 - `-w`: File watcher only
 
 #### Default Behaviors
+
 - By default, both services are started and managed together.
 
 ### What the Service Scripts Do
+
 - **Site Service (Orchestrator)**: Manages both Jekyll and file watcher services.
 - **Jekyll Site (Standalone)**: Manages Jekyll independently.
 - **File Watcher (Standalone)**: Manages the file watcher independently.
 
 ### Service Status and Monitoring
-- Use the service scripts to check status, restart, or stop services as needed. 
+
+- Use the service scripts to check status, restart, or stop services as needed.
