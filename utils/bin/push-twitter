@@ -9,7 +9,7 @@ fi
 # Extract the latest post URL from the feed.xml
 base_url="https://unixwzrd.ai"
 post_url=$(grep -oP '(?<=<link href=").+?html' ./_site/feed.xml | grep -v "feed.xml" | head -2 | tail -1)
-post_url="${post_url/http:\/\/0.0.0.0:4000/$base_url}"
+post_url="${post_url/http:\/\/localhost:4000/$base_url}"
 
 # Post to Twitter
 curl -X POST "https://api.twitter.com/2/tweets" \

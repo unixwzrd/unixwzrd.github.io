@@ -10,8 +10,11 @@ BASE_DIR="$(realpath "${SCRIPT_DIR}/../../..")"
 
 cd "${BASE_DIR}"
 
+echo "🏗️ Building production site for HTMLProofer..."
+"${BASE_DIR}/utils/bin/jekyll-site" build -n
+
 if [ ! -d "_site" ]; then
-    echo "❌ _site directory not found. Run 'bundle exec jekyll build' first." >&2
+    echo "❌ _site directory not found after build. Please investigate." >&2
     exit 1
 fi
 

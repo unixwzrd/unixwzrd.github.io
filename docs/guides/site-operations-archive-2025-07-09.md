@@ -341,7 +341,7 @@ export SITE_DIR="$BASE_DIR/_site"
 
 # Development variables
 export JEKYLL_ENV=development
-export JEKYLL_SERVE_HOST=0.0.0.0
+export JEKYLL_SERVE_HOST=localhost
 export JEKYLL_SERVE_PORT=4000
 ```
 
@@ -699,4 +699,4 @@ See TODO.md and site-improvement-checklist.md for detailed task breakdown.
 - If anything goes wrong with the build or deployment, your source (`main`) is unaffected.
 - You can always rebuild and redeploy without risking your main branch.
 
-*This documentation should be updated whenever the operational procedures change.* 
+*This documentation should be updated whenever the operational procedures change.*

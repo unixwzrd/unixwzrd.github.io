@@ -55,8 +55,8 @@ Next, create a module (for example, debug_my.py) with the following code:
         """
         Starts the debugpy server. In a real application, ensure this is secured properly.
         """
-        # Listen on all interfaces (0.0.0.0); in production, restrict this if possible.
-        debugpy.listen(('0.0.0.0', 5678))
+        # Listen on all interfaces (localhost); in production, restrict this if possible.
+        debugpy.listen(('localhost', 5678))
         logger.critical("Debugging enabled. Waiting for debugger to attach...")
         debugpy.wait_for_client()  # The process will block here until a debugger attaches.
     logger.critical("Debugger attached.")
