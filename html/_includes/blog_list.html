@@ -32,6 +32,8 @@ Blog Entries" for project blogs.
         <!-- General blog listing (including ALL posts) -->
         {% assign posts_to_show = '' | split: '' %}
 
+        {% assign posts_to_show = '' | split: '' %}
+
         {% if jekyll.environment == "development" %}
             <!-- Include all standard posts (skip _drafts folder) -->
             {% for post in site.posts %}
@@ -41,8 +43,9 @@ Blog Entries" for project blogs.
             {% endfor %}
 
             <!-- Include project posts collection as well -->
-            {% if site.project_posts %}
-                {% for post in site.project_posts %}
+            {% assign project_posts_collection = site.collections['project_posts'] %}
+            {% if project_posts_collection %}
+                {% for post in project_posts_collection.docs %}
                     {% unless post.url contains '/_drafts/' or post.url contains '_drafts/' %}
                         {% assign posts_to_show = posts_to_show | push: post %}
                     {% endunless %}
@@ -56,8 +59,9 @@ Blog Entries" for project blogs.
                 {% endunless %}
             {% endfor %}
 
-            {% if site.project_posts %}
-                {% for post in site.project_posts %}
+            {% assign project_posts_collection = site.collections['project_posts'] %}
+            {% if project_posts_collection %}
+                {% for post in project_posts_collection.docs %}
                     {% unless post.draft %}
                         {% assign posts_to_show = posts_to_show | push: post %}
                     {% endunless %}
