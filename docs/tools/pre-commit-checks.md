@@ -96,6 +96,26 @@ Runs [HTMLProofer](https://github.com/gjtorikian/html-proofer) against the gener
 - Ignores external URLs to keep the check fast/offline
 - Also available via `./utils/bin/jekyll-site build -c`, which triggers the same check immediately after a build
 
+### 6. External Link Verification (06_external_link_checker.sh)
+
+Runs [HTMLProofer](https://github.com/gjtorikian/html-proofer) against external links in the generated site:
+
+```bash
+# Run manually (opt-in, not run by default)
+./utils/bin/checks/06_external_link_checker.sh
+
+# Or enable via environment variable
+CHECK_EXTERNAL_LINKS=1 ./utils/bin/check_site.sh
+```
+
+- Checks external URLs for broken links (404s, timeouts, etc.)
+- Enforces HTTPS (flags HTTP links)
+- Uses caching to speed up repeated runs
+- **Opt-in by default** (skipped in pre-commit) due to:
+  - Network dependency (can fail due to temporary outages)
+  - Slower execution time (requires HTTP requests)
+  - Rate limiting from external sites
+
 ## Usage
 
 ### Basic Usage
