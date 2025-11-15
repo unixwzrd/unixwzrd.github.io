@@ -52,7 +52,7 @@ A Python version migration tool is on the roadmap:
 
 If you want better control over your Python environments - and fewer late-night debugging marathons - check out the project on GitHub:
 
-* [**View Venvutil on GitHub**](https://github.com/unixwzrd/python-venv-tools)
+* [**View Venvutil on GitHub**](https://github.com/unixwzrd/venvutil)
 
 ---
 
