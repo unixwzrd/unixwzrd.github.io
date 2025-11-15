@@ -36,6 +36,18 @@ echo "📝 Processing text files: $text_files"
 # Process each file
 for file in $text_files; do
     if [ -f "$file" ]; then
+        # Skip files that are staged for deletion
+        if git diff --cached --name-status -- "$file" | grep -q "^D"; then
+            echo "  Skipping (staged for deletion): $file"
+            continue
+        fi
+
+        # Skip files ignored by git (e.g., local config/state files)
+        if git check-ignore -q "$file"; then
+            echo "  Skipping (ignored by git): $file"
+            continue
+        fi
+
         echo "  Cleaning: $file"
 
         # Create a temporary file
@@ -65,4 +77,5 @@ for file in $text_files; do
     fi
 done
 
-echo "✅ Text cleanup completed" 
+echo "✅ Text cleanup completed"
+

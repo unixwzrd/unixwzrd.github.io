@@ -8,6 +8,7 @@
 - Tested `scrollbar-gutter`, forced `overflow-y: scroll`, and other CSS approaches, but macOS overlay scrollbars still hid the gutter on short pages.
 - Rolled the stylesheet back to its original state; no functional change shipped until we identify a cross-browser-safe approach.
 - Added a default hero-image block to `layout: page`, so pages such as `collaborate.md` now render the specified `image:` (or the default OG art) just like blog posts do.
+- Added a `hide_banner_image`/`image: none` opt-out path in `layout: page`/`layout: post`, letting special pages such as `404.html` suppress the OG hero when it would be distracting.
 - Updated `jekyll-site build` to export `JEKYLL_ENV=production`, ensuring the generated canonical/OG URLs use `https://unixwzrd.ai` and keeping HTMLProofer happy during pre-commit checks.
 - Added a `set_production_url` plugin that forces `site.url` to `https://unixwzrd.ai` whenever `JEKYLL_ENV=production` (even if Jekyll tries to fall back to `http://localhost:4000` or `http://0.0.0.0:4000`), eliminating the remaining "not an HTTPS link" warnings.
 - Taught `05_site_link_checker.sh` to invoke `jekyll-site build -n` automatically so HTMLProofer always runs against a fresh production build (no more stale `_site/` output during pre-commit).
@@ -502,3 +503,4 @@
 - Set up pre-commit hooks
 - Update permalinks to meet new requirements
 - Add required front matter to all pages
+

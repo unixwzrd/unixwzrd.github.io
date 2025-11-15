@@ -8,13 +8,36 @@ layout: default
   <header class="page-header">
     <h1 class="page-title">{{ page.title | escape }}</h1>
     {% assign fallback_image = "/assets/images/default-og-image.png" %}
-    {% assign hero_image = page.image | default: fallback_image %}
-    <div class="page-banner-image">
-      <img src="{{ hero_image }}"
-           alt="{{ page.title | escape }}"
-           style="max-width:100%;height:auto;display:block;margin:1.5rem auto 0 auto;"
-           onerror="this.onerror=null;this.src='{{ fallback_image }}';" />
-    </div>
+    {% assign hero_image = page.image %}
+    {% assign show_banner = true %}
+
+    {% if page.hide_banner_image or page.hide_banner_image == true or page.hide_banner_image == 'true' %}
+      {% assign show_banner = false %}
+    {% endif %}
+
+    {% if page.show_banner_image == false or page.show_banner_image == 'false' %}
+      {% assign show_banner = false %}
+    {% endif %}
+
+    {% if hero_image %}
+      {% assign hero_image_downcased = hero_image | downcase %}
+      {% if hero_image_downcased == 'none' or hero_image_downcased == 'false' %}
+        {% assign show_banner = false %}
+      {% endif %}
+    {% endif %}
+
+    {% if show_banner %}
+      {% if hero_image == nil or hero_image == '' or hero_image == 'default' %}
+        {% assign hero_image = fallback_image %}
+      {% endif %}
+
+      <div class="page-banner-image">
+        <img src="{{ hero_image }}"
+             alt="{{ page.title | escape }}"
+             style="max-width:100%;height:auto;display:block;margin:1.5rem auto 0 auto;"
+             onerror="this.onerror=null;this.src='{{ fallback_image }}';" />
+      </div>
+    {% endif %}
   </header>
 
   <div class="page-content">
@@ -24,3 +47,4 @@ layout: default
   {% include content_footer.html %}
 
 </article>
+

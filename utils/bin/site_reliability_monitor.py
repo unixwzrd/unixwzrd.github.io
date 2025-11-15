@@ -9,18 +9,20 @@ Comprehensive monitoring system for the Jekyll website that:
 - Runs periodic health checks
 """
 
-import sys
-import time
-import smtplib
-import requests
 import argparse
-from datetime import datetime
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-from pathlib import Path
-from typing import Dict, Tuple, List
 import json
 import logging
+import re
+import smtplib
+import sys
+import time
+from datetime import datetime
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Tuple
+
+import requests
 import yaml
 
 # Configure logging
@@ -60,6 +62,77 @@ class SiteReliabilityMonitor:
         if self.verbose:
             logger.info(f"   🎯 Testing site: {self.site_url}")
 
+    def _slugify(self, text: str, preserve_case: bool = False) -> str:
+        """Normalize a slug (spaces to hyphen, strip invalid chars)."""
+        if not text:
+            return ""
+
+        slug = text.strip()
+        slug = slug.replace(' ', '-')
+        slug = slug.replace('_', '-')
+        slug = re.sub(r'[^A-Za-z0-9\-]+', '-', slug)
+        slug = re.sub(r'-{2,}', '-', slug)
+        slug = slug.strip('-')
+        if not preserve_case:
+            slug = slug.lower()
+        return slug
+
+    def _extract_front_matter(self, file_path: Path) -> Optional[Dict[str, Any]]:
+        """Parse YAML front matter for a markdown file."""
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                lines = f.readlines()
+
+            if not lines or not lines[0].strip().startswith('---'):
+                return None
+
+            content_lines = []
+            for line in lines[1:]:
+                if line.strip().startswith('---'):
+                    break
+                content_lines.append(line)
+
+            if not content_lines:
+                return None
+
+            return yaml.safe_load(''.join(content_lines))
+        except Exception as exc:
+            if self.verbose:
+                logger.warning(f"⚠️ Could not read front matter from {file_path}: {exc}")
+            return None
+
+    def _normalize_page_path(self, page: str) -> str:
+        """Normalize critical page paths without altering intended casing."""
+        if not page:
+            return '/'
+
+        normalized = page.strip()
+        if not normalized.startswith('/'):
+            normalized = '/' + normalized
+
+        normalized = re.sub(r'//+', '/', normalized)
+
+        if not normalized.endswith('/') and '.' not in normalized.split('/')[-1]:
+            normalized += '/'
+
+        return normalized
+
+    def _permalink_from_front_matter(self, front_matter: Optional[Dict[str, Any]]) -> Optional[str]:
+        """Return normalized permalink from front matter if present."""
+        if not front_matter:
+            return None
+
+        permalink = front_matter.get('permalink') or front_matter.get('perma_link')
+        if not permalink:
+            slug = front_matter.get('slug')
+            if slug:
+                slug = self._slugify(str(slug), preserve_case=True)
+                if slug:
+                    return self._normalize_page_path(f"/{slug}/")
+            return None
+
+        return self._normalize_page_path(permalink)
+
     def _discover_critical_pages(self) -> List[str]:
         """Auto-discover critical pages from Jekyll file structure."""
         critical_pages = set()
@@ -74,9 +147,17 @@ class SiteReliabilityMonitor:
             if html_dir.exists():
                 # Find all .md files that could be pages
                 for md_file in html_dir.glob('*.md'):
-                    if md_file.stem not in ['index', '404']:  # Skip index and 404
-                        page_path = f"/{md_file.stem}/"
-                        critical_pages.add(page_path)
+                    front_matter = self._extract_front_matter(md_file)
+                    page_path = self._permalink_from_front_matter(front_matter)
+
+                    if not page_path:
+                        # Default to filename-derived path (but skip index -> '/')
+                        if md_file.stem == 'index':
+                            page_path = '/'
+                        else:
+                            page_path = f"/{md_file.stem}/"
+
+                    critical_pages.add(self._normalize_page_path(page_path))
 
                 # Discover project pages
                 projects_dir = html_dir / 'projects'
@@ -97,10 +178,20 @@ class SiteReliabilityMonitor:
                                         parts = post_file.stem.split('-', 3)
                                         if len(parts) >= 4:
                                             year, month, day, title = parts[0], parts[1], parts[2], parts[3]
-                                            # Generate the expected URL based on Jekyll permalink structure
-                                            # This matches the case_preserving_permalinks.rb plugin format
-                                            post_url = f"/projects/{project_name}/{year}/{month}/{day}/{title}/"
-                                            critical_pages.add(post_url)
+
+                                            front_matter = self._extract_front_matter(post_file)
+
+                                            # Project posts always use the custom permalink defined in
+                                            # case_preserving_permalinks.rb (title-derived, lowercase slug).
+                                            if front_matter and front_matter.get('title'):
+                                                title_for_slug = front_matter.get('title')
+                                            else:
+                                                title_for_slug = title
+
+                                            slug = self._slugify(title_for_slug, preserve_case=False)
+                                            post_url = f"/projects/{project_name}/{year}/{month}/{day}/{slug}/"
+
+                                            critical_pages.add(self._normalize_page_path(post_url))
 
                 # Discover general blog posts
                 posts_dir = html_dir / '_posts'
@@ -110,8 +201,20 @@ class SiteReliabilityMonitor:
                             parts = post_file.stem.split('-', 3)
                             if len(parts) >= 4:
                                 year, month, day, title = parts[0], parts[1], parts[2], parts[3]
-                                post_url = f"/{year}/{month}/{day}/{title}/"
-                                critical_pages.add(post_url)
+                                front_matter = self._extract_front_matter(post_file)
+                                permalink = self._permalink_from_front_matter(front_matter)
+
+                                if permalink:
+                                    post_url = permalink
+                                else:
+                                    slug_source = front_matter.get('slug') if front_matter else None
+                                    if slug_source:
+                                        slug = self._slugify(slug_source)
+                                    else:
+                                        slug = title
+                                    post_url = f"/{year}/{month}/{day}/{slug}/"
+
+                                critical_pages.add(self._normalize_page_path(post_url))
 
             # Convert to sorted list
             return sorted(list(critical_pages))
@@ -137,9 +240,12 @@ class SiteReliabilityMonitor:
                 # Find stale pages (existing pages that are no longer in the file system)
                 stale_pages = set(existing_pages) - set(discovered_pages)
 
-                # Merge discovered pages with existing ones (preserve any manually added ones)
-                all_pages = set(existing_pages + discovered_pages)
-                config['health_checks']['critical_pages'] = sorted(list(all_pages))
+                # Merge discovered pages with existing ones (preserve manually added ones)
+                normalized_existing = [self._normalize_page_path(page) for page in existing_pages]
+                normalized_discovered = [self._normalize_page_path(page) for page in discovered_pages]
+
+                all_pages = set(normalized_existing + normalized_discovered)
+                config['health_checks']['critical_pages'] = sorted(all_pages)
 
                 # Log stale pages for cleanup
                 if stale_pages and self.verbose:
@@ -326,8 +432,13 @@ class SiteReliabilityMonitor:
             if response.status_code == 200:
                 # Check for directory listing content (Jekyll shows this when pages are missing)
                 content = response.text.lower()
-                directory_indicators = ['index of', 'directory listing', 'parent directory',
-                                       'name</a>', 'last modified']
+                directory_indicators = [
+                    'index of',
+                    'directory listing',
+                    'parent directory',
+                    'name</a>',
+                    'last modified',
+                ]
                 if any(indicator in content for indicator in directory_indicators):
                     if self.verbose:
                         logger.error(f"  ❌ {url}: Directory listing detected (page missing) ({response_time:.2f}s)")
@@ -568,6 +679,7 @@ class SiteReliabilityMonitor:
                     content = f.read()
                     # Find all external links using regex
                     import re
+
                     # Match markdown links: [text](url) where url starts with http/https
                     link_pattern = r'\[([^\]]+)\]\((https?://[^\s\)]+)\)'
                     matches = re.findall(link_pattern, content)
@@ -707,8 +819,10 @@ class SiteReliabilityMonitor:
                             logger.warning(f"{main_msg}\n{indent_spaces}{detail_msg}{source_info}")
                         else:
                             # At max limit
-                            max_msg = (f"🐌 {url}: HTTP {response.status_code} ({response_time:.2f}s) - "
-                                      f"SLOW (MAX SLOW COUNT REACHED: {max_slow_count})")
+                            max_msg = (
+                                f"🐌 {url}: HTTP {response.status_code} ({response_time:.2f}s) - "
+                                f"SLOW (MAX SLOW COUNT REACHED: {max_slow_count})"
+                            )
                             logger.warning(max_msg)
                     else:
                         status = 'up'
@@ -770,7 +884,10 @@ class SiteReliabilityMonitor:
                         logger.error(f"{main_msg}\n{indent_spaces}{detail_msg}{source_info}")
                     else:
                         # At max limit
-                        max_msg = f"  ❌ {url}: HTTP {response.status_code} ({response_time:.2f}s) - DOWN (MAX FAILURE COUNT REACHED: {max_failure_count})"
+                        max_msg = (
+                            f"  ❌ {url}: HTTP {response.status_code} ({response_time:.2f}s) - "
+                            f"DOWN (MAX FAILURE COUNT REACHED: {max_failure_count})"
+                        )
                         logger.error(max_msg)
 
                     self.check_results['external_links']['failed_items'].append(
@@ -1292,7 +1409,5 @@ Examples:
             sys.exit(1)
         success = monitor.reset_external_link_stats(args.reset)
         sys.exit(0 if success else 1)
-
-
 if __name__ == "__main__":
     main()

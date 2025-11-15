@@ -30,15 +30,35 @@ layout: default
 
   {% assign fallback_image = "/assets/images/default-og-image.png" %}
   {% assign hero_image = page.image %}
-  {% if hero_image == nil or hero_image == '' or hero_image == 'default' %}
-    {% assign hero_image = fallback_image %}
+  {% assign show_banner = true %}
+
+  {% if page.hide_banner_image or page.hide_banner_image == true or page.hide_banner_image == 'true' %}
+    {% assign show_banner = false %}
   {% endif %}
-  <div class="post-banner-image">
-    <img src="{{ hero_image }}"
-         alt="{{ page.title | escape }}"
-         style="max-width:100%;height:auto;display:block;margin:0 auto 2rem auto;"
-         onerror="this.onerror=null;this.src='{{ fallback_image }}';" />
-  </div>
+
+  {% if page.show_banner_image == false or page.show_banner_image == 'false' %}
+    {% assign show_banner = false %}
+  {% endif %}
+
+  {% if hero_image %}
+    {% assign hero_image_downcased = hero_image | downcase %}
+    {% if hero_image_downcased == 'none' or hero_image_downcased == 'false' %}
+      {% assign show_banner = false %}
+    {% endif %}
+  {% endif %}
+
+  {% if show_banner %}
+    {% if hero_image == nil or hero_image == '' or hero_image == 'default' %}
+      {% assign hero_image = fallback_image %}
+    {% endif %}
+
+    <div class="post-banner-image">
+      <img src="{{ hero_image }}"
+           alt="{{ page.title | escape }}"
+           style="max-width:100%;height:auto;display:block;margin:0 auto 2rem auto;"
+           onerror="this.onerror=null;this.src='{{ fallback_image }}';" />
+    </div>
+  {% endif %}
 
   <div class="post-content e-content" itemprop="articleBody">
     {{ content }}
@@ -52,3 +72,4 @@ layout: default
 
   <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 </article>
+
