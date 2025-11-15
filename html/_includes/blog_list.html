@@ -30,22 +30,39 @@ Blog Entries" for project blogs.
         {% endif %}
     {% else %}
         <!-- General blog listing (including ALL posts) -->
+        {% assign posts_to_show = '' | split: '' %}
+
         {% if jekyll.environment == "development" %}
-            <!-- Include all posts in development (but exclude _drafts directory) -->
-            {% assign posts_to_show = '' | split: '' %}
+            <!-- Include all standard posts (skip _drafts folder) -->
             {% for post in site.posts %}
                 {% unless post.url contains '/_drafts/' or post.url contains '_drafts/' %}
                     {% assign posts_to_show = posts_to_show | push: post %}
                 {% endunless %}
             {% endfor %}
+
+            <!-- Include project posts collection as well -->
+            {% if site.project_posts %}
+                {% for post in site.project_posts %}
+                    {% unless post.url contains '/_drafts/' or post.url contains '_drafts/' %}
+                        {% assign posts_to_show = posts_to_show | push: post %}
+                    {% endunless %}
+                {% endfor %}
+            {% endif %}
         {% else %}
-            <!-- Exclude draft posts in production -->
-            {% assign posts_to_show = '' | split: '' %}
+            <!-- Production: exclude drafts -->
             {% for post in site.posts %}
                 {% unless post.draft %}
                     {% assign posts_to_show = posts_to_show | push: post %}
                 {% endunless %}
             {% endfor %}
+
+            {% if site.project_posts %}
+                {% for post in site.project_posts %}
+                    {% unless post.draft %}
+                        {% assign posts_to_show = posts_to_show | push: post %}
+                    {% endunless %}
+                {% endfor %}
+            {% endif %}
         {% endif %}
     {% endif %}
 
@@ -86,7 +103,7 @@ Blog Entries" for project blogs.
             {% assign max_posts = page.site_blogs_count | default: site.site_blogs_count %}
         {% endif %}
 
-        {% assign total_pages = posts_to_show.size | divided_by: max_posts | ceil %}
+        {% assign total_pages = posts_to_show.size | times: 1.0 | divided_by: max_posts | ceil %}
 
         <div class="blog-pagination-container" data-posts-per-page="{{ max_posts }}" data-total-pages="{{ total_pages }}">
             {% for post in posts_to_show %}

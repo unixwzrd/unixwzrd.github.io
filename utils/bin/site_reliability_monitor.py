@@ -133,6 +133,25 @@ class SiteReliabilityMonitor:
 
         return self._normalize_page_path(permalink)
 
+    def _resolve_post_date(self, front_matter: Optional[Dict[str, Any]], default_date: datetime) -> datetime:
+        """Return the date to use for permalink generation."""
+        if not front_matter:
+            return default_date
+
+        fm_date = front_matter.get('date')
+        if not fm_date:
+            return default_date
+
+        if isinstance(fm_date, datetime):
+            return fm_date
+
+        try:
+            # Support strings (with optional quotes) that are ISO-like.
+            parsed = datetime.fromisoformat(str(fm_date).strip().strip('"').strip("'"))
+            return parsed
+        except ValueError:
+            return default_date
+
     def _discover_critical_pages(self) -> List[str]:
         """Auto-discover critical pages from Jekyll file structure."""
         critical_pages = set()
@@ -178,8 +197,13 @@ class SiteReliabilityMonitor:
                                         parts = post_file.stem.split('-', 3)
                                         if len(parts) >= 4:
                                             year, month, day, title = parts[0], parts[1], parts[2], parts[3]
+                                            default_date = datetime(int(year), int(month), int(day))
 
                                             front_matter = self._extract_front_matter(post_file)
+                                            post_date = self._resolve_post_date(front_matter, default_date)
+                                            year = f"{post_date:%Y}"
+                                            month = f"{post_date:%m}"
+                                            day = f"{post_date:%d}"
 
                                             # Project posts always use the custom permalink defined in
                                             # case_preserving_permalinks.rb (title-derived, lowercase slug).
@@ -201,7 +225,12 @@ class SiteReliabilityMonitor:
                             parts = post_file.stem.split('-', 3)
                             if len(parts) >= 4:
                                 year, month, day, title = parts[0], parts[1], parts[2], parts[3]
+                                default_date = datetime(int(year), int(month), int(day))
                                 front_matter = self._extract_front_matter(post_file)
+                                post_date = self._resolve_post_date(front_matter, default_date)
+                                year = f"{post_date:%Y}"
+                                month = f"{post_date:%m}"
+                                day = f"{post_date:%d}"
                                 permalink = self._permalink_from_front_matter(front_matter)
 
                                 if permalink:
@@ -1409,5 +1438,7 @@ Examples:
             sys.exit(1)
         success = monitor.reset_external_link_stats(args.reset)
         sys.exit(0 if success else 1)
+
+
 if __name__ == "__main__":
     main()
