@@ -4,7 +4,7 @@ Jekyll::Hooks.register :pages, :pre_render do |page|
   errors = Jekyll.instance_variable_get(:@permalink_errors)
 
   # Skip validation for certain layouts, special pages, and system files
-  next if ['home', 'default'].include?(page.data['layout'])
+  next if ['home', 'default', 'redirect'].include?(page.data['layout'])
   next if page.name == '404.html' || page.path == '404.html' || page.path.end_with?('/404.html')  # Skip 404.html completely
   next if page.path.start_with?('assets/')
   next if ['feed.xml', 'sitemap.xml', 'redirects.json', 'robots.txt'].include?(page.name)
@@ -42,4 +42,4 @@ Jekyll::Hooks.register :site, :post_write do |site|
     Jekyll.logger.error "Please fix these issues and try again"
     raise "Build failed due to permalink validation errors"
   end
-end 
+end

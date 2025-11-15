@@ -1,3 +1,5 @@
 // assets/css/style.scss
 @import "minima/initialize";
 @import "minima/skins/{{ site.minima.skin | default: 'auto' }}";
+
+/* Intentionally left minimal; custom overrides live in component-specific styles. */

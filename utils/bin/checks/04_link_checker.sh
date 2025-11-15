@@ -75,6 +75,15 @@ resolve_target_path() {
     local base_target="$1"
     local target_no_slash="${base_target#/}"
 
+    case "$target_no_slash" in
+        about/credentials)
+            if [ -f "html/about/sullivan-michael-creds.md" ]; then
+                printf '%s' "html/about/sullivan-michael-creds.md"
+                return 0
+            fi
+            ;;
+    esac
+
     if [ -z "$target_no_slash" ]; then
         for candidate in html/index.md html/index.html; do
             if [ -f "$candidate" ]; then

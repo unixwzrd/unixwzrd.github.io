@@ -17,6 +17,6 @@ Whether you're a **legal professional**, a **researcher**, or someone who wants 
 
 - **For Professionals**: If you're seeking our services, sponsorship opportunities, or want to hire us for AI development, data analysis, or consulting, head over to our [Products and Services](/collaborate/professionals/) page.
 
-- **For Contributors & Participants**: Interested in joining our community, contributing data, collaborating on research, or getting involved with ongoing projects? Visit our [Community Collaboration](/collaborate/community) page.
+- **For Contributors & Participants**: Interested in joining our community, contributing data, collaborating on research, or getting involved with ongoing projects? Visit our [Community Collaboration](/collaborate/community/) page.
 
-Join us in making an impact on the future of AI, parental alienation solutions, and technology. 
+Join us in making an impact on the future of AI, parental alienation solutions, and technology.

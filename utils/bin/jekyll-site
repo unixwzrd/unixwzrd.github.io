@@ -66,7 +66,7 @@ site_build() {
     rm -rf "${BASE_DIR}/_site/"
     rm -rf "${BASE_DIR}/html/_site/"
     rm -rf "${BASE_DIR}/html/.sass-cache/"
-    cd "${BASE_DIR}" && bundle exec jekyll build --trace --verbose
+    cd "${BASE_DIR}" && JEKYLL_ENV=production bundle exec jekyll build --trace --verbose
 
     if [ "$run_link_check" = "true" ]; then
         "${BASE_DIR}/utils/bin/checks/05_site_link_checker.sh"
@@ -86,7 +86,7 @@ start_service() {
     site_build "$skip_refresh" "$run_link_check"
     
     # Jekyll serve flags - easily configurable
-    local serve_flags="--host 0.0.0.0 --port 4000 --trace"
+    local serve_flags="--host localhost --port 4000 --trace"
     # Note: Directory listings are disabled by default in Jekyll
     # Set environment to development to enable draft posts and other dev features
     

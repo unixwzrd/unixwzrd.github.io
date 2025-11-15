@@ -100,8 +100,6 @@ github:
 codeium_stats: https://codeium.com/profile/unixwzrd
 
 # Pagination settings
-paginate: 7
-paginate_path: "/page/:num/"
 
 collections:
   projects:
@@ -161,8 +159,8 @@ header_pages:
   - projects.md
   - blog.md
   - resources.md
+  - faq.md
   - contact.md
-  - questions.md
 
 google_analytics: G-QZSHSBP292
 

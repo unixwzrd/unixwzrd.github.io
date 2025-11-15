@@ -7,6 +7,14 @@ layout: default
 
   <header class="page-header">
     <h1 class="page-title">{{ page.title | escape }}</h1>
+    {% assign fallback_image = "/assets/images/default-og-image.png" %}
+    {% assign hero_image = page.image | default: fallback_image %}
+    <div class="page-banner-image">
+      <img src="{{ hero_image }}"
+           alt="{{ page.title | escape }}"
+           style="max-width:100%;height:auto;display:block;margin:1.5rem auto 0 auto;"
+           onerror="this.onerror=null;this.src='{{ fallback_image }}';" />
+    </div>
   </header>
 
   <div class="page-content">

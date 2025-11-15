@@ -1,19 +1,40 @@
 # Changelog
 
+## 2025-11-15: Navigation layout jitter investigation
+
+### Summary
+
+- Investigated header/menu "jump" on `collaborate`, `contact`, and `faq` pages caused by platform-dependent scrollbar visibility.
+- Tested `scrollbar-gutter`, forced `overflow-y: scroll`, and other CSS approaches, but macOS overlay scrollbars still hid the gutter on short pages.
+- Rolled the stylesheet back to its original state; no functional change shipped until we identify a cross-browser-safe approach.
+- Added a default hero-image block to `layout: page`, so pages such as `collaborate.md` now render the specified `image:` (or the default OG art) just like blog posts do.
+- Updated `jekyll-site build` to export `JEKYLL_ENV=production`, ensuring the generated canonical/OG URLs use `https://unixwzrd.ai` and keeping HTMLProofer happy during pre-commit checks.
+- Added a `set_production_url` plugin that forces `site.url` to `https://unixwzrd.ai` whenever `JEKYLL_ENV=production` (even if Jekyll tries to fall back to `http://localhost:4000` or `http://0.0.0.0:4000`), eliminating the remaining "not an HTTPS link" warnings.
+- Taught `05_site_link_checker.sh` to invoke `jekyll-site build -n` automatically so HTMLProofer always runs against a fresh production build (no more stale `_site/` output during pre-commit).
+- Documented the issue so future work can build on the findings without re-running the same experiments.
+
+### Notes
+
+- This remains a known UI quirk on macOS where short pages lack a scrollbar; fixing it cleanly will require a different strategy (potentially JavaScript-based detection or layout adjustments).
+- No other assets or configurations were changed as part of this investigation.
+
 ## 2025-09-26: PA Awareness references integrity and link checks
 
 ### Fixes
+
 - Restored missing reference anchors in `html/projects/PA-Awareness-1/_posts/2025-09-25-parental-alienation-awareness-part-5.md` (23 `ref-source-...` ids) to match master drafts.
 - Validated forward/backward references against drafts (`html/projects/PA-Awareness-1/_drafts/2025-09-25-pa-paper-*.md`); no changes made to drafts.
 - Rebuilt site and reran link checks; PA-Awareness internal links (including fragment anchors) now pass.
 
 ### Notes
+
 - Only anchors were appended (non-intrusive) at the end of Part 5; post content unchanged.
 - URL structure remains Jekyll-generated; no permalinks added.
 
 ## 2025-07-10: Documentation Refactor and Consistency Improvements
 
 ### Major Documentation Overhaul
+
 - Refactored: Monolithic site operations guide into modular documentation structure
   - Split 702-line [`site-operations.md`](docs/guides/site-operations.md) into 8 focused guides for better maintainability
   - Created logical separation: environment, services, deployment, troubleshooting, maintenance, security, reference, monitoring
@@ -30,6 +51,7 @@
   - Updated all cross-references and navigation links
 
 ### Consistency Improvements
+
 - Removed: All emojis from section headers for professional consistency
 - Standardized: Section naming across all documentation guides
 - Eliminated: Date stamps from section headers for cleaner presentation
@@ -37,12 +59,14 @@
 - Updated: Main site operations guide with comprehensive navigation to all sub-guides
 
 ### Documentation Structure
+
 - Core Operations: [`environment-setup.md`](docs/guides/environment-setup.md), [`service-management.md`](docs/guides/service-management.md), [`deployment.md`](docs/guides/deployment.md), [`blog-pagination.md`](docs/guides/blog-pagination.md), [`troubleshooting.md`](docs/guides/troubleshooting.md), [`maintenance.md`](docs/guides/maintenance.md), [`security.md`](docs/guides/security.md), [`reference-utilities.md`](docs/guides/reference-utilities.md)
 - Supporting Guides: [`monitoring.md`](docs/guides/monitoring.md), [`github-actions.md`](docs/guides/github-actions.md), [`strategy.md`](docs/guides/strategy.md), [`testing.md`](docs/guides/testing.md), [`checklist.md`](docs/guides/checklist.md)
 - Archive: Preserved original [`site-operations-archive-2025-07-09.md`](docs/guides/site-operations-archive-2025-07-09.md) for reference
 - Navigation: Each guide includes "Back to Site Operations Guide" link for easy navigation
 
 ### Benefits
+
 - Better Organization: Logical separation of concerns makes information easier to find
 - Improved Maintainability: Smaller, focused files are easier to update and maintain
 - Reduced Confusion: Single checklist eliminates duplicate/conflicting task tracking
@@ -50,6 +74,7 @@
 - Complete Coverage: All original content preserved with enhanced organization
 
 ### Technical Details
+
 - Verified: 100% content migration from original guide to new structure
 - Tested: All cross-references and navigation links work correctly
 - Maintained: All operational procedures and technical details preserved
@@ -57,6 +82,7 @@
 - Documented: Comprehensive audit trail of all changes and improvements
 
 ## 2025-07-09
+
 - Unified blog listing: main blog now shows all posts (main + project).
 - Added client-side JavaScript pagination for blog listings (configurable post count per page, smooth navigation, URL updates with ?page=).
 - Pagination controls styled for dark backgrounds and accessibility.
@@ -67,6 +93,7 @@
 ## 20250701_03-rel: Redirect System Implementation & Script Modularization
 
 ### Major Accomplishments
+
 - Implemented: Comprehensive redirect system to fix 404 errors
   - Fixed URL mismatches between site monitor config and actual Jekyll permalinks
   - Created static HTML redirect files at correct output paths
@@ -87,6 +114,7 @@
   - Created test scripts for email functionality and crontab setup
 
 ### Technical Implementation
+
 - Created: Email testing script ([`test_email.py`](utils/bin/test_email.py)) for notification system
 - Created: Crontab setup script ([`setup_crontab.sh`](utils/bin/setup_crontab.sh)) for automated monitoring
 - Updated: Site monitor configuration ([`site_monitor_config.json`](utils/etc/site_monitor_config.json)) with corrected URLs and improved structure
@@ -94,12 +122,14 @@
 - Enhanced: Error handling and logging across all monitoring components
 
 ### Documentation Updates
+
 - Updated: [`worklog.md`](worklog.md) with comprehensive documentation of recent accomplishments
 - Updated: [`TODO.md`](TODO.md) to reflect completed work and current priorities
 - Organized: Project documentation structure for better maintainability
 - Cleaned: Temporary files and deprecated content
 
 ### Benefits
+
 - Fixed 404 Errors: All critical pages now accessible with proper redirects
 - Modular Architecture: Easier maintenance and testing of individual components
 - Automated Monitoring: Ready for email notifications and scheduled checks
@@ -109,6 +139,7 @@
 ## 20250127_01-rel: Site Reliability System Enhancement & Documentation
 
 ### Major Enhancements
+
 - Enhanced: Site reliability monitor with external link validation and missing page tracking
 - Added: Page management utilities and comprehensive documentation
 - Improved: Email authentication with OAuth2 support
@@ -119,6 +150,7 @@
 ## 20250701_02-rel: Site Reliability Monitor Enhancements & Service Script Improvements
 
 ### Major Enhancements
+
 - Enhanced: Site reliability monitor with improved output formatting and smart defaults
   - Summary Counts: Shows totals for pages, images, and links checked
   - Verbose Mode: `-V` flag shows all checked items in detail
@@ -136,6 +168,7 @@
   - Automatic Sorting: Critical pages list automatically sorted for consistency
 
 ### Service Script Improvements
+
 - Updated: [`jekyll-site`](utils/bin/jekyll-site) with enhanced flag handling and help
   - Added `-r|--refresh` flag for explicit OG data refresh
   - Improved conflict handling with warnings instead of exits
@@ -152,6 +185,7 @@
   - Conflict warnings that allow operation to continue
 
 ### Technical Improvements
+
 - Fixed: Image checking logic to properly handle 404 pages
   - 404 pages with `alt="404"` no longer flagged as broken images
   - Separate logic for 404 pages vs other pages
@@ -164,12 +198,14 @@
   - Clean, professional output suitable for automation
 
 ### Documentation Updates
+
 - Updated: [`PROJECT_OVERVIEW.md`](docs/PROJECT_OVERVIEW.md) with recent accomplishments
 - Updated: [`site-operations.md`](docs/guides/site-operations.md) with new service management
 - Updated: [`site-reliability-monitoring.md`](docs/guides/monitoring.md) with output examples
 - Added: Comprehensive help messages to all service scripts
 
 ### Benefits
+
 - Faster Development: Smart defaults reduce unnecessary OG refreshes
 - Better UX: Clear output formatting and helpful messages
 - Flexible Control: Explicit flags for when you need complete vs fast mode
@@ -179,6 +215,7 @@
 ## 20250626_08-rel: File Watcher System Testing and Verification
 
 ### Testing Implementation
+
 - Added: Comprehensive test suite for file watcher system ([`test_file_watcher.py`](utils/bin/test_file_watcher.py))
   - Tests file watcher startup and shutdown
   - Tests dynamic watcher script reloading
@@ -197,6 +234,7 @@
 ## 20250701_01-rel: Site Reliability Monitoring System
 
 ### New Features
+
 - Added: Comprehensive Site Reliability Monitoring System
   - Automated Health Checks: Monitors site availability, critical pages, response times, and images
   - Post-Commit Verification: Automatically checks site after deployments with configurable delay
@@ -222,6 +260,7 @@
   - Troubleshooting guide
 
 ### Benefits
+
 - **Proactive Issue Detection**: Catches problems before users report them
 - **Automated Verification**: Eliminates need for manual page-by-page checking
 - **Performance Monitoring**: Tracks response times and identifies degradation
@@ -229,12 +268,14 @@
 - **Immediate Alerts**: Email notifications with detailed issue descriptions
 
 ### Integration
+
 - COMPATIBLE: Works alongside existing pre-commit checks and file watcher system
 - FLEXIBLE: Supports git hooks, CI/CD pipelines, and cron scheduling
 - EXTENSIBLE: Custom health check support for specific needs
 - CONFIGURABLE: Adjustable thresholds and monitoring parameters
 
 ### Verification Results
+
 - VERIFIED: File watcher system works correctly in all tested scenarios
 - CONFIRMED: Jekyll service integration with `-j` and `-w` flags functions properly
 - TESTED: Dynamic script loading detects new watcher scripts automatically
@@ -242,6 +283,7 @@
 - CONFIRMED: Error handling prevents watcher crashes from broken scripts
 
 ### Documentation Updates
+
 - UPDATED: Testing procedures and verification methods
 - DOCUMENTED: Manual testing steps for ongoing development
 - PROVIDED: Troubleshooting guide for common issues
@@ -250,6 +292,7 @@
 ## 20250626_07-rel: File Watcher System Implementation
 
 ### New Features
+
 - ADDED: General file watcher system for automatic script execution on file changes
   - Main watcher: `utils/bin/file_watcher.py`
   - Watcher scripts directory: `utils/bin/watchers/`
@@ -266,6 +309,7 @@
   - Proper PID management for both services
 
 ### Technical Details
+
 - USED: watchdog library for file system monitoring
 - IMPLEMENTED: Debouncing to prevent multiple rapid executions
 - PROVIDED: Environment variables to watcher scripts (WATCHER_FILE, WATCHER_EVENT, WATCHER_NAME)
@@ -275,6 +319,7 @@
 ## 20250626_06-rel: Incremental Image Path Check & Pre-commit Performance Planning
 
 ### Enhancements
+
 - IMPROVED: Image path check script now uses incremental mode with timestamp tracking
   - Only scans Markdown files modified since the last check, greatly improving pre-commit speed
   - Timestamp file stored in utils/etc/.image_paths_last_check
@@ -284,12 +329,14 @@
 ## 20250626_05-rel: Image Path Fix for VenvUtil Blog Post
 
 ### Bug Fixes
+
 - FIXED: Image display issue in VenvUtil Summer Update blog post
   - Converted Markdown image syntax inside HTML div to proper HTML img tag
   - Changed `![Order From Chaos](/assets/images/projects/venvutil/Ordering_Venvs.png)` to `<img src="/assets/images/projects/venvutil/Ordering_Venvs.png" alt="Order From Chaos">`
   - Image now displays correctly instead of appearing briefly and disappearing
 
 ### Technical Details
+
 - USED: `utils/bin/fix_image_paths.py` script to automatically detect and fix the issue
 - CONFIRMED: Site builds successfully with the corrected image syntax
 - VERIFIED: Image path is correct and image file exists in expected location
@@ -297,11 +344,13 @@
 ## 20250626_04-rel: Service Script Improvements and Sass Reversion
 
 ### Critical Fixes
+
 - FIXED: Jekyll service script process management and restart functionality
 - REVERTED: Failed Sass migration attempt back to working `@import` and `adjust-color()` syntax
 - FIXED: Service script now properly handles missing PID files and port conflicts
 
 ### Service Script Improvements
+
 - IMPROVED: `utils/bin/jekyll-service` with better process management
 - ADDED: Port conflict detection and automatic cleanup of existing processes
 - ADDED: Graceful handling of missing PID files during restart operations
@@ -309,12 +358,14 @@
 - VERIFIED: Service script now works reliably for start/stop/restart operations
 
 ### Sass/SCSS Status
+
 - REVERTED: All SCSS files back to working `@import` syntax
 - MAINTAINED: `adjust-color()` functions (deprecation warnings accepted for now)
 - DECIDED: To address Sass modernization as separate planned project
 - CONFIRMED: Site builds and serves correctly with current Sass setup
 
 ### Technical Details
+
 - UPDATED: Service script to check for port conflicts before starting
 - IMPROVED: Error handling for process management edge cases
 - MAINTAINED: Working site functionality while planning future Sass improvements
@@ -323,6 +374,7 @@
 ## 20250626_03-rel: Sass Migration Attempt (REVERTED)
 
 ### Note: This migration was attempted but reverted due to compatibility issues
+
 - ATTEMPTED: Migration to Dart Sass module system with `@use "sass:color"`
 - ENCOUNTERED: Jekyll Sass converter compatibility issues with Dart Sass modules
 - REVERTED: Back to working `@import` and `adjust-color()` syntax
@@ -331,6 +383,7 @@
 ## 20250626_02-home-blog-improvements: Home Page and Blog Index Enhancements
 
 ### Improvements
+
 - Home page now uses index.md for proper Markdown rendering and formatting
 - Added 'Latest Updates' section to home page with 7 most recent blog post headlines (no excerpts)
 - Added 'View all blog posts' link to consolidated blog index at the bottom of the home page
@@ -338,33 +391,39 @@
 - Improved navigation and user experience for blog discovery
 
 ### Fixes
+
 - Resolved issues with Markdown not rendering on home page
 - Ensured only one root index file exists for correct Jekyll processing
 
 ## 20250626_01-rel: Critical Build Fixes and Image Path Corrections
 
 ### Critical Fixes
+
 - FIXED: Missing jekyll-seo-tag plugin causing build failures
 - FIXED: Image path reference in Case-Analytics related post
   - Corrected `/assets/images/boy-robot-road-unizwzrd-mia-watching.png` to `/assets/images/projects/Case-Analytics/boy-robot-road-unizwzrd-mia-watching.png`
 
 ### Build System
+
 - ADDED: jekyll-seo-tag plugin to Gemfile for proper SEO functionality
 - VERIFIED: Site builds successfully without critical errors
 - CONFIRMED: All external links are functioning (social media rate limiting is expected)
 
 ### Documentation
+
 - UPDATED: Pre-commit checklist with resolved issues
 - DOCUMENTED: False positive Liquid syntax warning in footer template
 
 ## 20250320_01-rel: Link Checker Improvements and Blog Fixes
 
 ### Bug Fixes
+
 - FIXED: Link checker to properly handle URL-encoded characters like %20 (spaces)
 - FIXED: Blog post date issue where future-dated posts weren't showing correctly
 - FIXED: Image display in project tables to avoid cropping
 
 ### Improvements
+
 - IMPROVED: Project image styling with consistent rounded corners and hover effects
 - IMPROVED: Project link organization for both public and private repositories
 - UPDATED: Ensured all projects link to project blog (both title and image)
@@ -372,6 +431,7 @@
 ## 20240223_02-rel: Blog Layout and Template Fixes
 
 ### Bug Fixes
+
 - FIXED: Blog post layout issue where titles and dates weren't displaying correctly
 - FIXED: Post layout template now correctly uses page variables instead of post variables
 - FIXED: Join Us include file formatting issues
@@ -379,12 +439,14 @@
 - FIXED: Dependabot URL gem vulnerability
 
 ### Documentation
+
 - UPDATED: Documentation to reflect latest changes
 - IMPROVED: Worklog with details about template fixes
 
 ## 20240223_01-rel: Unified Blog System and Pagination
 
 ### Blog System Improvements
+
 - FIXED: Blog display on home page with proper pagination (5 posts per page)
 - MOVED: Latest Updates section to home layout template
 - ADDED: Proper pagination navigation
@@ -394,6 +456,7 @@
 ## 20240220_01-rel: Major Site Structure and Process Updates
 
 ### Blog System Improvements
+
 - NEW: Unified blog list component for consistent display across site
 - IMPROVED: Blog styling and organization
   - Consistent post date and excerpt formatting
@@ -401,13 +464,15 @@
   - Better heading hierarchy
 
 ### Project Structure
+
 - NEW: Standardized project directory structure
-  - Added _drafts and _posts directories for each project
+  - Added _drafts and_posts directories for each project
   - Created template system for new posts
   - Improved project asset management
 - IMPROVED: Project integration and navigation
 
 ### Security and Build Process
+
 - SECURITY: Updated nokogiri from 1.16.7 to 1.18.3
 - NEW: Comprehensive pre-commit check system
   - Permalink validation
@@ -417,6 +482,7 @@
 - IMPROVED: Jekyll service management and build process
 
 ### Documentation
+
 - NEW: Comprehensive documentation in docs/ directory
   - Tool documentation
   - Workflow guides
@@ -425,14 +491,14 @@
 - IMPROVED: Development process documentation
 
 ### Breaking Changes
+
 - Project blog posts must use new directory structure
 - All commits must pass pre-commit checks
 - Stricter permalink and front matter requirements
 
 ### Migration Required
+
 - Update existing project posts to new structure
 - Set up pre-commit hooks
 - Update permalinks to meet new requirements
 - Add required front matter to all pages
-
-

@@ -1,12 +1,10 @@
 ---
-title: "Distributed Thinking Systems Blog"
 layout: page
+title: "Distributed Thinking Systems Blog"
 menu_item: Blog
 permalink: /blog/
 image: /assets/images/default-og-image.png
 ---
-
-![Default Image](/assets/images/default-og-image.png)
 
 A platform for insights, updates, and discussions on **AI, parental alienation, and family law technology**.
 
