@@ -26,6 +26,11 @@ def fix_image_paths(file_path, base_url=None, absolute_path_only=False, dry_run=
     # Fix front matter image URLs
     def fix_front_matter_image(match):
         current_path = match.group(2)
+        # If path already starts with /, it's already an absolute path - don't modify it
+        if current_path.startswith('/'):
+            # Already an absolute path, don't change it
+            return match.group(0)
+
         if current_path.startswith('http'):
             path_part = '/' + '/'.join(current_path.split('/')[3:])
         else:
@@ -60,6 +65,11 @@ def fix_image_paths(file_path, base_url=None, absolute_path_only=False, dry_run=
             def process_md_image(match):
                 alt_text = match.group(2)
                 current_url = match.group(3)
+
+                # If URL already starts with /, it's already an absolute path - don't modify it
+                if current_url.startswith('/'):
+                    # Already an absolute path, don't change it
+                    return match.group(0)
 
                 # Fix URL
                 if current_url.startswith('http'):
@@ -135,4 +145,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main() 
+    main()
