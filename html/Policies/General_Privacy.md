@@ -1,7 +1,7 @@
 ---
 title: "General Privacy Policy"
 layout: page
-permalink: /Policies/General_Privacy/
+permalink: /policies/General_Privacy/
 image: /assets/images/default-og-image.png
 excerpt: "Effective Date: 2025-02-01"
 ---
