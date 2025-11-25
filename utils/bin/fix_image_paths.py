@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
+import argparse
 import os
 import re
-import argparse
 
 # Regex patterns
 IMAGE_RE = re.compile(r'^(image:\s+)(/[^\s]+|https?://[^\s]+)$')

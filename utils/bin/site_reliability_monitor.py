@@ -792,8 +792,45 @@ class SiteReliabilityMonitor:
 
             try:
                 start_time = time.time()
-                response = requests.head(url, timeout=10, allow_redirects=True)
+                # If this link has failed many times with HEAD, try GET instead
+                use_get_instead = metrics.get('failed_checks', 0) > 3 and metrics.get('last_status') in ['down', 'connection_error']
+
+                # Try HEAD first (or GET if it's been failing), but if it fails with 403/404/405, check homepage
+                if use_get_instead:
+                    response = requests.get(url, timeout=10, allow_redirects=True, headers={
+                        'User-Agent': 'Mozilla/5.0 (compatible; SiteMonitor/1.0; +https://unixwzrd.ai)'
+                    })
+                else:
+                    response = requests.head(url, timeout=10, allow_redirects=True, headers={
+                        'User-Agent': 'Mozilla/5.0 (compatible; SiteMonitor/1.0; +https://unixwzrd.ai)'
+                    })
                 response_time = time.time() - start_time
+
+                # Track if we verified site is working via homepage check
+                site_verified_working = False
+                site_verification_note = ""
+                # If HEAD returns 403/404/405, try checking the homepage to verify the site is actually working
+                if response.status_code in [403, 404, 405]:
+                    try:
+                        # Try the homepage to see if the site itself is working
+                        from urllib.parse import urlparse
+                        parsed = urlparse(url)
+                        homepage_url = f"{parsed.scheme}://{parsed.netloc}/"
+                        if homepage_url != url:
+                            homepage_response = requests.get(homepage_url, timeout=5, allow_redirects=True, headers={
+                                'User-Agent': 'Mozilla/5.0 (compatible; SiteMonitor/1.0; +https://unixwzrd.ai)'
+                            })
+                            if homepage_response.status_code < 400:
+                                # Site is working, just blocking HEAD requests or this specific page
+                                site_verified_working = True
+                                if response.status_code == 403:
+                                    site_verification_note = " (site is working, but page/HEAD blocked)"
+                                elif response.status_code == 404:
+                                    site_verification_note = " (site is working, but page not found)"
+                                else:
+                                    site_verification_note = " (site is working, but HEAD not allowed)"
+                    except Exception:
+                        pass  # If homepage check fails, continue with original response
 
                 # Update response time metrics
                 metrics['last_response_time'] = response_time
@@ -803,13 +840,19 @@ class SiteReliabilityMonitor:
                 # Determine status and update metrics
                 slow_threshold = self.config['external_links']['slow_threshold']
 
-                if response.status_code < 400:
-                    # Success
+                if response.status_code < 400 or site_verified_working:
+                    # Success (either direct success or verified site is working)
                     metrics['successful_checks'] += 1
                     metrics['last_status'] = 'up'
                     metrics['last_response_time'] = response_time
                     metrics['last_error'] = None
                     status = 'up'
+
+                    if site_verified_working:
+                        # Site is working but blocking this specific page/HEAD request
+                        logger.info(f"    ✅ {url}: Site is working{site_verification_note}")
+                        passed_count += 1
+                        continue
 
                     # Check if slow
                     if response_time > slow_threshold:
@@ -933,6 +976,10 @@ class SiteReliabilityMonitor:
                     metrics['last_error'] = 'Timeout'
                     status = 'timeout'
 
+                    # Check if we should investigate this link
+                    max_failures = self.config['external_links']['max_failures_before_investigation']
+                    critical_threshold = self.config['external_links']['critical_failure_threshold']
+
                     # Format the error message with proper descriptions
                     main_msg, problem_type = self._format_error_message(
                         url, "timeout", response_time=response_time,
@@ -977,6 +1024,10 @@ class SiteReliabilityMonitor:
                     metrics['last_status'] = 'connection_error'
                     metrics['last_error'] = 'Connection error'
                     status = 'connection_error'
+
+                    # Check if we should investigate this link
+                    max_failures = self.config['external_links']['max_failures_before_investigation']
+                    critical_threshold = self.config['external_links']['critical_failure_threshold']
 
                     # Always show source pages for failed links
                     source_pages = metrics.get('source_pages', [])
@@ -1097,7 +1148,14 @@ class SiteReliabilityMonitor:
 
     def run_health_checks(self) -> bool:
         """Run all health checks."""
-        logger.info("   🏥 Starting comprehensive health checks...")
+        # Clear header showing which site we're checking
+        site_type = "LOCAL SITE" if self.local_mode else "REMOTE SITE"
+        logger.info("")
+        logger.info("=" * 80)
+        logger.info(f"   🏥 Starting comprehensive health checks for {site_type}")
+        logger.info(f"   🌐 Site URL: {self.site_url}")
+        logger.info("=" * 80)
+        logger.info("")
         self.issues = []
 
         # Basic availability check - if this fails, everything else will fail
