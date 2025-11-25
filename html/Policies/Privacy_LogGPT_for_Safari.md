@@ -1,7 +1,7 @@
 ---
 title: "LogGPT: Export ChatGPT conversation JSON logs for Safari Privacy Policy"
 layout: page
-permalink: /policies/Privacy_LogGPT_for_Safari/
+permalink: /Policies/Privacy_LogGPT_for_Safari/
 image: /assets/images/default-og-image.png
 excerpt: "Effective Date: 2025-03-20"
 ---
