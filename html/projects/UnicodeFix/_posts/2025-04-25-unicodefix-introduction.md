@@ -8,7 +8,7 @@ tags: [unicode, python, devstory, macos, text-cleaning, open-source]
 excerpt: "It started with a broken script. Ended with a clean, fast, cross-tool Unicode scrubber. Built in less than 10 hours."
 published: true
 redirect_from:
-  - /projects/UnicodeFix/2025/04/25/unicodefix-introduction/
+ - /projects/UnicodeFix/2025/04/25/unicodefix-introduction/
 ---
 
 ## From Frustration to Fix
@@ -204,9 +204,9 @@ It felt like something that belonged in macOS all along.
 
 If you're using a VS Code type editor like Cursor, Windsurf, or any others with the Vim extension installed, macVim, vim, vi, or any other editors which can use external programs as a filter, you can simply paste your text into the editor and then do the following:
 
-\```vim
+```vim
 :%!cleanup-text
-\```
+```
 
 This will filter all the Unicode/UTF-8 and replace it with the closest ASCII characters.
 

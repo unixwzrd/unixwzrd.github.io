@@ -1,27 +1,36 @@
 repositories:
-  - name: Case-Analytics
-    owner: unixwzrd
-    manual_data:
-      title: "Case Analytics"
-      description: "AI-powered analysis tool for legal case documents, focusing on parental alienation detection and pattern recognition in high-conflict divorce cases."
-      image_url: "/assets/images/child-with-robot.png"
-  - name: PA-Awareness-1
-    owner: unixwzrd
-    manual_data:
-      title: "Parental Alienation Awareness"
-      description: "Parental Alienation Awareness: A data-driven look at the scope, impact, and damage to children, families, and society."
-      image_url: "/assets/images/projects/PA-devastation-1.png"
-  - name: LogGPT
-    owner: unixwzrd
-  - name: UnicodeFix
-    owner: unixwzrd
-  - name: venvutil
-    owner: unixwzrd
-  - name: TorchDevice
-    owner: unixwzrd
-  - name: oobabooga-macOS
-    owner: unixwzrd
-  - name: text-generation-webui-macos
-    owner: unixwzrd
-#  - name: TokenSecure
-#    owner: unixwzrd
+ - name: Case-Analytics
+ owner: unixwzrd
+ manual_data:
+ title: "Case Analytics"
+ description: "AI-powered analysis tool for legal case documents, focusing on parental alienation detection and pattern recognition in high-conflict divorce cases."
+ image_url: "/assets/images/child-with-robot.png"
+ - name: PA-Awareness-1
+ owner: unixwzrd
+ manual_data:
+ title: "Parental Alienation Awareness"
+ description: "Parental Alienation Awareness: A data-driven look at the scope, impact, and damage to children, families, and society."
+ image_url: "/assets/images/projects/PA-devastation-1.png"
+ - name: LogGPT
+ owner: unixwzrd
+ - name: UnicodeFix
+ owner: unixwzrd
+ - name: mlx-harmony
+ owner: unixwzrd
+ manual_data:
+ title: "MLX Harmony"
+ description: "Run GPT-OSS and other MLX-compatible models through a single, lightweight interface."
+ - name: ConnectomeAI
+ owner: unixwzrd
+ manual_data:
+ title: "ConnectomeAI"
+ description: "ConnectomeAI: experiments in mapping and orchestrating AI tools, workflows, and knowledge graphs."
+ visibility: public
+ - name: venvutil
+ owner: unixwzrd
+ - name: TorchDevice
+ owner: unixwzrd
+ - name: oobabooga-macOS
+ owner: unixwzrd
+ - name: text-generation-webui-macos
+ owner: unixwzrd
