@@ -4,10 +4,10 @@ import os
 import re
 
 # Regex patterns
-IMAGE_RE = re.compile(r'^(image:\s+)(/[^\s]+|https?://[^\s]+)$')
-MD_IMAGE_RE = re.compile(r'(!\[([^\]]*)\]\(([^)]+)\))')
-HTML_DIV_RE = re.compile(r'<div[^>]*>')
-HTML_CLOSE_DIV_RE = re.compile(r'</div>')
+IMAGE_RE = re.compile(r"^(image:\s+)(/[^\s]+|https?://[^\s]+)$")
+MD_IMAGE_RE = re.compile(r"(!\[([^\]]*)\]\(([^)]+)\))")
+HTML_DIV_RE = re.compile(r"<div[^>]*>")
+HTML_CLOSE_DIV_RE = re.compile(r"</div>")
 
 
 def convert_md_image_to_html(match):
@@ -27,12 +27,12 @@ def fix_image_paths(file_path, base_url=None, absolute_path_only=False, dry_run=
  def fix_front_matter_image(match):
  current_path = match.group(2)
  # If path already starts with /, it's already an absolute path - don't modify it
- if current_path.startswith('/'):
+ if current_path.startswith("/"):
  # Already an absolute path, don't change it
  return match.group(0)
 
- if current_path.startswith('http'):
- path_part = '/' + '/'.join(current_path.split('/')[3:])
+ if current_path.startswith("http"):
+ path_part = "/" + "/".join(current_path.split("/")[3:])
  else:
  path_part = current_path
 
@@ -49,7 +49,7 @@ def fix_image_paths(file_path, base_url=None, absolute_path_only=False, dry_run=
  content = IMAGE_RE.sub(fix_front_matter_image, content)
 
  # Fix Markdown images and convert those inside HTML blocks
- lines = content.split('\n')
+ lines = content.split("\n")
  in_html_block = False
  new_lines = []
 
@@ -62,18 +62,19 @@ def fix_image_paths(file_path, base_url=None, absolute_path_only=False, dry_run=
 
  # Process Markdown images
  if MD_IMAGE_RE.search(line):
+
  def process_md_image(match):
  alt_text = match.group(2)
  current_url = match.group(3)
 
  # If URL already starts with /, it's already an absolute path - don't modify it
- if current_url.startswith('/'):
+ if current_url.startswith("/"):
  # Already an absolute path, don't change it
  return match.group(0)
 
  # Fix URL
- if current_url.startswith('http'):
- path_part = '/' + '/'.join(current_url.split('/')[3:])
+ if current_url.startswith("http"):
+ path_part = "/" + "/".join(current_url.split("/")[3:])
  else:
  path_part = current_url
 
@@ -90,14 +91,15 @@ def fix_image_paths(file_path, base_url=None, absolute_path_only=False, dry_run=
  # Keep as Markdown but fix URL
  if current_url != new_url:
  changes.append(f"Line {i+1}: {current_url} -> {new_url}")
- return f'![{alt_text}]({new_url})'
+ return f"![{alt_text}]({new_url})"
+ return match.group(0)
 
  new_line = MD_IMAGE_RE.sub(process_md_image, line)
  new_lines.append(new_line)
  else:
  new_lines.append(line)
 
- content = '\n'.join(new_lines)
+ content = "\n".join(new_lines)
 
  if changes:
  if dry_run:
@@ -115,12 +117,27 @@ def fix_image_paths(file_path, base_url=None, absolute_path_only=False, dry_run=
 
 
 def main():
- parser = argparse.ArgumentParser(description="Fix image paths and convert Markdown images in HTML blocks to HTML img tags.")
- parser.add_argument('--base-url', help='Base URL (e.g., http://localhost:4000 or https://unixwzrd.ai)')
- parser.add_argument('--absolute-path-only', action='store_true', help='Use absolute paths only (no hostname)')
- parser.add_argument('--target-dir', default='html', help='Directory to scan (default: html)')
- parser.add_argument('--file-filter', help='Only process files containing this string')
- parser.add_argument('--dry-run', action='store_true', help='Preview changes without making them')
+ parser = argparse.ArgumentParser(
+ description="Fix image paths and convert Markdown images in HTML blocks to HTML img tags."
+ )
+ parser.add_argument(
+ "--base-url",
+ help="Base URL (e.g., http://localhost:4000 or https://unixwzrd.ai)",
+ )
+ parser.add_argument(
+ "--absolute-path-only",
+ action="store_true",
+ help="Use absolute paths only (no hostname)",
+ )
+ parser.add_argument(
+ "--target-dir", default="html", help="Directory to scan (default: html)"
+ )
+ parser.add_argument(
+ "--file-filter", help="Only process files containing this string"
+ )
+ parser.add_argument(
+ "--dry-run", action="store_true", help="Preview changes without making them"
+ )
  args = parser.parse_args()
 
  if not args.absolute_path_only and not args.base_url:
@@ -134,14 +151,21 @@ def main():
  if file.endswith(".md"):
  file_path = os.path.join(root, file)
 
- if args.file_filter and args.file_filter.lower() not in file_path.lower():
+ if (
+ args.file_filter
+ and args.file_filter.lower() not in file_path.lower()
+ ):
  continue
 
  processed_files += 1
- if fix_image_paths(file_path, args.base_url, args.absolute_path_only, args.dry_run):
+ if fix_image_paths(
+ file_path, args.base_url, args.absolute_path_only, args.dry_run
+ ):
  changed_files += 1
 
- print(f"\nSummary: Processed {processed_files} files, {'would change' if args.dry_run else 'changed'} {changed_files} files")
+ print(
+ f"\nSummary: Processed {processed_files} files, {'would change' if args.dry_run else 'changed'} {changed_files} files"
+ )
 
 
 if __name__ == "__main__":

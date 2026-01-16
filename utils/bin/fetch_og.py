@@ -351,7 +351,14 @@ def write_projects_data(projects: List[Dict], base_dir: Path) -> bool:
  project['description'] = QuotedString(project['description'])
 
  with open(output_file, 'w', encoding='utf-8') as f:
- yaml.dump({"projects": projects}, f, allow_unicode=True, default_flow_style=False)
+ yaml.dump(
+ {"projects": projects},
+ f,
+ allow_unicode=True,
+ default_flow_style=False,
+ indent=2,
+ width=1000, # Prevent backslash line continuations
+ )
  logger.info("Successfully wrote projects data")
  return True
  except Exception as e:
@@ -456,20 +463,30 @@ def create_project_entry(data: Optional[Dict], owner: str, name: str, base_dir: 
 
  logger.debug("Project %s image URL: %s", name, image_url)
 
- # Determine title: prioritize manual override, then OG title, then formatted name
+ # Determine title: ALWAYS prioritize manual_data.title from repos.yml first
+ # Then fall back to OG title, then formatted name
  # GitHub API doesn't have a 'title' field, only 'name' (repo name)
  # OG metadata from GitHub pages should have 'title' from og:title meta tag
+ title = None
+ title_source = None
+
+ # Priority 1: Check manual_data.title from repos.yml (this should always win if present)
+ if manual_data and manual_data.get('title'):
  title = manual_data.get('title')
  title_source = "manual_data"
- if not title:
- title = data.get('title') if data else None # From OG metadata (og:title)
+
+ # Priority 2: Only use OG title if manual_data.title is NOT specified
+ if not title and data:
+ title = data.get('title') # From OG metadata (og:title)
  if title:
  title_source = "OG metadata"
+
+ # Priority 3: Only use format_title() as last resort if no manual or OG title
  if not title:
- title = format_title(name) # Fallback to formatted repo name
+ title = format_title(name) # Fallback to formatted repo name with special cases
  title_source = "formatted name"
 
- logger.debug("Title for %s: '%s' (source: %s)", name, title, title_source)
+ logger.info("Title for %s: '%s' (source: %s)", name, title, title_source)
 
  return {
  "name": name,
