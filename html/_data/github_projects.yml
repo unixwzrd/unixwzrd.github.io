@@ -1,101 +1,80 @@
 projects:
-- description: "AI-powered analysis tool for legal case documents, focusing on parental\
- \ alienation detection and pattern recognition in high-conflict divorce cases."
- image_url: /assets/images/child-with-robot.png
- name: Case-Analytics
+- name: Case-Analytics
  owner: unixwzrd
- page_url: /projects/Case-Analytics/
  title: Case Analytics
+ description: "AI-powered analysis tool for legal case documents, focusing on parental alienation detection and pattern recognition in high-conflict divorce cases."
+ image_url: /assets/images/child-with-robot.png
+ page_url: /projects/Case-Analytics/
  visibility: private
-- description: "Parental Alienation Awareness: A data-driven look at the scope, impact,\
- \ and damage to children, families, and society."
- image_url: /assets/images/projects/PA-devastation-1.png
- name: PA-Awareness-1
+- name: PA-Awareness-1
  owner: unixwzrd
- page_url: /projects/PA-Awareness-1/
  title: Parental Alienation Awareness
+ description: "Parental Alienation Awareness: A data-driven look at the scope, impact, and damage to children, families, and society."
+ image_url: /assets/images/projects/PA-devastation-1.png
+ page_url: /projects/PA-Awareness-1/
  visibility: private
-- description: "LogGPT - Safari ChatGPT Chat Log Export Extension, a lightweight method\
- \ of exporting entire ChatGPT conversations in JSON format. - unixwzrd/LogGPT"
+- name: LogGPT
+ owner: unixwzrd
+ title: 'GitHub - unixwzrd/LogGPT: LogGPT - Safari ChatGPT Chat Log Export Extension, a lightweight method of exporting entire ChatGPT conversations in JSON format.'
+ description: "LogGPT - Safari ChatGPT Chat Log Export Extension, a lightweight method of exporting entire ChatGPT conversations in JSON format. - unixwzrd/LogGPT"
  image_url: /assets/images/projects/LogGPT.png
- name: LogGPT
- owner: unixwzrd
  page_url: /projects/LogGPT/
+ visibility: public
  repo_url: https://github.com/unixwzrd/LogGPT
- title: 'GitHub - unixwzrd/LogGPT: LogGPT - Safari ChatGPT Chat Log Export Extension,
- a lightweight method of exporting entire ChatGPT conversations in JSON format.'
- visibility: public
-- description: "Normalizes Unicode to ASCII equivalents and remove Unicode from AI\
- \ generated text from ChatGPT, Anthropic, Google and more. - unixwzrd/UnicodeFix"
+- name: UnicodeFix
+ owner: unixwzrd
+ title: 'GitHub - unixwzrd/UnicodeFix: Normalizes Unicode to ASCII equivalents and remove Unicode from AI generated text from ChatGPT, Anthropic, Google and more.'
+ description: "Normalizes Unicode to ASCII equivalents and remove Unicode from AI generated text from ChatGPT, Anthropic, Google and more. - unixwzrd/UnicodeFix"
  image_url: /assets/images/projects/UnicodeFix.png
- name: UnicodeFix
- owner: unixwzrd
  page_url: /projects/UnicodeFix/
+ visibility: public
  repo_url: https://github.com/unixwzrd/UnicodeFix
- title: 'GitHub - unixwzrd/UnicodeFix: Normalizes Unicode to ASCII equivalents and
- remove Unicode from AI generated text from ChatGPT, Anthropic, Google and more.'
- visibility: public
-- description: "Run GPT-OSS and other MLX-compatible models through a single, lightweight\
- \ interface."
- image_url: /assets/images/projects/mlx-harmony.png
- name: mlx-harmony
+- name: mlx-harmony
  owner: unixwzrd
- page_url: /projects/mlx-harmony/
- repo_url: https://github.com/unixwzrd/mlx-harmony
  title: MLX Harmony
+ description: "Run GPT-OSS and other MLX-compatible models through a single, lightweight interface."
+ image_url: /assets/images/projects/mlx-harmony.png
+ page_url: /projects/mlx-harmony/
  visibility: public
-- description: "ConnectomeAI: experiments in mapping and orchestrating AI tools, workflows,\
- \ and knowledge graphs."
- image_url: /assets/images/projects/ConnectomeAI.png
- name: ConnectomeAI
+ repo_url: https://github.com/unixwzrd/mlx-harmony
+- name: ConnectomeAI
  owner: unixwzrd
- page_url: /projects/ConnectomeAI/
- repo_url: https://github.com/unixwzrd/ConnectomeAI
  title: ConnectomeAI
+ description: "ConnectomeAI: experiments in mapping and orchestrating AI tools, workflows, and knowledge graphs."
+ image_url: /assets/images/projects/ConnectomeAI.png
+ page_url: /projects/ConnectomeAI/
  visibility: public
-- description: "Python virtual environment management functions and script to build\
- \ and manage performance, compatibility, and regression test venv builds mostly\
- \ for AI - unixwzrd/venvutil"
+ repo_url: https://github.com/unixwzrd/ConnectomeAI
+- name: venvutil
+ owner: unixwzrd
+ title: 'GitHub - unixwzrd/venvutil: Python virtual environment management functions and script to build and manage performance, compatibility, and regression test venv builds mostly for AI'
+ description: "Python virtual environment management functions and script to build and manage performance, compatibility, and regression test venv builds mostly for AI - unixwzrd/venvutil"
  image_url: /assets/images/projects/venvutil.png
- name: venvutil
- owner: unixwzrd
  page_url: /projects/venvutil/
+ visibility: public
  repo_url: https://github.com/unixwzrd/venvutil
- title: 'GitHub - unixwzrd/venvutil: Python virtual environment management functions
- and script to build and manage performance, compatibility, and regression test
- venv builds mostly for AI'
- visibility: public
-- description: "Module contains class TorchDevice abstracting CUDA/MPS/CPU, intercepting,\
- \ and redirecting calls to the available device to assist in porting code from\
- \ CUDA to MPS. - unixwzrd/TorchDevice"
+- name: TorchDevice
+ owner: unixwzrd
+ title: 'GitHub - unixwzrd/TorchDevice: Module contains class TorchDevice abstracting CUDA/MPS/CPU, intercepting, and redirecting calls to the available device to assist in porting code from CUDA to MPS.'
+ description: "Module contains class TorchDevice abstracting CUDA/MPS/CPU, intercepting, and redirecting calls to the available device to assist in porting code from CUDA to MPS. - unixwzrd/TorchDevice"
  image_url: /assets/images/projects/TorchDevice.png
- name: TorchDevice
- owner: unixwzrd
  page_url: /projects/TorchDevice/
+ visibility: public
  repo_url: https://github.com/unixwzrd/TorchDevice
- title: 'GitHub - unixwzrd/TorchDevice: Module contains class TorchDevice abstracting
- CUDA/MPS/CPU, intercepting, and redirecting calls to the available device to assist
- in porting code from CUDA to MPS.'
- visibility: public
-- description: "Information on optimizing python libraries specifically for oobabooga\
- \ to take advantage of Apple Silicon and Accelerate Framework. - unixwzrd/oobabooga-macOS"
+- name: oobabooga-macOS
+ owner: unixwzrd
+ title: 'GitHub - unixwzrd/oobabooga-macOS: Information on optimizing python libraries specifically for oobabooga to take advantage of Apple Silicon and Accelerate Framework.'
+ description: "Information on optimizing python libraries specifically for oobabooga to take advantage of Apple Silicon and Accelerate Framework. - unixwzrd/oobabooga-macOS"
  image_url: /assets/images/projects/oobabooga-macOS.png
- name: oobabooga-macOS
- owner: unixwzrd
  page_url: /projects/oobabooga-macOS/
+ visibility: public
  repo_url: https://github.com/unixwzrd/oobabooga-macOS
- title: 'GitHub - unixwzrd/oobabooga-macOS: Information on optimizing python libraries
- specifically for oobabooga to take advantage of Apple Silicon and Accelerate Framework.'
- visibility: public
-- description: "A macOS version of the oobabooga gradio web UI for running Large Language\
- \ Models like LLaMA, llama.cpp, GPT-J, Pythia, OPT, and GALACTICA. - unixwzrd/text-generation-webui-macos"
- image_url: /assets/images/projects/text-generation-webui-macos.png
- name: text-generation-webui-macos
+- name: text-generation-webui-macos
  owner: unixwzrd
+ title: 'GitHub - unixwzrd/text-generation-webui-macos: A macOS version of the oobabooga gradio web UI for running Large Language Models like LLaMA, llama.cpp, GPT-J, Pythia, OPT, and GALACTICA.'
+ description: "A macOS version of the oobabooga gradio web UI for running Large Language Models like LLaMA, llama.cpp, GPT-J, Pythia, OPT, and GALACTICA. - unixwzrd/text-generation-webui-macos"
+ image_url: /assets/images/projects/text-generation-webui-macos.png
  page_url: /projects/text-generation-webui-macos/
- repo_url: https://github.com/unixwzrd/text-generation-webui-macos
- title: 'GitHub - unixwzrd/text-generation-webui-macos: A macOS version of the oobabooga
- gradio web UI for running Large Language Models like LLaMA, llama.cpp, GPT-J,
- Pythia, OPT, and GALACTICA.'
  visibility: public
+ repo_url: https://github.com/unixwzrd/text-generation-webui-macos
 
