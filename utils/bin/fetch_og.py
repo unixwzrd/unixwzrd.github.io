@@ -368,7 +368,6 @@ def write_projects_data(projects: List[Dict], base_dir: Path) -> bool:
                 allow_unicode=True,
                 default_flow_style=False,
                 indent=2,
-                width=1000,
                 sort_keys=False,
             )
         logger.info("Successfully wrote projects data")
