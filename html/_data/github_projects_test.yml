@@ -1,0 +1,5 @@
+projects:
+ - name: test
+ title: Test Title
+ description: A test description
+
