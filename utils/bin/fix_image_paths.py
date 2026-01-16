@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-import argparse
 import os
 import re
+import argparse
 
 # Regex patterns
 IMAGE_RE = re.compile(r"^(image:\s+)(/[^\s]+|https?://[^\s]+)$")
@@ -26,11 +26,6 @@ def fix_image_paths(file_path, base_url=None, absolute_path_only=False, dry_run=
  # Fix front matter image URLs
  def fix_front_matter_image(match):
  current_path = match.group(2)
- # If path already starts with /, it's already an absolute path - don't modify it
- if current_path.startswith("/"):
- # Already an absolute path, don't change it
- return match.group(0)
-
  if current_path.startswith("http"):
  path_part = "/" + "/".join(current_path.split("/")[3:])
  else:
@@ -67,11 +62,6 @@ def fix_image_paths(file_path, base_url=None, absolute_path_only=False, dry_run=
  alt_text = match.group(2)
  current_url = match.group(3)
 
- # If URL already starts with /, it's already an absolute path - don't modify it
- if current_url.startswith("/"):
- # Already an absolute path, don't change it
- return match.group(0)
-
  # Fix URL
  if current_url.startswith("http"):
  path_part = "/" + "/".join(current_url.split("/")[3:])
@@ -92,7 +82,6 @@ def fix_image_paths(file_path, base_url=None, absolute_path_only=False, dry_run=
  if current_url != new_url:
  changes.append(f"Line {i+1}: {current_url} -> {new_url}")
  return f"![{alt_text}]({new_url})"
- return match.group(0)
 
  new_line = MD_IMAGE_RE.sub(process_md_image, line)
  new_lines.append(new_line)
@@ -170,3 +159,4 @@ def main():
 
 if __name__ == "__main__":
  main()
+
