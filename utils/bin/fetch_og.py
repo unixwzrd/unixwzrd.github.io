@@ -348,18 +348,23 @@ def write_projects_data(projects: List[Dict], base_dir: Path) -> bool:
     """Write processed projects data to github_projects.yml."""
     output_file = base_dir / "html/_data/github_projects.yml"
     try:
-        # Configure YAML dumper to use double quotes for strings
-        class QuotedString(str):
+        # Configure YAML dumper to use literal block scalars for long strings
+        # This prevents backslash continuations and makes the YAML more readable
+        class LiteralStr(str):
             pass
 
-        def quoted_presenter(dumper, data):
+        def literal_presenter(dumper, data):
+            # Use literal block scalar (|) for strings longer than 60 chars
+            if len(data) > 60:
+                return dumper.represent_scalar("tag:yaml.org,2002:str", data, style="|")
             return dumper.represent_scalar("tag:yaml.org,2002:str", data, style='"')
 
-        yaml.add_representer(QuotedString, quoted_presenter)
+        yaml.add_representer(LiteralStr, literal_presenter)
 
-        # Convert long strings to QuotedString
+        # Convert long description strings to LiteralStr
         for project in projects:
-            project["description"] = QuotedString(project["description"])
+            if len(project.get("description", "")) > 60:
+                project["description"] = LiteralStr(project["description"])
 
         with open(output_file, "w", encoding="utf-8") as f:
             yaml.dump(

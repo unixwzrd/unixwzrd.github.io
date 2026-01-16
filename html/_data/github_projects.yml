@@ -2,21 +2,24 @@ projects:
 - name: Case-Analytics
   owner: unixwzrd
   title: Case Analytics
-  description: "AI-powered analysis tool for legal case documents, focusing on parental alienation detection and pattern recognition in high-conflict divorce cases."
+  description: |-
+    AI-powered analysis tool for legal case documents, focusing on parental alienation detection and pattern recognition in high-conflict divorce cases.
   image_url: /assets/images/child-with-robot.png
   page_url: /projects/Case-Analytics/
   visibility: private
 - name: PA-Awareness-1
   owner: unixwzrd
   title: Parental Alienation Awareness
-  description: "Parental Alienation Awareness: A data-driven look at the scope, impact, and damage to children, families, and society."
+  description: |-
+    Parental Alienation Awareness: A data-driven look at the scope, impact, and damage to children, families, and society.
   image_url: /assets/images/projects/PA-devastation-1.png
   page_url: /projects/PA-Awareness-1/
   visibility: private
 - name: LogGPT
   owner: unixwzrd
   title: LogGPT Chatlog Export
-  description: "LogGPT - Safari ChatGPT Chat Log Export Extension, a lightweight method of exporting entire ChatGPT conversations in JSON format. - unixwzrd/LogGPT"
+  description: |-
+    LogGPT - Safari ChatGPT Chat Log Export Extension, a lightweight method of exporting entire ChatGPT conversations in JSON format. - unixwzrd/LogGPT
   image_url: /assets/images/projects/LogGPT.png
   repo_url: https://github.com/unixwzrd/LogGPT
   page_url: /projects/LogGPT/
@@ -24,7 +27,8 @@ projects:
 - name: UnicodeFix
   owner: unixwzrd
   title: UnicodeFix
-  description: "Normalizes Unicode to ASCII equivalents and remove Unicode from AI generated text from ChatGPT, Anthropic, Google and more. - unixwzrd/UnicodeFix"
+  description: |-
+    Normalizes Unicode to ASCII equivalents and remove Unicode from AI generated text from ChatGPT, Anthropic, Google and more. - unixwzrd/UnicodeFix
   image_url: /assets/images/projects/UnicodeFix.png
   repo_url: https://github.com/unixwzrd/UnicodeFix
   page_url: /projects/UnicodeFix/
@@ -32,7 +36,8 @@ projects:
 - name: mlx-harmony
   owner: unixwzrd
   title: Mlx Harmony
-  description: "Run GPT-OSS and other MLX-compatible models through a single, lightweight interface. - unixwzrd/mlx-harmony"
+  description: |-
+    Run GPT-OSS and other MLX-compatible models through a single, lightweight interface. - unixwzrd/mlx-harmony
   image_url: /assets/images/projects/mlx-harmony.png
   repo_url: https://github.com/unixwzrd/mlx-harmony
   page_url: /projects/mlx-harmony/
@@ -40,14 +45,16 @@ projects:
 - name: ConnectomeAI
   owner: unixwzrd
   title: ConnectomeAI
-  description: "ConnectomeAI: experiments in mapping and orchestrating AI tools, workflows, and knowledge graphs."
+  description: |-
+    ConnectomeAI: experiments in mapping and orchestrating AI tools, workflows, and knowledge graphs.
   image_url: /assets/images/projects/ConnectomeAI.png
   page_url: /projects/ConnectomeAI/
   visibility: private
 - name: venvutil
   owner: unixwzrd
   title: VenvUtil
-  description: "Python virtual environment management functions and script to build and manage performance, compatibility, and regression test venv builds mostly for AI - unixwzrd/venvutil"
+  description: |-
+    Python virtual environment management functions and script to build and manage performance, compatibility, and regression test venv builds mostly for AI - unixwzrd/venvutil
   image_url: /assets/images/projects/venvutil.png
   repo_url: https://github.com/unixwzrd/venvutil
   page_url: /projects/venvutil/
@@ -55,7 +62,8 @@ projects:
 - name: TorchDevice
   owner: unixwzrd
   title: TorchDevice
-  description: "Module contains class TorchDevice abstracting CUDA/MPS/CPU, intercepting, and redirecting calls to the available device to assist in porting code from CUDA to MPS. - unixwzrd/TorchDevice"
+  description: |-
+    Module contains class TorchDevice abstracting CUDA/MPS/CPU, intercepting, and redirecting calls to the available device to assist in porting code from CUDA to MPS. - unixwzrd/TorchDevice
   image_url: /assets/images/projects/TorchDevice.png
   repo_url: https://github.com/unixwzrd/TorchDevice
   page_url: /projects/TorchDevice/
@@ -63,7 +71,8 @@ projects:
 - name: oobabooga-macOS
   owner: unixwzrd
   title: Oobabooga macOS
-  description: "Information on optimizing python libraries specifically for oobabooga to take advantage of Apple Silicon and Accelerate Framework. - unixwzrd/oobabooga-macOS"
+  description: |-
+    Information on optimizing python libraries specifically for oobabooga to take advantage of Apple Silicon and Accelerate Framework. - unixwzrd/oobabooga-macOS
   image_url: /assets/images/projects/oobabooga-macOS.png
   repo_url: https://github.com/unixwzrd/oobabooga-macOS
   page_url: /projects/oobabooga-macOS/
@@ -71,7 +80,8 @@ projects:
 - name: text-generation-webui-macos
   owner: unixwzrd
   title: Text Generation WebUI macOS
-  description: "A macOS version of the oobabooga gradio web UI for running Large Language Models like LLaMA, llama.cpp, GPT-J, Pythia, OPT, and GALACTICA. - unixwzrd/text-generation-webui-macos"
+  description: |-
+    A macOS version of the oobabooga gradio web UI for running Large Language Models like LLaMA, llama.cpp, GPT-J, Pythia, OPT, and GALACTICA. - unixwzrd/text-generation-webui-macos
   image_url: /assets/images/projects/text-generation-webui-macos.png
   repo_url: https://github.com/unixwzrd/text-generation-webui-macos
   page_url: /projects/text-generation-webui-macos/
