@@ -363,13 +363,7 @@ def write_projects_data(projects: List[Dict], base_dir: Path) -> bool:
 
  with open(output_file, "w", encoding="utf-8") as f:
  yaml.dump(
- {"projects": projects},
- f,
- allow_unicode=True,
- default_flow_style=False,
- indent=2,
- width=1000,
- sort_keys=False,
+ {"projects": projects}, f, allow_unicode=True, default_flow_style=False
  )
  logger.info("Successfully wrote projects data")
  return True
@@ -435,34 +429,9 @@ def create_project_entry(
  if project_image.exists():
  existing_image_url = f"/assets/images/projects/{name}.png"
 
- manual_data = repo_config.get("manual_data", {})
-
- # Determine title: prioritize manual override, then OG title, then formatted name
- title = manual_data.get("title")
- title_source = "manual_data"
- if not title or title.strip() == "":
- title = data.get("title") if data else None # From OG metadata (og:title)
- if title and title.strip() != "":
- title_source = "OG metadata"
- else:
- title = format_title(name) # Fallback to formatted repo name
- title_source = "formatted name"
-
- logger.debug("Title for %s: '%s' (source: %s)", name, title, title_source)
-
- # Determine visibility: prioritize manual override, then GitHub API, then default
- visibility = manual_data.get("visibility")
- if not visibility:
- # If no manual override, use GitHub API data if available, otherwise default based on data availability
- if data:
- visibility = data.get("visibility", "public")
- else:
- visibility = "private"
- else:
- visibility = visibility.lower() # Normalize to lowercase
-
  # If repo is private or GitHub data is not available, use manual data
  if data is None:
+ manual_data = repo_config.get("manual_data", {})
  image_url = manual_data.get("image_url")
  if not image_url and existing_image_url:
  image_url = existing_image_url
@@ -472,22 +441,17 @@ def create_project_entry(
  # Always try to cache the image, even for private repos
  cached_image = cache_image(image_url, name, base_dir)
 
- # Use manual description if provided, otherwise use default
- description = manual_data.get("description", f"Private repository: {name}")
-
- # Only add repo_url if visibility is public
- entry = {
+ return {
  "name": name,
  "owner": owner,
- "title": title,
- "description": description,
+ "title": manual_data.get("title", format_title(name)),
+ "description": manual_data.get(
+ "description", f"Private repository: {name}"
+ ),
  "image_url": cached_image,
  "page_url": f"/projects/{name}/",
- "visibility": visibility,
+ "visibility": "private",
  }
- if visibility == "public":
- entry["repo_url"] = f"https://github.com/{owner}/{name}"
- return entry
 
  # For public repos, use GitHub/OpenGraph data
  image_url = data.get("image_url", data.get("owner", {}).get("avatar_url", ""))
@@ -498,22 +462,16 @@ def create_project_entry(
 
  logger.debug("Project %s image URL: %s", name, image_url)
 
- # Use manual description if provided, otherwise use GitHub/OG description
- description = manual_data.get("description") or data.get("description", "")
-
- entry = {
+ return {
  "name": name,
  "owner": owner,
- "title": title,
- "description": description,
+ "title": format_title(name),
+ "description": data.get("description", ""),
  "image_url": cache_image(image_url, name, base_dir),
+ "repo_url": f"https://github.com/{owner}/{name}",
  "page_url": f"/projects/{name}/",
- "visibility": visibility,
+ "visibility": data.get("visibility", "public"),
  }
- # Only add repo_url if visibility is public
- if visibility == "public":
- entry["repo_url"] = f"https://github.com/{owner}/{name}"
- return entry
 
 
 def main():
