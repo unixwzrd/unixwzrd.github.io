@@ -21,27 +21,27 @@ projects:
   description: |-
     LogGPT - Safari ChatGPT Chat Log Export Extension, a lightweight method of exporting entire ChatGPT conversations in JSON format. - unixwzrd/LogGPT
   image_url: /assets/images/projects/LogGPT.png
-  repo_url: https://github.com/unixwzrd/LogGPT
   page_url: /projects/LogGPT/
   visibility: public
+  repo_url: https://github.com/unixwzrd/LogGPT
 - name: UnicodeFix
   owner: unixwzrd
   title: UnicodeFix
   description: |-
     Normalizes Unicode to ASCII equivalents and remove Unicode from AI generated text from ChatGPT, Anthropic, Google and more. - unixwzrd/UnicodeFix
   image_url: /assets/images/projects/UnicodeFix.png
-  repo_url: https://github.com/unixwzrd/UnicodeFix
   page_url: /projects/UnicodeFix/
   visibility: public
+  repo_url: https://github.com/unixwzrd/UnicodeFix
 - name: mlx-harmony
   owner: unixwzrd
-  title: Mlx Harmony
+  title: MLX Harmony
   description: |-
-    Run GPT-OSS and other MLX-compatible models through a single, lightweight interface. - unixwzrd/mlx-harmony
+    Run GPT-OSS and other MLX-compatible models through a single, lightweight interface.
   image_url: /assets/images/projects/mlx-harmony.png
-  repo_url: https://github.com/unixwzrd/mlx-harmony
   page_url: /projects/mlx-harmony/
   visibility: public
+  repo_url: https://github.com/unixwzrd/mlx-harmony
 - name: ConnectomeAI
   owner: unixwzrd
   title: ConnectomeAI
@@ -49,40 +49,41 @@ projects:
     ConnectomeAI: experiments in mapping and orchestrating AI tools, workflows, and knowledge graphs.
   image_url: /assets/images/projects/ConnectomeAI.png
   page_url: /projects/ConnectomeAI/
-  visibility: private
+  visibility: public
+  repo_url: https://github.com/unixwzrd/ConnectomeAI
 - name: venvutil
   owner: unixwzrd
   title: VenvUtil
   description: |-
     Python virtual environment management functions and script to build and manage performance, compatibility, and regression test venv builds mostly for AI - unixwzrd/venvutil
   image_url: /assets/images/projects/venvutil.png
-  repo_url: https://github.com/unixwzrd/venvutil
   page_url: /projects/venvutil/
   visibility: public
+  repo_url: https://github.com/unixwzrd/venvutil
 - name: TorchDevice
   owner: unixwzrd
   title: TorchDevice
   description: |-
     Module contains class TorchDevice abstracting CUDA/MPS/CPU, intercepting, and redirecting calls to the available device to assist in porting code from CUDA to MPS. - unixwzrd/TorchDevice
   image_url: /assets/images/projects/TorchDevice.png
-  repo_url: https://github.com/unixwzrd/TorchDevice
   page_url: /projects/TorchDevice/
   visibility: public
+  repo_url: https://github.com/unixwzrd/TorchDevice
 - name: oobabooga-macOS
   owner: unixwzrd
   title: Oobabooga macOS
   description: |-
     Information on optimizing python libraries specifically for oobabooga to take advantage of Apple Silicon and Accelerate Framework. - unixwzrd/oobabooga-macOS
   image_url: /assets/images/projects/oobabooga-macOS.png
-  repo_url: https://github.com/unixwzrd/oobabooga-macOS
   page_url: /projects/oobabooga-macOS/
   visibility: public
+  repo_url: https://github.com/unixwzrd/oobabooga-macOS
 - name: text-generation-webui-macos
   owner: unixwzrd
   title: Text Generation WebUI macOS
   description: |-
     A macOS version of the oobabooga gradio web UI for running Large Language Models like LLaMA, llama.cpp, GPT-J, Pythia, OPT, and GALACTICA. - unixwzrd/text-generation-webui-macos
   image_url: /assets/images/projects/text-generation-webui-macos.png
-  repo_url: https://github.com/unixwzrd/text-generation-webui-macos
   page_url: /projects/text-generation-webui-macos/
   visibility: public
+  repo_url: https://github.com/unixwzrd/text-generation-webui-macos

@@ -439,9 +439,21 @@ def create_project_entry(
     if project_image.exists():
         existing_image_url = f"/assets/images/projects/{name}.png"
 
+    # Get manual data override (for visibility, title, description, etc.)
+    manual_data = repo_config.get("manual_data", {})
+
+    # Determine visibility: prioritize manual override, then GitHub data, then default
+    visibility = manual_data.get("visibility")
+    if visibility is None:
+        if data is None:
+            visibility = "private"
+        else:
+            visibility = data.get("visibility", "public")
+    else:
+        visibility = visibility.lower()  # Normalize to lowercase
+
     # If repo is private or GitHub data is not available, use manual data
     if data is None:
-        manual_data = repo_config.get("manual_data", {})
         image_url = manual_data.get("image_url")
         if not image_url and existing_image_url:
             image_url = existing_image_url
@@ -451,7 +463,7 @@ def create_project_entry(
         # Always try to cache the image, even for private repos
         cached_image = cache_image(image_url, name, base_dir)
 
-        return {
+        entry = {
             "name": name,
             "owner": owner,
             "title": manual_data.get("title", format_title(name)),
@@ -460,8 +472,14 @@ def create_project_entry(
             ),
             "image_url": cached_image,
             "page_url": f"/projects/{name}/",
-            "visibility": "private",
+            "visibility": visibility,
         }
+
+        # Only add repo_url if visibility is public
+        if visibility == "public":
+            entry["repo_url"] = f"https://github.com/{owner}/{name}"
+
+        return entry
 
     # For public repos, use GitHub/OpenGraph data
     image_url = data.get("image_url", data.get("owner", {}).get("avatar_url", ""))
@@ -472,16 +490,25 @@ def create_project_entry(
 
     logger.debug("Project %s image URL: %s", name, image_url)
 
-    return {
+    # Use manual title/description if provided, otherwise use GitHub/OG data
+    title = manual_data.get("title") or format_title(name)
+    description = manual_data.get("description") or data.get("description", "")
+
+    entry = {
         "name": name,
         "owner": owner,
-        "title": format_title(name),
-        "description": data.get("description", ""),
+        "title": title,
+        "description": description,
         "image_url": cache_image(image_url, name, base_dir),
-        "repo_url": f"https://github.com/{owner}/{name}",
         "page_url": f"/projects/{name}/",
-        "visibility": data.get("visibility", "public"),
+        "visibility": visibility,
     }
+
+    # Only add repo_url if visibility is public
+    if visibility == "public":
+        entry["repo_url"] = f"https://github.com/{owner}/{name}"
+
+    return entry
 
 
 def main():
