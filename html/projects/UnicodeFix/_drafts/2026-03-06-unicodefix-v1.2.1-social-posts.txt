@@ -1,0 +1,102 @@
+UnicodeFix v1.2.1 Social Posts
+Release page:
+http://localhost:4000/projects/UnicodeFix/2026/03/06/unicodefix-v1-2-1-smoother-installs-cleaner-reports-less-weirdness/
+
+==================================================
+LINKEDIN
+==================================================
+UnicodeFix v1.2.1 is out.
+
+This release is less about flashy new tricks and more about removing friction:
+
+- a unified install path
+- better Conda behavior
+- improved Unicode hyphen handling, including non-breaking hyphens
+- cleaner `--metrics` behavior
+- more honest reporting, especially around quote-like characters
+- better Python compatibility and CI coverage
+
+In short: fewer rough edges, fewer false alarms, and a much smoother day-to-day experience.
+
+If you've ever had text that looked fine but still broke CI, diffs, formatting, or shell workflows, this is exactly the kind of update that matters.
+
+Read the release post here:
+http://localhost:4000/projects/UnicodeFix/2026/03/06/unicodefix-v1-2-1-smoother-installs-cleaner-reports-less-weirdness/
+
+#Unicode #Python #OpenSource #DevTools #CLI #CI #Automation #TextProcessing
+
+==================================================
+SUBSTACK
+==================================================
+Title:
+UnicodeFix v1.2.1: Smoother Installs, Cleaner Reports, Less Weirdness
+
+Subtitle:
+A polish release for the people who are tired of invisible characters causing visible problems.
+
+Body:
+UnicodeFix v1.2.1 is now out, and this one is a cleanup release in the best possible sense.
+
+It tightens the install story, improves Conda behavior, fixes more Unicode dash and hyphen cases, makes metrics/report output much less confusing, and improves the honesty of the scanner so already-clean text doesn't get accused of fresh crimes.
+
+This is the kind of release that makes a tool easier to trust.
+Not louder. Not more bloated. Just better behaved.
+
+If you've ever had text that looked harmless but still managed to break formatting, diffs, CI, or command-line workflows, the write-up is here:
+http://localhost:4000/projects/UnicodeFix/2026/03/06/unicodefix-v1-2-1-smoother-installs-cleaner-reports-less-weirdness/
+
+Optional tags:
+Unicode, Python, Open Source, Text Cleanup, Dev Tools, Automation, AI, CI/CD
+
+==================================================
+X / TWITTER
+==================================================
+UnicodeFix v1.2.1 is out.
+
+This release smooths out a lot of the rough edges:
+- better install flow
+- better Conda behavior
+- more Unicode hyphen fixes
+- cleaner `--metrics` behavior
+- more honest reporting
+
+Write-up:
+http://localhost:4000/projects/UnicodeFix/2026/03/06/unicodefix-v1-2-1-smoother-installs-cleaner-reports-less-weirdness/
+
+#Python #Unicode #OpenSource #DevTools
+
+Alt version:
+UnicodeFix v1.2.1 is live: smoother installs, cleaner reports, better metrics behavior, and fewer Unicode gremlins pretending to be normal text.
+
+Read it here:
+http://localhost:4000/projects/UnicodeFix/2026/03/06/unicodefix-v1-2-1-smoother-installs-cleaner-reports-less-weirdness/
+
+#Python #CLI #OpenSource #Unicode
+
+==================================================
+BLUESKY
+==================================================
+UnicodeFix v1.2.1 is out.
+
+A quieter release, but a very useful one:
+- unified install path
+- better Conda/env behavior
+- improved Unicode hyphen handling
+- cleaner metrics/report UX
+- more accurate scanner output
+
+Release post:
+http://localhost:4000/projects/UnicodeFix/2026/03/06/unicodefix-v1-2-1-smoother-installs-cleaner-reports-less-weirdness/
+
+#python #unicode #opensource #devtools
+
+Alt version:
+UnicodeFix v1.2.1 makes the tool easier to install, easier to trust, and less likely to surprise you with confusing reports.
+
+If text has ever looked fine and still broken your workflow, this release is for you.
+
+http://localhost:4000/projects/UnicodeFix/2026/03/06/unicodefix-v1-2-1-smoother-installs-cleaner-reports-less-weirdness/
+
+#python #automation #cli #unicode
+
+#OpenSource #AIWatermarks #AIForensics #DevTools #ContentQuality #StudentsWhoCode #AIEthics #UnicodeFix
