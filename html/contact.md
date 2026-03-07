@@ -4,15 +4,13 @@ title: "Contact Us"
 menu_item: Contact
 permalink: /contact/
 image: /assets/images/default-og-image.png
-excerpt: "For inquiries, project discussions, or collaboration opportunities, reach out via:"
+excerpt: "Use the inquiry form for private outreach, project work, and collaboration, or jump into public discussion on GitHub."
 ---
 
-For inquiries, project discussions, or collaboration opportunities, reach out via:
+If you want to talk about project work, collaboration, consulting, or just need more information, this is the private route.
 
-- **Email**: [Request Information](mailto:{{ site.author.email | encode_email }})
-- **Phone**: +1-901-471-0896 (Text only)
-- **Telegram**: [@unixwzrd](https://t.me/unixwzrd)
+{% include contact_form.html %}
 
-If you are a **legal service provider**, **trial consultant**, or **mental health professional**, visit our [Professional Services](/collaborate/professionals/) page.
+If you are a **legal service provider**, **trial consultant**, or **mental health professional**, the [Professional Services](/collaborate/professionals/) page gives the quickest overview of where the work fits.
 
-For additional support resources, visit our [Resources](/resources) page.
+If you are looking for support resources instead, visit the [Resources](/resources) page.

@@ -1,0 +1,28 @@
+{%- assign giscus = site.giscus -%}
+{%- if giscus and giscus.enabled and page.comments != false -%}
+<section class="post-comments">
+ <hr>
+ <h2>Join the Discussion</h2>
+ <p>
+ Comments for this post live in GitHub Discussions. That keeps moderation in one place and gives the conversation a stable home.
+ </p>
+ <div class="giscus"></div>
+ <script
+ src="https://giscus.app/client.js"
+ data-repo="{{ giscus.repo }}"
+ data-repo-id="{{ giscus.repo_id }}"
+ data-category="{{ giscus.category }}"
+ data-category-id="{{ giscus.category_id }}"
+ data-mapping="{{ giscus.mapping | default: 'pathname' }}"
+ data-strict="{{ giscus.strict | default: '0' }}"
+ data-reactions-enabled="{{ giscus.reactions_enabled | default: '1' }}"
+ data-emit-metadata="{{ giscus.emit_metadata | default: '0' }}"
+ data-input-position="{{ giscus.input_position | default: 'bottom' }}"
+ data-theme="{{ giscus.theme | default: 'preferred_color_scheme' }}"
+ data-lang="{{ giscus.lang | default: 'en' }}"
+ data-loading="{{ giscus.loading | default: 'lazy' }}"
+ crossorigin="anonymous"
+ async>
+ </script>
+</section>
+{%- endif -%}

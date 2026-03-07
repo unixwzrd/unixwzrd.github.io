@@ -2,143 +2,256 @@
 
 // Blockquote Styling
 blockquote {
-  color: #60c0ee;
-  background: #000000;
-  border-left-color: #5592b4;
+ color: #60c0ee;
+ background: #000000;
+ border-left-color: #5592b4;
 }
 
 // Table Styling
 table {
-  border: 1px solid $border-color;
-  border-collapse: collapse;
+ border: 1px solid $border-color;
+ border-collapse: collapse;
 
-  th {
-    background-color: $header-color;
-    border: 1px solid $border-color;
-    font-weight: bold;
-    padding: 12px;
-  }
+ th {
+ background-color: $header-color;
+ border: 1px solid $border-color;
+ font-weight: bold;
+ padding: 12px;
+ }
 
-  tr {
-    border: 1px solid $border-color;
-  }
+ tr {
+ border: 1px solid $border-color;
+ }
 
-  td {
-    border: 1px solid $border-color;
-    padding: 12px;
-    vertical-align: top;
-  }
+ td {
+ border: 1px solid $border-color;
+ padding: 12px;
+ vertical-align: top;
+ }
 
-  // Odd and Even Row Backgrounds
-  tr.odd td {
-    background-color: $odd-row-color;
-  }
+ // Odd and Even Row Backgrounds
+ tr.odd td {
+ background-color: $odd-row-color;
+ }
 
-  tr.even td {
-    background-color: $even-row-color;
-  }
+ tr.even td {
+ background-color: $even-row-color;
+ }
 
-  // Cell Border Adjustments
-  td:empty {
-    border-top: none;
-    border-bottom: none;
-  }
-  td:first-child {
-    border-bottom: none;
-  }
-  tr:last-of-type td:first-child:not(:empty) {
-    border-bottom: 1px solid $border-color;
-  }
+ // Cell Border Adjustments
+ td:empty {
+ border-top: none;
+ border-bottom: none;
+ }
+ td:first-child {
+ border-bottom: none;
+ }
+ tr:last-of-type td:first-child:not(:empty) {
+ border-bottom: 1px solid $border-color;
+ }
 }
 
 // Code Blocks
 pre,
 code {
-  background: $code-background;
+ background: $code-background;
 }
 
 // Project Components
 .project-table {
-  width: 100%;
-  margin-bottom: 20px;
-  border-spacing: 20px;
-  border: none;
-  padding: 5px;
+ width: 100%;
+ margin-bottom: 20px;
+ border-spacing: 20px;
+ border: none;
+ padding: 5px;
 }
 
 .project-image {
-  width: 50%;
-  vertical-align: top;
-  border: none;
-  padding-left: 0;
+ width: 50%;
+ vertical-align: top;
+ border: none;
+ padding-left: 0;
 }
 
 .project-preview {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  border-radius: 8px;
-  border: none;
-  transition: transform 0.3s ease;
-  
-  &:hover {
-    transform: scale(1.02);
-  }
+ width: 100%;
+ height: auto;
+ object-fit: contain;
+ border-radius: 8px;
+ border: none;
+ transition: transform 0.3s ease;
+
+ &:hover {
+ transform: scale(1.02);
+ }
 }
 
 .project-details {
-  width: 50%;
-  vertical-align: top;
-  padding-left: 10px;
-  padding-top: 0;
-  margin-top: 0;
-  border: none;
+ width: 50%;
+ vertical-align: top;
+ padding-left: 10px;
+ padding-top: 0;
+ margin-top: 0;
+ border: none;
 }
 
 .project-details h2 {
-  font-size: $project-details-h2-font-size;
-  margin-bottom: 10px;
-  margin-top: 0;
+ font-size: $project-details-h2-font-size;
+ margin-bottom: 10px;
+ margin-top: 0;
 }
 
 .github-link,
 .project-blog-link {
-  font-size: 1rem;
-  color: $link-base-color;
-  text-decoration: none;
-  padding: 5px;
+ font-size: 1rem;
+ color: $link-base-color;
+ text-decoration: none;
+ padding: 5px;
 }
 
 // Links Row
 .links-row {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
+ display: flex;
+ justify-content: space-between;
+ margin-top: 10px;
 }
 
 // Obfuscated Email Link
 #obfuscated-email a {
-  color: #0000cc;
-  text-decoration: underline;
+ color: #0000cc;
+ text-decoration: underline;
 }
 
 #contact-link {
-  cursor: pointer;
+ cursor: pointer;
 }
 
 // Social Icons
 .social-icons {
-  display: flex;
-  gap: 10px;
-  align-items: center;
+ display: flex;
+ gap: 10px;
+ align-items: center;
 
-  img {
-    width: 24px;
-    height: 24px;
-    transition: transform 0.3s;
+ img {
+ width: 24px;
+ height: 24px;
+ transition: transform 0.3s;
 
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
+ &:hover {
+ transform: scale(1.1);
+ }
+ }
+}
+
+.contact-card,
+.contact-direct,
+.post-comments {
+ margin: 2rem 0;
+ padding: 1.5rem;
+ border: 1px solid $border-color;
+ border-radius: 16px;
+ background: color-mix(in srgb, $background-color 92%, $brand-color 8%);
+}
+
+.contact-form {
+ margin-top: 1.25rem;
+}
+
+.contact-form-grid {
+ display: grid;
+ gap: 1rem;
+ grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.contact-field {
+ display: flex;
+ flex-direction: column;
+ gap: 0.4rem;
+ margin-bottom: 1rem;
+
+ span {
+ font-weight: 700;
+ }
+}
+
+.contact-field--full {
+ margin-bottom: 1.25rem;
+}
+
+.contact-field input,
+.contact-field select,
+.contact-field textarea {
+ padding: 0.8rem 0.9rem;
+ border: 1px solid $border-color;
+ border-radius: 12px;
+ background: $background-color;
+ color: $text-color;
+ font: inherit;
+}
+
+.contact-field textarea {
+ resize: vertical;
+ min-height: 12rem;
+}
+
+.contact-field input:focus,
+.contact-field select:focus,
+.contact-field textarea:focus {
+ outline: 2px solid color-mix(in srgb, $brand-color 60%, white 40%);
+ outline-offset: 1px;
+}
+
+.contact-actions {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 1rem;
+ align-items: center;
+}
+
+.contact-submit {
+ appearance: none;
+ border: 1px solid color-mix(in srgb, $brand-color 70%, black 30%);
+ border-radius: 999px;
+ padding: 0.85rem 1.2rem;
+ background: color-mix(in srgb, $brand-color 16%, $background-color 84%);
+ color: $text-color;
+ cursor: pointer;
+ font: inherit;
+ font-weight: 700;
+}
+
+.contact-submit:hover,
+.contact-submit:focus {
+ background: color-mix(in srgb, $brand-color 26%, $background-color 74%);
+}
+
+.contact-hint,
+.contact-form-status,
+.contact-noscript {
+ font-size: 0.95rem;
+}
+
+.contact-form-status {
+ margin-top: 1rem;
+}
+
+.contact-direct-list {
+ margin-left: 1.2rem;
+}
+
+.post-comments .giscus,
+.post-comments .giscus-frame {
+ width: 100%;
+}
+
+@media screen and (max-width: $on-palm) {
+ .contact-form-grid {
+ grid-template-columns: 1fr;
+ }
+
+ .contact-card,
+ .contact-direct,
+ .post-comments {
+ padding: 1.1rem;
+ }
 }

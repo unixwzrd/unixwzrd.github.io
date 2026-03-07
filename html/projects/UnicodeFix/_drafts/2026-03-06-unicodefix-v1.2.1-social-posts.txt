@@ -1,6 +1,6 @@
 UnicodeFix v1.2.1 Social Posts
 Release page:
-http://localhost:4000/projects/UnicodeFix/2026/03/06/unicodefix-v1-2-1-smoother-installs-cleaner-reports-less-weirdness/
+https://unixwzrd.ai/projects/UnicodeFix/2026/03/06/unicodefix-v1-2-1-smoother-installs-cleaner-reports-less-weirdness/
 
 ==================================================
 LINKEDIN
@@ -20,10 +20,17 @@ In short: fewer rough edges, fewer false alarms, and a much smoother day-to-day 
 
 If you've ever had text that looked fine but still broke CI, diffs, formatting, or shell workflows, this is exactly the kind of update that matters.
 
-Read the release post here:
-http://localhost:4000/projects/UnicodeFix/2026/03/06/unicodefix-v1-2-1-smoother-installs-cleaner-reports-less-weirdness/
 
-#Unicode #Python #OpenSource #DevTools #CLI #CI #Automation #TextProcessing
+If you're working on Python tooling, AI/LLM infrastructure, developer automation, or just fighting strange text and encoding problems, I'm always happy to help.
+
+You can usually find me as @unixwzrd pretty much anywhere.
+
+Read the release post here:
+https://unixwzrd.ai/projects/UnicodeFix/2026/03/06/unicodefix-v1-2-1-smoother-installs-cleaner-reports-less-weirdness/
+
+#AIEthics #AIForensics #AIWatermarks #Automation #CI #CLI #ContentQuality #DevTools #OpenSource #Python #StudentsWhoCode #TextProcessing #Unicode #UnicodeFix
+
+#OpenSource #Python #DevTools #Automation #CLI #TextProcessing #AIForensics
 
 ==================================================
 SUBSTACK
@@ -43,7 +50,7 @@ This is the kind of release that makes a tool easier to trust.
 Not louder. Not more bloated. Just better behaved.
 
 If you've ever had text that looked harmless but still managed to break formatting, diffs, CI, or command-line workflows, the write-up is here:
-http://localhost:4000/projects/UnicodeFix/2026/03/06/unicodefix-v1-2-1-smoother-installs-cleaner-reports-less-weirdness/
+https://unixwzrd.ai/projects/UnicodeFix/2026/03/06/unicodefix-v1-2-1-smoother-installs-cleaner-reports-less-weirdness/
 
 Optional tags:
 Unicode, Python, Open Source, Text Cleanup, Dev Tools, Automation, AI, CI/CD
@@ -61,7 +68,7 @@ This release smooths out a lot of the rough edges:
 - more honest reporting
 
 Write-up:
-http://localhost:4000/projects/UnicodeFix/2026/03/06/unicodefix-v1-2-1-smoother-installs-cleaner-reports-less-weirdness/
+https://unixwzrd.ai/projects/UnicodeFix/2026/03/06/unicodefix-v1-2-1-smoother-installs-cleaner-reports-less-weirdness/
 
 #Python #Unicode #OpenSource #DevTools
 
@@ -69,7 +76,7 @@ Alt version:
 UnicodeFix v1.2.1 is live: smoother installs, cleaner reports, better metrics behavior, and fewer Unicode gremlins pretending to be normal text.
 
 Read it here:
-http://localhost:4000/projects/UnicodeFix/2026/03/06/unicodefix-v1-2-1-smoother-installs-cleaner-reports-less-weirdness/
+https://unixwzrd.ai/projects/UnicodeFix/2026/03/06/unicodefix-v1-2-1-smoother-installs-cleaner-reports-less-weirdness/
 
 #Python #CLI #OpenSource #Unicode
 
@@ -86,7 +93,7 @@ A quieter release, but a very useful one:
 - more accurate scanner output
 
 Release post:
-http://localhost:4000/projects/UnicodeFix/2026/03/06/unicodefix-v1-2-1-smoother-installs-cleaner-reports-less-weirdness/
+https://unixwzrd.ai/projects/UnicodeFix/2026/03/06/unicodefix-v1-2-1-smoother-installs-cleaner-reports-less-weirdness/
 
 #python #unicode #opensource #devtools
 
@@ -95,8 +102,8 @@ UnicodeFix v1.2.1 makes the tool easier to install, easier to trust, and less li
 
 If text has ever looked fine and still broken your workflow, this release is for you.
 
-http://localhost:4000/projects/UnicodeFix/2026/03/06/unicodefix-v1-2-1-smoother-installs-cleaner-reports-less-weirdness/
+https://unixwzrd.ai/projects/UnicodeFix/2026/03/06/unicodefix-v1-2-1-smoother-installs-cleaner-reports-less-weirdness/
 
 #python #automation #cli #unicode
 
-#OpenSource #AIWatermarks #AIForensics #DevTools #ContentQuality #StudentsWhoCode #AIEthics #UnicodeFix
+
