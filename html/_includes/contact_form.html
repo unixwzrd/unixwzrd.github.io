@@ -79,4 +79,5 @@
  </ul>
 </section>
 
-<script src="{{ '/assets/js/contact-form.js' | relative_url }}" defer></script>
+{%- assign asset_version = site.github.build_revision | default: site.time | date: "%s" -%}
+<script src="{{ '/assets/js/contact-form.js' | relative_url }}?v={{ asset_version }}" defer></script>

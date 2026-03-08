@@ -70,7 +70,7 @@ giscus:
   input_position: "bottom"
   theme: "preferred_color_scheme"
   lang: "en"
-  loading: "lazy"
+  loading: "eager"
 
 # Social links
 twitter_username: unixwzrd
@@ -219,4 +219,3 @@ exclude:
   - utils/
   - vendor/
   - docs/
-
