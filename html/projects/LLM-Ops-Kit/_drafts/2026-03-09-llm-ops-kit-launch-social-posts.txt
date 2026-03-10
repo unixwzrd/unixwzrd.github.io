@@ -43,7 +43,7 @@ Subtitle:
 Operational tooling for the part of self-hosted AI work that usually gets left to shell history and guesswork.
 
 Body:
-LLM-Ops-Kit is now live.
+LLM-Ops-Kit is now live for macOS.
 
 It is the operator layer for a self-hosted AI stack: service wrappers, model profiles, bridge services, deployment helpers, runtime maintenance, streamlined Jinja/ChatML template variants, and the tooling needed to debug what the stack is actually doing.
 
@@ -60,11 +60,14 @@ Optional tags:
 ==================================================
 X / TWITTER
 ==================================================
-LLM-Ops-Kit is live.
+LLM-Ops-Kit
 
-An ops toolkit for running, deploying, debugging, and maintaining self-hosted AI stacks across hosts, including bridge services, prompt-template control, lower-context-friendly ChatML/Jinja variants, and local TTS/voice cloning workflows.
+Self-hosted AI: for privacy and security on macOS.
+Local TTS and voice cloning
+Streamlined Jinja ChatML template with tool calling.
 
-Built from real failures, not toy demos.
+#macOS #ai #llm #mlx #opensource #HuggingFace
+
 
 Project page:
 https://unixwzrd.ai/projects/LLM-Ops-Kit/
