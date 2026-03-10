@@ -13,8 +13,11 @@ pid_file="${BASE_DIR}/utils/etc/jekyll.pid"
 
 refresh_og_data() {
     echo "Refreshing OpenGraph data..." >&2
-    # Try to use conda environment python if available, otherwise use system python3
-    local python_cmd="python3"
+    # Prefer the active Python environment, then explicit site envs, then python3.
+    local python_cmd="python"
+    if ! command -v "${python_cmd}" >/dev/null 2>&1; then
+        python_cmd="python3"
+    fi
     if [ -f "${HOME}/miniconda3/envs/python-website-dev/bin/python3" ]; then
         python_cmd="${HOME}/miniconda3/envs/python-website-dev/bin/python3"
     elif [ -f "${HOME}/anaconda3/envs/python-website-dev/bin/python3" ]; then
