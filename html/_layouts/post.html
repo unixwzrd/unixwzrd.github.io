@@ -3,74 +3,75 @@ layout: default
 ---
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
- {% include breadcrumbs.html %}
+  {% include breadcrumbs.html %}
 
- <header class="post-header">
- <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
- <p class="post-meta">
- {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
- <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
- {{ page.date | date: date_format }}
- </time>
- {%- if page.modified_date -%}
- ~
- {%- assign mdate = page.modified_date | date_to_xmlschema -%}
- <time class="dt-modified" datetime="{{ mdate }}" itemprop="dateModified">
- {{ mdate | date: date_format }}
- </time>
- {%- endif -%}
- {%- if page.author -%}
- • {% for author in page.author %}
- <span itemprop="author" itemscope itemtype="http://schema.org/Person">
- <span class="p-author h-card" itemprop="name">{{ author }}</span></span>
- {%- if forloop.last == false %}, {% endif -%}
- {% endfor %}
- {%- endif -%}</p>
- </header>
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
+    <p class="post-meta">
+      {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+        {{ page.date | date: date_format }}
+      </time>
+      {%- if page.modified_date -%}
+        ~
+        {%- assign mdate = page.modified_date | date_to_xmlschema -%}
+        <time class="dt-modified" datetime="{{ mdate }}" itemprop="dateModified">
+          {{ mdate | date: date_format }}
+        </time>
+      {%- endif -%}
+      {%- if page.author -%}
+        • {% for author in page.author %}
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">{{ author }}</span>
+          </span>{%- if forloop.last == false %}, {% endif -%}
+        {% endfor %}
+      {%- endif -%}
+    </p>
+  </header>
 
- {% assign fallback_image = "/assets/images/default-og-image.png" %}
- {% assign hero_image = page.image %}
- {% assign show_banner = true %}
+  {% assign fallback_image = "/assets/images/default-og-image.png" %}
+  {% assign hero_image = page.image %}
+  {% assign show_banner = true %}
 
- {% if page.hide_banner_image or page.hide_banner_image == true or page.hide_banner_image == 'true' %}
- {% assign show_banner = false %}
- {% endif %}
+  {% if page.hide_banner_image or page.hide_banner_image == true or page.hide_banner_image == 'true' %}
+    {% assign show_banner = false %}
+  {% endif %}
 
- {% if page.show_banner_image == false or page.show_banner_image == 'false' %}
- {% assign show_banner = false %}
- {% endif %}
+  {% if page.show_banner_image == false or page.show_banner_image == 'false' %}
+    {% assign show_banner = false %}
+  {% endif %}
 
- {% if hero_image %}
- {% assign hero_image_downcased = hero_image | downcase %}
- {% if hero_image_downcased == 'none' or hero_image_downcased == 'false' %}
- {% assign show_banner = false %}
- {% endif %}
- {% endif %}
+  {% if hero_image %}
+    {% assign hero_image_downcased = hero_image | downcase %}
+    {% if hero_image_downcased == 'none' or hero_image_downcased == 'false' %}
+      {% assign show_banner = false %}
+    {% endif %}
+  {% endif %}
 
- {% if show_banner %}
- {% if hero_image == nil or hero_image == '' or hero_image == 'default' %}
- {% assign hero_image = fallback_image %}
- {% endif %}
+  {% if show_banner %}
+    {% if hero_image == nil or hero_image == '' or hero_image == 'default' %}
+      {% assign hero_image = fallback_image %}
+    {% endif %}
 
- <div class="post-banner-image">
- <img src="{{ hero_image }}"
- alt="{{ page.title | escape }}"
- style="max-width:100%;height:auto;display:block;margin:0 auto 2rem auto;"
- onerror="this.onerror=null;this.src='{{ fallback_image }}';" />
- </div>
- {% endif %}
+    <div class="post-banner-image">
+      <img src="{{ hero_image }}"
+        alt="{{ page.title | escape }}"
+        style="max-width:100%;height:auto;display:block;margin:0 auto 2rem auto;"
+        onerror="this.onerror=null;this.src='{{ fallback_image }}';" />
+    </div>
+  {% endif %}
 
- <div class="post-content e-content" itemprop="articleBody">
- {{ content }}
- </div>
+  <div class="post-content e-content" itemprop="articleBody">
+    {{ content }}
+  </div>
 
- {% include content_footer.html %}
+  {% include content_footer.html %}
 
- {%- if site.giscus.enabled -%}
- {%- include giscus_comments.html -%}
- {%- elsif site.disqus.shortname -%}
- {%- include disqus_comments.html -%}
- {%- endif -%}
+  {%- if site.giscus.enabled -%}
+    {%- include giscus_comments.html -%}
+  {%- elsif site.disqus.shortname -%}
+    {%- include disqus_comments.html -%}
+  {%- endif -%}
 
- <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 </article>

@@ -94,12 +94,9 @@ start_service() {
         kill_process_on_port
     fi
     site_build "$skip_refresh" "$run_link_check"
-    
-    # Jekyll serve flags - easily configurable
+
     local serve_flags="--host localhost --port 4000 --trace"
-    # Note: Directory listings are disabled by default in Jekyll
-    # Set environment to development to enable draft posts and other dev features
-    
+
     cd "${BASE_DIR}" && JEKYLL_ENV=development bundle exec jekyll serve $serve_flags &
     echo $! > "$pid_file"
     echo "Jekyll server started (PID: $(cat "$pid_file"))"
@@ -126,7 +123,7 @@ stop_service() {
 }
 
 show_help() {
-    cat << EOF
+    cat << EOF2
 Jekyll Site Management Script
 
 Usage: jekyll-site [COMMAND] [OPTIONS]
@@ -142,8 +139,8 @@ OPTIONS:
     -n, --no-refresh  Skip OpenGraph data refresh (faster builds)
     -r, --refresh     Force OpenGraph data refresh (slower builds)
     -c, --check-links Run HTMLProofer on _site after build
-    
-IMPORTANT: -n and -r are incompatible flags. If both are specified, -n takes 
+
+IMPORTANT: -n and -r are incompatible flags. If both are specified, -n takes
 precedence and the operation continues with a warning.
 
 EXAMPLES:
@@ -159,10 +156,9 @@ DEFAULT BEHAVIOR:
     - restart: Skip OG data refresh (fast mode)
     - build: Refresh OG data (complete mode)
     - Conflicting flags: -n takes precedence, operation continues with warning
-EOF
+EOF2
 }
 
-# Parse arguments
 skip_refresh=false
 force_refresh=false
 run_link_check=false
@@ -194,7 +190,6 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-# Handle conflicting flags
 if [ "$skip_refresh" = true ] && [ "$force_refresh" = true ]; then
     echo "Warning: Both -n/--no-refresh and -r/--refresh flags specified"
     echo "Continuing without refresh (no-refresh takes precedence)"
@@ -203,13 +198,10 @@ if [ "$skip_refresh" = true ] && [ "$force_refresh" = true ]; then
     force_refresh=false
 fi
 
-# Set default behavior based on command
 if [ "$command" = "restart" ] && [ "$force_refresh" = false ] && [ "$skip_refresh" = false ]; then
-    # Default restart behavior: skip refresh for speed
     skip_refresh=true
     echo "Restart: Using fast mode (no OG refresh). Use -r to force refresh."
 elif [ "$command" = "start" ] && [ "$force_refresh" = false ] && [ "$skip_refresh" = false ]; then
-    # Default start behavior: refresh for completeness
     skip_refresh=false
     echo "Start: Using complete mode (with OG refresh). Use -n for faster start."
 fi
@@ -233,13 +225,11 @@ case "$command" in
         stop_service
         ;;
     restart)
-        echo "Restarting Jekyll-site" >&2
         stop_service
         start_service "$skip_refresh" "$run_link_check"
         ;;
     *)
-        echo "Unknown command: $command"
         show_help
         exit 1
         ;;
-esac 
+esac

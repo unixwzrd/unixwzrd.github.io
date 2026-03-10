@@ -1,82 +1,82 @@
 <section class="contact-card">
- <h2>Private Inquiries</h2>
- <p>
- Use this form for project work, consulting, collaboration, speaking, or a straightforward "tell me more."
- Nothing is stored on this site yet. Submitting opens your mail client with a structured draft to
- <strong>{{ site.engagement.contact_email }}</strong>.
- </p>
+  <h2>Private Inquiries</h2>
+  <p>
+    Use this form for project work, consulting, collaboration, speaking, or a straightforward "tell me more."
+    Nothing is stored on this site yet. Submitting opens your mail client with a structured draft to
+    <strong>{{ site.engagement.contact_email }}</strong>.
+  </p>
 
- <form
- id="contact-form"
- class="contact-form"
- data-contact-email="{{ site.engagement.contact_email }}"
- data-subject-prefix="{{ site.engagement.inquiry_subject_prefix }}"
- novalidate>
- <div class="contact-form-grid">
- <label class="contact-field" for="contact-name">
- <span>Name</span>
- <input id="contact-name" name="name" type="text" autocomplete="name" required>
- </label>
+  <form
+    id="contact-form"
+    class="contact-form"
+    data-contact-email="{{ site.engagement.contact_email }}"
+    data-subject-prefix="{{ site.engagement.inquiry_subject_prefix }}"
+    novalidate>
+    <div class="contact-form-grid">
+      <label class="contact-field" for="contact-name">
+        <span>Name</span>
+        <input id="contact-name" name="name" type="text" autocomplete="name" required>
+      </label>
 
- <label class="contact-field" for="contact-email">
- <span>Email</span>
- <input id="contact-email" name="email" type="email" autocomplete="email" required>
- </label>
+      <label class="contact-field" for="contact-email">
+        <span>Email</span>
+        <input id="contact-email" name="email" type="email" autocomplete="email" required>
+      </label>
 
- <label class="contact-field" for="contact-organization">
- <span>Organization or Role</span>
- <input id="contact-organization" name="organization" type="text" autocomplete="organization-title">
- </label>
+      <label class="contact-field" for="contact-organization">
+        <span>Organization or Role</span>
+        <input id="contact-organization" name="organization" type="text" autocomplete="organization-title">
+      </label>
 
- <label class="contact-field" for="contact-topic">
- <span>Topic</span>
- <select id="contact-topic" name="topic" required>
- <option value="">Choose one</option>
- <option value="Project Inquiry">Project Inquiry</option>
- <option value="Consulting">Consulting</option>
- <option value="Collaboration">Collaboration</option>
- <option value="Support or Questions">Support or Questions</option>
- <option value="Speaking or Media">Speaking or Media</option>
- <option value="Other">Other</option>
- </select>
- </label>
- </div>
+      <label class="contact-field" for="contact-topic">
+        <span>Topic</span>
+        <select id="contact-topic" name="topic" required>
+          <option value="">Choose one</option>
+          <option value="Project Inquiry">Project Inquiry</option>
+          <option value="Consulting">Consulting</option>
+          <option value="Collaboration">Collaboration</option>
+          <option value="Support or Questions">Support or Questions</option>
+          <option value="Speaking or Media">Speaking or Media</option>
+          <option value="Other">Other</option>
+        </select>
+      </label>
+    </div>
 
- <label class="contact-field contact-field--full" for="contact-message">
- <span>Message</span>
- <textarea
- id="contact-message"
- name="message"
- rows="10"
- placeholder="What are you trying to solve, and what would be useful to know?"
- required></textarea>
- </label>
+    <label class="contact-field contact-field--full" for="contact-message">
+      <span>Message</span>
+      <textarea
+        id="contact-message"
+        name="message"
+        rows="10"
+        placeholder="What are you trying to solve, and what would be useful to know?"
+        required></textarea>
+    </label>
 
- <div class="contact-actions">
- <button type="submit" class="contact-submit">Open Email Draft</button>
- <p class="contact-hint">
- If your browser does not hand off to a mail app cleanly, use the direct contact options below.
- </p>
- </div>
+    <div class="contact-actions">
+      <button type="submit" class="contact-submit">Open Email Draft</button>
+      <p class="contact-hint">
+        If your browser does not hand off to a mail app cleanly, use the direct contact options below.
+      </p>
+    </div>
 
- <div id="contact-form-status" class="contact-form-status" aria-live="polite"></div>
- </form>
+    <div id="contact-form-status" class="contact-form-status" aria-live="polite"></div>
+  </form>
 
- <noscript>
- <p class="contact-noscript">
- JavaScript is off, so the structured draft helper is unavailable. Use the direct links below instead.
- </p>
- </noscript>
+  <noscript>
+    <p class="contact-noscript">
+      JavaScript is off, so the structured draft helper is unavailable. Use the direct links below instead.
+    </p>
+  </noscript>
 </section>
 
 <section class="contact-direct">
- <h2>Direct Contact Options</h2>
- <ul class="contact-direct-list">
- <li><strong>Email:</strong> <a href="mailto:{{ site.engagement.contact_email | encode_email }}">{{ site.engagement.contact_email }}</a></li>
- <li><strong>Phone:</strong> {{ site.engagement.contact_phone }} ({{ site.engagement.contact_phone_label }})</li>
- <li><strong>Telegram:</strong> <a href="https://t.me/{{ site.engagement.telegram_username }}">@{{ site.engagement.telegram_username }}</a></li>
- <li><strong>Public discussion:</strong> <a href="{{ site.engagement.discussions_url }}">GitHub Discussions</a></li>
- </ul>
+  <h2>Direct Contact Options</h2>
+  <ul class="contact-direct-list">
+    <li><strong>Email:</strong> <a href="mailto:{{ site.engagement.contact_email | encode_email }}">{{ site.engagement.contact_email }}</a></li>
+    <li><strong>Phone:</strong> {{ site.engagement.contact_phone }} ({{ site.engagement.contact_phone_label }})</li>
+    <li><strong>Telegram:</strong> <a href="https://t.me/{{ site.engagement.telegram_username }}">@{{ site.engagement.telegram_username }}</a></li>
+    <li><strong>Public discussion:</strong> <a href="{{ site.engagement.discussions_url }}">GitHub Discussions</a></li>
+  </ul>
 </section>
 
 {%- assign asset_version = site.github.build_revision | default: site.time | date: "%s" -%}
