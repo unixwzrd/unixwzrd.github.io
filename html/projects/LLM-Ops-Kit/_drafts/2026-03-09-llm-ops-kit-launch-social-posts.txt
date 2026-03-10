@@ -1,25 +1,37 @@
 LLM-Ops-Kit launch social drafts
 Project page:
-https://unixwzrd.ai/projects/LLM-Ops-Kit/
+https://unixwzrd.ai/projects/LLM-Ops-Kit/2026/03/09/introducing-llm-ops-kit/
 
 ==================================================
 LINKEDIN
 ==================================================
 I just released **LLM-Ops-Kit**.
 
-It is an operational toolkit for running, deploying, debugging, and maintaining self-hosted AI stacks across hosts. The project started around a local OpenClaw deployment, but the tooling is useful anywhere you need reproducible wrappers, model profiles, bridge services, runtime maintenance, and better observability for local AI systems.
-
-One of the biggest wins so far has been getting local TTS and voice cloning working properly through MLX Audio, which cuts reliance on premium hosted speech services and makes spoken agent responses much more practical.
+It is an operational toolkit for running, deploying, debugging, and maintaining self-hosted AI stacks across hosts. The project started around a local OpenClaw deployment, but the tooling is useful anywhere you need reproducible wrappers, model profiles, bridge services, runtime maintenance, streamlined Jinja/ChatML with tool calling, and better observability for local AI systems.
 
 This one came out of real-world operational pressure: stale runtime state, mismatched ports, prompt-template debugging, TTS bridge routing, cross-host deployment, OpenAI-compatibility problems, and the kind of failures you only find during real end-to-end testing.
 
 Project page:
-https://unixwzrd.ai/projects/LLM-Ops-Kit/
+https://unixwzrd.ai/projects/LLM-Ops-Kit/2026/03/09/introducing-llm-ops-kit/
 
-GitHub:
-https://github.com/unixwzrd/LLM-Ops-Kit
+I spend most of my time building tools around Python, Unix/Linux systems, and AI infrastructure. If you're working on something similar and need help untangling something tricky, feel free to reach out. @unixwzrd, almost everywhere.
 
-#AI #LLM #OpenSource #SelfHosting #LocalAI #MLOps #DevTools #Automation
+#AI #LLM #Self-Hosting #Local_AI #OpenSource #DevTools #Automation #MLOps #localTTS #VoiceCloning #MLX
+
+
+Just released this, it was bit of work, mostly to get OpenClaw to run with minimal resources. Several highlights are:
+
+- An efficient Jinja Template for ChatML trained models, it eliminates redundant information, like thoughts, tool calls large graphics which pollute the context window (n_ctx). A final filter for your prompt.
+- Native MLX TTS with voice cloning using MLX-Audio, and a patch in my repo which aligned with the OpenAI API and ensures that the sample audio and text transcript are applies correctly.
+- All local models, SAVES $$$ on API calls and also is completely private.
+- Includes framework for Embedding models
+- Uses the Qwen3.5-35B-A3B from #HuggingFace as its core model.
+
+Secrets-Kit coming soon, for macOS - a place to keep secrets simply securely.
+
+I spend most of my time building tools around Python, Unix/Linux systems, and AI infrastructure. If you're working on something similar and need help untangling something tricky, feel free to reach out. @unixwzrd, almost everywhere.
+
+#AI #LLM #Self-Hosting #Local_AI #OpenSource #DevTools #Automation #MLOps #localTTS #VoiceCloning #MLX #HuggingFace
 
 ==================================================
 SUBSTACK
@@ -43,7 +55,7 @@ The write-up is here:
 https://unixwzrd.ai/projects/LLM-Ops-Kit/
 
 Optional tags:
-AI, LLM, Self-Hosting, Local AI, Open Source, Dev Tools, Automation, MLOps
+#AI #LLM #Self-Hosting #Local_AI #OpenSource #DevTools #Automation #MLOps #localTTS #VoiceCloning #MLX
 
 ==================================================
 X / TWITTER
