@@ -1,0 +1,87 @@
+LLM-Ops-Kit launch social drafts
+Project page:
+https://unixwzrd.ai/projects/LLM-Ops-Kit/
+
+==================================================
+LINKEDIN
+==================================================
+I just released **LLM-Ops-Kit**.
+
+It is an operational toolkit for running, deploying, debugging, and maintaining self-hosted AI stacks across hosts. The project started around a local OpenClaw deployment, but the tooling is useful anywhere you need reproducible wrappers, model profiles, bridge services, runtime maintenance, and better observability for local AI systems.
+
+One of the biggest wins so far has been getting local TTS and voice cloning working properly through MLX Audio, which cuts reliance on premium hosted speech services and makes spoken agent responses much more practical.
+
+This one came out of real-world operational pressure: stale runtime state, mismatched ports, prompt-template debugging, TTS bridge routing, cross-host deployment, OpenAI-compatibility problems, and the kind of failures you only find during real end-to-end testing.
+
+Project page:
+https://unixwzrd.ai/projects/LLM-Ops-Kit/
+
+GitHub:
+https://github.com/unixwzrd/LLM-Ops-Kit
+
+#AI #LLM #OpenSource #SelfHosting #LocalAI #MLOps #DevTools #Automation
+
+==================================================
+SUBSTACK
+==================================================
+Title:
+Introducing LLM-Ops-Kit
+
+Subtitle:
+Operational tooling for the part of self-hosted AI work that usually gets left to shell history and guesswork.
+
+Body:
+LLM-Ops-Kit is now live.
+
+It is the operator layer for a self-hosted AI stack: service wrappers, model profiles, bridge services, deployment helpers, runtime maintenance, streamlined Jinja/ChatML template variants, and the tooling needed to debug what the stack is actually doing.
+
+The project started around a local OpenClaw deployment, but the scope is broader than that. If you are managing models across hosts, dealing with local bridges and remote inference servers, and trying to make the whole system reproducible instead of fragile, this project is for that class of work.
+
+A big part of the payoff so far has been local TTS and voice cloning, which cuts costs and keeps more of the stack under your own control.
+
+The write-up is here:
+https://unixwzrd.ai/projects/LLM-Ops-Kit/
+
+Optional tags:
+AI, LLM, Self-Hosting, Local AI, Open Source, Dev Tools, Automation, MLOps
+
+==================================================
+X / TWITTER
+==================================================
+LLM-Ops-Kit is live.
+
+An ops toolkit for running, deploying, debugging, and maintaining self-hosted AI stacks across hosts, including bridge services, prompt-template control, lower-context-friendly ChatML/Jinja variants, and local TTS/voice cloning workflows.
+
+Built from real failures, not toy demos.
+
+Project page:
+https://unixwzrd.ai/projects/LLM-Ops-Kit/
+
+GitHub:
+https://github.com/unixwzrd/LLM-Ops-Kit
+
+#AI #LLM #SelfHosting #OpenSource
+
+Alt version:
+LLM-Ops-Kit is out: wrappers, model profiles, bridge services, runtime maintenance, deployment helpers, observability tools, and streamlined prompt templates for self-hosted AI stacks.
+
+https://unixwzrd.ai/projects/LLM-Ops-Kit/
+
+#LocalAI #MLOps #DevTools #OpenSource
+
+==================================================
+BLUESKY
+==================================================
+LLM-Ops-Kit is now live.
+
+It is an operational toolkit for the messy but important part of self-hosted AI: keeping the stack reproducible, observable, repairable, prompt-aware, and affordable once real-world failures start showing up.
+
+One of the strongest examples is local TTS and voice cloning, which can replace a lot of premium hosted speech usage without giving up a clean API surface.
+
+Project page:
+https://unixwzrd.ai/projects/LLM-Ops-Kit/
+
+GitHub:
+https://github.com/unixwzrd/LLM-Ops-Kit
+
+#ai #llm #selfhosting #opensource #devtools
