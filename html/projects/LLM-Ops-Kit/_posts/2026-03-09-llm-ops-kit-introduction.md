@@ -128,6 +128,6 @@ The project is being shaped by actual use, so practical feedback is especially v
 
 If this kind of tooling saves you time, reduces hosting costs, or helps you keep a self-hosted AI stack under control, you can also support the work directly:
 
-- Patreon: https://patreon.com/unixwzrd
-- Ko-fi: https://ko-fi.com/unixwzrd
-- Buy Me a Coffee: https://buymeacoffee.com/unixwzrd
+- [Patreon](https://patreon.com/unixwzrd)
+- [Ko-fi](https://ko-fi.com/unixwzrd)
+- [Buy Me a Coffee](https://buymeacoffee.com/unixwzrd)
