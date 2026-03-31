@@ -806,10 +806,8 @@ class SiteReliabilityMonitor:
 
         logger.info("    🔗 Checking external links...")
 
-        # Find all markdown files
-        markdown_files = []
-        for pattern in ["**/*.md", "html/**/*.md"]:
-            markdown_files.extend(Path(".").glob(pattern))
+        # Only scan published site content, not internal planning/docs elsewhere in the repo.
+        markdown_files = list(Path("html").glob("**/*.md"))
 
         if not markdown_files:
             logger.warning("⚠️ No markdown files found to check for external links")
@@ -919,6 +917,14 @@ class SiteReliabilityMonitor:
             metrics = self.config["external_links"]["link_metrics"][metrics_key]
             metrics["total_checks"] += 1
             metrics["last_check"] = datetime.now().isoformat()
+            max_failures = self.config["external_links"][
+                "max_failures_before_investigation"
+            ]
+            critical_threshold = self.config["external_links"][
+                "critical_failure_threshold"
+            ]
+            response_time = None
+            response = None
 
             try:
                 start_time = time.time()
@@ -1010,14 +1016,6 @@ class SiteReliabilityMonitor:
                         metrics["last_status"] = "down"
                         metrics["last_error"] = f"HTTP {response.status_code}"
                         status = "down"
-
-                        # Check if we should investigate this link
-                        max_failures = self.config["external_links"][
-                            "max_failures_before_investigation"
-                        ]
-                        critical_threshold = self.config["external_links"][
-                            "critical_failure_threshold"
-                        ]
 
                         # Check robots.txt for failed sites
                         robots_info = ""
@@ -1602,19 +1600,16 @@ Please investigate these issues.
         robots_info=None,
     ):
         """Format error messages with proper descriptions."""
+        time_str = f"({response_time:.2f}s)" if response_time is not None else "(N/A)"
+
         # Build the main message line with response time
         if status_code:
             status_desc = self._get_http_status_description(status_code)
-            main_msg = (
-                f"  ❌ {url}: HTTP {status_code} - {status_desc} ({response_time:.2f}s)"
-            )
+            main_msg = f"  ❌ {url}: HTTP {status_code} - {status_desc} {time_str}"
         else:
             if error_type == "timeout":
-                main_msg = (
-                    f"  ❌ {url}: Connection timed out (N/A) ({response_time:.2f}s)"
-                )
+                main_msg = f"  ❌ {url}: Connection timed out (N/A) {time_str}"
             else:
-                time_str = f"({response_time:.2f}s)" if response_time else "(N/A)"
                 main_msg = f"  ❌ {url}: {error_type.title()} error (N/A) {time_str}"
 
         # Determine the problem type and message (proper capitalization)
