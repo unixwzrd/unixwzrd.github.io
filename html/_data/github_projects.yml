@@ -23,7 +23,7 @@ projects:
   description: |-
     LogGPT - Safari ChatGPT Chat Log Export Extension, a lightweight method of exporting entire ChatGPT conversations in JSON format.
   image_url: /assets/images/projects/LogGPT.png
-  banner_image_url: /assets/images/projects/LogGPT.png
+  banner_image_url: /assets/images/projects/LogGPT-banner.png
   page_url: /projects/LogGPT/
   visibility: public
   repo_url: https://github.com/unixwzrd/LogGPT
@@ -33,7 +33,7 @@ projects:
   description: |-
     Normalizes Unicode to ASCII equivalents and remove Unicode from AI generated text from ChatGPT, Anthropic, Google and more.
   image_url: /assets/images/projects/UnicodeFix.png
-  banner_image_url: /assets/images/projects/UnicodeFix.png
+  banner_image_url: /assets/images/projects/UnicodeFix-banner.png
   page_url: /projects/UnicodeFix/
   visibility: public
   repo_url: https://github.com/unixwzrd/UnicodeFix
@@ -63,7 +63,7 @@ projects:
   description: |-
     Run GPT-OSS and other MLX-compatible models through a single, lightweight interface.
   image_url: /assets/images/projects/mlx-harmony.png
-  banner_image_url: /assets/images/projects/mlx-harmony.png
+  banner_image_url: /assets/images/projects/MLX-Harmony/MLX_Harmony_Banner.png
   page_url: /projects/mlx-harmony/
   visibility: public
   repo_url: https://github.com/unixwzrd/mlx-harmony

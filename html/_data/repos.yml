@@ -13,15 +13,18 @@ repositories:
       image_url: "/assets/images/projects/PA-devastation-1.png"
   - name: LogGPT
     owner: unixwzrd
+    overrides:
+      banner_image_url: "/assets/images/projects/LogGPT-banner.png"
   - name: UnicodeFix
     owner: unixwzrd
+    overrides:
+      banner_image_url: "/assets/images/projects/UnicodeFix-banner.png"
   - name: LLM-Ops-Kit
     owner: unixwzrd
     overrides:
       title: "LLM Ops Kit"
       description: "Operational toolkit for running, deploying, debugging, and maintaining self-hosted AI stacks across hosts."
       banner_image_url: "/assets/images/projects/LLM-Ops-Kit/LLM-OPS-Kit-banner.png"
-      image_url: "/assets/images/projects/LLM-Ops-Kit/LLM-OPS-Kit-banner.png"
   - name: extract-chat
     owner: unixwzrd
     overrides:
@@ -33,6 +36,7 @@ repositories:
     overrides:
       title: "MLX Harmony"
       description: "Run GPT-OSS and other MLX-compatible models through a single, lightweight interface."
+      banner_image_url: "/assets/images/projects/MLX-Harmony/MLX_Harmony_Banner.png"
   - name: ConnectomeAI
     owner: unixwzrd
     overrides:

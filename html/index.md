@@ -4,7 +4,10 @@ title: "Distributed Thinking Systems"
 menu_item: Home
 permalink: /
 excerpt: "We are dedicated to developing AI solutions that make a positive impact. Our focus is on creating tools and systems that help people, particularly in challenging situations like parental alienation and high-conflict divorce cases."
+image: "/assets/images/default-og-image.png"
 ---
+
+![Distributed Thinking Systems](/assets/images/default-og-image.png)
 
 We are dedicated to developing AI solutions that make a positive impact. Our focus is on creating tools and systems that help people, particularly in challenging situations like parental alienation and high-conflict divorce cases.
 
