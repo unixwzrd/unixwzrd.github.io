@@ -15,6 +15,7 @@ The pre-commit check system ensures code quality and consistency by running a se
 - Ruby environment (for Jekyll)
 - Python 3.x
 - Required Python packages (see requirements.txt)
+- Bundled Ruby gems installed via `bundle install`
 
 ## Available Checks
 
@@ -95,6 +96,11 @@ Runs [HTMLProofer](https://github.com/gjtorikian/html-proofer) against the gener
 - Detects real 404s and missing fragment IDs in the rendered site (e.g., forward/backward references)
 - Ignores external URLs to keep the check fast/offline
 - Also available via `./utils/bin/jekyll-site build -c`, which triggers the same check immediately after a build
+- Requires the project bundle to be current. If `htmlproofer` fails to boot due to a missing gem such as `debug`, run:
+
+```bash
+bundle install
+```
 
 ### 6. External Link Verification (06_external_link_checker.sh)
 
@@ -148,6 +154,11 @@ The checks are automatically run by the pre-commit hook:
    - Check Jekyll configuration
    - Verify front matter format
    - Look for Liquid syntax errors
+
+2. **HTMLProofer Fails Before Checking Links**
+   - Run `bundle install`
+   - Verify `bundle exec ruby -e 'require "debug"; puts "ok"'`
+   - Re-run `./utils/bin/checks/05_site_link_checker.sh`
 
 2. **Permalink Validation Fails**
    - Ensure permalinks start and end with /

@@ -14,6 +14,14 @@ layout: default
     {% endif %}
     {% assign fallback_image = "/assets/images/default-og-image.png" %}
     {% assign hero_image = page.image %}
+    {% if page.layout == "project" and page.category %}
+      {% assign category_project = site.data.github_projects.projects | where: "name", page.category | first %}
+      {% if category_project %}
+        {% if hero_image == nil or hero_image == '' or hero_image == 'default' %}
+          {% assign hero_image = category_project.banner_image_url | default: category_project.image_url %}
+        {% endif %}
+      {% endif %}
+    {% endif %}
     {% assign show_banner = true %}
 
     {% if page.hide_banner_image or page.hide_banner_image == true or page.hide_banner_image == 'true' %}

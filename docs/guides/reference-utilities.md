@@ -34,10 +34,72 @@ source .env/project.env
 - **PID File**: [utils/etc/jekyll.pid](../utils/etc/jekyll.pid)
 - **Site Source**: [html/](../../html/)
 - **Build Output**: [_site/](../../_site/)
+- **Project Source Data**: [html/_data/repos.yml](../../html/_data/repos.yml)
+- **Generated Project Data**: [html/_data/github_projects.yml](../../html/_data/github_projects.yml)
+- **Project Data Generator**: [utils/bin/fetch_og.py](../../utils/bin/fetch_og.py)
 
 ### URLs
 - **Development**: `http://localhost:4000`
 - **Production**: `https://unixwzrd.ai`
+
+## Project Data Pipeline
+
+Project metadata is maintained in two layers:
+
+- [html/_data/repos.yml](../../html/_data/repos.yml): editable source of truth
+- [html/_data/github_projects.yml](../../html/_data/github_projects.yml): generated output used by templates
+
+The generator script [utils/bin/fetch_og.py](../../utils/bin/fetch_og.py):
+
+- fetches GitHub and OpenGraph metadata
+- applies local `overrides` from `repos.yml`
+- writes the merged result to `github_projects.yml`
+
+Do not hand-edit `github_projects.yml`. It will be overwritten the next time the generator runs.
+
+## Adding or Updating a Project
+
+Add the repository entry in [html/_data/repos.yml](../../html/_data/repos.yml):
+
+```yaml
+repositories:
+  - name: LogGPT
+    owner: unixwzrd
+    overrides:
+      title: "LogGPT for Safari"
+      description: "Safari extension for exporting ChatGPT conversations."
+      image_url: "/assets/images/projects/LogGPT.png"
+      banner_image_url: "/assets/images/projects/LogGPT/LogGPT-banner.png"
+```
+
+Supported `overrides` keys:
+
+- `title`: replace the fetched or auto-formatted project title
+- `description`: replace the fetched repository description
+- `visibility`: force `public`, `private`, or `none`
+- `image_url`: set the standard project thumbnail image
+- `banner_image_url`: set the wide banner/hero image
+
+After editing `repos.yml`, regenerate the derived data:
+
+```bash
+python utils/bin/fetch_og.py
+```
+
+## Project Image Behavior
+
+The image fields have different roles:
+
+- `image_url`: standard project thumbnail
+- `banner_image_url`: wide project banner or hero image
+
+Current usage:
+
+- Projects list: prefers `banner_image_url`, falls back to `image_url`
+- Project landing page hero: prefers `banner_image_url`, falls back to `image_url`
+- Smaller project image on the project landing page above the blog entries: uses `image_url`
+
+If `banner_image_url` is omitted, the site automatically falls back to `image_url`.
 
 ## Image Path Automation for Social Sharing
 
@@ -216,4 +278,4 @@ This integration ensures that:
 
 See TODO.md and site-improvement-checklist.md for detailed task breakdown.
 
- 
+

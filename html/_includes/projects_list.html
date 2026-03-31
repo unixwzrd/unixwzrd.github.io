@@ -2,12 +2,13 @@
 <div class="projects-list">
   {% for project in site.data.github_projects.projects %}
     {% if include.visibility == project.visibility and project.visibility != 'none' %}
+    {% assign project_list_image = project.banner_image_url | default: project.image_url %}
     <table class="project-table">
       <tr>
         <!-- First column: Image -->
         <td class="project-image">
           <a href="/projects/{{ project.name }}/" title="View {{ project.title }} Project Blog">
-            <img class="project-preview" src="{{ project.image_url }}" alt="{{ project.title }} image">
+            <img class="project-preview" src="{{ project_list_image }}" alt="{{ project.title }} image">
           </a>
         </td>
 

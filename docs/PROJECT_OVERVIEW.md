@@ -201,9 +201,10 @@ docs/
 
 ### Daily Operations
 1. **Content Updates**: Edit files in [html/_posts/](../html/_posts/) or [html/projects/](../html/projects/)
-2. **Site Testing**: Run `utils/bin/site_reliability_monitor.py --mode health`
-3. **Pre-commit Checks**: Automatic via git hooks
-4. **Monitoring**: Automated via GitHub Actions and cron jobs
+2. **Project Metadata Updates**: Edit [html/_data/repos.yml](../html/_data/repos.yml) and regenerate [html/_data/github_projects.yml](../html/_data/github_projects.yml) with `python utils/bin/fetch_og.py`
+3. **Site Testing**: Run `utils/bin/site_reliability_monitor.py --mode health`
+4. **Pre-commit Checks**: Automatic via git hooks
+5. **Monitoring**: Automated via GitHub Actions and cron jobs
 
 ### Emergency Procedures
 - **Site Down**: Check [docs/guides/site-reliability-checklist.md](guides/site-reliability-checklist.md)
@@ -252,4 +253,4 @@ For details on how GitHub Pages deployment branches work (including `gh-pages` a
 ---
 
 *Last Updated: July 2025*
-*Next Review: August 2025* 
+*Next Review: August 2025*

@@ -41,9 +41,9 @@ projects:
   owner: unixwzrd
   title: LLM Ops Kit
   description: |-
-    Operational toolkit for running, deploying, and maintaining a local OpenClaw stack across hosts.
+    Operational toolkit for running, deploying, debugging, and maintaining self-hosted AI stacks across hosts.
   image_url: /assets/images/projects/LLM-Ops-Kit.png
-  banner_image_url: /assets/images/projects/LLM-Ops-Kit.png
+  banner_image_url: /assets/images/projects/LLM-Ops-Kit/LLM-OPS-Kit-banner.png
   page_url: /projects/LLM-Ops-Kit/
   visibility: public
   repo_url: https://github.com/unixwzrd/LLM-Ops-Kit
@@ -53,7 +53,7 @@ projects:
   description: |-
     Extract ChatGPT sessions from downloaded JSON into HTML and Markdown with metadata, also chunking for ML pipeline.
   image_url: /assets/images/projects/extract-chat.png
-  banner_image_url: /assets/images/projects/extract-chat.png
+  banner_image_url: /assets/images/projects/extract-chat-banner.png
   page_url: /projects/extract-chat/
   visibility: public
   repo_url: https://github.com/unixwzrd/extract-chat
@@ -105,8 +105,7 @@ projects:
   image_url: /assets/images/projects/oobabooga-macOS.png
   banner_image_url: /assets/images/projects/oobabooga-macOS.png
   page_url: /projects/oobabooga-macOS/
-  visibility: public
-  repo_url: https://github.com/unixwzrd/oobabooga-macOS
+  visibility: none
 - name: text-generation-webui-macos
   owner: unixwzrd
   title: Text Generation WebUI macOS
@@ -115,5 +114,4 @@ projects:
   image_url: /assets/images/projects/text-generation-webui-macos.png
   banner_image_url: /assets/images/projects/text-generation-webui-macos.png
   page_url: /projects/text-generation-webui-macos/
-  visibility: public
-  repo_url: https://github.com/unixwzrd/text-generation-webui-macos
+  visibility: none

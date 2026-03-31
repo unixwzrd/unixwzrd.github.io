@@ -415,9 +415,11 @@ def create_project_entry(
     if project_image.exists():
         existing_image_url = f"/assets/images/projects/{name}.png"
 
-    manual_data = repo_config.get("manual_data", {})
+    overrides = repo_config.get("overrides")
+    if overrides is None:
+        overrides = repo_config.get("manual_data", {})
 
-    visibility = manual_data.get("visibility")
+    visibility = overrides.get("visibility")
     if visibility is None:
         if data is None:
             visibility = "private"
@@ -427,20 +429,22 @@ def create_project_entry(
         visibility = visibility.lower()
 
     if data is None:
-        image_url = manual_data.get("image_url")
+        image_url = overrides.get("image_url")
         if not image_url and existing_image_url:
             image_url = existing_image_url
         elif not image_url:
             image_url = "/assets/images/projects/default.png"
 
         cached_image = cache_image(image_url, name, base_dir)
+        banner_image_url = overrides.get("banner_image_url", cached_image)
 
         entry = {
             "name": name,
             "owner": owner,
-            "title": manual_data.get("title", format_title(name)),
-            "description": manual_data.get("description", f"Private repository: {name}"),
+            "title": overrides.get("title", format_title(name)),
+            "description": overrides.get("description", f"Private repository: {name}"),
             "image_url": cached_image,
+            "banner_image_url": banner_image_url,
             "page_url": f"/projects/{name}/",
             "visibility": visibility,
         }
@@ -458,17 +462,20 @@ def create_project_entry(
 
     logger.debug("Project %s image URL: %s", name, image_url)
 
-    title = manual_data.get("title") or format_title(name)
-    description = manual_data.get("description") or normalize_description(
+    title = overrides.get("title") or format_title(name)
+    description = overrides.get("description") or normalize_description(
         data.get("description", ""), owner, name
     )
+    cached_image = cache_image(image_url, name, base_dir)
+    banner_image_url = overrides.get("banner_image_url", cached_image)
 
     entry = {
         "name": name,
         "owner": owner,
         "title": title,
         "description": description,
-        "image_url": cache_image(image_url, name, base_dir),
+        "image_url": cached_image,
+        "banner_image_url": banner_image_url,
         "page_url": f"/projects/{name}/",
         "visibility": visibility,
     }

@@ -62,6 +62,43 @@ class FetchOgFallbackTests(unittest.TestCase):
             self.assertEqual(projects[0]["page_url"], "/projects/LLM-Ops-Kit/")
             self.assertEqual(projects[0]["visibility"], "private")
 
+    def test_overrides_can_set_banner_image_url(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            base_dir = Path(tmpdir)
+            (base_dir / "html/_data").mkdir(parents=True, exist_ok=True)
+
+            repo_config = {
+                "owner": "unixwzrd",
+                "name": "LogGPT",
+                "overrides": {
+                    "title": "LogGPT for Safari",
+                    "banner_image_url": "/assets/images/projects/LogGPT/LogGPT-banner.png",
+                },
+            }
+
+            with mock.patch.object(
+                fetch_og,
+                "cache_image",
+                return_value="/assets/images/projects/LogGPT.png",
+            ):
+                entry = fetch_og.create_project_entry(
+                    data={
+                        "description": "Export ChatGPT conversations.",
+                        "image_url": "https://example.com/og-image.png",
+                        "visibility": "public",
+                    },
+                    owner="unixwzrd",
+                    name="LogGPT",
+                    base_dir=base_dir,
+                    repo_config=repo_config,
+                )
+
+            self.assertEqual(entry["title"], "LogGPT for Safari")
+            self.assertEqual(
+                entry["banner_image_url"],
+                "/assets/images/projects/LogGPT/LogGPT-banner.png",
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

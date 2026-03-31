@@ -45,4 +45,5 @@ gem "jemoji"
 gem 'imgkit'
 gem 'wkhtmltoimage-binary'
 gem 'mdl'
+gem 'debug'
 gem 'html-proofer'

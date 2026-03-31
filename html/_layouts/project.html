@@ -8,15 +8,16 @@ layout: page
 
         {% if project %}
         {% assign project_title = page.title | default: project.title %}
+        {% assign project_display_image = project.image_url %}
         <table class="project-table">
             <tr>
                 <!-- First column: Image -->
                 <td class="project-image">
                     {% if project.visibility == 'private' %}
-                    <img class="project-preview" src="{{ project.image_url }}" alt="{{ project_title }} image">
+                    <img class="project-preview" src="{{ project_display_image }}" alt="{{ project_title }} image">
                     {% else %}
                     <a href="/projects/{{ project.name }}/" title="View {{ project_title }} Project Blog">
-                        <img class="project-preview" src="{{ project.image_url }}" alt="{{ project_title }} image">
+                        <img class="project-preview" src="{{ project_display_image }}" alt="{{ project_title }} image">
                     </a>
                     {% endif %}
                 </td>
