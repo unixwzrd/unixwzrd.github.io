@@ -3,9 +3,8 @@ layout: page
 ---
 
 <article class="blog">
-
     {{ content | markdownify }}
 
-    {% include blog_list.html category=page.category heading="" %}
-
+    {% include blog_list.html category=page.category
+    heading="" %}
 </article>

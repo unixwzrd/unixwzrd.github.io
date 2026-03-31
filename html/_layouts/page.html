@@ -7,6 +7,11 @@ layout: default
 
   <header class="page-header">
     <h1 class="page-title">{{ page.title | escape }}</h1>
+    {% if page.appstore_link %}
+      <p class="page-store-link">
+        <a href="{{ page.appstore_link }}" target="_blank" rel="noopener noreferrer">Get it now on the App Store</a>
+      </p>
+    {% endif %}
     {% assign fallback_image = "/assets/images/default-og-image.png" %}
     {% assign hero_image = page.image %}
     {% assign show_banner = true %}
@@ -47,4 +52,3 @@ layout: default
   {% include content_footer.html %}
 
 </article>
-

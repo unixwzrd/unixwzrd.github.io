@@ -1,15 +1,16 @@
 ---
 layout: project
 title: "LogGPT for Safari"
+appstore_link: https://apps.apple.com/us/app/loggpt/id6743342693?mt=12
 category: LogGPT
 permalink: /projects/LogGPT/
 image: /assets/images/projects/LogGPT/LogGPT.png
 excerpt: "ChatGPT conversations often contain valuable insights, research, and discussions that users need to **preserve, organize, and analyze**. The **LogGPT** for Safari extension allows users to **save entire conversations in structured JSON format**, making it easy to manage and integrate with AI-driven tools."
 ---
 
+ChatGPT conversations often contain valuable insights, research, and discussions that users need to **preserve, organize, and analyze**. The **LogGPT** for Safari extension allows users to **save entire conversations in structured JSON format**, making it easy to manage and integrate with AI-driven tools.
 ## Easily Export and Archive Your ChatGPT Conversations
 
-ChatGPT conversations often contain valuable insights, research, and discussions that users need to **preserve, organize, and analyze**. The **LogGPT** for Safari extension allows users to **save entire conversations in structured JSON format**, making it easy to manage and integrate with AI-driven tools.
 
 This project is part of a broader effort to **enhance AI-powered workflows**, integrating seamlessly with **venvutil** and **chunking tools** for advanced text processing.
 

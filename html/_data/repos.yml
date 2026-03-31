@@ -17,6 +17,8 @@ repositories:
     owner: unixwzrd
   - name: LLM-Ops-Kit
     owner: unixwzrd
+  - name: extract-chat
+    owner: unixwzrd
   - name: mlx-harmony
     owner: unixwzrd
     manual_data:

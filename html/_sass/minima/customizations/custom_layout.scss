@@ -246,6 +246,18 @@
   }
 }
 
+.page-store-link {
+  margin: 0.35rem 0 1rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+
+  a {
+    color: $link-base-color;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.15em;
+  }
+}
+
 .page-content,
 .post-content {
   margin-bottom: 0.5rem;

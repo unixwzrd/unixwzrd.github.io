@@ -20,7 +20,7 @@
       border-radius: 8px;
       object-fit: contain;
       transition: transform 0.3s ease;
-      
+
       &:hover {
         transform: scale(1.02);
       }
@@ -49,12 +49,12 @@
         padding: 0.5rem 1rem;
         border-radius: 4px;
         text-decoration: none;
-        
+
         &.project-blog-link {
           background-color: $primary-color;
           color: $background-color;
         }
-        
+
         &.github-link {
           border: 1px solid $primary-color;
           color: $primary-color;
@@ -76,7 +76,7 @@
 
     .join-us-section {
       margin-bottom: 2rem;
-      
+
       h3 {
         margin-top: 0;
       }
@@ -88,4 +88,4 @@
       }
     }
   }
-} 
+}

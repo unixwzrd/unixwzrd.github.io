@@ -7,6 +7,15 @@ Parameters:
 Blog Entries" for project blogs.
 {% endcomment %}
 
+{% assign hidden_project_category = false %}
+{% if include.category %}
+    {% assign category_project = site.data.github_projects.projects | where: "name", include.category | first %}
+    {% if category_project and category_project.visibility == 'none' %}
+        {% assign hidden_project_category = true %}
+    {% endif %}
+{% endif %}
+
+{% unless hidden_project_category %}
 {% if include.category %}
     <h2>Project Blog Entries</h2>
 {% else %}
@@ -46,7 +55,8 @@ Blog Entries" for project blogs.
             {% assign project_posts_collection = site.collections['project_posts'] %}
             {% if project_posts_collection %}
                 {% for post in project_posts_collection.docs %}
-                    {% unless post.url contains '/_drafts/' or post.url contains '_drafts/' %}
+                    {% assign post_project = site.data.github_projects.projects | where: "name", post.category | first %}
+                    {% unless post.url contains '/_drafts/' or post.url contains '_drafts/' or post_project.visibility == 'none' %}
                         {% assign posts_to_show = posts_to_show | push: post %}
                     {% endunless %}
                 {% endfor %}
@@ -62,7 +72,8 @@ Blog Entries" for project blogs.
             {% assign project_posts_collection = site.collections['project_posts'] %}
             {% if project_posts_collection %}
                 {% for post in project_posts_collection.docs %}
-                    {% unless post.draft %}
+                    {% assign post_project = site.data.github_projects.projects | where: "name", post.category | first %}
+                    {% unless post.draft or post_project.visibility == 'none' %}
                         {% assign posts_to_show = posts_to_show | push: post %}
                     {% endunless %}
                 {% endfor %}
@@ -205,3 +216,4 @@ Blog Entries" for project blogs.
         <p>No blog entries yet. Check back soon for updates!</p>
     {% endif %}
 </ul>
+{% endunless %}
