@@ -7,7 +7,7 @@ excerpt: "We are dedicated to developing AI solutions that make a positive impac
 image: "/assets/images/default-og-image.png"
 ---
 
-![Distributed Thinking Systems](/assets/images/default-og-image.png)
+![Distributed Thinking Systems](http://localhost:4000/assets/images/default-og-image.png)
 
 We are dedicated to developing AI solutions that make a positive impact. Our focus is on creating tools and systems that help people, particularly in challenging situations like parental alienation and high-conflict divorce cases.
 
