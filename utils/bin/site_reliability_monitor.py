@@ -21,9 +21,11 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
+from urllib.parse import urljoin
 
 import requests
 import yaml
+from bs4 import BeautifulSoup
 
 # Configure logging
 logging.basicConfig(
@@ -645,9 +647,40 @@ class SiteReliabilityMonitor:
             elif response.status_code != 200:
                 return False
 
-            # Simple check for broken image references
             content = response.text
             broken_images = []
+            soup = BeautifulSoup(content, "html.parser")
+            image_tags = soup.find_all("img")
+
+            for img in image_tags:
+                src = (img.get("src") or "").strip()
+                if not src:
+                    broken_images.append("image tag missing src")
+                    continue
+
+                # Ignore inline/data images.
+                if src.startswith("data:"):
+                    continue
+
+                image_url = urljoin(page_url, src)
+
+                try:
+                    img_response = requests.head(
+                        image_url, timeout=10, allow_redirects=True
+                    )
+
+                    # Some hosts do not support HEAD correctly; retry with GET.
+                    if img_response.status_code in [403, 405]:
+                        img_response = requests.get(
+                            image_url, timeout=10, stream=True, allow_redirects=True
+                        )
+
+                    if img_response.status_code >= 400:
+                        broken_images.append(
+                            f"{src} (HTTP {img_response.status_code})"
+                        )
+                except requests.RequestException as exc:
+                    broken_images.append(f"{src} ({exc.__class__.__name__})")
 
             # Look for common broken image patterns, but exclude legitimate cases
             # Don't flag alt="404" on 404 pages as broken
@@ -670,6 +703,10 @@ class SiteReliabilityMonitor:
                 self.issues.append(
                     f"Broken images on {page_url}: {', '.join(broken_images)}"
                 )
+                if self.verbose:
+                    logger.error(
+                        f"   ❌ {page_url}: broken images detected: {', '.join(broken_images)}"
+                    )
                 return False
 
             return True
@@ -807,7 +844,12 @@ class SiteReliabilityMonitor:
         logger.info("    🔗 Checking external links...")
 
         # Only scan published site content, not internal planning/docs elsewhere in the repo.
-        markdown_files = list(Path("html").glob("**/*.md"))
+        markdown_files = []
+        for md_file in Path("html").glob("**/*.md"):
+            path_str = str(md_file)
+            if "/_drafts/" in path_str or path_str.startswith("html/_drafts/"):
+                continue
+            markdown_files.append(md_file)
 
         if not markdown_files:
             logger.warning("⚠️ No markdown files found to check for external links")
