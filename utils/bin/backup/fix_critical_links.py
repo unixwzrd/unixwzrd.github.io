@@ -152,7 +152,7 @@ def create_missing_assets():
             print(f"   ❌ No suitable replacement image found")
 
     # Check PDF document
-    pdf_path = 'html/assets/documents/SullivanMichael_IT_AI_ML_Unix_52050111.pdf'
+    pdf_path = 'html/assets/documents/SullivanMichael_IT_AI_ML_Unix_A26047020020.pdf'
     if not os.path.exists(pdf_path):
         print(f"   ⚠️ Missing: {pdf_path}")
         print(f"   📝 Please ensure this PDF file exists")
@@ -212,4 +212,4 @@ def main():
     print(f"   in .project-planning/tmp/critical-link-fixes.md for later review")
 
 if __name__ == "__main__":
-    main() 
+    main()

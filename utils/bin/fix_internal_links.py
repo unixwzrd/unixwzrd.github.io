@@ -148,7 +148,7 @@ def fix_internal_link_issues():
         },
         {
             "old": "/assets/documents/SullivanMichael_IT_AI_ML_Unix_52050111.pdf",
-            "new": "/assets/documents/SullivanMichael_IT_AI_ML_Unix_52050111.pdf",
+            "new": "/assets/documents/SullivanMichael_IT_AI_ML_Unix_A26047020020.pdf",
             "files": ["html/about/resume.md"],
         },
         # Fix blog post permalink
@@ -196,7 +196,7 @@ def fix_missing_assets():
             print(f"   ✅ Created placeholder from existing image")
 
     # Check if the PDF document exists
-    pdf_path = "html/assets/documents/SullivanMichael_IT_AI_ML_Unix_52050111.pdf"
+    pdf_path = "html/assets/documents/SullivanMichael_IT_AI_ML_Unix_A26047020020.pdf"
     if not os.path.exists(pdf_path):
         print(f"⚠️ Missing asset: {pdf_path}")
         print(f"   Please ensure the PDF file exists at this location")

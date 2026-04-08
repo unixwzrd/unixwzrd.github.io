@@ -7,7 +7,7 @@ image: /assets/images/default-og-image.png
 excerpt: "Looking for an overview of my experience and expertise? Download my PDF Resume. I have some accreditations and certifications here."
 ---
 
-Looking for an overview of my experience and expertise? Download my [PDF Resume.](/assets/documents/SullivanMichael_IT_AI_ML_Unix_52050111.pdf)
+Looking for an overview of my experience and expertise? Download my [PDF Resume.](/assets/documents/SullivanMichael_IT_AI_ML_Unix_A26047020020.pdf)
 <br>
 I have some [accreditations and certifications here.](/about/credentials/)
 
@@ -188,6 +188,6 @@ Experienced IT professional with over 30 years in the technology industry, inclu
 - **HuggingFace:** [unixwzrd](https://huggingface.co/unixwzrd)
 - **Twitter/X:** [unixwzrd](https://twitter.com/unixwzrd)
 - **Reddit:** [unixwzrd](https://reddit.com/u/unixwzrd)
-- **PDF Resume:** [unixwzrd](/assets/documents/SullivanMichael_IT_AI_ML_Unix_52050111.pdf)
+- **PDF Resume:** [unixwzrd](/assets/documents/SullivanMichael_IT_AI_ML_Unix_A26047020020.pdf)
 
 {% include codeium_stats.html %}
