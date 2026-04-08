@@ -4,7 +4,7 @@ title: Resume
 menu_item: Resume
 permalink: /about/resume/
 image: /assets/images/default-og-image.png
-excerpt: "Looking for an overview of my experience and expertise? Download my PDF Resume. I have some accreditations and certifications here."
+excerpt: "Looking for an overview of my experience and expertise? Download my PDF Resume."
 ---
 
 Looking for an overview of my experience and expertise? Download my [PDF Resume.](/assets/documents/SullivanMichael_IT_AI_ML_Unix_A26047020020.pdf)
@@ -15,7 +15,11 @@ I have some [accreditations and certifications here.](/about/credentials/)
 
 ### Profile
 
-Experienced IT professional with over 30 years in the technology industry, including 15 years of managerial experience in the financial sector. Expertise in IT financial transactions operations, regulatory compliance, budget management, and vendor relations. Strong background in architecture, development methodology, project management, and implementation for distributed UNIX/Linux, macOS, and Oracle database systems. Proficient in client engagement, technology solution development, strategic planning, and risk management in the banking and financial services domain.
+Senior Unix/Linux infrastructure engineer with over 30 years building and operating large-scale systems. My work has evolved from early distributed Unix environments on Wall Street to modern distributed systems and AI/ML infrastructure.
+
+I focus on designing systems that are observable, debuggable, and maintainable under real-world conditions. Recent work centers on private, local-first AI systems, distributed compute, and practical automation using Python and shell-based tooling.
+
+---
 
 ### Career Highlights
 
@@ -24,48 +28,62 @@ Experienced IT professional with over 30 years in the technology industry, inclu
 - Working in UCCEL's Corporate Research and Development Division, developed an automated documentation generator using The CASE tool PACBASE and its data dictionary, generating the technical reference and documentation for their Next Generation Banking Software effort.
 - Brought specialized knowledge of Software Development Methodologies and CASE Tool Development to Salomon Brothers integrating Excelerator with PACBASE as a proof of concept, and examined and evaluated CASE tools for the firm.
 - Pioneered LAN-based computing at Salomon Brothers, integrating PC environments with Unix systems, laying the groundwork for a unified network infrastructure that supported the firm's trading and financial operations.
-- Led the development of a distributed computing environment at Merrill Lynch, transitioning key financial systems from mainframes to Unix-based systems, which enhanced processing efficiency and data integrity across global operations.
+- Led the development of a distributed computing environment at Merrill Lynch, transitioning key financial systems from mainframes to Unix-based systems, improving processing efficiency and data integrity across global operations.
 
 #### Unix and Oracle Implementations
 
-- Extensive work with Solaris, SunOS, Linux, macOS, and Oracle, contributing to the advancement of enterprise-level computing capabilities and transformative period in the IT industry.
-- Developed a comprehensive options allocation model at Salomon Brothers, integrating data from various systems to ensure regulatory compliance for futures traders, significantly improving operational accuracy.
-- Architected the system for migrating Merry Lynch's balance sheet and general ledger onto an oracle database running on a Sequent Symmetry Symmetric Multi Processing system, taking advantage of its parallel processing capabilities.
-- Working as a consultant for Sun Microsystems, at NYNEX, designed and built the NYNEX VoiceMail Information System server infrastructure.
+- Extensive work with Solaris, SunOS, Linux, macOS, and Oracle during a formative period in enterprise computing.
+- Developed a comprehensive options allocation model at Salomon Brothers, integrating data from multiple systems to ensure regulatory compliance for futures traders.
+- Architected the system for migrating Merrill Lynch's balance sheet and general ledger onto an Oracle database running on a Sequent Symmetry SMP system.
+- As a consultant for Sun Microsystems at NYNEX, designed and built the VoiceMail Information System server infrastructure.
 
 #### AI & Modular Systems Development
 
-- Currently developing modular AI systems on macOS, using Pydantic, FastAPI, and object-oriented Python. Focused on decoupling system components to enable communication via message queues (pub-sub architecture), allowing flexible, scalable configurations across multiple hardware environments.
-- Integrating RouteL LLM into the modular AI architecture.
+- Designing modular AI systems using Python, FastAPI, and message-driven architectures (pub/sub), enabling flexible deployment across local and distributed environments.
+- Building local-first AI infrastructure using MLX, llama.cpp, and OpenAI-compatible APIs.
+- Developing data pipelines for ingestion, transformation, embedding, retrieval, and reuse in agent-based systems.
 
 #### Leadership in IT Communities
 
-- Involved with the formation of The New York Systems Administrators group and the Tokyo OpenSolaris Users Group, fostering knowledge sharing and collaboration among professionals in the Unix and Linux communities.
-- Actively contributed to the growth of the Tokyo Linux Users Group, promoting open-source solutions and community-driven development in Japan.
+- Involved with the formation of the New York Systems Administrators group and the Tokyo OpenSolaris Users Group.
+- Active participant in the Tokyo Linux Users Group (TLUG), supporting open-source adoption and collaboration.
+
+---
 
 ### Experience
 
 **FOUNDER AND PRINCIPAL, DISTRIBUTED THINKING SYSTEMS LLC, MEMPHIS, TN** - AUG 2023 - PRESENT
 
-- Leading the development of AI-based solutions and open-source projects.
-- Developing modular AI systems using FastAPI, Pydantic, and distributed messaging.
-- Implementing machine learning models and tools on macOS.
-- Collaborating with clients to deliver custom AI solutions tailored to their needs.
-- Managing project timelines, resources, and deliverables to ensure high-quality outcomes.
-- Providing advanced digital forensics services, including audio restoration and enhancement using iZotope RX 11 and Reaper, and developing custom scripts for AI-driven transcription and analysis of legal documents.
-- Extracting and restoring data from Apple devices, including recovering deleted messages and hidden files, with a focus on supporting legal cases and personal investigations.
-- Utilizing GPT-4o for analyzing text data to uncover patterns, inconsistencies, and key insights, particularly in court documents, email and text messages.
+- Design and build distributed Linux-based systems integrating model inference, agent orchestration, and data pipelines.
+- Develop operational tooling in Python and shell for system lifecycle management, orchestration, and API-driven integration.
+- Architect modular, Unix-style platforms where independently deployable components communicate via APIs and message buses.
+- Build AI data pipelines (ingestion, transformation, embedding, retrieval) for real-world workflows.
+- Implement observability, logging, and system instrumentation to support debugging under production conditions.
+- Work with containerized and distributed environments, including exposure to Kubernetes and Rancher.
+
+- Develop privacy-first AI systems with local and hybrid deployment models.
+- Build and maintain tools including:
+  - ConnectomeAI (distributed agent framework)
+  - LLM-Ops-Kit (LLM infrastructure and orchestration)
+  - TorchDevice (cross-device PyTorch abstraction)
+  - LogGPT (Safari extension for structured data extraction)
+
+- Provide digital forensics and signal processing services, including audio restoration and AI-assisted analysis of structured and unstructured data.
+
+---
 
 #### UNIX SOLUTIONS ARCHITECT, ECS FEDERAL, MEMPHIS, TN - NOV 2020 - AUG 2023
 
 <details>
 - Supported the US Postal Service's Unix/Linux environment.
 - Provided full-scale release management using ServiceNow.
-- Managed the applications release process in an Agile environment from development to production, ensuring quick and efficient delivery with contingency plans.
-- Troubleshot logistics systems and applications issues across all environments for the US Postal Service.
-- Provided Unix Systems Support for 900 Unix/Linux servers in development, test, QA, and production environments.
-- Supported operating systems issues arising from applications, including performance tuning and permissions alignment.
+- Managed the applications release process in an Agile environment from development to production.
+- Troubleshot logistics systems and applications issues across all environments.
+- Supported 900+ Unix/Linux systems across development, QA, and production.
+- Performed performance tuning and systems-level troubleshooting.
 </details>
+
+...
 
 #### PRINCIPAL, DISTRIBUTED COMPUTING SYSTEMS LLC, NASHVILLE, TN - MAY 2009 - NOV 2020
 
@@ -142,13 +160,29 @@ Experienced IT professional with over 30 years in the technology industry, inclu
 ### Technical Skills
 
 <details>
-- **Software:** iZotope RX11, Reaper DAW, Visual Studio Code, ServiceNow (Incident, Change, and Release Management), FastAPI, Pydantic, X Window System, ZFS, GFS, Veritas, Sun Disk Suite, Apache, Tomcat, LDAP, DNS, NIS, Sendmail, Git/GitHub, Subversion, CVS, NFS, CIFS, Secure Shell (SSH), Tripwire, NMAP, Snort, pfSense (Firewall, VPN, IDS), F5 Load Balancing.
-- **Database:** Oracle 10g, 9i, 8i, PostgreSQL, MySQL, SQLite, Redis, Berkeley DB.
-- **Programming:** Bourne/Korn/Bash Shell, Python, Perl, C, SQL, Ruby, HTML, XML, UML, JavaScript, PL/SQL.
-- **Systems:** OpenSolaris, Solaris, Linux, macOS, OS X Server, VMWare, VirtualBox, Windows, MVS (z/OS), TSO.
-- **Network Infrastructure:** TCP/IP, PPP, NTP, HTTP, SMTP, POP3, IMAP, SNMP, NNTP, NAT, Cisco Router Configuration, Firewalls, IPSec, OpenVPN, SSH Tunneling, Oracle SQL*Net, FIX, Bloomberg, Reuters, F5.
-- **Applications:** Microsoft Office, iWork, Omni Graffle, Omni Plan.
-- **Hardware:** Apple Silicon, Sun SPARC, Intel x86, EMC.
+- **AI / Machine Learning / LLMs:** PyTorch, MLX, llama.cpp, Transformers (Hugging Face), Whisper, OpenAI API, embeddings, RAG pipelines, prompt engineering, agent-based systems, tool/function calling, local LLM stacks, inference optimization (Apple Silicon / Metal)
+
+- **Backend / APIs / Frameworks:** FastAPI, REST/JSON APIs, WebSockets, AsyncIO, Pydantic, Uvicorn, API design, microservices architecture
+
+- **DevOps / Infrastructure / CI/CD:** GitHub Actions, CI/CD pipelines, automation, Bash scripting, environment management, reproducible builds, deployment pipelines, observability, logging, system instrumentation, containerized workflows, exposure to Kubernetes and Rancher
+
+- **Data Engineering / Processing:** Data pipelines, ETL, text and audio processing, transcription systems, data normalization, chunking strategies, embedding pipelines, structured and unstructured data analysis
+
+- **Security / Privacy:** Secrets management (Keychain, environment isolation), secure runtime environments, data privacy, local-first architectures, credential isolation
+
+- **Databases / Storage:** Oracle (8i-11g), PostgreSQL, MySQL, SQLite, Redis, Berkeley DB, vector storage, graph data structures
+
+- **Programming / Scripting:** Python, Bash, Bourne/Korn shell, Perl, C, SQL, Ruby, JavaScript, Swift, YAML, JSON, XML, Markdown
+
+- **Systems / Platforms:** Linux, Unix (Solaris/OpenSolaris), macOS, Apple Silicon (ARM), x86, virtualization (VMware, VirtualBox), distributed systems, multi-node architectures
+
+- **Networking / Infrastructure:** TCP/IP, HTTP/S, DNS, SMTP, SNMP, NAT, VPN (IPSec, OpenVPN), SSH, firewalls, network security, load balancing (F5), Cisco networking, FIX, Bloomberg, Reuters
+
+- **Tools / Software / Systems:** Git, GitHub, VS Code, ServiceNow, Apache, Tomcat, LDAP, NFS, CIFS, ZFS, Veritas, X11, Nmap, Snort, pfSense
+
+- **Media / Forensics / Audio:** iZotope RX, Reaper DAW, audio restoration, signal isolation, forensic data analysis, device data extraction (iOS/macOS), timeline reconstruction
+
+- **Hardware:** Apple Silicon, Sun SPARC, Intel x86, EMC
 </details>
 
 ### Education
@@ -189,5 +223,3 @@ Experienced IT professional with over 30 years in the technology industry, inclu
 - **Twitter/X:** [unixwzrd](https://twitter.com/unixwzrd)
 - **Reddit:** [unixwzrd](https://reddit.com/u/unixwzrd)
 - **PDF Resume:** [unixwzrd](/assets/documents/SullivanMichael_IT_AI_ML_Unix_A26047020020.pdf)
-
-{% include codeium_stats.html %}
