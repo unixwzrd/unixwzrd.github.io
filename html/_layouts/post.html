@@ -33,7 +33,7 @@ layout: default
   </header>
 
   {% assign fallback_image = "/assets/images/default-og-image.png" %}
-  {% assign hero_image = page.image %}
+  {% assign hero_image = page.banner_image | default: page.image %}
   {% assign hero_image_alt = page.title | escape %}
   {% assign show_banner = true %}
 
