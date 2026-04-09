@@ -73,15 +73,19 @@ I published a write-up on `extract-chat`, a tool I built for a problem that felt
 
 `extract-chat` converts that exported conversation into readable Markdown or HTML while preserving the parts of the structure that still matter. That makes it more useful for archiving, publishing, reviewing, chunking, and feeding into later workflows.
 
-It also complements LogGPT, which is available on the App Store as a Safari extension. LogGPT helps with saving the conversation locally, and `extract-chat` makes that exported data readable and reusable.
+This is useful if you are saving conversations for writing, research, documentation, or feeding context into future AI sessions.
+
+It also pairs naturally with LogGPT, available on the App Store as a Safari extension. LogGPT helps with saving the conversation locally, and `extract-chat` makes that exported data readable and reusable.
 
 If you are already using LogGPT, this is the natural next step. If you are not, the core idea still stands: conversation history should be portable and usable, not locked into a browser session or buried in a raw export file.
+
+If you have run into this problem yourself, I would be interested in how you are currently handling it.
 
 Read the full post here:
 https://unixwzrd.ai/projects/extract-chat/2026/03/28/introducing-extract-chat/
 
 Optional tags:
-ChatGPT, Knowledge Management, Data Portability, AI Workflows, Markdown, Research Tools
+ChatGPT, Knowledge Management, Data Portability, AI Workflows, Markdown, Research Tools, Content Creation
 
 ==================================================
 X / TWITTER
@@ -112,18 +116,15 @@ https://unixwzrd.ai/projects/extract-chat/2026/03/28/introducing-extract-chat/
 ==================================================
 BLUESKY
 ==================================================
-I posted a write-up for `extract-chat`.
+`extract-chat` turns exported ChatGPT conversation JSON into readable Markdown or HTML so it's useful outside the chat window.
 
-It takes exported ChatGPT/OpenAI conversation JSON and turns it into readable Markdown or HTML while keeping the structure that makes the conversation useful later.
+Preserve structure and make conversations reusable, archivable, and shareable.
 
-That matters if you want to archive sessions, reuse research, publish cleaned-up conversations, or carry useful context into another workflow.
+Pairs well with LogGPT if you want a simple Safari way to save chats first.
 
-It also complements LogGPT on the App Store as a Safari extension, since the two tools handle different parts of the same workflow.
-
-Project page:
+#ChatGPT #DataPortability #AIWorkflows
 https://unixwzrd.ai/projects/extract-chat/2026/03/28/introducing-extract-chat/
 
-#chatgpt #dataportability
 
 
 Alt version:
