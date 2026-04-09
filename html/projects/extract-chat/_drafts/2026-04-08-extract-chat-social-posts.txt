@@ -11,28 +11,16 @@ Alternate hashtags:
 ==================================================
 LINKEDIN
 ==================================================
-I wrote up a new project called `extract-chat`.
+`extract-chat` is a chat log extraction tool for ChatGPT JSON logs.
 
-It started from a simple frustration: exporting a ChatGPT conversation gives you the data, but not something you would actually want to read, reuse, archive, or hand to someone else.
-
-`extract-chat` takes exported ChatGPT or OpenAI conversation JSON and turns it into readable Markdown or HTML while keeping the structure that still matters for real downstream work.
-
-It also pairs nicely with LogGPT, which is on the App Store as a Safari extension. LogGPT helps you save the conversation locally, and `extract-chat` turns that export into something you can actually work with.
-
-If you care about preserving useful conversations instead of leaving them trapped in a browser tab or a raw JSON file, this may be useful.
-
-Write-up:
-https://unixwzrd.ai/projects/extract-chat/2026/03/28/introducing-extract-chat/
-
-#ChatGPT #OpenAI #KnowledgeManagement #DataPortability #AIWorkflows #Markdown
-
-I wrote up a new project called `extract-chat`.
-
-It started from a simple frustration: exporting a ChatGPT conversation gives you the data, but not something you would actually want to read, reuse, archive, or hand to someone else.
+It started from a simple frustration: exporting a ChatGPT conversation gives you the data, but not something you'd actually want to read, reuse, archive, or hand to someone else. Much less feed into a new ChatGPT session for context continuity.
 
 `extract-chat` takes exported ChatGPT or OpenAI conversation JSON and turns it into readable Markdown or HTML while keeping the structure that still matters for real downstream work.
 
-It also pairs nicely with LogGPT, which is on the App Store as a Safari extension. LogGPT helps you save the conversation locally, and `extract-chat` turns that export into something you can actually work with.
+It also pairs nicely with LogGPT, a Safari extension available on the App Store:
+https://apps.apple.com/us/app/loggpt/id6743342693?mt=12
+
+LogGPT saves the conversation locally, and `extract-chat` turns that export into something you can actually work with - including splitting Markdown into smaller chunks for context continuity with overlap.
 
 If you care about preserving useful conversations instead of leaving them trapped in a browser tab or a raw JSON file, this may be useful.
 
@@ -41,10 +29,20 @@ https://unixwzrd.ai/projects/extract-chat/2026/03/28/extract-chat-introduction/
 
 If you're trying to turn AI output into something usable and it's not quite working the way you expected, I can help with that. Feel free to reach out.
 
-#ChatGPT #OpenAI #KnowledgeManagement #DataPortability #AIWorkflows #Markdown
+#ChatGPT #OpenAI #AIWorkflows #ContentCreation #KnowledgeManagement #DataPortability
 
-Cannot display preview. You can post as is, or try another link.
 
+
+Personal repost:
+I'm releasing `extract-chat`, a companion tool for LogGPT on the App Store:
+https://apps.apple.com/us/app/loggpt/id6743342693?mt=12
+
+It turns exported ChatGPT conversations into readable, reusable Markdown or HTML so they're actually useful outside the browser.
+
+Read more here:
+https://unixwzrd.ai/projects/extract-chat/2026/03/28/extract-chat-introduction/
+
+If you're trying to turn AI output into something usable and it's not quite working the way you expected, I can help with that.
 
 
 Alt version:

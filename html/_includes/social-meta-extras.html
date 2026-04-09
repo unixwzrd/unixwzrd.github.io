@@ -31,7 +31,4 @@
   <meta name="twitter:description" content="{{ page.excerpt | default: page.description | default: site.description | strip_html | strip_newlines | truncate: 200 | escape }}">
   <meta name="twitter:image" content="{{ full_image_url }}">
   <meta name="twitter:url" content="{{ page.url | absolute_url }}">
-  {% if site.twitter.username %}
-  <meta name="twitter:creator" content="@{{ site.twitter.username | remove: '@' }}">
-  {% endif %}
 {% endif %}

@@ -6,12 +6,9 @@ category: extract-chat
 tags: [introduction, overview]
 excerpt: "Downloaded a ChatGPT JSON export and wondered what to do with it next? Extract Chat turns that raw export into readable Markdown or HTML, preserves the useful structure, and chunks it for real AI workflows."
 image:
-  path: /assets/images/projects/extract-chat.png
-  width: 1200
-  height: 600
-  alt: Introducing Extract Chat social card
-banner_image:
   path: /assets/images/projects/extract-chat-banner.png
+  width: 1536
+  height: 1024
   alt: Introducing Extract Chat banner image
 # author: Michael Sullivan
 # For drafts, use either:
