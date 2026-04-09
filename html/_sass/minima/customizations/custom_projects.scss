@@ -10,8 +10,9 @@
   }
 
   .project-image {
-    width: 200px;
-    padding: 1.5rem 1rem 1rem 1rem;
+    width: 340px;
+    min-width: 340px;
+    padding: 1.25rem 1rem 1rem 1rem;
     vertical-align: top;
 
     img.project-preview {
@@ -24,6 +25,33 @@
       &:hover {
         transform: scale(1.02);
       }
+    }
+  }
+
+  @media (max-width: 900px) {
+    .project-image {
+      width: 260px;
+      min-width: 260px;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .project-table,
+    .project-table tbody,
+    .project-table tr,
+    .project-table td {
+      display: block;
+      width: 100%;
+    }
+
+    .project-image {
+      min-width: 0;
+      width: auto;
+      padding: 1rem 1rem 0.5rem 1rem;
+    }
+
+    .project-details {
+      padding: 0 1rem 1rem 1rem;
     }
   }
 

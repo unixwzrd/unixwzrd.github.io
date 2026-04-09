@@ -12,6 +12,7 @@ source "${BASE_DIR}/.env/project.env"
 pid_file="${BASE_DIR}/utils/etc/jekyll.pid"
 
 refresh_og_data() {
+    local force_image_refresh="${1:-false}"
     echo "Refreshing OpenGraph data..." >&2
     # Prefer the active Python environment, then explicit site envs, then python3.
     local python_cmd="python"
@@ -23,7 +24,11 @@ refresh_og_data() {
     elif [ -f "${HOME}/anaconda3/envs/python-website-dev/bin/python3" ]; then
         python_cmd="${HOME}/anaconda3/envs/python-website-dev/bin/python3"
     fi
-    "${python_cmd}" "${BASE_DIR}/utils/bin/fetch_og.py"
+    local refresh_args=()
+    if [ "${force_image_refresh}" = "true" ]; then
+        refresh_args+=(--refresh-images)
+    fi
+    "${python_cmd}" "${BASE_DIR}/utils/bin/fetch_og.py" "${refresh_args[@]}"
 }
 
 check_running() {
@@ -70,7 +75,7 @@ site_build() {
     [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
     rvm use ext-ruby-3.3.4@unixwzrd.github.io --default
     if [ "$skip_refresh" != "true" ]; then
-        refresh_og_data
+        refresh_og_data "$force_refresh"
     fi
     rm -rf "${BASE_DIR}/html/.jekyll-cache/"
     rm -rf "${BASE_DIR}/_site/"
