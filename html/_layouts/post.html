@@ -34,6 +34,7 @@ layout: default
 
   {% assign fallback_image = "/assets/images/default-og-image.png" %}
   {% assign hero_image = page.image %}
+  {% assign hero_image_alt = page.title | escape %}
   {% assign show_banner = true %}
 
   {% if page.hide_banner_image or page.hide_banner_image == true or page.hide_banner_image == 'true' %}
@@ -45,6 +46,11 @@ layout: default
   {% endif %}
 
   {% if hero_image %}
+    {% if hero_image.path %}
+      {% assign hero_image_alt = hero_image.alt | default: hero_image_alt %}
+      {% assign hero_image = hero_image.path %}
+    {% endif %}
+
     {% assign hero_image_downcased = hero_image | downcase %}
     {% if hero_image_downcased == 'none' or hero_image_downcased == 'false' %}
       {% assign show_banner = false %}
@@ -59,7 +65,7 @@ layout: default
     <div class="post-banner-image">
       <img
         src="{{ hero_image }}"
-        alt="{{ page.title | escape }}"
+        alt="{{ hero_image_alt }}"
         style="max-width:100%;height:auto;display:block;margin:0 auto 2rem auto;"
         onerror="this.onerror=null;this.src='{{ fallback_image }}';"
       />
