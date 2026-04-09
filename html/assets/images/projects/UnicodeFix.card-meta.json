@@ -1,0 +1,30 @@
+{
+  "card_style_version": 8,
+  "contributors_count": 1,
+  "description": "Normalizes Unicode to ASCII equivalents and remove Unicode from AI generated text from ChatGPT, Anthropic, Google and more.",
+  "forks_count": 1,
+  "language": "Python",
+  "name": "UnicodeFix",
+  "open_issues_count": 0,
+  "owner": "unixwzrd",
+  "stargazers_count": 24,
+  "title": "UnicodeFix",
+  "top_languages": [
+    {
+      "color": "#3572A5",
+      "name": "Python",
+      "share": "82%"
+    },
+    {
+      "color": "#89e051",
+      "name": "Shell",
+      "share": "16%"
+    },
+    {
+      "color": "#a8b9cc",
+      "name": "C",
+      "share": "2%"
+    }
+  ],
+  "updated_at": "2026-03-28T20:24:24Z"
+}

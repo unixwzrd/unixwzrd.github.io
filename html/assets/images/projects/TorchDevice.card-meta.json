@@ -1,0 +1,25 @@
+{
+  "card_style_version": 8,
+  "contributors_count": 2,
+  "description": "Module contains class TorchDevice abstracting CUDA/MPS/CPU, intercepting, and redirecting calls to the available device to assist in porting code from CUDA to MPS.",
+  "forks_count": 2,
+  "language": "Python",
+  "name": "TorchDevice",
+  "open_issues_count": 0,
+  "owner": "unixwzrd",
+  "stargazers_count": 5,
+  "title": "TorchDevice",
+  "top_languages": [
+    {
+      "color": "#3572A5",
+      "name": "Python",
+      "share": "99%"
+    },
+    {
+      "color": "#89e051",
+      "name": "Shell",
+      "share": "1%"
+    }
+  ],
+  "updated_at": "2025-11-20T12:47:42Z"
+}

@@ -20,23 +20,19 @@ projects:
 - name: LogGPT
   owner: unixwzrd
   title: LogGPT Chatlog Export
-  description: |-
-    LogGPT - Safari ChatGPT Chat Log Export Extension, a lightweight method of exporting entire ChatGPT conversations in JSON format.
+  description: 'Private repository: LogGPT'
   image_url: /assets/images/projects/LogGPT.png
   banner_image_url: /assets/images/projects/LogGPT-banner.png
   page_url: /projects/LogGPT/
-  visibility: public
-  repo_url: https://github.com/unixwzrd/LogGPT
+  visibility: private
 - name: UnicodeFix
   owner: unixwzrd
   title: UnicodeFix
-  description: |-
-    Normalizes Unicode to ASCII equivalents and remove Unicode from AI generated text from ChatGPT, Anthropic, Google and more.
+  description: 'Private repository: UnicodeFix'
   image_url: /assets/images/projects/UnicodeFix.png
   banner_image_url: /assets/images/projects/UnicodeFix-banner.png
   page_url: /projects/UnicodeFix/
-  visibility: public
-  repo_url: https://github.com/unixwzrd/UnicodeFix
+  visibility: private
 - name: LLM-Ops-Kit
   owner: unixwzrd
   title: LLM Ops Kit
@@ -45,8 +41,7 @@ projects:
   image_url: /assets/images/projects/LLM-Ops-Kit.png
   banner_image_url: /assets/images/projects/LLM-Ops-Kit/LLM-OPS-Kit-banner.png
   page_url: /projects/LLM-Ops-Kit/
-  visibility: public
-  repo_url: https://github.com/unixwzrd/LLM-Ops-Kit
+  visibility: private
 - name: extract-chat
   owner: unixwzrd
   title: Extract Chat
@@ -55,8 +50,7 @@ projects:
   image_url: /assets/images/projects/extract-chat.png
   banner_image_url: /assets/images/projects/extract-chat-banner.png
   page_url: /projects/extract-chat/
-  visibility: public
-  repo_url: https://github.com/unixwzrd/extract-chat
+  visibility: private
 - name: mlx-harmony
   owner: unixwzrd
   title: MLX Harmony
@@ -65,8 +59,7 @@ projects:
   image_url: /assets/images/projects/mlx-harmony.png
   banner_image_url: /assets/images/projects/MLX-Harmony/MLX_Harmony_Banner.png
   page_url: /projects/mlx-harmony/
-  visibility: public
-  repo_url: https://github.com/unixwzrd/mlx-harmony
+  visibility: private
 - name: ConnectomeAI
   owner: unixwzrd
   title: ConnectomeAI
@@ -80,28 +73,23 @@ projects:
 - name: venvutil
   owner: unixwzrd
   title: VenvUtil
-  description: |-
-    Python virtual environment management functions and script to build and manage performance, compatibility, and regression test venv builds mostly for AI
+  description: 'Private repository: venvutil'
   image_url: /assets/images/projects/venvutil.png
   banner_image_url: /assets/images/projects/venvutil.png
   page_url: /projects/venvutil/
-  visibility: public
-  repo_url: https://github.com/unixwzrd/venvutil
+  visibility: private
 - name: TorchDevice
   owner: unixwzrd
   title: TorchDevice
-  description: |-
-    Module contains class TorchDevice abstracting CUDA/MPS/CPU, intercepting, and redirecting calls to the available device to assist in porting code from CUDA to MPS.
+  description: 'Private repository: TorchDevice'
   image_url: /assets/images/projects/TorchDevice.png
   banner_image_url: /assets/images/projects/TorchDevice.png
   page_url: /projects/TorchDevice/
-  visibility: public
-  repo_url: https://github.com/unixwzrd/TorchDevice
+  visibility: private
 - name: oobabooga-macOS
   owner: unixwzrd
   title: Oobabooga macOS
-  description: |-
-    Information on optimizing python libraries specifically for oobabooga to take advantage of Apple Silicon and Accelerate Framework.
+  description: 'Private repository: oobabooga-macOS'
   image_url: /assets/images/projects/oobabooga-macOS.png
   banner_image_url: /assets/images/projects/oobabooga-macOS.png
   page_url: /projects/oobabooga-macOS/
@@ -109,8 +97,7 @@ projects:
 - name: text-generation-webui-macos
   owner: unixwzrd
   title: Text Generation WebUI macOS
-  description: |-
-    A macOS version of the oobabooga gradio web UI for running Large Language Models like LLaMA, llama.cpp, GPT-J, Pythia, OPT, and GALACTICA.
+  description: 'Private repository: text-generation-webui-macos'
   image_url: /assets/images/projects/text-generation-webui-macos.png
   banner_image_url: /assets/images/projects/text-generation-webui-macos.png
   page_url: /projects/text-generation-webui-macos/

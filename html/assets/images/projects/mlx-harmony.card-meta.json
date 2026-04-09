@@ -1,0 +1,25 @@
+{
+  "card_style_version": 8,
+  "contributors_count": 1,
+  "description": "Run GPT-OSS and other MLX-compatible models through a single, lightweight interface.",
+  "forks_count": 0,
+  "language": "Python",
+  "name": "mlx-harmony",
+  "open_issues_count": 0,
+  "owner": "unixwzrd",
+  "stargazers_count": 1,
+  "title": "MLX Harmony",
+  "top_languages": [
+    {
+      "color": "#3572A5",
+      "name": "Python",
+      "share": "97%"
+    },
+    {
+      "color": "#89e051",
+      "name": "Shell",
+      "share": "3%"
+    }
+  ],
+  "updated_at": "2026-03-06T03:46:14Z"
+}

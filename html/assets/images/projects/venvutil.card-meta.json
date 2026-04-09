@@ -1,0 +1,25 @@
+{
+  "card_style_version": 8,
+  "contributors_count": 2,
+  "description": "Python virtual environment management functions and script to build and manage performance, compatibility, and regression test venv builds mostly for AI",
+  "forks_count": 1,
+  "language": "Shell",
+  "name": "venvutil",
+  "open_issues_count": 1,
+  "owner": "unixwzrd",
+  "stargazers_count": 6,
+  "title": "VenvUtil",
+  "top_languages": [
+    {
+      "color": "#89e051",
+      "name": "Shell",
+      "share": "78%"
+    },
+    {
+      "color": "#3572A5",
+      "name": "Python",
+      "share": "22%"
+    }
+  ],
+  "updated_at": "2026-01-13T11:16:44Z"
+}
