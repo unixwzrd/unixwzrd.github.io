@@ -5,7 +5,11 @@ date: 2026-03-28
 category: extract-chat
 tags: [introduction, overview]
 excerpt: "Downloaded a ChatGPT JSON export and wondered what to do with it next? Extract Chat turns that raw export into readable Markdown or HTML, preserves the useful structure, and chunks it for real AI workflows."
-image: /assets/images/projects/extract-chat-banner.png
+image:
+  path: /assets/images/projects/extract-chat-banner.png
+  width: 1536
+  height: 1024
+  alt: Introducing Extract Chat banner image
 # author: Michael Sullivan
 # For drafts, use either:
 # published: false  (won't show up at all)

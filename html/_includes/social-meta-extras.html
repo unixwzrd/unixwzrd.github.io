@@ -1,0 +1,37 @@
+{% assign image_path = nil %}
+
+{% if page.image %}
+  {% if page.image.path %}
+    {% assign image_path = page.image.path %}
+  {% else %}
+    {% assign image_path = page.image %}
+  {% endif %}
+{% endif %}
+
+{% if image_path %}
+  {% assign full_image_url = image_path | absolute_url %}
+  {% assign image_ext = image_path | split: '.' | last | downcase %}
+  {% assign image_type = nil %}
+  {% if image_ext == 'png' %}
+    {% assign image_type = 'image/png' %}
+  {% elsif image_ext == 'jpg' or image_ext == 'jpeg' %}
+    {% assign image_type = 'image/jpeg' %}
+  {% elsif image_ext == 'webp' %}
+    {% assign image_type = 'image/webp' %}
+  {% elsif image_ext == 'gif' %}
+    {% assign image_type = 'image/gif' %}
+  {% endif %}
+
+  <meta property="og:image:secure_url" content="{{ full_image_url }}">
+  {% if image_type %}
+  <meta property="og:image:type" content="{{ image_type }}">
+  {% endif %}
+
+  <meta name="twitter:title" content="{{ page.title | default: site.title | escape }}">
+  <meta name="twitter:description" content="{{ page.excerpt | default: page.description | default: site.description | strip_html | strip_newlines | truncate: 200 | escape }}">
+  <meta name="twitter:image" content="{{ full_image_url }}">
+  <meta name="twitter:url" content="{{ page.url | absolute_url }}">
+  {% if site.twitter.username %}
+  <meta name="twitter:creator" content="@{{ site.twitter.username | remove: '@' }}">
+  {% endif %}
+{% endif %}
