@@ -40,11 +40,17 @@
 
   var dtsQueryString = dtsUrl.search || '';
   var dtsSearchTermValue = dtsSearchTerm();
+  var dtsPageType = '{% if page.permalink == "/404.html" %}404_page{% elsif page.search_page %}search_page{% elsif page.layout == "post" %}blog_post{% elsif page.layout == "project" or (page.layout == "page" and page.url contains "/projects/") %}project_page{% else %}site_page{% endif %}';
+  var dtsPageCategory = '{{ page.category | default: "general" | escape }}';
+  var dtsPageTags = '{{ page.tags | join: "," | escape }}';
   var dtsCommonParams = {
     page_location: dtsCurrentLocation,
     page_path: dtsCurrentPath,
     page_hostname: dtsHostname,
-    visitor_type: dtsVisitorType
+    visitor_type: dtsVisitorType,
+    page_type: dtsPageType,
+    page_category: dtsPageCategory,
+    page_tags: dtsPageTags
   };
   gtag('js', new Date());
 
@@ -55,15 +61,17 @@
     {% if page.tags %}custom_map: {'custom_dimension2': 'tags'},{% endif %}
   });
 
+  gtag('event', 'page_context', dtsCommonParams);
+
   // Enhanced tracking for blog posts
   {% if page.layout == 'post' %}
   gtag('event', 'page_view', {
-    'page_type': 'blog_post',
+    'page_type': dtsPageType,
     'custom_dimension1': 'blog_post',
-    'custom_dimension2': '{{ page.category | default: "general" }}',
-    'custom_dimension3': '{{ page.tags | join: "," }}',
-    'page_category': '{{ page.category | default: "general" }}',
-    'page_tags': '{{ page.tags | join: "," }}',
+    'custom_dimension2': dtsPageCategory,
+    'custom_dimension3': dtsPageTags,
+    'page_category': dtsPageCategory,
+    'page_tags': dtsPageTags,
     'visitor_type': dtsVisitorType
   });
   {% endif %}
@@ -71,10 +79,10 @@
   // Enhanced tracking for project pages
   {% if page.layout == 'page' and page.url contains '/projects/' %}
   gtag('event', 'page_view', {
-    'page_type': 'project_page',
+    'page_type': dtsPageType,
     'custom_dimension1': 'project_page',
-    'custom_dimension2': '{{ page.category | default: "project" }}',
-    'page_category': '{{ page.category | default: "project" }}',
+    'custom_dimension2': dtsPageCategory,
+    'page_category': dtsPageCategory,
     'visitor_type': dtsVisitorType
   });
   {% endif %}
@@ -84,9 +92,61 @@
       'search_term': dtsSearchTermValue,
       'query_string': dtsQueryString,
       'page_location': dtsCurrentLocation,
+      'page_type': dtsPageType,
       'visitor_type': dtsVisitorType
     });
   }
+
+  document.addEventListener('click', function(event) {
+    var link = event.target.closest('a[href]');
+    var href = link && link.getAttribute('href');
+    var destination;
+    var protocol;
+    var linkText;
+
+    if (!link || !href) {
+      return;
+    }
+
+    if (href.charAt(0) === '#' || href.indexOf('javascript:') === 0) {
+      return;
+    }
+
+    if (href.indexOf('mailto:') === 0 || href.indexOf('tel:') === 0) {
+      return;
+    }
+
+    try {
+      destination = new URL(href, window.location.origin);
+    } catch (error) {
+      return;
+    }
+
+    protocol = destination.protocol.toLowerCase();
+    if (protocol !== 'http:' && protocol !== 'https:') {
+      return;
+    }
+
+    if (destination.hostname === window.location.hostname) {
+      return;
+    }
+
+    linkText = (link.textContent || link.getAttribute('aria-label') || link.title || destination.hostname)
+      .replace(/\s+/g, ' ')
+      .trim()
+      .slice(0, 180);
+
+    gtag('event', 'outbound_click', {
+      'destination_url': destination.href,
+      'destination_hostname': destination.hostname,
+      'link_text': linkText,
+      'page_location': dtsCurrentLocation,
+      'page_path': dtsCurrentPath,
+      'page_type': dtsPageType,
+      'page_category': dtsPageCategory,
+      'visitor_type': dtsVisitorType
+    });
+  });
 
   // Capture the actual missing URL and referrer for 404 analysis.
   {% if page.permalink == '/404.html' %}
@@ -100,6 +160,7 @@
     'referrer_host': dtsReferrerHost,
     'hostname': dtsHostname,
     'visitor_type': dtsVisitorType,
+    'page_type': dtsPageType,
     'utm_source': dtsParam('utm_source'),
     'utm_medium': dtsParam('utm_medium'),
     'utm_campaign': dtsParam('utm_campaign'),

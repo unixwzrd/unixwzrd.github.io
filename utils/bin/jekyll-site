@@ -31,6 +31,26 @@ refresh_og_data() {
     "${python_cmd}" "${BASE_DIR}/utils/bin/fetch_og.py" "${refresh_args[@]}"
 }
 
+run_pagefind_index() {
+    echo "Building Pagefind search index..." >&2
+    local python_cmd="python"
+    if ! command -v "${python_cmd}" >/dev/null 2>&1; then
+        python_cmd="python3"
+    fi
+    if [ -f "${HOME}/miniconda3/envs/python-website-dev/bin/python3" ]; then
+        python_cmd="${HOME}/miniconda3/envs/python-website-dev/bin/python3"
+    elif [ -f "${HOME}/anaconda3/envs/python-website-dev/bin/python3" ]; then
+        python_cmd="${HOME}/anaconda3/envs/python-website-dev/bin/python3"
+    fi
+    "${python_cmd}" -m pagefind \
+        --site "${BASE_DIR}/_site" \
+        --output-subdir "pagefind" \
+        --root-selector "[data-pagefind-body]" \
+        --exclude-selectors "[data-pagefind-ignore]" \
+        --force-language "en" \
+        --quiet
+}
+
 check_running() {
     if [ -f "$pid_file" ]; then
         pid=$(cat "$pid_file")
@@ -82,6 +102,7 @@ site_build() {
     rm -rf "${BASE_DIR}/html/_site/"
     rm -rf "${BASE_DIR}/html/.sass-cache/"
     cd "${BASE_DIR}" && JEKYLL_ENV=production bundle exec jekyll build --trace --verbose
+    run_pagefind_index
 
     if [ "$run_link_check" = "true" ]; then
         "${BASE_DIR}/utils/bin/checks/05_site_link_checker.sh"

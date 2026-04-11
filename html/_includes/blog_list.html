@@ -117,6 +117,13 @@ Blog Entries" for project blogs.
         {% else %}
             {% assign max_posts = page.site_blogs_count | default: site.site_blogs_count %}
         {% endif %}
+        {% if max_posts == nil or max_posts == '' or max_posts == 0 %}
+            {% if include.category %}
+                {% assign max_posts = 5 %}
+            {% else %}
+                {% assign max_posts = 10 %}
+            {% endif %}
+        {% endif %}
 
         {% assign total_pages = posts_to_show.size | times: 1.0 | divided_by: max_posts | ceil %}
 

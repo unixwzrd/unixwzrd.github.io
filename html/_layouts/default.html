@@ -14,6 +14,9 @@
   </main>
 
   {%- include footer.html -%}
+  {%- if page.search_page -%}
+  <script type="module" src="{{ '/assets/js/site-search.js' | relative_url }}"></script>
+  {%- endif -%}
 
 </body>
 

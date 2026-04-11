@@ -2,7 +2,7 @@
 layout: page
 ---
 
-<article class="project">
+<article class="project" {% if page.search_exclude %}data-pagefind-ignore="all"{% else %}data-pagefind-body{% endif %}>
     <div class="project-content">
         {% assign project = site.data.github_projects.projects | where: "name", page.category | first %}
 
@@ -24,7 +24,7 @@ layout: page
 
                 <!-- Second column: Text (Title, Description, GitHub link) -->
                 <td class="project-details">
-                    <h2>
+                    <h2 data-pagefind-meta="title">
                         {% if project.visibility == 'private' %}
                         {{ project_title }}
                         {% else %}

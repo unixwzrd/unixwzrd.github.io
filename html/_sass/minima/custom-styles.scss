@@ -14,6 +14,7 @@
 // 4. Content-specific styles
 @import "minima/customizations/custom_post";        // Blog and post styles
 @import "minima/customizations/custom_projects";    // Project-specific styles
+@import "minima/customizations/custom_search";      // Search UI
 
 // Order is important: later imports can override earlier ones
 // Components used in multiple places should be in custom_components

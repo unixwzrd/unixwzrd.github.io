@@ -174,6 +174,20 @@ defaults:
       type: "project_posts"
     values:
       layout: post
+  - scope:
+      path: "hidden"
+    values:
+      search_exclude: true
+      sitemap: false
+  - scope:
+      path: "Policies"
+    values:
+      search_exclude: true
+  - scope:
+      path: "404.html"
+    values:
+      search_exclude: true
+      sitemap: false
 
 theme: jekyll-minima
 

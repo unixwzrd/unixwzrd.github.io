@@ -15,5 +15,6 @@
             <a class="page-link" href="{{ my_page.url | relative_url }}">{{ my_page.menu_item | escape }}</a>
             {%- endif -%}
           {%- endfor -%}
+          <a class="page-link page-link-search" href="{{ '/search/' | relative_url }}">Search</a>
         </div>
       </nav>
