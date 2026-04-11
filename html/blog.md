@@ -33,18 +33,18 @@ A structured writing hub for updates, analysis, and essays across three editoria
   </section>
 </div>
 
-## Browse by Topic
+## [Browse by Topic]({{ '/topics/' | relative_url }})
 
 Use the [Topics index]({{ '/topics/' | relative_url }}) to explore tags and cross-project themes spanning site posts and project blogs.
 
-## Recent from General
+## [Recent from General]({{ '/blog/general/' | relative_url }})
 
 {% include blog_list.html section="general" limit=3 hide_heading=true %}
 
-## Recent from Parental Alienation
+## [Recent from Parental Alienation]({{ '/blog/parental-alienation/' | relative_url }})
 
 {% include blog_list.html section="parental-alienation" limit=3 hide_heading=true %}
 
-## Recent from Technology
+## [Recent from Technology]({{ '/blog/technology/' | relative_url }})
 
 {% include blog_list.html section="technology" limit=3 hide_heading=true %}

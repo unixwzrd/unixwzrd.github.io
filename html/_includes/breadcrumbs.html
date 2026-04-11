@@ -27,7 +27,25 @@
     {% comment %} Handle general blog posts (posts in _posts/) {% endcomment %}
     {% elsif page.layout == 'post' %}
       <li class="breadcrumb-item">
-        <a href="{{ '/blog/' | relative_url }}" class="breadcrumb-link">Blog</a>
+        <a href="{{ '/blog/' | relative_url }}" class="breadcrumb-link">Blogs</a>
+      </li>
+      <li class="breadcrumb-item breadcrumb-current" aria-current="page">
+        {{ page.title }}
+      </li>
+
+    {% comment %} Handle topics page {% endcomment %}
+    {% elsif page.url == '/topics/' %}
+      <li class="breadcrumb-item">
+        <a href="{{ '/blog/' | relative_url }}" class="breadcrumb-link">Blogs</a>
+      </li>
+      <li class="breadcrumb-item breadcrumb-current" aria-current="page">
+        {{ page.title }}
+      </li>
+
+    {% comment %} Handle blog section landing pages {% endcomment %}
+    {% elsif page.url contains '/blog/' and page.layout != 'post' and page.url != '/blog/' %}
+      <li class="breadcrumb-item">
+        <a href="{{ '/blog/' | relative_url }}" class="breadcrumb-link">Blogs</a>
       </li>
       <li class="breadcrumb-item breadcrumb-current" aria-current="page">
         {{ page.title }}

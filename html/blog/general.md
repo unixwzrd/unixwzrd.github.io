@@ -8,4 +8,4 @@ image: /assets/images/default-og-image.png
 
 Updates, cross-project notes, and observations that don't fit cleanly into a single category.
 
-{% include blog_list.html section="general" heading="General" %}
+{% include blog_list.html section="general" hide_heading=true %}

@@ -8,23 +8,6 @@ image: /assets/images/default-og-image.png
 
 Browse the site by recurring themes instead of by section or project. Topics pull together both standard blog posts and project blog entries.
 
-## Blog Sections
-
-<div class="topics-section-grid">
-  <a class="topic-card" href="{{ '/blog/general/' | relative_url }}">
-    <strong>General</strong>
-    <span>{{ site.categories.general | size }} posts</span>
-  </a>
-  <a class="topic-card" href="{{ '/blog/parental-alienation/' | relative_url }}">
-    <strong>Parental Alienation</strong>
-    <span>{{ site.categories.parental-alienation | size }} posts</span>
-  </a>
-  <a class="topic-card" href="{{ '/blog/technology/' | relative_url }}">
-    <strong>Technology</strong>
-    <span>{{ site.categories.technology | size }} posts</span>
-  </a>
-</div>
-
 ## Topics Index
 
 <div class="topics-cloud">
