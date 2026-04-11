@@ -3,11 +3,54 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+  var dtsCurrentLocation = window.location.href;
+  var dtsCurrentPath = window.location.pathname + window.location.search + window.location.hash;
+  var dtsReferrer = document.referrer || '';
+  var dtsUrl = new URL(window.location.href);
+  var dtsSearchParams = dtsUrl.searchParams;
+  var dtsHostname = window.location.hostname;
+  var dtsUserAgent = navigator.userAgent || '';
+  var dtsVisitorType = /bot|crawl|spider|slurp|bingpreview|facebookexternalhit|linkedinbot|twitterbot|googlebot|duckduckbot|yandex|baiduspider|semrush/i.test(dtsUserAgent)
+    ? 'bot'
+    : 'browser';
+  var dtsReferrerHost = '';
+
+  if (dtsReferrer) {
+    try {
+      dtsReferrerHost = new URL(dtsReferrer).hostname;
+    } catch (error) {
+      dtsReferrerHost = '';
+    }
+  }
+
+  function dtsParam(name) {
+    return dtsSearchParams.get(name) || '';
+  }
+
+  function dtsSearchTerm() {
+    var keys = ['q', 'query', 'search', 'search_term', 's', 'keyword', 'keywords'];
+    for (var i = 0; i < keys.length; i += 1) {
+      var value = dtsParam(keys[i]);
+      if (value) {
+        return value;
+      }
+    }
+    return '';
+  }
+
+  var dtsQueryString = dtsUrl.search || '';
+  var dtsSearchTermValue = dtsSearchTerm();
+  var dtsCommonParams = {
+    page_location: dtsCurrentLocation,
+    page_path: dtsCurrentPath,
+    page_hostname: dtsHostname,
+    visitor_type: dtsVisitorType
+  };
   gtag('js', new Date());
 
   gtag('config', '{{ site.google_analytics }}', {
     page_title: '{{ page.title | default: site.title }}',
-    page_location: '{{ page.url | absolute_url }}',
+    page_location: dtsCurrentLocation,
     {% if page.category %}custom_map: {'custom_dimension1': 'category'},{% endif %}
     {% if page.tags %}custom_map: {'custom_dimension2': 'tags'},{% endif %}
   });
@@ -15,17 +58,54 @@
   // Enhanced tracking for blog posts
   {% if page.layout == 'post' %}
   gtag('event', 'page_view', {
+    'page_type': 'blog_post',
     'custom_dimension1': 'blog_post',
     'custom_dimension2': '{{ page.category | default: "general" }}',
-    'custom_dimension3': '{{ page.tags | join: "," }}'
+    'custom_dimension3': '{{ page.tags | join: "," }}',
+    'page_category': '{{ page.category | default: "general" }}',
+    'page_tags': '{{ page.tags | join: "," }}',
+    'visitor_type': dtsVisitorType
   });
   {% endif %}
 
   // Enhanced tracking for project pages
   {% if page.layout == 'page' and page.url contains '/projects/' %}
   gtag('event', 'page_view', {
+    'page_type': 'project_page',
     'custom_dimension1': 'project_page',
-    'custom_dimension2': '{{ page.category | default: "project" }}'
+    'custom_dimension2': '{{ page.category | default: "project" }}',
+    'page_category': '{{ page.category | default: "project" }}',
+    'visitor_type': dtsVisitorType
   });
   {% endif %}
-</script> 
+
+  if (dtsSearchTermValue) {
+    gtag('event', 'site_search_detected', {
+      'search_term': dtsSearchTermValue,
+      'query_string': dtsQueryString,
+      'page_location': dtsCurrentLocation,
+      'visitor_type': dtsVisitorType
+    });
+  }
+
+  // Capture the actual missing URL and referrer for 404 analysis.
+  {% if page.permalink == '/404.html' %}
+  gtag('event', '404_error', {
+    'page_location': dtsCurrentLocation,
+    'page_path': dtsCurrentPath,
+    'page_referrer': dtsReferrer,
+    'not_found_path': dtsCurrentPath,
+    'not_found_query': dtsQueryString,
+    'not_found_referrer': dtsReferrer,
+    'referrer_host': dtsReferrerHost,
+    'hostname': dtsHostname,
+    'visitor_type': dtsVisitorType,
+    'utm_source': dtsParam('utm_source'),
+    'utm_medium': dtsParam('utm_medium'),
+    'utm_campaign': dtsParam('utm_campaign'),
+    'utm_term': dtsParam('utm_term'),
+    'utm_content': dtsParam('utm_content'),
+    'search_term': dtsSearchTermValue
+  });
+  {% endif %}
+</script>
