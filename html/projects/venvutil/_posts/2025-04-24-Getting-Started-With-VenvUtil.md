@@ -6,7 +6,7 @@ redirect_from:
   - /projects/venvutil/2025/04/24/Getting-Started-With-VenvUtil/
 date: "2025-04-24"
 category: venvutil
-tags: [introduction, overview]
+tags: [introduction, overview, python, virtual-environments, developer-tools]
 draft: false
 published: true
 excerpt: "Managing Python virtual environments sounds simple - until your projects grow, your dependencies tangle, and suddenly you're knee-deep in broken builds and lost environments.

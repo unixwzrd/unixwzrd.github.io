@@ -4,21 +4,7 @@ title: "UnicodeFix Levels Up: Metrics, Forensics, and Bracket Discipline"
 image: /assets/images/projects/UnicodeFix/LevelsUp.png
 date: 2025-11-15
 category: UnicodeFix
-tags:
-  - unicode
-  - python
-  - ai
-  - text-cleaning
-  - detection
-  - open-source
-  - shortcuts
-  - devtools
-  - ai-watermarks
-  - anti-cheat
-  - codex
-  - analytics
-  - forensics
-  - brackets
+tags: [unicode, python, text-cleaning, ai, developer-tools, open-source]
 excerpt: "UnicodeFix grew a dashboard in your terminal: reports, metrics, and stricter Unicode discipline - same exorcism, more forensics."
 published: true
 ---

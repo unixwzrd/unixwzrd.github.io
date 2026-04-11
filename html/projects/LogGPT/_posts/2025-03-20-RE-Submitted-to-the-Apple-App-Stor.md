@@ -5,7 +5,7 @@ layout: post
 title: "Submitted (Again) to the Apple App Store"
 date: "2025-03-20"
 category: LogGPT
-tags: [update, apple-app-store, resubmission, development]
+tags: [update, app-store, safari-extension, privacy, macos]
 published: true
 redirect_from:
   - /projects/LogGPT/2025/03/20/RE-Submitted-to-the-Apple-App-Stor/

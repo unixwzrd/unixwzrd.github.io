@@ -3,7 +3,7 @@ layout: post
 title: "Introducing Extract Chat"
 date: 2026-03-28
 category: extract-chat
-tags: [introduction, overview]
+tags: [introduction, overview, chatgpt, markdown, knowledge-management, data-portability]
 excerpt: "Downloaded a ChatGPT JSON export and wondered what to do with it next? Extract Chat turns that raw export into readable Markdown or HTML, preserves the useful structure, and chunks it for real AI workflows."
 image:
   path: /assets/images/projects/extract-chat-banner.png

@@ -6,7 +6,7 @@ redirect_from:
   - /projects/LogGPT/2025/02/23/Submitted-to-the-Apple-App-Store/
 date: "2025-02-23"
 category: LogGPT
-tags: [introduction, overview]
+tags: [introduction, overview, chatgpt, safari-extension, privacy, json-export, macos]
 published: true
 excerpt: "I submitted the app to the Apple App Store for review. I would appreciate it of you would buy a copy from teh app store to help offset the Apple Developer Tax (cost of my Apple Developer Account).  Whether that or you could drop me something in my Patreon or Ko-Fi."
 ---

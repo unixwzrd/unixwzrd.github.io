@@ -4,17 +4,7 @@ title: "UnicodeFix v1.2.1: Smoother Installs, Cleaner Reports, Less Weirdness"
 image: /assets/images/projects/UnicodeFix/Wolf-Edition-Enhancements.png
 date: 2026-03-06
 category: UnicodeFix
-tags:
- - unicode
- - python
- - text-cleaning
- - devtools
- - open-source
- - ci
- - metrics
- - reporting
- - conda
- - automation
+tags: [unicode, python, text-cleaning, ai, developer-tools, open-source]
 excerpt: "UnicodeFix v1.2.1 makes the tool easier to install, easier to trust, and much less likely to surprise you with confusing reports or rough edges."
 published: true
 ---

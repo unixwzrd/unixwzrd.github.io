@@ -7,10 +7,8 @@ redirect_from:
   - /2024/11/13/Adapting-and-Advancing-Progress-Across-all-Projects/
   - /coding/ai/blog/2024/11/13/Adapting-and-Advancing-Progress-Across-all-Projects/
 date: 2024-11-13 14:00:00 -0500
-categories:
-  - coding
-  - ai
-  - blog
+categories: [general]
+tags: [project-updates, website-development, ai, python, apple-silicon]
 excerpt: "The past few months have been a whirlwind of progress, setbacks, and unexpected developments. From debugging web frameworks to crafting advanced tools for Python environments, I've been deeply immersed in a variety of projects. Today, I want to reflect on some key milestones and share insights from my journey."
 ---
 

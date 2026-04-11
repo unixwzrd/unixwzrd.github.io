@@ -3,7 +3,7 @@ layout: post
 title: "Introducing LLM Ops Kit"
 date: 2026-03-09
 category: LLM-Ops-Kit
-tags: [introduction, release, operations, self-hosting, ai]
+tags: [introduction, release, ai-operations, self-hosting, devops]
 excerpt: "LLM-Ops-Kit is a new operational toolkit for running, debugging, and maintaining self-hosted AI stacks across hosts."
 image: /assets/images/projects/LLM-Ops-Kit/LLM-OPS-Kit-banner.png
 # author: Michael Sullivan

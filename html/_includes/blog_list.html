@@ -1,10 +1,10 @@
 {% comment %}
 Parameters:
-- category: (optional) If provided, only shows posts from this category.
+- category: (optional) Project category to list project blog posts.
+- section: (optional) Standard site blog section to list (`general`, `parental-alienation`, `technology`).
 - limit: (optional) Maximum number of posts to show.
-- show_project_link: (optional) Whether to show the project link for project posts.
-- heading: (optional) The heading to show above the blog list. Defaults to "Blog Entries" for general blog and "Project
-Blog Entries" for project blogs.
+- heading: (optional) Heading override.
+- hide_heading: (optional) When true, suppresses the include heading output.
 {% endcomment %}
 
 {% assign hidden_project_category = false %}
@@ -16,8 +16,13 @@ Blog Entries" for project blogs.
 {% endif %}
 
 {% unless hidden_project_category %}
-{% if include.category %}
+{% if include.hide_heading %}
+{% elsif include.heading %}
+    <h2>{{ include.heading }}</h2>
+{% elsif include.category %}
     <h2>Project Blog Entries</h2>
+{% elsif include.section %}
+    <h2>{{ include.section | replace: '-', ' ' | capitalize }} Posts</h2>
 {% else %}
     <h2>Blog Entries</h2>
 {% endif %}
@@ -37,59 +42,51 @@ Blog Entries" for project blogs.
                 {% endunless %}
             {% endfor %}
         {% endif %}
-    {% else %}
-        <!-- General blog listing (including ALL posts) -->
-        {% assign posts_to_show = '' | split: '' %}
-
+    {% elsif include.section %}
+        <!-- Standard site blog listing filtered by section -->
         {% assign posts_to_show = '' | split: '' %}
 
         {% if jekyll.environment == "development" %}
-            <!-- Include all standard posts (skip _drafts folder) -->
+            {% for post in site.posts %}
+                {% unless post.url contains '/_drafts/' or post.url contains '_drafts/' %}
+                    {% if post.categories contains include.section %}
+                        {% assign posts_to_show = posts_to_show | push: post %}
+                    {% endif %}
+                {% endunless %}
+            {% endfor %}
+        {% else %}
+            {% for post in site.posts %}
+                {% unless post.draft %}
+                    {% if post.categories contains include.section %}
+                        {% assign posts_to_show = posts_to_show | push: post %}
+                    {% endif %}
+                {% endunless %}
+            {% endfor %}
+        {% endif %}
+    {% else %}
+        <!-- Standard site blog listing -->
+        {% assign posts_to_show = '' | split: '' %}
+
+        {% if jekyll.environment == "development" %}
             {% for post in site.posts %}
                 {% unless post.url contains '/_drafts/' or post.url contains '_drafts/' %}
                     {% assign posts_to_show = posts_to_show | push: post %}
                 {% endunless %}
             {% endfor %}
-
-            <!-- Include project posts collection as well -->
-            {% assign project_posts_collection = site.collections['project_posts'] %}
-            {% if project_posts_collection %}
-                {% for post in project_posts_collection.docs %}
-                    {% assign post_project = site.data.github_projects.projects | where: "name", post.category | first %}
-                    {% unless post.url contains '/_drafts/' or post.url contains '_drafts/' or post_project.visibility == 'none' %}
-                        {% assign posts_to_show = posts_to_show | push: post %}
-                    {% endunless %}
-                {% endfor %}
-            {% endif %}
         {% else %}
-            <!-- Production: exclude drafts -->
             {% for post in site.posts %}
                 {% unless post.draft %}
                     {% assign posts_to_show = posts_to_show | push: post %}
                 {% endunless %}
             {% endfor %}
-
-            {% assign project_posts_collection = site.collections['project_posts'] %}
-            {% if project_posts_collection %}
-                {% for post in project_posts_collection.docs %}
-                    {% assign post_project = site.data.github_projects.projects | where: "name", post.category | first %}
-                    {% unless post.draft or post_project.visibility == 'none' %}
-                        {% assign posts_to_show = posts_to_show | push: post %}
-                    {% endunless %}
-                {% endfor %}
-            {% endif %}
         {% endif %}
     {% endif %}
 
     {% if posts_to_show.size > 0 %}
-        <!-- Sort posts: by sequence for project blogs, by date for general blog -->
         {% if include.category %}
-            <!-- Project blog: sort by sequence if available, otherwise by date -->
             {% assign sorted_posts = posts_to_show | sort: 'sequence' %}
         {% else %}
-            <!-- General blog: sort by date (newest first), then by sequence for same dates -->
             {% assign sorted_posts = posts_to_show | sort: 'date' | reverse %}
-            <!-- For posts with the same date, sort by sequence -->
             {% assign date_groups = '' | split: '' %}
             {% assign current_date = '' %}
             {% assign current_group = '' | split: '' %}
@@ -112,7 +109,9 @@ Blog Entries" for project blogs.
         {% endif %}
         {% assign posts_to_show = sorted_posts %}
 
-        {% if include.category %}
+        {% if include.limit %}
+            {% assign max_posts = include.limit | plus: 0 %}
+        {% elsif include.category %}
             {% assign max_posts = page.project_blog_count | default: site.project_blog_count %}
         {% else %}
             {% assign max_posts = page.site_blogs_count | default: site.site_blogs_count %}
@@ -125,10 +124,16 @@ Blog Entries" for project blogs.
             {% endif %}
         {% endif %}
 
-        {% assign total_pages = posts_to_show.size | times: 1.0 | divided_by: max_posts | ceil %}
+        {% if include.limit %}
+            {% assign total_pages = 1 %}
+            {% assign posts_to_render = posts_to_show | slice: 0, max_posts %}
+        {% else %}
+            {% assign total_pages = posts_to_show.size | times: 1.0 | divided_by: max_posts | ceil %}
+            {% assign posts_to_render = posts_to_show %}
+        {% endif %}
 
         <div class="blog-pagination-container" data-posts-per-page="{{ max_posts }}" data-total-pages="{{ total_pages }}">
-            {% for post in posts_to_show %}
+            {% for post in posts_to_render %}
             <div class="blog-post-item" data-post-index="{{ forloop.index0 }}">
                 <li>
                     <h3>

@@ -1,62 +1,62 @@
 .page-link-search {
-  font-weight: 600;
+  font-weight: inherit;
 }
 
 .search-page {
-  max-width: 60rem;
+  max-width: 960px;
   margin: 0 auto;
 }
 
 .search-page-intro {
   color: $brand-color;
-  font-size: 1.05rem;
-  margin-bottom: 1rem;
+  font-size: 17px;
+  margin-bottom: 16px;
 }
 
 .search-controls {
   display: flex;
-  gap: 0.75rem;
+  gap: 12px;
   align-items: center;
-  margin: 1.25rem 0 1rem;
+  margin: 20px 0 16px;
 }
 
 .search-label {
-  font-size: 0.95rem;
+  font-size: 15px;
   font-weight: 600;
-  min-width: 4rem;
+  min-width: 64px;
 }
 
 .search-input {
   width: 100%;
-  padding: 0.8rem 1rem;
+  padding: 13px 16px;
   border: 1px solid $border-color-01;
-  border-radius: 0.5rem;
+  border-radius: 8px;
   background: rgba(255, 255, 255, 0.04);
   color: $text-color;
-  font-size: 1rem;
+  font-size: 16px;
 }
 
 .search-status {
-  min-height: 1.5rem;
-  margin-bottom: 1rem;
+  min-height: 24px;
+  margin-bottom: 16px;
   color: $brand-color;
 }
 
 .search-results {
   display: grid;
-  gap: 1rem;
+  gap: 16px;
 }
 
 .search-result {
   border: 1px solid $border-color-01;
-  border-radius: 0.7rem;
-  padding: 1rem 1.1rem;
+  border-radius: 11px;
+  padding: 16px 18px;
   background: rgba(255, 255, 255, 0.02);
 }
 
 .search-result-title {
-  margin: 0 0 0.4rem;
-  font-size: 1.25rem;
+  margin: 0 0 6px;
+  font-size: 20px;
 }
 
 .search-result-title a {
@@ -65,8 +65,8 @@
 
 .search-result-url {
   display: inline-block;
-  margin-bottom: 0.5rem;
-  font-size: 0.9rem;
+  margin-bottom: 8px;
+  font-size: 14px;
   color: $brand-color;
   word-break: break-word;
 }
@@ -77,8 +77,8 @@
 
 .search-empty {
   border: 1px dashed $border-color-01;
-  border-radius: 0.7rem;
-  padding: 1rem 1.1rem;
+  border-radius: 11px;
+  padding: 16px 18px;
   color: $brand-color;
 }
 

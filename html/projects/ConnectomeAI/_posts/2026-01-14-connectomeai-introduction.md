@@ -3,7 +3,7 @@ layout: post
 title: "Introducing ConnectomeAI"
 date: 2026-01-14
 category: ConnectomeAI
-tags: [introduction, overview]
+tags: [introduction, overview, ai, workflows, knowledge-graphs]
 excerpt: "Welcome to the ConnectomeAI project blog. Here we'll share updates, insights, and progress on our development journey."
 image: /assets/images/projects/ConnectomeAI.png
 # author: Michael Sullivan

@@ -4,7 +4,7 @@ title: "UnicodeFix: Enough of Your AI Nonsense (2025 Major Release)"
 image: /assets/images/projects/UnicodeFix/controlling-unicode.png
 date: 2025-07-22
 category: UnicodeFix
-tags: [unicode, python, ai, text-cleaning, detection, open-source, shortcuts, devtools, ai-watermarks, anti-cheat]
+tags: [unicode, python, text-cleaning, ai, developer-tools, ai-detection, open-source]
 excerpt: "The Unicode arms race gets real. Here's how we're fighting back."
 published: true
 ---

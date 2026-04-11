@@ -3,7 +3,7 @@ layout: post
 title: "Introducing Mlx Harmony"
 date: 2026-01-14
 category: mlx-harmony
-tags: [introduction, overview]
+tags: [introduction, overview, mlx, local-llms, apple-silicon]
 excerpt: "Welcome to the Mlx Harmony project blog. Here we'll share updates, insights, and progress on our development journey."
 image: /assets/images/projects/mlx-harmony.png
 # author: Michael Sullivan

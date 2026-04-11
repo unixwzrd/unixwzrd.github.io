@@ -3,7 +3,7 @@ layout: post
 title: "LogGPT: NEW 1.0.6 - Fixed issue with loading"
 date: 2025-06-21
 category: LogGPT
-tags: [LogGPT, ChatGPT export, privacy, Safari extension, Apple App Store, AI tools, JSON, macOS]
+tags: [update, safari-extension, privacy, chatgpt, ai-tools, json-export, macos]
 excerpt: "Just as Apple approved the second release of LogGPT, OpenAI quietly changed the Document Object Model (DOM) on ChatGPT's site-breaking the download button injection."
 image: /assets/images/projects/LogGPT/Icon-512-download.png
 published: true

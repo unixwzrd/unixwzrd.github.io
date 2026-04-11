@@ -5,8 +5,8 @@ title: "Harnessing AI for Change: The Next Chapter for Distributed Thinking Syst
 redirect_from:
   - /2025/02/20/building-a-modern-jekyll-site/
 date: 2025-02-20 15:00:00 -0500
-categories: [development, site-updates]
-tags: [AI, parental alienation, technology, advocacy]
+categories: [parental-alienation]
+tags: [parental-alienation, advocacy, ai, family-law, case-analytics]
 excerpt: "Parental alienation is a slow, insidious process, often unfolding in subtle shifts of language, repeated patterns of exclusion, and emotional manipulation hidden within everyday communication. The words that once carried love and trust become barriers, severing bonds between parents and children. For those affected, the experience is devastating. The pain lingers, compounded by the fact that so often, the signs go unnoticed until it is too late."
 ---
 
@@ -51,4 +51,3 @@ Parental alienation is not just a legal issue; it is an emotional and psychologi
 This is a turning point. The technology is here. The need is urgent. And the time to act is now.
 
 Stay tuned for updates as we move into the next phase, and if you believe in this mission, let's work together to bring this vision to life.
-

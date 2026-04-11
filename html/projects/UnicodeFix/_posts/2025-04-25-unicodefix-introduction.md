@@ -4,7 +4,7 @@ title: "UnicodeFix: The Day Invisible Characters Broke Everything"
 image: /assets/images/projects/UnicodeFix/hidden-unicode.png
 date: 2025-04-25
 category: UnicodeFix
-tags: [unicode, python, devstory, macos, text-cleaning, open-source]
+tags: [unicode, python, text-cleaning, ai, macos, open-source]
 excerpt: "It started with a broken script. Ended with a clean, fast, cross-tool Unicode scrubber. Built in less than 10 hours."
 published: true
 redirect_from:

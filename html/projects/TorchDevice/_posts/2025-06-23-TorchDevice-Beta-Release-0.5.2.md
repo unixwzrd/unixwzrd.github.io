@@ -6,7 +6,7 @@ redirect_from:
 image: /assets/images/projects/TorchDevice/TorchDevice-HF-Transformers.png
 date: 2025-06-22
 category: TorchDevice
-tags: [PyTorch, Apple Silicon, CUDA, MPS, open source, AI infrastructure]
+tags: [release, pytorch, apple-silicon, cuda, mps, ai-infrastructure, open-source]
 published: true
 excerpt: "TorchDevice is a compatibility layer that makes PyTorch code written for CUDA \"just work\" on Apple's MPS (and vice versa), with minimal friction for devs. It's the kind of glue that shouldn't exist-but absolutely needs to if you live on both sides of the Apple/NVIDIA divide."
 ---

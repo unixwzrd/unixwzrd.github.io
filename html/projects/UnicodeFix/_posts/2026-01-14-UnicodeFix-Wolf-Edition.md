@@ -4,18 +4,7 @@ title: "UnicodeFix - Wolf Edition v1.2.0 (It Solves Problems.) Now with API supp
 image: /assets/images/projects/UnicodeFix/Wolf-Edition.png
 date: 2026-01-14
 category: UnicodeFix
-tags:
- - unicode
- - python
- - ai
- - text-cleaning
- - detection
- - forensics
- - metrics
- - devtools
- - ci
- - github-actions
- - open-source
+tags: [unicode, python, text-cleaning, ai, developer-tools, open-source]
 excerpt: "UnicodeFix isn't just a CLI. It's Winston Wolf for your text pipelines: clean it, audit it, score it, ship it."
 published: true
 ---

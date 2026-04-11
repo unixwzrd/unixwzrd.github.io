@@ -4,7 +4,7 @@ title: 'CodExorcism: The Power of UnicodeFix Compels You'
 image: /assets/images/projects/UnicodeFix/CodExorcism.png
 date: 2025-09-07
 category: UnicodeFix
-tags: [unicode, python, ai, text-cleaning, detection, open-source, shortcuts, devtools, ai-watermarks, anti-cheat, codex]
+tags: [unicode, python, text-cleaning, ai, developer-tools, ai-detection, open-source, codex]
 excerpt: "The Unicode arms race escalates: Codex brought new gremlins, UnicodeFix exorcised them. Here's the story."
 published: true
 ---

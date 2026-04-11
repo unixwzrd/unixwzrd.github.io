@@ -6,8 +6,8 @@ title: "Remote Debugger With VSCode and Its Derivatives"
 redirect_from:
   - /2025/04/08/Remote-Debugging-With-VSCode/
 date: 2025-04-08 17:30:00 -0500
-categories: [coding, ai, blog]
-tags: [debugging, vscode, remote, python]
+categories: [technology]
+tags: [debugging, vscode, remote-debugging, python, developer-tools]
 ---
 excerpt: "## How to Debug Remotely with VSCode"
 
