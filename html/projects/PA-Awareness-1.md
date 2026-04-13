@@ -35,7 +35,7 @@ This project is a call to action. If we don't raise our voices, nothing changes.
 
 If you want to help change this, please check out [this petition to make parental alienation a crime](https://www.change.org/p/make-parental-alienation-a-crime).
 
-If you have a story, or just want to connect, [contact me here](/contact).
+If you have a story, or just want to connect, [contact me here](/contact/).
 
 And if you know someone going through this-share this page with them. Sometimes the worst part of alienation is thinking you're alone.
 

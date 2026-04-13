@@ -13,7 +13,7 @@ Family courts struggle to recognize patterns of **parental alienation, manipulat
 
 ## The Problem
 
-High-conflict custody cases generate **massive amounts of data**—court filings, co-parenting messages, emails, and legal transcripts. Identifying **subtle patterns of alienation** is time-consuming and often **subject to human bias**.
+High-conflict custody cases generate **massive amounts of data** - court filings, co-parenting messages, emails, and legal transcripts. Identifying **subtle patterns of alienation** is time-consuming and often **subject to human bias**.
 
 ## The Solution
 
@@ -29,4 +29,4 @@ By detecting **shifts in sentiment, contradictions, and alienation tactics**, ou
 
 We are preparing for an **alpha release**, refining AI models with real-world cases, and seeking **legal professionals, affected parents, and researchers** to contribute data and feedback.
 
-If you're interested in **testing, research collaboration, or sponsorship**, [get in touch](/contact). Our goal is simple: **make parental alienation visible—where it was once hidden.**
+If you're interested in **testing, research collaboration, or sponsorship**, [get in touch](/contact/). Our goal is simple: **make parental alienation visible - where it was once hidden.**

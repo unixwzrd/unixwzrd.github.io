@@ -104,4 +104,4 @@ As we progress through Alpha testing, we're focusing on:
 
 ## Get Involved
 
-We're currently seeking legal professionals, family counselors, and affected parents to participate in our Alpha testing program. If you're interested in contributing to this project or would like to learn more, please [contact us](/contact). 
+We're currently seeking legal professionals, family counselors, and affected parents to participate in our Alpha testing program. If you're interested in contributing to this project or would like to learn more, please [contact us](/contact/).

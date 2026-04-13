@@ -14,6 +14,13 @@ Welcome to the Parental Alienation Awareness project blog. Here we share researc
 
 <!--more-->
 
+- [About Parental Alienation Awareness](#about-parental-alienation-awareness)
+- [Research Paper Sections](#research-paper-sections)
+- [References](#references)
+- [Get Involved](#get-involved)
+  - [**Get Involved / Raise Awareness**](#get-involved--raise-awareness)
+- [Navigation](#navigation)
+
 ## About Parental Alienation Awareness
 
 Parental Alienation Awareness: A comprehensive research paper examining the scope, impact, and damage of parental alienation to children, families, and society. Our research provides evidence-based analysis of this widespread but often misunderstood phenomenon.
@@ -42,7 +49,7 @@ All sections of this research paper include comprehensive citations and referenc
 
 If you want to help change this, please check out [this petition to make parental alienation a crime](https://www.change.org/p/make-parental-alienation-a-crime).
 
-If you have a story, or just want to connect, [contact me here](/contact).
+If you have a story, or just want to connect, [contact me here](/contact/).
 
 And if you know someone going through this-share this page with them. Sometimes the worst part of alienation is thinking you're alone.
 
@@ -53,7 +60,7 @@ We welcome contributions and feedback. Here's how you can get involved:
 - Provide feedback on our analysis
 - Contribute to raising awareness
 
-[Contact us](/contact) to learn more about participating in this project.
+[Contact us](/contact/) to learn more about participating in this project.
 
 ---
 

@@ -45,4 +45,4 @@ We welcome contributions and feedback. Here's how you can get involved:
 - Provide feedback
 - Contribute to development
 
-[Contact us](/contact) to learn more about participating in this project.
+[Contact us](/contact/) to learn more about participating in this project.
