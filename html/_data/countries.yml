@@ -1,36 +1,107 @@
 countries:
+  - name: "Global / International"
+    services:
+      - { service: "Emergency Number (Most Countries)", type: "phone", number: "112", display: "112" }
+      - { service: "Befrienders Worldwide", type: "url", url: "https://www.befrienders.org/find-help/find-local-befrienders" }
+
   - name: "USA"
     services:
-      - { service: "Emergency Services", contact: "911" }
-      - { service: "National Suicide Hotline", contact: "1-800-273-8255" }
-      - { service: "Crisis Text Line", contact: "Text HOME to 741741" }
-  - name: "UK"
-    services:
-      - { service: "NHS Helpline", contact: "111" }
-      - { service: "Samaritans", contact: "116 123" }
-  - name: "Australia"
-    services:
-      - { service: "Lifeline Australia", contact: "13 11 14" }
-      - { service: "Beyond Blue", contact: "1300 22 4636" }
-  - name: "Germany"
-    services:
-      - { service: "Emergency Services", contact: "112" }
-      - { service: "Telefonseelsorge", contact: "0800 111 0 111" }
+      - { service: "Emergency Services (Police/Ambulance)", type: "phone", number: "911", display: "911" }
+
+      - service: "988 Suicide & Crisis Lifeline"
+        type: "multi"
+        options:
+          - { type: "phone", number: "988", display: "988" }
+          - { type: "sms", number: "988", message: "HELP", display: "Text HELP to 988" }
+
+      - { service: "Crisis Text Line", type: "sms", number: "741741", message: "HOME", display: "Text HOME to 741741" }
+
   - name: "Canada"
     services:
-      - { service: "Emergency Services", contact: "911" }
-      - { service: "Kids Help Phone", contact: "1-800-668-6868" }
+      - { service: "Emergency Services (Police/Ambulance)", type: "phone", number: "911", display: "911" }
+      - { service: "Talk Suicide Canada", type: "phone", number: "18334564566", display: "1-833-456-4566" }
+      - { service: "Kids Help Phone", type: "phone", number: "18006686868", display: "1-800-668-6868" }
+
+  - name: "UK"
+    services:
+      - service: "Emergency Services (Police/Ambulance)"
+        type: "multi"
+        options:
+          - { type: "phone", number: "999", display: "999" }
+          - { type: "phone", number: "112", display: "112" }
+      - { service: "NHS Helpline", type: "phone", number: "111", display: "111" }
+      - { service: "Samaritans", type: "phone", number: "116123", display: "116 123" }
+
+  - name: "Ireland"
+    services:
+      - service: "Emergency Services"
+        type: "multi"
+        options:
+          - { type: "phone", number: "112", display: "112" }
+          - { type: "phone", number: "999", display: "999" }
+      - { service: "Samaritans", type: "phone", number: "116123", display: "116 123" }
+
+  - name: "Australia"
+    services:
+      - { service: "Lifeline Australia", type: "phone", number: "131114", display: "13 11 14" }
+      - { service: "Lifeline Text", type: "sms", number: "0477131114", message: "HELP", display: "Text HELP to 0477 13 11 14" }
+      - { service: "Beyond Blue", type: "phone", number: "1300224636", display: "1300 22 4636" }
+
+  - name: "New Zealand"
+    services:
+      - { service: "Emergency Services", type: "phone", number: "111", display: "111" }
+      - { service: "Lifeline Aotearoa", type: "phone", number: "0800543354", display: "0800 543 354" }
+
+  - name: "European Union (General)"
+    services:
+      - { service: "Emergency Services", type: "phone", number: "112", display: "112" }
+
+  - name: "Germany"
+    services:
+      - { service: "Emergency Services", type: "phone", number: "112", display: "112" }
+      - { service: "Telefonseelsorge", type: "phone", number: "08001110111", display: "0800 111 0 111" }
+
   - name: "France"
     services:
-      - { service: "Emergency Services", contact: "112" }
-      - { service: "SOS Suicide", contact: "01 45 39 40 00" }
+      - { service: "Emergency Services", type: "phone", number: "112", display: "112" }
+      - { service: "SOS Suicide", type: "phone", number: "0145394000", display: "01 45 39 40 00" }
+
   - name: "Japan"
     services:
-      - { service: "Emergency Services", contact: "119" }
-      - { service: "Tell Lifeline", contact: "03 5774 0992" }
+      - { service: "Emergency Services", type: "phone", number: "119", display: "119" }
+      - { service: "Tell Lifeline", type: "phone", number: "0357740992", display: "03 5774 0992" }
+
   - name: "India"
     services:
-      - { service: "Snehi Foundation", contact: "91-22-2772-6771" }
+      - { service: "National Mental Health Helpline (Kiran)", type: "phone", number: "18005990019", display: "1800-599-0019" }
+      - { service: "Snehi Foundation", type: "phone", number: "912227726771", display: "+91 22 2772 6771" }
+
+  - name: "Singapore"
+    services:
+      - { service: "Emergency Services", type: "phone", number: "999", display: "999" }
+      - { service: "Samaritans of Singapore", type: "phone", number: "1767", display: "1767" }
+
+  - name: "Philippines"
+    services:
+      - { service: "Emergency Services", type: "phone", number: "911", display: "911" }
+      - { service: "NCMH Crisis Hotline", type: "phone", number: "1553", display: "1553" }
+
+  - name: "Mexico"
+    services:
+      - { service: "Emergency Services", type: "phone", number: "911", display: "911" }
+      - { service: "Línea de la Vida", type: "phone", number: "8009112000", display: "800 911 2000" }
+
+  - name: "Brazil"
+    services:
+      - { service: "Emergency Services", type: "phone", number: "190", display: "190" }
+      - { service: "Centro de Valorização da Vida (CVV)", type: "phone", number: "188", display: "188" }
+
   - name: "South Africa"
     services:
-      - { service: "Lifeline Southern Africa", contact: "0861 322 322" }
+      - { service: "Emergency Services", type: "phone", number: "10111", display: "10111" }
+      - { service: "Lifeline Southern Africa", type: "phone", number: "0861322322", display: "0861 322 322" }
+
+  - name: "Online / Chat-Based Support"
+    services:
+      - { service: "Crisis Text Line", type: "sms", number: "741741", message: "HOME", display: "Text HOME to 741741" }
+      - { service: "Lifeline Chat", type: "url", url: "https://988lifeline.org/chat" }

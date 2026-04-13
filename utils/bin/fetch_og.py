@@ -673,6 +673,7 @@ layout: project
 title: \"{project_data['title']}\"
 category: {project_data['name']}
 permalink: /projects/{project_data['name']}/
+# show_support: false
 ---
 
 {project_data['description']}"""
@@ -694,6 +695,7 @@ category: {project_data['name']}
 tags: [development, update]
 excerpt: \"Brief introduction about this update\"
 image: /assets/images/projects/{project_data['name']}.png
+# show_support: false
 # author: Michael Sullivan
 # For drafts, use either:
 # published: false  (won't show up at all)
@@ -748,6 +750,7 @@ category: {project_data['name']}
 tags: [introduction, overview]
 excerpt: \"Welcome to the {project_data['title']} project blog. Here we'll share updates, insights, and progress on our development journey.\"
 image: /assets/images/projects/{project_data['name']}.png
+# show_support: false
 # author: Michael Sullivan
 # For drafts, use either:
 # published: false  (won't show up at all)

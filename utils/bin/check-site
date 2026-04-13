@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SITE_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+cd "$SITE_ROOT"
+
+run_crawl() {
+    local base_url="$1"
+    shift
+
+    python utils/bin/site_crawl_check.py --base-url "$base_url" "$@"
+}
+
+usage() {
+    cat <<'EOF'
+Usage:
+  utils/bin/check-site local [--verbose]
+  utils/bin/check-site remote [--verbose]
+  utils/bin/check-site all [--verbose]
+  utils/bin/check-site checks [check_site.sh options]
+  utils/bin/check-site help
+
+Commands:
+  local     Crawl the locally served site from its sitemap.
+  remote    Crawl the production site from its sitemap.
+  all       Run local, then remote.
+  checks    Run the full local check suite via utils/bin/check_site.sh.
+  help      Show this help text.
+
+Examples:
+  utils/bin/check-site local
+  utils/bin/check-site remote --verbose
+  utils/bin/check-site all
+  utils/bin/check-site checks --run 04_link_checker,05_site_link_checker
+EOF
+}
+
+command="${1:-help}"
+if [[ $# -gt 0 ]]; then
+    shift
+fi
+
+case "$command" in
+    local)
+        run_crawl "http://localhost:4000" "$@"
+        ;;
+    remote)
+        run_crawl "https://unixwzrd.ai" "$@"
+        ;;
+    all)
+        run_crawl "http://localhost:4000" "$@"
+        run_crawl "https://unixwzrd.ai" "$@"
+        ;;
+    checks)
+        exec "$SCRIPT_DIR/check_site.sh" "$@"
+        ;;
+    help|--help|-h)
+        usage
+        ;;
+    *)
+        echo "Unknown command: $command" >&2
+        echo >&2
+        usage
+        exit 1
+        ;;
+esac

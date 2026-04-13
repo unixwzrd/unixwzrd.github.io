@@ -107,7 +107,7 @@ if (searchRoot && searchInput && searchResults && searchStatus) {
     if (!trimmed) {
       lastQuery = "";
       searchResults.replaceChildren();
-      setStatus("Search blog posts, projects, and key site pages.");
+      setStatus("Search blog posts, projects, and key site pages, or browse tags on the Topics page.");
       return;
     }
 
@@ -179,6 +179,6 @@ if (searchRoot && searchInput && searchResults && searchStatus) {
   if (initialQuery) {
     performSearch(initialQuery);
   } else {
-    setStatus("Search blog posts, projects, and key site pages.");
+    setStatus("Search blog posts, projects, and key site pages, or browse tags on the Topics page.");
   }
 }

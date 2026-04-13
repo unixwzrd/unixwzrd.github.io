@@ -1,0 +1,5 @@
+{%- if site.giscus.enabled -%}
+  {%- include giscus_comments.html -%}
+{%- elsif site.disqus.shortname -%}
+  {%- include disqus_comments.html -%}
+{%- endif -%}

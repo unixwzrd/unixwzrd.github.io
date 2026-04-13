@@ -4,7 +4,8 @@ layout: page
 
 <article class="project" {% if page.search_exclude %}data-pagefind-ignore="all"{% else %}data-pagefind-body{% endif %}>
     <div class="project-content">
-        {% assign project = site.data.github_projects.projects | where: "name", page.category | first %}
+        {% include project_lookup.html %}
+        {% assign project = page_project %}
 
         {% if project %}
         {% assign project_title = page.title | default: project.title %}
@@ -51,6 +52,8 @@ layout: page
         <div class="project-description">
             {{ content }}
         </div>
+
+        {% include project_engagement.html %}
 
     </div>
 </article>

@@ -8,6 +8,7 @@ LINKED_PAGES="$TEMP_DIR/linked_pages.txt"
 ALL_PAGES="$TEMP_DIR/all_pages.txt"
 ORPHAN_PAGES="$TEMP_DIR/orphan_pages.txt"
 BROKEN_LINKS="$TEMP_DIR/broken_links.txt"
+SLASHLESS_PAGE_LINKS="$TEMP_DIR/slashless_page_links.txt"
 
 # Cleanup temporary files on exit
 trap 'rm -rf "$TEMP_DIR"' EXIT
@@ -164,6 +165,17 @@ process_internal_link() {
 
     local decoded_target=$(urldecode "$raw_target")
 
+    if [[ "$decoded_target" == /* ]] && \
+       [[ "$decoded_target" != //* ]] && \
+       [[ "$decoded_target" != / ]] && \
+       [[ "$decoded_target" != *"#"* ]] && \
+       [[ "$decoded_target" != *"?"* ]] && \
+       [[ "$decoded_target" != */ ]] && \
+       [[ "$decoded_target" != /assets/* ]] && \
+       [[ ! "${decoded_target##*/}" =~ \.[A-Za-z0-9]+$ ]]; then
+        echo "⚠️ Slashless internal page link in $source_file: $raw_target" >> "$SLASHLESS_PAGE_LINKS"
+    fi
+
     if [[ "$decoded_target" != /* ]]; then
         local absolute_target
         absolute_target=$(python3 - "$source_file" "$decoded_target" <<'PY'
@@ -240,6 +252,12 @@ if [ -s "$BROKEN_LINKS" ]; then
     echo "❌ Found broken internal links:"
     cat "$BROKEN_LINKS"
     exit 1
+fi
+
+if [ -s "$SLASHLESS_PAGE_LINKS" ]; then
+    echo "⚠️ Found internal page links without trailing slashes in source:"
+    sort -u "$SLASHLESS_PAGE_LINKS"
+    echo "   Note: build output now normalizes these links automatically."
 fi
 
 if [ -s "$ORPHAN_PAGES" ]; then

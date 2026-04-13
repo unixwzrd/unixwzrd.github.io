@@ -42,6 +42,15 @@
         {{ page.title }}
       </li>
 
+    {% comment %} Handle nested resources pages {% endcomment %}
+    {% elsif page.url contains '/resources/' and page.url != '/resources/' %}
+      <li class="breadcrumb-item">
+        <a href="{{ '/resources/' | relative_url }}" class="breadcrumb-link">Resources</a>
+      </li>
+      <li class="breadcrumb-item breadcrumb-current" aria-current="page">
+        {{ page.title }}
+      </li>
+
     {% comment %} Handle blog section landing pages {% endcomment %}
     {% elsif page.url contains '/blog/' and page.layout != 'post' and page.url != '/blog/' %}
       <li class="breadcrumb-item">

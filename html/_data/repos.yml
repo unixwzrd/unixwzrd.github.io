@@ -19,6 +19,12 @@ repositories:
     owner: unixwzrd
     overrides:
       banner_image_url: "/assets/images/projects/UnicodeFix-banner.png"
+  - name: Secrets-Kit
+    owner: unixwzrd
+    overrides:
+      title: "Secrets Kit"
+      description: "Simple, secure CLI for secrets and PII. Store values in Keychain, keep metadata in a local registry, and export runtime env values without putting secrets in git."
+      banner_image_url: "/assets/images/projects/Secrets-Kit-Banner.png"
   - name: LLM-Ops-Kit
     owner: unixwzrd
     overrides:

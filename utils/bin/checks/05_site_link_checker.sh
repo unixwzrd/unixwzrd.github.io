@@ -26,5 +26,7 @@ bundle exec htmlproofer ./_site \
     --check-internal-hash \
     --allow-missing-href
 
-echo "✅ HTMLProofer finished with no internal link errors."
+echo "🔎 Checking for nested internal links missing trailing slashes..."
+python3 "${BASE_DIR}/utils/bin/check_nested_slashless_links.py"
 
+echo "✅ HTMLProofer finished with no internal link errors."

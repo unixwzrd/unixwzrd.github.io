@@ -29,3 +29,7 @@ sitemap: false
   <div class="search-status" data-search-status aria-live="polite"></div>
   <div class="search-results" data-search-results></div>
 </section>
+
+## [Browse by Topic]({{ '/topics/' | relative_url }})
+
+Use the [Topics index]({{ '/topics/' | relative_url }}) to explore tags and cross-project themes spanning site posts and project blogs.

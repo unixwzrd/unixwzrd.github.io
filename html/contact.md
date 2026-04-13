@@ -13,4 +13,4 @@ If you want to talk about project work, collaboration, consulting, or just need 
 
 If you are a **legal service provider**, **trial consultant**, or **mental health professional**, the [Professional Services](/collaborate/professionals/) page gives the quickest overview of where the work fits.
 
-If you are looking for support resources instead, visit the [Resources](/resources) page.
+If you are looking for support resources instead, visit the [Resources](/resources/) page.

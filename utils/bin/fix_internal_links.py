@@ -2,117 +2,18 @@
 """
 Fix Internal Links Script
 
-Fixes internal link and permalink case sensitivity issues that will break on GitHub Pages.
+Conservatively fixes internal page links to use canonical slash-terminated URLs.
+This script must not rewrite front-matter permalinks or blindly replace partial
+matches inside already-correct links.
 """
 
 import os
 import re
-import sys
-from pathlib import Path
-from typing import Dict, List, Tuple
 import argparse
 
 
-def fix_permalink_case_issues():
-    """Fix permalink case sensitivity issues."""
-
-    permalink_fixes = [
-        # Fix project permalinks to match expected paths
-        {
-            "file": "html/projects/LogGPT.md",
-            "old_permalink": "/projects/LogGPT/",
-            "new_permalink": "/LogGPT/",
-        },
-        {
-            "file": "html/projects/Case-Analytics.md",
-            "old_permalink": "/projects/Case-Analytics/",
-            "new_permalink": "/Case-Analytics/",
-        },
-        {
-            "file": "html/projects/UnicodeFix.md",
-            "old_permalink": "/projects/UnicodeFix/",
-            "new_permalink": "/UnicodeFix/",
-        },
-        {
-            "file": "html/projects/text-generation-webui-macos.md",
-            "old_permalink": "/projects/text-generation-webui-macos/",
-            "new_permalink": "/text-generation-webui-macos/",
-        },
-        {
-            "file": "html/projects/oobabooga-macOS.md",
-            "old_permalink": "/projects/oobabooga-macOS/",
-            "new_permalink": "/oobabooga-macOS/",
-        },
-        {
-            "file": "html/projects/TorchDevice.md",
-            "old_permalink": "/projects/TorchDevice/",
-            "new_permalink": "/TorchDevice/",
-        },
-        {
-            "file": "html/projects/venvutil.md",
-            "old_permalink": "/projects/venvutil/",
-            "new_permalink": "/venvutil/",
-        },
-        # Fix other permalink issues
-        {
-            "file": "html/resources/emergency-resources.md",
-            "old_permalink": "/resources/emergency-resources/",
-            "new_permalink": "/emergency-resources/",
-        },
-        {
-            "file": "html/about/resume.md",
-            "old_permalink": "/about/resume/",
-            "new_permalink": "/resume/",
-        },
-        {
-            "file": "html/about/sullivan-michael-creds.md",
-            "old_permalink": "/about/credentials/",
-            "new_permalink": "/sullivan-michael-creds/",
-        },
-        {
-            "file": "html/collaborate/professionals.md",
-            "old_permalink": "/collaborate/professionals/",
-            "new_permalink": "/professionals/",
-        },
-        {
-            "file": "html/collaborate/community.md",
-            "old_permalink": "/collaborate/community/",
-            "new_permalink": "/community/",
-        },
-        {
-            "file": "html/hidden/sitemap.md",
-            "old_permalink": "/hidden/sitemap/",
-            "new_permalink": "/sitemap/",
-        },
-    ]
-
-    for fix in permalink_fixes:
-        if os.path.exists(fix["file"]):
-            print(
-                f"🔧 Fixing permalink in {fix['file']}: {fix['old_permalink']} → {fix['new_permalink']}"
-            )
-
-            with open(fix["file"], "r", encoding="utf-8") as f:
-                content = f.read()
-
-            # Replace permalink in front matter
-            if f"permalink: {fix['old_permalink']}" in content:
-                content = content.replace(
-                    f"permalink: {fix['old_permalink']}",
-                    f"permalink: {fix['new_permalink']}",
-                )
-
-                with open(fix["file"], "w", encoding="utf-8") as f:
-                    f.write(content)
-                print(f"   ✅ Fixed permalink")
-            else:
-                print(f"   ⚠️ Permalink not found in {fix['file']}")
-        else:
-            print(f"   ❌ File not found: {fix['file']}")
-
-
 def fix_internal_link_issues():
-    """Fix internal link case sensitivity and path issues."""
+    """Fix internal page links without mutating front matter."""
 
     link_fixes = [
         # Fix missing trailing slashes
@@ -151,12 +52,6 @@ def fix_internal_link_issues():
             "new": "/assets/documents/SullivanMichael_IT_AI_ML_Unix_A26047020020.pdf",
             "files": ["html/about/resume.md"],
         },
-        # Fix blog post permalink
-        {
-            "old": "permalink: /blog/",
-            "new": "permalink: /2024/09/27/Building-This-Site-With-AI/",
-            "files": ["html/_posts/2024-09-27-Building-This-Site-With-AI.md"],
-        },
     ]
 
     for fix in link_fixes:
@@ -169,16 +64,95 @@ def fix_internal_link_issues():
                 with open(file_path, "r", encoding="utf-8") as f:
                     content = f.read()
 
-                if fix["old"] in content:
-                    content = content.replace(fix["old"], fix["new"])
+                escaped_old = re.escape(fix["old"])
+                pattern = re.compile(rf"(?<![\w/]){escaped_old}(?!/)")
+                new_content, replacements = pattern.subn(fix["new"], content)
 
+                if replacements:
                     with open(file_path, "w", encoding="utf-8") as f:
-                        f.write(content)
+                        f.write(new_content)
                     print(f"   ✅ Fixed in {file_path}")
                 else:
                     print(f"   ⚠️ Link not found in {file_path}")
             else:
                 print(f"   ❌ File not found: {file_path}")
+
+
+def normalize_internal_page_links():
+    """Normalize internal page links across site content to slash-terminated form."""
+
+    print("\n🔧 Normalizing internal page links across site content...")
+
+    content_files = []
+    for root, dirs, files in os.walk("html"):
+        dirs[:] = [d for d in dirs if d not in {".jekyll-cache", "_site"}]
+        for name in files:
+            if name.endswith((".md", ".html")):
+                content_files.append(os.path.join(root, name))
+
+    markdown_link_re = re.compile(r"(\[[^\]]*\]\()(/[^)\s\"']*)(\))")
+    html_href_re = re.compile(r"""(href=["'])(/[^"' ]*)(["'])""")
+
+    def normalize_target(target: str) -> str:
+        if not target.startswith("/") or target.startswith("//"):
+            return target
+
+        path, hash_sep, fragment = target.partition("#")
+        path, query_sep, query = path.partition("?")
+
+        if (
+            not path
+            or path == "/"
+            or path.endswith("/")
+            or path.startswith("/assets/")
+            or path in {"/feed.xml", "/sitemap.xml", "/robots.txt", "/redirects.json"}
+        ):
+            return target
+
+        leaf = path.rsplit("/", 1)[-1]
+        if "." in leaf:
+            return target
+
+        normalized = f"{path}/"
+        if query_sep:
+            normalized += f"?{query}"
+        if hash_sep:
+            normalized += f"#{fragment}"
+        return normalized
+
+    updated_files = 0
+    replacement_count = 0
+
+    for file_path in content_files:
+        with open(file_path, "r", encoding="utf-8") as f:
+            content = f.read()
+
+        def replace_markdown(match):
+            nonlocal replacement_count
+            prefix, target, suffix = match.groups()
+            normalized = normalize_target(target)
+            if normalized != target:
+                replacement_count += 1
+            return f"{prefix}{normalized}{suffix}"
+
+        def replace_href(match):
+            nonlocal replacement_count
+            prefix, target, suffix = match.groups()
+            normalized = normalize_target(target)
+            if normalized != target:
+                replacement_count += 1
+            return f"{prefix}{normalized}{suffix}"
+
+        new_content = markdown_link_re.sub(replace_markdown, content)
+        new_content = html_href_re.sub(replace_href, new_content)
+
+        if new_content != content:
+            with open(file_path, "w", encoding="utf-8") as f:
+                f.write(new_content)
+            updated_files += 1
+            print(f"   ✅ Normalized links in {file_path}")
+
+    print(f"   📊 Updated {updated_files} files; normalized {replacement_count} links")
 
 
 def fix_missing_assets():
@@ -256,11 +230,11 @@ def main():
 
     print(f"\n🔧 Starting internal link and permalink fixes...")
 
-    # Fix permalink case issues
-    fix_permalink_case_issues()
-
     # Fix internal link issues
     fix_internal_link_issues()
+
+    # Normalize internal page links broadly
+    normalize_internal_page_links()
 
     # Fix missing assets
     fix_missing_assets()
@@ -270,10 +244,8 @@ def main():
 
     print(f"\n✅ Internal link and permalink fixes completed!")
     print(f"\n📋 Summary:")
-    print(f"   - Fixed project permalinks to match expected paths")
     print(f"   - Added missing trailing slashes to internal links")
     print(f"   - Fixed asset references")
-    print(f"   - Corrected blog post permalinks")
     print(f"\n⚠️ Note: These fixes ensure compatibility with GitHub Pages")
     print(f"   where case sensitivity matters for file paths.")
 

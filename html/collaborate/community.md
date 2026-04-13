@@ -22,7 +22,7 @@ We're building a thriving community of individuals who share their experiences, 
 - **Participants**: Join ongoing projects or support us through your involvement.
 - **Community Members**: Stay informed and contribute to discussions that drive our work forward.
 
-Ready to get involved? [Contact Us](/contact) or visit our [Projects Page](/projects) for more details on current initiatives.
+Ready to get involved? [Contact Us](/contact/) or visit our [Projects Page](/projects/) for more details on current initiatives.
 
 ---
 
@@ -30,6 +30,6 @@ Ready to get involved? [Contact Us](/contact) or visit our [Projects Page](/proj
 
 Show your appreciation for my projects and the work I'm doing. Help keep the community growing and the projects going through any of the following ways:
 
-- **[Buy Me a Coffee](https://buymeacoffee.com/unixwzrd)** – Make one-time donations or monthly support.
-- **[Ko-fi](https://ko-fi.com/unixwzrd)** – Make one-time donations or monthly support.
-- **[Patreon](https://patreon.com/unixwzrd)** – Subscribe for exclusive updates and perks.
+- **[Buy Me a Coffee](https://buymeacoffee.com/unixwzrd)** - Make one-time donations or monthly support.
+- **[Ko-fi](https://ko-fi.com/unixwzrd)** - Make one-time donations or monthly support.
+- **[Patreon](https://patreon.com/unixwzrd)** - Subscribe for exclusive updates and perks.

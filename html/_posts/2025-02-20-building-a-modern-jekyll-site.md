@@ -42,7 +42,7 @@ This is just the beginning. Over time, our goal is to **expand access**, providi
 
 The success of this project depends on collaboration. If you are a **legal professional, behavioral researcher, or parent seeking solutions**, we encourage you to reach out. Whether you are interested in testing the system, contributing data, or supporting this work financially, **your involvement can make a real impact**.
 
-If you want to be part of this effort, [get in touch](/contact). Together, we can ensure that the voices of alienated parents and children are no longer lost in the noise.
+If you want to be part of this effort, [get in touch](/contact/). Together, we can ensure that the voices of alienated parents and children are no longer lost in the noise.
 
 ## A Future Where AI Supports Advocacy
 

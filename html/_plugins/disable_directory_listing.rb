@@ -9,6 +9,22 @@ module WEBrick
     alias_method :original_do_GET, :do_GET
 
     def do_GET(req, res)
+      # Normalize slashless directory requests to the canonical slash form
+      # when an index file exists for that directory.
+      if !req.path.end_with?('/') && !req.path.match(/\.(html|css|js|png|jpg|jpeg|gif|svg|ico|json|xml|txt|md)$/)
+        index_files = ['index.html', 'index.md', 'index.markdown']
+        directory_path = @root + req.path + '/'
+        index_exists = index_files.any? { |file| File.exist?(directory_path + file) }
+
+        if index_exists
+          query = req.query_string ? "?#{req.query_string}" : ""
+          res.status = 301
+          res['Location'] = req.path + '/' + query
+          res.body = ""
+          return
+        end
+      end
+
       # Check if this is a request for a directory (ends with / and doesn't have a file extension)
       if req.path.end_with?('/') && !req.path.match(/\.(html|css|js|png|jpg|jpeg|gif|svg|ico|json|xml|txt|md)$/)
         # Check if index files exist
@@ -53,4 +69,4 @@ end
 # Register the plugin
 Jekyll::Hooks.register :site, :post_write do |site|
   Jekyll.logger.info "Directory listing disabled - will serve 404.html for missing index files"
-end 
+end
