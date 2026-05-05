@@ -95,6 +95,7 @@ Key settings for operations:
 
 - **Source**: [html/](../../html/) (site source directory)
 - **Destination**: [_site/](../../_site/) (build output)
+- **Short links**: `short_link_origin` in `_config.yml` must match the hashing used for `/s/<code>/` redirects (see [templates/blog-templates.md](../templates/blog-templates.md))
 - **Pagination**: Disabled (no blog posts on homepage)
 - **Collections**: Projects and project posts
 - **Plugins**: Email protection, feed, SEO, sitemap
@@ -132,8 +133,6 @@ Key settings for operations:
 - If anything goes wrong with the build or deployment, your source (`main`) is unaffected.
 - You can always rebuild and redeploy without risking your main branch.
 
-*This documentation should be updated whenever the operational procedures change.*
-
 ## Production Deployment
 
 ```bash
@@ -146,9 +145,29 @@ Key settings for operations:
 # 3. Deploy (GitHub Pages or other hosting)
 ```
 
+### CI parity (`bundle exec jekyll`)
+
+The live workflow ([`.github/workflows/jekyll.yml`](../../.github/workflows/jekyll.yml)) uses:
+
+```bash
+JEKYLL_ENV=production bundle exec jekyll build --trace
+```
+
+Run this from the **repository root**. `_config.yml` sets `source: html` and `destination: _site`.
+
+### Short links (`short_url`)
+
+If a post defines `short_url`, it must match the deterministic `/s/<code>/` derived from `short_link_origin` and the post's **source path under `html/`** (the `.md` file location), or the build fails.
+
+- Check: `bundle exec ruby scripts/backfill_short_url_front_matter.rb --check`
+- Fix: [templates/blog-templates.md](../templates/blog-templates.md) (full backfill after **file renames** or `short_link_origin` changes)
+
 ## Best Practices
 
 - Always validate the site before deploying
 - Use complete mode for production builds
 - Keep dependencies up to date
 - Review and update documentation regularly
+
+*Updated when deployment procedures change.*
+

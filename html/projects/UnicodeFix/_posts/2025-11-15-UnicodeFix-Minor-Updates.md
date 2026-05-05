@@ -1,4 +1,5 @@
 ---
+short_url: "https://unixwzrd.ai/s/3f1301a9a0/"
 layout: post
 title: "UnicodeFix Levels Up: Metrics, Forensics, and Bracket Discipline"
 image: /assets/images/projects/UnicodeFix/LevelsUp.png
@@ -213,3 +214,4 @@ If you're new:
 
 The Unicode arms race isn't slowing down.
 At least your side has better metrics now.
+

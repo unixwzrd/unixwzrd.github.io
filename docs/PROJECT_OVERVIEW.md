@@ -1,256 +1,138 @@
-# Project Overview: UnixWzrd Website
+# Project overview: unixwzrd.ai
 
-## Current Status: July 2025
+**Current status:** May 2026
 
-This document provides a high-level overview of the UnixWzrd website project, its current state, and roadmap. For detailed information, see the linked documentation.
+This is a working Jekyll repo for **[unixwzrd.ai](https://unixwzrd.ai)** - static site under [`html/`](../html/), plus operator tooling under [`utils/`](../utils/) and [`scripts/`](../scripts/). It is a **private workspace**, not a generic site template; see the root [README.md](../README.md) for license scope and contribution expectations.
 
-## 🎯 Project Mission
-
-A Jekyll-based website showcasing AI projects, technical content, and resources focused on:
-- AI/ML development tools and utilities
-- Parental alienation detection and prevention
-- Technical tutorials and guides
-- Open source contributions
-
-## 📊 Current State
-
-### 🎯 Recent Accomplishments (July 2025)
-- **Enhanced Site Reliability Monitor**: Improved output formatting, summary counts, verbose mode, and early exit logic
-- **Service Script Improvements**: Added `-r|--refresh` and `-n|--no-refresh` flags with smart defaults
-- **Redirect System**: Implemented Jekyll redirects for old URLs to maintain link integrity
-- **Smart Page Management**: Automatic sorting of critical pages and improved conflict handling
-- **404 Page Handling**: Fixed image checking logic to properly handle 404 pages
-
-### ✅ Completed Systems
-
-#### 1. **Core Website Infrastructure**
-- **Status**: ✅ Production Ready
-- **Location**: [html/](../html/) directory
-- **Features**:
-  - Jekyll-based static site generation
-  - Responsive design with custom CSS
-  - Blog system with multiple categories
-  - Project showcase pages
-  - SEO optimization
-  - Redirect system for URL changes
-- **Documentation**: [docs/guides/site-operations.md](guides/site-operations.md)
-
-#### 2. **Image Path Management System**
-- **Status**: ✅ Production Ready
-- **Location**: [utils/bin/fix_image_case_sensitivity.py](../utils/bin/fix_image_case_sensitivity.py)
-- **Features**:
-  - Automatic case sensitivity detection
-  - Cross-platform compatibility (macOS/Linux)
-  - Pre-commit integration
-  - File watcher for development
-- **Documentation**: [docs/guides/testing.md](guides/testing.md)
-
-#### 3. **Pre-commit Quality Assurance**
-- **Status**: ✅ Production Ready
-- **Location**: [utils/bin/](../utils/bin/) (multiple scripts)
-- **Features**:
-  - Image path validation
-  - Case sensitivity checks
-  - Link validation
-  - Code quality checks
-- **Documentation**: [docs/tools/pre-commit-checks.md](tools/pre-commit-checks.md)
-
-#### 4. **Site Reliability Monitoring**
-- **Status**: ✅ Production Ready
-- **Location**: [utils/bin/site_reliability_monitor.py](../utils/bin/site_reliability_monitor.py)
-- **Features**:
-  - Health checks and availability monitoring
-  - Post-commit deployment verification
-  - External link validation
-  - Email alerts and GitHub issue creation
-  - Missing page tracking and management
-  - Summary counts and verbose mode
-  - Early exit logic for site downtime
-  - Smart 404 page handling
-- **Documentation**: [docs/guides/monitoring.md](guides/monitoring.md)
-
-#### 5. **Service Management System**
-- **Status**: ✅ Production Ready
-- **Location**: [utils/bin/site-service](../utils/bin/site-service), [utils/bin/jekyll-site](../utils/bin/jekyll-site), [utils/bin/file_watcher](../utils/bin/file_watcher)
-- **Features**:
-  - Orchestrated service management
-  - Smart OG data refresh control (`-r|--refresh`, `-n|--no-refresh`)
-  - Individual service control (`-j|--jekyll`, `-w|--watcher`)
-  - Conflict resolution and warnings
-  - Fast restart defaults
-- **Documentation**: [docs/guides/site-operations.md](guides/site-operations.md)
-
-#### 6. **Automated Maintenance System**
-- **Status**: ✅ Production Ready
-- **Location**: [utils/bin/scheduled_tasks.py](../utils/bin/scheduled_tasks.py)
-- **Features**:
-  - Log rotation and compression
-  - Daily/weekly/monthly/quarterly tasks
-  - Configurable maintenance schedules
-  - Automated cleanup operations
-- **Documentation**: [docs/guides/site-operations.md](guides/site-operations.md)
-
-#### 7. **GitHub Actions Integration**
-- **Status**: ✅ Production Ready
-- **Location**: [.github/workflows/](../.github/workflows/)
-- **Features**:
-  - Automated site health checks
-  - Post-commit verification
-  - Issue creation for problems
-  - Periodic monitoring
-- **Documentation**: [docs/workflows/blog-publishing.md](workflows/blog-publishing.md)
-
-### 🔄 Active Projects
-
-#### 1. **LogGPT - ChatGPT Chat History Export**
-- **Status**: 🚀 In Development
-- **Location**: [projects/LogGPT/](../html/projects/LogGPT/)
-- **Description**: Safari extension for exporting ChatGPT conversations
-- **Progress**: Submitted to Apple App Store, awaiting review
-- **Documentation**: [projects/LogGPT/](../html/projects/LogGPT/)
-
-#### 2. **Case Analytics - Parental Alienation Detection**
-- **Status**: 🔬 Research & Development
-- **Location**: [projects/Case-Analytics/](../html/projects/Case-Analytics/)
-- **Description**: AI-powered system for detecting patterns in legal cases
-- **Progress**: Alpha testing phase
-- **Documentation**: [projects/Case-Analytics/](../html/projects/Case-Analytics/)
-
-#### 3. **TorchDevice - PyTorch Device Management**
-- **Status**: 🛠️ Active Development
-- **Location**: [projects/TorchDevice/](../html/projects/TorchDevice/)
-- **Description**: Python utility for managing PyTorch device configurations
-- **Progress**: Beta release 0.5.2 available
-- **Documentation**: [projects/TorchDevice/](../html/projects/TorchDevice/)
-
-#### 4. **VenvUtil - Virtual Environment Management**
-- **Status**: 🛠️ Active Development
-- **Location**: [projects/venvutil/](../html/projects/venvutil/)
-- **Description**: Python utility for managing virtual environments
-- **Progress**: Summer 2024 update released
-- **Documentation**: [projects/venvutil/](../html/projects/venvutil/)
-
-### 📚 Documentation Structure
-
-```
-docs/
-├── guides/                    # How-to guides and tutorials
-│   ├── site-operations.md     # Site maintenance and operations
-│   ├── site-reliability-monitoring.md  # Monitoring system guide
-│   ├── testing.md            # Testing procedures
-│   └── monitoring-strategy.md # Monitoring best practices
-├── tools/                     # Tool documentation
-│   └── pre-commit-checks.md   # Pre-commit system guide
-├── workflows/                 # Process documentation
-│   └── blog-publishing.md     # Publishing workflow
-└── templates/                 # Templates and examples
-    └── blog-templates.md      # Blog post templates
-```
-
-## 🗺️ Roadmap
-
-### Q1 2025 - System Optimization
-- [ ] **Refactor site reliability monitor** (High Priority)
-  - Break monolithic script into modular components
-  - Improve maintainability and testing
-  - Update all dependent scripts and documentation
-
-- [ ] **Enhanced Content Management**
-  - Implement automated content scheduling
-  - Add content performance analytics
-  - Improve SEO optimization
-
-### Q2 2025 - Feature Expansion
-- [ ] **Advanced Monitoring Features**
-  - Real-time performance monitoring
-  - User experience tracking
-  - Advanced alerting systems
-
-- [ ] **Project Portfolio Enhancement**
-  - Interactive project demos
-  - Live status indicators
-  - Community feedback integration
-
-### Q3-Q4 2025 - Scale and Growth
-- [ ] **Community Features**
-  - Comment system integration
-  - User contribution workflows
-  - Newsletter and subscription management
-
-- [ ] **Advanced Analytics**
-  - User behavior analysis
-  - Content performance optimization
-  - A/B testing framework
-
-## 🔧 Technical Stack
-
-### Core Technologies
-- **Static Site Generator**: Jekyll (Ruby)
-- **Hosting**: GitHub Pages
-- **Monitoring**: Custom Python scripts
-- **CI/CD**: GitHub Actions
-- **Email**: SMTP with OAuth2 support
-
-### Development Tools
-- **Pre-commit**: Quality assurance automation
-- **Python**: Monitoring and utility scripts
-- **Bash**: Automation and deployment scripts
-- **CSS/SCSS**: Custom styling with Minima theme
-
-## 📋 Quick Reference
-
-### Daily Operations
-1. **Content Updates**: Edit files in [html/_posts/](../html/_posts/) or [html/projects/](../html/projects/)
-2. **Project Metadata Updates**: Edit [html/_data/repos.yml](../html/_data/repos.yml) and regenerate [html/_data/github_projects.yml](../html/_data/github_projects.yml) with `python utils/bin/fetch_og.py`
-3. **Site Testing**: Run `utils/bin/site_reliability_monitor.py --mode health`
-4. **Pre-commit Checks**: Automatic via git hooks
-5. **Monitoring**: Automated via GitHub Actions and cron jobs
-
-### Emergency Procedures
-- **Site Down**: Check [docs/guides/site-reliability-checklist.md](guides/site-reliability-checklist.md)
-- **Broken Links**: Run external link validation
-- **Image Issues**: Use case sensitivity fix script
-- **Deployment Problems**: Review GitHub Actions logs
-
-### Key Files
-- **Configuration**: [utils/etc/site_monitor_config.json](../utils/etc/site_monitor_config.json)
-- **Monitoring**: [utils/bin/site_reliability_monitor.py](../utils/bin/site_reliability_monitor.py)
-- **Maintenance**: [utils/bin/scheduled_tasks.py](../utils/bin/scheduled_tasks.py)
-- **Documentation**: [docs/guides/](guides/) directory
-
-## 🤝 Contributing
-
-### For Developers
-1. Follow the pre-commit guidelines in [docs/tools/pre-commit-checks.md](tools/pre-commit-checks.md)
-2. Test changes locally before committing
-3. Update documentation for any new features
-4. Follow the monitoring checklist in [docs/guides/site-reliability-checklist.md](guides/site-reliability-checklist.md)
-
-### For Content Creators
-1. Use templates from [docs/templates/blog-templates.md](templates/blog-templates.md)
-2. Follow the publishing workflow in [docs/workflows/blog-publishing.md](workflows/blog-publishing.md)
-3. Ensure images follow case sensitivity guidelines
-4. Test content locally before publishing
-
-## 📞 Support and Maintenance
-
-### Regular Maintenance Tasks
-- **Daily**: Automated health checks via GitHub Actions
-- **Weekly**: Manual review of monitoring reports
-- **Monthly**: Content audit and link validation
-- **Quarterly**: System updates and security reviews
-
-### Contact and Resources
-- **Documentation**: See [docs/](.) directory for detailed guides
-- **Issues**: Use GitHub Issues for bug reports
-- **Monitoring**: Check [utils/log/](../utils/log/) for system logs
-- **Configuration**: Review [utils/etc/](../utils/etc/) for settings
-
-## Deployment Branches (Summary)
-
-For details on how GitHub Pages deployment branches work (including `gh-pages` and best practices), see [Site Operations Guide](guides/site-operations.md#github-pages-deployment-branches).
+**Documentation entry point:** [docs/README.md](README.md)
 
 ---
 
-*Last Updated: July 2025*
-*Next Review: August 2025*
+## What ships here
+
+| Area | Role |
+|------|------|
+| [`html/`](../html/) | Jekyll source (layouts, posts, projects, assets). |
+| [`utils/bin/`](../utils/bin/) | Validation (`check_site.sh` + `checks/`), local services, `fetch_og.py`, monitoring, fix-up scripts. |
+| [`scripts/`](../scripts/) | Jekyll helpers (e.g. [`backfill_short_url_front_matter.rb`](../scripts/backfill_short_url_front_matter.rb)). |
+| [`.github/workflows/`](../.github/workflows/) | CI - production Jekyll build and GitHub Pages deploy. |
+
+**Utilities catalog (clickable index):** [utils/README.md](../utils/README.md)
+
+---
+
+## Recent changes (2025-2026)
+
+- **Short links (`/s/<code>/`)** - Deterministic redirects; hash tied to each post **file path** under `html/` (edits to title/date/slug do not change the code). Plugins: [`html/_plugins/01_short_link_injector.rb`](../html/_plugins/01_short_link_injector.rb), [`00_project_post_permalink.rb`](../html/_plugins/00_project_post_permalink.rb) (optional `slug:`). Ops: [templates/blog-templates.md](templates/blog-templates.md), optional [`.pre-commit-config.yaml`](../.pre-commit-config.yaml) for staged posts.
+- **`utils/README.md`** - Central index of maintenance scripts with relative links.
+- **Root `README` + `LICENSE`** - README centers on tooling; MIT applies to `utils/` and `scripts/` only; `html/` remains all rights reserved (see [LICENSE](../LICENSE)).
+- **Docs refresh** - [guides/deployment.md](guides/deployment.md) (CI parity, `short_url`), [README.md](README.md) index, troubleshooting and publishing notes aligned with current behavior.
+- **Monitoring / checks** - Existing stack documented in [guides/monitoring.md](guides/monitoring.md) and [tools/pre-commit-checks.md](tools/pre-commit-checks.md); behavior unchanged at a high level.
+
+---
+
+## Operational systems (summary)
+
+All are "in use" for day-to-day maintenance unless noted.
+
+1. **Site** - Jekyll + Minima-derived styling; project blogs under `html/projects/`; [site-operations.md](guides/site-operations.md).
+2. **Checks** - [`utils/bin/check_site.sh`](../utils/bin/check_site.sh) and [`utils/bin/checks/`](../utils/bin/checks/).
+3. **Project cards / OG** - [`utils/bin/fetch_og.py`](../utils/bin/fetch_og.py) + [`html/_data/repos.yml`](../html/_data/repos.yml) → `github_projects.yml` (generated).
+4. **Local dev** - [`utils/bin/site-service`](../utils/bin/site-service), [`jekyll-site`](../utils/bin/jekyll-site), watchers as needed.
+5. **Monitoring** - [`utils/bin/site_reliability_monitor.py`](../utils/bin/site_reliability_monitor.py), config under [`utils/etc/`](../utils/etc/).
+6. **CI/CD** - GitHub Actions build + Pages; see [deployment.md](guides/deployment.md) and [github-actions.md](guides/github-actions.md).
+
+Image-path and link hygiene tools remain listed in [utils/README.md](../utils/README.md) and [testing.md](guides/testing.md).
+
+---
+
+## Project pages on the site
+
+Landing pages for individual efforts live under [`html/projects/`](../html/projects/) (e.g. LogGPT, Case Analytics, TorchDevice, VenvUtil, Secrets Kit, and others). **Source of truth for shipping status** is each project's own repo and its site page - not this overview. Use the site navigation or repo tree for the current list.
+
+---
+
+## Documentation layout
+
+```
+docs/
+├── README.md                 # Index (start here)
+├── PROJECT_OVERVIEW.md       # This file
+├── guides/
+│   ├── site-operations.md    # Hub for ops guides
+│   ├── deployment.md         # Build & Pages
+│   ├── monitoring.md         # Reliability monitor
+│   ├── testing.md            # Validation & HTMLProofer
+│   ├── troubleshooting.md    # Common failures
+│   ├── checklist.md          # Improvement / triage list
+│   ├── github-actions.md     # Workflow overview
+│   └── ...                     # environment, security, strategy, etc.
+├── tools/
+│   └── pre-commit-checks.md  # check_site.sh / checks/
+├── workflows/
+│   └── blog-publishing.md
+└── templates/
+    └── blog-templates.md     # Posts, slug, short URLs
+```
+
+Historical snapshot (July 2025): [guides/site-operations-archive-2025-07-09.md](guides/site-operations-archive-2025-07-09.md)
+
+---
+
+## Direction / backlog
+
+Priorities drift with actual projects; treat this as **ideas**, not a dated commitment.
+
+- **Monitor & checks** - Optional modularization of the reliability monitor; keep docs and `utils/README` in sync when scripts move.
+- **Content** - Ongoing posts and project updates via normal publishing flow ([workflows/blog-publishing.md](workflows/blog-publishing.md)).
+- **Hygiene** - Image optimization, a11y, spell-check: see [checklist.md](guides/checklist.md).
+
+Large "community platform" items (comments, newsletters, A/B testing) remain **out of scope** unless explicitly reprioritized.
+
+---
+
+## Technical stack (short)
+
+- **Jekyll** (Ruby), **GitHub Pages**, **GitHub Actions**
+- **Python** - monitoring, `fetch_og`, many utilities
+- **Bash** - `check_site.sh`, check scripts, glue
+
+---
+
+## Quick reference
+
+| Task | Where |
+|------|--------|
+| Full check suite | `./utils/bin/check_site.sh` (repo root) |
+| Production-style build | `JEKYLL_ENV=production bundle exec jekyll build` |
+| OG / project YAML | `python utils/bin/fetch_og.py` (see [reference-utilities.md](guides/reference-utilities.md)) |
+| Short URL drift | `bundle exec ruby scripts/backfill_short_url_front_matter.rb --check` |
+| Broken build | [troubleshooting.md](guides/troubleshooting.md), [deployment.md](guides/deployment.md) |
+| Triage / ideas | [checklist.md](guides/checklist.md) |
+
+---
+
+## Contributing
+
+Aligned with the root [README.md](../README.md): **tooling and automation** (`utils/`, `scripts/`, docs for those) are the useful surface for outsiders; **site copy and design** in `html/` are not solicited as drive-by PRs.
+
+---
+
+## Maintenance rhythm
+
+- **Automated** - GitHub Actions builds; optional cron / monitor per your machine setup ([monitoring.md](guides/monitoring.md)).
+- **Manual** - Periodic pass over [checklist.md](guides/checklist.md), dependency bumps, link audits when needed.
+
+**Logs / config** - [`utils/log/`](../utils/log/), [`utils/etc/`](../utils/etc/) (adjust paths if you relocate them).
+
+---
+
+## Deployment (GitHub Pages)
+
+Branch and workflow behavior is summarized in [guides/deployment.md](guides/deployment.md#github-pages-deployment-branches) and linked from [site-operations.md](guides/site-operations.md).
+
+---
+
+**Last updated:** 2026-05-02
+**Next review:** When major tooling or hosting changes - or quarterly, whichever comes first.
+

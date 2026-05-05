@@ -4,7 +4,19 @@
 
 The pre-commit check system ensures code quality and consistency by running a series of validations before each commit. It's implemented through `utils/bin/check_site.sh` and its associated check scripts.
 
-## Location
+**File listing:** [../../utils/README.md](../../utils/README.md) (validation and checks section).
+
+## Optional: `short_url` hook (pre-commit framework)
+
+Separate from `utils/bin/check_site.sh`, the repo may include a **[`.pre-commit-config.yaml`](../../.pre-commit-config.yaml)** hook (the `pre-commit` Python tool) that runs:
+
+`bundle exec ruby scripts/backfill_short_url_front_matter.rb`
+
+with **`pass_filenames: true`** for paths under `html/**/_posts/`. That only **rewrites `short_url`** on staged post files (still one Jekyll load for collision checks). Install: `pip install pre-commit && pre-commit install`.
+
+Use **[templates/blog-templates.md](../templates/blog-templates.md)** for full backfill, `--check`, and `--staged` semantics.
+
+## Location (site check scripts)
 
 - Main script: `utils/bin/check_site.sh`
 - Check scripts: `utils/bin/checks/*.sh`
@@ -44,6 +56,20 @@ Ensures consistent URL structure:
 - Validates permalink format
 - Checks for missing permalinks
 - Ensures unique URLs
+
+### 3. Jekyll doctor (03_jekyll_doctor.sh)
+
+```bash
+./utils/bin/check_site.sh --run 03_jekyll_doctor
+```
+
+Runs `bundle exec jekyll doctor`. **By default this check does not fail the suite** if doctor exits non-zero: on macOS, doctor often reports "URLs only differ by case" (APFS is usually case-insensitive) while `jekyll build` and GitHub Pages (Linux) still behave. Read the printed output.
+
+To **fail commits** when doctor is unhappy:
+
+```bash
+STRICT_JEKYLL_DOCTOR=1 ./utils/bin/check_site.sh --run 03_jekyll_doctor
+```
 
 ### 4. Link Checker (04_link_checker.sh)
 
@@ -209,3 +235,4 @@ exit 0
 - Implement parallel check execution
 - Add more detailed reporting
 - Create check dependencies system
+

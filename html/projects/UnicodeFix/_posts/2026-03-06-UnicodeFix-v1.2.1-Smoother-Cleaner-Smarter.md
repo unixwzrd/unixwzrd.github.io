@@ -1,4 +1,5 @@
 ---
+short_url: "https://unixwzrd.ai/s/59dac1e575/"
 layout: post
 title: "UnicodeFix v1.2.1: Smoother Installs, Cleaner Reports, Less Weirdness"
 image: /assets/images/projects/UnicodeFix/Wolf-Edition-Enhancements.png
@@ -242,3 +243,4 @@ This project evolves because people keep finding new ways for text to become cur
 UnicodeFix is how we un-curse it.
 
 * - Mia & the unixwzrd*
+

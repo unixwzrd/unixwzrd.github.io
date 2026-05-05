@@ -1,4 +1,5 @@
 ---
+short_url: "https://unixwzrd.ai/s/4e1bd2bb19/"
 layout: post
 title: "Introducing Mlx Harmony"
 date: 2026-01-14
@@ -46,3 +47,4 @@ We welcome contributions and feedback. Here's how you can get involved:
 - Contribute to development
 
 [Contact us](/contact/) to learn more about participating in this project.
+

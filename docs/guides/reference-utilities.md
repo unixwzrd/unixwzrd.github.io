@@ -1,6 +1,11 @@
 # Reference & Utilities
 
+**Created:** 2025-07-10
+**Updated:** 2026-05-02
+
 [← Back to Site Operations Guide](site-operations.md)
+
+**Script catalog (paths and short descriptions):** [../../utils/README.md](../../utils/README.md)
 
 <!-- TOC will be auto-generated here -->
 
@@ -23,6 +28,15 @@ cact python-website-dev
 
 # Full validation
 ./utils/bin/check_site.sh
+
+# Production-style Jekyll build (same as .github/workflows/jekyll.yml)
+JEKYLL_ENV=production bundle exec jekyll build --trace
+
+# short_url in front matter vs hash of source path (no file writes)
+bundle exec ruby scripts/backfill_short_url_front_matter.rb --check
+
+# Include future-dated posts in build (optional local check)
+bundle exec jekyll build --future
 
 # Environment setup
 source .env/project.env
@@ -277,5 +291,6 @@ This integration ensures that:
 3. **Low Priority**: Set up advanced tracking and conversion goals
 
 See TODO.md and site-improvement-checklist.md for detailed task breakdown.
+
 
 

@@ -1,4 +1,5 @@
 ---
+short_url: "https://unixwzrd.ai/s/adbd190dcc/"
 layout: post
 title: "Introducing LogGPT: One-Click ChatGPT Conversation Export with Full Privacy"
 date: 2025-04-16
@@ -80,3 +81,4 @@ We welcome contributions, feedback, and feature requests!
 - Visit our [GitHub repository](https://github.com/unixwzrd/LogGPT)
 - Open an issue or pull request
 - Join the discussion and help shape the future of LogGPT
+

@@ -1,6 +1,6 @@
 # Site Improvement Checklist
 
-*Last Updated: July 01, 2025*
+*Last updated: 2026-05-02*
 
 ## Overview
 This document outlines a comprehensive plan to address warnings, improve site structure, and enhance the overall quality of the Jekyll website. It consolidates both site improvements and reliability monitoring tasks into one unified checklist.
@@ -155,6 +155,7 @@ This document outlines a comprehensive plan to address warnings, improve site st
 - [x] **Image validation** - Integrated into pre-commit checks
 - [x] **Broken link detection** - External link validation implemented
 - [x] **Case sensitivity checks** - Image path validation
+- [x] **Short URLs (`/s/`)** - Hashes use each post **file path** under `html/`; `short_url` validated in build; sync via `scripts/backfill_short_url_front_matter.rb` after renames or `short_link_origin` changes (optional [`.pre-commit-config.yaml`](../../.pre-commit-config.yaml) for staged posts)
 - [ ] **Add spell checking** for content
 - [ ] **Add accessibility checks** (alt text for images, etc.)
 
@@ -340,4 +341,5 @@ This document outlines a comprehensive plan to address warnings, improve site st
 
 ---
 
-*Last Updated: July 01, 2025* 
+*Last updated: 2026-05-02*
+

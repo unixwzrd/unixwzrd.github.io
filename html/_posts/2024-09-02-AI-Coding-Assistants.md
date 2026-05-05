@@ -1,8 +1,9 @@
 ---
+short_url: "https://unixwzrd.ai/s/3e98bb95fa/"
 layout: post
 title: "AI Coding Assistants"
 redirect_from:
-  - /2024/09/02/AI-Coding-Assistants/
+  - /2024/09/02/ai-coding-assistants/
 date: 2024-09-02 07:30:00 -0500
 categories: [technology]
 tags: [ai, coding-assistants, developer-tools, vscode, macos, website-development]
@@ -27,3 +28,4 @@ You can check out Codeium on their website. They have a free version available, 
 If you want to give Codeium a try head over to [Codeium](https://codeium.com) and check it out.
 
 Add your thoughts or questions about the topic [2024-08-02 AI Coding Assistants](https://github.com/unixwzrd/unixwzrd.github.io/discussions/5)
+

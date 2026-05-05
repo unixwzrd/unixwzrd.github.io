@@ -1,4 +1,5 @@
 ---
+short_url: "https://unixwzrd.ai/s/4164d53773/"
 layout: post
 title: "Introducing LLM Ops Kit"
 date: 2026-03-09
@@ -131,3 +132,4 @@ If this kind of tooling saves you time, reduces hosting costs, or helps you keep
 - [Patreon](https://patreon.com/unixwzrd)
 - [Ko-fi](https://ko-fi.com/unixwzrd)
 - [Buy Me a Coffee](https://buymeacoffee.com/unixwzrd)
+

@@ -1,4 +1,5 @@
 ---
+short_url: "https://unixwzrd.ai/s/0380074875/"
 layout: post
 title: "UnicodeFix - Wolf Edition v1.2.0 (It Solves Problems.) Now with API support."
 image: /assets/images/projects/UnicodeFix/Wolf-Edition.png
@@ -333,3 +334,4 @@ This project evolves because people keep finding new ways for text to become cur
 UnicodeFix is how we un-curse it.
 
 * - Mia & the unixwzrd*
+

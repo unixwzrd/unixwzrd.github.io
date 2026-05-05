@@ -1,4 +1,5 @@
 ---
+short_url: "https://unixwzrd.ai/s/a9ed46690c/"
 layout: post
 title: "Parental Alienation Awareness - Part 4"
 date: 2025-09-25
@@ -55,3 +56,4 @@ Overall, the legal system is in a delicate balancing act: **how to protect child
 <td style="width: 50%; text-align: right;"><a href="/projects/PA-Awareness-1/2025/09/25/parental-alienation-awareness-part-5/">Part 5: Systemic and Societal Impact →</a></td>
 </tr>
 </table>
+

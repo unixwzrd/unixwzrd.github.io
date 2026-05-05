@@ -13,7 +13,7 @@ Below you'll find an overview of each major area of site operations, with links 
    Scripts and workflows for starting, stopping, and monitoring Jekyll and related services.
 
 - **[Deployment](deployment.md)**
-   Steps and best practices for deploying the site to production, including GitHub Actions and manual deployment.
+   Deploy and build (GitHub Actions, local production build, GitHub Pages branches).
 
 - **[Blog Listing & Pagination](blog-pagination.md)**
    How blog listings and pagination work, including configuration, customization, and client-side navigation.
@@ -45,4 +45,8 @@ Below you'll find an overview of each major area of site operations, with links 
 - **[Checklist](checklist.md)**
    Comprehensive checklist for site improvements, maintenance tasks, and project tracking.
 
-Each section contains detailed, up-to-date instructions and is maintained separately for clarity and ease of use.
+- **[Blog templates & short links](../templates/blog-templates.md)**
+   Post structure, optional `slug` for project URLs, `/s/<code>/` short links (hash uses the post **path under `html/`**, not the live permalink), backfill script, and optional pre-commit hook (repo root [`.pre-commit-config.yaml`](../../.pre-commit-config.yaml)).
+
+Each section contains detailed instructions and is maintained in smaller files for easier updates.
+

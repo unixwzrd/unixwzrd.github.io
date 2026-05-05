@@ -1,9 +1,10 @@
 ---
+short_url: "https://unixwzrd.ai/s/ca959fd361/"
 layout: post
 image: /assets/images/projects/TorchDevice/TorchDevice001.png
 title: "Announcing TorchDevice 0.0.5 Beta - Transparent Hardware Redirection for PyTorch"
 redirect_from:
-  - /projects/TorchDevice/2025/03/10/new-0-0-05-TorchDEvice-release/
+  - /projects/TorchDevice/2025/03/10/new-0-0-05-torchdevice-release/
 date: "2025-03-05"
 category: TorchDevice
 tags: [introduction, overview, pytorch, apple-silicon, mps, cuda]
@@ -72,3 +73,4 @@ If you find this useful help support my work;
   - [Ko-Fi](https://ko-fi.com/unixwzrd)
 
 Your feedback drives our roadmap. Let's make PyTorch more accessible and efficient for everyone.
+

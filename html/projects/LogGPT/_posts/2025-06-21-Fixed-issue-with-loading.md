@@ -1,4 +1,5 @@
 ---
+short_url: "https://unixwzrd.ai/s/a9e3ebad01/"
 layout: post
 title: "LogGPT: NEW 1.0.6 - Fixed issue with loading"
 date: 2025-06-21
@@ -8,7 +9,7 @@ excerpt: "Just as Apple approved the second release of LogGPT, OpenAI quietly ch
 image: /assets/images/projects/LogGPT/Icon-512-download.png
 published: true
 redirect_from:
-  - /projects/LogGPT/2025/06/21/Fixed-issue-with-loading/
+  - /projects/LogGPT/2025/06/21/fixed-issue-with-loading/
 ---
 
 Just as Apple approved the second release of LogGPT, OpenAI quietly changed the Document Object Model (DOM) on ChatGPT's site-breaking the download button injection.
@@ -47,3 +48,4 @@ Once all files are uploaded, I will provide your initial instructions, and we wi
 ```
 
 Be sure to change the file count, overlap and anything else that is needed to make it work for your use case.
+

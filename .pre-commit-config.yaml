@@ -1,0 +1,16 @@
+# https://pre-commit.com
+#
+# Install: pip install pre-commit && pre-commit install
+#
+# This hook only runs when Markdown under html/**/_posts/ is staged. It updates
+# short_url for those files only (~1s; does not rewrite the whole site).
+repos:
+  - repo: local
+    hooks:
+      - id: short-url-front-matter
+        name: Sync short_url in staged posts
+        language: system
+        entry: bundle exec ruby scripts/backfill_short_url_front_matter.rb
+        pass_filenames: true
+        files: ^html/(.*/)?_posts/.*\.md$
+

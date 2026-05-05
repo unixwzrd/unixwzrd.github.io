@@ -1,4 +1,5 @@
 ---
+short_url: "https://unixwzrd.ai/s/45bcbed622/"
 layout: post
 title: "LogGPT: NEW 1.0.5 - Your ChatGPT Conversations, Exported with Privacy & Ease"
 date: 2025-06-11
@@ -8,7 +9,7 @@ excerpt: "After a long journey through Apple's review process, I'm thrilled to a
 image: /assets/images/projects/LogGPT/Icon-512-download.png
 published: true
 redirect_from:
-  - /projects/LogGPT/2025/06/11/Second-release-approved/
+  - /projects/LogGPT/2025/06/11/second-release-approved/
 ---
 
 After a long journey through Apple's review process, I'm thrilled to announce that **LogGPT**, the Safari extension designed to let you **export your entire ChatGPT conversation history as structured JSON files**, is now officially available on the Apple App Store!
@@ -58,3 +59,4 @@ LogGPT is open source! You can build the extension yourself using the [GitHub re
 If you find LogGPT useful and want to support continued development, consider a small purchase on the Mac App Store or support me directly via [Patreon](https://patreon.com/unixwzrd) or [Ko-Fi](https://ko-fi.com/unixwzrd).
 
 Stay tuned for more posts on advanced usage tips, integration with AI pipelines, and updates on new features!
+

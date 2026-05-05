@@ -1,4 +1,5 @@
 ---
+short_url: "https://unixwzrd.ai/s/be12e139a0/"
 layout: post
 title: "Parental Alienation Awareness - References"
 date: 2025-09-25
@@ -51,3 +52,4 @@ published: true
 <td style="width: 50%; text-align: right;"><a href="/projects/PA-Awareness-1/2025/09/25/parental-alienation-awareness-introduction/">Introduction →</a></td>
 </tr>
 </table>
+

@@ -1,4 +1,5 @@
 ---
+short_url: "https://unixwzrd.ai/s/84ee9c68e5/"
 layout: post
 title: "UnicodeFix: 2025-07-28: Extended ASCII, Global Ready"
 image: /assets/images/projects/UnicodeFix/8-bit-extended-ASCII.png
@@ -24,3 +25,4 @@ cat résumé.txt | cleanup-text > resume.txt
 Stay human. Stay global. UnicodeFix it.
 
 * *Mia & the Unixwzrd*
+

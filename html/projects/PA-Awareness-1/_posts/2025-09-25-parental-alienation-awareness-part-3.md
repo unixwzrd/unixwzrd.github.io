@@ -1,4 +1,5 @@
 ---
+short_url: "https://unixwzrd.ai/s/3fbbda291b/"
 layout: post
 title: "Parental Alienation Awareness - Part 3"
 date: 2025-09-25
@@ -48,3 +49,4 @@ In sum, **parental alienation exacts a severe psychological toll on everyone dir
 <td style="width: 50%; text-align: right;"><a href="/projects/PA-Awareness-1/2025/09/25/parental-alienation-awareness-part-4/">Part 4: Divorce, Custody, and Legal System →</a></td>
 </tr>
 </table>
+

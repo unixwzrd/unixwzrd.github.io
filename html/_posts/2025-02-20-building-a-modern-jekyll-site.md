@@ -1,4 +1,5 @@
 ---
+short_url: "https://unixwzrd.ai/s/d233079bbb/"
 image: /assets/images/projects/Case-Analytics/boy-robot-road-unizwzrd-mia-watching.png
 layout: post
 title: "Harnessing AI for Change: The Next Chapter for Distributed Thinking Systems"
@@ -51,3 +52,4 @@ Parental alienation is not just a legal issue; it is an emotional and psychologi
 This is a turning point. The technology is here. The need is urgent. And the time to act is now.
 
 Stay tuned for updates as we move into the next phase, and if you believe in this mission, let's work together to bring this vision to life.
+

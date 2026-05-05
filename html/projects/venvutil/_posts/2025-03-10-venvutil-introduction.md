@@ -1,4 +1,5 @@
 ---
+short_url: "https://unixwzrd.ai/s/0caba8cd42/"
 image: /assets/images/default-og-image.png
 title: "Powerful Tools for Python Virtual Environment Management"
 redirect_from:
@@ -51,3 +52,4 @@ We plan further expansions including:
 Join us in shaping the future of Python development workflows. Your feedback, bug reports, and contributions help make these tools invaluable.
 
 Explore the project and contribute on [GitHub](https://github.com/unixwzrd/venvutil).
+

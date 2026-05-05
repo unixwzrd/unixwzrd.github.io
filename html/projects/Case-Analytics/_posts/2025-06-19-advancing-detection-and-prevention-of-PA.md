@@ -1,4 +1,5 @@
 ---
+short_url: "https://unixwzrd.ai/s/cf4fd056e7/"
 excerpt: "Parental alienation remains one of the most difficult and heartbreaking challenges in high-conflict family dynamics. When one parent actively undermines the child's relationship with the other, the consequences can be devastating. Unfortunately, these behaviors often manifest subtly-through messages, emails, transcripts, and voice communications-that are difficult to analyze manually."
 image: /assets/images/projects/Case-Analytics/boy-robot-road-unizwzrd-mia-watching.png
 title: "Parental Alienation Detection and Prevention using Artificial Intelligence Analytics"
@@ -8,7 +9,7 @@ tags: [alpha-release, ai-analysis, parental-alienation, family-law, communicatio
 date: 2025-06-19
 published: true
 redirect_from:
-  - /projects/Case-Analytics/2025/06/19/advancing-detection-and-prevention-of-PA/
+  - /projects/Case-Analytics/2025/06/19/advancing-detection-and-prevention-of-pa/
 ---
 
 Parental alienation remains one of the most difficult and heartbreaking challenges in high-conflict family dynamics. When one parent actively undermines the child's relationship with the other, the consequences can be devastating. Unfortunately, these behaviors often manifest subtly-through messages, emails, transcripts, and voice communications-that are difficult to analyze manually.
@@ -68,3 +69,4 @@ For clients, we provide a tailored service to convert and onboard case data into
 Developing and maintaining such an advanced system requires ongoing resources. We welcome opportunities for sponsorships, partnerships, and client engagements to sustain development and broaden impact.
 
 If you or your organization are interested in testing the system, providing data, or collaborating to combat parental alienation through AI-powered analytics and support services, please reach out. Together, we can make a meaningful difference for families caught in the crossfire of conflict.
+

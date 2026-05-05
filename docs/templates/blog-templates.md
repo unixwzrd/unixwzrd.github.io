@@ -42,10 +42,10 @@ When working with the post layout, remember that all frontmatter variables are a
 The blog list component (`_includes/blog_list.html`) provides a consistent way to display lists of blog posts across the site. It can be included in any page with parameters:
 
 ```liquid
-{% include blog_list.html 
-   heading="Latest Posts" 
-   limit=5 
-   category="project-name" 
+{% include blog_list.html
+   heading="Latest Posts"
+   limit=5
+   category="project-name"
 %}
 ```
 
@@ -73,7 +73,7 @@ To use pagination, the template must be an HTML file (not Markdown) and must inc
   {% if paginator.previous_page %}
     <a href="{{ paginator.previous_page_path | relative_url }}">&laquo; Prev</a>
   {% endif %}
-  
+
   {% for page in (1..paginator.total_pages) %}
     {% if page == paginator.page %}
       <span class="current-page">{{ page }}</span>
@@ -81,7 +81,7 @@ To use pagination, the template must be an HTML file (not Markdown) and must inc
       <a href="{% if page == 1 %}{{ '/blog/' | relative_url }}{% else %}{{ site.paginate_path | relative_url | replace: ':num', page }}{% endif %}">{{ page }}</a>
     {% endif %}
   {% endfor %}
-  
+
   {% if paginator.next_page %}
     <a href="{{ paginator.next_page_path | relative_url }}">Next &raquo;</a>
   {% endif %}
@@ -108,6 +108,16 @@ projects/
 │       └── YYYY-MM-DD-project1-title.md
 ```
 
+### Project post URL slug (`slug`)
+
+Permalinks for project posts are built from **`title`**, so a heading like `Secrets Kit 1.2:` becomes `secrets-kit-1-2-...` in the path. To use a shorter, stable segment without changing the visible title, set an explicit slug:
+
+```yaml
+slug: launchd-seckit-run-and-invisible-env-vars
+```
+
+(`slug` is normalized the same way as title-derived slugs: lowercased, non-alphanumeric → hyphens.)
+
 ## Troubleshooting
 
 ### Post Title Not Displaying
@@ -130,4 +140,42 @@ Verify that:
 - Posts have the correct category/tag if filtering is used
 - Posts have proper frontmatter
 - Posts are in the correct directory
-- Posts have a future date if `future: false` is set in config 
+- Posts have a future date if `future: false` is set in config
+
+## Social short URLs (`/s/`)
+
+Posts get a deterministic short link for cut-and-paste on social:
+
+- **Front matter:** `short_url: "https://unixwzrd.ai/s/<10 hex chars>/"` (optional but recommended; the build **validates** it if present).
+- **Mechanism:** [`html/_plugins/01_short_link_injector.rb`](../../html/_plugins/01_short_link_injector.rb) (via [`case_preserving_permalinks.rb`](../../html/_plugins/case_preserving_permalinks.rb)) appends `/s/<code>/` to `redirect_from` using `SHA256(short_link_origin + "/" + <relative path>)`, where the relative path is the post file under `html/` (e.g. `projects/Foo/_posts/2026-01-01-slug.md`). Title, date, `slug`, and permalink edits do **not** change the code; **renaming or moving** the `.md` file does. [`jekyll-redirect-from`](https://github.com/jekyll/jekyll-redirect-from) serves the redirect.
+- **Config:** `short_link_origin` in [`_config.yml`](../../_config.yml) (default `https://unixwzrd.ai`).
+
+**Backfill** front matter after adding the plugin, changing `short_link_origin`, or **renaming/moving** post files:
+
+```bash
+bundle exec ruby scripts/backfill_short_url_front_matter.rb --dry-run
+bundle exec ruby scripts/backfill_short_url_front_matter.rb
+```
+
+**Staged posts only** (fast; use from pre-commit or by hand):
+
+```bash
+bundle exec ruby scripts/backfill_short_url_front_matter.rb html/projects/MyProject/_posts/2026-01-01-example.md
+bundle exec ruby scripts/backfill_short_url_front_matter.rb --staged   # git index: cached paths only
+```
+
+**Check without writing** (CI or sanity check):
+
+```bash
+bundle exec ruby scripts/backfill_short_url_front_matter.rb --check
+bundle exec ruby scripts/backfill_short_url_front_matter.rb --check --staged
+```
+
+**Pre-commit:** optional [`.pre-commit-config.yaml`](../../.pre-commit-config.yaml) runs the script with `pass_filenames: true`, so only **staged** files under `html/**/_posts/` are updated. Jekyll still loads the full site once (~1s) for collision checks; it does **not** rescan every post on disk unless you run a **full** backfill with no path arguments.
+
+**Local test:** `bundle exec jekyll serve` then open `http://localhost:4000/s/<code>/` (code from a post's `short_url`, or list `_site/s/` after build). Posts dated in the future are skipped until their date unless `future: true` in config or you run `jekyll build --future`.
+
+**Verify:** `bundle exec jekyll build` (should succeed); optional `ls _site/s/` for redirect folders; open one `_site/s/<code>/index.html` and confirm canonical target URL.
+
+**Updated:** 2026-05-02
+

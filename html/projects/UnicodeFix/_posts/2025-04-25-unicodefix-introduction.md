@@ -1,4 +1,5 @@
 ---
+short_url: "https://unixwzrd.ai/s/e46cbed77a/"
 layout: post
 title: "UnicodeFix: The Day Invisible Characters Broke Everything"
 image: /assets/images/projects/UnicodeFix/hidden-unicode.png
@@ -220,3 +221,4 @@ If you found all this helpful, you may download the GitHub repository from the l
 Get it on my GitHub: [https://github.com/unixwzrd/UnicodeFix](https://github.com/unixwzrd/UnicodeFix)
 
 Let us know what features you might like to see in the future.
+

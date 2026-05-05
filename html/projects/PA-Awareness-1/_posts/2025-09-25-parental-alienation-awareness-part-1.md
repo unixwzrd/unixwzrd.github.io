@@ -1,4 +1,5 @@
 ---
+short_url: "https://unixwzrd.ai/s/ac3b81b027/"
 layout: post
 title: "Parental Alienation Awareness - Part 1"
 date: 2025-09-25
@@ -43,3 +44,4 @@ International data echo these patterns. A 2025 U.K. survey of 1,000 separated pa
 <td style="width: 50%; text-align: right;"><a href="/projects/PA-Awareness-1/2025/09/25/parental-alienation-awareness-part-2/">Part 2: Perpetrators and Victims →</a></td>
 </tr>
 </table>
+

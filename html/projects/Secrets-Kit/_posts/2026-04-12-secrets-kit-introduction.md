@@ -1,4 +1,5 @@
 ---
+short_url: "https://unixwzrd.ai/s/0a859e361c/"
 layout: post
 title: "Introducing Secrets Kit"
 date: 2026-04-12
@@ -78,3 +79,4 @@ The repository and documentation are here:
 If you want the project overview rather than the dated launch write-up, start here instead:
 
 [Secrets Kit project page](/projects/Secrets-Kit/)
+

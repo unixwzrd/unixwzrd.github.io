@@ -5,7 +5,7 @@
   "forks_count": 1,
   "language": "Shell",
   "name": "venvutil",
-  "open_issues_count": 1,
+  "open_issues_count": 0,
   "owner": "unixwzrd",
   "stargazers_count": 6,
   "title": "VenvUtil",
@@ -13,13 +13,14 @@
     {
       "color": "#89e051",
       "name": "Shell",
-      "share": "78%"
+      "share": "79%"
     },
     {
       "color": "#3572A5",
       "name": "Python",
-      "share": "22%"
+      "share": "21%"
     }
   ],
-  "updated_at": "2026-01-13T11:16:44Z"
+  "updated_at": "2026-04-25T17:56:05Z"
 }
+

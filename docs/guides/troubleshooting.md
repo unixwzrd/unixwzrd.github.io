@@ -36,9 +36,19 @@ rm -rf _site/
 rm -rf html/.jekyll-cache/
 rm -rf html/.sass-cache/
 
-# Rebuild
+# Rebuild (from repository root - matches CI)
 bundle exec jekyll build --trace
 ```
+
+**`short_url` mismatch (`ShortLinkInjector`)** - If front matter `short_url` does not match the hash of `short_link_origin` + the post's path under `html/`, the build fails. Fix:
+
+```bash
+bundle exec ruby scripts/backfill_short_url_front_matter.rb --check   # see what's wrong
+bundle exec ruby scripts/backfill_short_url_front_matter.rb          # rewrite all posts
+# or pass only changed files - see docs/templates/blog-templates.md
+```
+
+After changing **`slug`**, **`title`**, or date in front matter you do **not** need to update `short_url`. After **renaming/moving** the `.md` file, run a backfill (or let the pre-commit hook refresh staged posts).
 
 ### Port Conflicts
 ```bash
@@ -114,3 +124,4 @@ rm -f utils/etc/jekyll.pid
 cat utils/etc/jekyll.pid | xargs kill -9
 rm -f utils/etc/jekyll.pid
 ```
+

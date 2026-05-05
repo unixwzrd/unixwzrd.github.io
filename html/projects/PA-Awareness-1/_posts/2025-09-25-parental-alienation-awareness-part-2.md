@@ -1,4 +1,5 @@
 ---
+short_url: "https://unixwzrd.ai/s/ce67def492/"
 layout: post
 title: "Parental Alienation Awareness - Part 2"
 date: 2025-09-25
@@ -35,3 +36,4 @@ Finally, parental alienation often **intersects with allegations of other abuse*
 <td style="width: 50%; text-align: right;"><a href="/projects/PA-Awareness-1/2025/09/25/parental-alienation-awareness-part-3/">Part 3: Harms and Consequences →</a></td>
 </tr>
 </table>
+

@@ -1,71 +1,70 @@
-# Documentation Index
+# Documentation index
 
-*Your central hub for all project documentation*
+Entry point for site setup, publishing, monitoring, and tooling.
 
-## Quick Start
+**Utilities index (clickable file list):** [../utils/README.md](../utils/README.md)
 
-### For New Contributors
-1. **Project Overview** → [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md) - High-level summary, current status, and roadmap
-2. **Getting Started** → [guides/site-operations.md](guides/site-operations.md) - How to work with the site
-3. **Active Tasks** → [../TODO.md](../TODO.md) - What's being worked on
+## Quick start
 
-### For Daily Operations
-1. **Site Health Check** → [guides/checklist.md](guides/checklist.md) - Emergency procedures
-2. **Content Publishing** → [workflows/blog-publishing.md](workflows/blog-publishing.md) - How to publish content
-3. **Testing** → [guides/testing.md](guides/testing.md) - How to test changes
+### New contributors
+1. **Project overview** → [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md)
+2. **Day-to-day site work** → [guides/site-operations.md](guides/site-operations.md)
+3. **Active tasks** → [../TODO.md](../TODO.md)
 
-## Documentation Structure
+### Publishing and posts
+1. **Blog workflow** → [workflows/blog-publishing.md](workflows/blog-publishing.md)
+2. **Templates, `slug`, short URLs (`/s/...`)** → [templates/blog-templates.md](templates/blog-templates.md)
+3. **Deploy / production build** → [guides/deployment.md](guides/deployment.md)
+
+### Operations and quality
+1. **Checklist & triage** → [guides/checklist.md](guides/checklist.md)
+2. **Testing** → [guides/testing.md](guides/testing.md)
+3. **Pre-commit (site checks)** → [tools/pre-commit-checks.md](tools/pre-commit-checks.md) - plus optional [`.pre-commit-config.yaml`](../.pre-commit-config.yaml) for `short_url` on staged posts only
+
+## Documentation structure
 
 ### Project Overview & Status
 - **[PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md)** - Complete project summary, current status, roadmap, and technical stack
 - **[TODO.md](../TODO.md)** - Active tasks and priorities
 
-### Guides & How-To
-- **[guides/site-operations.md](guides/site-operations.md)** - Site maintenance and daily operations
-- **[guides/monitoring.md](guides/monitoring.md)** - Monitoring system setup and usage
-- **[guides/checklist.md](guides/checklist.md)** - Emergency procedures and troubleshooting
-- **[guides/testing.md](guides/testing.md)** - Testing procedures and validation
-- **[guides/strategy.md](guides/strategy.md)** - Monitoring best practices and strategies
+### Guides
+- **[guides/site-operations.md](guides/site-operations.md)** - Maintenance and navigation to other guides
+- **[guides/deployment.md](guides/deployment.md)** - Builds and GitHub Pages
+- **[guides/monitoring.md](guides/monitoring.md)** - Monitoring and alerting
+- **[guides/checklist.md](guides/checklist.md)** - Improvement checklist and triage
+- **[guides/testing.md](guides/testing.md)** - Validation and HTMLProofer
+- **[guides/strategy.md](guides/strategy.md)** - Monitoring cadence and practices
 
-### Tools & Systems
-- **[tools/pre-commit-checks.md](tools/pre-commit-checks.md)** - Pre-commit quality assurance system
-- **[workflows/blog-publishing.md](workflows/blog-publishing.md)** - Content publishing workflow
-- **[templates/blog-templates.md](templates/blog-templates.md)** - Blog post templates and examples
+### Tools and workflows
+- **[../utils/README.md](../utils/README.md)** - Catalog of `utils/bin` scripts (checks, OG fetch, monitoring, fixes)
+- **[tools/pre-commit-checks.md](tools/pre-commit-checks.md)** - `utils/bin/check_site.sh` and check scripts
+- **[workflows/blog-publishing.md](workflows/blog-publishing.md)** - Publishing workflow
+- **[templates/blog-templates.md](templates/blog-templates.md)** - Post templates, `slug`, short links, backfill
 
-## Navigation by Task
-
-### I want to...
-- **Understand the project** → [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md)
-- **See what's happening now** → [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md) (Current State section)
-- **Fix a broken site** → [guides/checklist.md](guides/checklist.md)
-- **Publish content** → [workflows/blog-publishing.md](workflows/blog-publishing.md)
-- **Set up monitoring** → [guides/monitoring.md](guides/monitoring.md)
-- **Test changes** → [guides/testing.md](guides/testing.md)
-- **Configure pre-commit** → [tools/pre-commit-checks.md](tools/pre-commit-checks.md)
-- **Add new features** → [../TODO.md](../TODO.md)
-
-### I need to...
-- **Check site health** → [guides/checklist.md](guides/checklist.md)
-- **Fix image issues** → [guides/testing.md](guides/testing.md) (image path section)
-- **Monitor external links** → [guides/monitoring.md](guides/monitoring.md)
-- **Update documentation** → [guides/site-operations.md](guides/site-operations.md)
-- **Deploy changes** → [workflows/blog-publishing.md](workflows/blog-publishing.md)
+## By task
+- **Project status** → [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md)
+- **Broken build or deploy** → [guides/troubleshooting.md](guides/troubleshooting.md), [guides/deployment.md](guides/deployment.md)
+- **New or edited blog post** → [workflows/blog-publishing.md](workflows/blog-publishing.md), [templates/blog-templates.md](templates/blog-templates.md)
+- **Short link / `short_url` drift** → [templates/blog-templates.md](templates/blog-templates.md) (`backfill_short_url_front_matter.rb`, `--check`)
+- **Monitoring** → [guides/monitoring.md](guides/monitoring.md)
+- **Pre-commit** → [tools/pre-commit-checks.md](tools/pre-commit-checks.md), [`.pre-commit-config.yaml`](../.pre-commit-config.yaml)
+- **What runs in `utils/bin`?** → [../utils/README.md](../utils/README.md), [guides/reference-utilities.md](guides/reference-utilities.md)
 
 ## Quick Reference
 
-### Essential Commands
+### Common commands
 ```bash
-# Site health check
+# Full validation (see tools/pre-commit-checks.md)
+./utils/bin/check_site.sh
+
+# Production build (same as GitHub Actions - run from repo root)
+JEKYLL_ENV=production bundle exec jekyll build --trace
+
+# Verify short_url front matter matches computed /s/ codes (no writes)
+bundle exec ruby scripts/backfill_short_url_front_matter.rb --check
+
+# Site health (if monitoring tools are configured)
 utils/bin/site_reliability_monitor.py --mode health
-
-# Test external links
-utils/bin/test_external_links.py
-
-# Fix image paths
-utils/bin/fix_image_case_sensitivity.py
-
-# Manage missing pages
-utils/bin/manage_missing_pages.py --list
 ```
 
 ### Key Files
@@ -74,26 +73,11 @@ utils/bin/manage_missing_pages.py --list
 - **Maintenance**: [utils/bin/scheduled_tasks.py](../utils/bin/scheduled_tasks.py)
 - **Logs**: [utils/log/](../utils/log/) directory
 
-### Emergency Contacts
-- **Site Down**: [guides/checklist.md](guides/checklist.md)
-- **Broken Images**: [guides/testing.md](guides/testing.md)
-- **Broken Links**: [guides/monitoring.md](guides/monitoring.md)
-- **Build Issues**: [guides/site-operations.md](guides/site-operations.md)
+## Documentation maintenance
 
-## Documentation Maintenance
-
-### Update Frequency
-- **[PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md)** - After each development session or major changes
-- **[TODO.md](../TODO.md)** - Continuously as tasks are added/completed
-- **Guides** - When procedures change
-- **[CHANGELOG.md](../CHANGELOG.md)** - After each release/update
-
-### Contributing to Documentation
-1. Update relevant guides when procedures change
-2. Add new guides for new systems/processes
-3. Update this index when adding new documentation
-4. Keep [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md) current with recent work and status
-5. Update [TODO.md](../TODO.md) as tasks are completed or added
+- Update guides when procedures or tooling change (build commands, hooks, Actions).
+- Add links in this index when new top-level docs are added.
+- [CHANGELOG.md](../CHANGELOG.md) and [TODO.md](../TODO.md) for history and tasks.
 
 ## Related Documentation
 
@@ -108,14 +92,17 @@ utils/bin/manage_missing_pages.py --list
 ### Project Structure
 ```
 docs/
-├── README.md                    # This file - Documentation index
-├── PROJECT_OVERVIEW.md          # High-level project summary and current status
-├── guides/                      # How-to guides and procedures
+├── README.md                    # This file
+├── PROJECT_OVERVIEW.md          # High-level summary
+├── guides/                      # How-to guides
 ├── tools/                       # Tool documentation
-├── workflows/                   # Process documentation
-└── templates/                   # Templates and examples
+├── workflows/                   # Processes
+└── templates/                   # Templates
+../utils/README.md               # Index of validation / OG / monitoring scripts
+../scripts/                      # Jekyll helpers (e.g. short_url backfill)
 ```
 
 ---
 
-*This index is maintained to provide clear navigation through all project documentation. Update it when adding new docs or reorganizing existing ones.* 
+**Updated:** 2026-05-02
+
