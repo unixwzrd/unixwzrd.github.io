@@ -4,7 +4,7 @@ image: /assets/images/projects/venvutil/Conjuring-VenvUtil.png
 title: "Getting Started with VenvUtil: Python Virtual Environment Management"
 layout: post
 redirect_from:
-  - /projects/venvutil/2025/04/24/getting-started-with-venvutil/
+  - /projects/venvutil/2025/04/24/Getting-Started-With-VenvUtil/
 date: "2025-04-24"
 category: venvutil
 tags: [introduction, overview, python, virtual-environments, developer-tools]
@@ -58,4 +58,5 @@ If you want better control over your Python environments - and fewer late-night 
 ---
 
 Built by [unixwzrd](https://unixwzrd.ai) - making virtual environment management a little more sane, one shell command at a time.
+
 

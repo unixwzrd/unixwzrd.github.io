@@ -3,7 +3,7 @@ short_url: "https://unixwzrd.ai/s/d767379bd0/"
 layout: post
 title: "TorchDevice 0.5.2: Still Beta, but Three Months of Refactoring, Testing, and Real-World Breakthroughs"
 redirect_from:
-  - /projects/TorchDevice/2025/06/23/torchdevice-beta-release-0.5.2/
+  - /projects/TorchDevice/2025/06/23/TorchDevice-Beta-Release-0.5.2/
 image: /assets/images/projects/TorchDevice/TorchDevice-HF-Transformers.png
 date: 2025-06-22
 category: TorchDevice
@@ -104,4 +104,5 @@ If you're stuck porting CUDA code to Apple Silicon, or just want to squeeze more
 **Changelog, docs, demos, and full project details [on GitHub](https://github.com/unixwzrd/TorchDevice).**
 
 *- M S (unixwzrd)*
+
 

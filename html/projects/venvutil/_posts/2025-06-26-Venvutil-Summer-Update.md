@@ -4,7 +4,7 @@ image: /assets/images/projects/venvutil/Herding-Cats-and-Virtual-Environments.pn
 title: "VenvUtil Update: Smarter Shell-Based Python Environment Management"
 layout: post
 redirect_from:
-  - /projects/venvutil/2025/06/26/venvutil-summer-update/
+  - /projects/venvutil/2025/06/26/Venvutil-Summer-Update/
 date: "2025-06-25"
 category: venvutil
 tags: [update, python, virtual-environments, conda, developer-tools]
@@ -138,4 +138,5 @@ If you break something or want to contribute, open an issue or PR-be the first!
 Built by [unixwzrd](https://unixwzrd.ai) - for devs who'd rather code than debug "dependency hell." Mia the AI assistant approves. 🐾
 
 *If you use VenvUtil and it makes your life better (or worse), let me know! And yes-support, coffee, and ideas are always appreciated.*
+
 

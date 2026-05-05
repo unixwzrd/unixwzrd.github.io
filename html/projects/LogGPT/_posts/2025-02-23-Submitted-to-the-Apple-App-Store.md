@@ -4,7 +4,7 @@ image: /assets/images/default-og-image.png
 layout: post
 title: "Introducing LogGPT ChatGPT Chatlog Export"
 redirect_from:
-  - /projects/LogGPT/2025/02/23/submitted-to-the-apple-app-store/
+  - /projects/LogGPT/2025/02/23/Submitted-to-the-Apple-App-Store/
 date: "2025-02-23"
 category: LogGPT
 tags: [introduction, overview, chatgpt, safari-extension, privacy, json-export, macos]
@@ -31,4 +31,5 @@ If you use the command line, I have tools in the [VenvUtil](https://github.com/u
 If you find this useful help support my work;
   - [Patreon](https://patreon.com/unixwzrd)
   - [Ko-Fi](https://ko-fi.com/unixwzrd)
+
 

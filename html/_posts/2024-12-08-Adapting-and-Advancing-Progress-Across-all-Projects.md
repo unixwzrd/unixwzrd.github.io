@@ -4,8 +4,8 @@ image: /assets/images/default-og-image.png
 layout: post
 title: "Adapting and Advancing: Progress Across Projects"
 redirect_from:
-  - /2024/12/08/adapting-and-advancing-progress-across-all-projects/
-  - /2024/11/13/adapting-and-advancing-progress-across-all-projects/
+  - /2024/12/08/Adapting-and-Advancing-Progress-Across-all-Projects/
+  - /2024/11/13/Adapting-and-Advancing-Progress-Across-all-Projects/
   - /coding/ai/blog/2024/11/13/Adapting-and-Advancing-Progress-Across-all-Projects/
 date: 2024-11-13 14:00:00 -0500
 categories: [general]
@@ -57,4 +57,5 @@ With a clearer path forward, my next steps include:
 These efforts require focus and perseverance, but they also provide opportunities to refine my craft and expand my capabilities.
 
 Thank you for joining me on this journey. If you're facing similar challenges or have insights to share, I'd love to hear from you in the comments.
+
 

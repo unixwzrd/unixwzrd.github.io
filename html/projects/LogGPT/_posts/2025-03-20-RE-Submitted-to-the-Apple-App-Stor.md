@@ -9,7 +9,7 @@ category: LogGPT
 tags: [update, app-store, safari-extension, privacy, macos]
 published: true
 redirect_from:
-  - /projects/LogGPT/2025/03/20/re-submitted-to-the-apple-app-stor/
+  - /projects/LogGPT/2025/03/20/RE-Submitted-to-the-Apple-App-Stor/
 ---
 excerpt: "## UPDATE: [LogGPT Available Now on the Apple App Store Now!](https://apps.apple.com/us/app/loggpt/id6743342693)"
 
@@ -72,4 +72,5 @@ This extension is priced at **$1.99**, but if you'd like to support me further, 
 This has been an exhausting process, and I'm just glad to finally have it back in Apple's queue. Fingers crossed for a smooth approval this time!
 
 If you are looking fro someone to help you with a project, I am available for hire. I have a wide range of skills and can be a great asset to your team. My specialties are Unix/Linux/macOS system and database administration, automation, and application development and am rather adept with Python, Bash, and a variety of other tools.
+
 

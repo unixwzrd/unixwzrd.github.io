@@ -3,7 +3,7 @@ short_url: "https://unixwzrd.ai/s/70318e0255/"
 layout: post
 title: "Building This Site With AI"
 redirect_from:
-  - /2024/09/27/building-this-site-with-ai/
+  - /2024/09/27/Building-This-Site-With-AI/
 image: /assets/images/Working-With-AI-Assistant.png
 date: 2024-09-27 17:30:00 -0500
 categories: [technology]
@@ -134,4 +134,5 @@ But it allowed me to make the grouping appear as it should.  All services in the
 
 
 Ultimately, I want to get back to coding and producing functional code for projects rather than a web site.
+
 

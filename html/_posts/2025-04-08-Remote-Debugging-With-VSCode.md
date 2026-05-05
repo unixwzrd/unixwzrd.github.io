@@ -5,7 +5,7 @@ image: /assets/images/vibing-remote-debugging.png
 layout: post
 title: "Remote Debugger With VSCode and Its Derivatives"
 redirect_from:
-  - /2025/04/08/remote-debugging-with-vscode/
+  - /2025/04/08/Remote-Debugging-With-VSCode/
 date: 2025-04-08 17:30:00 -0500
 categories: [technology]
 tags: [debugging, vscode, remote-debugging, python, developer-tools]
@@ -157,4 +157,5 @@ You might add a paragraph or two about why remote debugging is so valuable:
 Instead of relying on print statements, remote debugging allows interactive inspection of variables and flow control, saving significant time.
 - Enhanced Productivity:
 Developers can step through code in real time, even on remote servers, which can be crucial when dealing with production issues or complex distributed systems.
+
 
