@@ -31,6 +31,23 @@ jobs:
         run: |
           JEKYLL_ENV=production bundle exec jekyll build --trace --verbose
 
+      - name: Verify short URL redirects
+        run: |
+          bundle exec ruby scripts/backfill_short_url_front_matter.rb --check
+          ruby -e '
+            missing = []
+            Dir["html/**/*.md"].each do |path|
+              File.readlines(path).grep(/^short_url:/).each do |line|
+                url = line.split(/short_url:\s*/, 2)[1].to_s.strip.delete_prefix("\"").delete_suffix("\"")
+                code = url[%r{/s/([^/]+)/?}, 1]
+                next unless code
+                redirect = File.join("_site", "s", code, "index.html")
+                missing << "#{url} from #{path} missing #{redirect}" unless File.file?(redirect)
+              end
+            end
+            abort("Missing generated short URL redirects:\n#{missing.join("\n")}") unless missing.empty?
+          '
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
@@ -41,4 +58,5 @@ jobs:
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4 
+        uses: actions/deploy-pages@v4
+
