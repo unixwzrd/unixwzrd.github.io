@@ -3,22 +3,32 @@ layout: page
 title: "Our Projects"
 menu_item: Projects
 permalink: /projects/
-excerpt: "At **Distributed Thinking Systems**, we are constantly pushing boundaries with innovative projects in AI, data science, and distributed computing. We are committed to working on and supporting OpenSource Projects."
+excerpt: "Projects across local-first AI, secure runtime secrets, developer tooling, AI operations, and sensitive document workflows."
 ---
 
 ## Overview
 
-At **Distributed Thinking Systems**, we are constantly pushing boundaries with innovative projects in AI, data science, and distributed computing. We are committed to working on and supporting OpenSource Projects.
+The projects are connected by a local-first approach to AI, automation, and developer infrastructure. Some are public tools, some are applied AI work, and some support sensitive legal and family-law workflows.
+
+## Capability Areas
+
+- **Security / Runtime:** [Secrets Kit](/projects/Secrets-Kit/) keeps API keys, passwords, and tokens out of `.env` files, shell history, `argv`, and `launchd` plists.
+- **Operations / Infrastructure:** [LLM Ops Kit](/projects/LLM-Ops-Kit/) supports running, deploying, debugging, and maintaining self-hosted AI stacks.
+- **Developer Tooling:** [UnicodeFix](/projects/UnicodeFix/) cleans AI-generated text for code, docs, posts, and workflows that need plain ASCII.
+- **Applied AI:** [Case Analytics](/projects/Case-Analytics/) applies AI and data analysis to sensitive legal and family-law documents.
+- **Local AI Runtimes:** [MLX Harmony](/projects/mlx-harmony/) and related tooling support local model workflows on Apple hardware.
+
+Together, these form a practical ecosystem: secure runtime handling, local operations, developer utilities, and applied analysis for sensitive data.
 
 ### Internal Projects
 
-Our primary projects have to deal with applying data analytics and AI to court documents such as depositions, parenting reports, and interpersonal communications between parties involved in high-conflict divorce cases. The primary purpose is to detect and analyze patterns that may indicate parental alienation, before it happens.
+Internal projects focus on applied AI for sensitive documents, including legal case materials, interpersonal communications, and family-law analysis. Parental alienation detection remains an important specialized vertical.
 
 {% include projects_list.html visibility="private" %}
 
 ### Open Source Projects
 
-At **Distributed Thinking Systems**, we are constantly pushing boundaries with innovative projects in AI, data science, and distributed computing. We are committed to working on and supporting OpenSource Projects.
+Open-source projects support the broader local-first stack: secrets hygiene, AI operations, text cleanup, model runtimes, environment management, and developer automation.
 
 {% include projects_list.html visibility="public" %}
 
@@ -26,5 +36,5 @@ At **Distributed Thinking Systems**, we are constantly pushing boundaries with i
 
 <div class=body>
 
-More projects on the way and even some demos and how-to's for things like processing audio, for speech to text and interpersonal communications dynamics and analysis. It will take me a bit of time  to get things organized and some tutorials up, but I will be working non-stop to help provide some good information, both of what I can do and how you may be able to do some of this yourself.
+More demos and how-to material are planned for local AI setup, secure automation, speech-to-text processing, and communication analysis. The goal is to show both what I can build and what you can run locally yourself.
 </div>

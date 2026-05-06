@@ -1,22 +1,22 @@
 ---
 layout: page
-title: "Collaborate and Join the Community"
+title: "Work With Me"
 menu_item: Collaborate
 permalink: /collaborate/
 image: /assets/images/default-og-image.png
-excerpt: "**Distributed Thinking Systems** is about building a collaborative community where professionals and individuals come together to contribute their expertise, participate in projects, or support our work."
+excerpt: "Work with Distributed Thinking Systems on local AI, secure automation, developer tooling, and sensitive workflow analysis."
 ---
 
-## Build With Us and the Community
+## Practical Collaboration
 
-**Distributed Thinking Systems** is about building a collaborative community where professionals and individuals come together to contribute their expertise, participate in projects, or support our work.
+Distributed Thinking Systems works with professionals, small teams, developers, and researchers who need local-first AI, secure automation, or technical help with sensitive workflows.
 
-Whether you're a **legal professional**, a **researcher**, or someone who wants to help push our mission forward, your involvement is invaluable.
+Good-fit work includes local AI setup, secrets-safe automation, Unix/macOS/Linux systems engineering, developer infrastructure, and legal or counseling workflows involving sensitive documents.
 
 ### Two Ways to Get Involved
 
-- **For Professionals**: If you're seeking our services, sponsorship opportunities, or want to hire us for AI development, data analysis, or consulting, head over to our [Products and Services](/collaborate/professionals/) page.
+- **For professional work:** If you need consulting, local AI integration, secure automation, data analysis, or systems engineering, start with [Professional Services](/collaborate/professionals/).
 
-- **For Contributors & Participants**: Interested in joining our community, contributing data, collaborating on research, or getting involved with ongoing projects? Visit our [Community Collaboration](/collaborate/community/) page.
+- **For contributors and participants:** If you want to contribute data, collaborate on research, or help with open-source and applied AI projects, visit [Community Collaboration](/collaborate/community/).
 
-Join us in making an impact on the future of AI, parental alienation solutions, and technology.
+You can also go straight to [Contact](/contact/) if you already know what you want to discuss.

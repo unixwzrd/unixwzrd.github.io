@@ -3,23 +3,23 @@ layout: page
 title: "Join Our Community"
 menu_item: Community
 permalink: /collaborate/community/
-excerpt: "We're building a thriving community of individuals who share their experiences, contribute to research, or collaborate on new and innovative tech projects."
+excerpt: "Contribute to research, local-first tooling, sensitive workflow analysis, and open-source projects."
 ---
 
-### Join Our Community: Research, Projects & Contributions
+### Research, Projects & Contributions
 
-We're building a thriving community of individuals who share their experiences, contribute to research, or collaborate on new and innovative tech projects.
+Community collaboration can mean sharing lived experience, contributing to research, testing tools, or helping build local-first AI and developer projects.
 
 #### How You Can Get Involved
 
 - **Share Your Experience**: If you've been impacted by parental alienation, share your story with us to help raise awareness and build our data for research. Your insights could make a difference.
 - **Contribute to Research**: Are you a researcher or academic interested in contributing to our AI-based parental alienation tools? We need data, feedback, and insights to refine our models.
-- **Collaborate on Projects**: If you're a developer, technologist, or individual who wants to participate in building AI solutions, join one of our open-source or private projects.
+- **Collaborate on Projects**: If you're a developer, technologist, or individual who wants to help with local AI, security, automation, or applied analysis, join one of our open-source or private projects.
 
 #### Your Role in the Community
 
-- **Researchers**: Provide data or collaborate with our AI teams.
-- **Participants**: Join ongoing projects or support us through your involvement.
+- **Researchers**: Provide data or collaborate on sensitive workflow and case-analysis methods.
+- **Participants**: Join ongoing projects, test tools, or support local-first AI and automation work.
 - **Community Members**: Stay informed and contribute to discussions that drive our work forward.
 
 Ready to get involved? [Contact Us](/contact/) or visit our [Projects Page](/projects/) for more details on current initiatives.

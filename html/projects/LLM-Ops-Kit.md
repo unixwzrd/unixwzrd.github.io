@@ -71,4 +71,10 @@ This project is early, but it is real, tested in production-like conditions, and
 
 If you are building or maintaining a serious local AI environment, this is the kind of tooling that saves hours of avoidable troubleshooting.
 
+## Related Work
+
+- [Secrets Kit](/projects/Secrets-Kit/) handles local runtime secrets for agent, shell, and launchd workflows.
+- [MLX Harmony](/projects/mlx-harmony/) supports local MLX-compatible model workflows.
+- [Professional Services](/collaborate/professionals/) covers local AI setup, operations, and systems engineering.
+
 Stay tuned for updates below as the project evolves.

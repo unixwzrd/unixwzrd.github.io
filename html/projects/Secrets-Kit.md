@@ -21,4 +21,9 @@ That makes it a practical fit for local agent stacks, developer tooling, web UIs
 
 It replaces scattered habits with a single, consistent way to handle secrets locally.
 
+## Related Work
+
+- [LLM Ops Kit](/projects/LLM-Ops-Kit/) uses the same local-first operating philosophy for self-hosted AI stacks.
+- [Professional Services](/collaborate/professionals/) covers consulting for secure automation, local AI setup, and developer infrastructure.
+
 [View Secrets Kit on GitHub](https://github.com/unixwzrd/Secrets-Kit)

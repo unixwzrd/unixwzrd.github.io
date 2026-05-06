@@ -4,20 +4,23 @@ title: "Resources"
 menu_item: Resources
 permalink: /resources/
 image: /assets/images/default-og-image.png
-excerpt: "Helpful tools, organizations, and information related to parental alienation, AI, and legal support below. If you have a resource you would like added, contact us."
+excerpt: "Resources for local AI, developer tooling, security-minded workflows, parental alienation, mental health, and legal support."
 ---
 
 ### **If your or someone else is in crisis now, use [Emergency Resources](/resources/emergency-resources).**
 
 This page is a curated set of tools and resources for:
 
-- building and operating AI systems
+- building and operating local-first AI systems
+- improving secrets hygiene, developer tooling, and privacy-focused automation
 - navigating parental alienation and family law challenges
 - finding mental health and legal support
 
 If you are in immediate danger or crisis, use the emergency resources above.
 
-Helpful tools, organizations, and information related to parental alienation, AI, and legal support below. If you have a resource you would like added, [contact us](/contact).
+For site projects connected to these themes, see [Secrets Kit](/projects/Secrets-Kit/) for local runtime secrets, [LLM Ops Kit](/projects/LLM-Ops-Kit/) for self-hosted AI operations, and [Case Analytics](/projects/Case-Analytics/) for sensitive legal and family-law analysis.
+
+Helpful tools, organizations, and information related to AI, developer workflows, parental alienation, and legal support are listed below. If you have a resource you would like added, [contact us](/contact).
 
 | National Center for Missing and Exploited Children | 24-Hour Call Center | 1-800-THE-LOST<br> 1-800-843-5678 |
 
@@ -26,6 +29,7 @@ Helpful tools, organizations, and information related to parental alienation, AI
 - [AI and Technology Tools](#ai-and-technology-tools)
   - [AI Assisted Development Tools](#ai-assisted-development-tools)
   - [General AI Resources](#general-ai-resources)
+  - [Local AI and Security Tools](#local-ai-and-security-tools)
   - [Text to Speech](#text-to-speech)
   - [Speech to Text](#speech-to-text)
   - [Training and Tuning](#training-and-tuning)
@@ -52,6 +56,13 @@ Of these tools, I personally use Cursor adn Windsurf. If I had to pick a best be
 - [Anthropic Intelligence](https://www.anthropic.com/) - AI research and development tools.
 - [Hugging Face](https://huggingface.co/) - Open-source AI tools.
 - [OpenAI](https://openai.com/) - AI research and development tools, and ChatGPT.
+
+### Local AI and Security Tools
+
+- [Secrets Kit](/projects/Secrets-Kit/) - Local runtime secrets handling for API keys, tokens, and passwords.
+- [LLM Ops Kit](/projects/LLM-Ops-Kit/) - Operations tooling for self-hosted AI stacks.
+- [MLX Harmony](/projects/mlx-harmony/) - Local model workflows for MLX-compatible models.
+- [UnicodeFix](/projects/UnicodeFix/) - Cleanup for AI-generated text before it lands in code, posts, docs, or automation.
 
 ### Text to Speech
 

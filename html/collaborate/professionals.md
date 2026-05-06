@@ -4,39 +4,40 @@ layout: page
 menu_item: Professionals
 permalink: /collaborate/professionals/
 image: /assets/images/default-og-image.png
-excerpt: "Distributed Thinking Systems offers specialized AI-driven solutions, technical consulting, and expertise in **data analytics, distributed computing, and AI-powered forensic analysis.** We collaborate with professionals in **legal, psychological, and research fields** to enhance decision-making with **AI-enhanced insights.**"
+excerpt: "Consulting and implementation for local AI, secure automation, developer infrastructure, and sensitive document workflows."
 ---
 
-Distributed Thinking Systems offers specialized AI-driven solutions, technical consulting, and expertise in **data analytics, distributed computing, and AI-powered forensic analysis.** We collaborate with professionals in **legal, psychological, and research fields** to enhance decision-making with **AI-enhanced insights.**
+Distributed Thinking Systems provides consulting and implementation for local AI, secure automation, developer infrastructure, and sensitive document workflows.
+
+The work is a good fit when you need AI or automation, but also need to think carefully about privacy, secrets, logs, local storage, and where sensitive data goes.
 
 ## Available Services
-We provide consulting and custom solutions tailored to **your specific needs.** Services include:
+Services include:
 
-- **AI-Powered Communication & Behavioral Analysis**
-  - Identifying patterns in conversations and legal cases
-  - Advanced sentiment analysis and forensic linguistics
+- **Local AI setup and integration**
+  - Private model runtimes, local agents, and workflow-specific tooling
+  - Local AI stacks connected to existing documents, scripts, and systems
 
-- **Digital Forensics & Audio Enhancement**
-  - Enhancing clarity in low-quality recordings
-  - AI-assisted transcription and conversational analysis
+- **Secure automation and secrets handling**
+  - Runtime secrets workflows using tools such as [Secrets Kit](/projects/Secrets-Kit/)
+  - Safer agent, shell, and launchd workflows that avoid scattering tokens across plain-text files
 
-- **AI & Distributed Computing Solutions**
-  - Scalable AI system architecture & implementation
-  - Custom AI integrations for research and analysis
+- **Unix/macOS/Linux systems engineering**
+  - Automation, diagnostics, launch agents, shell tooling, and local developer infrastructure
+  - Operations support for self-hosted AI stacks, including [LLM Ops Kit](/projects/LLM-Ops-Kit/)
 
-- **Research Collaboration & Data Processing**
-  - Assisting professionals in processing and analyzing structured/unstructured datasets
-  - Developing AI-based tools for specialized fields
+- **Sensitive document and communication analysis**
+  - Legal, counseling, and family-law workflows involving messages, reports, transcripts, and case materials
+  - Applied AI work such as [Case Analytics](/projects/Case-Analytics/)
+
+- **Data processing and developer tooling**
+  - Structured and unstructured data processing
+  - Workflow tools, CLI utilities, and project-specific automation
 
 ---
 
-## Paid Access & Consulting
-We will soon introduce **tiered access options** for those seeking:
+## Consulting
 
-- Early access to AI-based tools
-- Priority support & consulting
-- Data processing & AI-enhanced analysis
+Consulting rates depend on project scope, complexity, data sensitivity, and the amount of implementation work required.
 
-**Consulting rates are determined by project scope, complexity, and required expertise.** While we are⁠ happy to discuss project needs and deliverables, our rates reflect the value and experience we bring to each engagement.
-
-If you're interested in **consulting, special projects, or testing our AI tools**, please [contact us](/contact/) to discuss your needs.
+If you need help with local AI, secure automation, sensitive workflow analysis, or systems engineering, [contact us](/contact/) with a short description of what you are trying to build or fix.

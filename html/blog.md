@@ -4,10 +4,12 @@ title: "Distributed Thinking Systems Blog"
 menu_item: Blog
 permalink: /blog/
 image: /assets/images/default-og-image.png
-excerpt: "Explore the Distributed Thinking Systems writing index, with dedicated sections for General, Parental Alienation, and Technology."
+excerpt: "Writing on local-first AI, secure automation, developer tooling, parental alienation, and sensitive workflow analysis."
 ---
 
-A structured writing hub for updates, analysis, and essays across three editorial tracks.
+A structured writing hub for local-first AI, secure automation, developer tooling, family-law analysis, and project updates.
+
+For related project work, start with [Secrets Kit](/projects/Secrets-Kit/), [LLM Ops Kit](/projects/LLM-Ops-Kit/), and [Case Analytics](/projects/Case-Analytics/).
 
 {% assign general_blog_page = site.pages | where: "url", "/blog/general/" | first %}
 {% assign pa_blog_page = site.pages | where: "url", "/blog/parental-alienation/" | first %}

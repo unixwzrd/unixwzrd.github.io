@@ -24,12 +24,12 @@
 
 title: Distributed Thinking Systems
 description: >-
-  Distributed Thinking Systems: Innovating AI, machine learning, and
-  distributed computing solutions.
+  Distributed Thinking Systems: local-first AI, secure automation, and
+  developer tooling for sensitive workflows.
   <br>
-  Mostly computing on and off.
+  Unix, macOS, and Linux systems engineering.
   <br>
-  Using AI for good.
+  Privacy-focused tools for work that needs care.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://unixwzrd.ai"
 # Host prefix for /s/<code>/ short links (hashes with post path under html/; see 01_short_link_injector.rb)
@@ -236,4 +236,3 @@ exclude:
   - utils/
   - vendor/
   - docs/
-
