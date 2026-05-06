@@ -217,6 +217,7 @@ DEPENDENCIES
   base64
   csv
   debug
+  erb (~> 6.0.4)
   html-proofer
   http_parser.rb (~> 0.6.0)
   imgkit

@@ -8,6 +8,9 @@ source "https://rubygems.org"
 # This will help ensure the proper Jekyll version is running.
 # Happy Jekylling!
 gem "jekyll", "~> 4.3.3"
+# Ruby 3.3+ ships some stdlib as gems; Bundler 2.5+ can require these to be installed explicitly.
+# Without this, local `bundle exec jekyll` may fail with: Could not find erb-x.y.z (Bundler::GemNotFound)
+gem "erb", "~> 6.0.4"
 # This is the default theme for new Jekyll sites. You may change this to anything you like.
 #gem "minima", "~> 3.0"
 # If you want to use GitHub Pages, remove the "gem "jekyll"" above and
