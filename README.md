@@ -2,6 +2,13 @@
 
 Personal Jekyll workspace for **[unixwzrd.ai](https://unixwzrd.ai)**. This README focuses on **tooling** in the repo; it is not a catalog of site topics or pages.
 
+- [unixwzrd.github.io](#unixwzrdgithubio)
+  - [Tooling](#tooling)
+  - [Site source](#site-source)
+  - [Contributing](#contributing)
+  - [License and use](#license-and-use)
+
+
 ## Tooling
 
 Most reusable value for others is under **`utils/`** (validation, OpenGraph / project cards, monitoring, fixes) and **`scripts/`** (Jekyll helpers).
@@ -34,4 +41,5 @@ Jekyll source lives in [`html/`](html/). It powers the public site and is **not*
 ---
 
 **Updated:** 2026-05-02
+
 
