@@ -7,6 +7,21 @@ import requests
 from bs4 import BeautifulSoup
 import time
 import re
+from urllib.parse import urlparse
+
+
+def is_internal_unixwzrd_url(url: str) -> bool:
+    """Return True if URL host is unixwzrd.ai or one of its subdomains."""
+    try:
+        hostname = urlparse(url).hostname
+    except ValueError:
+        return False
+
+    if not hostname:
+        return False
+
+    hostname = hostname.lower()
+    return hostname == "unixwzrd.ai" or hostname.endswith(".unixwzrd.ai")
 
 
 def test_external_link_extraction():
@@ -34,7 +49,7 @@ def test_external_link_extraction():
                 or href.startswith("mailto:")
                 or href.startswith("tel:")
                 or href.startswith("/")
-                or href.startswith("https://unixwzrd.ai")
+                or is_internal_unixwzrd_url(href)
                 or not href.startswith(("http://", "https://"))
             ):
                 continue
@@ -47,7 +62,7 @@ def test_external_link_extraction():
         urls = re.findall(url_pattern, content)
 
         for url in urls:
-            if not url.startswith("https://unixwzrd.ai"):
+            if not is_internal_unixwzrd_url(url):
                 external_links.append(url)
 
         external_links = list(set(external_links))  # Remove duplicates
@@ -111,3 +126,4 @@ if __name__ == "__main__":
     test_external_link_checking()
 
     print("\n✅ External link testing completed!")
+
