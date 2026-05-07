@@ -1,5 +1,15 @@
 # Site maintenance utilities (`utils/`)
 
+- [Site maintenance utilities (`utils/`)](#site-maintenance-utilities-utils)
+  - [Validation and pre-commit](#validation-and-pre-commit)
+  - [Builds and local services](#builds-and-local-services)
+  - [OpenGraph, thumbnails, and project data](#opengraph-thumbnails-and-project-data)
+  - [Monitoring and scheduled ops](#monitoring-and-scheduled-ops)
+  - [Fixes and one-off maintenance](#fixes-and-one-off-maintenance)
+  - [Misc / social / tests](#misc--social--tests)
+  - [Repo root scripts (outside `utils/`)](#repo-root-scripts-outside-utils)
+
+
 Scripts and configs used to **validate**, **build**, **refresh project metadata** (OpenGraph thumbnails, `github_projects.yml`), and **monitor** the Jekyll site. Paths below are relative to this folder unless noted.
 
 **Full operator reference:** [docs/guides/reference-utilities.md](../docs/guides/reference-utilities.md)
@@ -92,4 +102,5 @@ Jekyll-specific helpers live next to the site config, not under `utils/`:
 - [scripts/backfill_short_url_front_matter.rb](../scripts/backfill_short_url_front_matter.rb) - sync `short_url` front matter with `/s/<code>/` rules. Documented in [docs/templates/blog-templates.md](../docs/templates/blog-templates.md).
 
 **Updated:** 2026-05-02
+
 

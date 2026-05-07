@@ -5,7 +5,7 @@
 
 [← Back to Site Operations Guide](site-operations.md)
 
-**Script catalog (paths and short descriptions):** [../../utils/README.md](../../utils/README.md)
+**Script catalog (paths and short descriptions):** [/utils/README.md](/utils/README.md)
 
 <!-- TOC will be auto-generated here -->
 
@@ -291,6 +291,7 @@ This integration ensures that:
 3. **Low Priority**: Set up advanced tracking and conversion goals
 
 See TODO.md and site-improvement-checklist.md for detailed task breakdown.
+
 
 
 
