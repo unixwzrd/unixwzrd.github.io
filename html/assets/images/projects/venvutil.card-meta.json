@@ -7,19 +7,20 @@
   "name": "venvutil",
   "open_issues_count": 0,
   "owner": "unixwzrd",
-  "stargazers_count": 6,
+  "stargazers_count": 7,
   "title": "VenvUtil",
   "top_languages": [
     {
       "color": "#89e051",
       "name": "Shell",
-      "share": "79%"
+      "share": "78%"
     },
     {
       "color": "#3572A5",
       "name": "Python",
-      "share": "21%"
+      "share": "22%"
     }
   ],
-  "updated_at": "2026-04-25T17:56:05Z"
+  "updated_at": "2026-07-19T10:22:07Z"
 }
+

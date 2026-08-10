@@ -2,12 +2,12 @@
   "card_style_version": 8,
   "contributors_count": 314,
   "description": "A macOS version of the oobabooga gradio web UI for running Large Language Models like LLaMA, llama.cpp, GPT-J, Pythia, OPT, and GALACTICA.",
-  "forks_count": 5,
+  "forks_count": 3,
   "language": "Python",
   "name": "text-generation-webui-macos",
-  "open_issues_count": 1,
+  "open_issues_count": 0,
   "owner": "unixwzrd",
-  "stargazers_count": 24,
+  "stargazers_count": 25,
   "title": "Text Generation WebUI macOS",
   "top_languages": [
     {
@@ -26,5 +26,6 @@
       "share": "3%"
     }
   ],
-  "updated_at": "2026-03-07T23:19:34Z"
+  "updated_at": "2026-07-09T19:40:15Z"
 }
+

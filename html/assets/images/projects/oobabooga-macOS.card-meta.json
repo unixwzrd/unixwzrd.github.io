@@ -2,12 +2,12 @@
   "card_style_version": 8,
   "contributors_count": 1,
   "description": "Information on optimizing python libraries specifically for oobabooga to take advantage of Apple Silicon and Accelerate Framework.",
-  "forks_count": 8,
+  "forks_count": 6,
   "language": "Python",
   "name": "oobabooga-macOS",
   "open_issues_count": 0,
   "owner": "unixwzrd",
-  "stargazers_count": 77,
+  "stargazers_count": 79,
   "title": "Oobabooga macOS",
   "top_languages": [
     {
@@ -16,5 +16,6 @@
       "share": "100%"
     }
   ],
-  "updated_at": "2025-12-05T10:16:40Z"
+  "updated_at": "2026-06-21T05:45:10Z"
 }
+
