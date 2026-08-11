@@ -100,8 +100,8 @@ Of these tools, I personally use Cursor adn Windsurf. If I had to pick a best be
 
 ### The United States
 
-- [National Center for Missing & Exploited Children](https://www.missingkids.org/) - NCMEC is the nation's largest and most influential child protection organization.
 - [Family Abduction: Prevention & Response](https://www.missingkids.org/theissues/familyabduction) - Information about preventing and responding when a child is taken, wrongfully retained, or concealed by a parent or other family member.
+- [National Center for Missing & Exploited Children](https://www.missingkids.org/) - NCMEC is the nation's largest and most influential child protection organization.
 - [r/ParentalAlienation](https://www.reddit.com/r/ParentalAlienation/) - A community for family members who have experienced parental alienation to seek support and guidance. Whether you're an ex-partner, a child, or an extended family member, this is the place for you.
 
 ### Europe and United Kingdom
@@ -119,27 +119,28 @@ Of these tools, I personally use Cursor adn Windsurf. If I had to pick a best be
 
 ### International Help
 
-- [Find A Helpline](https://findahelpline.com/) - Search for verified crisis and emotional-support helplines by country and topic.
 - [Child Helpline International](https://childhelplineinternational.org/helplines/) - Find child and youth helplines in countries and territories around the world.
+- [Find A Helpline](https://findahelpline.com/) - Search for verified crisis and emotional-support helplines by country and topic.
 
 ### United States Crisis and Support
 
 - [988 Suicide & Crisis Lifeline](https://988lifeline.org/) - Call or text 988, or use online chat, for free and confidential support 24/7.
+- [Childhelp National Child Abuse Hotline](https://childhelphotline.org/) - Call, text, or chat with a counselor for support and guidance involving child abuse 24/7.
 - [Crisis Text Line](https://www.crisistextline.org/) - Free, confidential crisis support by text or chat.
 - [NAMI HelpLine](https://www.nami.org/nami-helpline/) - Mental health information, support, and service navigation for individuals and families. This is not a crisis line.
 - [National Domestic Violence Hotline](https://www.thehotline.org/) - Free, confidential support, safety planning, and referrals to counseling, legal help, and local services 24/7.
-- [Childhelp National Child Abuse Hotline](https://childhelphotline.org/) - Call, text, or chat with a counselor for support and guidance involving child abuse 24/7.
 
 ### Finding Ongoing Care
 
-- [SAMHSA Find Help](https://www.samhsa.gov/find-help) - U.S. mental health and substance-use support, helplines, and treatment locators, including [FindTreatment.gov](https://findtreatment.gov/).
-- [Psychology Today Therapist Directory](https://www.psychologytoday.com/us/therapists) - Commercial directory for locating therapists and other mental health professionals.
 - [BetterHelp](https://www.betterhelp.com) - Commercial online therapy service; not a crisis service.
+- [Psychology Today Therapist Directory](https://www.psychologytoday.com/us/therapists) - Commercial directory for locating therapists and other mental health professionals.
+- [SAMHSA Find Help](https://www.samhsa.gov/find-help) - U.S. mental health and substance-use support, helplines, and treatment locators, including [FindTreatment.gov](https://findtreatment.gov/).
 
 ### Evidence-Based Information
 
-- [National Institute of Mental Health: Suicide Prevention](https://www.nimh.nih.gov/health/topics/suicide-prevention) - Research-based information, statistics, warning signs, and links to help and support.
 - [Centers for Disease Control and Prevention: Suicide Prevention](https://www.cdc.gov/suicide/) - Current U.S. public-health information, data, prevention strategies, and resources.
+- [National Institute of Mental Health: Suicide Prevention](https://www.nimh.nih.gov/health/topics/suicide-prevention) - Research-based information, statistics, warning signs, and links to help and support.
+- [Suicide Prevention Statistics and Resources](https://advisement.com/suicide-prevention-statistics-and-resources/) - Suicide is a preventable death. That means that if a person receives enough support and treatment, it may be possible to prevent a person from seeking out such a drastic outcome.
 
 <br>
 
@@ -149,22 +150,22 @@ Legal services and eligibility vary by location. These directories provide infor
 
 ### International and Cross-Border
 
-- [HCCH Child Abduction Section](https://www.hcch.net/en/international-procedures/child-abduction) - Official information about the Hague Child Abduction Convention, country profiles, procedures, and national Central Authorities.
 - [European e-Justice Portal](https://e-justice.europa.eu/topics/find-legal-professional_en) - Find lawyers and other legal professionals across participating EU and EEA countries.
+- [HCCH Child Abduction Section](https://www.hcch.net/en/international-procedures/child-abduction) - Official information about the Hague Child Abduction Convention, country profiles, procedures, and national Central Authorities.
 
 ### United States Legal Resources
 
-- [USA.gov: Find a Lawyer and Affordable Legal Aid](https://www.usa.gov/legal-aid) - Government directory of free and low-cost legal help, pro bono programs, legal forms, and services by state.
-- [Legal Services Corporation](https://www.lsc.gov/about-lsc/what-legal-aid/i-need-legal-help) - Find an LSC-funded civil legal-aid organization by address or city.
 - [American Bar Association FindLegalHelp](https://www.americanbar.org/groups/legal_services/flh-home/) - Lawyer-referral and legal-assistance resources by state.
+- [Legal Services Corporation](https://www.lsc.gov/about-lsc/what-legal-aid/i-need-legal-help) - Find an LSC-funded civil legal-aid organization by address or city.
 - [National Legal Aid & Defender Association](https://www.nlada.org) - Resources and information about civil legal aid and public defense.
 - [The Legal Aid Society - New York City](https://legalaidnyc.org/) - Free legal assistance for eligible New Yorkers, including family, domestic-violence, housing, immigration, and criminal matters.
-- [WomensLaw](https://www.womenslaw.org/) - Plain-language legal information for all survivors covering custody, parental kidnapping, divorce, restraining orders, litigation abuse, and finding legal help.
 - [U.S. Department of State: International Parental Child Abduction](https://travel.state.gov/content/travel/en/International-Parental-Child-Abduction.html) - Prevention, country information, Hague applications, legal information, and government contacts for international parental child-abduction cases.
+- [USA.gov: Find a Lawyer and Affordable Legal Aid](https://www.usa.gov/legal-aid) - Government directory of free and low-cost legal help, pro bono programs, legal forms, and services by state.
+- [WomensLaw](https://www.womenslaw.org/) - Plain-language legal information for all survivors covering custody, parental kidnapping, divorce, restraining orders, litigation abuse, and finding legal help.
 
 ### Other Regional Legal Aid
 
-- [United Kingdom: Check if You Can Get Legal Aid](https://www.gov.uk/legal-aid/check-legal-aid) - Official eligibility checker and guidance for obtaining legal aid.
-- [Canada: Provincial and Territorial Legal Aid Plans](https://canada.justice.gc.ca/eng/fund-fina/gov-gouv/aid-aide/index.html) - Official links to legal-aid services administered by each province and territory.
 - [Australia: Legal Assistance Services](https://www.ag.gov.au/legal-system/legal-assistance-services) - Official directory of legal-aid commissions and other assistance providers by state and territory.
+- [Canada: Provincial and Territorial Legal Aid Plans](https://canada.justice.gc.ca/eng/fund-fina/gov-gouv/aid-aide/index.html) - Official links to legal-aid services administered by each province and territory.
+- [United Kingdom: Check if You Can Get Legal Aid](https://www.gov.uk/legal-aid/check-legal-aid) - Official eligibility checker and guidance for obtaining legal aid.
 
