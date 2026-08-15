@@ -67,12 +67,17 @@ The [utils/bin/jekyll-site](../utils/bin/jekyll-site) script manages Jekyll inde
 # Start Jekyll server (fast mode)
 ./utils/bin/jekyll-site start -n
 
+# Start with only posts visible as of today (future posts and drafts omitted)
+./utils/bin/jekyll-site start --current
+
 # Restart Jekyll server (fast mode by default)
 ./utils/bin/jekyll-site restart
 
 # Build once and run HTMLProofer link checks
 ./utils/bin/jekyll-site build -c
 ```
+
+Local serving includes future-dated posts, Markdown drafts, and posts marked `published: false` by default so scheduled work can be reviewed. Pass `--current` to `start` or `restart` when you need the site exactly as it is visible today.
 
 #### 3. **File Watcher (Standalone)**
 

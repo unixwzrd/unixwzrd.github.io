@@ -112,6 +112,7 @@ site_build() {
 start_service() {
     local skip_refresh=$1
     local run_link_check=${2:-false}
+    local current_site=${3:-false}
     if check_running; then
         echo "Jekyll is already running. Restarting..." >&2
         stop_service
@@ -121,12 +122,15 @@ start_service() {
     fi
     site_build "$skip_refresh" "$run_link_check"
 
-    local serve_flags="--host localhost --port 4000 --trace"
+    local serve_flags=(--future --drafts --unpublished --host localhost --port 4000 --trace)
+    if [ "$current_site" = "true" ]; then
+        serve_flags=(--host localhost --port 4000 --trace)
+    fi
 
-    cd "${BASE_DIR}" && JEKYLL_ENV=development bundle exec jekyll serve $serve_flags &
+    cd "${BASE_DIR}" && JEKYLL_ENV=development bundle exec jekyll serve "${serve_flags[@]}" &
     echo $! > "$pid_file"
     echo "Jekyll server started (PID: $(cat "$pid_file"))"
-    echo "Serve flags: $serve_flags"
+    echo "Serve flags: ${serve_flags[*]}"
 }
 
 stop_service() {
@@ -165,6 +169,7 @@ OPTIONS:
     -n, --no-refresh  Skip OpenGraph data refresh (faster builds)
     -r, --refresh     Force OpenGraph data refresh (slower builds)
     -c, --check-links Run HTMLProofer on _site after build
+    --current          Serve only posts visible as of today; omit future posts and drafts
 
 IMPORTANT: -n and -r are incompatible flags. If both are specified, -n takes
 precedence and the operation continues with a warning.
@@ -172,12 +177,14 @@ precedence and the operation continues with a warning.
 EXAMPLES:
     jekyll-site start              # Start with OG refresh (complete mode)
     jekyll-site start -n           # Start without OG refresh (fast mode)
+    jekyll-site start --current    # Preview only the currently visible site
     jekyll-site restart            # Restart without OG refresh (fast mode)
     jekyll-site restart -r         # Restart with OG refresh (complete mode)
     jekyll-site build -n           # Build without OG refresh
     jekyll-site stop               # Stop the server
 
 DEFAULT BEHAVIOR:
+    - serve: Include future-dated, draft, and published-false posts for editorial preview
     - start: Refresh OG data (complete mode)
     - restart: Skip OG data refresh (fast mode)
     - build: Refresh OG data (complete mode)
@@ -188,6 +195,7 @@ EOF2
 skip_refresh=false
 force_refresh=false
 run_link_check=false
+current_site=false
 command=""
 
 while [[ $# -gt 0 ]]; do
@@ -202,6 +210,10 @@ while [[ $# -gt 0 ]]; do
             ;;
         -c|--check-links)
             run_link_check=true
+            shift
+            ;;
+        --current)
+            current_site=true
             shift
             ;;
         build|start|stop|restart|-h|--help)
@@ -245,14 +257,14 @@ case "$command" in
         site_build "$skip_refresh" "$run_link_check"
         ;;
     start)
-        start_service "$skip_refresh" "$run_link_check"
+        start_service "$skip_refresh" "$run_link_check" "$current_site"
         ;;
     stop)
         stop_service
         ;;
     restart)
         stop_service
-        start_service "$skip_refresh" "$run_link_check"
+        start_service "$skip_refresh" "$run_link_check" "$current_site"
         ;;
     *)
         show_help

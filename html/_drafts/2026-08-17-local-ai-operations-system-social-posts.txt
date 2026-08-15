@@ -1,0 +1,125 @@
+When a Local AI Stack Becomes an Operations System — social drafts
+
+Scheduled article:
+https://unixwzrd.ai/technology/2026/08/17/when-a-local-ai-stack-becomes-an-operations-system/
+
+Short URL:
+https://unixwzrd.ai/s/cd70519bcf/
+
+Suggested hashtags:
+#LocalAI #MLOps #AppleSilicon #macOS #AgentEngineering
+
+Alternate hashtags:
+#LLMOps #SelfHosting #AIInfrastructure #DeveloperTools #LocalFirst
+
+
+==================================================
+LINKEDIN
+==================================================
+
+The model was running. The system around it was not.
+
+A tunnel existed but its socket was not ready. A proxy passed its own health check while its upstream route was unavailable. Several components looked healthy in isolation, yet the path a person actually needed was broken.
+
+That was the point when my local AI setup stopped being a collection of useful experiments and became an operations problem.
+
+In the first technical article of my Local-First Agent Operations series, I look at the engineering work behind that transition: explicit ownership, dependency planning, meaningful readiness checks, bounded lifecycle operations, immutable releases, and rollback. I also explain why the control plane should coordinate the stack without trying to become its runtime, workflow engine, or autonomous infrastructure operator.
+
+This is less about adding another layer of software and more about being able to answer ordinary operational questions: What owns this process? What must be ready first? What will a restart disturb? What evidence says the route actually works? How do I get back to the previous known-good state?
+
+Read it here:
+https://unixwzrd.ai/s/cd70519bcf/
+
+#LocalAI #MLOps #AppleSilicon #macOS #AgentEngineering
+
+
+---- Personal repost ----
+
+I have spent enough time looking at a green process status while the route behind it was broken.
+
+This article is about the point where local AI becomes operations work: ownership, dependencies, readiness, recovery, and resisting the temptation to make one control plane own everything.
+
+https://unixwzrd.ai/s/cd70519bcf/
+
+#LocalAI #LLMOps #AppleSilicon
+
+
+==================================================
+X / TWITTER
+==================================================
+
+The model was running. The route was broken.
+
+First Local-First Agent Operations post: what comes after the demo—ownership, dependencies, readiness checks, recovery, and rollback across a multi-service AI stack.
+
+https://unixwzrd.ai/s/cd70519bcf/
+
+#LocalAI #MLOps #macOS
+
+
+Alt version:
+
+A process being alive does not mean the service route works.
+
+I wrote about turning a local AI experiment into an operable system without making the control plane another runtime or autonomous operator.
+
+https://unixwzrd.ai/s/cd70519bcf/
+
+#LLMOps #AppleSilicon #LocalFirst
+
+
+==================================================
+BLUESKY
+==================================================
+
+The model was running. The route was broken.
+
+This is the first post in my Local-First Agent Operations series: ownership, dependencies, meaningful readiness checks, recovery, and rollback once an AI experiment becomes a small distributed system.
+
+https://unixwzrd.ai/s/cd70519bcf/
+
+#LocalAI #MLOps
+
+
+==================================================
+MASTODON
+==================================================
+
+The model was running, but the route a person needed was still broken.
+
+My first Local-First Agent Operations post looks at what changes when a local AI experiment grows into a multi-service system: ownership, dependency planning, meaningful readiness, bounded restarts, recovery, and rollback.
+
+The control plane coordinates the stack without becoming another runtime or autonomous infrastructure operator.
+
+https://unixwzrd.ai/s/cd70519bcf/
+
+#LocalAI #MLOps #AppleSilicon #macOS
+
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+When a Local AI Stack Becomes an Operations System
+
+Subtitle:
+The model was running. The route was broken. That is where the operations work began.
+
+Body:
+
+Running a model locally is the satisfying part. You download it, start a server, send a request, and get an answer from hardware sitting nearby.
+
+Then the useful additions arrive: embeddings, speech, memory, a proxy, an agent gateway, a dashboard, remote clients, and tunnels between machines. Each component can look healthy on its own while the route someone actually depends on remains broken.
+
+That is the point where a local AI setup becomes an operations system.
+
+In the first technical article of my Local-First Agent Operations series, I write about the work behind that transition: assigning one lifecycle owner to each component, expressing dependencies, distinguishing process state from service health, planning changes before applying them, and making rollback part of installation rather than an emergency afterthought.
+
+I also explain an important boundary. A lightweight control plane can coordinate services across native processes, containers, virtual machines, and hosted endpoints without trying to replace the runtimes and platforms that already own them.
+
+Full article:
+https://unixwzrd.ai/technology/2026/08/17/when-a-local-ai-stack-becomes-an-operations-system/
+
+Tags:
+Local AI, LLM operations, Apple Silicon, macOS, agent engineering, self-hosting

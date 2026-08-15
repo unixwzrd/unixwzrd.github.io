@@ -3,7 +3,7 @@
 # site-service: Orchestrate jekyll-site and file_watcher
 # Usage:
 #   site-service [start|stop|restart] [--jekyll|--watcher] [extra args]
-#   Passes -n/--no-refresh and -r/--refresh to jekyll-site, passes watcher args to file_watcher
+#   Passes Jekyll preview and refresh options to jekyll-site, and watcher options to file_watcher
 #
 # TODO: Future enhancement - Replace watcher command-line args with config file approach:
 #       - Config file for watcher actions (create, modify, delete)
@@ -38,6 +38,7 @@ SERVICE SELECTION:
 OPTIONS:
     -n, --no-refresh  Skip OpenGraph data refresh (faster builds)
     -r, --refresh     Force OpenGraph data refresh (slower builds)
+    --current          Serve only posts visible as of today; omit future posts and drafts
         Note: -n and -r are incompatible. If both specified, -n takes precedence.
     --target-dir DIR  Set target directory for file watcher
     --watchers-dir DIR Set watchers directory for file watcher
@@ -45,6 +46,7 @@ OPTIONS:
 EXAMPLES:
     site-service start              # Start both services (complete mode)
     site-service start -n           # Start both services (fast mode, no OG refresh)
+    site-service -j start --current # Start Jekyll with the currently visible site only
     site-service restart            # Restart both (fast mode, no OG refresh)
     site-service restart -r         # Restart both with OG refresh (complete mode)
     site-service -j restart         # Restart only Jekyll (fast mode)
@@ -74,7 +76,7 @@ while [[ $# -gt 0 ]]; do
             do_jekyll=true; do_watcher=false; shift;;
         -w|--watcher)
             do_jekyll=false; do_watcher=true; shift;;
-        -n|--no-refresh|-r|--refresh)
+        -n|--no-refresh|-r|--refresh|--current)
             jekyll_args+=("$1"); shift;;
         --target-dir|--watchers-dir)
             watcher_args+=("$1" "$2"); shift 2;;
@@ -139,4 +141,4 @@ case "$command" in
         show_help
         exit 1
         ;;
-esac 
+esac

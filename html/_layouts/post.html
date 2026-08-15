@@ -79,6 +79,8 @@ layout: default
   {% include project_lookup.html %}
   {%- if page_project -%}
     {% include project_engagement.html %}
+  {%- else -%}
+    {% include giscus_comments.html %}
   {%- endif -%}
 
   {% include content_footer.html %}
