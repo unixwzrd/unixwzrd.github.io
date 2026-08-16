@@ -7,6 +7,14 @@
 {%- assign meta_format = include.format | default: site.minima.date_format | default: "%b %-d, %Y" -%}
 <span class="post-meta">
   <time datetime="{{ include.post.date | date_to_xmlschema }}">{{ include.post.date | date: meta_format }}</time>
+  {%- if include.post.series -%}
+    <span class="post-meta__separator">·</span>
+    <span>Series Part {{ include.post.series_part }}</span>
+    {%- if include.post.series_companion_of -%}
+      <span class="post-meta__separator">·</span>
+      <span>Hands-On companion to Part {{ include.post.series_companion_of }}</span>
+    {%- endif -%}
+  {%- endif -%}
   {%- if include.post.update_notice -%}
     <span class="post-updated-badge">
       · Updated

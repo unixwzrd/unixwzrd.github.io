@@ -1,0 +1,10 @@
+- generic [active] [ref=f1e1]:
+  - banner "Diagram controls" [ref=f1e2]:
+    - heading "External" [level=1] [ref=f1e3]
+    - button "Zoom out" [disabled] [ref=f1e4]: −
+    - button "Fit" [disabled] [ref=f1e5]
+    - button "Zoom in" [disabled] [ref=f1e6]: +
+    - button "Close diagram viewer" [ref=f1e7] [cursor=pointer]: Close (Esc)
+  - main [ref=f1e8]:
+    - img "External"
+    - paragraph [ref=f1e9]: The requested diagram could not be displayed.

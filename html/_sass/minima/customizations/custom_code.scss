@@ -1,0 +1,224 @@
+// Unified code presentation for inline code, fenced blocks, and full source files.
+// This file is intentionally imported after the active Minima skin.
+
+$code-surface: #0d1117;
+$code-surface-raised: #111820;
+$code-surface-muted: #090d12;
+$code-border: #30363d;
+$code-text: #e6edf3;
+$code-muted: #8b949e;
+$code-blue: #79c0ff;
+$code-cyan: #76e3ea;
+$code-green: #7ee787;
+$code-orange: #ffa657;
+$code-pink: #ff7b72;
+$code-purple: #d2a8ff;
+$code-string: #a5d6ff;
+
+// Inline code should be distinct without looking like a miniature code block.
+:not(pre) > code {
+  padding: 0.12em 0.38em;
+  border: 1px solid #2d3f52;
+  border-radius: 5px;
+  background: $code-surface-raised;
+  color: $code-string;
+  font-size: 0.9em;
+  overflow-wrap: anywhere;
+}
+
+// Markdown fences and Rouge output share one surface and rhythm.
+div.highlighter-rouge,
+.highlight {
+  border-radius: 10px;
+  background: $code-surface;
+}
+
+div.highlighter-rouge {
+  margin: 1.35rem 0 1.75rem;
+  border: 1px solid $code-border;
+  overflow: hidden;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
+}
+
+.highlight {
+  margin: 0;
+  border: 0;
+}
+
+.highlight pre,
+pre.highlight,
+div.highlighter-rouge pre,
+.source-code-disclosure__code pre {
+  margin: 0;
+  padding: 1rem 1.1rem;
+  border: 0;
+  border-radius: 10px;
+  background: $code-surface;
+  color: $code-text;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  overflow: auto;
+  tab-size: 4;
+  -moz-tab-size: 4;
+  white-space: pre;
+}
+
+// Do not paint an inline background behind each visual line inside <pre>.
+pre > code,
+.highlight code,
+.source-code-disclosure__code code {
+  display: block;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  overflow-wrap: normal;
+}
+
+.highlight pre::selection,
+.highlight code::selection,
+.highlight span::selection {
+  background: #264f78;
+  color: #ffffff;
+}
+
+// Rouge token palette: readable on the dark surface across Python, shell,
+// JSON, YAML, HTML, CSS, configuration files, and diffs.
+.highlight {
+  .c, .c1, .ch, .cm, .cp, .cpf, .cs { color: $code-muted; font-style: italic; }
+  .err { color: #ffa198; background: rgba(248, 81, 73, 0.16); }
+  .k, .kc, .kd, .kp, .kr, .kt { color: $code-pink; }
+  .kn { color: $code-pink; }
+  .o, .ow { color: $code-pink; }
+  .p, .pm { color: #c9d1d9; }
+  .l, .ld, .m, .mb, .mf, .mh, .mi, .mo, .il { color: $code-blue; }
+  .s, .s1, .s2, .sa, .sb, .sc, .sd, .se, .sh, .si, .sr, .ss, .sx, .dl { color: $code-string; }
+  .n, .ni, .nl, .nn, .nv, .py, .vc, .vg, .vi { color: $code-text; }
+  .na, .nb, .bp { color: $code-cyan; }
+  .nc, .ne, .nf, .fm { color: $code-purple; }
+  .nd, .no, .nt, .nx, .vm { color: $code-green; }
+  .gd { color: #ffa198; background: rgba(248, 81, 73, 0.12); }
+  .gi { color: $code-green; background: rgba(46, 160, 67, 0.12); }
+  .gh, .gu { color: $code-blue; font-weight: 700; }
+  .go, .gp { color: $code-muted; }
+  .gr, .gt { color: #ffa198; }
+  .ge { font-style: italic; }
+  .gs { font-weight: 700; }
+}
+
+// Full-file disclosures use the same editor surface with clearer chrome.
+.source-code-disclosure {
+  border-color: $code-border;
+  background: $code-surface-muted;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.24);
+}
+
+.source-code-disclosure summary {
+  align-items: center;
+  min-height: 3.4rem;
+  border-bottom: 1px solid transparent;
+  background: $code-surface-raised;
+}
+
+.source-code-disclosure[open] summary {
+  border-bottom-color: $code-border;
+}
+
+.source-code-disclosure summary:hover,
+.source-code-disclosure summary:focus-visible {
+  background: #16202b;
+}
+
+.source-code-disclosure__identity {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-width: 0;
+  font-family: $code-font-family;
+}
+
+.source-code-disclosure__language {
+  padding: 0.14rem 0.42rem;
+  border: 1px solid #36536d;
+  border-radius: 999px;
+  color: $code-blue;
+  font-family: $base-font-family;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.source-code-disclosure__actions {
+  padding: 0.7rem 1.1rem;
+  border-bottom: 1px solid $code-border;
+  background: $code-surface-muted;
+}
+
+.source-code-disclosure__actions .button-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid #36536d;
+  border-radius: 6px;
+  background: $code-surface-raised;
+  font-size: 0.82rem;
+}
+
+.source-code-disclosure__code {
+  background: $code-surface;
+}
+
+.source-code-disclosure__code pre {
+  max-height: 38rem;
+  border-radius: 0;
+}
+
+.highlight pre,
+.source-code-disclosure__code pre {
+  scrollbar-color: #52677a $code-surface;
+  scrollbar-width: thin;
+}
+
+.highlight pre::-webkit-scrollbar,
+.source-code-disclosure__code pre::-webkit-scrollbar {
+  width: 11px;
+  height: 11px;
+}
+
+.highlight pre::-webkit-scrollbar-track,
+.source-code-disclosure__code pre::-webkit-scrollbar-track {
+  background: $code-surface;
+}
+
+.highlight pre::-webkit-scrollbar-thumb,
+.source-code-disclosure__code pre::-webkit-scrollbar-thumb {
+  border: 3px solid $code-surface;
+  border-radius: 999px;
+  background: #52677a;
+}
+
+@media screen and (max-width: $on-palm) {
+  .highlight pre,
+  pre.highlight,
+  div.highlighter-rouge pre,
+  .source-code-disclosure__code pre {
+    padding: 0.85rem;
+    font-size: 0.82rem;
+    line-height: 1.55;
+  }
+
+  .source-code-disclosure summary {
+    align-items: flex-start;
+  }
+
+  .source-code-disclosure__identity {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+}

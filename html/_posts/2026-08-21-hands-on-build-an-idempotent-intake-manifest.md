@@ -6,7 +6,7 @@ date: 2026-08-21 08:00:00 -0500
 categories: [hands-on]
 tags: [ai, agent-optimization, agent-workflows, python, sqlite, deterministic-systems, local-first, knowledge-management]
 image: /assets/images/blog/agent-optimization/post-02a-idempotent-manifest-hero.png
-excerpt: "A small Python and SQLite exercise for giving local sources stable identities, detecting real changes, and proving that ordinary reruns do not create duplicate records."
+excerpt: "A first import is easy. I built and tested a bounded Python and SQLite manifest that keeps source identity and history intact across reruns, changes, disappearance, and restoration."
 series: "Local-First Agent Operations"
 series_part: "2A"
 series_order: 25
@@ -19,74 +19,171 @@ series_next_title: "Memory Is a Governance Problem, Not Just a Vector Database"
 published: true
 ---
 
-While writing [Deterministic First: Building a Knowledge Intake Pipeline](/technology/2026/08/19/deterministic-first-building-a-knowledge-intake-pipeline/), I wanted a small example that showed the idea without dragging the entire private workflow along with it. The result is a local manifest that gives text sources stable identities, content fingerprints, provenance, and explicit change states. I deliberately stopped before document summaries, embeddings, review notes, and retrieval decisions because each belongs to a later lifecycle stage. The only promise this example needs to keep is that I can run discovery again without creating a second record for an unchanged source.
+While writing [Deterministic First: Building a Knowledge Intake Pipeline](/technology/2026/08/19/deterministic-first-building-a-knowledge-intake-pipeline/), I kept coming back to the same problem: a successful first import does not prove very much. Plenty of scripts can create a row once. I wanted to know what happened when I ran the script again, changed a file, removed it, and then put it back. If the inventory could not explain each of those events without producing duplicates or pretending stale data was still current, I was not ready to build anything else on top of it.
+
+That led me to a small standard-library Python utility backed by SQLite. It scans one deliberately bounded directory tree, records deterministic source identities, preserves the history of missing files, migrates the earlier teaching schema, and reports what it did as JSON. I stopped it there on purpose. It does not summarize a document, classify it, approve it, or decide whether an agent may retrieve it. I want those later decisions to remain visible instead of disappearing inside an importer that tries to do everything.
 
 <!--more-->
 
-## Start With a Small Contract
+## Start With the Contract
 
-I kept the example to the Python standard library and SQLite so there is very little machinery to distract from the contract. The runnable `intake_manifest.py` file scans Markdown and text files below a directory while recording:
+I started with one row for every allowlisted Markdown or text file. There is nothing particularly glamorous in the record, but every field answers a question I know I will have to ask later:
 
-| Field | Purpose |
+| Field | What it tells me |
 | --- | --- |
-| `source_id` | Stable identity derived from the source kind and canonical path |
-| `source_path` | Provenance needed to find the authority again |
-| `content_sha256` | Content fingerprint used to detect a real change |
-| `size_bytes` | Useful inspection metadata, not source identity |
-| `mtime_ns` | Recorded provenance, not trusted as proof that content is unchanged |
-| `extractor_version` | Version of the inventory contract that produced the record |
-| `processing_state` | The next explicit lifecycle state |
+| `source_id` | A stable identity derived from source type and canonical path |
+| `source_path` | Where the source authority was observed |
+| `content_sha256` | Whether the bytes actually changed |
+| `size_bytes`, `mtime_ns` | Observed metadata, refreshed even when content is unchanged |
+| `extractor_version` | Which inventory contract evaluated the source |
+| `processing_state` | Whether downstream processing must reconsider it |
+| `availability_state` | Whether the source is currently `present` or retained as `missing` |
+| `discovered_at` | When the manifest first observed the source |
+| `content_changed_at` | When its content or extractor contract last changed |
+| `updated_at`, `last_seen_at` | When manifest state changed and when a completed scan last saw it |
 
-The complete file is available here without sending it straight to the browser's download handler. Expand the disclosure to read it on the page; use the clearly labeled download button only when you want a local copy.
+I tied identity to the source type and canonical path because those are the facts this little utility can actually prove. If I rename a file, the old path becomes missing and the new path becomes a new source. That may be less clever than guessing that the two files are the same thing, but it is also auditable. In a larger system I would record a known move explicitly or use a stronger identifier supplied by the source system.
+
+Once I wrote those rules down, the control flow became almost boring, which is exactly what I wanted. One transaction selects eligible files beneath the configured root, fingerprints each stable read, compares it with the previous state, reconciles missing records within that same root, checks SQLite integrity, and only then commits.
+
+{% include blog_diagram.html
+   src="/assets/images/blog/agent-optimization/post-02a-manifest-scan.svg"
+   alt="Manifest scan flow from a bounded source root through allowlisted selection, stable fingerprinting, prior-record comparison, missing-source reconciliation, integrity checking, commit or rollback, and JSON output."
+   variant="series" %}
+
+I did not want the convenience of a recursive scan to turn into accidental access to an entire home directory. Hidden paths, non-text suffixes, and file or directory symlinks that could escape the root are excluded. The utility also stats each selected file before and after hashing it. If the file changes during the read, the scan fails and rolls back instead of committing a fingerprint assembled from two different versions.
+
+## Read or Download the Complete Files
+
+I am including both complete files because sample code is much more useful when the reader can run the same checks I ran. The on-page source viewer and download links use the same public assets, so there is no second hand-maintained copy waiting to drift away from the article. The first disclosure contains the utility, and the second contains its eight-canary acceptance suite.
 
 {% include source_code.html source="/assets/code/agent-optimization/intake_manifest.py" language="python" title="intake_manifest.py" %}
 
-## Run the Example
+{% include source_code.html source="/assets/code/agent-optimization/test_intake_manifest.py" language="python" title="test_intake_manifest.py" %}
 
-Create a disposable source directory outside this repository:
+## Run a Clean End-to-End Scan
+
+I use a disposable tree under `/tmp` so I can repeat the exercise from a known starting point. Download both files into it and create one small Markdown source:
 
 ```bash
+rm -rf /tmp/intake-demo
 mkdir -p /tmp/intake-demo/sources
+
+curl -fsSLo /tmp/intake-demo/intake_manifest.py \
+  https://unixwzrd.ai/assets/code/agent-optimization/intake_manifest.py
+curl -fsSLo /tmp/intake-demo/test_intake_manifest.py \
+  https://unixwzrd.ai/assets/code/agent-optimization/test_intake_manifest.py
+
 printf '%s\n' '# First note' 'A source with enough text to fingerprint.' \
   > /tmp/intake-demo/sources/first.md
 
-curl -fsSLO \
-  https://unixwzrd.ai/assets/code/agent-optimization/intake_manifest.py
-
-python3 intake_manifest.py \
+python3 /tmp/intake-demo/intake_manifest.py \
   /tmp/intake-demo/sources \
   --db /tmp/intake-demo/manifest.db
 ```
 
-The first run should report one new source. When I run the same command again, it reports one unchanged source. The file is still read and hashed, so this example makes no modification-time fast-path claim; it proves stable durable effects rather than zero-cost scanning.
+The first result is not exciting, and that is good:
 
-Now change the source and run it a third time:
+```json
+{
+  "changed": 0,
+  "extractor_version": "intake-manifest-v2",
+  "missing": 0,
+  "new": 1,
+  "restored": 0,
+  "schema_version": 2,
+  "unchanged": 0
+}
+```
+
+When I run the same command again, it reports `new: 0` and `unchanged: 1`. The program still reads and hashes the file, so I am not claiming that modification time provides a shortcut around the scan. What I am claiming is narrower and easier to verify: an ordinary rerun does not invent another identity or reset work unnecessarily.
+
+Now change the source and ask for the ordered record set:
 
 ```bash
 printf '%s\n' 'A second paragraph changes the content fingerprint.' \
   >> /tmp/intake-demo/sources/first.md
 
-python3 intake_manifest.py \
+python3 /tmp/intake-demo/intake_manifest.py \
   /tmp/intake-demo/sources \
-  --db /tmp/intake-demo/manifest.db
+  --db /tmp/intake-demo/manifest.db \
+  --records
 ```
 
-The third run should report one changed source. It updates the existing manifest row and returns the processing state to `discovered` instead of inventing a second source identity. Changing the example's `VERSION` produces the same reprocessing outcome even when the content hash is unchanged, because I do not want a new inventory contract to masquerade as the old one.
+This time the summary reports `changed: 1`, but the `records` array still contains one row with the same `source_id`. Its `content_sha256` changes and its `processing_state` returns to `"discovered"`, which is the behavior I need before handing the source to another stage. Changing the extractor version causes the same reprocessing decision even when the file itself is unchanged; I do not want a new inventory contract masquerading as the old one.
 
-## Inspect the Contract
+## Preserve Disappearance and Restoration
 
-I chose SQLite partly because it makes the state visible without requiring another service:
+This is where the original small example was not good enough. If a file disappeared, its old row simply survived and still looked current. Deleting the row would have hidden the opposite fact: the source had existed, and something had happened to it. The useful behavior is to retain the record while changing its availability. Move the example outside the source root and scan again:
+
+```bash
+mv /tmp/intake-demo/sources/first.md /tmp/intake-demo/first.saved
+
+python3 /tmp/intake-demo/intake_manifest.py \
+  /tmp/intake-demo/sources \
+  --db /tmp/intake-demo/manifest.db \
+  --records
+```
+
+The result reports `missing: 1`, and the retained row now has `availability_state: "missing"`. Nothing is silently erased and nothing stale is presented as current. Put the same file back and scan once more:
+
+```bash
+mv /tmp/intake-demo/first.saved /tmp/intake-demo/sources/first.md
+
+python3 /tmp/intake-demo/intake_manifest.py \
+  /tmp/intake-demo/sources \
+  --db /tmp/intake-demo/manifest.db \
+  --records
+```
+
+Now the result reports `restored: 1`. The record keeps its original identity and `content_changed_at` value because availability changed but the bytes did not. I still return its processing state to `discovered`; a downstream stage should make an explicit decision about the restored authority rather than assuming nothing important happened.
+
+{% include blog_diagram.html
+   src="/assets/images/blog/agent-optimization/post-02a-source-lifecycle.svg"
+   alt="Per-source manifest lifecycle showing first discovery, unchanged and changed scans, retained missing history, and restoration without changing source identity."
+   variant="series" %}
+
+## Inspect the SQLite State
+
+The `--records` option is convenient for scripts, but one reason I chose SQLite is that I can inspect the durable state without standing up another service:
 
 ```bash
 sqlite3 -header -column /tmp/intake-demo/manifest.db \
-  'SELECT source_id, processing_state, size_bytes, extractor_version FROM sources;'
+  'SELECT source_id, availability_state, processing_state,
+          size_bytes, extractor_version
+     FROM sources
+    ORDER BY source_path;'
 ```
 
-The manifest retains the full path for local provenance, but I would not copy that path into a public report. If paths are sensitive in your environment, use a protected locator or an opaque mapping and keep the manifest out of logs and public documentation.
+The manifest stores canonical paths because it is local provenance state. I would not copy those paths into a public report or diagnostic bundle, and I have not used paths from my own environment in this article. If paths are sensitive in your environment, protect the database or introduce an opaque locator at the system boundary.
 
-## See the Review Boundary in Front Matter
+## Run the Canary Suite
 
-The example script intentionally stops at inventory. The next boundary becomes much easier to understand once the state is sitting in the note instead of being described only in prose, so a newly extracted conversation enters a review-oriented Wiki location with front matter like this sanitized example:
+I also do not want the reader to trust this utility simply because the example output looks reasonable. The earlier version left too much correctness as an exercise, so this version includes the acceptance tests I use to check the boundary:
+
+```bash
+cd /tmp/intake-demo
+python3 -m unittest -v test_intake_manifest.py
+```
+
+The eight canaries cover the failure modes I care about at this boundary:
+
+| Canary | Evidence it demands |
+| --- | --- |
+| New, unchanged, and changed | Three scans retain one stable source row |
+| Missing and restored | Disappearance retains history and restoration retains identity |
+| Bounded selection | Hidden, non-text, and symlinked sources remain excluded |
+| Extractor upgrade | A contract-version change resets processing to `discovered` |
+| Root-scoped reconciliation | Scanning one configured tree cannot mark another tree's records missing |
+| Metadata refresh | Unchanged content still refreshes observed metadata |
+| Transaction rollback | A failed fingerprint leaves no partial source updates |
+| Schema migration | The original teaching schema upgrades without losing its row or state |
+
+The ordering matters here. The integrity check runs before commit, so a source-read failure or failed `PRAGMA quick_check` rolls back the source changes from that invocation. Schema migration commits separately, which allows an older manifest to be upgraded even when a later source scan fails.
+
+## Hand Off to Review Without Granting Retrieval
+
+This is the point where it is tempting to keep adding features, and it is also where I stop. A downstream extractor can select rows in `processing_state = "discovered"`, but its output should still enter review in a fail-closed state:
 
 ```yaml
 ---
@@ -100,7 +197,7 @@ related:
 ---
 ```
 
-That is a fail-closed state. The note has provenance, but nobody has classified or approved it and no retrieval system should ingest it. After review, a note can be accepted for durable filing while remaining excluded from retrieval:
+After a person accepts the material for durable filing, retrieval eligibility remains a separate decision:
 
 ```yaml
 ---
@@ -115,46 +212,14 @@ related:
 ---
 ```
 
-The important line is still `mnemosyne: "exclude"`. Approval and filing do not silently authorize retrieval. A rejected extract records a different durable decision:
+The important line is still `mnemosyne: "exclude"`. Filing something after review does not silently authorize an agent to retrieve it or inject it into a prompt. I retain rejected candidates too, with `review_state: "rejected"`, `mnemosyne: "exclude"`, and a decision timestamp, so the next extraction pass does not present the same material as new work.
 
-```yaml
----
-classification: "unclassified"
-review_state: "rejected"
-mnemosyne: "exclude"
-source_id: "src_example"
-source_hash: "example-sha256"
-classification_policy: "[[Wiki/Policies/Document Classification Policy]]"
-discarded_at: "YYYY-MM-DDTHH:MM:SSZ"
-related:
----
-```
+## Current State
 
-The rejected note remains historical evidence that the source was considered. Keeping that state is what prevents the next extraction run from presenting the same candidate as new work. These examples show the intake mechanics only; the policy for deciding classifications and retrieval eligibility belongs to the next installment.
+I am comfortable calling this utility complete for its stated job. It maintains an inspectable, transactional inventory of allowlisted local text sources and reports their lifecycle across reruns. Its JSON and SQLite contracts are suitable inputs for a separate extractor, and the included tests make that claim reproducible rather than anecdotal.
 
-## Keep the Next Stage Separate
+It still does not snapshot application databases, parse live session formats, classify content, remove secrets, review candidates, or populate a memory engine. Those jobs need source-specific adapters and policy decisions. Leaving them outside this program is not unfinished homework. It is how I keep one small component understandable enough to trust.
 
-From here, a production pipeline could select rows in `processing_state = 'discovered'`, normalize them, and update that state transactionally. I would put candidate records in a separate table with their own stable identity, source reference, extraction version, review state, and content hash rather than turning `sources` into a bucket for summaries, embeddings, classifications, and retrieval flags. That separation is what lets me answer four different questions later:
+## Next Work
 
-1. What was the original authority?
-2. What did deterministic extraction produce?
-3. What did a person approve or reject?
-4. What may a particular retrieval context use?
-
-The same separation makes derived indexes disposable. If I change an embedding model or chunking strategy, I can rebuild the index from explicitly eligible durable content instead of treating old vectors as authority.
-
-## Production Hardening Checklist
-
-The example is intentionally small, and I would not point it at real agent data without hardening it first. At a minimum, I would:
-
-- Open application databases read-only and use their supported snapshot behavior.
-- Add schema migrations instead of modifying tables implicitly.
-- Use transactions and an integrity check around manifest updates.
-- Bound each run and expose counts for discovered, changed, unchanged, skipped, and failed sources.
-- Define explicit source types and allowlists; do not recursively ingest an entire home directory.
-- Exclude request dumps, tool payloads, credentials, caches, and generated indexes before extraction.
-- Keep review candidates excluded from retrieval by default.
-- Preserve rejection history so a discarded candidate does not reappear on the next run.
-- Test identical reruns, content changes, extractor upgrades, filename collisions, malformed input, interruption, and recovery.
-
-I wrote this as a teaching artifact, not a drop-in knowledge product. The useful part is not the amount of code; it is the boundary the code establishes. Inventory can be deterministic, inspectable, and boring before any model is invited to interpret the content.
+From here I can move into memory governance without pretending the inventory solved it: who may retrieve which durable material, where authorization has to happen, and why access control must narrow the candidate set before ranking begins. The next main installment tells that part of the story, and its own Hands-On companion will turn the ordering into a small fail-closed router with canary tests.

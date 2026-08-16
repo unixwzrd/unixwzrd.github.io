@@ -159,6 +159,8 @@ The source file must live below `html/assets/code/`. The build reads that same f
 
 This keeps one source of truth for the rendered and downloadable code. Do not paste a second copy of a complete file into the post. Continue using normal fenced blocks for the commands that demonstrate how to run it.
 
+All code presentation uses the shared post-skin rules in `html/_sass/minima/customizations/custom_code.scss`. Inline code, ordinary fenced blocks, and full-file disclosures should retain that common dark surface, spacing, scrollbar behavior, and accessible Rouge token palette. Do not add per-article background or token-color overrides; add a missing language token to the shared theme instead.
+
 ## Blog diagrams
 
 Keep the Mermaid or Graphviz source with the publication material and generate both SVG and PNG assets. Embed the SVG through the shared diagram include; retain the PNG as a fallback or social-production asset.

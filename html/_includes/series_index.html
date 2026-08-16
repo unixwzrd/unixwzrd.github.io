@@ -21,25 +21,35 @@ Parameters:
 {% assign series_posts = series_posts | sort: 'series_order' %}
 
 <h2>Main Series</h2>
-<ol class="series-index">
+<ul class="post-list series-index">
 {% for post in series_posts %}
   {% unless post.series_companion_of %}
-  <li>
-    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-    <span class="post-meta">Part {{ post.series_part }} · {{ post.date | date: "%B %-d, %Y" }} · {{ post.categories | first | replace: '-', ' ' | capitalize }}</span>
-  </li>
+  <div class="blog-post-item">
+    <li>
+      <h3>
+        <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+      </h3>
+      <span class="post-meta"><strong>Part {{ post.series_part }}</strong> · {{ post.date | date: "%B %-d, %Y" }} · {{ post.categories | first | replace: '-', ' ' | capitalize }}</span>
+      <div class="post-excerpt">{{ post.excerpt | strip_images | markdownify | process_heading }}</div>
+    </li>
+  </div>
   {% endunless %}
 {% endfor %}
-</ol>
+</ul>
 
 <h2>Hands-On Companions</h2>
-<ol class="series-index">
+<ul class="post-list series-index">
 {% for post in series_posts %}
   {% if post.series_companion_of %}
-  <li>
-    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-    <span class="post-meta">Companion to Part {{ post.series_companion_of }} · {{ post.date | date: "%B %-d, %Y" }} · {{ post.categories | first | replace: '-', ' ' | capitalize }}</span>
-  </li>
+  <div class="blog-post-item">
+    <li>
+      <h3>
+        <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+      </h3>
+      <span class="post-meta"><strong>Part {{ post.series_part }}</strong> · Hands-On companion to Part {{ post.series_companion_of }} · {{ post.date | date: "%B %-d, %Y" }}</span>
+      <div class="post-excerpt">{{ post.excerpt | strip_images | markdownify | process_heading }}</div>
+    </li>
+  </div>
   {% endif %}
 {% endfor %}
-</ol>
+</ul>

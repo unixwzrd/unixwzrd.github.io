@@ -21,6 +21,7 @@ A second account on the same Mac is enough to separate the runtime home director
 This hands-on tutorial starts with authorized_keys and reusable SSH aliases, then walks through remote workspaces in VS Code, Cursor, and Windsurf. It also shows how I attach debugpy to an existing Python process through an SSH tunnel without exposing the debugger port to the LAN or Internet.
 
 https://unixwzrd.ai/s/24b766f1a1/
+https://unixwzrd.ai/s/c474212fd8/
 
 #SSH #RemoteDevelopment #Python #VSCode #Cursor #DeveloperTools
 
@@ -34,6 +35,8 @@ The editor should not be the first place you test SSH.
 This hands-on guide builds key authentication and host aliases first, then uses the same connection for VS Code, Cursor, Windsurf, and tunneled Python debugging—on one Mac, a LAN host, or a VPS.
 
 https://unixwzrd.ai/s/24b766f1a1/
+https://unixwzrd.ai/s/c474212fd8/
+
 
 #SSH #RemoteDevelopment #Python
 
@@ -47,6 +50,8 @@ One Mac, another machine, or a VPS: the useful remote-development boundary is th
 Set up SSH keys and aliases, prove authentication in a terminal, connect the editor, then carry debugpy through an SSH tunnel.
 
 https://unixwzrd.ai/s/24b766f1a1/
+https://unixwzrd.ai/s/c474212fd8/
+
 
 #SSH #RemoteDevelopment #Python
 
@@ -62,6 +67,7 @@ This hands-on tutorial creates a dedicated development account, installs an Ed25
 The target can be another account on the same Mac, another machine on the LAN, or a VPS. The debugger remains bound to loopback in every case.
 
 https://unixwzrd.ai/s/24b766f1a1/
+https://unixwzrd.ai/s/c474212fd8/
 
 #SSH #RemoteDevelopment #Python #VSCode #DeveloperTools
 
@@ -86,6 +92,8 @@ The same procedure works locally under another user, across a LAN, or on a VPS. 
 
 Full article:
 https://unixwzrd.ai/hands-on/2026/08/15/hands-on-isolated-remote-development-with-ssh/
+https://unixwzrd.ai/hands-on/2026/08/15/hands-on-isolated-remote-development-with-ssh/
+https://unixwzrd.ai/s/c474212fd8/
 
 Tags:
 SSH, remote development, Python, VS Code, Cursor, Windsurf, debugging

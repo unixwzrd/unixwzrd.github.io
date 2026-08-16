@@ -5,7 +5,7 @@ title: "Hands-On: Isolated Remote Development with SSH"
 date: 2026-08-15 20:30:00 -0500
 categories: [hands-on]
 tags: [ssh, remote-development, remote-debugging, vscode, cursor, windsurf, python, debugpy, macos, linux, vps]
-image: /assets/images/vibing-remote-debugging.png
+image: /assets/images/Isolated-Remote-Development-with-SSH.png
 excerpt: "A step-by-step tutorial for using SSH keys, isolated accounts, remote editor workspaces, and tunneled Python debugging on the same Mac, another machine, or a VPS."
 published: true
 ---
@@ -22,11 +22,11 @@ I use macOS as the client in the examples, with an Ed25519 key at the usual path
 
 I start by choosing one of three targets:
 
-| Target | SSH destination | What it proves |
-| --- | --- | --- |
-| Another account on this Mac | `127.0.0.1` | Account and environment isolation without another computer |
-| Another Mac or Linux host | A private LAN address or resolvable hostname | Development against different hardware or operating-system state |
-| A VPS | A provider hostname or public address | The same workflow across an untrusted network boundary |
+| Target                      | SSH destination                              | What it proves                                                   |
+| --------------------------- | -------------------------------------------- | ---------------------------------------------------------------- |
+| Another account on this Mac | `127.0.0.1`                                  | Account and environment isolation without another computer       |
+| Another Mac or Linux host   | A private LAN address or resolvable hostname | Development against different hardware or operating-system state |
+| A VPS                       | A provider hostname or public address        | The same workflow across an untrusted network boundary           |
 
 For the local case, I create a **standard** account in **System Settings → Users & Groups**. Under **General → Sharing → Remote Login**, I allow access only for the isolated account rather than enabling every user. I do not grant Full Disk Access unless the workload has a specific, reviewed reason to need it.
 

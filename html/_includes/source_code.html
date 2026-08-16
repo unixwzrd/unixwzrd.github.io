@@ -2,7 +2,10 @@
 {%- assign source_language = include.language | default: 'text' -%}
 <details class="source-code-disclosure">
   <summary>
-    <span>{{ source_title }}</span>
+    <span class="source-code-disclosure__identity">
+      <span>{{ source_title }}</span>
+      <span class="source-code-disclosure__language">{{ source_language }}</span>
+    </span>
     <span class="source-code-disclosure__hint">View source</span>
   </summary>
   <div class="source-code-disclosure__actions">

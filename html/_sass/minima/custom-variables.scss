@@ -5,6 +5,4 @@
 // Import custom variables
 @import "minima/customizations/custom_variables";
 
-// Import syntax highlighting themes
-@import "minima/customizations/mineokai";
-@import "minima/customizations/monokai";
+// Syntax highlighting is finalized by custom_code.scss after the active skin.

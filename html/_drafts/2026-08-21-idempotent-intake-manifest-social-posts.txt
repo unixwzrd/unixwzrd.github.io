@@ -14,13 +14,13 @@ Suggested hashtags:
 LINKEDIN
 ==================================================
 
-The first import is the easy one. The rerun tells you whether the design is any good.
+The first import is the easy one. The rerun, disappearance, and restoration tell you whether the design is any good.
 
-As a hands-on follow-up to my deterministic intake article, I built a deliberately small Python and SQLite example. It gives text sources stable identities, hashes their contents, records provenance, and distinguishes new, unchanged, and changed sources without creating duplicate rows.
+As a hands-on follow-up to my deterministic intake article, I built a bounded Python and SQLite manifest utility. It gives text sources stable identities, records provenance, and distinguishes new, unchanged, changed, missing, and restored sources without losing their history.
 
 It does not summarize documents, create embeddings, or decide what belongs in memory. That is the point. This exercise stops at the smallest contract I want to trust before a model or retrieval system enters the picture.
 
-The runnable example uses only the Python standard library.
+The utility uses only the Python standard library and includes eight executable canaries for selection boundaries, schema migration, rollback, and the complete source lifecycle.
 
 https://unixwzrd.ai/s/9807a49a51/
 
@@ -31,9 +31,9 @@ https://unixwzrd.ai/s/9807a49a51/
 X / TWITTER
 ==================================================
 
-The first import proves your code can create data. The rerun proves whether it respects data already there.
+The first import proves your code can create data. Change, disappearance, and restoration prove whether it respects history.
 
-A small Python + SQLite exercise for stable source identity and idempotent intake:
+A bounded Python + SQLite manifest with stable source identity and eight executable canaries:
 
 https://unixwzrd.ai/s/9807a49a51/
 
@@ -44,9 +44,9 @@ https://unixwzrd.ai/s/9807a49a51/
 BLUESKY
 ==================================================
 
-New. Unchanged. Changed.
+New. Unchanged. Changed. Missing. Restored.
 
-This hands-on Python and SQLite example builds the smallest intake contract I want before summaries, embeddings, review, or retrieval enter the system.
+This hands-on Python and SQLite utility builds and tests the inventory contract I want before summaries, review, or retrieval enter the system.
 
 https://unixwzrd.ai/s/9807a49a51/
 
@@ -57,9 +57,9 @@ https://unixwzrd.ai/s/9807a49a51/
 MASTODON
 ==================================================
 
-The first import is not a very demanding test. Run the same intake twice, change one source, and run it again. The durable result should still make sense.
+The first import is not a very demanding test. Run it twice, change a source, remove it, restore it, and then make the program prove that the durable history still makes sense.
 
-This hands-on article builds that contract with a small standard-library Python program and SQLite: stable source IDs, content hashes, provenance, and explicit new, unchanged, and changed states.
+This hands-on article builds that contract with Python and SQLite: bounded source selection, stable IDs, retained missing history, rollback, schema migration, and eight executable canaries.
 
 https://unixwzrd.ai/s/9807a49a51/
 
@@ -74,15 +74,15 @@ Title:
 Hands-On: Build an Idempotent Intake Manifest
 
 Subtitle:
-A small Python and SQLite exercise for proving that ordinary reruns do not create duplicate source records.
+A bounded Python and SQLite manifest for tracking source changes, disappearance, and restoration without losing history.
 
 Body:
 
-The first import only proves that a pipeline can create data. The second and third runs show whether it respects the data and identity already there.
+The first import only proves that a pipeline can create data. Rerunning it, changing a source, removing it, and restoring it reveal whether the program respects identity and history.
 
-This hands-on follow-up uses the Python standard library and SQLite to build a small local manifest. It assigns stable source identities, fingerprints contents, records provenance, and reports whether each source is new, unchanged, or changed.
+This hands-on follow-up uses the Python standard library and SQLite to build a bounded local manifest. It assigns stable source identities, fingerprints content, preserves missing records, migrates the original teaching schema, and reports whether each source is new, unchanged, changed, missing, or restored.
 
-It deliberately stops before summaries, embeddings, human review, and retrieval policy. Those are different stages with different failure modes.
+Eight executable canaries cover the lifecycle, selection boundaries, extractor upgrades, root-scoped reconciliation, metadata refresh, rollback, and schema migration. The utility deliberately stops before summaries, human review, and retrieval policy because those are different stages with different failure modes.
 
 Full article:
 https://unixwzrd.ai/hands-on/2026/08/21/hands-on-build-an-idempotent-intake-manifest/

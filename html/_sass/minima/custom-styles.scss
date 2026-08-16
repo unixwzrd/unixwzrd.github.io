@@ -16,6 +16,7 @@
 @import "minima/customizations/custom_projects";    // Project-specific styles
 @import "minima/customizations/custom_search";      // Search UI
 @import "minima/customizations/custom_taxonomy";    // Blog taxonomy and topics UI
+@import "minima/customizations/custom_code";        // Unified inline, block, and source-file code styling
 
 // Order is important: later imports can override earlier ones
 // Components used in multiple places should be in custom_components
