@@ -30,6 +30,13 @@ I start by choosing one of three targets:
 
 For the local case, I create a **standard** account in **System Settings → Users & Groups**. Under **General → Sharing → Remote Login**, I allow access only for the isolated account rather than enabling every user. I do not grant Full Disk Access unless the workload has a specific, reviewed reason to need it.
 
+{% include blog_diagram.html
+   src="/assets/images/blog/remote-debugging/same-mac-isolated-account.svg"
+   alt="A developer account and an isolated target account on the same Mac connected through SSH over loopback."
+   variant="compact" %}
+
+Even on one Mac, the SSH connection crosses an account boundary. The editor keeps its private key and user interface in my developer account, while the repository, virtual environment, Python process, and editor-side services live under the isolated account.
+
 On another Mac, I use the same Remote Login control. On Linux or a VPS, I use a normal non-root account created through the operating system or provider console. I make sure I can recover through the physical console or provider console before changing SSH authentication. A separate account is useful isolation, but it is not magic: membership in privileged groups, permissive file modes, mounted directories, and `sudo` can all defeat the boundary.
 
 ## Step 1: Check for an Existing SSH Key
@@ -180,10 +187,33 @@ source .venv/bin/activate
 python -m pip install --upgrade pip debugpy
 ```
 
-I create `demo.py` with a deliberately small program:
+I create `demo.py` with a deliberately small program and an application-side debugger hook:
 
 ```python
+import logging
+import os
 from time import sleep
+
+import debugpy
+
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+
+def remote_debugger_activate(
+    host: str = "127.0.0.1",
+    port: int = 5678,
+    *,
+    wait_for_client: bool = True,
+) -> None:
+    """Start a loopback-only debugpy listener for an SSH-tunneled attach."""
+    debugpy.listen((host, port))
+    logger.warning("Debugger listening on %s:%d", host, port)
+    if wait_for_client:
+        logger.warning("Waiting for debugger to attach")
+        debugpy.wait_for_client()
+        logger.warning("Debugger attached")
 
 
 def running_total(limit: int) -> int:
@@ -195,11 +225,15 @@ def running_total(limit: int) -> int:
 
 
 if __name__ == "__main__":
+    if os.environ.get("REMOTE_DEBUG") == "1":
+        remote_debugger_activate()
     result = running_total(10)
     print(f"result={result}")
 ```
 
-This is not interesting code; that is useful here. I can put a breakpoint on `total += value`, inspect `total` and `value`, and know that any surprising behavior belongs to the development connection rather than the application.
+This is not interesting application code; that is useful here. I can put a breakpoint on `total += value`, inspect `total` and `value`, and know that any surprising behavior belongs to the development connection rather than the application. The debugger path is enabled only when I set `REMOTE_DEBUG=1`, so an ordinary run does not unexpectedly stop and wait for an editor.
+
+I use the numeric loopback address deliberately. `localhost` normally resolves to loopback too, but it does not mean “all interfaces,” and address-family differences can make a tunnel harder to diagnose. Binding to `127.0.0.1` makes the IPv4 listener agree exactly with the SSH forwarding commands later in the tutorial. The final “Debugger attached” message belongs after `wait_for_client()` inside the helper; placing it after the function definition would log during module import before any debugger had connected.
 
 ## Step 6: Open a Remote Workspace
 
@@ -217,6 +251,13 @@ pwd
 ```
 
 The shell, Python interpreter, extensions, language servers, debugger, and many agent-side tools now run under the target account. On a VPS, the same arrangement works even though the editor UI remains on my Mac.
+
+{% include blog_diagram.html
+   src="/assets/images/blog/remote-debugging/remote-workspace.svg"
+   alt="A local editor connecting over SSH to its remote editor server, project files, extensions, and Python process."
+   variant="compact" %}
+
+There is no separate debugger tunnel in this configuration. The editor's remote server launches and controls Python on the target, so the debugger and source files already share the same filesystem and account.
 
 ## Step 7: Debug Inside the Remote Workspace
 
@@ -244,18 +285,33 @@ If a derivative editor uses a slightly different Python extension, I let it crea
 
 ## Step 8: Attach Through an SSH Tunnel
 
-The second procedure is for a process started outside the editor. On the target, from the project virtual environment, I run:
+The second procedure is for a process started outside the editor. On the target, from the project virtual environment, I activate the debugger hook that is already part of `demo.py`:
 
 ```bash
 source ~/projects/remote-debug-demo/.venv/bin/activate
 cd ~/projects/remote-debug-demo
+REMOTE_DEBUG=1 python demo.py
+```
+
+The process waits inside `remote_debugger_activate()`, but `debugpy` listens only on the target's loopback interface. I do not add port 5678 to a VPS firewall or security group. This in-process form is useful when I want the application to decide exactly where debugger startup occurs.
+
+For an application I cannot or do not want to modify, the equivalent command-line wrapper remains available:
+
+```bash
 python -m debugpy \
   --listen 127.0.0.1:5678 \
   --wait-for-client \
   demo.py
 ```
 
-The process waits for a debugger, but `debugpy` listens only on the target's loopback interface. I do not add port 5678 to a VPS firewall or security group.
+I use one method or the other, never both for the same process, because only one listener can own the address and port.
+
+{% include blog_diagram.html
+   src="/assets/images/blog/remote-debugging/debugpy-ssh-tunnel.svg"
+   alt="An editor connecting to a local port that SSH forwards to a loopback-only debugpy listener on either the same Mac, a LAN host, or a VPS."
+   variant="compact" %}
+
+The drawing is the same whether the SSH destination is another account on this Mac or a machine across the network. Only the SSH route changes. From the editor's point of view, the debugger is always on local loopback; from the application's point of view, `debugpy` is always on target loopback. SSH is the only bridge between them.
 
 From a local terminal on my Mac, I create the tunnel:
 

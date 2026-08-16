@@ -1,0 +1,46 @@
+{% comment %}
+Builds `discovery_posts`: published blog posts eligible for discovery lists.
+
+Optional parameters:
+- section: only posts whose categories include this section name
+- category: only posts in site.categories[category] (project blogs)
+
+Excludes drafts, unpublished posts, _drafts paths, social-post working files,
+and anything marked list_exclude: true.
+{% endcomment %}
+{% assign discovery_posts = '' | split: '' %}
+{% if include.category %}
+  {% assign post_source = site.categories[include.category] | default: '' | split: '' %}
+{% else %}
+  {% assign post_source = site.posts %}
+{% endif %}
+{% for post in post_source %}
+  {% assign include_post = true %}
+  {% if post.draft %}
+    {% assign include_post = false %}
+  {% endif %}
+  {% if post.published == false %}
+    {% assign include_post = false %}
+  {% endif %}
+  {% if post.list_exclude %}
+    {% assign include_post = false %}
+  {% endif %}
+  {% if include.section %}
+    {% unless post.categories contains include.section %}
+      {% assign include_post = false %}
+    {% endunless %}
+  {% endif %}
+  {% assign post_path = post.path | default: post.relative_path | default: '' %}
+  {% if post_path contains '/_drafts/' or post_path contains '_drafts/' %}
+    {% assign include_post = false %}
+  {% endif %}
+  {% if post_path contains 'social-posts' %}
+    {% assign include_post = false %}
+  {% endif %}
+  {% if post.url contains '/_drafts/' or post.url contains '_drafts/' %}
+    {% assign include_post = false %}
+  {% endif %}
+  {% if include_post %}
+    {% assign discovery_posts = discovery_posts | push: post %}
+  {% endif %}
+{% endfor %}

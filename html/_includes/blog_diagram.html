@@ -1,0 +1,22 @@
+{%- assign diagram_variant = include.variant | default: 'series' -%}
+{%- capture diagram_viewer_url -%}{{ '/diagram-viewer/' | relative_url }}?src={{ include.src | relative_url | url_encode }}&title={{ include.alt | url_encode }}{%- endcapture -%}
+<figure class="blog-diagram blog-diagram--{{ diagram_variant | escape }}">
+  <a
+    class="blog-diagram__link"
+    href="{{ diagram_viewer_url }}"
+    target="_blank"
+    rel="noopener"
+    aria-label="Open full-size diagram: {{ include.alt | escape }}"
+    title="Open the diagram viewer in a new tab"
+  >
+    <img
+      src="{{ include.src | relative_url }}"
+      alt="{{ include.alt | escape }}"
+      loading="lazy"
+      decoding="async"
+    >
+  </a>
+  <figcaption>
+    <a href="{{ diagram_viewer_url }}" target="_blank" rel="noopener">Open full-size diagram</a>
+  </figcaption>
+</figure>

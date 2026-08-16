@@ -31,6 +31,32 @@ When working with the post layout, remember that all frontmatter variables are a
 {{ page.tags }}
 ```
 
+### Important Variables
+
+When working with the post layout, remember that all frontmatter variables are accessed through the `page` object:
+
+```liquid
+{{ page.title }}
+{{ page.date }}
+{{ page.author }}
+{{ page.categories }}
+{{ page.tags }}
+```
+
+### Post-publish updates and series
+
+See **[workflows/post-updates-and-ordering.md](../workflows/post-updates-and-ordering.md)** for the full policy. Summary:
+
+| Tier | Fields | Discovery lists |
+|---|---|---|
+| Silent fix | (none) | No change |
+| Technical correction | `corrected_at`, `correction_note` | No promotion |
+| Major update | `update_notice`, `last_modified_at` | Promoted via `list_sort_key` |
+
+Series index pages sort by **`series_order`** (e.g. `10`, `20`, `25` for part `2A`), not publish date. Navigation uses `series_previous_url` / `series_next_url`.
+
+Build plugin: [`html/_plugins/02_post_list_metadata.rb`](../../html/_plugins/02_post_list_metadata.rb) (runs as a Jekyll generator after post dates are parsed). List UI: [`post_list_meta.html`](../../html/_includes/post_list_meta.html).
+
 ### Common Issues
 
 - Using `post.` variables instead of `page.` variables in the layout
@@ -132,6 +158,32 @@ Use ordinary fenced code blocks for short commands and excerpts that belong dire
 The source file must live below `html/assets/code/`. The build reads that same file, applies server-side Rouge highlighting, and places it inside a collapsed `<details>` element. Readers can inspect the complete file without downloading it; the component provides a separate, explicitly labeled download action.
 
 This keeps one source of truth for the rendered and downloadable code. Do not paste a second copy of a complete file into the post. Continue using normal fenced blocks for the commands that demonstrate how to run it.
+
+## Blog diagrams
+
+Keep the Mermaid or Graphviz source with the publication material and generate both SVG and PNG assets. Embed the SVG through the shared diagram include; retain the PNG as a fallback or social-production asset.
+
+```liquid
+{% include blog_diagram.html
+   src="/assets/images/blog/example/architecture.svg"
+   alt="A concise description of the diagram's meaning and flow."
+   variant="series" %}
+```
+
+Use `variant="series"` for a larger architecture diagram and `variant="compact"` for a small procedural figure. The include constrains the inline preview, supplies accessible alternative text, and makes both the image and its **Open full-size diagram** caption link to a dark, full-browser SVG viewer in a new tab. The viewer provides zoom controls and click-drag panning, while touch devices retain their normal pan and pinch-to-zoom behavior. Readers can select **Close** or press Escape to leave the viewer.
+
+The site uses a near-black background, so generated diagrams must not use a white canvas. Prefer a transparent background with near-white connector lines, arrowheads, group labels, and edge labels. Colored node fills and their contrasting internal text can remain unchanged. Mermaid diagrams should use the shared publication convention represented by these values:
+
+```text
+canvas: transparent
+connectors and arrowheads: #e5e7eb
+free-standing and group text: #f9fafb
+edge-label backing: #040404
+```
+
+Render Mermaid with `mmdc -b transparent`. Mermaid commonly emits `width="100%"` without an intrinsic height; the publication renderer replaces that percentage with explicit dimensions from the SVG `viewBox` so browsers preserve the diagram's aspect ratio inside the clickable figure. Before publication, inspect the SVG inside the actual article on the dark site rather than relying on an image previewer's default white background.
+
+Diagrams must also be constrained by the article stylesheet instead of expanding automatically to the full content width. Compare related diagrams in the browser and normalize their Mermaid base font when different native view-box proportions would otherwise make one figure's boxes and labels substantially smaller than another's.
 
 ## Troubleshooting
 

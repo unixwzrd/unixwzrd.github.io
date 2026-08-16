@@ -48,5 +48,8 @@ Below you'll find an overview of each major area of site operations, with links 
 - **[Blog templates & short links](../templates/blog-templates.md)**
    Post structure, optional `slug` for project URLs, `/s/<code>/` short links (hash uses the post **path under `html/`**, not the live permalink), backfill script, and optional pre-commit hook (repo root [`.pre-commit-config.yaml`](../../.pre-commit-config.yaml)).
 
+- **[Post updates & list ordering](../workflows/post-updates-and-ordering.md)**
+   Major updates, technical corrections, series `series_order`, and discovery-list promotion without changing permalinks or short links.
+
 Each section contains detailed instructions and is maintained in smaller files for easier updates.
 

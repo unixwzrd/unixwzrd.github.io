@@ -28,82 +28,12 @@ Parameters:
 {% endif %}
 
 <ul class="post-list">
-    {% if include.category %}
-        <!-- Project blog listing -->
-        {% if jekyll.environment == "development" %}
-            <!-- In development: include all posts in category, including drafts -->
-            {% assign posts_to_show = site.categories[include.category] %}
-        {% else %}
-            <!-- In production: exclude draft posts -->
-            {% assign posts_to_show = '' | split: '' %}
-            {% for post in site.categories[include.category] %}
-                {% unless post.draft %}
-                    {% assign posts_to_show = posts_to_show | push: post %}
-                {% endunless %}
-            {% endfor %}
-        {% endif %}
-    {% elsif include.section %}
-        <!-- Standard site blog listing filtered by section -->
-        {% assign posts_to_show = '' | split: '' %}
-
-        {% if jekyll.environment == "development" %}
-            {% for post in site.posts %}
-                {% unless post.url contains '/_drafts/' or post.url contains '_drafts/' %}
-                    {% if post.categories contains include.section %}
-                        {% assign posts_to_show = posts_to_show | push: post %}
-                    {% endif %}
-                {% endunless %}
-            {% endfor %}
-        {% else %}
-            {% for post in site.posts %}
-                {% unless post.draft %}
-                    {% if post.categories contains include.section %}
-                        {% assign posts_to_show = posts_to_show | push: post %}
-                    {% endif %}
-                {% endunless %}
-            {% endfor %}
-        {% endif %}
-    {% else %}
-        <!-- Standard site blog listing -->
-        {% assign posts_to_show = '' | split: '' %}
-
-        {% if jekyll.environment == "development" %}
-            {% for post in site.posts %}
-                {% unless post.url contains '/_drafts/' or post.url contains '_drafts/' %}
-                    {% assign posts_to_show = posts_to_show | push: post %}
-                {% endunless %}
-            {% endfor %}
-        {% else %}
-            {% for post in site.posts %}
-                {% unless post.draft %}
-                    {% assign posts_to_show = posts_to_show | push: post %}
-                {% endunless %}
-            {% endfor %}
-        {% endif %}
-    {% endif %}
+    {% include filter_discovery_posts.html section=include.section category=include.category %}
+    {% assign posts_to_show = discovery_posts %}
 
     {% if posts_to_show.size > 0 %}
-        <!-- Newest entries come first in every blog. Sequence orders entries that share a date. -->
-        {% assign sorted_posts = posts_to_show | sort: 'date' | reverse %}
-        {% assign date_groups = '' | split: '' %}
-        {% assign current_date = '' %}
-        {% assign current_group = '' | split: '' %}
-        {% for post in sorted_posts %}
-            {% if current_date == '' or current_date != post.date %}
-                {% if current_date != '' %}
-                    {% assign current_group_sorted = current_group | sort: 'sequence' %}
-                    {% assign date_groups = date_groups | concat: current_group_sorted %}
-                {% endif %}
-                {% assign current_date = post.date %}
-                {% assign current_group = '' | split: '' %}
-            {% endif %}
-            {% assign current_group = current_group | push: post %}
-        {% endfor %}
-        {% if current_group.size > 0 %}
-            {% assign current_group_sorted = current_group | sort: 'sequence' %}
-            {% assign date_groups = date_groups | concat: current_group_sorted %}
-        {% endif %}
-        {% assign sorted_posts = date_groups %}
+        <!-- Discovery lists: list_sort_key ascending = newest first (keys are negative). -->
+        {% assign sorted_posts = posts_to_show | sort: 'list_sort_key' %}
         {% assign posts_to_show = sorted_posts %}
 
         {% if include.limit %}
@@ -138,11 +68,11 @@ Parameters:
                             {{ post.title | escape }}
                         </a>
                     </h3>
-                    <span class="post-meta">{{ post.date | date: "%B %-d, %Y" }}</span>
+                    {% include post_list_meta.html post=post format="%B %-d, %Y" %}
                     <div class="post-excerpt">
-                        {% if post.excerpt %}
+                        {% if post.excerpt and post.excerpt != '' %}
                             {{ post.excerpt | strip_images | markdownify | process_heading }}
-                        {% else %}
+                        {% elsif post.content and post.content != '' %}
                             {{ post.content | strip_images | truncatewords: site.excerpt_word_limit | markdownify | process_heading }}
                         {% endif %}
                     </div>

@@ -1,0 +1,218 @@
+---
+layout: null
+permalink: /diagram-viewer/
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Diagram viewer</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      * { box-sizing: border-box; }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        background: #050505;
+        color: #f5f5f5;
+      }
+
+      .diagram-toolbar {
+        position: fixed;
+        z-index: 2;
+        top: 0;
+        right: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        min-height: 3.5rem;
+        padding: 0.6rem 0.8rem;
+        border-bottom: 1px solid #444;
+        background: rgba(5, 5, 5, 0.94);
+      }
+
+      .diagram-toolbar__title {
+        min-width: 0;
+        margin: 0 auto 0 0;
+        overflow: hidden;
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      button {
+        min-width: 2.4rem;
+        padding: 0.45rem 0.65rem;
+        border: 1px solid #777;
+        border-radius: 0.35rem;
+        background: #171717;
+        color: inherit;
+        cursor: pointer;
+        font: inherit;
+      }
+
+      button:hover,
+      button:focus-visible {
+        border-color: #65bfff;
+        outline: none;
+      }
+
+      .diagram-viewport {
+        position: absolute;
+        top: 3.5rem;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        overflow: auto;
+        padding: 1.25rem;
+        cursor: grab;
+        overscroll-behavior: contain;
+        touch-action: pan-x pan-y pinch-zoom;
+      }
+
+      .diagram-viewport.is-dragging {
+        cursor: grabbing;
+        user-select: none;
+      }
+
+      .diagram-image {
+        display: block;
+        max-width: none;
+        height: auto;
+        margin: 0 auto;
+      }
+
+      .diagram-error {
+        max-width: 42rem;
+        margin: 4rem auto;
+        color: #ffb4b4;
+      }
+
+      @media (max-width: 42rem) {
+        .diagram-toolbar__title { display: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="diagram-toolbar" aria-label="Diagram controls">
+      <h1 class="diagram-toolbar__title" id="diagram-title">Diagram viewer</h1>
+      <button type="button" id="zoom-out" aria-label="Zoom out">−</button>
+      <button type="button" id="zoom-reset">Fit</button>
+      <button type="button" id="zoom-in" aria-label="Zoom in">+</button>
+      <button type="button" id="close-viewer" aria-label="Close diagram viewer">Close (Esc)</button>
+    </header>
+    <main class="diagram-viewport" id="diagram-viewport">
+      <img class="diagram-image" id="diagram-image" alt="">
+      <p class="diagram-error" id="diagram-error" hidden>The requested diagram could not be displayed.</p>
+    </main>
+    <script>
+      (() => {
+        const parameters = new URLSearchParams(window.location.search);
+        const source = parameters.get('src');
+        const title = parameters.get('title') || 'Diagram viewer';
+        const viewport = document.getElementById('diagram-viewport');
+        const image = document.getElementById('diagram-image');
+        const error = document.getElementById('diagram-error');
+        let naturalWidth = 0;
+        let fitScale = 1;
+        let scale = 1;
+
+        document.title = `${title} — Diagram viewer`;
+        document.getElementById('diagram-title').textContent = title;
+        image.alt = title;
+
+        const applyScale = () => {
+          image.style.width = `${Math.round(naturalWidth * scale)}px`;
+        };
+
+        const fitToViewport = () => {
+          if (!naturalWidth) return;
+          const availableWidth = Math.max(viewport.clientWidth - 40, 1);
+          fitScale = availableWidth / naturalWidth;
+          scale = fitScale;
+          applyScale();
+          viewport.scrollTo(0, 0);
+        };
+
+        const changeScale = (factor) => {
+          if (!naturalWidth) return;
+          const oldWidth = image.clientWidth;
+          const centerX = viewport.scrollLeft + viewport.clientWidth / 2;
+          const centerY = viewport.scrollTop + viewport.clientHeight / 2;
+          scale = Math.min(Math.max(scale * factor, fitScale * 0.2), fitScale * 8);
+          applyScale();
+          const ratio = image.clientWidth / oldWidth;
+          viewport.scrollTo(centerX * ratio - viewport.clientWidth / 2, centerY * ratio - viewport.clientHeight / 2);
+        };
+
+        const closeViewer = () => {
+          window.close();
+          window.setTimeout(() => {
+            if (window.history.length > 1) {
+              window.history.back();
+            } else {
+              window.location.assign('{{ '/' | relative_url }}');
+            }
+          }, 150);
+        };
+
+        try {
+          const diagramUrl = new URL(source, window.location.origin);
+          if (diagramUrl.origin !== window.location.origin || !diagramUrl.pathname.toLowerCase().endsWith('.svg')) {
+            throw new Error('Invalid diagram URL');
+          }
+          image.src = diagramUrl.href;
+        } catch (_error) {
+          image.hidden = true;
+          error.hidden = false;
+        }
+
+        image.addEventListener('load', () => {
+          naturalWidth = image.naturalWidth;
+          fitToViewport();
+        });
+
+        document.getElementById('zoom-in').addEventListener('click', () => changeScale(1.25));
+        document.getElementById('zoom-out').addEventListener('click', () => changeScale(0.8));
+        document.getElementById('zoom-reset').addEventListener('click', fitToViewport);
+        document.getElementById('close-viewer').addEventListener('click', closeViewer);
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape') closeViewer();
+        });
+
+        let dragStart = null;
+        viewport.addEventListener('pointerdown', (event) => {
+          if (event.pointerType === 'touch') return;
+          dragStart = {
+            x: event.clientX,
+            y: event.clientY,
+            left: viewport.scrollLeft,
+            top: viewport.scrollTop
+          };
+          viewport.classList.add('is-dragging');
+          viewport.setPointerCapture(event.pointerId);
+        });
+        viewport.addEventListener('pointermove', (event) => {
+          if (!dragStart) return;
+          viewport.scrollLeft = dragStart.left - (event.clientX - dragStart.x);
+          viewport.scrollTop = dragStart.top - (event.clientY - dragStart.y);
+        });
+        viewport.addEventListener('pointerup', () => {
+          dragStart = null;
+          viewport.classList.remove('is-dragging');
+        });
+      })();
+    </script>
+  </body>
+</html>

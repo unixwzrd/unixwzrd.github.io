@@ -1,0 +1,17 @@
+%%{init: {"theme":"base","themeVariables":{"background":"transparent","lineColor":"#e5e7eb","textColor":"#f9fafb","primaryTextColor":"#f9fafb","clusterBkg":"transparent","clusterBorder":"#737373","edgeLabelBackground":"#040404"},"themeCSS":".cluster-label span,.cluster-label text{color:#f9fafb!important;fill:#f9fafb!important;}"}}%%
+flowchart TB
+    subgraph MAC["One Mac"]
+        direction TB
+        DEV["Developer account<br/>editor and private SSH key"]
+        SSH["SSH connection<br/>to 127.0.0.1"]
+        TARGET["Isolated account<br/>project, tools, and Python"]
+        DEV --> SSH --> TARGET
+    end
+
+    classDef client fill:#e0f2fe,stroke:#0369a1,color:#0c4a6e,stroke-width:2px;
+    classDef transport fill:#ede9fe,stroke:#6d28d9,color:#3b0764,stroke-width:2px;
+    classDef target fill:#dcfce7,stroke:#15803d,color:#14532d,stroke-width:2px;
+    class DEV client;
+    class SSH transport;
+    class TARGET target;
+    linkStyle default stroke:#e5e7eb,stroke-width:2px;

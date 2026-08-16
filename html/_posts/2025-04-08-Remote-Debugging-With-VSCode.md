@@ -28,6 +28,11 @@ There are two related workflows, and I use both.
 
 In a remote workspace, the editor connects over SSH, opens the repository in the target account, and runs its workspace extensions and debugger there. This is usually the simplest choice because the source paths and runtime paths already agree.
 
+{% include blog_diagram.html
+   src="/assets/images/blog/remote-debugging/remote-workspace.svg"
+   alt="A local editor connecting over SSH to its remote editor server, project files, extensions, and Python process."
+   variant="compact" %}
+
 An attach session is different. The application is already running under the isolated account, `debugpy` is listening only on that host's loopback interface, and I forward the debugger port through SSH. I use this when I need to inspect a process launched by a service, test harness, scheduler, or command outside the editor.
 
 | Workflow | Where the source is open | Where Python runs | When I use it |
@@ -186,6 +191,13 @@ python3 -m debugpy \
 ```
 
 `--wait-for-client` deliberately pauses startup until I attach. I omit it when blocking the process would be harmful and place a breakpoint later instead.
+
+{% include blog_diagram.html
+   src="/assets/images/blog/remote-debugging/debugpy-ssh-tunnel.svg"
+   alt="An editor connecting to a local port that SSH forwards to a loopback-only debugpy listener on either the same Mac, a LAN host, or a VPS."
+   variant="compact" %}
+
+The same tunnel works when the target is another account on the local Mac. In that case the SSH connection stays on loopback, but it still crosses into the isolated account and carries the debugger connection to that account's loopback listener.
 
 From my normal developer account, I forward a local port to the target account's loopback interface:
 

@@ -1,0 +1,31 @@
+{% comment %}
+Discovery-sorted post list (newest and promoted major updates first).
+
+Parameters:
+- limit: (optional) maximum posts to show (default: 7)
+- format: (optional) strftime for post_list_meta (default: site.minima.date_format)
+- show_view_all: (optional) when true, append link to /blog/
+{% endcomment %}
+
+{%- assign meta_format = include.format | default: site.minima.date_format | default: "%b %-d, %Y" -%}
+{%- assign post_limit = include.limit | default: 7 | plus: 0 -%}
+{% include filter_discovery_posts.html %}
+{%- assign sorted_posts = discovery_posts | sort: 'list_sort_key' -%}
+
+<ul class="post-list">
+  {%- for post in sorted_posts limit: post_limit -%}
+    <li>
+      {% include post_list_meta.html post=post format=meta_format %}
+      <h3>
+        <a class="post-link" href="{{ post.url | relative_url }}">
+          {{ post.title | escape }}
+        </a>
+      </h3>
+    </li>
+  {%- endfor -%}
+</ul>
+{%- if include.show_view_all -%}
+<p class="blog-index-link">
+  <a href="{{ '/blog/' | relative_url }}">View all blog posts →</a>
+</p>
+{%- endif -%}

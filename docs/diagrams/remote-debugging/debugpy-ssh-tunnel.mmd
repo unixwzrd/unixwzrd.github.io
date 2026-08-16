@@ -1,0 +1,22 @@
+%%{init: {"theme":"base","themeVariables":{"background":"transparent","lineColor":"#e5e7eb","textColor":"#f9fafb","primaryTextColor":"#f9fafb","clusterBkg":"transparent","clusterBorder":"#737373","edgeLabelBackground":"#040404"},"themeCSS":".cluster-label span,.cluster-label text{color:#f9fafb!important;fill:#f9fafb!important;}"}}%%
+flowchart TB
+    EDITOR["Editor debugger<br/>connects to 127.0.0.1:5678"]
+    FORWARD["SSH local forward<br/>local port 5678"]
+    SSH["Authenticated SSH session"]
+    LOOPBACK["Target loopback<br/>127.0.0.1:5678"]
+    APP["Python application<br/>with debugpy"]
+
+    EDITOR --> FORWARD --> SSH --> LOOPBACK --> APP
+
+    SAME["Target may be another account<br/>on the same Mac"] -.-> SSH
+    REMOTE["Or a LAN host or VPS"] -.-> SSH
+
+    classDef client fill:#e0f2fe,stroke:#0369a1,color:#0c4a6e,stroke-width:2px;
+    classDef transport fill:#ede9fe,stroke:#6d28d9,color:#3b0764,stroke-width:2px;
+    classDef target fill:#dcfce7,stroke:#15803d,color:#14532d,stroke-width:2px;
+    classDef note fill:#fef3c7,stroke:#b45309,color:#78350f,stroke-width:2px;
+    class EDITOR client;
+    class FORWARD,SSH transport;
+    class LOOPBACK,APP target;
+    class SAME,REMOTE note;
+    linkStyle default stroke:#e5e7eb,stroke-width:2px;

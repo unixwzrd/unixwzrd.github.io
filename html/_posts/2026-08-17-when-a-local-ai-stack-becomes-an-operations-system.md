@@ -9,6 +9,7 @@ image: /assets/images/blog/agent-optimization/post-01-local-ai-operations-system
 excerpt: "The model may be running while the system around it is still broken. This is how a local-first AI experiment became an operations problem involving ownership, dependencies, readiness, recovery, and rollback."
 series: "Local-First Agent Operations"
 series_part: 1
+series_order: 10
 series_total: 13
 series_url: /blog/series/local-first-agent-operations/
 series_next_title: "Deterministic First: Building a Knowledge Intake Pipeline"
@@ -52,7 +53,10 @@ LLM-Ops-Kit emerged as that coordination layer. Its boundary is intentionally li
 
 The control path looks almost boring on paper. That is a feature:
 
-![LLM-Ops-Kit control flow from CLI and Textual interfaces through the shared operation model, configured-inventory validation, dependency planning, execution, typed adapters, bidirectional local or SSH transport, and known components.](/assets/images/blog/agent-optimization/post-01-control-plane.svg)
+{% include blog_diagram.html
+   src="/assets/images/blog/agent-optimization/post-01-control-plane.svg"
+   alt="LLM-Ops-Kit control flow from CLI and Textual interfaces through the shared operation model, configured-inventory validation, dependency planning, execution, typed adapters, bidirectional local or SSH transport, and known components."
+   variant="series" %}
 
 Configuration describes hosts, components, profiles, endpoints, dependencies, and lifecycle ownership. Validation turns that configuration into a topology. The planner determines ordering and impact without mutating the system. The executor applies an approved plan through an adapter and a local or remote transport.
 

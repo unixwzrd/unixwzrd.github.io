@@ -9,6 +9,7 @@ image: /assets/images/blog/agent-optimization/post-02-deterministic-intake-hero.
 excerpt: "Before a model can decide what matters, the system still has to identify what exists, what changed, where it came from, and whether a human decision has already been made. I moved those jobs into a deterministic intake pipeline."
 series: "Local-First Agent Operations"
 series_part: 2
+series_order: 20
 series_total: 13
 series_url: /blog/series/local-first-agent-operations/
 series_previous_title: "When a Local AI Stack Becomes an Operations System"
@@ -47,7 +48,10 @@ That separation matters because raw authority, manifest records, review candidat
 
 I learned to keep those layers separate because each time I blurred them, a later operation became harder to explain. Deletion became ambiguous, reruns produced duplicates, and search results appeared without a defensible path back to their source. Some of this is decidedly unglamorous bookkeeping. It is also the bookkeeping that lets me explain what the system did. The pipeline now keeps every transition visible:
 
-![Knowledge intake flow from retained raw sources through deterministic inventory, manifest records, bounded dialogue extraction, human review, durable filing, and a separate retrieval-eligibility gate.](/assets/images/blog/agent-optimization/post-02-knowledge-intake.svg)
+{% include blog_diagram.html
+   src="/assets/images/blog/agent-optimization/post-02-knowledge-intake.svg"
+   alt="Knowledge intake flow from retained raw sources through deterministic inventory, manifest records, bounded dialogue extraction, human review, durable filing, and a separate retrieval-eligibility gate."
+   variant="series" %}
 
 ## Stable Identity Makes Reruns Boring
 

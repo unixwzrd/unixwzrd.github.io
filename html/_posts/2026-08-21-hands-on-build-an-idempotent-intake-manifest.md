@@ -9,6 +9,7 @@ image: /assets/images/blog/agent-optimization/post-02a-idempotent-manifest-hero.
 excerpt: "A small Python and SQLite exercise for giving local sources stable identities, detecting real changes, and proving that ordinary reruns do not create duplicate records."
 series: "Local-First Agent Operations"
 series_part: "2A"
+series_order: 25
 series_total: 13
 series_url: /blog/series/local-first-agent-operations/
 series_companion_of: 2

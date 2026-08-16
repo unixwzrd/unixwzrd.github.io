@@ -23,6 +23,7 @@ This is a working Jekyll repo for **[unixwzrd.ai](https://unixwzrd.ai)** - stati
 
 ## Recent changes (2025-2026)
 
+- **Post updates and list ordering** - Major updates (`update_notice`) promote in discovery lists; technical corrections (`corrected_at`, `correction_note`) are page-only; series indexes use `series_order`. Policy: [workflows/post-updates-and-ordering.md](workflows/post-updates-and-ordering.md). Plugin: [`html/_plugins/02_post_list_metadata.rb`](../html/_plugins/02_post_list_metadata.rb).
 - **Short links (`/s/<code>/`)** - Deterministic redirects; hash tied to each post **file path** under `html/` (edits to title/date/slug do not change the code). Plugins: [`html/_plugins/01_short_link_injector.rb`](../html/_plugins/01_short_link_injector.rb), [`00_project_post_permalink.rb`](../html/_plugins/00_project_post_permalink.rb) (optional `slug:`). Ops: [templates/blog-templates.md](templates/blog-templates.md), optional [`.pre-commit-config.yaml`](../.pre-commit-config.yaml) for staged posts.
 - **`utils/README.md`** - Central index of maintenance scripts with relative links.
 - **Root `README` + `LICENSE`** - README centers on tooling; MIT applies to `utils/` and `scripts/` only; `html/` remains all rights reserved (see [LICENSE](../LICENSE)).

@@ -13,8 +13,9 @@ Entry point for site setup, publishing, monitoring, and tooling.
 
 ### Publishing and posts
 1. **Blog workflow** → [workflows/blog-publishing.md](workflows/blog-publishing.md)
-2. **Templates, `slug`, short URLs (`/s/...`)** → [templates/blog-templates.md](templates/blog-templates.md)
-3. **Deploy / production build** → [guides/deployment.md](guides/deployment.md)
+2. **Updates, corrections, list ordering** → [workflows/post-updates-and-ordering.md](workflows/post-updates-and-ordering.md)
+3. **Templates, `slug`, short URLs (`/s/...`)** → [templates/blog-templates.md](templates/blog-templates.md)
+4. **Deploy / production build** → [guides/deployment.md](guides/deployment.md)
 
 ### Operations and quality
 1. **Checklist & triage** → [guides/checklist.md](guides/checklist.md)
@@ -39,12 +40,14 @@ Entry point for site setup, publishing, monitoring, and tooling.
 - **[../utils/README.md](../utils/README.md)** - Catalog of `utils/bin` scripts (checks, OG fetch, monitoring, fixes)
 - **[tools/pre-commit-checks.md](tools/pre-commit-checks.md)** - `utils/bin/check_site.sh` and check scripts
 - **[workflows/blog-publishing.md](workflows/blog-publishing.md)** - Publishing workflow
+- **[workflows/post-updates-and-ordering.md](workflows/post-updates-and-ordering.md)** - Major updates, technical corrections, series order, discovery-list promotion
 - **[templates/blog-templates.md](templates/blog-templates.md)** - Post templates, `slug`, short links, backfill
 
 ## By task
 - **Project status** → [PROJECT_OVERVIEW.md](PROJECT_OVERVIEW.md)
 - **Broken build or deploy** → [guides/troubleshooting.md](guides/troubleshooting.md), [guides/deployment.md](guides/deployment.md)
 - **New or edited blog post** → [workflows/blog-publishing.md](workflows/blog-publishing.md), [templates/blog-templates.md](templates/blog-templates.md)
+- **Major update or technical correction** → [workflows/post-updates-and-ordering.md](workflows/post-updates-and-ordering.md)
 - **Short link / `short_url` drift** → [templates/blog-templates.md](templates/blog-templates.md) (`backfill_short_url_front_matter.rb`, `--check`)
 - **Monitoring** → [guides/monitoring.md](guides/monitoring.md)
 - **Pre-commit** → [tools/pre-commit-checks.md](tools/pre-commit-checks.md), [`.pre-commit-config.yaml`](../.pre-commit-config.yaml)

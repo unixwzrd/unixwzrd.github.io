@@ -124,6 +124,18 @@ html/
    - Check links work
    - Share on social media
 
+## Post-publish updates
+
+After a post is live, **do not change** publish `date`, filename, or `slug` — permalinks and `short_url` depend on them. See **[post-updates-and-ordering.md](post-updates-and-ordering.md)** for the full policy.
+
+| Change type | Front matter | List order |
+|---|---|---|
+| Silent fix | (none) | Unchanged |
+| Technical correction | `corrected_at`, `correction_note` | Unchanged |
+| Major rewrite | `update_notice`, `last_modified_at` | Promoted on homepage / section blogs |
+
+Date-only values (`2026-08-15`) are fine; time and timezone are optional.
+
 ## Common Issues
 
 ### Front Matter

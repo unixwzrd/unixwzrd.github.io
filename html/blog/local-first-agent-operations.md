@@ -12,7 +12,7 @@ The main installments appear in [Technology](/blog/technology/). Runnable compan
 
 ## Published and Scheduled Articles
 
-{% assign agent_operations_posts = site.posts | where: "series", "Local-First Agent Operations" | sort: "date" %}
+{% assign agent_operations_posts = site.posts | where: "series", "Local-First Agent Operations" | sort: "series_order" %}
 
 <ol class="series-index">
 {% for post in agent_operations_posts %}

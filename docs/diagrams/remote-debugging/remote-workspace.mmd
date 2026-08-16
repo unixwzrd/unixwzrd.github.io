@@ -1,0 +1,20 @@
+%%{init: {"theme":"base","themeVariables":{"background":"transparent","lineColor":"#e5e7eb","textColor":"#f9fafb","primaryTextColor":"#f9fafb","clusterBkg":"transparent","clusterBorder":"#737373","edgeLabelBackground":"#040404"},"themeCSS":".cluster-label span,.cluster-label text{color:#f9fafb!important;fill:#f9fafb!important;}"}}%%
+flowchart TB
+    EDITOR["Local editor window"]
+    SSH["Remote SSH connection"]
+    SERVER["Editor server and extensions<br/>under the target account"]
+    PROJECT["Remote project files"]
+    PYTHON["Remote Python process<br/>launched by the editor"]
+
+    EDITOR --> SSH --> SERVER
+    SERVER --> PROJECT
+    SERVER --> PYTHON
+    PROJECT --> PYTHON
+
+    classDef client fill:#e0f2fe,stroke:#0369a1,color:#0c4a6e,stroke-width:2px;
+    classDef transport fill:#ede9fe,stroke:#6d28d9,color:#3b0764,stroke-width:2px;
+    classDef remote fill:#dcfce7,stroke:#15803d,color:#14532d,stroke-width:2px;
+    class EDITOR client;
+    class SSH transport;
+    class SERVER,PROJECT,PYTHON remote;
+    linkStyle default stroke:#e5e7eb,stroke-width:2px;

@@ -186,6 +186,12 @@ defaults:
     values:
       search_exclude: true
   - scope:
+      path: "_drafts"
+    values:
+      search_exclude: true
+      sitemap: false
+      list_exclude: true
+  - scope:
       path: "404.html"
     values:
       search_exclude: true
@@ -236,3 +242,4 @@ exclude:
   - utils/
   - vendor/
   - docs/
+  - "**/*-social-posts.txt"

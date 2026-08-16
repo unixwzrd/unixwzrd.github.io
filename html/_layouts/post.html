@@ -15,11 +15,16 @@ layout: default
         {{ page.date | date: date_format }}
       </time>
       {%- assign page_modified_date = page.last_modified_at | default: page.modified_date -%}
-      {%- if page_modified_date -%}
-        ~
+      {%- if page.update_notice and page_modified_date -%}
+        <span class="post-meta__separator">·</span>
         {%- assign mdate = page_modified_date | date_to_xmlschema -%}
         <time class="dt-modified" datetime="{{ mdate }}" itemprop="dateModified">
-          {{ mdate | date: date_format }}
+          Updated {{ mdate | date: date_format }}
+        </time>
+      {%- elsif page.corrected_at -%}
+        <span class="post-meta__separator">·</span>
+        <time class="dt-corrected" datetime="{{ page.corrected_at | date_to_xmlschema }}">
+          Technical correction {{ page.corrected_at | date: date_format }}
         </time>
       {%- endif -%}
       {%- if page.author -%}
@@ -32,6 +37,15 @@ layout: default
       {%- endif -%}
     </p>
   </header>
+
+  {% if page.correction_note %}
+    <aside class="post-correction-notice" role="note" aria-label="Technical correction">
+      <p class="post-correction-notice__title">
+        Technical correction{% if page.corrected_at %} · {{ page.corrected_at | date: date_format }}{% endif %}
+      </p>
+      {{ page.correction_note | markdownify }}
+    </aside>
+  {% endif %}
 
   {% if page.update_notice %}
     <aside class="post-update-notice" role="note" aria-label="{{ page.update_notice_title | default: 'Article update' | escape }}">

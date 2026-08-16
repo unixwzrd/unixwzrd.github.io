@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026-08-15: Post updates, corrections, and discovery-list ordering
+
+### Summary
+
+- Added policy and docs for three tiers of post-publish change: silent fix, technical correction (`corrected_at`, `correction_note`), and major update (`update_notice`, `last_modified_at`).
+- New Jekyll plugin [`html/_plugins/02_post_list_metadata.rb`](html/_plugins/02_post_list_metadata.rb) sets `list_date` / `list_sort_key` so major updates promote in homepage and `blog_list.html` without changing permalinks or `short_url`.
+- Article layout shows update/correction metadata separately; series index sorts by `series_order` (supports labels like `2A`).
+- Documentation: [docs/workflows/post-updates-and-ordering.md](docs/workflows/post-updates-and-ordering.md); cross-links in publishing guide, blog templates, and project overview.
+
+### Notes
+
+- Publish `date`, filename, and slug remain immutable after publish.
+- Tag pages and series prev/next navigation are unchanged.
+
 ## 2025-11-15: Navigation layout jitter investigation
 
 ### Summary

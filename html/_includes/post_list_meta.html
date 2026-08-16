@@ -1,0 +1,18 @@
+{% comment %}
+  Discovery-list metadata for a post (publish date + optional Updated badge).
+  Parameters:
+  - post: (required) the post object
+  - format: (optional) strftime format; defaults to site.minima.date_format
+{% endcomment %}
+{%- assign meta_format = include.format | default: site.minima.date_format | default: "%b %-d, %Y" -%}
+<span class="post-meta">
+  <time datetime="{{ include.post.date | date_to_xmlschema }}">{{ include.post.date | date: meta_format }}</time>
+  {%- if include.post.update_notice -%}
+    <span class="post-updated-badge">
+      · Updated
+      <time datetime="{{ include.post.last_modified_at | default: include.post.list_date | date_to_xmlschema }}">
+        {{ include.post.last_modified_at | default: include.post.list_date | date: meta_format }}
+      </time>
+    </span>
+  {%- endif -%}
+</span>
