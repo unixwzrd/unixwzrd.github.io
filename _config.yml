@@ -171,11 +171,25 @@ defaults:
       path: "" # Applies to all files
     values:
       layout: page
+      show_support: true
   - scope:
       path: ""
       type: "project_posts"
     values:
       layout: post
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      show_support: true
+  - scope:
+      layout: "project"
+    values:
+      show_support: true
+  - scope:
+      path: "blog"
+    values:
+      show_support: true
   - scope:
       path: "hidden"
     values:

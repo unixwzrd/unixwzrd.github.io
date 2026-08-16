@@ -1,6 +1,8 @@
 ---
 layout: null
 permalink: /diagram-viewer/
+search_exclude: true
+sitemap: false
 ---
 <!doctype html>
 <html lang="en">
@@ -68,6 +70,12 @@ permalink: /diagram-viewer/
         outline: none;
       }
 
+      button:disabled {
+        border-color: #444;
+        color: #777;
+        cursor: not-allowed;
+      }
+
       .diagram-viewport {
         position: absolute;
         top: 3.5rem;
@@ -124,6 +132,11 @@ permalink: /diagram-viewer/
         const viewport = document.getElementById('diagram-viewport');
         const image = document.getElementById('diagram-image');
         const error = document.getElementById('diagram-error');
+        const zoomControls = [
+          document.getElementById('zoom-out'),
+          document.getElementById('zoom-reset'),
+          document.getElementById('zoom-in')
+        ];
         let naturalWidth = 0;
         let fitScale = 1;
         let scale = 1;
@@ -153,7 +166,8 @@ permalink: /diagram-viewer/
           scale = Math.min(Math.max(scale * factor, fitScale * 0.2), fitScale * 8);
           applyScale();
           const ratio = image.clientWidth / oldWidth;
-          viewport.scrollTo(centerX * ratio - viewport.clientWidth / 2, centerY * ratio - viewport.clientHeight / 2);
+          viewport.scrollLeft = centerX * ratio - viewport.clientWidth / 2;
+          viewport.scrollTop = centerY * ratio - viewport.clientHeight / 2;
         };
 
         const closeViewer = () => {
@@ -167,6 +181,25 @@ permalink: /diagram-viewer/
           }, 150);
         };
 
+        const showError = () => {
+          image.hidden = true;
+          error.hidden = false;
+          zoomControls.forEach((control) => {
+            control.disabled = true;
+          });
+        };
+
+        image.addEventListener('load', () => {
+          naturalWidth = image.naturalWidth;
+          image.hidden = false;
+          error.hidden = true;
+          zoomControls.forEach((control) => {
+            control.disabled = false;
+          });
+          fitToViewport();
+        });
+        image.addEventListener('error', showError);
+
         try {
           const diagramUrl = new URL(source, window.location.origin);
           if (diagramUrl.origin !== window.location.origin || !diagramUrl.pathname.toLowerCase().endsWith('.svg')) {
@@ -174,14 +207,8 @@ permalink: /diagram-viewer/
           }
           image.src = diagramUrl.href;
         } catch (_error) {
-          image.hidden = true;
-          error.hidden = false;
+          showError();
         }
-
-        image.addEventListener('load', () => {
-          naturalWidth = image.naturalWidth;
-          fitToViewport();
-        });
 
         document.getElementById('zoom-in').addEventListener('click', () => changeScale(1.25));
         document.getElementById('zoom-out').addEventListener('click', () => changeScale(0.8));

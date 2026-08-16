@@ -2,6 +2,7 @@
 layout: page
 title: "Local-First Agent Operations"
 permalink: /blog/series/local-first-agent-operations/
+show_support: true
 excerpt: "A planned 13-part engineering series about making a local-first agent environment measurable, recoverable, governable, and easier to operate."
 image: /assets/images/blog/agent-optimization/post-01-local-ai-operations-system-hero.png
 ---

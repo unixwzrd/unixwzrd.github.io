@@ -3,6 +3,7 @@ layout: page
 title: "Contact Us"
 menu_item: Contact
 permalink: /contact/
+show_support: false
 image: /assets/images/default-og-image.png
 excerpt: "Use the inquiry form for private outreach, project work, and collaboration, or jump into public discussion on GitHub."
 ---

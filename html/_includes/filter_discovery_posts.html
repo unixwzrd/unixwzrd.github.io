@@ -3,17 +3,13 @@ Builds `discovery_posts`: published blog posts eligible for discovery lists.
 
 Optional parameters:
 - section: only posts whose categories include this section name
-- category: only posts in site.categories[category] (project blogs)
+- category: only posts whose `category` front matter matches (project blogs)
 
 Excludes drafts, unpublished posts, _drafts paths, social-post working files,
 and anything marked list_exclude: true.
 {% endcomment %}
 {% assign discovery_posts = '' | split: '' %}
-{% if include.category %}
-  {% assign post_source = site.categories[include.category] | default: '' | split: '' %}
-{% else %}
-  {% assign post_source = site.posts %}
-{% endif %}
+{% assign post_source = site.posts %}
 {% for post in post_source %}
   {% assign include_post = true %}
   {% if post.draft %}
@@ -25,7 +21,13 @@ and anything marked list_exclude: true.
   {% if post.list_exclude %}
     {% assign include_post = false %}
   {% endif %}
-  {% if include.section %}
+  {% if include.category and include.category != '' %}
+    {% assign post_category = post.category | default: '' %}
+    {% unless post_category == include.category %}
+      {% assign include_post = false %}
+    {% endunless %}
+  {% endif %}
+  {% if include.section and include.section != '' %}
     {% unless post.categories contains include.section %}
       {% assign include_post = false %}
     {% endunless %}

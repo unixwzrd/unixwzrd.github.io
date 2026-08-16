@@ -3,6 +3,7 @@ layout: page
 title: Frequently Asked Questions
 menu_item: FAQ
 permalink: /faq/
+show_support: true
 image: /assets/images/default-og-image.png
 excerpt: "Questions about local-first AI, secure automation, sensitive workflows, and parental alienation case analysis."
 ---

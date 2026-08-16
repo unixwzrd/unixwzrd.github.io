@@ -3,6 +3,7 @@ layout: page
 title: "Join Our Community"
 menu_item: Community
 permalink: /collaborate/community/
+show_support: false
 excerpt: "Contribute to research, local-first tooling, sensitive workflow analysis, and open-source projects."
 ---
 

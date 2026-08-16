@@ -14,13 +14,14 @@ series_total: 13
 series_url: /blog/series/local-first-agent-operations/
 series_previous_title: "When a Local AI Stack Becomes an Operations System"
 series_previous_url: /technology/2026/08/17/when-a-local-ai-stack-becomes-an-operations-system/
-series_next_title: "Hands-On: Build an Idempotent Intake Manifest"
-series_next_url: /hands-on/2026/08/21/hands-on-build-an-idempotent-intake-manifest/
-series_next_date: 2026-08-21 08:00:00 -0500
+series_next_title: "Memory Is a Governance Problem, Not Just a Vector Database"
+series_companion_title: "Hands-On: Build an Idempotent Intake Manifest"
+series_companion_url: /hands-on/2026/08/21/hands-on-build-an-idempotent-intake-manifest/
+series_companion_date: 2026-08-21 08:00:00 -0500
 published: true
 ---
 
-{% assign hands_on_post = site.posts | where: "url", page.series_next_url | first %}
+{% assign hands_on_post = site.posts | where: "url", page.series_companion_url | first %}
 {% assign hands_on_link_ready = false %}
 {% if hands_on_post %}
   {% assign hands_on_link_ready = true %}
@@ -55,7 +56,7 @@ I learned to keep those layers separate because each time I blurred them, a late
 
 ## Stable Identity Makes Reruns Boring
 
-I wanted rerunning intake to be boring. For each source, the inventory derives a stable identifier from its origin and computes a content fingerprint. The manifest records both, together with the extractor version and enough provenance to understand anything created later. When the fingerprint and relevant version have not changed, the pipeline avoids repeating normalization and downstream candidate work.{% if hands_on_link_ready %} The hands-on follow-up shows the [small SQLite record contract behind that manifest]({{ page.series_next_url | relative_url }}#start-with-a-small-contract).{% endif %}
+I wanted rerunning intake to be boring. For each source, the inventory derives a stable identifier from its origin and computes a content fingerprint. The manifest records both, together with the extractor version and enough provenance to understand anything created later. When the fingerprint and relevant version have not changed, the pipeline avoids repeating normalization and downstream candidate work.{% if hands_on_link_ready %} The hands-on follow-up shows the [small SQLite record contract behind that manifest]({{ page.series_companion_url | relative_url }}#start-with-a-small-contract).{% endif %}
 
 I have to be precise about where that optimization begins. The current implementation still opens and fingerprints file sources, and it still reads session messages to calculate their fingerprint. Modification time is retained as provenance; it is not a fast path that skips the scan. The idempotence is in the durable effects: unchanged sources are not normalized again and do not produce duplicate candidates. It is not yet an optimization that avoids every read.
 
@@ -71,7 +72,7 @@ The quickest way I found to expose a weak intake design was simply to run it aga
 | Refresh a pending note after changing only its formatter | The note changes in place while its candidate identity and review state remain stable |
 | Move a managed candidate to `Discard`, then run extraction again | The rejection remains recorded and the candidate does not return |
 
-Those checks tell me more than a successful first import. The first run only proves that the pipeline can create data; later runs show whether it respects data and human decisions that already exist. In the next installment, *Hands-On: Build an Idempotent Intake Manifest*, I pull the smallest useful part into a standard-library Python example with a SQLite record contract and the same three-run exercise. It stops deliberately at inventory because extraction, review, and retrieval are different stages with different failure modes.{% if hands_on_link_ready %} You can [run that new/unchanged/changed exercise here]({{ page.series_next_url | relative_url }}#run-the-example).{% else %} That hands-on article follows on August 21.{% endif %}
+Those checks tell me more than a successful first import. The first run only proves that the pipeline can create data; later runs show whether it respects data and human decisions that already exist. In the Hands-On companion, *Build an Idempotent Intake Manifest*, I pull the smallest useful part into a standard-library Python example with a SQLite record contract and the same three-run exercise. It stops deliberately at inventory because extraction, review, and retrieval are different stages with different failure modes.{% if hands_on_link_ready %} You can [run that new/unchanged/changed exercise here]({{ page.series_companion_url | relative_url }}#run-the-example).{% else %} That hands-on article follows on August 21.{% endif %}
 
 ## Extract Dialogue Without Asking What It Means
 
@@ -102,7 +103,7 @@ Review and retrieval answer different questions, and I do not want a directory m
 | `Discard` | Rejected | Excluded, with rejection history retained |
 | Durable filed knowledge | Accepted under normal knowledge rules | Eligible only when policy explicitly permits it |
 
-Treating those as two axes prevents a convenient filing action from silently becoming authorization to inject content into an agent conversation.{% if hands_on_link_ready %} That distinction is easier to see in the note than in a state diagram, so the tutorial walks through [sanitized front matter for pending, approved-but-still-excluded, and rejected candidates]({{ page.series_next_url | relative_url }}#see-the-review-boundary-in-front-matter). Classification, `review_state`, and `mnemosyne` remain independent because approval must not silently grant retrieval. It then keeps the same boundary visible in [the next-stage design]({{ page.series_next_url | relative_url }}#keep-the-next-stage-separate) rather than cramming source, review, and retrieval state into one table.{% endif %}
+Treating those as two axes prevents a convenient filing action from silently becoming authorization to inject content into an agent conversation.{% if hands_on_link_ready %} That distinction is easier to see in the note than in a state diagram, so the tutorial walks through [sanitized front matter for pending, approved-but-still-excluded, and rejected candidates]({{ page.series_companion_url | relative_url }}#see-the-review-boundary-in-front-matter). Classification, `review_state`, and `mnemosyne` remain independent because approval must not silently grant retrieval. It then keeps the same boundary visible in [the next-stage design]({{ page.series_companion_url | relative_url }}#keep-the-next-stage-separate) rather than cramming source, review, and retrieval state into one table.{% endif %}
 
 ## Bounded Work Creates Useful Backpressure
 
@@ -120,7 +121,7 @@ The rule I keep coming back to is to retain the authority, record its provenance
 
 ## What Deterministic First Does Not Solve
 
-I do not want deterministic intake to carry claims it has not earned. It does not decide who is authorized to retrieve a memory. It records review state, fails closed on unresolved material, and excludes candidates by default while the richer policy model remains separate work. Nor does it promise perfect cross-source deduplication, detection of every secret, or zero-cost rescanning. Stable identity and content hashes prevent repeated effects for the same source; semantic equivalence and a modification-time fast path are different problems. This is not a released ingestion product either. It is a private implementation whose design was useful enough to document and turn into a small teaching example.{% if hands_on_link_ready %} Before adapting that example to real agent data, use the [production-hardening checklist]({{ page.series_next_url | relative_url }}#production-hardening-checklist) as a starting point rather than treating the demonstration as a finished importer.{% endif %}
+I do not want deterministic intake to carry claims it has not earned. It does not decide who is authorized to retrieve a memory. It records review state, fails closed on unresolved material, and excludes candidates by default while the richer policy model remains separate work. Nor does it promise perfect cross-source deduplication, detection of every secret, or zero-cost rescanning. Stable identity and content hashes prevent repeated effects for the same source; semantic equivalence and a modification-time fast path are different problems. This is not a released ingestion product either. It is a private implementation whose design was useful enough to document and turn into a small teaching example.{% if hands_on_link_ready %} Before adapting that example to real agent data, use the [production-hardening checklist]({{ page.series_companion_url | relative_url }}#production-hardening-checklist) as a starting point rather than treating the demonstration as a finished importer.{% endif %}
 
 ## Current State
 

@@ -1,19 +1,20 @@
 {%- if page.series -%}
   {%- assign series_next_post = site.posts | where: "url", page.series_next_url | first -%}
+  {%- assign series_companion_post = site.posts | where: "url", page.series_companion_url | first -%}
 <nav class="series-navigation" aria-label="{{ page.series }} navigation">
   <div class="series-navigation__heading"><a href="{{ page.series_url | relative_url }}">{{ page.series }}</a></div>
   <div class="series-navigation__links">
     <div class="series-navigation__item series-navigation__item--previous">
       {%- if page.series_previous_url -%}
-        <span class="series-navigation__label">Previous</span>
+        <span class="series-navigation__label">{% if page.series_companion_of %}Parent article{% else %}Previous main article{% endif %}</span>
         <a href="{{ page.series_previous_url | relative_url }}">← {{ page.series_previous_title }}</a>
       {%- else -%}
-        <span class="series-navigation__label">Previous</span>
+        <span class="series-navigation__label">Previous main article</span>
         <span>This is the first article in the series.</span>
       {%- endif -%}
     </div>
     <div class="series-navigation__item series-navigation__item--next">
-      <span class="series-navigation__label">Next</span>
+      <span class="series-navigation__label">Next main article</span>
       {%- if page.series_next_url and series_next_post -%}
         <a href="{{ page.series_next_url | relative_url }}">{{ page.series_next_title }} →</a>
       {%- elsif page.series_next_url and page.series_next_date -%}
@@ -27,5 +28,19 @@
       {%- endif -%}
     </div>
   </div>
+  {%- if page.series_companion_title -%}
+  <div class="series-navigation__companion">
+    <span class="series-navigation__label">Hands-On companion</span>
+    {%- if page.series_companion_url and series_companion_post -%}
+      <a href="{{ page.series_companion_url | relative_url }}">{{ page.series_companion_title }} →</a>
+    {%- elsif page.series_companion_url and page.series_companion_date -%}
+      <span>{{ page.series_companion_title }} — publishes {{ page.series_companion_date | date: "%B %-d, %Y" }}</span>
+    {%- elsif page.series_companion_url -%}
+      <a href="{{ page.series_companion_url | relative_url }}">{{ page.series_companion_title }} →</a>
+    {%- else -%}
+      <span>{{ page.series_companion_title }} — forthcoming</span>
+    {%- endif -%}
+  </div>
+  {%- endif -%}
 </nav>
 {%- endif -%}

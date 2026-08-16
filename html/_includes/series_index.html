@@ -1,0 +1,45 @@
+{% comment %}
+Series index lists for a named blog series.
+
+Parameters:
+- series: (required) value of the post `series` front-matter field
+{% endcomment %}
+
+{% assign series_posts = '' | split: '' %}
+{% for post in site.posts %}
+  {% assign include_post = true %}
+  {% if post.draft %}{% assign include_post = false %}{% endif %}
+  {% if post.published == false %}{% assign include_post = false %}{% endif %}
+  {% if post.list_exclude %}{% assign include_post = false %}{% endif %}
+  {% unless post.series == include.series %}{% assign include_post = false %}{% endunless %}
+  {% assign post_path = post.path | default: post.relative_path | default: '' %}
+  {% if post_path contains '/_drafts/' or post_path contains '_drafts/' or post_path contains 'social-posts' %}{% assign include_post = false %}{% endif %}
+  {% if include_post %}
+    {% assign series_posts = series_posts | push: post %}
+  {% endif %}
+{% endfor %}
+{% assign series_posts = series_posts | sort: 'series_order' %}
+
+<h2>Main Series</h2>
+<ol class="series-index">
+{% for post in series_posts %}
+  {% unless post.series_companion_of %}
+  <li>
+    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    <span class="post-meta">Part {{ post.series_part }} · {{ post.date | date: "%B %-d, %Y" }} · {{ post.categories | first | replace: '-', ' ' | capitalize }}</span>
+  </li>
+  {% endunless %}
+{% endfor %}
+</ol>
+
+<h2>Hands-On Companions</h2>
+<ol class="series-index">
+{% for post in series_posts %}
+  {% if post.series_companion_of %}
+  <li>
+    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    <span class="post-meta">Companion to Part {{ post.series_companion_of }} · {{ post.date | date: "%B %-d, %Y" }} · {{ post.categories | first | replace: '-', ' ' | capitalize }}</span>
+  </li>
+  {% endif %}
+{% endfor %}
+</ol>

@@ -43,6 +43,7 @@ repositories:
       title: "MLX Harmony"
       description: "Run GPT-OSS and other MLX-compatible models through a single, lightweight interface."
       banner_image_url: "/assets/images/projects/MLX-Harmony/MLX_Harmony_Banner.png"
+      visibility: none
   - name: ConnectomeAI
     owner: unixwzrd
     overrides:

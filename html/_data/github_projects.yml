@@ -75,8 +75,7 @@ projects:
   image_url: /assets/images/projects/mlx-harmony.png
   banner_image_url: /assets/images/projects/MLX-Harmony/MLX_Harmony_Banner.png
   page_url: /projects/mlx-harmony/
-  visibility: public
-  repo_url: https://github.com/unixwzrd/mlx-harmony
+  visibility: none
 - name: ConnectomeAI
   owner: unixwzrd
   title: ConnectomeAI

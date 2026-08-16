@@ -71,7 +71,6 @@ Of these tools, I personally use Cursor adn Windsurf. If I had to pick a best be
 
 - [Secrets Kit](/projects/Secrets-Kit/) - Local runtime secrets handling for API keys, tokens, and passwords.
 - [LLM Ops Kit](/projects/LLM-Ops-Kit/) - Operations tooling for self-hosted AI stacks.
-- [MLX Harmony](/projects/mlx-harmony/) - Local model workflows for MLX-compatible models.
 - [UnicodeFix](/projects/UnicodeFix/) - Cleanup for AI-generated text before it lands in code, posts, docs, or automation.
 
 ### Text to Speech
@@ -168,4 +167,3 @@ Legal services and eligibility vary by location. These directories provide infor
 - [Australia: Legal Assistance Services](https://www.ag.gov.au/legal-system/legal-assistance-services) - Official directory of legal-aid commissions and other assistance providers by state and territory.
 - [Canada: Provincial and Territorial Legal Aid Plans](https://canada.justice.gc.ca/eng/fund-fina/gov-gouv/aid-aide/index.html) - Official links to legal-aid services administered by each province and territory.
 - [United Kingdom: Check if You Can Get Legal Aid](https://www.gov.uk/legal-aid/check-legal-aid) - Official eligibility checker and guidance for obtaining legal aid.
-

@@ -101,12 +101,14 @@ layout: default
   </div>
 
   {% include project_lookup.html %}
-  {%- if page_project -%}
-    {% include project_engagement.html %}
-  {%- else -%}
+  <div class="post-engagement">
     {% include support_block.html %}
-    {% include giscus_comments.html %}
-  {%- endif -%}
+    {%- if page_project -%}
+      {% include project_engagement.html %}
+    {%- else -%}
+      {% include giscus_comments.html %}
+    {%- endif -%}
+  </div>
 
   {% include content_footer.html %}
 

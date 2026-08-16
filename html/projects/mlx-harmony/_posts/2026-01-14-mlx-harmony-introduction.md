@@ -1,11 +1,11 @@
 ---
 short_url: "https://unixwzrd.ai/s/4e1bd2bb19/"
 layout: post
-title: "Introducing Mlx Harmony"
+title: "MLX Harmony: Notes from an Earlier Experiment"
 date: 2026-01-14
 category: mlx-harmony
 tags: [introduction, overview, mlx, local-llms, apple-silicon]
-excerpt: "Welcome to the Mlx Harmony project blog. Here we'll share updates, insights, and progress on our development journey."
+excerpt: "A retained note about an earlier GPT-OSS and MLX prompting experiment."
 image: /assets/images/projects/mlx-harmony.png
 # author: Michael Sullivan
 # For drafts, use either:
@@ -15,36 +15,14 @@ draft: true
 published: true
 ---
 
-Welcome to the Mlx Harmony project blog. Here we'll share updates, insights, and progress on our development journey.
+MLX Harmony was an experiment I used to explore GPT-OSS on MLX and the Harmony prompting structure. It was useful as a place to learn how the engine and prompt format behaved together, but it did not become a model-hosting product.
 
 <!--more-->
 
-## About Mlx Harmony
+## What It Was
 
-Run GPT-OSS and other MLX-compatible models through a single, lightweight interface. - unixwzrd/mlx-harmony
+The repository collected a lightweight interface and the code needed to exercise that particular combination of model, MLX engine, and prompting structure. I am keeping the material available as an experimental record rather than presenting it as an active roadmap.
 
-## Current Features
+## Where the Work Moved
 
-- Feature 1
-- Feature 2
-- Feature 3
-
-## Roadmap
-
-Our planned development roadmap includes:
-
-1. Phase 1
-2. Phase 2
-3. Phase 3
-
-## Get Involved
-
-We welcome contributions and feedback. Here's how you can get involved:
-
-- Review our documentation
-- Test new features
-- Provide feedback
-- Contribute to development
-
-[Contact us](/contact/) to learn more about participating in this project.
-
+My current attention is on MLX Forge. That project is concerned with model conversion, inference performance, and repeatable evidence about the changes that help on Apple Silicon. It remains private while I work through its initial milestones, so I am not treating this older experiment as a substitute project page.

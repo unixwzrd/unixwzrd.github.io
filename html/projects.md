@@ -16,7 +16,7 @@ The projects are connected by a local-first approach to AI, automation, and deve
 - **Operations / Infrastructure:** [LLM Ops Kit](/projects/LLM-Ops-Kit/) supports running, deploying, debugging, and maintaining self-hosted AI stacks.
 - **Developer Tooling:** [UnicodeFix](/projects/UnicodeFix/) cleans AI-generated text for code, docs, posts, and workflows that need plain ASCII.
 - **Applied AI:** [Case Analytics](/projects/Case-Analytics/) applies AI and data analysis to sensitive legal and family-law documents.
-- **Local AI Runtimes:** [MLX Harmony](/projects/mlx-harmony/) and related tooling support local model workflows on Apple hardware.
+- **Model Engineering:** Current Apple Silicon model-conversion and inference-performance work is moving into MLX Forge, which remains private while it clears its initial milestones.
 
 Together, these form a practical ecosystem: secure runtime handling, local operations, developer utilities, and applied analysis for sensitive data.
 

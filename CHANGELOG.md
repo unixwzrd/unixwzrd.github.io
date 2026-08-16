@@ -1,8 +1,14 @@
 # Changelog
 
-## 2026-08-15: Post updates, corrections, and discovery-list ordering
+## 2026-08-16: Engagement footer, post list fixes, support block
 
 ### Summary
+
+- **Support This Work** (Patreon, Ko-Fi, Buy Me a Coffee): on by default site-wide via `content_footer.html`; posts still show it above comments/Giscus; opt out with `show_support: false` (contact, community).
+- Fixed project blog lists: filter by each post's `category` field (not `site.categories`); restored **Project Blog Entries** heading on project landing pages.
+- Diagram viewer back at `html/diagram-viewer.html` (permalink unchanged: `/diagram-viewer/`).
+
+## 2026-08-16: Post updates, corrections, and list ordering
 
 - Added policy and docs for three tiers of post-publish change: silent fix, technical correction (`corrected_at`, `correction_note`), and major update (`update_notice`, `last_modified_at`).
 - New Jekyll plugin [`html/_plugins/02_post_list_metadata.rb`](html/_plugins/02_post_list_metadata.rb) sets `list_date` / `list_sort_key` so major updates promote in homepage and `blog_list.html` without changing permalinks or `short_url`.
