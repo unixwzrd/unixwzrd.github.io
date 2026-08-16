@@ -14,6 +14,7 @@ For related project work, start with [Secrets Kit](/projects/Secrets-Kit/), [LLM
 {% assign general_blog_page = site.pages | where: "url", "/blog/general/" | first %}
 {% assign pa_blog_page = site.pages | where: "url", "/blog/parental-alienation/" | first %}
 {% assign technology_blog_page = site.pages | where: "url", "/blog/technology/" | first %}
+{% assign hands_on_blog_page = site.pages | where: "url", "/blog/hands-on/" | first %}
 
 <div class="blog-section-grid">
   <section class="blog-section-card">
@@ -33,6 +34,12 @@ For related project work, start with [Secrets Kit](/projects/Secrets-Kit/), [LLM
     <p>{{ technology_blog_page.excerpt }}</p>
     <a class="button-link" href="{{ '/blog/technology/' | relative_url }}">Read Technology Posts</a>
   </section>
+
+  <section class="blog-section-card">
+    <h2><a href="{{ '/blog/hands-on/' | relative_url }}">Hands-On</a></h2>
+    <p>{{ hands_on_blog_page.excerpt }}</p>
+    <a class="button-link" href="{{ '/blog/hands-on/' | relative_url }}">Read Hands-On Posts</a>
+  </section>
 </div>
 
 ## [Browse by Topic]({{ '/topics/' | relative_url }})
@@ -50,3 +57,7 @@ Use the [Topics index]({{ '/topics/' | relative_url }}) to explore tags and cros
 ## [Recent from Technology]({{ '/blog/technology/' | relative_url }})
 
 {% include blog_list.html section="technology" limit=3 hide_heading=true %}
+
+## [Recent from Hands-On]({{ '/blog/hands-on/' | relative_url }})
+
+{% include blog_list.html section="hands-on" limit=3 hide_heading=true %}

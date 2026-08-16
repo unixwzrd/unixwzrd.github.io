@@ -1,0 +1,286 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img "Brand Graphic" [ref=e5]
+      - link "Distributed Thinking Systems" [ref=e6] [cursor=pointer]:
+        - /url: /
+      - navigation [ref=e7]:
+        - generic [ref=e8]:
+          - link "About" [ref=e9] [cursor=pointer]:
+            - /url: /about/
+          - link "Work With Me" [ref=e10] [cursor=pointer]:
+            - /url: /collaborate/
+          - link "Projects ▾" [ref=e13] [cursor=pointer]:
+            - /url: /projects/
+          - link "Resources" [ref=e14] [cursor=pointer]:
+            - /url: /resources/
+          - link "Blog ▾" [ref=e17] [cursor=pointer]:
+            - /url: /blog/
+          - link "FAQ" [ref=e18] [cursor=pointer]:
+            - /url: /faq/
+          - link "Contact" [ref=e19] [cursor=pointer]:
+            - /url: /contact/
+          - link "Search" [ref=e20] [cursor=pointer]:
+            - /url: /search/
+  - main "Content" [ref=e21]:
+    - article [ref=e23]:
+      - navigation "Breadcrumb navigation" [ref=e24]:
+        - list [ref=e25]:
+          - listitem [ref=e26]:
+            - link "Home" [ref=e27] [cursor=pointer]:
+              - /url: /
+            - text: ›
+          - listitem [ref=e28]:
+            - link "Projects" [ref=e29] [cursor=pointer]:
+              - /url: /projects/
+            - text: ›
+          - listitem [ref=e30]: LogGPT for Safari
+      - generic [ref=e31]:
+        - heading "LogGPT for Safari" [level=1] [ref=e32]
+        - paragraph [ref=e33]:
+          - link "Get it now on the App Store" [ref=e34] [cursor=pointer]:
+            - /url: https://apps.apple.com/us/app/loggpt/id6743342693?mt=12
+        - img "LogGPT for Safari" [ref=e36]
+      - article [ref=e38]:
+        - generic [ref=e39]:
+          - table [ref=e40]:
+            - rowgroup [ref=e41]:
+              - row [ref=e42]:
+                - cell [ref=e43]:
+                  - link [ref=e44] [cursor=pointer]:
+                    - /url: /projects/LogGPT/
+                    - img "LogGPT for Safari image" [ref=e45]
+                - cell [ref=e46]:
+                  - heading [level=2] [ref=e47]:
+                    - link "LogGPT for Safari" [ref=e48] [cursor=pointer]:
+                      - /url: /projects/LogGPT/
+                  - paragraph [ref=e49]: LogGPT - Safari ChatGPT Chat Log Export Extension, a lightweight method of exporting entire ChatGPT conversations in JSON format.
+                  - link "View on GitHub" [ref=e51] [cursor=pointer]:
+                    - /url: https://github.com/unixwzrd/LogGPT
+          - heading [level=2]
+          - list [ref=e52]:
+            - generic [ref=e53]:
+              - listitem [ref=e55]:
+                - heading [level=3] [ref=e56]:
+                  - 'link "LogGPT: NEW 1.0.6 - Fixed issue with loading" [ref=e57] [cursor=pointer]':
+                    - /url: /projects/LogGPT/2025/06/21/fixed-issue-with-loading/
+                - generic [ref=e58]: June 21, 2025
+                - paragraph [ref=e60]: Just as Apple approved the second release of LogGPT, OpenAI quietly changed the Document Object Model (DOM) on ChatGPT’s site-breaking the download button injection.
+              - listitem [ref=e62]:
+                - heading [level=3] [ref=e63]:
+                  - 'link "LogGPT: NEW 1.0.5 - Your ChatGPT Conversations, Exported with Privacy & Ease" [ref=e64] [cursor=pointer]':
+                    - /url: /projects/LogGPT/2025/06/11/second-release-approved/
+                - generic [ref=e65]: June 11, 2025
+                - paragraph [ref=e67]:
+                  - text: After a long journey through Apple’s review process, I’m thrilled to announce that
+                  - strong [ref=e68]: LogGPT
+                  - text: ", the Safari extension designed to let you"
+                  - strong [ref=e69]: export your entire ChatGPT conversation history as structured JSON files
+                  - text: ", is now officially available on the Apple App Store!"
+              - listitem [ref=e71]:
+                - heading [level=3] [ref=e72]:
+                  - 'link "Introducing LogGPT: One-Click ChatGPT Conversation Export with Full Privacy" [ref=e73] [cursor=pointer]':
+                    - /url: /projects/LogGPT/2025/04/16/loggpt-introduction/
+                - generic [ref=e74]: April 16, 2025
+                - paragraph [ref=e76]: LogGPT is a streamlined, privacy-first tool for exporting your entire ChatGPT conversation history in JSON format-no spyware, no adware, no data collection.
+              - listitem [ref=e78]:
+                - heading [level=3] [ref=e79]:
+                  - link "Submitted (Again) to the Apple App Store" [ref=e80] [cursor=pointer]:
+                    - /url: /projects/LogGPT/2025/03/20/re-submitted-to-the-apple-app-stor/
+                - generic [ref=e81]: March 20, 2025
+                - paragraph [ref=e83]: "UPDATE: LogGPT Available Now on the Apple App Store Now!:"
+              - listitem [ref=e85]:
+                - heading [level=3] [ref=e86]:
+                  - link "Introducing LogGPT ChatGPT Chatlog Exportort" [ref=e87] [cursor=pointer]:
+                    - /url: /projects/loggpt/2025/02/23/chatgpt-chatlog-export-introduction/
+                - generic [ref=e88]: February 23, 2025
+                - paragraph [ref=e90]: Welcome to the LogGPT ChatGPT Chatlog Exportort project blog. Here we’ll share updates, insights, and progress on our development journey.
+              - generic [ref=e91]:
+                - generic [ref=e92]: Page 1 of 2
+                - button "Next →" [ref=e93] [cursor=pointer]
+          - generic [ref=e94]:
+            - heading "Local Archives for ChatGPT Conversations" [level=2] [ref=e95]
+            - paragraph [ref=e96]:
+              - text: ChatGPT conversations often contain research, troubleshooting history, writing drafts, decisions, and project context that are easy to lose inside a hosted chat interface.
+              - strong [ref=e97]: LogGPT for Safari
+              - text: exports complete ChatGPT conversations as structured JSON so you can keep your own archive and decide what to do with it next.
+            - paragraph [ref=e98]: The extension runs in Safari on macOS and is available through Apple’s App Store. It is useful when you want local control over your chat history, especially before turning conversations into Markdown, HTML, documentation, search indexes, or downstream AI context.
+            - heading "Why It Matters" [level=2] [ref=e99]
+            - paragraph [ref=e100]: AI chat history becomes more useful when it is portable. Exported conversations can be reviewed, backed up, searched, converted, chunked, or reused in local-first workflows instead of remaining trapped in a browser tab.
+            - paragraph [ref=e101]:
+              - text: LogGPT fits the broader Distributed Thinking Systems stack as the capture layer for ChatGPT history.
+              - link "Extract Chat" [ref=e102] [cursor=pointer]:
+                - /url: /projects/extract-chat/
+              - text: turns those exports into readable Markdown or HTML, and tools such as
+              - link "VenvUtil" [ref=e103] [cursor=pointer]:
+                - /url: /projects/venvutil/
+              - text: can help process larger archives for local AI and data workflows.
+            - heading "Key Features" [level=2] [ref=e104]
+            - list [ref=e105]:
+              - listitem [ref=e106]:
+                - strong [ref=e107]: Capture complete ChatGPT sessions
+                - text: with a single click
+              - listitem [ref=e108]:
+                - strong [ref=e109]: Download conversations in structured JSON format
+                - text: for easy storage and analysis
+              - listitem [ref=e110]:
+                - strong [ref=e111]: No external servers, no tracking, and full user control - runs entirely in your browser
+              - listitem [ref=e112]:
+                - strong [ref=e113]: Works with local processing tools
+                - text: for review, conversion, chunking, and archival workflows
+              - listitem [ref=e114]:
+                - strong [ref=e115]: Supports context transfer
+                - text: by making it easier to split exported files and reuse selected context in a new session
+            - heading "Development & Availability" [level=2] [ref=e116]
+            - paragraph [ref=e117]:
+              - text: The extension is available for
+              - strong [ref=e118]: Safari on macOS
+              - text: through the
+              - link "App Store" [ref=e119] [cursor=pointer]:
+                - /url: https://apps.apple.com/us/app/loggpt/id6743342693?mt=12
+              - text: ", and the project is also available on"
+              - link "GitHub" [ref=e120] [cursor=pointer]:
+                - /url: https://github.com/unixwzrd/LogGPT
+              - text: .
+            - paragraph [ref=e121]:
+              - text: For details on
+              - strong [ref=e122]: installation, usage, and technical documentation
+              - text: ", refer to the project’s"
+              - strong [ref=e123]:
+                - link "README" [ref=e124] [cursor=pointer]:
+                  - /url: https://github.com/unixwzrd/LogGPT
+              - text: .
+            - paragraph [ref=e125]:
+              - text: If you need help building local archive, conversion, or AI analysis workflows around exported chat history,
+              - link "get in touch" [ref=e126] [cursor=pointer]:
+                - /url: /contact/
+              - text: .
+          - generic [ref=e127]:
+            - separator [ref=e128]
+            - heading "Support This Work" [level=2] [ref=e129]
+            - paragraph [ref=e130]: If you enjoyed this article or found it useful, please consider supporting my work. Contributions help fund the time, infrastructure, and independent development behind the articles, tools, and research on this site.
+            - list [ref=e131]:
+              - listitem [ref=e132]:
+                - link "Patreon" [ref=e133] [cursor=pointer]:
+                  - /url: https://patreon.com/unixwzrd
+              - listitem [ref=e134]:
+                - link "Ko-Fi" [ref=e135] [cursor=pointer]:
+                  - /url: https://ko-fi.com/unixwzrd
+              - listitem [ref=e136]:
+                - link "Buy Me a Coffee" [ref=e137] [cursor=pointer]:
+                  - /url: https://buymeacoffee.com/unixwzrd
+          - generic [ref=e138]:
+            - separator [ref=e139]
+            - heading "Join the Discussion" [level=2] [ref=e140]
+            - paragraph [ref=e141]: Comments for this post live in GitHub Discussions. That keeps moderation in one place and gives the conversation a stable home.
+            - iframe [ref=e143]:
+              - generic [ref=f1e1]:
+                - main [ref=f1e3]:
+                  - generic [ref=f1e4]:
+                    - generic [ref=f1e5]:
+                      - heading "0 reactions" [level=4] [ref=f1e6]
+                      - group [ref=f1e8]:
+                        - generic "Add reactions" [ref=f1e9] [cursor=pointer]
+                    - generic [ref=f1e12]:
+                      - heading "0 comments" [level=4] [ref=f1e15]
+                      - generic [ref=f1e16]:
+                        - generic [ref=f1e17]:
+                          - generic [ref=f1e18]:
+                            - button "Write" [ref=f1e19] [cursor=pointer]
+                            - button "Preview" [ref=f1e20] [cursor=pointer]
+                          - button "Enable fixed-width (monospace) font in the editor" [ref=f1e22] [cursor=pointer]
+                        - generic [ref=f1e26]:
+                          - textbox "Sign in to comment" [disabled] [ref=f1e27]
+                          - link "Styling with Markdown is supported" [ref=f1e29] [cursor=pointer]:
+                            - /url: https://guides.github.com/features/mastering-markdown/
+                        - link "Sign in with GitHub" [ref=f1e34] [cursor=pointer]:
+                          - /url: /api/oauth/authorize?redirect_uri=http%3A%2F%2Flocalhost%3A4010%2Fprojects%2FLogGPT%2F%3Fpage%3D1
+                - alert [ref=f1e37]
+      - generic [ref=e144]:
+        - generic [ref=e145]:
+          - separator [ref=e146]
+          - heading "Join Our Mission" [level=3] [ref=e147]
+          - paragraph [ref=e148]:
+            - text: Join
+            - strong [ref=e149]: Distributed Thinking Systems
+            - text: in local-first AI, secure automation, sensitive workflow analysis, and developer tooling work.
+          - list [ref=e150]:
+            - listitem [ref=e151]:
+              - link [ref=e152] [cursor=pointer]:
+                - /url: /collaborate/community/
+                - strong [ref=e153]: Community Collaboration
+              - text: ": Contribute data, provide expertise, test tools, or participate in applied AI and open-source projects."
+            - listitem [ref=e154]:
+              - link [ref=e155] [cursor=pointer]:
+                - /url: /collaborate/professionals/
+                - strong [ref=e156]: Professional Services
+              - text: ": Get help with local AI setup, secure automation, developer infrastructure, or Unix/Linux/macOS systems engineering."
+          - paragraph [ref=e157]: Supporting the work helps keep practical tools, research, and resources available to people handling sensitive data and difficult workflows.
+        - generic [ref=e158]:
+          - separator [ref=e159]
+          - heading "Get In Touch" [level=3] [ref=e160]
+          - paragraph [ref=e161]:
+            - text: If you want to talk privately about local AI, secure automation, sensitive workflow analysis, systems engineering, collaboration, or a specific problem, use the
+            - link "contact page" [ref=e162] [cursor=pointer]:
+              - /url: /contact/
+            - text: .
+          - paragraph [ref=e163]:
+            - text: If you would rather keep it public, join the wider conversation on
+            - link "GitHub Discussions" [ref=e164] [cursor=pointer]:
+              - /url: https://github.com/unixwzrd/unixwzrd.github.io/discussions
+            - text: .
+          - paragraph [ref=e165]: "The site is small by design, so the shortest path is usually best: private inquiries through the form, public discussion through GitHub."
+  - contentinfo [ref=e166]:
+    - generic [ref=e167]:
+      - generic [ref=e168]:
+        - generic [ref=e169]:
+          - paragraph [ref=e170]:
+            - link "Subscribe" [ref=e171] [cursor=pointer]:
+              - /url: https://unixwzrd.ai/feed.xml
+          - list [ref=e174]:
+            - listitem [ref=e175]: Distributed Thinking Systems
+            - link "Email Us" [ref=e176] [cursor=pointer]:
+              - /url: /contact/
+        - paragraph [ref=e178]: "Distributed Thinking Systems: local-first AI, secure automation, and developer tooling for sensitive workflows. Unix, macOS, and Linux systems engineering. Privacy-focused tools for work that needs care."
+      - list [ref=e180]:
+        - listitem [ref=e181]:
+          - link "github" [ref=e182] [cursor=pointer]:
+            - /url: https://github.com/unixwzrd
+        - listitem [ref=e185]:
+          - link "linkedin" [ref=e186] [cursor=pointer]:
+            - /url: https://linkedin.com/in/unixwzrd
+        - listitem [ref=e189]:
+          - link "huggingface" [ref=e190] [cursor=pointer]:
+            - /url: https://huggingface.co/unixwzrd
+        - listitem [ref=e193]:
+          - link "wandb" [ref=e194] [cursor=pointer]:
+            - /url: https://wandb.ai/unixwzrd
+        - listitem [ref=e197]:
+          - link "devdotto" [ref=e198] [cursor=pointer]:
+            - /url: https://dev.to/unixwzrd
+        - listitem [ref=e201]:
+          - link "twitter" [ref=e202] [cursor=pointer]:
+            - /url: https://twitter.com/unixwzrd
+        - listitem [ref=e205]:
+          - link "telegram" [ref=e206] [cursor=pointer]:
+            - /url: https://telegram.me/unixwzrd
+        - listitem [ref=e209]:
+          - link "bluesky" [ref=e210] [cursor=pointer]:
+            - /url: https://bsky.app/profile/unixwzrd.bsky.social
+        - listitem [ref=e213]:
+          - link "ko-fi" [ref=e214] [cursor=pointer]:
+            - /url: https://ko-fi.com/unixwzrd
+        - listitem [ref=e217]:
+          - link "buymeacoffee" [ref=e218] [cursor=pointer]:
+            - /url: https://buymeacoffee.com/unixwzrd
+        - listitem [ref=e221]:
+          - link "patreon" [ref=e222] [cursor=pointer]:
+            - /url: https://patreon.com/unixwzrd
+      - paragraph [ref=e225]:
+        - strong [ref=e226]: "Disclaimer:"
+        - text: The information on this website is for general informational purposes only. Distributed Thinking Systems makes no representations or warranties about the accuracy or completeness of any content. All use of our site and services is at your own risk. For any legal advice, please contact a licensed attorney.
+      - paragraph [ref=e227]:
+        - link "Privacy and Terms of Service" [ref=e228] [cursor=pointer]:
+          - /url: /Policies/

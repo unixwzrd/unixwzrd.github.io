@@ -83,30 +83,27 @@ Parameters:
     {% endif %}
 
     {% if posts_to_show.size > 0 %}
-        {% if include.category %}
-            {% assign sorted_posts = posts_to_show | sort: 'sequence' %}
-        {% else %}
-            {% assign sorted_posts = posts_to_show | sort: 'date' | reverse %}
-            {% assign date_groups = '' | split: '' %}
-            {% assign current_date = '' %}
-            {% assign current_group = '' | split: '' %}
-            {% for post in sorted_posts %}
-                {% if current_date == '' or current_date != post.date %}
-                    {% if current_date != '' %}
-                        {% assign current_group_sorted = current_group | sort: 'sequence' %}
-                        {% assign date_groups = date_groups | concat: current_group_sorted %}
-                    {% endif %}
-                    {% assign current_date = post.date %}
-                    {% assign current_group = '' | split: '' %}
+        <!-- Newest entries come first in every blog. Sequence orders entries that share a date. -->
+        {% assign sorted_posts = posts_to_show | sort: 'date' | reverse %}
+        {% assign date_groups = '' | split: '' %}
+        {% assign current_date = '' %}
+        {% assign current_group = '' | split: '' %}
+        {% for post in sorted_posts %}
+            {% if current_date == '' or current_date != post.date %}
+                {% if current_date != '' %}
+                    {% assign current_group_sorted = current_group | sort: 'sequence' %}
+                    {% assign date_groups = date_groups | concat: current_group_sorted %}
                 {% endif %}
-                {% assign current_group = current_group | push: post %}
-            {% endfor %}
-            {% if current_group.size > 0 %}
-                {% assign current_group_sorted = current_group | sort: 'sequence' %}
-                {% assign date_groups = date_groups | concat: current_group_sorted %}
+                {% assign current_date = post.date %}
+                {% assign current_group = '' | split: '' %}
             {% endif %}
-            {% assign sorted_posts = date_groups %}
+            {% assign current_group = current_group | push: post %}
+        {% endfor %}
+        {% if current_group.size > 0 %}
+            {% assign current_group_sorted = current_group | sort: 'sequence' %}
+            {% assign date_groups = date_groups | concat: current_group_sorted %}
         {% endif %}
+        {% assign sorted_posts = date_groups %}
         {% assign posts_to_show = sorted_posts %}
 
         {% if include.limit %}

@@ -1,0 +1,9 @@
+{%- if page.series -%}
+<aside class="series-context" aria-label="Series context">
+  {%- if page.series_companion_of -%}
+    <p><strong>Hands-On companion to Part {{ page.series_companion_of }} of <a href="{{ page.series_url | relative_url }}">{{ page.series }}</a>.</strong> This article turns one part of the design into a small runnable example. It appears in the separate <a href="{{ '/blog/hands-on/' | relative_url }}">Hands-On section</a> so tutorials remain easy to find without being mixed into the main Technology index.</p>
+  {%- else -%}
+    <p><strong>Part {{ page.series_part }} of a planned {{ page.series_total }}-part series: <a href="{{ page.series_url | relative_url }}">{{ page.series }}</a>.</strong>{% if page.series_previous_url %} If you are joining the series here, start with <a href="{{ page.series_previous_url | relative_url }}">{{ page.series_previous_title }}</a>.{% endif %}</p>
+  {%- endif -%}
+</aside>
+{%- endif -%}

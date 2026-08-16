@@ -1,0 +1,14 @@
+{%- assign source_title = include.title | default: include.source | split: '/' | last -%}
+{%- assign source_language = include.language | default: 'text' -%}
+<details class="source-code-disclosure">
+  <summary>
+    <span>{{ source_title }}</span>
+    <span class="source-code-disclosure__hint">View source</span>
+  </summary>
+  <div class="source-code-disclosure__actions">
+    <a class="button-link" href="{{ include.source | relative_url }}" download>Download {{ source_title }}</a>
+  </div>
+  <div class="highlight source-code-disclosure__code">
+    <pre><code class="language-{{ source_language }}">{{ include.source | source_code_highlight: source_language }}</code></pre>
+  </div>
+</details>

@@ -1,0 +1,93 @@
+Deterministic First: Building a Knowledge Intake Pipeline — social drafts
+
+Scheduled article:
+https://unixwzrd.ai/technology/2026/08/19/deterministic-first-building-a-knowledge-intake-pipeline/
+
+Short URL:
+https://unixwzrd.ai/s/0fa3548506/
+
+Suggested hashtags:
+#AgentEngineering #LocalAI #KnowledgeManagement #AIInfrastructure #MLOps
+
+
+==================================================
+LINKEDIN
+==================================================
+
+“Have the model remember everything” sounded like a reasonable next step. The more closely I looked at it, the less I trusted the plan.
+
+Before a model could decide what mattered, I still had to answer the boring questions: What actually exists? What changed? Are these two records the same source? Can I trace a note back to its authority? Will tomorrow's run create the same candidate or another plausible duplicate?
+
+Those are not model problems. They are inventory, identity, state, and provenance problems.
+
+The second article in my Local-First Agent Operations series is about moving that work into a deterministic intake pipeline: stable source identity, content fingerprints, explicit review states, retained rejection history, and a separate gate between reviewed knowledge and retrieval.
+
+The goal was not to remove models from the system. It was to stop asking them to solve bookkeeping problems that ordinary code can solve more reliably.
+
+https://unixwzrd.ai/s/0fa3548506/
+
+#AgentEngineering #LocalAI #KnowledgeManagement #AIInfrastructure #MLOps
+
+
+==================================================
+X / TWITTER
+==================================================
+
+“Have the model remember everything” sounds useful until inventory, identity, provenance, reruns, and human review all become probabilistic too.
+
+I wrote about moving those jobs into a deterministic intake pipeline.
+
+https://unixwzrd.ai/s/0fa3548506/
+
+#AgentEngineering #LocalAI #MLOps
+
+
+==================================================
+BLUESKY
+==================================================
+
+Before an agent can remember something, the system has to know what exists, what changed, where it came from, and whether a person already rejected it.
+
+Post 2 in my Local-First Agent Operations series: building that intake path deterministically.
+
+https://unixwzrd.ai/s/0fa3548506/
+
+#LocalAI #AgentEngineering
+
+
+==================================================
+MASTODON
+==================================================
+
+I initially thought a model could help sort a growing collection of sessions, exports, notes, and logs. Then I worked through the less glamorous questions: stable identity, duplicate effects, provenance, review state, and what should happen when the same source appears tomorrow.
+
+This article explains why I moved those jobs into deterministic code and kept model interpretation behind the human-review boundary.
+
+https://unixwzrd.ai/s/0fa3548506/
+
+#AgentEngineering #LocalAI #KnowledgeManagement #MLOps
+
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Deterministic First: Building a Knowledge Intake Pipeline
+
+Subtitle:
+Before a model decides what matters, the system still has to know what exists, what changed, and what a person already decided.
+
+Body:
+
+I reached the point in an agent project where “have the model remember everything” started to sound like the obvious next step. The more closely I looked at the plan, the less I trusted it.
+
+The hard questions came first: stable source identity, content fingerprints, provenance, repeatable reruns, retained rejection history, and a clear boundary between material that has been reviewed and material an agent is actually allowed to retrieve.
+
+This article follows the engineering path that moved those jobs out of model-assisted intake and into deterministic code. Models still have a place, but not where ordinary code can give the system a stronger and more inspectable contract.
+
+Full article:
+https://unixwzrd.ai/technology/2026/08/19/deterministic-first-building-a-knowledge-intake-pipeline/
+
+Tags:
+Agent engineering, local AI, knowledge management, deterministic systems, MLOps

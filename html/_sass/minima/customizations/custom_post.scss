@@ -139,3 +139,21 @@
     }
   }
 }
+.post-update-notice {
+  margin: 1rem 0 1.75rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid $border-color-01;
+  border-left: 4px solid $link-base-color;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.03);
+
+  .post-update-notice__title {
+    margin: 0 0 0.35rem;
+    color: $link-base-color;
+    font-weight: 700;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}

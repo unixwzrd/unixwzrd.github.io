@@ -9,6 +9,11 @@ image: /assets/images/blog/agent-optimization/post-01-local-ai-operations-system
 excerpt: "The model may be running while the system around it is still broken. This is how a local-first AI experiment became an operations problem involving ownership, dependencies, readiness, recovery, and rollback."
 series: "Local-First Agent Operations"
 series_part: 1
+series_total: 13
+series_url: /blog/series/local-first-agent-operations/
+series_next_title: "Deterministic First: Building a Knowledge Intake Pipeline"
+series_next_url: /technology/2026/08/19/deterministic-first-building-a-knowledge-intake-pipeline/
+series_next_date: 2026-08-19 08:00:00 -0500
 ---
 
 The model was running, but the client still could not connect. A tunnel appeared to exist in the service manager, yet its forwarded socket was not ready. Another process was healthy on its own and useless as part of the route. None of those failures belonged to the model itself.

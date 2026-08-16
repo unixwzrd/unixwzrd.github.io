@@ -118,6 +118,21 @@ slug: launchd-seckit-run-and-invisible-env-vars
 
 (`slug` is normalized the same way as title-derived slugs: lowercased, non-alphanumeric → hyphens.)
 
+## Source code disclosures
+
+Use ordinary fenced code blocks for short commands and excerpts that belong directly in the article. Use the shared source-code disclosure for a complete public source file:
+
+```liquid
+{% include source_code.html
+   source="/assets/code/example/tool.py"
+   language="python"
+   title="tool.py" %}
+```
+
+The source file must live below `html/assets/code/`. The build reads that same file, applies server-side Rouge highlighting, and places it inside a collapsed `<details>` element. Readers can inspect the complete file without downloading it; the component provides a separate, explicitly labeled download action.
+
+This keeps one source of truth for the rendered and downloadable code. Do not paste a second copy of a complete file into the post. Continue using normal fenced blocks for the commands that demonstrate how to run it.
+
 ## Troubleshooting
 
 ### Post Title Not Displaying
@@ -178,4 +193,3 @@ bundle exec ruby scripts/backfill_short_url_front_matter.rb --check --staged
 **Verify:** `bundle exec jekyll build` (should succeed); optional `ls _site/s/` for redirect folders; open one `_site/s/<code>/index.html` and confirm canonical target URL.
 
 **Updated:** 2026-05-02
-

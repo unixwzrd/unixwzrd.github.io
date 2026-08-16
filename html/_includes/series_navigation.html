@@ -1,0 +1,31 @@
+{%- if page.series -%}
+  {%- assign series_next_post = site.posts | where: "url", page.series_next_url | first -%}
+<nav class="series-navigation" aria-label="{{ page.series }} navigation">
+  <div class="series-navigation__heading"><a href="{{ page.series_url | relative_url }}">{{ page.series }}</a></div>
+  <div class="series-navigation__links">
+    <div class="series-navigation__item series-navigation__item--previous">
+      {%- if page.series_previous_url -%}
+        <span class="series-navigation__label">Previous</span>
+        <a href="{{ page.series_previous_url | relative_url }}">← {{ page.series_previous_title }}</a>
+      {%- else -%}
+        <span class="series-navigation__label">Previous</span>
+        <span>This is the first article in the series.</span>
+      {%- endif -%}
+    </div>
+    <div class="series-navigation__item series-navigation__item--next">
+      <span class="series-navigation__label">Next</span>
+      {%- if page.series_next_url and series_next_post -%}
+        <a href="{{ page.series_next_url | relative_url }}">{{ page.series_next_title }} →</a>
+      {%- elsif page.series_next_url and page.series_next_date -%}
+        <span>{{ page.series_next_title }} — publishes {{ page.series_next_date | date: "%B %-d, %Y" }}</span>
+      {%- elsif page.series_next_url -%}
+        <a href="{{ page.series_next_url | relative_url }}">{{ page.series_next_title }} →</a>
+      {%- elsif page.series_next_title -%}
+        <span>{{ page.series_next_title }} — forthcoming</span>
+      {%- else -%}
+        <span>This is the final article in the series.</span>
+      {%- endif -%}
+    </div>
+  </div>
+</nav>
+{%- endif -%}

@@ -246,6 +246,108 @@ code {
   width: 100%;
 }
 
+.series-context,
+.series-navigation {
+  margin: 0 0 2rem;
+  padding: 1rem 1.2rem;
+  border: 1px solid $border-color;
+  border-radius: 12px;
+  background: color-mix(in srgb, $background-color 94%, $brand-color 6%);
+}
+
+.series-context p {
+  margin: 0;
+}
+
+.series-navigation {
+  margin-top: 3rem;
+}
+
+.series-navigation__heading {
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+}
+
+.series-navigation__links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.series-navigation__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.series-navigation__item--next {
+  text-align: right;
+}
+
+.series-navigation__label {
+  color: color-mix(in srgb, $text-color 68%, $background-color 32%);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.series-index li {
+  margin-bottom: 1rem;
+}
+
+.series-index .post-meta {
+  display: block;
+}
+
+.source-code-disclosure {
+  margin: 1.5rem 0 2rem;
+  border: 1px solid $border-color;
+  border-radius: 12px;
+  background: color-mix(in srgb, $background-color 94%, $brand-color 6%);
+  overflow: hidden;
+}
+
+.source-code-disclosure summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.source-code-disclosure summary:hover,
+.source-code-disclosure summary:focus {
+  background: color-mix(in srgb, $background-color 88%, $brand-color 12%);
+}
+
+.source-code-disclosure__hint {
+  color: $link-base-color;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.source-code-disclosure[open] .source-code-disclosure__hint::after {
+  content: " (expanded)";
+}
+
+.source-code-disclosure__actions {
+  padding: 0 1.2rem 1rem;
+}
+
+.source-code-disclosure__code {
+  margin: 0;
+  border-radius: 0;
+}
+
+.source-code-disclosure__code pre {
+  max-height: 34rem;
+  margin: 0;
+  border-radius: 0;
+  overflow: auto;
+}
+
 @media screen and (max-width: $on-palm) {
   .contact-form-grid {
     grid-template-columns: 1fr;
@@ -255,5 +357,13 @@ code {
   .contact-direct,
   .post-comments {
     padding: 1.1rem;
+  }
+
+  .series-navigation__links {
+    grid-template-columns: 1fr;
+  }
+
+  .series-navigation__item--next {
+    text-align: left;
   }
 }
