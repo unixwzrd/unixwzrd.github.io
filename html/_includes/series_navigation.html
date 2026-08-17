@@ -18,11 +18,11 @@
       {%- if page.series_next_url and series_next_post -%}
         <a href="{{ page.series_next_url | relative_url }}">{{ page.series_next_title }} →</a>
       {%- elsif page.series_next_url and page.series_next_date -%}
-        <span>{{ page.series_next_title }} — publishes {{ page.series_next_date | date: "%B %-d, %Y" }}</span>
+        <span>{{ page.series_next_title }}: publishes {{ page.series_next_date | date: "%B %-d, %Y" }}</span>
       {%- elsif page.series_next_url -%}
         <a href="{{ page.series_next_url | relative_url }}">{{ page.series_next_title }} →</a>
       {%- elsif page.series_next_title -%}
-        <span>{{ page.series_next_title }} — forthcoming</span>
+        <span>{{ page.series_next_title }}: forthcoming</span>
       {%- else -%}
         <span>This is the final article in the series.</span>
       {%- endif -%}
@@ -34,11 +34,11 @@
     {%- if page.series_companion_url and series_companion_post -%}
       <a href="{{ page.series_companion_url | relative_url }}">{{ page.series_companion_title }} →</a>
     {%- elsif page.series_companion_url and page.series_companion_date -%}
-      <span>{{ page.series_companion_title }} — publishes {{ page.series_companion_date | date: "%B %-d, %Y" }}</span>
+      <span>{{ page.series_companion_title }}: publishes {{ page.series_companion_date | date: "%B %-d, %Y" }}</span>
     {%- elsif page.series_companion_url -%}
       <a href="{{ page.series_companion_url | relative_url }}">{{ page.series_companion_title }} →</a>
     {%- else -%}
-      <span>{{ page.series_companion_title }} — forthcoming</span>
+      <span>{{ page.series_companion_title }}: forthcoming</span>
     {%- endif -%}
   </div>
   {%- endif -%}

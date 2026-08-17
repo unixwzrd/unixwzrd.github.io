@@ -13,6 +13,6 @@ The main installments appear in [Technology](/blog/technology/). Runnable compan
 
 {% include series_index.html series="Local-First Agent Operations" %}
 
-## Coming Later
+## Across the Series
 
-The remaining installments cover measuring token reduction without damaging agent behavior, passive model-proxy instrumentation, multimodal context hygiene, operator-ready packaging, cross-host voice services, Apple Silicon inference, installable skills, safe multi-agent operation on one LAN, and an honest public-release readiness assessment.
+Later installments also cover measuring token optimization, passive model-proxy instrumentation, multimodal context hygiene, operator-ready packaging, cross-host voice services, Apple Silicon inference, installable skills, safe multi-agent operation on one LAN, and an honest public-release readiness assessment.

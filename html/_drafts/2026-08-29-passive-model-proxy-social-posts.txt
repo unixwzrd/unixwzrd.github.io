@@ -1,0 +1,99 @@
+A Passive Model Proxy as an AI Debugging Instrument - social drafts
+
+Scheduled article:
+https://unixwzrd.ai/technology/2026/08/29/a-passive-model-proxy-as-an-ai-debugging-instrument/
+
+Short URL:
+https://unixwzrd.ai/s/fdc7dd9f48/
+
+Hands-On companion publication date:
+August 31, 2026 at 08:00 CDT
+
+Distribution rule:
+Use only the main article link on August 29. The companion may be linked directly on or after August 31, when it is available in the ordinary non-future build.
+
+Suggested hashtags:
+#AgentEngineering #LocalAI #LLMOps #AIObservability #Python
+
+
+==================================================
+LINKEDIN
+==================================================
+
+I reached a point where inspecting the JSON request was no longer enough. The messages and tools looked right, but the answer still made me wonder what the model had actually been asked.
+
+The missing view was the rendered prompt. A chat template can duplicate a tool result, mishandle a role boundary, omit a generation marker, or carry too much history forward while the structured request still looks perfectly reasonable.
+
+Part 6 of Local-First Agent Operations explains how I use a passive model proxy to correlate the raw request, rendered prompt, and response without letting the diagnostic path rewrite the exchange. It also covers streaming reconstruction, client disconnects, rotation behavior, and why useful prompt diagnostics must be treated as sensitive incident evidence.
+
+A separate Hands-On companion follows on August 31 with a standard-library Python proxy, deterministic fake endpoint, and six executable privacy and byte-preservation canaries.
+
+https://unixwzrd.ai/s/fdc7dd9f48/
+
+#AgentEngineering #LocalAI #LLMOps #AIObservability #Python
+
+
+==================================================
+X / TWITTER
+==================================================
+
+A model request can look correct while its rendered prompt is wrong.
+
+Part 6 shows how I use a passive proxy to inspect the request, Jinja template output, and response without changing the evidence. A runnable Python lab with six canaries follows on August 31.
+
+https://unixwzrd.ai/s/fdc7dd9f48/
+
+#AgentEngineering #LocalAI #LLMOps
+
+
+==================================================
+BLUESKY
+==================================================
+
+The JSON request looked right, but I still needed to know what prompt the chat template had actually produced.
+
+Part 6 follows the passive proxy I use to correlate the request, rendered prompt, and response while keeping diagnostics outside the transport path.
+
+https://unixwzrd.ai/s/fdc7dd9f48/
+
+#LocalAI #AgentEngineering
+
+
+==================================================
+MASTODON
+==================================================
+
+A useful debugging proxy has to resist the temptation to fix the exchange it is observing.
+
+This installment separates the structured request, rendered Jinja prompt, and textual or reconstructed response. It explains exact request and response body preservation, streaming diagnostics, cancellation classification, log rotation, and the difference between sensitive incident evidence and content-free operational metrics.
+
+The optional Hands-On companion follows on August 31 with a small Python proxy, fake model endpoint, and six tests that prove which bytes cross the boundary and which private canaries stay out of routine metrics.
+
+https://unixwzrd.ai/s/fdc7dd9f48/
+
+#AgentEngineering #LocalAI #LLMOps #AIObservability
+
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+A Passive Model Proxy as an AI Debugging Instrument
+
+Subtitle:
+Why the structured request is only one view of a model exchange, and how I inspect the rendered prompt without changing the evidence.
+
+Body:
+
+An OpenAI-compatible request contains messages, tools, options, and perhaps multimodal content. The model does not consume that JSON envelope directly. Its chat template converts the request into the token-bearing prompt, and that transformation can fail while the original request still looks correct.
+
+Part 6 explains the passive proxy boundary I use to correlate the raw request, rendered prompt, and response. The article covers streaming reconstruction, client disconnect classification, timed numbered log rotation, sensitive diagnostic retention, and the proposed separation between detailed incident evidence and content-free routine metrics.
+
+The companion article follows on August 31 with complete readable source for a standard-library Python proxy, deterministic fake endpoint, and six regression canaries covering exact body preservation, private marker exclusion, restrictive file permissions, sanitized upstream failure, credential-bearing URL rejection, and explicit remote opt-in.
+
+Full article:
+https://unixwzrd.ai/technology/2026/08/29/a-passive-model-proxy-as-an-ai-debugging-instrument/
+
+Tags:
+Agent engineering, local AI, LLM operations, AI observability, Python

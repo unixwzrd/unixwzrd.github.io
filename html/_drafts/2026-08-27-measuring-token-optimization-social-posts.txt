@@ -1,0 +1,93 @@
+Measuring Token Optimization Without Breaking the Agent - social drafts
+
+Scheduled article:
+https://unixwzrd.ai/technology/2026/08/27/measuring-token-optimization-without-breaking-the-agent/
+
+Short URL:
+https://unixwzrd.ai/s/58524b64a7/
+
+Suggested hashtags:
+#AgentEngineering #LocalAI #LLMOps #AIObservability #DeveloperTools
+
+
+==================================================
+LINKEDIN
+==================================================
+
+One of my token-optimization tests looked like a success at first. The input fell from 1,324 tokens to 1,181, and the model still returned the exact answer I expected.
+
+Then I looked at the rest of the result. Latency had increased from 5.77 seconds to 9.14 seconds. It was one synthetic test on one dated version, but it changed the question I was asking. Had I improved the agent, or merely improved one number?
+
+Part 5 of Local-First Agent Operations explains the measurement method that came out of that experience: fix or record the starting state, compare a raw baseline with exactly one candidate, retain comparable correctness evidence, record cache and warm-state effects, and make every candidate earn the failure surface it adds.
+
+The article also looks at why a shell-output reducer performed extremely well on one noisy failure and did practically nothing useful for already concise commands.
+
+https://unixwzrd.ai/s/58524b64a7/
+
+#AgentEngineering #LocalAI #LLMOps #AIObservability #DeveloperTools
+
+
+==================================================
+X / TWITTER
+==================================================
+
+Fewer tokens did not make the agent better. In one test, input fell 10.8% while latency rose from 5.77s to 9.14s.
+
+Part 5 of Local-First Agent Operations is about measuring the whole task, preserving raw evidence, and making every optimizer justify its failure surface.
+
+https://unixwzrd.ai/s/58524b64a7/
+
+#AgentEngineering #LocalAI #LLMOps
+
+
+==================================================
+BLUESKY
+==================================================
+
+I nearly accepted a good token-reduction percentage before noticing that the response had become substantially slower.
+
+Part 5 of Local-First Agent Operations explains why I now compare a fixed baseline with one candidate and measure correctness, cache state, latency, errors, and rollback together.
+
+https://unixwzrd.ai/s/58524b64a7/
+
+#LocalAI #AgentEngineering
+
+
+==================================================
+MASTODON
+==================================================
+
+A smaller prompt is not automatically a better agent.
+
+This installment follows two very different Headroom observations, one dramatic RTK reduction on noisy test output, and one provider-cache observation that complicated the meaning of a token-saving result. Every number remains attached to its date, version, workload, and sample size.
+
+The larger lesson is practical: preserve the raw path, compare one change at a time, retain exact correctness evidence, and reject an optimizer when the whole-task benefit does not justify the extra process, route, data, or failure surface.
+
+https://unixwzrd.ai/s/58524b64a7/
+
+#AgentEngineering #LocalAI #LLMOps #AIObservability
+
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Measuring Token Optimization Without Breaking the Agent
+
+Subtitle:
+Why fewer input tokens did not automatically produce a better result, and how I learned to measure the complete task.
+
+Body:
+
+One synthetic comparison reduced model input by 10.8 percent while preserving the expected answer. The same result also increased latency substantially. A separate group of requests showed almost no reduction at all.
+
+That variation changed how I evaluate token optimization. A useful comparison needs a fixed or recorded starting state, a raw baseline, exactly one candidate path, comparable correctness evidence, and content-free measurements covering tokens, cache behavior, injected memory, tool output, latency, errors, retries, resource use, and cost where it is honestly observable.
+
+The article applies that method to RTK, Headroom, and provider-managed prompt caching while keeping every result bound to its actual version, workload, and sample size. It also explains why bypass, rollback, removal, and a post-upgrade telemetry audit belong inside the optimization decision rather than outside it.
+
+Full article:
+https://unixwzrd.ai/technology/2026/08/27/measuring-token-optimization-without-breaking-the-agent/
+
+Tags:
+Agent engineering, local AI, LLM operations, AI observability, developer tools

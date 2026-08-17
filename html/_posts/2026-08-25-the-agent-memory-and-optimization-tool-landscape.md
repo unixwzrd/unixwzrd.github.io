@@ -15,6 +15,8 @@ series_url: /blog/series/local-first-agent-operations/
 series_previous_title: "Memory Is a Governance Problem, Not Just a Vector Database"
 series_previous_url: /technology/2026/08/23/memory-is-a-governance-problem-not-just-a-vector-database/
 series_next_title: "Measuring Token Optimization Without Breaking the Agent"
+series_next_url: /technology/2026/08/27/measuring-token-optimization-without-breaking-the-agent/
+series_next_date: 2026-08-27 10:00:00 -0500
 published: true
 ---
 
