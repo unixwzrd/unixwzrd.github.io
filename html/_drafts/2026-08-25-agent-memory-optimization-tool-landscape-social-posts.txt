@@ -1,0 +1,92 @@
+The Agent Memory and Optimization Tool Landscape - social drafts
+
+Scheduled article:
+https://unixwzrd.ai/technology/2026/08/25/the-agent-memory-and-optimization-tool-landscape/
+
+Short URL:
+https://unixwzrd.ai/s/d42f4a7d8e/
+
+Suggested hashtags:
+#AgentEngineering #LocalAI #AIOps #LLMOps #DeveloperTools
+
+
+==================================================
+LINKEDIN
+==================================================
+
+I started researching agent optimization expecting to produce a ranked list of products. That turned out to be the wrong comparison.
+
+Memory, provider prompt caching, response caching, context compression, shell-output reduction, routing, and observability solve different problems. A memory engine that retrieves an old decision is not competing directly with a provider cache that reuses computation for an unchanged prefix. An observability layer may save no tokens and still be the best first addition because it shows where the waste actually is.
+
+Part 4 of my Local-First Agent Operations series explains the evaluation method I settled on: compare products only within their layer, measure whole-task outcomes, treat correctness and disruption as gates, and keep bypass, rollback, and uninstall available throughout the experiment.
+
+The result is not a universal stack. It is a way to decide whether a complementary layer provides enough demonstrated gain to justify its failure surface.
+
+https://unixwzrd.ai/s/d42f4a7d8e/
+
+#AgentEngineering #LocalAI #AIOps #LLMOps #DeveloperTools
+
+
+==================================================
+X / TWITTER
+==================================================
+
+Memory, caching, compression, shell reduction, routing, and observability are not one product category.
+
+Part 4 of Local-First Agent Operations: a correctness-first way to compare complementary optimization layers without turning estimates into a leaderboard.
+
+https://unixwzrd.ai/s/d42f4a7d8e/
+
+#AgentEngineering #LocalAI #LLMOps
+
+
+==================================================
+BLUESKY
+==================================================
+
+The useful agent-optimization question is not “Which product claims the largest saving?” It is “Which layer is failing, what evidence will change, and how cheaply can I undo the experiment?”
+
+Part 4 of Local-First Agent Operations:
+https://unixwzrd.ai/s/d42f4a7d8e/
+
+#LocalAI #AgentEngineering
+
+
+==================================================
+MASTODON
+==================================================
+
+I expected my agent-optimization research to produce a leaderboard. Instead, it taught me that memory, prompt caching, response caching, context compression, shell-output reduction, gateways, and observability should not be compared as though they perform the same job.
+
+This article organizes the landscape by layer and workload fit, then applies a practical gate: preserve correctness, measure the entire task, start with a scoped canary, observe realistic use, and retain a clear stop, bypass, rollback, or uninstall path.
+
+It also distinguishes installed, tested, stopped, and currently exercised components instead of treating configuration as proof of live behavior.
+
+https://unixwzrd.ai/s/d42f4a7d8e/
+
+#AgentEngineering #LocalAI #AIOps #LLMOps
+
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+The Agent Memory and Optimization Tool Landscape
+
+Subtitle:
+Why memory, caching, compression, shell reduction, routing, and observability need a common workload instead of a universal leaderboard.
+
+Body:
+
+I began researching agent optimization expecting to produce a shortlist of products. The difficulty was that each product category was answering a different question. Persistent memory, provider caching, response caching, context compression, shell-output reduction, gateways, and observability are complementary layers with different failure modes.
+
+This installment explains the evaluation framework I settled on. Correctness preservation and disruption are gates before savings are scored. One candidate is compared against a fixed baseline, tested in a scoped project canary, observed through a realistic soak, and kept only when the whole-task evidence justifies its operational and privacy cost.
+
+The article also follows the environment from its early July research snapshot into the more precise August state, preserving the distinction among estimated, installed, accepted, stopped, and currently exercised behavior.
+
+Full article:
+https://unixwzrd.ai/technology/2026/08/25/the-agent-memory-and-optimization-tool-landscape/
+
+Tags:
+Agent engineering, local AI, AI operations, LLM operations, developer tools

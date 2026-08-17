@@ -1,4 +1,4 @@
-Hands-On: Build an Idempotent Intake Manifest — social drafts
+Hands-On: Build an Idempotent Intake Manifest - social drafts
 
 Scheduled article:
 https://unixwzrd.ai/hands-on/2026/08/21/hands-on-build-an-idempotent-intake-manifest/

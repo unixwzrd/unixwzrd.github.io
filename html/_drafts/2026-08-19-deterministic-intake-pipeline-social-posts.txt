@@ -1,4 +1,4 @@
-Deterministic First: Building a Knowledge Intake Pipeline — social drafts
+Deterministic First: Building a Knowledge Intake Pipeline - social drafts
 
 Scheduled article:
 https://unixwzrd.ai/technology/2026/08/19/deterministic-first-building-a-knowledge-intake-pipeline/
@@ -20,9 +20,9 @@ Before a model could decide what mattered, I still had to answer the boring ques
 
 Those are not model problems. They are inventory, identity, state, and provenance problems.
 
-The second article in my Local-First Agent Operations series is about moving that work into a deterministic intake pipeline: stable source identity, content fingerprints, explicit review states, retained rejection history, and a separate gate between reviewed knowledge and retrieval.
+The second article in my Local-First Agent Operations series is about moving that work into a deterministic intake pipeline: stable source identity, content fingerprints, explicit review states, retained rejection history, and a separate gate between reviewed knowledge and retrieval. It also explains where the resulting documents actually live: LLM-Wiki is a structured Markdown area inside my broader Obsidian Main Vault, while iCloud is synchronization transport rather than policy enforcement.
 
-The goal was not to remove models from the system. It was to stop asking them to solve bookkeeping problems that ordinary code can solve more reliably.
+The goal was not to remove models from the system. It was to stop asking them to solve bookkeeping and maintenance jobs that ordinary scripts and OS schedulers can handle more reliably.
 
 https://unixwzrd.ai/s/0fa3548506/
 
@@ -61,7 +61,7 @@ MASTODON
 
 I initially thought a model could help sort a growing collection of sessions, exports, notes, and logs. Then I worked through the less glamorous questions: stable identity, duplicate effects, provenance, review state, and what should happen when the same source appears tomorrow.
 
-This article explains why I moved those jobs into deterministic code and kept model interpretation behind the human-review boundary.
+This article explains why I moved those jobs into deterministic code, put routine maintenance under OS schedulers, filed reviewed Markdown in LLM-Wiki inside the broader Main Vault, and kept model interpretation behind the human-review boundary.
 
 https://unixwzrd.ai/s/0fa3548506/
 
@@ -84,7 +84,7 @@ I reached the point in an agent project where “have the model remember everyth
 
 The hard questions came first: stable source identity, content fingerprints, provenance, repeatable reruns, retained rejection history, and a clear boundary between material that has been reviewed and material an agent is actually allowed to retrieve.
 
-This article follows the engineering path that moved those jobs out of model-assisted intake and into deterministic code. Models still have a place, but not where ordinary code can give the system a stronger and more inspectable contract.
+This article follows the engineering path that moved those jobs out of model-assisted intake and into deterministic code. It also describes LLM-Wiki inside the broader Obsidian Main Vault, the metadata carried in Front Matter, and the boundary between OS-scheduled maintenance and model-assisted interpretation. Models still have a place, but not where ordinary code can give the system a stronger and more inspectable contract.
 
 Full article:
 https://unixwzrd.ai/technology/2026/08/19/deterministic-first-building-a-knowledge-intake-pipeline/

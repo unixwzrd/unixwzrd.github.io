@@ -1,0 +1,92 @@
+Memory Is a Governance Problem, Not Just a Vector Database - social drafts
+
+Scheduled article:
+https://unixwzrd.ai/technology/2026/08/23/memory-is-a-governance-problem-not-just-a-vector-database/
+
+Short URL:
+https://unixwzrd.ai/s/857d25f9d2/
+
+Suggested hashtags:
+#AgentEngineering #LocalAI #AIMemory #PrivacyEngineering #KnowledgeManagement
+
+
+==================================================
+LINKEDIN
+==================================================
+
+Similarity search can find the wrong thing extremely well.
+
+Once the same agent moves among private conversations, technical work, general operations, and material still waiting for review, relevance is no longer the difficult question. The difficult question is whether this conversation, with these participants and this purpose, is allowed to receive the memory at all.
+
+In Part 3 of my Local-First Agent Operations series, I explain why I now treat memory as a governance problem with a search component. LLM-Wiki inside my broader Obsidian Main Vault remains the human-readable authority; Mnemosyne is disposable derived retrieval state. I describe the coarse general/private routing boundary I use today and lay out the finer-grained policy model I am working toward.
+
+The central rule is simple: authorization must construct the candidate set before vector or lexical ranking begins. Filtering afterward is already too late.
+
+https://unixwzrd.ai/s/857d25f9d2/
+
+#AgentEngineering #LocalAI #AIMemory #PrivacyEngineering #KnowledgeManagement
+
+
+==================================================
+X / TWITTER
+==================================================
+
+A highly relevant memory from the wrong context is not a better search result. It is a disclosure.
+
+Part 3 of Local-First Agent Operations: authority, provenance, fail-closed routing, and why authorization belongs before ranking.
+
+https://unixwzrd.ai/s/857d25f9d2/
+
+#AgentEngineering #LocalAI #AIMemory
+
+
+==================================================
+BLUESKY
+==================================================
+
+Memory is not just a vector-database problem. Once an agent crosses projects and private contexts, retrieval needs authority, provenance, and authorization before ranking.
+
+Part 3 of Local-First Agent Operations:
+https://unixwzrd.ai/s/857d25f9d2/
+
+#LocalAI #PrivacyEngineering
+
+
+==================================================
+MASTODON
+==================================================
+
+Similarity is useful, but it has no instinct for privacy boundaries. A vector search can return an excellent answer from a context that was never allowed to see it.
+
+This article explains the memory architecture I settled on: LLM-Wiki inside Obsidian's broader Main Vault remains the durable authority, memory indexes remain disposable derived state, and authorization narrows the candidate population before ranking or prompt construction.
+
+It also distinguishes the coarse two-bank control I use today from the finer per-memory policy model that remains proposed.
+
+https://unixwzrd.ai/s/857d25f9d2/
+
+#AgentEngineering #LocalAI #AIMemory #PrivacyEngineering
+
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Memory Is a Governance Problem, Not Just a Vector Database
+
+Subtitle:
+Why relevance ranking must sit behind authority, provenance, and fail-closed access decisions.
+
+Body:
+
+Persistent memory becomes impressive very quickly: embed a question, retrieve nearby material, and the agent appears to remember. The harder problem arrives when one agent moves among private conversations, technical projects, general operations, and material that has not yet passed human review.
+
+This article separates LLM-Wiki and the broader Obsidian Main Vault from disposable retrieval state, describes a practical general/private bank boundary, and explains why ordinary authorization cannot be encoded in similarity scores or an ever-growing collection of databases.
+
+The core rule is that authorization must decide which records can become candidates before vector or lexical ranking begins. The proposed finer-grained model adds classification, compartments, audience, purpose, stable context, and policy versions without pretending that those controls are already deployed.
+
+Full article:
+https://unixwzrd.ai/technology/2026/08/23/memory-is-a-governance-problem-not-just-a-vector-database/
+
+Tags:
+Agent engineering, local AI, memory governance, privacy engineering, knowledge management

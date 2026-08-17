@@ -1,4 +1,4 @@
-Hands-On: Isolated Remote Development with SSH — social drafts
+Hands-On: Isolated Remote Development with SSH - social drafts
 
 Scheduled article:
 https://unixwzrd.ai/hands-on/2026/08/15/hands-on-isolated-remote-development-with-ssh/
@@ -32,7 +32,7 @@ X / TWITTER
 
 The editor should not be the first place you test SSH.
 
-This hands-on guide builds key authentication and host aliases first, then uses the same connection for VS Code, Cursor, Windsurf, and tunneled Python debugging—on one Mac, a LAN host, or a VPS.
+This hands-on guide builds key authentication and host aliases first, then uses the same connection for VS Code, Cursor, Windsurf, and tunneled Python debugging on one Mac, a LAN host, or a VPS.
 
 https://unixwzrd.ai/s/24b766f1a1/
 https://unixwzrd.ai/s/c474212fd8/

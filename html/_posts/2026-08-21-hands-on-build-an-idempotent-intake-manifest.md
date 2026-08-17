@@ -16,12 +16,16 @@ series_companion_of: 2
 series_previous_title: "Deterministic First: Building a Knowledge Intake Pipeline"
 series_previous_url: /technology/2026/08/19/deterministic-first-building-a-knowledge-intake-pipeline/
 series_next_title: "Memory Is a Governance Problem, Not Just a Vector Database"
+series_next_url: /technology/2026/08/23/memory-is-a-governance-problem-not-just-a-vector-database/
+series_next_date: 2026-08-23 08:00:00 -0500
 published: true
 ---
 
 While writing [Deterministic First: Building a Knowledge Intake Pipeline](/technology/2026/08/19/deterministic-first-building-a-knowledge-intake-pipeline/), I kept coming back to the same problem: a successful first import does not prove very much. Plenty of scripts can create a row once. I wanted to know what happened when I ran the script again, changed a file, removed it, and then put it back. If the inventory could not explain each of those events without producing duplicates or pretending stale data was still current, I was not ready to build anything else on top of it.
 
 That led me to a small standard-library Python utility backed by SQLite. It scans one deliberately bounded directory tree, records deterministic source identities, preserves the history of missing files, migrates the earlier teaching schema, and reports what it did as JSON. I stopped it there on purpose. It does not summarize a document, classify it, approve it, or decide whether an agent may retrieve it. I want those later decisions to remain visible instead of disappearing inside an importer that tries to do everything.
+
+That configured root is an allowlist boundary, not an invitation to inventory every note the agent can access. I would point this utility at a deliberately selected source tree and send its output into review; I would not aim it at an entire synchronized Main Vault by default.
 
 <!--more-->
 

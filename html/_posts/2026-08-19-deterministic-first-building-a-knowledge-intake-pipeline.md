@@ -15,6 +15,8 @@ series_url: /blog/series/local-first-agent-operations/
 series_previous_title: "When a Local AI Stack Becomes an Operations System"
 series_previous_url: /technology/2026/08/17/when-a-local-ai-stack-becomes-an-operations-system/
 series_next_title: "Memory Is a Governance Problem, Not Just a Vector Database"
+series_next_url: /technology/2026/08/23/memory-is-a-governance-problem-not-just-a-vector-database/
+series_next_date: 2026-08-23 08:00:00 -0500
 series_companion_title: "Hands-On: Build an Idempotent Intake Manifest"
 series_companion_url: /hands-on/2026/08/21/hands-on-build-an-idempotent-intake-manifest/
 series_companion_date: 2026-08-21 08:00:00 -0500
@@ -35,7 +37,7 @@ Before a model could summarize anything, I still had to answer less glamorous qu
 
 ## The First Output Is an Inventory, Not a Summary
 
-The raw material did not arrive in one neat format. Current sessions lived in an application database, older sessions existed as line-oriented exports, and documents appeared in several review-oriented locations. Some records contained real dialogue between a user and an assistant. Others were tool traces, automation noise, or structured request evidence that should never have been treated as a second copy of a conversation. I made the first job of the pipeline deliberately unambitious: find those sources, assign a stable identity, fingerprint their contents, and describe them in a manifest. At that stage, the system does not decide what anything means and does not create memory.
+The raw material did not arrive in one neat format. Current sessions lived in an application database, older sessions existed as line-oriented exports, and documents appeared in several review locations. Some records were real dialogue; others were tool traces, automation noise, or structured request evidence that should not become a second copy of a conversation. I made the first job deliberately unambitious: find each source, assign a stable identity, fingerprint it, and record it in a manifest. At that stage, the system does not decide what anything means or create memory.
 
 That separation matters because raw authority, manifest records, review candidates, durable knowledge, and retrieval indexes solve different problems:
 
@@ -56,11 +58,9 @@ I learned to keep those layers separate because each time I blurred them, a late
 
 ## Stable Identity Makes Reruns Boring
 
-I wanted rerunning intake to be boring. For each source, the inventory derives a stable identifier from its origin and computes a content fingerprint. The manifest records both, together with the extractor version and enough provenance to understand anything created later. When the fingerprint and relevant version have not changed, the pipeline avoids repeating normalization and downstream candidate work.{% if hands_on_link_ready %} The hands-on follow-up shows the [small SQLite record contract behind that manifest]({{ page.series_companion_url | relative_url }}#start-with-a-small-contract).{% endif %}
+I wanted rerunning intake to be boring. The inventory derives a stable identifier from each source, computes a content fingerprint, and records the extractor version and provenance needed by later stages. When the fingerprint and relevant version have not changed, the pipeline does not normalize the source again or create another candidate.{% if hands_on_link_ready %} The hands-on follow-up shows the [small SQLite record contract behind that manifest]({{ page.series_companion_url | relative_url }}#start-with-a-small-contract).{% endif %}
 
-I have to be precise about where that optimization begins. The current implementation still opens and fingerprints file sources, and it still reads session messages to calculate their fingerprint. Modification time is retained as provenance; it is not a fast path that skips the scan. The idempotence is in the durable effects: unchanged sources are not normalized again and do not produce duplicate candidates. It is not yet an optimization that avoids every read.
-
-Stable identity also fixed a more tangible problem. Two conversation extracts could land on the same date with similar titles and session suffixes, producing a filename collision even though they came from different sources. Adding a stable source-derived suffix made the names collision-resistant without publishing a real session identifier, and a regression test now keeps that behavior from quietly disappearing.
+That does not mean the scan avoids every read. It still fingerprints file sources and reads session messages to calculate their fingerprint; modification time remains provenance rather than a shortcut. Stable source-derived suffixes also prevent two similar extracts from colliding without exposing a real session identifier, and a regression test keeps that behavior from disappearing.
 
 ### The Rerun Test
 
@@ -72,27 +72,57 @@ The quickest way I found to expose a weak intake design was simply to run it aga
 | Refresh a pending note after changing only its formatter | The note changes in place while its candidate identity and review state remain stable |
 | Move a managed candidate to `Discard`, then run extraction again | The rejection remains recorded and the candidate does not return |
 
-Those checks tell me more than a successful first import. The first run only proves that the pipeline can create data; later runs show whether it respects data and human decisions that already exist. In the Hands-On companion, *Build an Idempotent Intake Manifest*, I pull the smallest useful part into a standard-library Python example with a SQLite record contract and the same three-run exercise. It stops deliberately at inventory because extraction, review, and retrieval are different stages with different failure modes.{% if hands_on_link_ready %} You can [run that new/unchanged/changed exercise here]({{ page.series_companion_url | relative_url }}#run-the-example).{% else %} That hands-on article follows on August 21.{% endif %}
+Those checks tell me more than a successful first import. The first run proves that the pipeline can create data; later runs show whether it respects existing data and human decisions. The Hands-On companion pulls this boundary into a standard-library Python and SQLite example, then stops at inventory because extraction, review, and retrieval have different failure modes.{% if hands_on_link_ready %} You can [run that new/unchanged/changed exercise here]({{ page.series_companion_url | relative_url }}#run-the-example).{% endif %}
 
 ## Extract Dialogue Without Asking What It Means
 
-Once the inventory was dependable, I could turn eligible session records into readable review notes without asking a model what the conversation meant. The extractor keeps active user and assistant turns, excludes tool roles and session metadata, rejects empty or one-sided exchanges, and applies explicit minimum-content and natural-language checks. It also drops messages matching request, tool, credential, or other payload patterns that should not be copied into a note. Structured request dumps remain evidence rather than becoming alternate conversation sources.
-
-I kept these rules intentionally modest. They do not pretend to recognize a brilliant insight; they ask whether a record looks like a real exchange, contains enough dialogue to review, and can be rendered without obvious operational noise. The result preserves paragraphs, lists, code blocks, roles, timestamps when available, and source provenance, then enters the queue as unclassified, pending, and excluded from retrieval. String and structure filters are still heuristics, not proof that every sensitive value has been caught, so deterministic filtering improves reproducibility without replacing human privacy judgment.
+Once the inventory was dependable, I could produce readable review notes without asking a model what a conversation meant. The extractor keeps active user and assistant turns, drops tool roles, session metadata, request payloads, and credential-shaped material, and rejects empty or one-sided exchanges. It preserves the structure and provenance needed for review, then places the result in the queue as unclassified, pending, and excluded from retrieval. These filters are reproducible heuristics, not proof that every sensitive value has been caught, so they do not replace human privacy judgment.
 
 ## Why the Model Moved Later
 
-My earlier design allowed bounded model-assisted extraction. I constrained the work per run, along with model calls, tokens, and elapsed time, which was safer than turning a model loose on a bulk import. The model sometimes did useful work, but it was still probabilistic behavior too early in the lifecycle. When an output looked wrong, I first had to determine whether the source was wrong, the prompt was wrong, the model had made a poor choice, or the pipeline had processed the same material twice. That is too many moving parts for what should have been an inventory job.
+My earlier design allowed bounded model-assisted extraction. It was safer than an unbounded bulk import, but when an output looked wrong I still had to ask whether the source, prompt, model, or rerun behavior caused it. That was too much uncertainty for an inventory job. The current path keeps discovery, filtering, identity, provenance, and review-state transitions deterministic. Models may help later with summaries, links, or synthesis, but those outputs remain proposals behind their own acceptance and policy gates. I use the model where interpretation adds value, not where ordinary code gives me a stronger contract.
 
-The current path moves model calls out of inventory and dialogue extraction. For the same source and extractor version, discovery, filtering, identity, provenance, and review-state transitions now produce the same kind of result. I can inspect what was kept, what was skipped, and why without interpreting a generated summary first. Models may still help after review by suggesting summaries, proposing links, or assisting with synthesis, but those outputs belong to later, separately governed steps and remain proposals until their own acceptance and policy gates exist. I use the model where interpretation adds value, not where ordinary code can give me a stronger contract.
+## Move Deterministic Work Out of the Agent Loop
+
+That rule applies to scheduling as well as intake. An early scheduler created an agent turn for every maintenance job, so log rotation, health probes, Wiki statistics and lint, source discovery, and validation could spend provider tokens or occupy a local model without using language understanding. Deterministic maintenance could even fail merely because the model endpoint was unavailable.
+
+I moved that work into ordinary scripts supervised by `launchd`; cron or systemd timers provide the same boundary elsewhere. Runs record a lock, timeout, revision, exit state, and machine-readable result. The model consumes the output later only when interpretation adds value, such as proposing links or writing a consolidated report. The recurring audit question is simple: *Is this scheduled task making a judgment, or running a command that should have been a script?* Moving the second category out of heartbeats reduces hosted-model cost, avoids unnecessary local CPU and GPU work, and makes failures reproducible.
+
+A future `deterministic-scheduler` skill could classify a task and generate a reviewed script and scheduler plan with ownership, an evidence contract, and rollback. It should not install scheduler entries without approval.
+
+{% include blog_diagram.html
+   src="/assets/images/blog/agent-optimization/post-02-deterministic-scheduler.svg"
+   alt="Scheduled work is divided before execution: deterministic jobs run as supervised scripts and produce machine-readable evidence, while language-model work passes through health and policy gates and remains subject to human review."
+   variant="wide" %}
+
+## LLM-Wiki Is the Filing System
+
+The name comes from [Andrej Karpathy's original LLM Wiki idea file](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f), not from a product or a canonical folder layout. The pattern has three conceptual layers: immutable raw sources; an LLM-owned collection of interlinked Markdown summaries, entities, concepts, comparisons, overviews, and syntheses; and a co-evolved schema, such as `AGENTS.md`, that teaches the agent how to ingest, query, and maintain the Wiki. Within that managed area, `index.md` is the content-oriented catalog, while `log.md` is the append-only operational history. The exact directory structure and conventions are deliberately left to each deployment.
+
+I use that pattern as LLM-Wiki, one managed knowledge area inside a broader Obsidian Vault called Main Vault. The rest of the Vault holds review queues, selected operational material, documents, and working notes that do not need to become Wiki entries. Everything remains readable without a retrieval engine. iCloud synchronizes the Vault across my operator devices and a dedicated agent account, but it is transport rather than authority or concurrency control. Jobs still need bounded writes and locking, and multiple agents should not edit the same synchronized file concurrently.
+
+I can share the whole Main Vault with an agent as an explicitly configured document surface without pretending that the agent owns every note it can see. Write ownership, review gates, sensitive paths, and retrieval eligibility remain policy-controlled. Karpathy's useful rule that the LLM owns the Wiki applies to the managed LLM-Wiki area in this deployment, not automatically to every adjacent document in Main Vault.
+
+YAML Front Matter gives deterministic tools a machine-readable description of each entry while leaving the document useful in Obsidian. A sanitized review candidate can begin like this:
+
+```yaml
+---
+classification: unclassified
+review_state: pending
+mnemosyne: exclude
+source_id: conversation:example-source
+source_hash: sha256:example-content-hash
+related: []
+---
+```
+
+Those fields are independent on purpose. Human approval does not silently grant retrieval. Front Matter records metadata; deterministic scanners and policy-aware adapters enforce its meaning. The Hands-On companion develops the same contract with complete pending, approved-but-excluded, and rejected examples.
 
 ## The Queue Is a Safety Boundary
 
-I initially thought of the review directories as a convenient way to keep notes organized. They became more important once I recognized that each one represents a different decision. `Pending Review` means the extractor produced something readable, but nobody has approved its classification, usefulness, filing location, or links, so it remains excluded from retrieval. `Completed Review` means a person has reviewed and retained the material for curation; it still does not mean “put this in memory.” A note can be valuable durable documentation and still be inappropriate for automatic injection into an agent conversation.
+I first treated the review directories as organization. They became a safety boundary once each location represented a different decision. `Pending Review` is readable but unclassified and excluded from retrieval. `Completed Review` means a person retained the material for curation; it still does not mean “put this in memory.” A useful document can remain in the Vault without being suitable for automatic injection.
 
-`Discard` means rejected, not erased. When a managed candidate is moved there, the pipeline records the rejection in the manifest, marks it excluded from retrieval, rejects pending link suggestions, and retains the note as history. A later run recognizes that state and does not recreate the candidate. If the file does not contain enough identity to resolve one candidate unambiguously, the job leaves it for manual attention rather than guessing.
-
-Retaining that history prevents a failure I did not want to keep rediscovering: I reject a low-value extract, the next scheduled run sees the unchanged raw session, and the same note returns as though the decision never happened. I do not need the automation arguing with a decision I already made. The pipeline also lets me refresh pending notes after a formatting change by re-rendering them in place while preserving candidate identity and review state, so presentation can improve without pretending that the source or the human decision is new.
+`Discard` means rejected, not erased. The manifest keeps the rejection and prevents the same unchanged source from returning on the next run. Pending notes can also be refreshed in place after a formatting change without losing identity or review state. If a file cannot be resolved to one candidate unambiguously, the job leaves it for a person rather than guessing.
 
 Review and retrieval answer different questions, and I do not want a directory move silently answering both:
 
@@ -107,15 +137,15 @@ Treating those as two axes prevents a convenient filing action from silently bec
 
 ## Bounded Work Creates Useful Backpressure
 
-The production workflow inventories periodically and processes conversation candidates in bounded nightly batches. I am keeping the exact schedule and batch size private, but the reason for the limit is more interesting than the number. A bounded batch limits runtime, makes recovery understandable, and keeps automation from filling the review queue faster than a person can inspect it. If the pending queue grows continuously, that is useful operational evidence: the batch may be too large, the filters too permissive, or the review process unable to keep up.
+The production workflow inventories periodically and processes candidates in bounded nightly batches. I am keeping the exact schedule and batch size private; the important point is that the limit controls runtime and keeps automation from filling the queue faster than I can review it. A growing queue is useful evidence that the batch is too large, the filters are too permissive, or review cannot keep up.
 
-An unbounded historical import would have hidden that feedback beneath a mountain of plausible-looking notes. There is no prize for generating thousands of notes that nobody has time to review. Small batches gave me room to inspect representative output, fix filename and formatting defects, refresh existing candidates safely, and only then widen the backlog run. In this case, slower turned out to be more efficient because it spent less human attention cleaning up avoidable output.
-
-The bounded queue also taught me not to confuse process health with freshness. An oldest-first job can succeed every night while recent material remains buried behind historical backlog, so exit status alone is weak evidence. I also need the oldest waiting age, newest source processed, inflow, and throughput. If catch-up and currency both matter, the scheduler can reserve capacity for each instead of letting one workload hide the other.
+Small batches also exposed filename and formatting defects before a historical import buried them beneath thousands of plausible notes. They taught me not to confuse a successful job with fresh coverage: an oldest-first process can exit cleanly while recent material remains untouched. I still need waiting age, newest source processed, inflow, and throughput, with scheduler capacity reserved separately for catch-up and currency when both matter.
 
 ## Preserve Evidence Without Turning It Into Knowledge
 
-I applied the same discipline to logs. Raw operational logs stay outside the knowledge vault; an archive job copies each active log to a source-date path and only then truncates the active file in place. It reports that source files were not deleted, and a repeated run ignores an already empty active log. That preserves the evidence while allowing reproducible, human-readable reports to use the date of the underlying data rather than the day I happened to generate the report. It also prevents the knowledge base from becoming a second log store full of private request material.
+I applied the same discipline to logs. Raw rolling logs stay outside LLM-Wiki; an archive job copies each active log to a source-date path and only then truncates the active file in place. That preserves evidence while allowing human-readable reports to use the date of the underlying data.
+
+An earlier workflow filed selected rotated operational logs in Main Vault, and being able to read that history from any Obsidian device was genuinely useful. I kept the useful part with a narrower boundary: summaries, indexes, and explicitly approved or sanitized operational archives may live in the Vault's Operations area. Raw prompt logs, request bodies, credentials, and high-volume rolling output stay outside the synchronized knowledge tree. The Vault can carry portable operational history without becoming an uncontrolled second copy of every private log.
 
 The rule I keep coming back to is to retain the authority, record its provenance, and derive only what the next stage needs. A report is not a raw log, a review note is not a session database, and a retrieval index is not a vault. Treating them as interchangeable may be convenient for the first import, but it makes every later correction harder.
 
@@ -125,7 +155,7 @@ I do not want deterministic intake to carry claims it has not earned. It does no
 
 ## Current State
 
-At the source snapshot used for this article, I have deterministic source inventory, stable source IDs and content fingerprints, manifest-backed processing state, model-free dialogue extraction, bounded batches, retained rejection history, pending-note refresh, and source-date log archiving. The repository includes focused regressions for repeated inventory, dialogue filtering, Markdown preservation, filename-collision avoidance, refresh behavior, discard idempotence, reviewed approval, privacy-safe linking, and copy-and-truncate archival. Project records also show periodic inventory and bounded nightly extraction running in the private environment, including a corrected filename-collision defect and successful rerun. During technical review, the focused offline regressions for inventory, conversation extraction, knowledge review, and source-date archival passed again. No public intake artifact has been released.
+At the source snapshot used for this article, LLM-Wiki inside Main Vault is the human-readable document authority, with iCloud providing synchronization rather than retrieval policy. The private environment has deterministic inventory, stable source IDs and fingerprints, manifest-backed state, model-free dialogue extraction, bounded batches, retained rejection history, pending-note refresh, and source-date archival. Deterministic maintenance runs as supervised scripts rather than agent heartbeats. Focused regressions cover reruns, dialogue filtering, Markdown preservation, collision avoidance, refresh, discard idempotence, reviewed approval, privacy-safe linking, and copy-and-truncate archival. No public intake or scheduler artifact has been released.
 
 ## Next Work
 

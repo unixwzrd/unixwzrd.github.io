@@ -1,0 +1,90 @@
+Hands-On: Build a Fail-Closed Memory Router - social drafts
+
+Scheduled article:
+https://unixwzrd.ai/hands-on/2026/08/25/hands-on-build-a-fail-closed-memory-router/
+
+Short URL:
+https://unixwzrd.ai/s/dde867f837/
+
+Suggested hashtags:
+#Python #AgentEngineering #LocalAI #PrivacyEngineering #AIMemory
+
+
+==================================================
+LINKEDIN
+==================================================
+
+Filtering a private memory out of the final response is not enough if the scorer, logger, cache, or debugger already received it.
+
+This Hands-On companion to Part 3 builds a small fail-closed memory router in standard-library Python. It uses invented general and private banks, three bounded context outcomes, bank-tagged results, and a deliberately ordinary token-overlap scorer.
+
+The important part is the ordering. Authorization constructs the candidate set before deduplication and ranking. A recording-scorer canary proves that excluded private content never reaches the scorer, while six more tests cover write refusal, bank isolation, unknown-context fallback, merged private recall, duplicate handling, and rebuild removal.
+
+Both complete files are readable and downloadable from the article.
+
+https://unixwzrd.ai/s/dde867f837/
+
+#Python #AgentEngineering #LocalAI #PrivacyEngineering #AIMemory
+
+
+==================================================
+X / TWITTER
+==================================================
+
+Authorization before ranking, not filtering afterward.
+
+A standard-library Python memory router with two invented banks and seven canaries, including proof that protected content never reaches the scorer.
+
+https://unixwzrd.ai/s/dde867f837/
+
+#Python #AgentEngineering #LocalAI
+
+
+==================================================
+BLUESKY
+==================================================
+
+The private record is not a low-ranked candidate or a redacted result. It never becomes a candidate at all.
+
+A runnable Python memory router with seven fail-closed canaries:
+https://unixwzrd.ai/s/dde867f837/
+
+#Python #LocalAI
+
+
+==================================================
+MASTODON
+==================================================
+
+A retrieval system that searches everything and filters private results afterward has already crossed the boundary.
+
+This Hands-On article turns authorization-before-ranking into a small Python program. It includes two invented memory banks, three context outcomes, complete source, and seven executable canaries. The most important test records every item the scorer receives and proves that protected content was excluded before ranking.
+
+https://unixwzrd.ai/s/dde867f837/
+
+#Python #AgentEngineering #PrivacyEngineering #AIMemory
+
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Hands-On: Build a Fail-Closed Memory Router
+
+Subtitle:
+A runnable Python example that constructs the authorized candidate set before relevance ranking begins.
+
+Body:
+
+It is easy to make a retrieval demonstration look safe by removing protected results from the final list. That does not prove the scorer, logger, cache, trace, or debugger never received the protected content.
+
+This companion article builds a deliberately small router using only the Python standard library. Unknown contexts can read general material but cannot write, recognized general contexts remain in the general bank, and recognized private contexts can combine bank-tagged general and private results.
+
+Seven canaries test the boundary, including a recording scorer that proves private content never reaches ranking during a general query. The article includes the complete utility and test suite as readable, downloadable files.
+
+Full article:
+https://unixwzrd.ai/hands-on/2026/08/25/hands-on-build-a-fail-closed-memory-router/
+
+Tags:
+Python, agent engineering, local AI, privacy engineering, AI memory

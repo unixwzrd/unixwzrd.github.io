@@ -15,4 +15,4 @@ The main installments appear in [Technology](/blog/technology/). Runnable compan
 
 ## Coming Later
 
-The remaining installments cover governed memory retrieval, the optimization-tool landscape, measuring token reduction without damaging agent behavior, passive model-proxy instrumentation, multimodal context hygiene, operator-ready packaging, cross-host voice services, Apple Silicon inference, installable skills, safe multi-agent operation on one LAN, and an honest public-release readiness assessment.
+The remaining installments cover measuring token reduction without damaging agent behavior, passive model-proxy instrumentation, multimodal context hygiene, operator-ready packaging, cross-host voice services, Apple Silicon inference, installable skills, safe multi-agent operation on one LAN, and an honest public-release readiness assessment.

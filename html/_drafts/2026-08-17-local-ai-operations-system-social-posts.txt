@@ -1,4 +1,4 @@
-When a Local AI Stack Becomes an Operations System — social drafts
+When a Local AI Stack Becomes an Operations System - social drafts
 
 Scheduled article:
 https://unixwzrd.ai/technology/2026/08/17/when-a-local-ai-stack-becomes-an-operations-system/
@@ -50,7 +50,7 @@ X / TWITTER
 
 The model was running. The route was broken.
 
-First Local-First Agent Operations post: what comes after the demo—ownership, dependencies, readiness checks, recovery, and rollback across a multi-service AI stack.
+First Local-First Agent Operations post: what comes after the demo, including ownership, dependencies, readiness checks, recovery, and rollback across a multi-service AI stack.
 
 https://unixwzrd.ai/s/cd70519bcf/
 
