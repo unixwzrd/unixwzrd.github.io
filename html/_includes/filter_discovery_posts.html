@@ -4,6 +4,10 @@ Builds `discovery_posts`: published blog posts eligible for discovery lists.
 Optional parameters:
 - section: only posts whose categories include this section name
 - category: only posts whose `category` front matter matches (project blogs)
+- additional_category: include this project category alongside `section`
+- additional_category_primary_only: include only its sequence-zero introduction
+- series: only posts whose `series` front matter matches
+- exclude_series: omit posts with nonempty `series` front matter
 
 Excludes drafts, unpublished posts, _drafts paths, social-post working files,
 and anything marked list_exclude: true.
@@ -28,7 +32,35 @@ and anything marked list_exclude: true.
     {% endunless %}
   {% endif %}
   {% if include.section and include.section != '' %}
-    {% unless post.categories contains include.section %}
+    {% assign section_match = false %}
+    {% if post.categories contains include.section %}
+      {% assign section_match = true %}
+    {% endif %}
+    {% if include.additional_category and include.additional_category != '' %}
+      {% assign post_category = post.category | default: '' %}
+      {% if post_category == include.additional_category %}
+        {% if include.additional_category_primary_only %}
+          {% assign post_sequence = post.sequence | default: -1 | plus: 0 %}
+          {% if post_sequence == 0 %}
+            {% assign section_match = true %}
+          {% endif %}
+        {% else %}
+          {% assign section_match = true %}
+        {% endif %}
+      {% endif %}
+    {% endif %}
+    {% unless section_match %}
+      {% assign include_post = false %}
+    {% endunless %}
+  {% endif %}
+  {% if include.series and include.series != '' %}
+    {% unless post.series == include.series %}
+      {% assign include_post = false %}
+    {% endunless %}
+  {% endif %}
+  {% if include.exclude_series %}
+    {% assign post_series = post.series | default: '' %}
+    {% unless post_series == '' %}
       {% assign include_post = false %}
     {% endunless %}
   {% endif %}

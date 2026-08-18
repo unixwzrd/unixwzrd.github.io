@@ -13,7 +13,7 @@ A structured writing hub for local-first AI, secure automation, developer toolin
 For related project work, start with [Secrets Kit](/projects/Secrets-Kit/), [LLM Ops Kit](/projects/LLM-Ops-Kit/), and [Case Analytics](/projects/Case-Analytics/).
 
 <aside class="series-context" aria-label="Featured technical series">
-  <p><strong>Featured series: <a href="{{ '/blog/series/local-first-ai-and-agent-operations/' | relative_url }}">Local First AI and Agent Operations</a>.</strong> Follow the main engineering story in Technology, or step into the separate Hands-On companions when you want runnable code and exercises.</p>
+  <p><strong>Featured series: <a href="{{ '/blog/series/local-first-ai-and-agent-operations/' | relative_url }}">Local First AI and Agent Operations</a>.</strong> Browse the engineering story and its Hands-On companions together in the Series section.</p>
 </aside>
 
 {% assign general_blog_page = site.pages | where: "url", "/blog/general/" | first %}
@@ -64,12 +64,16 @@ Use the [Topics index]({{ '/topics/' | relative_url }}) to explore tags and cros
 
 ## [Recent from Parental Alienation]({{ '/blog/parental-alienation/' | relative_url }})
 
-{% include blog_list.html section="parental-alienation" limit=3 hide_heading=true %}
+{% include blog_list.html section="parental-alienation" additional_category="PA-Awareness-1" additional_category_primary_only=true limit=3 hide_heading=true %}
 
 ## [Recent from Technology]({{ '/blog/technology/' | relative_url }})
 
-{% include blog_list.html section="technology" limit=3 hide_heading=true %}
+{% include blog_list.html section="technology" exclude_series=true limit=3 hide_heading=true %}
+
+## [Recent from Series]({{ '/blog/series/' | relative_url }})
+
+{% include blog_list.html series="Local First AI and Agent Operations" limit=3 hide_heading=true %}
 
 ## [Recent from Hands-On]({{ '/blog/hands-on/' | relative_url }})
 
-{% include blog_list.html section="hands-on" limit=3 hide_heading=true %}
+{% include blog_list.html section="hands-on" exclude_series=true limit=3 hide_heading=true %}

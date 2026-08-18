@@ -2,6 +2,10 @@
 Parameters:
 - category: (optional) Project category to list project blog posts.
 - section: (optional) Standard site blog section to list (`general`, `parental-alienation`, `technology`).
+- additional_category: (optional) Include a project category alongside a standard section.
+- additional_category_primary_only: (optional) Include only the sequence-zero introduction from the additional project category.
+- series: (optional) Only list posts from this named series.
+- exclude_series: (optional) Exclude series posts from this listing.
 - limit: (optional) Maximum number of posts to show.
 - heading: (optional) Heading override.
 - hide_heading: (optional) When true, suppresses the include heading output.
@@ -21,6 +25,8 @@ Parameters:
     <h2>{{ include.heading }}</h2>
 {% elsif include.category %}
     <h2>Project Blog Entries</h2>
+{% elsif include.series %}
+    <h2>Series Posts</h2>
 {% elsif include.section %}
     <h2>{{ include.section | replace: '-', ' ' | capitalize }} Posts</h2>
 {% else %}
@@ -28,7 +34,7 @@ Parameters:
 {% endif %}
 
 <ul class="post-list">
-    {% include filter_discovery_posts.html section=include.section category=include.category %}
+    {% include filter_discovery_posts.html section=include.section category=include.category additional_category=include.additional_category additional_category_primary_only=include.additional_category_primary_only series=include.series exclude_series=include.exclude_series %}
     {% assign posts_to_show = discovery_posts %}
 
     {% if posts_to_show.size > 0 %}
@@ -90,6 +96,7 @@ Parameters:
             {% endif %}
         </div>
 
+        {% if total_pages > 1 %}
         <script>
         let currentPage = 1;
         const postsPerPage = {{ max_posts }};
@@ -151,6 +158,7 @@ Parameters:
             showPage(currentPage);
         });
         </script>
+        {% endif %}
     {% else %}
         <p>No blog entries yet. Check back soon for updates!</p>
     {% endif %}
