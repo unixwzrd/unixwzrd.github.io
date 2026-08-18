@@ -1,4 +1,5 @@
 ---
+short_link_basis: "/_posts/2026-08-17-when-a-local-ai-stack-becomes-an-operations-system.md"
 short_url: "https://unixwzrd.ai/s/cd70519bcf/"
 layout: post
 title: "When a Local AI Stack Becomes an Operations System"
@@ -7,11 +8,11 @@ categories: [technology]
 tags: [ai, agent-optimization, local-first-ai, llm-ops, macos, apple-silicon, operations, agent-workflows]
 image: /assets/images/blog/agent-optimization/post-01-local-ai-operations-system-hero.png
 excerpt: "The model may be running while the system around it is still broken. This is how a local-first AI experiment became an operations problem involving ownership, dependencies, readiness, recovery, and rollback."
-series: "Local-First Agent Operations"
+series: "Local First AI and Agent Operations"
 series_part: 1
 series_order: 10
 series_total: 13
-series_url: /blog/series/local-first-agent-operations/
+series_url: /blog/series/local-first-ai-and-agent-operations/
 series_next_title: "Deterministic First: Building a Knowledge Intake Pipeline"
 series_next_url: /technology/2026/08/19/deterministic-first-building-a-knowledge-intake-pipeline/
 series_next_date: 2026-08-19 08:00:00 -0500

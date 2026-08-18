@@ -2,15 +2,14 @@
 #
 # Install: pip install pre-commit && pre-commit install
 #
-# This hook only runs when Markdown under html/**/_posts/ is staged. It updates
-# short_url for those files only (~1s; does not rewrite the whole site).
+# This hook runs for staged Jekyll content and updates eligible posts plus pages
+# that opt in with `short_link: true` (~1s; it does not rewrite other pages).
 repos:
   - repo: local
     hooks:
       - id: short-url-front-matter
-        name: Sync short_url in staged posts
+        name: Sync short links in staged content
         language: system
         entry: bundle exec ruby scripts/backfill_short_url_front_matter.rb
         pass_filenames: true
-        files: ^html/(.*/)?_posts/.*\.md$
-
+        files: ^html/.*\.(md|html)$

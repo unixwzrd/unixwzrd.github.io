@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-08-18: Blog source organization and series directory
+
+- Grouped general-site posts by series first, then by primary category for standalone articles; social copy now lives beside its article as an excluded text sidecar.
+- Renamed the featured series to **Local First AI and Agent Operations**, added `/blog/series/`, and preserved the former series URL as a redirect.
+- Made short links stable across source-directory moves with immutable `short_link_basis`; selected pages can now opt in with `short_link: true`.
+- Moved the standalone diagram viewer to `html/tools/diagram-viewer.html` while retaining `/diagram-viewer/`.
+
 ## 2026-08-16: Engagement footer, post list fixes, support block
 
 ### Summary

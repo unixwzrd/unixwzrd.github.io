@@ -20,7 +20,7 @@ Before a model could decide what mattered, I still had to answer the boring ques
 
 Those are not model problems. They are inventory, identity, state, and provenance problems.
 
-The second article in my Local-First Agent Operations series is about moving that work into a deterministic intake pipeline: stable source identity, content fingerprints, explicit review states, retained rejection history, and a separate gate between reviewed knowledge and retrieval. It also explains where the resulting documents actually live: LLM-Wiki is a structured Markdown area inside my broader Obsidian Main Vault, while iCloud is synchronization transport rather than policy enforcement.
+The second article in my Local First AI and Agent Operations series is about moving that work into a deterministic intake pipeline: stable source identity, content fingerprints, explicit review states, retained rejection history, and a separate gate between reviewed knowledge and retrieval. It also explains where the resulting documents actually live: LLM-Wiki is a structured Markdown area inside my broader Obsidian Main Vault, while iCloud is synchronization transport rather than policy enforcement.
 
 The goal was not to remove models from the system. It was to stop asking them to solve bookkeeping and maintenance jobs that ordinary scripts and OS schedulers can handle more reliably.
 
@@ -48,7 +48,7 @@ BLUESKY
 
 Before an agent can remember something, the system has to know what exists, what changed, where it came from, and whether a person already rejected it.
 
-Post 2 in my Local-First Agent Operations series: building that intake path deterministically.
+Post 2 in my Local First AI and Agent Operations series: building that intake path deterministically.
 
 https://unixwzrd.ai/s/0fa3548506/
 

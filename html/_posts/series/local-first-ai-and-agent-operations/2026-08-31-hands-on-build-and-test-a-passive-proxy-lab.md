@@ -1,4 +1,5 @@
 ---
+short_link_basis: "/_posts/2026-08-31-hands-on-build-and-test-a-passive-proxy-lab.md"
 short_url: "https://unixwzrd.ai/s/8e69f0aff9/"
 layout: post
 title: "Hands-On: Build and Test a Passive Proxy Lab"
@@ -7,11 +8,11 @@ categories: [hands-on]
 tags: [ai, agent-optimization, agent-workflows, python, model-proxy, observability, testing, local-first, privacy]
 image: /assets/images/blog/agent-optimization/post-06-passive-model-proxy-hero.png
 excerpt: "Run a passive proxy, deterministic fake model endpoint, and six privacy and byte-preservation canaries using only the Python standard library."
-series: "Local-First Agent Operations"
+series: "Local First AI and Agent Operations"
 series_part: "6A"
 series_order: 65
 series_total: 13
-series_url: /blog/series/local-first-agent-operations/
+series_url: /blog/series/local-first-ai-and-agent-operations/
 series_companion_of: 6
 series_previous_title: "A Passive Model Proxy as an AI Debugging Instrument"
 series_previous_url: /technology/2026/08/29/a-passive-model-proxy-as-an-ai-debugging-instrument/

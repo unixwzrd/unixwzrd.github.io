@@ -18,7 +18,7 @@ I started researching agent optimization expecting to produce a ranked list of p
 
 Memory, provider prompt caching, response caching, context compression, shell-output reduction, routing, and observability solve different problems. A memory engine that retrieves an old decision is not competing directly with a provider cache that reuses computation for an unchanged prefix. An observability layer may save no tokens and still be the best first addition because it shows where the waste actually is.
 
-Part 4 of my Local-First Agent Operations series explains the evaluation method I settled on: compare products only within their layer, measure whole-task outcomes, treat correctness and disruption as gates, and keep bypass, rollback, and uninstall available throughout the experiment.
+Part 4 of my Local First AI and Agent Operations series explains the evaluation method I settled on: compare products only within their layer, measure whole-task outcomes, treat correctness and disruption as gates, and keep bypass, rollback, and uninstall available throughout the experiment.
 
 The result is not a universal stack. It is a way to decide whether a complementary layer provides enough demonstrated gain to justify its failure surface.
 
@@ -33,7 +33,7 @@ X / TWITTER
 
 Memory, caching, compression, shell reduction, routing, and observability are not one product category.
 
-Part 4 of Local-First Agent Operations: a correctness-first way to compare complementary optimization layers without turning estimates into a leaderboard.
+Part 4 of Local First AI and Agent Operations: a correctness-first way to compare complementary optimization layers without turning estimates into a leaderboard.
 
 https://unixwzrd.ai/s/d42f4a7d8e/
 
@@ -46,7 +46,7 @@ BLUESKY
 
 The useful agent-optimization question is not “Which product claims the largest saving?” It is “Which layer is failing, what evidence will change, and how cheaply can I undo the experiment?”
 
-Part 4 of Local-First Agent Operations:
+Part 4 of Local First AI and Agent Operations:
 https://unixwzrd.ai/s/d42f4a7d8e/
 
 #LocalAI #AgentEngineering

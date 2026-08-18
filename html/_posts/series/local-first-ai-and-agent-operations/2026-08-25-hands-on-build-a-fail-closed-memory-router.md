@@ -1,4 +1,5 @@
 ---
+short_link_basis: "/_posts/2026-08-25-hands-on-build-a-fail-closed-memory-router.md"
 short_url: "https://unixwzrd.ai/s/dde867f837/"
 layout: post
 title: "Hands-On: Build a Fail-Closed Memory Router"
@@ -7,11 +8,11 @@ categories: [hands-on]
 tags: [ai, agent-optimization, agent-workflows, python, memory, authorization, local-first, privacy, retrieval]
 image: /assets/images/blog/agent-optimization/post-03a-fail-closed-memory-router-hero.png
 excerpt: "Authorization has to choose the candidate set before relevance ranking begins. This runnable Python router and its seven canaries make that ordering visible and testable."
-series: "Local-First Agent Operations"
+series: "Local First AI and Agent Operations"
 series_part: "3A"
 series_order: 35
 series_total: 13
-series_url: /blog/series/local-first-agent-operations/
+series_url: /blog/series/local-first-ai-and-agent-operations/
 series_companion_of: 3
 series_previous_title: "Memory Is a Governance Problem, Not Just a Vector Database"
 series_previous_url: /technology/2026/08/23/memory-is-a-governance-problem-not-just-a-vector-database/

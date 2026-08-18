@@ -46,7 +46,7 @@ def find_broken_links() -> List[Dict]:
         {
             "url": "https://code.visualstudio.com/docs/remote/remote-overview",
             "status": "500 - Internal Server Error",
-            "files": ["html/_posts/2025-04-08-Remote-Debugging-With-VSCode.md"],
+            "files": ["html/_posts/technology/2025-04-08-Remote-Debugging-With-VSCode.md"],
             "issue": "VSCode documentation URL changed",
         },
         {
@@ -208,7 +208,7 @@ def fix_repository_links():
 def fix_vscode_documentation():
     """Fix VSCode documentation link."""
 
-    file_path = "html/_posts/2025-04-08-Remote-Debugging-With-VSCode.md"
+    file_path = "html/_posts/technology/2025-04-08-Remote-Debugging-With-VSCode.md"
     old_url = "https://code.visualstudio.com/docs/remote/remote-overview"
     new_url = "https://code.visualstudio.com/docs/remote/overview"
 

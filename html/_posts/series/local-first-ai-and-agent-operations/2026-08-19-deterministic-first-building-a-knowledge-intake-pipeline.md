@@ -1,4 +1,5 @@
 ---
+short_link_basis: "/_posts/2026-08-19-deterministic-first-building-a-knowledge-intake-pipeline.md"
 short_url: "https://unixwzrd.ai/s/0fa3548506/"
 layout: post
 title: "Deterministic First: Building a Knowledge Intake Pipeline"
@@ -7,11 +8,11 @@ categories: [technology]
 tags: [ai, agent-optimization, agent-workflows, knowledge-management, deterministic-systems, local-first, privacy, memory, macos]
 image: /assets/images/blog/agent-optimization/post-02-deterministic-intake-hero.png
 excerpt: "Before a model can decide what matters, the system still has to identify what exists, what changed, where it came from, and whether a human decision has already been made. I moved those jobs into a deterministic intake pipeline."
-series: "Local-First Agent Operations"
+series: "Local First AI and Agent Operations"
 series_part: 2
 series_order: 20
 series_total: 13
-series_url: /blog/series/local-first-agent-operations/
+series_url: /blog/series/local-first-ai-and-agent-operations/
 series_previous_title: "When a Local AI Stack Becomes an Operations System"
 series_previous_url: /technology/2026/08/17/when-a-local-ai-stack-becomes-an-operations-system/
 series_next_title: "Memory Is a Governance Problem, Not Just a Vector Database"
@@ -58,7 +59,7 @@ I learned to keep those layers separate because each time I blurred them, a late
 
 ## Stable Identity Makes Reruns Boring
 
-I wanted rerunning intake to be boring. The inventory derives a stable identifier from each source, computes a content fingerprint, and records the extractor version and provenance needed by later stages. When the fingerprint and relevant version have not changed, the pipeline does not normalize the source again or create another candidate.{% if hands_on_link_ready %} The hands-on follow-up shows the [small SQLite record contract behind that manifest]({{ page.series_companion_url | relative_url }}#start-with-a-small-contract).{% endif %}
+I wanted rerunning intake to be boring. The inventory derives a stable identifier from each source, computes a content fingerprint, and records the extractor version and provenance needed by later stages. When the fingerprint and relevant version have not changed, the pipeline does not normalize the source again or create another candidate.{% if hands_on_link_ready %} The hands-on follow-up shows the [small SQLite record contract behind that manifest]({{ page.series_companion_url | relative_url }}#start-with-the-contract).{% endif %}
 
 That does not mean the scan avoids every read. It still fingerprints file sources and reads session messages to calculate their fingerprint; modification time remains provenance rather than a shortcut. Stable source-derived suffixes also prevent two similar extracts from colliding without exposing a real session identifier, and a regression test keeps that behavior from disappearing.
 
@@ -72,7 +73,7 @@ The quickest way I found to expose a weak intake design was simply to run it aga
 | Refresh a pending note after changing only its formatter | The note changes in place while its candidate identity and review state remain stable |
 | Move a managed candidate to `Discard`, then run extraction again | The rejection remains recorded and the candidate does not return |
 
-Those checks tell me more than a successful first import. The first run proves that the pipeline can create data; later runs show whether it respects existing data and human decisions. The Hands-On companion pulls this boundary into a standard-library Python and SQLite example, then stops at inventory because extraction, review, and retrieval have different failure modes.{% if hands_on_link_ready %} You can [run that new/unchanged/changed exercise here]({{ page.series_companion_url | relative_url }}#run-the-example).{% endif %}
+Those checks tell me more than a successful first import. The first run proves that the pipeline can create data; later runs show whether it respects existing data and human decisions. The Hands-On companion pulls this boundary into a standard-library Python and SQLite example, then stops at inventory because extraction, review, and retrieval have different failure modes.{% if hands_on_link_ready %} You can [run that new/unchanged/changed exercise here]({{ page.series_companion_url | relative_url }}#run-a-clean-end-to-end-scan).{% endif %}
 
 ## Extract Dialogue Without Asking What It Means
 
@@ -133,7 +134,7 @@ Review and retrieval answer different questions, and I do not want a directory m
 | `Discard` | Rejected | Excluded, with rejection history retained |
 | Durable filed knowledge | Accepted under normal knowledge rules | Eligible only when policy explicitly permits it |
 
-Treating those as two axes prevents a convenient filing action from silently becoming authorization to inject content into an agent conversation.{% if hands_on_link_ready %} That distinction is easier to see in the note than in a state diagram, so the tutorial walks through [sanitized front matter for pending, approved-but-still-excluded, and rejected candidates]({{ page.series_companion_url | relative_url }}#see-the-review-boundary-in-front-matter). Classification, `review_state`, and `mnemosyne` remain independent because approval must not silently grant retrieval. It then keeps the same boundary visible in [the next-stage design]({{ page.series_companion_url | relative_url }}#keep-the-next-stage-separate) rather than cramming source, review, and retrieval state into one table.{% endif %}
+Treating those as two axes prevents a convenient filing action from silently becoming authorization to inject content into an agent conversation.{% if hands_on_link_ready %} That distinction is easier to see in the note than in a state diagram, so the tutorial walks through [sanitized front matter for pending, approved-but-still-excluded, and rejected candidates]({{ page.series_companion_url | relative_url }}#hand-off-to-review-without-granting-retrieval). Classification, `review_state`, and `mnemosyne` remain independent because approval must not silently grant retrieval. It then keeps the same boundary visible in [the next-stage design]({{ page.series_companion_url | relative_url }}#next-work) rather than cramming source, review, and retrieval state into one table.{% endif %}
 
 ## Bounded Work Creates Useful Backpressure
 
@@ -151,7 +152,7 @@ The rule I keep coming back to is to retain the authority, record its provenance
 
 ## What Deterministic First Does Not Solve
 
-I do not want deterministic intake to carry claims it has not earned. It does not decide who is authorized to retrieve a memory. It records review state, fails closed on unresolved material, and excludes candidates by default while the richer policy model remains separate work. Nor does it promise perfect cross-source deduplication, detection of every secret, or zero-cost rescanning. Stable identity and content hashes prevent repeated effects for the same source; semantic equivalence and a modification-time fast path are different problems. This is not a released ingestion product either. It is a private implementation whose design was useful enough to document and turn into a small teaching example.{% if hands_on_link_ready %} Before adapting that example to real agent data, use the [production-hardening checklist]({{ page.series_companion_url | relative_url }}#production-hardening-checklist) as a starting point rather than treating the demonstration as a finished importer.{% endif %}
+I do not want deterministic intake to carry claims it has not earned. It does not decide who is authorized to retrieve a memory. It records review state, fails closed on unresolved material, and excludes candidates by default while the richer policy model remains separate work. Nor does it promise perfect cross-source deduplication, detection of every secret, or zero-cost rescanning. Stable identity and content hashes prevent repeated effects for the same source; semantic equivalence and a modification-time fast path are different problems. This is not a released ingestion product either. It is a private implementation whose design was useful enough to document and turn into a small teaching example.{% if hands_on_link_ready %} Before adapting that example to real agent data, review its [current boundaries]({{ page.series_companion_url | relative_url }}#current-state) rather than treating the demonstration as a finished importer.{% endif %}
 
 ## Current State
 

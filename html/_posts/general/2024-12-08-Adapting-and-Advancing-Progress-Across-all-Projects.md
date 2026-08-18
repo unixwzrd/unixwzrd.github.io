@@ -1,4 +1,5 @@
 ---
+short_link_basis: "/_posts/2024-12-08-Adapting-and-Advancing-Progress-Across-all-Projects.md"
 short_url: "https://unixwzrd.ai/s/a77bb0a40a/"
 image: /assets/images/default-og-image.png
 layout: post

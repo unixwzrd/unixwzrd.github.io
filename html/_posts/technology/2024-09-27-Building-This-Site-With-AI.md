@@ -1,4 +1,5 @@
 ---
+short_link_basis: "/_posts/2024-09-27-Building-This-Site-With-AI.md"
 short_url: "https://unixwzrd.ai/s/70318e0255/"
 layout: post
 title: "Building This Site With AI"

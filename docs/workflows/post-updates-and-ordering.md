@@ -9,7 +9,7 @@ Policy and implementation for how published articles are surfaced after edits, h
 ## Principles
 
 1. **Publish `date` is permanent** — it anchors the permalink. Do not change it after publish.
-2. **Filename and slug are permanent** — renaming or moving the `.md` file changes `short_url` and breaks inbound links unless you add redirects manually.
+2. **Filename and slug are permanent** — they help anchor the canonical permalink. Directory moves are safe only after `short_link_basis` has been frozen.
 3. **Three tiers of post-publish change** — silent fix, technical correction, major update (see below).
 4. **Discovery lists ≠ series lists** — homepage and section blogs may promote major updates; series index pages always follow reading order.
 
@@ -20,9 +20,11 @@ Policy and implementation for how published articles are surfaced after edits, h
 | Field / file | Why |
 |---|---|
 | `date` (publish date) | Permalink path (`/YYYY/MM/DD/slug/`) |
-| Filename under `html/` | `short_url` hash input |
+| Filename | Canonical post slug unless overridden explicitly |
 | `slug` / `permalink` (if set) | Canonical URL |
-| File location | `short_url` and any bookmarks |
+| `short_link_basis` | Immutable `short_url` hash input |
+
+Once `short_link_basis` is present, a source-directory reorganization does not change the short link. Do not rewrite the basis to match the new location.
 
 Content edits, new sections, and optional front matter below are safe.
 
@@ -146,7 +148,7 @@ Series reading order is **not** publish date. Use explicit navigation URLs plus 
 | `series_previous_url` / `series_next_url` | Prev/next navigation chain |
 | `series_companion_of` | Optional — hands-on companion to part N |
 
-**Example** (Local-First Agent Operations):
+**Example** (Local First AI and Agent Operations):
 
 | Part | `series_part` | `series_order` |
 |---|---|---|
@@ -155,7 +157,7 @@ Series reading order is **not** publish date. Use explicit navigation URLs plus 
 | Hands-on companion | `2A` | `25` |
 | Main installment 3 | `3` | `30` |
 
-Series index: [`html/blog/local-first-agent-operations.md`](../../html/blog/local-first-agent-operations.md) sorts by `series_order`.
+Series index: [`html/blog/series/local-first-ai-and-agent-operations.md`](../../html/blog/series/local-first-ai-and-agent-operations.md) sorts by `series_order`.
 
 Major updates to a series post **do not** change its position on the series index — it stays Part N.
 

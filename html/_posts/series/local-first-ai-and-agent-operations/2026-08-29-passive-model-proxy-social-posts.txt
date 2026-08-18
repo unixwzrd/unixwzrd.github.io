@@ -24,7 +24,7 @@ I reached a point where inspecting the JSON request was no longer enough. The me
 
 The missing view was the rendered prompt. A chat template can duplicate a tool result, mishandle a role boundary, omit a generation marker, or carry too much history forward while the structured request still looks perfectly reasonable.
 
-Part 6 of Local-First Agent Operations explains how I use a passive model proxy to correlate the raw request, rendered prompt, and response without letting the diagnostic path rewrite the exchange. It also covers streaming reconstruction, client disconnects, rotation behavior, and why useful prompt diagnostics must be treated as sensitive incident evidence.
+Part 6 of Local First AI and Agent Operations explains how I use a passive model proxy to correlate the raw request, rendered prompt, and response without letting the diagnostic path rewrite the exchange. It also covers streaming reconstruction, client disconnects, rotation behavior, and why useful prompt diagnostics must be treated as sensitive incident evidence.
 
 A separate Hands-On companion follows on August 31 with a standard-library Python proxy, deterministic fake endpoint, and six executable privacy and byte-preservation canaries.
 

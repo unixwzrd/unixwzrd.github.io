@@ -1,4 +1,5 @@
 ---
+short_link_basis: "/_posts/2025-02-20-building-a-modern-jekyll-site.md"
 short_url: "https://unixwzrd.ai/s/d233079bbb/"
 image: /assets/images/projects/Case-Analytics/boy-robot-road-unizwzrd-mia-watching.png
 layout: post

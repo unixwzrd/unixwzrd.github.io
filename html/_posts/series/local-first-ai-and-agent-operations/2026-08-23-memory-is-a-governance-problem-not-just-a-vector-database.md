@@ -1,4 +1,5 @@
 ---
+short_link_basis: "/_posts/2026-08-23-memory-is-a-governance-problem-not-just-a-vector-database.md"
 short_url: "https://unixwzrd.ai/s/857d25f9d2/"
 layout: post
 title: "Memory Is a Governance Problem, Not Just a Vector Database"
@@ -7,11 +8,11 @@ categories: [technology]
 tags: [ai, agent-optimization, agent-workflows, memory, knowledge-management, governance, local-first, privacy, retrieval, macos]
 image: /assets/images/blog/agent-optimization/post-03-memory-governance-hero.png
 excerpt: "A relevant memory from the wrong context is not a better result; it is a disclosure. I moved authorization ahead of ranking and kept durable authority separate from disposable retrieval state."
-series: "Local-First Agent Operations"
+series: "Local First AI and Agent Operations"
 series_part: 3
 series_order: 30
 series_total: 13
-series_url: /blog/series/local-first-agent-operations/
+series_url: /blog/series/local-first-ai-and-agent-operations/
 series_previous_title: "Deterministic First: Building a Knowledge Intake Pipeline"
 series_previous_url: /technology/2026/08/19/deterministic-first-building-a-knowledge-intake-pipeline/
 series_next_title: "The Agent Memory and Optimization Tool Landscape"

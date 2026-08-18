@@ -1,4 +1,5 @@
 ---
+short_link_basis: "/_posts/2026-08-15-hands-on-isolated-remote-development-with-ssh.md"
 short_url: "https://unixwzrd.ai/s/24b766f1a1/"
 layout: post
 title: "Hands-On: Isolated Remote Development with SSH"

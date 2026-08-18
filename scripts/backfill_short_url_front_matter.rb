@@ -1,8 +1,9 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-# Rebuilds or injects `short_url` in post front matter from the same rules as
-# html/_plugins/01_short_link_injector.rb (SHA256(short_link_origin + source path under html/)).
+# Rebuilds or injects `short_link_basis` and `short_url` in eligible front
+# matter from the same rules as
+# html/_plugins/01_short_link_injector.rb (SHA256(short_link_origin + short_link_basis)).
 #
 # Usage (from repo root):
 #   bundle exec ruby scripts/backfill_short_url_front_matter.rb
@@ -29,10 +30,10 @@ def usage!
   warn <<~MSG
     usage: #{$PROGRAM_NAME} [--dry-run] [--check] [--staged] [path...]
 
-      (no args)     update short_url for every post that needs it
+      (no args)     update short-link fields for every eligible item that needs them
       path...       only touch those files (paths relative to repo root, e.g. html/_posts/x.md)
       --staged      same as passing `git diff --cached --name-only` paths (pre-commit)
-      --check       do not write; exit 1 if any targeted post has wrong/missing short_url
+      --check       do not write; exit 1 if any targeted item has wrong/missing short_url
       --dry-run     print actions only
   MSG
   exit 64
@@ -67,7 +68,7 @@ end
 # Map repo-relative path to Jekyll source-relative path under html/.
 def to_doc_relative(repo_path)
   p = repo_path.to_s.tr("\\", "/")
-  return nil unless p.end_with?(".md")
+  return nil unless p.match?(/\.(?:md|html)\z/i)
 
   if p.start_with?("html/")
     rel = p.delete_prefix("html/")
@@ -75,7 +76,7 @@ def to_doc_relative(repo_path)
   end
   if File.file?(File.join(ROOT, p))
     rel = Pathname.new(File.join(ROOT, p)).relative_path_from(Pathname.new(SOURCE)).to_s
-    return rel if rel.end_with?(".md") && !rel.start_with?("..")
+    return rel if rel.match?(/\.(?:md|html)\z/i) && !rel.start_with?("..")
   end
   nil
 end
@@ -87,10 +88,10 @@ def short_url_for(doc, origin)
   "#{origin}/s/#{code}/"
 end
 
-def upsert_short_url_front_matter(content, url)
-  line = "short_url: #{url.inspect}"
-  if content.match(/^short_url:\s*/m)
-    content.sub(/^short_url:\s*[^\r\n]*/, line)
+def upsert_front_matter_value(content, key, value)
+  line = "#{key}: #{value.inspect}"
+  if content.match(/^#{Regexp.escape(key)}:\s*/m)
+    content.sub(/^#{Regexp.escape(key)}:\s*[^\r\n]*/, line)
   else
     content.sub(/\A(---\r?\n)/, "\\1#{line}\n")
   end
@@ -132,7 +133,8 @@ Dir.chdir(ROOT) do
   origin = config.fetch("short_link_origin", "https://unixwzrd.ai").to_s.chomp("/")
 
   code_to_rel = {}
-  site.posts.docs.each do |doc|
+  eligible_items = ShortLinkInjector.items(site)
+  eligible_items.each do |doc|
     path = ShortLinkInjector.short_link_basis_path(doc)
     code = Digest::SHA256.hexdigest("#{origin}#{path}")[0, 10]
     rel = doc.relative_path
@@ -148,10 +150,10 @@ Dir.chdir(ROOT) do
       if filter_rels.empty?
         []
       else
-        site.posts.docs.select { |doc| filter_rels.include?(doc.relative_path) }
+        eligible_items.select { |doc| filter_rels.include?(doc.relative_path) }
       end
     else
-      site.posts.docs
+      eligible_items
     end
 
   mismatch = false
@@ -166,7 +168,11 @@ Dir.chdir(ROOT) do
 
     url = short_url_for(doc, origin)
     raw = File.read(abs, encoding: "UTF-8")
-    new_raw = upsert_short_url_front_matter(raw, url)
+    new_raw = upsert_front_matter_value(raw, "short_url", url)
+    if !opts[:check] || doc.data.key?("short_link_basis")
+      basis = ShortLinkInjector.short_link_basis_path(doc)
+      new_raw = upsert_front_matter_value(new_raw, "short_link_basis", basis)
+    end
 
     if opts[:check]
       if new_raw != raw
@@ -188,4 +194,3 @@ Dir.chdir(ROOT) do
 
   exit 1 if mismatch
 end
-

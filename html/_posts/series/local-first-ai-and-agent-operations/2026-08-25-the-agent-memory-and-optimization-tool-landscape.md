@@ -1,4 +1,5 @@
 ---
+short_link_basis: "/_posts/2026-08-25-the-agent-memory-and-optimization-tool-landscape.md"
 short_url: "https://unixwzrd.ai/s/d42f4a7d8e/"
 layout: post
 title: "The Agent Memory and Optimization Tool Landscape"
@@ -7,11 +8,11 @@ categories: [technology]
 tags: [ai, agent-optimization, agent-workflows, optimization, memory, caching, observability, local-first, privacy, macos]
 image: /assets/images/blog/agent-optimization/post-04-tool-landscape-hero.png
 excerpt: "Memory, caching, compression, shell reduction, routing, and observability do different jobs. I stopped looking for one winner and built a correctness-first way to evaluate complementary layers."
-series: "Local-First Agent Operations"
+series: "Local First AI and Agent Operations"
 series_part: 4
 series_order: 40
 series_total: 13
-series_url: /blog/series/local-first-agent-operations/
+series_url: /blog/series/local-first-ai-and-agent-operations/
 series_previous_title: "Memory Is a Governance Problem, Not Just a Vector Database"
 series_previous_url: /technology/2026/08/23/memory-is-a-governance-problem-not-just-a-vector-database/
 series_next_title: "Measuring Token Optimization Without Breaking the Agent"

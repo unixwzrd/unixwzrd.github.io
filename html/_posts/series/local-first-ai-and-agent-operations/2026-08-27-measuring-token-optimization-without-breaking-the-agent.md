@@ -1,4 +1,5 @@
 ---
+short_link_basis: "/_posts/2026-08-27-measuring-token-optimization-without-breaking-the-agent.md"
 short_url: "https://unixwzrd.ai/s/58524b64a7/"
 layout: post
 title: "Measuring Token Optimization Without Breaking the Agent"
@@ -7,11 +8,11 @@ categories: [technology]
 tags: [ai, agent-optimization, agent-workflows, token-optimization, benchmarking, observability, caching, local-first, privacy, macos]
 image: /assets/images/blog/agent-optimization/post-05-measuring-token-optimization-hero.png
 excerpt: "One test used fewer input tokens and still made the agent slower. That result changed how I measure optimization: preserve correctness, record the whole task, and keep the raw path available."
-series: "Local-First Agent Operations"
+series: "Local First AI and Agent Operations"
 series_part: 5
 series_order: 50
 series_total: 13
-series_url: /blog/series/local-first-agent-operations/
+series_url: /blog/series/local-first-ai-and-agent-operations/
 series_previous_title: "The Agent Memory and Optimization Tool Landscape"
 series_previous_url: /technology/2026/08/25/the-agent-memory-and-optimization-tool-landscape/
 series_next_title: "A Passive Model Proxy as an AI Debugging Instrument"

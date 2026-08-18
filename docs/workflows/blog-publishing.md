@@ -7,7 +7,8 @@ This guide covers the process of creating and publishing blog posts, both for ge
 ```
 html/
 ├── _posts/                    # General blog posts
-│   └── YYYY-MM-DD-title.md   # Format for general posts
+│   ├── series/Series-Slug/   # Series membership takes precedence
+│   └── category/             # Standalone posts by primary category
 └── projects/
     └── ProjectName/
         ├── _drafts/          # Work in progress posts
@@ -19,7 +20,7 @@ html/
 ## Creating a New Post
 
 ### General Blog Post
-1. Create file in `html/_posts/` with format:
+1. Create the dated file under `html/_posts/series/<series-slug>/` for a series article, or `html/_posts/<primary-category>/` for a standalone article:
    ```
    YYYY-MM-DD-descriptive-title.md
    ```
@@ -55,7 +56,7 @@ html/
    ```bash
    bundle exec ruby scripts/backfill_short_url_front_matter.rb html/projects/ProjectName/_posts/YYYY-MM-DD-....md
    ```
-   The build **validates** `short_url` when present. It is derived from the **`.md` file path** under `html/`, so normal edits and front matter changes (date, title, `slug`) do not invalidate it; **renaming or moving** the file does - run the backfill again for that path.
+   The backfill freezes `short_link_basis` and derives `short_url` from it. Normal edits and later directory moves do not invalidate the code. Do not change the basis after publishing.
 
 4. Example front matter:
    ```yaml
@@ -126,7 +127,7 @@ html/
 
 ## Post-publish updates
 
-After a post is live, **do not change** publish `date`, filename, or `slug` — permalinks and `short_url` depend on them. See **[post-updates-and-ordering.md](post-updates-and-ordering.md)** for the full policy.
+After a post is live, **do not change** publish `date`, filename, `slug`, permalink, or `short_link_basis`. A directory-only move is safe when the basis is retained. See **[post-updates-and-ordering.md](post-updates-and-ordering.md)** for the full policy.
 
 | Change type | Front matter | List order |
 |---|---|---|
@@ -161,4 +162,3 @@ Date-only values (`2026-08-15`) are fine; time and timezone are optional.
 3. Keep drafts organized
 4. Use meaningful file names
 5. Follow naming conventions
-

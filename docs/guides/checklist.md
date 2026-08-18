@@ -155,7 +155,7 @@ This document outlines a comprehensive plan to address warnings, improve site st
 - [x] **Image validation** - Integrated into pre-commit checks
 - [x] **Broken link detection** - External link validation implemented
 - [x] **Case sensitivity checks** - Image path validation
-- [x] **Short URLs (`/s/`)** - Hashes use each post **file path** under `html/`; `short_url` validated in build; sync via `scripts/backfill_short_url_front_matter.rb` after renames or `short_link_origin` changes (optional [`.pre-commit-config.yaml`](../../.pre-commit-config.yaml) for staged posts)
+- [x] **Short URLs (`/s/`)** - Hashes use immutable `short_link_basis`; `short_url` is validated in builds and selected pages can opt in (optional [`.pre-commit-config.yaml`](../../.pre-commit-config.yaml) for staged content)
 - [x] **Post updates and ordering** - Major updates (`update_notice`), technical corrections (`corrected_at`), series `series_order`; see [workflows/post-updates-and-ordering.md](../workflows/post-updates-and-ordering.md)
 - [ ] **Add spell checking** for content
 - [ ] **Add accessibility checks** (alt text for images, etc.)
@@ -177,8 +177,7 @@ This document outlines a comprehensive plan to address warnings, improve site st
 
 ### 10. **Orphans to Review**
 - [ ] **`html/_drafts/2025-04-27-VSCode-Shell-Integration-Breaks-Virtual-Environments.md`** - Should this be published or deleted?
-- [ ] **`html/_posts/2024-08-16-Testing-markdown-formatting-with-our-changes.md`** - Test post, consider removing
-- [ ] **`html/_posts/2025-02-20-building-a-modern-jekyll-site.md`** - Check if this should be linked from somewhere
+- [ ] **`html/_posts/parental-alienation/2025-02-20-building-a-modern-jekyll-site.md`** - Check if this should be linked from somewhere
 - [ ] **Project blog posts** - Ensure all published project posts are linked from their project pages
 
 ---
@@ -343,4 +342,3 @@ This document outlines a comprehensive plan to address warnings, improve site st
 ---
 
 *Last updated: 2026-05-02*
-

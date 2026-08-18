@@ -157,10 +157,10 @@ Run this from the **repository root**. `_config.yml` sets `source: html` and `de
 
 ### Short links (`short_url`)
 
-If a post defines `short_url`, it must match the deterministic `/s/<code>/` derived from `short_link_origin` and the post's **source path under `html/`** (the `.md` file location), or the build fails.
+If eligible content defines `short_url`, it must match the deterministic `/s/<code>/` derived from `short_link_origin` and immutable `short_link_basis` (or the source-path compatibility fallback), or the build fails.
 
 - Check: `bundle exec ruby scripts/backfill_short_url_front_matter.rb --check`
-- Fix: [templates/blog-templates.md](../templates/blog-templates.md) (full backfill after **file renames** or `short_link_origin` changes)
+- Fix: [templates/blog-templates.md](../templates/blog-templates.md) (backfill new content or freeze a basis before a source move)
 
 ## Best Practices
 
@@ -170,4 +170,3 @@ If a post defines `short_url`, it must match the deterministic `/s/<code>/` deri
 - Review and update documentation regularly
 
 *Updated when deployment procedures change.*
-

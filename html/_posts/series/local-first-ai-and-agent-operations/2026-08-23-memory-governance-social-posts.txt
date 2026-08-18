@@ -18,7 +18,7 @@ Similarity search can find the wrong thing extremely well.
 
 Once the same agent moves among private conversations, technical work, general operations, and material still waiting for review, relevance is no longer the difficult question. The difficult question is whether this conversation, with these participants and this purpose, is allowed to receive the memory at all.
 
-In Part 3 of my Local-First Agent Operations series, I explain why I now treat memory as a governance problem with a search component. LLM-Wiki inside my broader Obsidian Main Vault remains the human-readable authority; Mnemosyne is disposable derived retrieval state. I describe the coarse general/private routing boundary I use today and lay out the finer-grained policy model I am working toward.
+In Part 3 of my Local First AI and Agent Operations series, I explain why I now treat memory as a governance problem with a search component. LLM-Wiki inside my broader Obsidian Main Vault remains the human-readable authority; Mnemosyne is disposable derived retrieval state. I describe the coarse general/private routing boundary I use today and lay out the finer-grained policy model I am working toward.
 
 The central rule is simple: authorization must construct the candidate set before vector or lexical ranking begins. Filtering afterward is already too late.
 
@@ -33,7 +33,7 @@ X / TWITTER
 
 A highly relevant memory from the wrong context is not a better search result. It is a disclosure.
 
-Part 3 of Local-First Agent Operations: authority, provenance, fail-closed routing, and why authorization belongs before ranking.
+Part 3 of Local First AI and Agent Operations: authority, provenance, fail-closed routing, and why authorization belongs before ranking.
 
 https://unixwzrd.ai/s/857d25f9d2/
 
@@ -46,7 +46,7 @@ BLUESKY
 
 Memory is not just a vector-database problem. Once an agent crosses projects and private contexts, retrieval needs authority, provenance, and authorization before ranking.
 
-Part 3 of Local-First Agent Operations:
+Part 3 of Local First AI and Agent Operations:
 https://unixwzrd.ai/s/857d25f9d2/
 
 #LocalAI #PrivacyEngineering

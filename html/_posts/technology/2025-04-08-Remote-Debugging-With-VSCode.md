@@ -1,4 +1,5 @@
 ---
+short_link_basis: "/_posts/2025-04-08-Remote-Debugging-With-VSCode.md"
 short_url: "https://unixwzrd.ai/s/c474212fd8/"
 excerpt: "Use SSH host aliases, isolated user accounts, and secure tunnels to edit and debug Python on the same Mac or a remote system with VS Code, Cursor, Windsurf, and related editors."
 image: /assets/images/vibing-remote-debugging.png

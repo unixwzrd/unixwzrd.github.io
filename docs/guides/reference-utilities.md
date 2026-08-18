@@ -32,7 +32,7 @@ cact python-website-dev
 # Production-style Jekyll build (same as .github/workflows/jekyll.yml)
 JEKYLL_ENV=production bundle exec jekyll build --trace
 
-# short_url in front matter vs hash of source path (no file writes)
+# short_url in front matter vs hash of short_link_basis (no file writes)
 bundle exec ruby scripts/backfill_short_url_front_matter.rb --check
 
 # Include future-dated posts in build (optional local check)
@@ -291,7 +291,6 @@ This integration ensures that:
 3. **Low Priority**: Set up advanced tracking and conversion goals
 
 See TODO.md and site-improvement-checklist.md for detailed task breakdown.
-
 
 
 

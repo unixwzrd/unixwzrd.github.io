@@ -32,7 +32,7 @@ description: >-
   Privacy-focused tools for work that needs care.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://unixwzrd.ai"
-# Host prefix for /s/<code>/ short links (hashes with post path under html/; see 01_short_link_injector.rb)
+# Host prefix for /s/<code>/ short links (hashes with immutable short_link_basis; see 01_short_link_injector.rb)
 short_link_origin: "https://unixwzrd.ai"
 source: "html"
 
@@ -121,9 +121,6 @@ minima:
 
 github:
   username: unixwzrd
-
-# Codeium Public Profile
-codeium_stats: https://codeium.com/profile/unixwzrd
 
 # Pagination settings
 

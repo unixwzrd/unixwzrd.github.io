@@ -1,4 +1,5 @@
 ---
+short_link_basis: "/_posts/2026-08-29-a-passive-model-proxy-as-an-ai-debugging-instrument.md"
 short_url: "https://unixwzrd.ai/s/fdc7dd9f48/"
 layout: post
 title: "A Passive Model Proxy as an AI Debugging Instrument"
@@ -7,11 +8,11 @@ categories: [technology]
 tags: [ai, agent-optimization, agent-workflows, model-proxy, observability, debugging, jinja, local-first, privacy, python]
 image: /assets/images/blog/agent-optimization/post-06-passive-model-proxy-hero.png
 excerpt: "A request can look correct while the rendered prompt is wrong. I built a passive model proxy to inspect the request, template output, and response without changing the evidence."
-series: "Local-First Agent Operations"
+series: "Local First AI and Agent Operations"
 series_part: 6
 series_order: 60
 series_total: 13
-series_url: /blog/series/local-first-agent-operations/
+series_url: /blog/series/local-first-ai-and-agent-operations/
 series_previous_title: "Measuring Token Optimization Without Breaking the Agent"
 series_previous_url: /technology/2026/08/27/measuring-token-optimization-without-breaking-the-agent/
 series_next_title: "Multimodal Context Hygiene with a Jinja Chat Template"

@@ -12,7 +12,7 @@ Separate from `utils/bin/check_site.sh`, the repo may include a **[`.pre-commit-
 
 `bundle exec ruby scripts/backfill_short_url_front_matter.rb`
 
-with **`pass_filenames: true`** for paths under `html/**/_posts/`. That only **rewrites `short_url`** on staged post files (still one Jekyll load for collision checks). Install: `pip install pre-commit && pre-commit install`.
+with **`pass_filenames: true`** for staged Markdown and HTML under `html/`. It writes `short_link_basis` and `short_url` only for posts and pages opted in with `short_link: true` (still one Jekyll load for collision checks). Install: `pip install pre-commit && pre-commit install`.
 
 Use **[templates/blog-templates.md](../templates/blog-templates.md)** for full backfill, `--check`, and `--staged` semantics.
 
@@ -235,4 +235,3 @@ exit 0
 - Implement parallel check execution
 - Add more detailed reporting
 - Create check dependencies system
-

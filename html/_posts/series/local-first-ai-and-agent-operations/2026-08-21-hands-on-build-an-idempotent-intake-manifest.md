@@ -1,4 +1,5 @@
 ---
+short_link_basis: "/_posts/2026-08-21-hands-on-build-an-idempotent-intake-manifest.md"
 short_url: "https://unixwzrd.ai/s/9807a49a51/"
 layout: post
 title: "Hands-On: Build an Idempotent Intake Manifest"
@@ -7,11 +8,11 @@ categories: [hands-on]
 tags: [ai, agent-optimization, agent-workflows, python, sqlite, deterministic-systems, local-first, knowledge-management]
 image: /assets/images/blog/agent-optimization/post-02a-idempotent-manifest-hero.png
 excerpt: "A first import is easy. I built and tested a bounded Python and SQLite manifest that keeps source identity and history intact across reruns, changes, disappearance, and restoration."
-series: "Local-First Agent Operations"
+series: "Local First AI and Agent Operations"
 series_part: "2A"
 series_order: 25
 series_total: 13
-series_url: /blog/series/local-first-agent-operations/
+series_url: /blog/series/local-first-ai-and-agent-operations/
 series_companion_of: 2
 series_previous_title: "Deterministic First: Building a Knowledge Intake Pipeline"
 series_previous_url: /technology/2026/08/19/deterministic-first-building-a-knowledge-intake-pipeline/

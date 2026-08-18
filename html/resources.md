@@ -55,11 +55,10 @@ If you have a resource you would like added, [contact us](/contact).
 
 ### AI Assisted Development Tools
 
-Of these tools, I personally use Cursor adn Windsurf. If I had to pick a best between them I would say I use Cursor mostly these days. These products are moving rapidly but I feel Cursor is more stable and has more features, its autocomplete almost knows my thoughts, it's amazing.
+I primarily use Cursor. These products move rapidly, but Cursor has been the most stable and useful fit for my workflow; its codebase awareness and autocomplete are especially effective.
 
-- [Cursor](https://www.cursor.com/) - AI-powered coding assistant built into a fork of VSCode. I use this product.
+- [Cursor](https://cursor.com/) - AI coding editor with codebase-aware assistance, autocomplete, and agent workflows. I use this product.
 - [GitHub Copilot](https://copilot.github.com/) - AI-powered coding assistant.
-- [Windsurf - Codeium](https://codeium.com/) - AI-powered coding assistant built into a fork of VSCode. I use this product
 
 ### General AI Resources
 

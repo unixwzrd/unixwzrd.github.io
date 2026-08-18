@@ -13,12 +13,13 @@ A structured writing hub for local-first AI, secure automation, developer toolin
 For related project work, start with [Secrets Kit](/projects/Secrets-Kit/), [LLM Ops Kit](/projects/LLM-Ops-Kit/), and [Case Analytics](/projects/Case-Analytics/).
 
 <aside class="series-context" aria-label="Featured technical series">
-  <p><strong>Featured series: <a href="{{ '/blog/series/local-first-agent-operations/' | relative_url }}">Local-First Agent Operations</a>.</strong> Follow the main engineering story in Technology, or step into the separate Hands-On companions when you want runnable code and exercises.</p>
+  <p><strong>Featured series: <a href="{{ '/blog/series/local-first-ai-and-agent-operations/' | relative_url }}">Local First AI and Agent Operations</a>.</strong> Follow the main engineering story in Technology, or step into the separate Hands-On companions when you want runnable code and exercises.</p>
 </aside>
 
 {% assign general_blog_page = site.pages | where: "url", "/blog/general/" | first %}
 {% assign pa_blog_page = site.pages | where: "url", "/blog/parental-alienation/" | first %}
 {% assign technology_blog_page = site.pages | where: "url", "/blog/technology/" | first %}
+{% assign series_blog_page = site.pages | where: "url", "/blog/series/" | first %}
 {% assign hands_on_blog_page = site.pages | where: "url", "/blog/hands-on/" | first %}
 
 <div class="blog-section-grid">
@@ -38,6 +39,12 @@ For related project work, start with [Secrets Kit](/projects/Secrets-Kit/), [LLM
     <h2><a href="{{ '/blog/technology/' | relative_url }}">Technology</a></h2>
     <p>{{ technology_blog_page.excerpt }}</p>
     <a class="button-link" href="{{ '/blog/technology/' | relative_url }}">Read Technology Posts</a>
+  </section>
+
+  <section class="blog-section-card">
+    <h2><a href="{{ '/blog/series/' | relative_url }}">Series</a></h2>
+    <p>{{ series_blog_page.excerpt }}</p>
+    <a class="button-link" href="{{ '/blog/series/' | relative_url }}">Browse Series</a>
   </section>
 
   <section class="blog-section-card">

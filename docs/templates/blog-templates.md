@@ -213,20 +213,20 @@ Verify that:
 
 ## Social short URLs (`/s/`)
 
-Posts get a deterministic short link for cut-and-paste on social:
+Posts, plus pages that opt in with `short_link: true`, get a deterministic short link for cut-and-paste on social:
 
-- **Front matter:** `short_url: "https://unixwzrd.ai/s/<10 hex chars>/"` (optional but recommended; the build **validates** it if present).
-- **Mechanism:** [`html/_plugins/01_short_link_injector.rb`](../../html/_plugins/01_short_link_injector.rb) (via [`case_preserving_permalinks.rb`](../../html/_plugins/case_preserving_permalinks.rb)) appends `/s/<code>/` to `redirect_from` using `SHA256(short_link_origin + "/" + <relative path>)`, where the relative path is the post file under `html/` (e.g. `projects/Foo/_posts/2026-01-01-slug.md`). Title, date, `slug`, and permalink edits do **not** change the code; **renaming or moving** the `.md` file does. [`jekyll-redirect-from`](https://github.com/jekyll/jekyll-redirect-from) serves the redirect.
+- **Front matter:** immutable `short_link_basis: "/path/used/when-created.md"` plus `short_url: "https://unixwzrd.ai/s/<10 hex chars>/"`. Pages also set `short_link: true`.
+- **Mechanism:** [`html/_plugins/01_short_link_injector.rb`](../../html/_plugins/01_short_link_injector.rb) (via [`case_preserving_permalinks.rb`](../../html/_plugins/case_preserving_permalinks.rb)) appends `/s/<code>/` to `redirect_from` using `SHA256(short_link_origin + short_link_basis)`. The source path is the compatibility fallback when the basis is absent. Once frozen, the basis survives directory moves and must not be rewritten. [`jekyll-redirect-from`](https://github.com/jekyll/jekyll-redirect-from) serves the redirect.
 - **Config:** `short_link_origin` in [`_config.yml`](../../_config.yml) (default `https://unixwzrd.ai`).
 
-**Backfill** front matter after adding the plugin, changing `short_link_origin`, or **renaming/moving** post files:
+**Backfill** front matter when creating eligible content or before moving older content that does not yet have `short_link_basis`:
 
 ```bash
 bundle exec ruby scripts/backfill_short_url_front_matter.rb --dry-run
 bundle exec ruby scripts/backfill_short_url_front_matter.rb
 ```
 
-**Staged posts only** (fast; use from pre-commit or by hand):
+**Staged eligible content only** (fast; use from pre-commit or by hand):
 
 ```bash
 bundle exec ruby scripts/backfill_short_url_front_matter.rb html/projects/MyProject/_posts/2026-01-01-example.md
@@ -240,10 +240,10 @@ bundle exec ruby scripts/backfill_short_url_front_matter.rb --check
 bundle exec ruby scripts/backfill_short_url_front_matter.rb --check --staged
 ```
 
-**Pre-commit:** optional [`.pre-commit-config.yaml`](../../.pre-commit-config.yaml) runs the script with `pass_filenames: true`, so only **staged** files under `html/**/_posts/` are updated. Jekyll still loads the full site once (~1s) for collision checks; it does **not** rescan every post on disk unless you run a **full** backfill with no path arguments.
+**Pre-commit:** optional [`.pre-commit-config.yaml`](../../.pre-commit-config.yaml) runs the script with `pass_filenames: true`. It updates staged posts and pages opted in with `short_link: true`; unrelated pages are ignored. Jekyll still loads the full site once for collision checks.
 
 **Local test:** `bundle exec jekyll serve` then open `http://localhost:4000/s/<code>/` (code from a post's `short_url`, or list `_site/s/` after build). Posts dated in the future are skipped until their date unless `future: true` in config or you run `jekyll build --future`.
 
 **Verify:** `bundle exec jekyll build` (should succeed); optional `ls _site/s/` for redirect folders; open one `_site/s/<code>/index.html` and confirm canonical target URL.
 
-**Updated:** 2026-05-02
+**Updated:** 2026-08-18
