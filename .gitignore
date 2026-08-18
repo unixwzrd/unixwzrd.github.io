@@ -542,30 +542,45 @@ zsdoc/data
 
 # End of https://www.toptal.com/developers/gitignore/api/zsh,visualstudiocode,ssh,pythonvanilla,python,pydev,pycharm+iml,pycharm+all,pycharm,macos,jekyll,fish
 
-# Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
+# Custom rules (everything below is preserved by the generator's Update option)
 
+# Browser automation and test artifacts
+/.playwright-cli/
+/output/playwright/
+/playwright-report/
+/test-results/
+/blob-report/
+/coverage/
 
+# Local build, preview, and analysis output
+/_site_dev/
+/_previews/
+/.ruby-lsp/
+/tmp/
 
-# Gemfile.lock
-# Ignore project planning directory
+# Editor backup and undo files
+*.un~
+*.swp
+*.swo
+*~
+
+# Local environment and diagnostic output
+/current_env.txt
 *.grc
 *.pid
-.cursor/
-.master-planning
-.master-planning/
-.project-core/
-.project-planning
-.project-planning/
-.ruby-lsp/
-file_layout.txt
-Gemfile.bak
-new_files/
-output.txt
-tmp/
-utils/etc/jekyll.pid
-utils/output
-_previews
-_site/
-.project-core/
-bashexpsh*.txt
-utils/etc/
+/file_layout.txt
+/Gemfile.bak
+/new_files/
+/output.txt
+/bashexpsh*.txt
+
+# Private/local project metadata
+/.cursor/
+/.master-planning
+/.project-core/
+/.project-planning
+
+# Site-maintenance runtime state
+/utils/etc/
+/utils/log/
+/utils/output/
