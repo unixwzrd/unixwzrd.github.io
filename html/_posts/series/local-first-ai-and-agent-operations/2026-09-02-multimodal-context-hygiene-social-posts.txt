@@ -1,0 +1,93 @@
+Multimodal Context Hygiene with a Jinja Chat Template - social drafts
+
+Scheduled article:
+https://unixwzrd.ai/technology/2026/09/02/multimodal-context-hygiene-with-a-jinja-chat-template/
+
+Short URL:
+https://unixwzrd.ai/s/5f74184fe9/
+
+Suggested hashtags:
+#AgentEngineering #LocalAI #LLMOps #Qwen #MultimodalAI
+
+
+==================================================
+LINKEDIN
+==================================================
+
+I found an image tool result being carried into later prompts long after the useful work was finished. Then I found another copy in an assistant tool call that decoded or saved the same bytes.
+
+Removing the payload looked simple until I considered the boundary. The model proxy was deliberately passive, and letting it rewrite requests would make the diagnostic instrument part of the behavior under test. The cleanup belonged in the selected model chat template, where it could be reviewed, compared with the stock template, tested, and rolled back.
+
+Part 7 of Local First AI and Agent Operations follows that work. It explains why textual image history differs from native structured vision, why complete assistant and tool exchanges have to be removed together, and why audio and video use a different retention rule.
+
+The article includes the complete attributed Qwen 3.5-family Jinja template, stock fallback, Apache-2.0 license and notice, seven synthetic fixtures, expected results, renderer, checksums, and executable tests.
+
+https://unixwzrd.ai/s/5f74184fe9/
+
+#AgentEngineering #LocalAI #LLMOps #Qwen #MultimodalAI
+
+
+==================================================
+X / TWITTER
+==================================================
+
+Old textual media results can consume context long after they stop helping the model.
+
+Part 7 moves that cleanup into a tested Qwen Jinja template while keeping the diagnostic proxy passive. Complete template, stock fallback, fixtures, tests, license, and rollback included.
+
+https://unixwzrd.ai/s/5f74184fe9/
+
+#LocalAI #LLMOps #Qwen
+
+
+==================================================
+BLUESKY
+==================================================
+
+I found duplicate image payloads surviving in later model prompts, but I did not want the passive debugging proxy to become a hidden rewrite layer.
+
+Part 7 puts the policy in a tested Qwen chat template and includes the complete attributed package and rollback path.
+
+https://unixwzrd.ai/s/5f74184fe9/
+
+#LocalAI #AgentEngineering
+
+
+==================================================
+MASTODON
+==================================================
+
+A chat template is part of the model interface, not a cosmetic formatting file.
+
+This installment follows a Qwen-specific media-history policy that removes textual image exchanges as complete assistant and tool pairs, retains only the latest explicit textual audio and video exchanges, and preserves native structured Qwen vision placeholders.
+
+The passive proxy remains passive. The stock template remains available as the comparison baseline and rollback path. The article includes the complete attributed derivative, synthetic fixtures, expected results, checksums, tests, notice, and Apache-2.0 license.
+
+https://unixwzrd.ai/s/5f74184fe9/
+
+#AgentEngineering #LocalAI #LLMOps #Qwen #MultimodalAI
+
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Multimodal Context Hygiene with a Jinja Chat Template
+
+Subtitle:
+How I removed stale textual media history without turning a passive diagnostic proxy into a request-rewriting layer.
+
+Body:
+
+An old textual image result can occupy a surprising amount of later prompt history, especially when an assistant tool call also copies or decodes the same bytes. Removing the data is useful, but removing it at the wrong boundary can make the observer part of the experiment.
+
+Part 7 explains why I kept the model proxy passive and placed the policy in the selected Qwen chat template. The article distinguishes textual media results from native structured vision, removes assistant and tool messages as complete exchanges, and keeps the compatibility claim tied to the Qwen 3.5-family template contract.
+
+The complete technical package is included: attributed derivative, stock fallback, seven synthetic fixtures, expected results, renderer, tests, immutable checksums, modification notice, Apache-2.0 license, acceptance guidance, and rollback instructions.
+
+Full article:
+https://unixwzrd.ai/technology/2026/09/02/multimodal-context-hygiene-with-a-jinja-chat-template/
+
+Tags:
+Agent engineering, local AI, LLM operations, Qwen, multimodal AI

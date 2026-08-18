@@ -1,0 +1,95 @@
+From Shell Scripts to an Operator-Ready LLM-Ops-Kit - social drafts
+
+Scheduled article:
+https://unixwzrd.ai/technology/2026/09/06/from-shell-scripts-to-an-operator-ready-llm-ops-kit/
+
+Short URL:
+https://unixwzrd.ai/s/c6d5e3ed95/
+
+Suggested hashtags:
+#AgentEngineering #LocalAI #LLMOps #DevOps #AppleSilicon
+
+
+==================================================
+LINKEDIN
+==================================================
+
+I had plenty of shell scripts that worked, and that was part of the problem.
+
+One script knew how to start a model. Another knew which Python environment belonged to a bridge. A deployment script could copy a working tree to another host. If I was at the right terminal with the recent history in front of me, I could usually put the pieces together.
+
+What the scripts could not do was explain the system after something changed. They did not give me one desired-state authority, show dependency impact before an operation, distinguish intentionally stopped from unhealthy, or tell me exactly what needed to be rolled back after a partial failure.
+
+Part 8 of Local First AI and Agent Operations follows the move from that useful experiment to LLM-Ops-Kit: reviewed service templates, reusable profiles, typed endpoint connections, non-mutating plans, restricted SSH control, durable operation records, and immutable releases.
+
+The article includes a complete inert walkthrough using invented `.invalid` hosts and disabled components, plus diagrams of the configuration and control paths. It has enough detail to inspect the design without asking anyone to point the example at a real model or production machine.
+
+https://unixwzrd.ai/s/c6d5e3ed95/
+
+#AgentEngineering #LocalAI #LLMOps #DevOps #AppleSilicon
+
+
+==================================================
+X / TWITTER
+==================================================
+
+My shell scripts worked, but they could not explain the system after something changed.
+
+Part 8 follows the move to an operator-ready LLM-Ops-Kit with typed dependencies, inspectable plans, restricted SSH control, durable operations, and rollback.
+
+https://unixwzrd.ai/s/c6d5e3ed95/
+
+#LocalAI #LLMOps #DevOps
+
+
+==================================================
+BLUESKY
+==================================================
+
+The shell scripts could start the stack. They could not tell me which configuration was authoritative, what depended on an endpoint, or what changed before a partial failure.
+
+Part 8 turns that experiment into a small, inspectable LLM operations control plane.
+
+https://unixwzrd.ai/s/c6d5e3ed95/
+
+#LocalAI #AgentEngineering
+
+
+==================================================
+MASTODON
+==================================================
+
+Working shell scripts are useful evidence, but they are not automatically an operator interface.
+
+Part 8 follows my move from scripts and shell history to LLM-Ops-Kit: one desired-state authority, reviewed templates, reusable profiles, endpoint-derived dependencies, non-mutating plans, idempotent lifecycle operations, restricted SSH control, durable operation records, and immutable releases.
+
+The walkthrough stays inert. It uses invented `.invalid` hosts, unusable model paths, disabled components, and static inspection so readers can see the configuration and topology without treating a publication example as a deployment recipe.
+
+https://unixwzrd.ai/s/c6d5e3ed95/
+
+#AgentEngineering #LocalAI #LLMOps #DevOps #AppleSilicon
+
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+From Shell Scripts to an Operator-Ready LLM-Ops-Kit
+
+Subtitle:
+How I turned a useful collection of scripts into a small control plane that could explain its configuration, dependencies, operations, and recovery.
+
+Body:
+
+I had plenty of shell scripts that worked. That was enough to prove the services could operate together, but it was not enough to make the result understandable after a change or a partial failure.
+
+Part 8 follows the engineering work that came next. LLM-Ops-Kit gives the system one desired-state authority, reviewed service templates, reusable profiles, typed endpoint connections, non-mutating plans, idempotent lifecycle operations, restricted SSH control, durable operation records, and immutable releases with rollback.
+
+The article includes an inert configuration walkthrough with invented hosts and disabled components. It shows how a template becomes a profile and component, how a typed endpoint infers a lifecycle dependency, and how the resulting topology can be inspected without starting a service or pointing the example at a real environment.
+
+Full article:
+https://unixwzrd.ai/technology/2026/09/06/from-shell-scripts-to-an-operator-ready-llm-ops-kit/
+
+Tags:
+Agent engineering, local AI, LLM operations, DevOps, Apple Silicon

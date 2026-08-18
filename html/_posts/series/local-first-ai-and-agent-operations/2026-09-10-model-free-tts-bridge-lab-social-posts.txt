@@ -1,0 +1,93 @@
+Hands-On: Put a TTS Bridge Through a Model-Free Test Bench - social drafts
+
+Scheduled article:
+https://unixwzrd.ai/hands-on/2026/09/10/hands-on-put-a-tts-bridge-through-a-model-free-test-bench/
+
+Short URL:
+https://unixwzrd.ai/s/9153038fbc/
+
+Suggested hashtags:
+#Python #LocalAI #TTS #SoftwareTesting #AgentEngineering
+
+
+==================================================
+LINKEDIN
+==================================================
+
+You do not need a cloned voice, a GPU, or a network provider to test the operational boundary around a TTS bridge.
+
+Hands-On 9A packages the useful part as a five-file, standard-library Python lab. It generates a short tone and invented transcript, starts a teaching bridge and fake OpenAI-compatible upstream on loopback, and checks the happy path and the failure cases.
+
+The sixteen-condition run proves request translation, case-insensitive alias selection, paired reference paths, explicit OGG-to-WAV fallback, byte-preserved returned media, bridge-versus-upstream health, bounded timeout behavior, operational-event input redaction, upstream loss, and cleanup.
+
+The package includes four regression tests and collapsed source viewers, so readers can inspect everything before downloading it. It deliberately proves no voice identity, consent, model quality, provider compatibility, or production performance.
+
+https://unixwzrd.ai/s/9153038fbc/
+
+#Python #LocalAI #TTS #SoftwareTesting #AgentEngineering
+
+
+==================================================
+X / TWITTER
+==================================================
+
+Test a TTS bridge without a model, GPU, provider, or real voice.
+
+Hands-On 9A uses standard-library Python, a generated tone, invented text, a fake upstream, 16 acceptance checks, and four regressions.
+
+https://unixwzrd.ai/s/9153038fbc/
+
+#Python #LocalAI #TTS
+
+
+==================================================
+BLUESKY
+==================================================
+
+I turned the Part 9 TTS boundary into a five-file Python lab: generated tone, invented transcript, teaching bridge, fake upstream, layered health, timeout and redaction checks, and deterministic cleanup.
+
+No model or real voice required.
+
+https://unixwzrd.ai/s/9153038fbc/
+
+#Python #AgentEngineering
+
+
+==================================================
+MASTODON
+==================================================
+
+Hands-On 9A tests the operational contract around a TTS bridge without installing a model or using a real voice.
+
+The standard-library Python package generates its own tone and invented transcript, binds a teaching bridge and fake OpenAI-compatible upstream to ephemeral loopback ports, then runs sixteen bounded acceptance checks. It covers alias and paired-reference selection, visible format fallback, returned bytes, split health, timeouts, redacted operational events, upstream loss, stopped servers, and temporary-file cleanup.
+
+Four regression tests are included, and every source file can be inspected in the browser before downloading the archive.
+
+https://unixwzrd.ai/s/9153038fbc/
+
+#Python #LocalAI #TTS #SoftwareTesting #AgentEngineering
+
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Hands-On: Put a TTS Bridge Through a Model-Free Test Bench
+
+Subtitle:
+A five-file standard-library Python lab for request translation, paired references, format fallback, layered health, bounded failures, redaction, and cleanup.
+
+Body:
+
+The main Part 9 article separates the speech bridge from the inference engine behind it. This Hands-On companion turns that boundary into something you can run without a model, GPU, provider account, or real voice.
+
+The lab generates a short tone and invented matching transcript, starts a teaching bridge and fake OpenAI-compatible upstream on loopback, and runs sixteen bounded acceptance checks. It verifies alias and paired-reference selection, explicit OGG-to-WAV fallback, returned bytes, independent bridge and upstream health, timeout and outage behavior, operational-event redaction, and complete cleanup.
+
+The package uses only the Python standard library and includes four regressions. It is a protocol and failure-behavior lab, not a voice-quality demonstration.
+
+Full article:
+https://unixwzrd.ai/hands-on/2026/09/10/hands-on-put-a-tts-bridge-through-a-model-free-test-bench/
+
+Tags:
+Python, local AI, text to speech, software testing, agent engineering

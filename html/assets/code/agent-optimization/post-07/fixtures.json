@@ -1,0 +1,118 @@
+{
+  "native_structured_media": {
+    "description": "Native structured image and video parts remain eligible for the model engine.",
+    "payload": {
+      "messages": [
+        {
+          "role": "user",
+          "content": [
+            {"type": "text", "text": "Describe the invented media."},
+            {"type": "image_url", "image_url": {"url": "data:image/png;base64,STRUCTURED_IMAGE_CANARY"}},
+            {"type": "video", "video": "invented-video.mp4"}
+          ]
+        }
+      ],
+      "tools": [],
+      "add_generation_prompt": true
+    }
+  },
+  "textual_image_exchanges": {
+    "description": "Every textual image tool exchange and an assistant-side decode copy are removed.",
+    "payload": {
+      "messages": [
+        {"role": "user", "content": "Create two invented images."},
+        {
+          "role": "assistant",
+          "content": "first image generation call",
+          "tool_calls": [{"type": "function", "function": {"name": "terminal", "arguments": {"command": "generate first image"}}}]
+        },
+        {"role": "tool", "content": "{\"images\":[\"{{PNG_OLD}}\"]}"},
+        {
+          "role": "assistant",
+          "content": "assistant-side image byte copy",
+          "tool_calls": [{"type": "function", "function": {"name": "terminal", "arguments": {"command": "base64.b64decode(invented_buffer)"}}}]
+        },
+        {"role": "tool", "content": "invented decode result"},
+        {
+          "role": "assistant",
+          "content": "second image generation call",
+          "tool_calls": [{"type": "function", "function": {"name": "terminal", "arguments": {"command": "generate second image"}}}]
+        },
+        {"role": "tool", "content": "{\"images\":[\"{{PNG_NEW}}\"]}"},
+        {"role": "user", "content": "Continue without the textual image history."}
+      ],
+      "tools": [],
+      "add_generation_prompt": true
+    }
+  },
+  "latest_audio_video": {
+    "description": "Only the latest explicit textual audio and video results remain.",
+    "payload": {
+      "messages": [
+        {"role": "user", "content": "Create invented audio and video."},
+        {"role": "assistant", "content": "old audio generation call", "tool_calls": [{"type": "function", "function": {"name": "terminal", "arguments": {"command": "old audio"}}}]},
+        {"role": "tool", "content": "{\"audio\":\"{{AUDIO_OLD}}\"}"},
+        {"role": "assistant", "content": "latest audio generation call", "tool_calls": [{"type": "function", "function": {"name": "terminal", "arguments": {"command": "latest audio"}}}]},
+        {"role": "tool", "content": "{\"audio\":\"{{AUDIO_NEW}}\"}"},
+        {"role": "assistant", "content": "old video generation call", "tool_calls": [{"type": "function", "function": {"name": "terminal", "arguments": {"command": "old video"}}}]},
+        {"role": "tool", "content": "{\"video\":\"{{VIDEO_OLD}}\"}"},
+        {"role": "assistant", "content": "latest video generation call", "tool_calls": [{"type": "function", "function": {"name": "terminal", "arguments": {"command": "latest video"}}}]},
+        {"role": "tool", "content": "{\"video\":\"{{VIDEO_NEW}}\"}"},
+        {"role": "user", "content": "Continue with only the latest explicit media results."}
+      ],
+      "tools": [],
+      "add_generation_prompt": true
+    }
+  },
+  "truncated_image_history": {
+    "description": "A long truncated textual image result is removed as a complete exchange.",
+    "payload": {
+      "messages": [
+        {"role": "user", "content": "Create an invented image."},
+        {"role": "assistant", "content": "truncated image generation call", "tool_calls": [{"type": "function", "function": {"name": "terminal", "arguments": {"command": "generate truncated image"}}}]},
+        {"role": "tool", "content": "{\"images\":[\"{{TRUNCATED_IMAGE}}\"]}"},
+        {"role": "user", "content": "Continue after truncation."}
+      ],
+      "tools": [],
+      "add_generation_prompt": true
+    }
+  },
+  "incidental_signature_collision": {
+    "description": "A long ordinary tool result containing an incidental PNG signature is retained when no image-result structure is present.",
+    "payload": {
+      "messages": [
+        {"role": "user", "content": "Inspect an invented diagnostic."},
+        {"role": "assistant", "content": "ordinary diagnostic call", "tool_calls": [{"type": "function", "function": {"name": "terminal", "arguments": {"command": "inspect diagnostic"}}}]},
+        {"role": "tool", "content": "{\"note\":\"{{INCIDENTAL_SIGNATURE}}\"}"},
+        {"role": "user", "content": "Keep the ordinary result."}
+      ],
+      "tools": [],
+      "add_generation_prompt": true
+    }
+  },
+  "malformed_ordering": {
+    "description": "A system message after the first turn fails template validation.",
+    "payload": {
+      "messages": [
+        {"role": "user", "content": "Start normally."},
+        {"role": "system", "content": "This invented system message is deliberately misplaced."}
+      ],
+      "tools": [],
+      "add_generation_prompt": true
+    }
+  },
+  "ordinary_text_tool_history": {
+    "description": "Ordinary text and tool history renders exactly like the stock baseline.",
+    "payload": {
+      "messages": [
+        {"role": "user", "content": "Check the invented service."},
+        {"role": "assistant", "content": "checking status", "tool_calls": [{"type": "function", "function": {"name": "service_status", "arguments": {"scope": "local"}}}]},
+        {"role": "tool", "content": "{\"ok\":true}"},
+        {"role": "assistant", "content": "The invented service is healthy."},
+        {"role": "user", "content": "Thank you."}
+      ],
+      "tools": [],
+      "add_generation_prompt": true
+    }
+  }
+}

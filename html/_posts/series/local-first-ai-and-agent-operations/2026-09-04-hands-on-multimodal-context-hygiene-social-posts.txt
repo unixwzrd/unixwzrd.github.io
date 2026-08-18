@@ -1,0 +1,89 @@
+Hands-On: Put Multimodal Context Hygiene Through a Test Bench - social drafts
+
+Scheduled article:
+https://unixwzrd.ai/hands-on/2026/09/04/hands-on-put-multimodal-context-hygiene-through-a-test-bench/
+
+Short URL:
+https://unixwzrd.ai/s/d038dc533a/
+
+Suggested hashtags:
+#AgentEngineering #LocalAI #LLMOps #Qwen #Python
+
+
+==================================================
+LINKEDIN
+==================================================
+
+The main article explains why I moved stale multimodal history cleanup into a Qwen Jinja template instead of letting a passive model proxy rewrite requests. The Hands-On companion lets you put that decision on a test bench.
+
+You can run the same seven invented conversations through the unchanged stock template and the media-history derivative, then check exactly what changed and what stayed intact. The lab covers textual image exchange removal, latest audio and video retention, native vision placeholders, ordinary tool-history equivalence, expected template failures, and the exact 4,096-character routing edge.
+
+It includes a bounded Python inspector, eleven tests, the complete attributed templates, fixtures, expected results, provenance, license, cleanup, and an optional model-proxy render comparison. No model, GPU, private capture, or production configuration is required for the core lab.
+
+https://unixwzrd.ai/s/d038dc533a/
+
+#AgentEngineering #LocalAI #LLMOps #Qwen #Python
+
+
+==================================================
+X / TWITTER
+==================================================
+
+Do not accept a prompt optimization because the rendered output looks plausible. Put the stock and derived paths on the same test bench.
+
+Hands-On 7A includes seven sanitized fixtures, a bounded Python inspector, eleven tests, the exact routing edge, and an optional model-proxy comparison.
+
+https://unixwzrd.ai/s/d038dc533a/
+
+#LocalAI #LLMOps #Qwen
+
+
+==================================================
+BLUESKY
+==================================================
+
+Hands-On 7A turns the Qwen media-history article into a runnable lab: stock versus derived templates, seven invented fixtures, eleven tests, preservation controls, and the exact 4,096/4,097-character boundary.
+
+No model, GPU, or private capture required.
+
+https://unixwzrd.ai/s/d038dc533a/
+
+#LocalAI #AgentEngineering
+
+
+==================================================
+MASTODON
+==================================================
+
+The useful question is not merely whether a derived chat template makes the prompt smaller. It is whether the intended media history disappears while ordinary tool history, native vision placeholders, role boundaries, and expected failures remain correct.
+
+This Hands-On lab runs seven sanitized conversations through stock and derived Qwen templates. A bounded Python inspector reports character deltas and contract checks without dumping the synthetic long payloads. Eleven tests cover provenance, preservation, negative aggregate decisions, and the strict 4,096-character routing boundary.
+
+The complete twelve-file package includes both templates, fixtures, expected results, inspector, renderer, tests, pinned Jinja requirement, notice, and Apache-2.0 license.
+
+https://unixwzrd.ai/s/d038dc533a/
+
+#AgentEngineering #LocalAI #LLMOps #Qwen #Python
+
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Hands-On: Put Multimodal Context Hygiene Through a Test Bench
+
+Subtitle:
+Run the same sanitized history through stock and derived Qwen templates, then verify exactly what changed.
+
+Body:
+
+The Part 7 article explains why stale textual media history belongs in a reviewed model template rather than a hidden proxy rewrite. This Hands-On companion turns that reasoning into a repeatable lab.
+
+The lab includes seven invented fixtures, a bounded stock-versus-derived inspector, eleven tests, the exact 4,096/4,097-character boundary, native media preservation checks, expected failure cases, and an optional model-proxy diagnostic comparison. The complete attributed twelve-file package is included.
+
+Full article:
+https://unixwzrd.ai/hands-on/2026/09/04/hands-on-put-multimodal-context-hygiene-through-a-test-bench/
+
+Tags:
+Agent engineering, local AI, LLM operations, Qwen, Python

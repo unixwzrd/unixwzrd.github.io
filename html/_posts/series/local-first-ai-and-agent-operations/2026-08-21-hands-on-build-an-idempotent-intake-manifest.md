@@ -170,11 +170,21 @@ Now the result reports `restored: 1`. The record keeps its original identity and
 The `--records` option is convenient for scripts, but one reason I chose SQLite is that I can inspect the durable state without standing up another service:
 
 ```bash
-sqlite3 -header -column /tmp/intake-demo/manifest.db \
-  'SELECT source_id, availability_state, processing_state,
-          size_bytes, extractor_version
-     FROM sources
-    ORDER BY source_path;'
+python3 - <<'PY'
+import sqlite3
+
+connection = sqlite3.connect("/tmp/intake-demo/manifest.db")
+connection.row_factory = sqlite3.Row
+rows = connection.execute(
+    """SELECT source_id, availability_state, processing_state,
+              size_bytes, extractor_version
+         FROM sources
+        ORDER BY source_path"""
+)
+for row in rows:
+    print(dict(row))
+connection.close()
+PY
 ```
 
 The manifest stores canonical paths because it is local provenance state. I would not copy those paths into a public report or diagnostic bundle, and I have not used paths from my own environment in this article. If paths are sensitive in your environment, protect the database or introduce an opaque locator at the system boundary.
@@ -203,15 +213,7 @@ The eight canaries cover the failure modes I care about at this boundary:
 
 The ordering matters here. The integrity check runs before commit, so a source-read failure or failed `PRAGMA quick_check` rolls back the source changes from that invocation. Schema migration commits separately, which allows an older manifest to be upgraded even when a later source scan fails.
 
-## Step 7: Try Three Useful Experiments
-
-First, add a second Markdown file and scan again. The result should report one new source while leaving the restored first source unchanged. This is a quick check that the counters describe the current scan rather than the lifetime of the database.
-
-Second, add `.hidden.md` and `ignored.json` beneath the source root. Neither should appear in `--records`, because hidden paths and non-allowlisted suffixes are outside this lab's source contract. If either appears, the selection boundary has changed and the canary suite should change with it.
-
-Third, rename `first.md` to `renamed.md` and scan once more. The old path should become missing and the new path should receive a new source identity. The utility does not guess that a rename is a move. That conservative result is worth seeing before deciding whether a larger source adapter needs explicit move records or a stronger source-system identifier.
-
-## Step 8: Hand Off to Review Without Granting Retrieval
+## Step 7: Hand Off to Review Without Granting Retrieval
 
 This is the point where it is tempting to keep adding features, and it is also where I stop. A downstream extractor can select rows in `processing_state = "discovered"`, but its output should still enter review in a fail-closed state:
 
@@ -247,6 +249,49 @@ The important line is still `mnemosyne: "exclude"`. Filing something after revie
 ## What You Should Have at the End
 
 You should now have a disposable SQLite manifest that can explain new, unchanged, changed, missing, restored, and renamed sources without losing earlier state. The command output, direct SQL inspection, and canary suite should all describe the same boundary. If they do not, stop there rather than handing the manifest to an extractor.
+
+## Optional Extensions: Try Three Useful Experiments
+
+The tested lab is complete at this point. These three small extensions are optional, but each has a concrete result you can check.
+
+First, add a second Markdown file and scan again:
+
+```bash
+printf '%s\n' '# Second note' 'Another allowlisted source.' \
+  > /tmp/intake-demo/sources/second.md
+python3 /tmp/intake-demo/intake_manifest.py \
+  /tmp/intake-demo/sources \
+  --db /tmp/intake-demo/manifest.db \
+  --records
+```
+
+The summary should report `new: 1` and `unchanged: 1`, with two present records.
+
+Next, add a hidden Markdown file and a non-allowlisted JSON file, then scan again:
+
+```bash
+printf '%s\n' '# Hidden note' > /tmp/intake-demo/sources/.hidden.md
+printf '%s\n' '{"ignored": true}' > /tmp/intake-demo/sources/ignored.json
+python3 /tmp/intake-demo/intake_manifest.py \
+  /tmp/intake-demo/sources \
+  --db /tmp/intake-demo/manifest.db \
+  --records
+```
+
+The summary should report `new: 0` and `unchanged: 2`. Neither added file should appear in `records` because hidden paths and non-text suffixes are outside the source contract.
+
+Finally, rename the original source and scan once more:
+
+```bash
+mv /tmp/intake-demo/sources/first.md \
+  /tmp/intake-demo/sources/renamed.md
+python3 /tmp/intake-demo/intake_manifest.py \
+  /tmp/intake-demo/sources \
+  --db /tmp/intake-demo/manifest.db \
+  --records
+```
+
+The summary should report `new: 1`, `missing: 1`, and `unchanged: 1`. The old path remains as missing history while the renamed path receives a new source identity. The utility does not guess that a rename is a move; a larger adapter would need an explicit move record or a stronger source-system identifier to establish that relationship.
 
 When you are finished experimenting, remove only the disposable directory you created for this lab:
 

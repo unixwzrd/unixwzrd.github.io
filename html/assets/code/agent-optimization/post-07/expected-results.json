@@ -1,0 +1,38 @@
+{
+  "native_structured_media": {
+    "status": "rendered",
+    "contains": ["Describe the invented media.", "<|image_pad|>", "<|video_pad|>"],
+    "absent": ["STRUCTURED_IMAGE_CANARY"],
+    "counts": {"<|image_pad|>": 1, "<|video_pad|>": 1}
+  },
+  "textual_image_exchanges": {
+    "status": "rendered",
+    "contains": ["Continue without the textual image history."],
+    "absent": ["PNG_OLD_CANARY", "PNG_NEW_CANARY", "first image generation call", "second image generation call", "assistant-side image byte copy", "base64.b64decode", "invented decode result"]
+  },
+  "latest_audio_video": {
+    "status": "rendered",
+    "contains": ["AUDIO_NEW_CANARY", "VIDEO_NEW_CANARY", "latest audio generation call", "latest video generation call"],
+    "absent": ["AUDIO_OLD_CANARY", "VIDEO_OLD_CANARY", "old audio generation call", "old video generation call"]
+  },
+  "truncated_image_history": {
+    "status": "rendered",
+    "contains": ["Continue after truncation."],
+    "absent": ["TRUNCATED_IMAGE_CANARY", "OUTPUT TRUNCATED", "truncated image generation call"]
+  },
+  "incidental_signature_collision": {
+    "status": "rendered",
+    "contains": ["INCIDENTAL_SIGNATURE_CANARY", "ordinary diagnostic call", "Keep the ordinary result."],
+    "absent": []
+  },
+  "malformed_ordering": {
+    "status": "error",
+    "error": "System message must be at the beginning."
+  },
+  "ordinary_text_tool_history": {
+    "status": "rendered",
+    "contains": ["Check the invented service.", "service_status", "{\"ok\":true}", "The invented service is healthy.", "Thank you."],
+    "absent": [],
+    "matches_stock": true
+  }
+}

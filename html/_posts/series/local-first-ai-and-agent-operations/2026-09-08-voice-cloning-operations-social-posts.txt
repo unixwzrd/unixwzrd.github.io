@@ -1,0 +1,97 @@
+Voice Cloning Across Hosts: Making TTS Operational - social drafts
+
+Scheduled article:
+https://unixwzrd.ai/technology/2026/09/08/voice-cloning-across-hosts-making-tts-operational/
+
+Short URL:
+https://unixwzrd.ai/s/cff8a7634b/
+
+Suggested hashtags:
+#AgentEngineering #LocalAI #TTS #LLMOps #PrivacyByDesign
+
+
+==================================================
+LINKEDIN
+==================================================
+
+I had a speech endpoint that could report itself healthy while the service behind it was unavailable.
+
+That sounds contradictory until the endpoint is treated as what it actually is: a bridge. Its process can be running, its HTTP listener can be answering, and its configuration can be readable while the model on another host is still loading or unavailable.
+
+Part 9 of Local First AI and Agent Operations follows the work of turning that cross-host TTS path into something I could reason about. The agent keeps an OpenAI-compatible speech interface. The bridge owns request normalization, neutral aliases, bounded forwarding, and format compatibility. The inference host owns the model runtime and the operator-authorized reference pair.
+
+The article also covers layered health, cold-start timeouts, explicit Python and media-tool ownership, managed telemetry controls, and why automatic restart remains a proposal rather than a feature I am pretending is finished.
+
+There is an ethical boundary throughout the design: an alias is configuration, not evidence of ownership or consent.
+
+https://unixwzrd.ai/s/cff8a7634b/
+
+#AgentEngineering #LocalAI #TTS #LLMOps #PrivacyByDesign
+
+
+==================================================
+X / TWITTER
+==================================================
+
+A healthy TTS bridge does not prove the model behind it is ready.
+
+Part 9 separates the agent-facing API, inference engine, reference ownership, layered health, cold-start timeouts, and proposed recovery boundary.
+
+https://unixwzrd.ai/s/cff8a7634b/
+
+#LocalAI #TTS #LLMOps
+
+
+==================================================
+BLUESKY
+==================================================
+
+My speech bridge could be healthy while its upstream model was unavailable. That was not a contradiction. It was an operations boundary I had not made visible enough.
+
+Part 9 follows the fix, including consent, runtime ownership, health, and recovery limits.
+
+https://unixwzrd.ai/s/cff8a7634b/
+
+#LocalAI #AgentEngineering
+
+
+==================================================
+MASTODON
+==================================================
+
+A process, an HTTP listener, and a readable configuration can all be healthy while the TTS model behind them is still loading or unavailable.
+
+Part 9 of Local First AI and Agent Operations separates that path into explicit responsibilities: a stable OpenAI-compatible client boundary, a bridge for normalization and compatibility, an inference engine that owns generation, and an operator-owned reference pair that remains on the host where its path is meaningful.
+
+I also cover layered health, cold-start-specific timeouts, noninteractive Python and media-tool paths, managed telemetry controls, and a recovery state machine that is still clearly labeled proposed and not deployed.
+
+An alias is configuration. It is not proof of ownership or consent.
+
+https://unixwzrd.ai/s/cff8a7634b/
+
+#AgentEngineering #LocalAI #TTS #LLMOps #PrivacyByDesign
+
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Voice Cloning Across Hosts: Making TTS Operational
+
+Subtitle:
+Why a healthy bridge does not prove a speech model is ready, and how I separated compatibility, inference, reference ownership, runtime dependencies, and recovery.
+
+Body:
+
+I had a speech endpoint that could report itself healthy while the service behind it was unavailable. The bridge process was running and its listener was answering, but the model on another host had not necessarily finished loading or become ready to synthesize audio.
+
+Part 9 follows the operational design that came out of that failure. The client keeps a stable OpenAI-compatible speech interface. The bridge owns request normalization, aliases, bounded forwarding, and visible format fallback. The inference host owns the model runtime and the operator-authorized reference audio and matching transcript.
+
+The article also covers layered health, cold-start timeouts, explicit noninteractive runtime paths, managed telemetry settings, and why automatic recovery remains proposed work. Throughout the design, an alias remains configuration rather than evidence of ownership or consent.
+
+Full article:
+https://unixwzrd.ai/technology/2026/09/08/voice-cloning-across-hosts-making-tts-operational/
+
+Tags:
+Agent engineering, local AI, text to speech, LLM operations, privacy by design
