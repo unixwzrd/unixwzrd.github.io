@@ -30,9 +30,23 @@ The runnable utility and its test suite are included below as readable, download
 
 Both banks sit downstream of the document authority. They receive already reviewed, retrieval-eligible projections from Main Vault and LLM-Wiki; this router does not decide whether raw notes or material still waiting for review may enter memory.
 
+The lab has two files: `memory_router.py` contains the router and invented banks, while `test_memory_router.py` contains seven canaries. Both use the Python standard library, and every context, record, identifier, and policy in the exercise is fabricated.
+
 <!--more-->
 
-## Start with Three Bounded Outcomes
+## Before You Start
+
+You need Python 3 and `curl`. The walkthrough uses `/tmp/memory-router-demo` and does not connect to a model, vector database, Main Vault, LLM-Wiki, or a deployed memory service.
+
+| Stage | What you will prove |
+| --- | --- |
+| Define the boundary | Three contexts resolve to explicit read and write outcomes |
+| Run the same query twice | Permission changes the candidate set before relevance is calculated |
+| Run the canaries | Unauthorized content never reaches the scorer |
+| Exercise writes | Unknown contexts are denied while an explicit private context selects its bank |
+| Read the implementation | Candidate construction, deduplication, scoring, and ranking stay in the required order |
+
+## Step 1: Start with Three Bounded Outcomes
 
 I began with the smallest context table that could fail closed. An unknown context can read general material but cannot write memory. A recognized general context stays in the general bank. A recognized private context can read general and private material while writing only to the private bank.
 
@@ -53,7 +67,7 @@ The order matters more than the scorer:
 
 The scorer sits to the right of the authorization boundary. An unauthorized private record is not a low-ranked candidate, a discarded result, or a redacted object. It is never a candidate at all.
 
-## Read or Download the Complete Files
+## Step 2: Get the Complete Lab
 
 Both disclosures use the same public files as their download actions, so the source shown in the article cannot drift away from the runnable copy.
 
@@ -61,7 +75,7 @@ Both disclosures use the same public files as their download actions, so the sou
 
 {% include source_code.html source="/assets/code/agent-optimization/test_memory_router.py" language="python" title="test_memory_router.py" %}
 
-## Run the Boundary in Both Directions
+## Step 3: Run the Boundary in Both Directions
 
 Create a disposable working directory and download both files:
 
@@ -91,7 +105,7 @@ The private canary becomes eligible, and every result retains its source-bank ta
 
 This pair of commands is useful because it separates relevance from permission without changing the query. The words are identical. Only the resolved context changes, and that decision changes which records exist from the scorer’s point of view.
 
-## Prove What the Demonstration Claims
+## Step 4: Run the Canary Suite
 
 The example includes seven canaries rather than relying on two attractive command outputs. Run them from the same disposable directory:
 
@@ -113,7 +127,24 @@ The pre-ranking canary is the one I care about most. It supplies a recording sco
 
 The rebuild test protects a different part of the contract. These banks are derived projections, not durable authority. When approved authority changes, replacing a bank from that authority must remove records that no longer belong there. A deletion that changes the source but leaves the old derived candidate searchable is not a completed deletion.
 
-## Read the Security Ordering in the Code
+## Step 5: Exercise the Write Boundary
+
+The command-line interface demonstrates recall, so use a short Python invocation to exercise the write decision directly:
+
+```bash
+python3 - <<'PY'
+from memory_router import Memory, example_router
+
+router = example_router()
+candidate = Memory("lab-note", "An invented lab memory.", "lab-source")
+print(router.remember("unknown", candidate))
+print(router.remember("private-room", candidate))
+PY
+```
+
+The first result should contain `"stored": False` and `"reason": "context_memory_write_denied"`. The second should contain `"stored": True` and `"bank": "private"`. The difference comes from an explicit context policy, not a title guess or a relevance score.
+
+## Step 6: Read the Security Ordering in the Code
 
 The `recall()` method resolves a context policy, validates its declared bank names, and constructs candidates only from the authorized set. Private records are considered before general records when both banks are permitted, so normalized duplicate content keeps the more restricted copy. Only then does the router call the scorer, sort the results, and apply the requested limit.
 
@@ -137,7 +168,7 @@ The example uses token overlap because it keeps the exercise portable and makes 
 
 The write side follows the same fail-closed posture. `policy_for()` returns a default policy for an unknown context, and that policy selects no write bank. The router reports the refusal as an ordinary structured result rather than guessing a destination from a mutable title or silently dropping the request.
 
-## What Changes in a Fine-Grained Store
+## Step 7: Compare the Coarse Router with a Fine-Grained Store
 
 Two banks are useful for teaching and for coarse hard boundaries, but they do not express all of the decisions a real memory system may need. The future design in Post 3 attaches classification, compartments, audience, purpose, policy version, and stable access context to individual memories and their derivatives. A database capable of enforcing that policy might preserve an ordering like this:
 
@@ -172,6 +203,16 @@ The small router earns exactly the claims covered by its canaries. Before I woul
 | Migration | Side-by-side rollout, integrity checks, preserved authority, and tested rollback |
 
 This is also why I resist calling the example a security or compliance solution. It demonstrates a narrow control with executable evidence. The larger result still depends on authentication, policy administration, storage boundaries, lifecycle coverage, observability, and the behavior of every integration around it.
+
+## What You Should Have at the End
+
+You should now have two query results produced from identical words but different authorized candidate sets, seven passing canaries, and an explicit write refusal for the unknown context. Together those checks establish more than a final filtered result: protected content stayed outside the scorer in the first place.
+
+When you are finished, remove only the disposable directory created for this lab:
+
+```bash
+rm -rf /tmp/memory-router-demo
+```
 
 ## Current State
 

@@ -28,9 +28,24 @@ That led me to a small standard-library Python utility backed by SQLite. It scan
 
 That configured root is an allowlist boundary, not an invitation to inventory every note the agent can access. I would point this utility at a deliberately selected source tree and send its output into review; I would not aim it at an entire synchronized Main Vault by default.
 
+The lab has two files: `intake_manifest.py` contains the utility, and `test_intake_manifest.py` contains eight canaries. Everything runs with the Python standard library. The `sqlite3` command-line client is useful for the inspection step, but the manifest itself does not require it.
+
 <!--more-->
 
-## Start With the Contract
+## Before You Start
+
+Use a shell with Python 3 and `curl`. The walkthrough builds everything under `/tmp/intake-demo`, so it does not need access to your notes, Vault, agent workspace, or an existing database. If that path already contains something you need, choose another disposable directory before running the commands.
+
+| Stage | What you will prove |
+| --- | --- |
+| Define the contract | Every field answers a lifecycle or provenance question |
+| Run the first scan | One allowlisted source creates one durable identity |
+| Rerun and change it | Unchanged content stays stable and changed content re-enters processing |
+| Remove and restore it | Missing history survives and restoration keeps the original identity |
+| Inspect and test it | SQLite state and eight canaries agree with the command output |
+| Hand it off | Review and retrieval eligibility remain separate decisions |
+
+## Step 1: Define the Manifest Contract
 
 I started with one row for every allowlisted Markdown or text file. There is nothing particularly glamorous in the record, but every field answers a question I know I will have to ask later:
 
@@ -58,7 +73,7 @@ Once I wrote those rules down, the control flow became almost boring, which is e
 
 I did not want the convenience of a recursive scan to turn into accidental access to an entire home directory. Hidden paths, non-text suffixes, and file or directory symlinks that could escape the root are excluded. The utility also stats each selected file before and after hashing it. If the file changes during the read, the scan fails and rolls back instead of committing a fingerprint assembled from two different versions.
 
-## Read or Download the Complete Files
+## Step 2: Get the Complete Lab
 
 I am including both complete files because sample code is much more useful when the reader can run the same checks I ran. The on-page source viewer and download links use the same public assets, so there is no second hand-maintained copy waiting to drift away from the article. The first disclosure contains the utility, and the second contains its eight-canary acceptance suite.
 
@@ -66,7 +81,7 @@ I am including both complete files because sample code is much more useful when 
 
 {% include source_code.html source="/assets/code/agent-optimization/test_intake_manifest.py" language="python" title="test_intake_manifest.py" %}
 
-## Run a Clean End-to-End Scan
+## Step 3: Run a Clean End-to-End Scan
 
 I use a disposable tree under `/tmp` so I can repeat the exercise from a known starting point. Download both files into it and create one small Markdown source:
 
@@ -117,7 +132,9 @@ python3 /tmp/intake-demo/intake_manifest.py \
 
 This time the summary reports `changed: 1`, but the `records` array still contains one row with the same `source_id`. Its `content_sha256` changes and its `processing_state` returns to `"discovered"`, which is the behavior I need before handing the source to another stage. Changing the extractor version causes the same reprocessing decision even when the file itself is unchanged; I do not want a new inventory contract masquerading as the old one.
 
-## Preserve Disappearance and Restoration
+At this checkpoint, three scans should still have produced one source row. The first run proves creation, the second proves idempotence, and the third proves that content changes reset work without inventing a new identity.
+
+## Step 4: Test Disappearance and Restoration
 
 This is where the original small example was not good enough. If a file disappeared, its old row simply survived and still looked current. Deleting the row would have hidden the opposite fact: the source had existed, and something had happened to it. The useful behavior is to retain the record while changing its availability. Move the example outside the source root and scan again:
 
@@ -148,7 +165,7 @@ Now the result reports `restored: 1`. The record keeps its original identity and
    alt="Per-source manifest lifecycle showing first discovery, unchanged and changed scans, retained missing history, and restoration without changing source identity."
    variant="series" %}
 
-## Inspect the SQLite State
+## Step 5: Inspect the SQLite State
 
 The `--records` option is convenient for scripts, but one reason I chose SQLite is that I can inspect the durable state without standing up another service:
 
@@ -162,7 +179,7 @@ sqlite3 -header -column /tmp/intake-demo/manifest.db \
 
 The manifest stores canonical paths because it is local provenance state. I would not copy those paths into a public report or diagnostic bundle, and I have not used paths from my own environment in this article. If paths are sensitive in your environment, protect the database or introduce an opaque locator at the system boundary.
 
-## Run the Canary Suite
+## Step 6: Run the Canary Suite
 
 I also do not want the reader to trust this utility simply because the example output looks reasonable. The earlier version left too much correctness as an exercise, so this version includes the acceptance tests I use to check the boundary:
 
@@ -186,7 +203,15 @@ The eight canaries cover the failure modes I care about at this boundary:
 
 The ordering matters here. The integrity check runs before commit, so a source-read failure or failed `PRAGMA quick_check` rolls back the source changes from that invocation. Schema migration commits separately, which allows an older manifest to be upgraded even when a later source scan fails.
 
-## Hand Off to Review Without Granting Retrieval
+## Step 7: Try Three Useful Experiments
+
+First, add a second Markdown file and scan again. The result should report one new source while leaving the restored first source unchanged. This is a quick check that the counters describe the current scan rather than the lifetime of the database.
+
+Second, add `.hidden.md` and `ignored.json` beneath the source root. Neither should appear in `--records`, because hidden paths and non-allowlisted suffixes are outside this lab's source contract. If either appears, the selection boundary has changed and the canary suite should change with it.
+
+Third, rename `first.md` to `renamed.md` and scan once more. The old path should become missing and the new path should receive a new source identity. The utility does not guess that a rename is a move. That conservative result is worth seeing before deciding whether a larger source adapter needs explicit move records or a stronger source-system identifier.
+
+## Step 8: Hand Off to Review Without Granting Retrieval
 
 This is the point where it is tempting to keep adding features, and it is also where I stop. A downstream extractor can select rows in `processing_state = "discovered"`, but its output should still enter review in a fail-closed state:
 
@@ -218,6 +243,16 @@ related:
 ```
 
 The important line is still `mnemosyne: "exclude"`. Filing something after review does not silently authorize an agent to retrieve it or inject it into a prompt. I retain rejected candidates too, with `review_state: "rejected"`, `mnemosyne: "exclude"`, and a decision timestamp, so the next extraction pass does not present the same material as new work.
+
+## What You Should Have at the End
+
+You should now have a disposable SQLite manifest that can explain new, unchanged, changed, missing, restored, and renamed sources without losing earlier state. The command output, direct SQL inspection, and canary suite should all describe the same boundary. If they do not, stop there rather than handing the manifest to an extractor.
+
+When you are finished experimenting, remove only the disposable directory you created for this lab:
+
+```bash
+rm -rf /tmp/intake-demo
+```
 
 ## Current State
 
