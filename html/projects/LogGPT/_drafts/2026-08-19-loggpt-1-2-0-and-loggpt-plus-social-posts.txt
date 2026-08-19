@@ -1,0 +1,160 @@
+LogGPT 1.2.0 and LogGPT Plus social drafts
+
+Release article:
+https://unixwzrd.ai/projects/LogGPT/2026/08/19/loggpt-1-2-0-and-loggpt-plus/
+
+Short URL:
+https://unixwzrd.ai/s/39e7b3ae47/
+
+Mac App Store:
+https://apps.apple.com/us/app/loggpt/id6743342693?mt=12
+
+Suggested hashtags:
+#LogGPT #ChatGPT #SafariExtension #DataPortability #DigitalArchiving
+
+Alternate hashtags:
+#macOS #Privacy #LocalFirst #DeveloperTools #AIWorkflows
+
+
+==================================================
+LINKEDIN
+==================================================
+
+A ChatGPT conversation is often more than text.
+
+It may include generated images, documents, spreadsheets, audio, code archives, and files you uploaded to provide context. Exporting only the conversation JSON preserves the discussion, but it can leave an important part of the record behind.
+
+LogGPT 1.2.0 is now available, along with the new LogGPT Plus upgrade for Safari.
+
+The standard LogGPT workflow remains simple and unchanged: click the export button and download the conversation as structured JSON.
+
+LogGPT Plus adds artifact preservation. You can choose generated content, uploaded content, or both, then download one ZIP containing:
+
+- the conversation JSON
+- the selected artifacts
+- an artifact manifest with file identities, media types, sizes, hashes, source information, and download status
+
+If an individual artifact cannot be downloaded, the rest of the archive is still saved and the failure is recorded in the manifest. The result is a useful capture package with an auditable account of what was preserved.
+
+LogGPT has no user accounts, analytics, telemetry, or external processing service. The permanent Plus upgrade is available through the same Mac App Store listing.
+
+Read the release announcement:
+https://unixwzrd.ai/s/39e7b3ae47/
+
+#LogGPT #ChatGPT #SafariExtension #DataPortability #DigitalArchiving #macOS #Privacy
+
+
+---- Personal repost ----
+
+ChatGPT conversations increasingly include the files around the discussion, not just the words in it.
+
+LogGPT 1.2.0 keeps the original JSON export simple, while LogGPT Plus can preserve generated files, uploads, or both in one ZIP with a manifest describing what was captured.
+
+This is about keeping a more complete local record without sending the conversation through another service.
+
+https://unixwzrd.ai/s/39e7b3ae47/
+
+#LogGPT #ChatGPT #DataPortability #LocalFirst
+
+
+==================================================
+X / TWITTER
+==================================================
+
+LogGPT 1.2.0 is out.
+
+Basic export remains JSON-only. LogGPT Plus can preserve generated files, uploads, or both in one ZIP with the conversation JSON and an artifact manifest.
+
+No accounts, analytics, or external processing.
+
+https://unixwzrd.ai/s/39e7b3ae47/
+
+#LogGPT #ChatGPT
+
+
+Alt version:
+
+A ChatGPT conversation can be more than text.
+
+LogGPT Plus preserves the JSON plus generated files, uploaded files, or both in one ZIP. Partial failures are recorded in the manifest instead of discarding the archive.
+
+https://unixwzrd.ai/s/39e7b3ae47/
+
+#DataPortability #macOS
+
+
+==================================================
+BLUESKY
+==================================================
+
+LogGPT 1.2.0 is now available for Safari.
+
+Basic LogGPT still exports JSON. Plus can preserve generated files, uploads, or both in one ZIP with an artifact manifest—without sending your conversation through another service.
+
+https://unixwzrd.ai/s/39e7b3ae47/
+
+#LogGPT #ChatGPT
+
+
+Alt version:
+
+ChatGPT conversations increasingly include generated and uploaded files, not just text.
+
+LogGPT Plus can preserve those artifacts with the conversation JSON in one local ZIP, including a manifest of what was captured or could not be downloaded.
+
+https://unixwzrd.ai/s/39e7b3ae47/
+
+
+==================================================
+MASTODON
+==================================================
+
+LogGPT 1.2.0 and LogGPT Plus are now available for Safari.
+
+The standard LogGPT workflow remains JSON-only. The permanent Plus upgrade can preserve generated content, uploaded content, or both in one ZIP containing the conversation JSON, the selected artifacts, and an artifact manifest.
+
+An individual download failure does not discard the rest of the archive; LogGPT saves what succeeded and records failures or skipped items in the manifest.
+
+There are no LogGPT accounts, analytics, telemetry, or external processing service. Your archive remains under your control.
+
+https://unixwzrd.ai/s/39e7b3ae47/
+
+#LogGPT #ChatGPT #DataPortability #DigitalArchiving #macOS #Privacy
+
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+LogGPT 1.2.0 and LogGPT Plus: Preserve Conversations and Artifacts
+
+Subtitle:
+ChatGPT conversations are more than text. LogGPT Plus can now preserve the files around them, too.
+
+Body:
+
+A useful ChatGPT conversation often contains more than a sequence of messages.
+
+It may include generated images, documents, spreadsheets, audio, video, code archives, and files uploaded to provide context. The conversation JSON preserves the discussion and its structure, but those artifacts are also part of the record.
+
+LogGPT 1.2.0 keeps the original export workflow intact. Click the export button and standard LogGPT downloads the conversation as structured JSON, just as before.
+
+The new LogGPT Plus upgrade adds the option to preserve generated content, uploaded content, or both. It packages the conversation JSON and selected artifacts together in one ZIP archive, along with an artifact manifest describing what was found and downloaded.
+
+The manifest records details such as stable file identifiers, media types, sizes, hashes, source information, and download status. Generated, uploaded, and derived files remain organized separately, and the original bytes are retained instead of being converted into another format.
+
+The export is also designed to remain useful when an individual file cannot be recovered. LogGPT Plus saves the conversation and every artifact it successfully downloads, then records failures or skipped items in the manifest rather than discarding the entire archive.
+
+This ZIP is a durable capture package. It can be retained as-is or processed offline with tools such as Extract Chat to produce Markdown or HTML that refers to the preserved local files.
+
+LogGPT has no user accounts, analytics, telemetry, or purchase server, and it does not send your conversation to an external processing service. LogGPT Plus is a permanent in-app purchase available through the existing Mac App Store listing.
+
+Read the full release announcement:
+https://unixwzrd.ai/projects/LogGPT/2026/08/19/loggpt-1-2-0-and-loggpt-plus/
+
+Get or update LogGPT on the Mac App Store:
+https://apps.apple.com/us/app/loggpt/id6743342693?mt=12
+
+Tags:
+LogGPT, ChatGPT, Safari Extension, Data Portability, Digital Archiving, macOS, Privacy, Local First, AI Workflows

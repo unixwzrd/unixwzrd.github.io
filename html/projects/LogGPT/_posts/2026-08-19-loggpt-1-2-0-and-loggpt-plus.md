@@ -15,6 +15,8 @@ I am pleased to announce **LogGPT 1.2.0** and the new **LogGPT Plus** upgrade fo
 
 [Get or update LogGPT on the Mac App Store](https://apps.apple.com/us/app/loggpt/id6743342693?mt=12)
 
+Existing users can update LogGPT and use the in app purchase to add LogGPT Plus to their account.
+
 ## LogGPT Remains Simple
 
 The standard LogGPT workflow has not changed: click the export button in a ChatGPT conversation and LogGPT downloads the conversation as structured JSON. Basic export remains JSON-only and does not require the Plus upgrade.
