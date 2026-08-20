@@ -21,6 +21,7 @@ repositories:
   - name: UnicodeFix
     owner: unixwzrd
     overrides:
+      description: "Evidence-based local audit and safe cleanup for hidden Unicode, provenance, and configured watermark signals."
       banner_image_url: "/assets/images/projects/UnicodeFix-banner.png"
   - name: Secrets-Kit
     owner: unixwzrd

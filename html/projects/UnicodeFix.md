@@ -3,72 +3,83 @@ layout: project
 title: "UnicodeFix"
 category: UnicodeFix
 permalink: /projects/UnicodeFix/
-image: /assets/images/projects/UnicodeFix/UnicodeFix-heading-page.png
-excerpt: "UnicodeFix is a lightweight, open-source tool that normalizes text by converting problematic or invisible Unicode characters into clean, reliable ASCII."
+image: /assets/images/projects/UnicodeFix-banner.png
+excerpt: "UnicodeFix v2.0.0 audits hidden Unicode, provenance carriers, configured watermark signals, authorship signals, typography, and formatting—then removes only what it can identify safely."
 ---
 
-**UnicodeFix** is a lightweight, open-source tool that normalizes text by converting problematic or invisible Unicode characters into clean, reliable **ASCII**.
+## Find What Your Editor Does Not Show
 
-If you've ever encountered hidden characters - such as curly quotes, non-breaking spaces, or zero-width joiners - that break code, YAML, Markdown, or configuration files, UnicodeFix is designed to make your text safe, predictable, and portable.
+**UnicodeFix v2.0.0 — the Ghostmark Edition** is a local, evidence-based text audit and cleanup tool. It finds invisible characters, provenance wrappers, configured statistical-watermark signals, hard-wrapped Markdown, and hidden payloads in source comments, then shows where the evidence lives and removes only what it can identify safely.
 
----
+Everything runs locally after installation. Your text is not uploaded to a detector, vendor, or model service.
 
-## What UnicodeFix Does
+## Evidence Before Attribution
 
-- Converts smart quotes, em-dashes, en-dashes, ellipses, and other punctuation into standard ASCII equivalents
-- Removes invisible or disruptive Unicode characters, including:
-- `U+200B` (Zero-Width Space)
-- `U+200C` (Zero-Width Non-Joiner)
-- `U+200D` (Zero-Width Joiner)
-- `U+2018` (Left Single Quotation Mark ' )
-- `U+2019` (Right Single Quotation Mark ' )
-- `U+201C` (Left Double Quotation Mark " )
-- `U+201D` (Right Double Quotation Mark " )
-- `U+2013` (En Dash - )
-- `U+2014` (Em Dash - )
-- `U+2026` (Horizontal Ellipsis ... )
-- Cleans AI-generated, copied, or web-sourced content to prevent downstream parsing errors
-- Reduces risks when working across editors, file formats, and systems
+Ghostmark keeps different kinds of evidence in their proper categories:
 
-**Bonus Trouble makers**
+- **Provenance:** recognized local C2PA carriers and structured manifest elements. Provenance does not, by itself, prove AI authorship.
+- **Unicode security:** bidi controls, default-ignorables, variation selectors, tag and private-use characters, noncharacters, normalization differences, mixed scripts, and confusable signals.
+- **Known watermarks:** results from explicitly configured local detector profiles for supported schemes. A result applies only to that named detector and configuration.
+- **Authorship signals:** optional, locally calibrated model-distribution measurements reported as probabilistic evidence, never as an automatic cleanup trigger.
+- **Typography:** smart quotes, dashes, unusual whitespace, and other observable normalization candidates.
+- **Formatting:** Markdown soft breaks, wrapped list continuations, and probable fixed-column wrapping.
 
-- `U+FEFF` (Byte Order Mark, BOM) - invisible but can totally screw up parsing in some languages.
-- `U+00A0` (Non-Breaking Space) - looks like a regular space but acts differently in many contexts.
+UnicodeFix does not claim that typography identifies an author, that C2PA proves a document was AI-generated, or that one named detector can find every possible watermark.
 
----
+## Audit, Preview, or Clean
 
-## Platform Compatibility
-
-UnicodeFix has been developed and tested on **macOS**.
-It is expected to work on **Linux** and **Windows** (via WSL or Python), but has not yet been officially tested across all environments.
-Contributions and testing feedback are welcome.
-
----
-
-## How to Use
-
-Use it as a command-line tool:
+Use report mode to inventory a file without changing it:
 
 ```bash
-python cleanup-text.py input.txt -o output.txt
+cleanup-text --report --metrics --json document.md
 ```
 
-Or directly in pipelines:
+Preview the exact requested transformation in memory and inspect a unified diff:
 
 ```bash
-cat input.txt | python cleanup-text.py
+cleanup-text --dry-run --diff --unwrap-markdown document.md
 ```
 
-For detailed installation instructions and examples, see:
+Clean supported text and invisible-character problems, opt into safe Markdown unwrapping, or explicitly remove complete recognized local provenance carriers:
 
-* [**View the UnicodeFix Project on GitHub**](https://github.com/unixwzrd/UnicodeFix)
+```bash
+cleanup-text document.txt
+cleanup-text --unwrap-markdown README.md
+cleanup-text --strip-provenance document.md
+cleanup-text --source app.py
+```
 
----
+Category-aware thresholds can turn selected findings into useful CI gates without treating informational typography or wrapping as a security failure.
 
-## Additional Tools
+## Safety Boundaries
 
-UnicodeFix can be combined with editors like **VS Code**, hex editors like **Hex Fiend**, or clipboard managers to sanitize content at various stages of your workflow.
+- Recognized C2PA provenance is preserved unless `--strip-provenance` is explicit, and external manifest URLs are never retrieved during normal operation.
+- Markdown unwrapping is opt-in and preserves code, tables, front matter, HTML, hard breaks, list structure, and other meaningful boundaries.
+- Source mode classifies comments, strings, identifiers, and syntax. It cleans only supported comment payloads and checks parsing before and after transformation.
+- Statistical watermark detection requires a named local profile and matching local artifacts. UnicodeFix does not guess at proprietary or unknown schemes.
+- Authorship probabilities require explicit calibration against a matched held-out corpus and remain report-only.
+- In-place writes use a synced same-directory atomic replacement, retain permissions, and never overwrite an existing preserved backup.
 
----
+## Installation
 
-**Built and maintained by [unixwzrd](https://unixwzrd.ai)** - helping ensure clarity, integrity, and trust in your text, one invisible character at a time.
+UnicodeFix requires **Python 3.10 or newer** and is tested on macOS and Ubuntu through CI.
+
+```bash
+git clone https://github.com/unixwzrd/UnicodeFix.git
+cd UnicodeFix
+./setup.sh
+```
+
+The optional local watermark and authorship lab can be installed separately when you already have the required detector or model artifacts:
+
+```bash
+./setup.sh --watermark-lab
+```
+
+For the complete command reference, research ledger, test documentation, and release history, visit the [UnicodeFix repository on GitHub](https://github.com/unixwzrd/UnicodeFix).
+
+## Local, Inspectable, and Open
+
+UnicodeFix remains open source under the MIT License. Its local research harness and detector profiles are designed to make the scheme, configuration, artifacts, and limitations inspectable instead of presenting a mystery score as fact.
+
+**Built and maintained by [unixwzrd](https://unixwzrd.ai)** — helping ensure clarity, integrity, and trust in your text, one invisible character at a time.

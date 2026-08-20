@@ -100,14 +100,8 @@ layout: default
     {% include series_navigation.html %}
   </div>
 
-  {% include project_lookup.html %}
   <div class="post-engagement">
-    {% include support_block.html %}
-    {%- if page_project -%}
-      {% include project_engagement.html %}
-    {%- else -%}
-      {% include giscus_comments.html %}
-    {%- endif -%}
+    {% include engagement.html %}
   </div>
 
   {% include content_footer.html %}

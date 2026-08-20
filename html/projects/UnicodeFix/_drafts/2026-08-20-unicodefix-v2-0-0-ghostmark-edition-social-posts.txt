@@ -1,0 +1,178 @@
+UnicodeFix v2.0.0 Ghostmark Edition social drafts
+
+Release article:
+https://unixwzrd.ai/projects/UnicodeFix/2026/08/20/unicodefix-v2-0-0-ghostmark-edition/
+
+Short URL:
+https://unixwzrd.ai/s/80c3c94c20/
+
+GitHub repository:
+https://github.com/unixwzrd/UnicodeFix
+
+Suggested hashtags:
+#UnicodeFix #TextForensics #DigitalProvenance #C2PA #Privacy
+
+Alternate hashtags:
+#Python #OpenSource #Unicode #Watermarking #DeveloperTools #LocalFirst
+
+
+==================================================
+LINKEDIN
+==================================================
+
+Not every hidden mark is a watermark.
+
+Not every watermark proves authorship.
+
+Not every provenance record should be stripped.
+
+UnicodeFix v2.0.0—the Ghostmark Edition—is built around those distinctions.
+
+This release turns UnicodeFix into an evidence-based local audit and safe-cleanup tool. It can inventory hidden Unicode and security signals, recognize local C2PA provenance carriers, audit Markdown wrapping, inspect supported payloads in source comments, and run explicitly configured local watermark or authorship profiles.
+
+The important part is what it does not claim.
+
+A curly quote is typography, not proof that a chatbot wrote the text. Column-80 wrapping is formatting. C2PA records provenance. A statistical result applies only to the named detector, configuration, artifacts, and threshold used to produce it.
+
+Ghostmark separates findings into provenance, Unicode security, known-watermark, authorship-signal, typography, and formatting categories. Reports retain locations, confidence, removability, and planned actions rather than collapsing unlike evidence into one mystery score.
+
+The workflow is deliberate:
+
+- audit without changing the file
+- preview the exact transformation and diff
+- clean only supported findings
+- preserve recognized provenance unless removal is explicit
+- keep watermark and authorship claims attached to their detector and limitations
+
+Everything runs locally after installation. Your text is not uploaded to a detector, vendor, model service, or external manifest server.
+
+Read the v2.0.0 release announcement:
+https://unixwzrd.ai/s/80c3c94c20/
+
+#UnicodeFix #TextForensics #DigitalProvenance #C2PA #Privacy #Python #OpenSource
+
+
+---- Personal repost ----
+
+I wanted UnicodeFix 2.0 to be more honest about what text evidence can—and cannot—prove.
+
+Ghostmark finds hidden Unicode, provenance carriers, formatting signals, and explicitly configured watermark or authorship results. It keeps those categories separate, shows the evidence and locations, and cleans only what it can identify safely.
+
+No generic AI-detector theater. No mystery score presented as truth. No upload to somebody else's service.
+
+https://unixwzrd.ai/s/80c3c94c20/
+
+#UnicodeFix #TextForensics #Privacy #LocalFirst
+
+
+==================================================
+X / TWITTER
+==================================================
+
+UnicodeFix v2.0.0 Ghostmark Edition is out.
+
+Audit hidden Unicode, C2PA provenance, formatting, and configured watermark signals locally. Preview exact changes. Clean only supported findings.
+
+No generic AI-detector claims.
+
+https://unixwzrd.ai/s/80c3c94c20/
+
+#UnicodeFix
+
+
+Alt version:
+
+Not every hidden mark is a watermark. Not every watermark proves authorship. Not every provenance record should be stripped.
+
+UnicodeFix 2.0 keeps those facts separate—and keeps the work local.
+
+https://unixwzrd.ai/s/80c3c94c20/
+
+#TextForensics #Privacy
+
+
+==================================================
+BLUESKY
+==================================================
+
+UnicodeFix v2.0.0 Ghostmark Edition is out.
+
+It audits hidden Unicode, provenance, formatting, and configured watermark signals locally; previews exact changes; and cleans only supported findings. No generic AI-detector claims or mystery scores.
+
+https://unixwzrd.ai/s/80c3c94c20/
+
+#UnicodeFix
+
+
+Alt version:
+
+Not every hidden mark is a watermark. Not every watermark proves authorship. Not every provenance record should be stripped.
+
+UnicodeFix 2.0 keeps those facts separate, preserves their limitations, and runs locally.
+
+https://unixwzrd.ai/s/80c3c94c20/
+
+
+==================================================
+MASTODON
+==================================================
+
+UnicodeFix v2.0.0—the Ghostmark Edition—is now available.
+
+This release adds evidence-based local auditing for hidden Unicode and security signals, C2PA provenance, Markdown formatting, supported source-comment payloads, and explicitly configured watermark and authorship profiles.
+
+Ghostmark keeps provenance, Unicode security, known-watermark results, authorship signals, typography, and formatting in separate categories. It reports what was observed, where it lives, what can be removed safely, and which detector or limitation applies.
+
+Recognized provenance is preserved unless removal is explicit. Statistical results apply only to their named local profiles. Authorship signals remain probabilistic and never trigger cleanup.
+
+Everything runs locally after installation; text is not uploaded to a detector, vendor, model service, or external manifest server.
+
+https://unixwzrd.ai/s/80c3c94c20/
+
+#UnicodeFix #TextForensics #DigitalProvenance #C2PA #Privacy #OpenSource
+
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+UnicodeFix v2.0.0: The Ghostmark Edition
+
+Subtitle:
+Find what your editor does not show—without pretending every hidden signal proves who wrote the text.
+
+Body:
+
+Not every hidden mark is a watermark.
+
+Not every watermark proves authorship.
+
+Not every provenance record should be stripped.
+
+UnicodeFix v2.0.0—the Ghostmark Edition—is built around those distinctions.
+
+The original UnicodeFix solved a direct, practical problem: invisible characters and unusual typography can make text look normal while breaking parsers, diffs, configuration files, documentation, or source code.
+
+Version 2.0 keeps that practical cleaner but adds a much more careful evidence model. It can audit hidden Unicode and security signals, recognize local C2PA provenance carriers, identify formatting such as hard-wrapped Markdown, inspect supported hidden payloads in source comments, and run explicitly configured local watermark or authorship profiles.
+
+Those findings are not collapsed into one generic AI score. Ghostmark separates provenance, Unicode security, known-watermark results, authorship signals, typography, and formatting. Detailed reports retain the location, confidence, removability, planned action, and applicable detector or limitation.
+
+That separation matters. A curly quote is typography. Column-80 wrapping is formatting. C2PA is provenance. A statistical watermark result applies only to the named detector, configuration, artifacts, key or seed, and threshold used to produce it. An authorship signal is probabilistic evidence under a pinned and calibrated reference model, not proof of who wrote a paragraph.
+
+The new workflow makes the intended level of intervention explicit. Report mode audits without changing a file. Dry-run and diff modes preview the exact requested transformation. Cleanup removes supported findings, while recognized provenance remains protected unless `--strip-provenance` is explicitly requested.
+
+Markdown and source cleanup have their own guardrails. Markdown unwrapping is opt-in and preserves meaningful document structure. Source mode distinguishes comments from strings, identifiers, and syntax, cleans only supported comment payloads, and verifies parsing before and after the transformation.
+
+The optional watermark and authorship lab also stays local. It requires explicitly configured profiles and matching artifacts already on the machine. UnicodeFix does not download a mystery detector at runtime, contact a vendor service, or claim it can find every unknown or proprietary scheme.
+
+Everything runs locally after installation. Your text is not uploaded to a detector, model service, or external manifest server.
+
+Read the full v2.0.0 release announcement:
+https://unixwzrd.ai/projects/UnicodeFix/2026/08/20/unicodefix-v2-0-0-ghostmark-edition/
+
+Get UnicodeFix on GitHub:
+https://github.com/unixwzrd/UnicodeFix
+
+Tags:
+UnicodeFix, Text Forensics, Digital Provenance, C2PA, Privacy, Python, Open Source, Unicode, Watermarking, Developer Tools, Local First

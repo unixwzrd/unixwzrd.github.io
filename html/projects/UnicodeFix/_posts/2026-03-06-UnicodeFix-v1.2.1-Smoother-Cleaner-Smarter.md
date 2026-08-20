@@ -230,17 +230,10 @@ This project keeps moving because people use it, report weird edge-cases, open i
 
 If UnicodeFix has saved you time, cleaned up a mess, helped your workflow, or spared you one of those invisible-character debugging sessions that steals an afternoon, support is appreciated.
 
-Support the work:
-
-- [Patreon](https://patreon.com/unixwzrd)
-- [Ko-fi](https://ko-fi.com/unixwzrd)
-- [Buy Me a Coffee](https://buymeacoffee.com/unixwzrd)
-
 Bug reports welcome. PRs welcome. New glyph sightings especially welcome.
 
 This project evolves because people keep finding new ways for text to become cursed.
 
 UnicodeFix is how we un-curse it.
 
-* - Mia & the unixwzrd*
-
+- Mia & the unixwzrd*

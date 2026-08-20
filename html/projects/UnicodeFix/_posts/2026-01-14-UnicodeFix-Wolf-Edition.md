@@ -321,17 +321,10 @@ Repo + issues + discussions:
 
 - https://github.com/unixwzrd/UnicodeFix
 
-Support the work (coffee fuels commits):
-
-- [Patreon](https://patreon.com/unixwzrd)
-- [Ko-fi](https://ko-fi.com/unixwzrd)
-- [Buy Me a Coffee](https://buymeacoffee.com/unixwzrd)
-
 Bug reports welcome. PRs welcome. New glyph sightings especially welcome.
 
 This project evolves because people keep finding new ways for text to become cursed.
 
 UnicodeFix is how we un-curse it.
 
-* - Mia & the unixwzrd*
-
+- Mia & the unixwzrd*

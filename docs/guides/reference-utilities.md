@@ -1,7 +1,7 @@
 # Reference & Utilities
 
 **Created:** 2025-07-10
-**Updated:** 2026-05-02
+**Updated:** 2026-08-20
 
 [← Back to Site Operations Guide](site-operations.md)
 
@@ -51,10 +51,22 @@ source .env/project.env
 - **Project Source Data**: [html/_data/repos.yml](../../html/_data/repos.yml)
 - **Generated Project Data**: [html/_data/github_projects.yml](../../html/_data/github_projects.yml)
 - **Project Data Generator**: [utils/bin/fetch_og.py](../../utils/bin/fetch_og.py)
+- **Template Dependency Graph Generator**: [utils/bin/render-jekyll-template-graph](../../utils/bin/render-jekyll-template-graph)
+- **Template Dependency Graph**: [docs/diagrams/site-architecture/jekyll-template-dependencies.svg](../diagrams/site-architecture/jekyll-template-dependencies.svg)
 
 ### URLs
 - **Development**: `http://localhost:4000`
 - **Production**: `https://unixwzrd.ai`
+
+## Jekyll Template Dependency Graph
+
+Run the generator after changing layout inheritance or Liquid includes:
+
+```bash
+./utils/bin/render-jekyll-template-graph
+```
+
+It scans `html/_layouts/` and `html/_includes/`, writes the Graphviz source to `docs/diagrams/site-architecture/jekyll-template-dependencies.dot`, and renders the reference SVG beside it. Only dependencies reachable from a layout are shown. Conditional Liquid branches appear together because this is a static dependency graph; they are not necessarily rendered simultaneously.
 
 ## Project Data Pipeline
 
@@ -291,6 +303,4 @@ This integration ensures that:
 3. **Low Priority**: Set up advanced tracking and conversion goals
 
 See TODO.md and site-improvement-checklist.md for detailed task breakdown.
-
-
 
