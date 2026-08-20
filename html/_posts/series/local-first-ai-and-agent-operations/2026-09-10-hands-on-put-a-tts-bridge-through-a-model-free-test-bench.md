@@ -30,7 +30,7 @@ The tone is not speech and does not represent a person. The aliases `narrator` a
 
 ## What You Will Build and Verify
 
-The package contains a teaching bridge, fake upstream, complete runner, four regression tests, README, and an empty dependency declaration because the lab uses only the Python standard library.
+The package contains a teaching bridge, fake upstream, complete runner, five regression tests, README, and an empty dependency declaration because the lab uses only the Python standard library.
 
 {% include blog_diagram.html
    src="/assets/images/blog/agent-optimization/post-09a-model-free-tts-lab.svg"
@@ -167,13 +167,13 @@ This is a narrow logging check. It does not prove that every library, reverse pr
 
 ## Step 8: Run the Regression Tests
 
-Run all four tests with verbose names:
+Run all five tests with verbose names:
 
 ```bash
 python -m unittest -v test_lab.py
 ```
 
-The first test checks alias, paired-path, and format normalization directly. The second proves that an unknown alias remains an upstream voice rather than manufacturing a reference pair. The third injects each invented synthesis input into an operational event and confirms that every leak is rejected. The fourth reruns the complete acceptance sequence, including timeout, upstream loss, redaction, and cleanup.
+The first test checks alias, paired-path, and format normalization directly. The second proves that an unknown alias remains an upstream voice rather than manufacturing a reference pair. The third injects each invented synthesis input into an operational event and confirms that every leak is rejected. The fourth confirms that response-header values cannot retain carriage returns or line feeds. The fifth reruns the complete acceptance sequence, including timeout, upstream loss, redaction, and cleanup.
 
 You can also compile every Python file without running the network fixture:
 
@@ -195,7 +195,7 @@ Those omissions are intentional. The useful result is a small executable model o
 
 ## Current State
 
-The five-file companion runs with the Python standard library. Its complete acceptance runner exits zero, all four regression tests pass, and all Python files compile. The generated media and transcript are temporary, synthetic, and removed during cleanup. No model, GPU, credential, remote provider, real voice, or private path is used.
+The five-file companion runs with the Python standard library. Its complete acceptance runner exits zero, all five regression tests pass, and all Python files compile. The generated media and transcript are temporary, synthetic, and removed during cleanup. No model, GPU, credential, remote provider, real voice, or private path is used.
 
 ## Next Work
 

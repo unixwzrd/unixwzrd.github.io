@@ -40,7 +40,7 @@ The lab does not test a TTS model, voice similarity, speaker identity, consent, 
 | --- | --- |
 | `tts_bridge_lab.py` | Fake upstream, teaching bridge, alias resolution, format normalization, generated tone, and managed server helpers |
 | `run_lab.py` | Complete acceptance sequence and bounded report |
-| `test_lab.py` | Four regression tests, including the full contract and redaction leak rejection |
+| `test_lab.py` | Five regression tests, including the full contract, redaction leak rejection, and response-header line-break removal |
 | `requirements.txt` | Confirms that the lab uses only the Python standard library |
 
 ## Cleanup
