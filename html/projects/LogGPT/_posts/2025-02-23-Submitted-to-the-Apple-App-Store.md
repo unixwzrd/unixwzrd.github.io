@@ -24,12 +24,4 @@ There are many uses for this extension I have found, like printing chatlogs, ref
 
 ## What's Next?
 
-If you use the command line, I have tools in the [VenvUtil](https://github.com/unixwzrd/venvutil) project that will help you extract your conversations with ChatGPT from teh JSON into either HTML or Markdown.  Suitable for printing from your browser or using the Markdown for content, or saving and archiving conversations.
-
-## Help Support My Work
-
-If you find this useful help support my work;
-  - [Patreon](https://patreon.com/unixwzrd)
-  - [Ko-Fi](https://ko-fi.com/unixwzrd)
-
-
+If you use the command line, I have tools in the [VenvUtil](https://github.com/unixwzrd/venvutil) project that will help you extract your conversations with ChatGPT from the JSON into either HTML or Markdown.  Suitable for printing from your browser or using the Markdown for content, or saving and archiving conversations.

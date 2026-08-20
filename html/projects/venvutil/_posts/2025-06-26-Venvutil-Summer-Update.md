@@ -23,11 +23,11 @@ VenvUtil isn't just a set of wrappers-**it's a full-featured shell library and c
 
 - **4,500+ lines of portable shell code**: POSIX-compliant, modular, and battle-tested for the weirdest edge cases.
 - **Comprehensive command logging**: Every environment-altering command (install, uninstall, clone, remove, update, etc.) gets a forensic-grade audit trail:
-    - Full command line, with env vars
-    - Venv name (even for clones, removals, or deletes by path)
-    - User, host, working directory, Python version, and timestamp
-    - Package "freeze" snapshot before/after
-    - Persistent logs-**even after env deletion**
+  - Full command line, with env vars
+  - Venv name (even for clones, removals, or deletes by path)
+  - User, host, working directory, Python version, and timestamp
+  - Package "freeze" snapshot before/after
+  - Persistent logs-**even after env deletion**
 - **Snapshotted rollbacks**: Any time you run a destructive command, you get an instant rollback point-just restore the previous freeze file.
 - **Handles *all* the odd cases**: Whether you clone by path, remove by name, or clean up after a failed install, VenvUtil logs it all and keeps it readable.
 - **Pluggable for other package managers**: It's not just `pip` and `conda`-we're working on native support for other Python package managers that are Conda-venv compatible (e.g. `mamba`, `micromamba`, `pixi`, `poetry` with conda plugins, and more).
@@ -39,6 +39,7 @@ VenvUtil isn't just a set of wrappers-**it's a full-featured shell library and c
 ## Bonus Utilities: Go Beyond Virtualenv
 
 VenvUtil ships with extras that make modern Python dev (especially for AI/ML) much less painful:
+
 - **`genmd`**: Wrap your project's source files, scripts, and notebooks in Markdown-bundled with a visual file tree. Makes it trivial to prep AI ingestion or context-sharing with LLMs.
 - **`extract-chat`**: Convert OpenAI JSON chat logs to Markdown or HTML, so you can keep "memory" between AI sessions (or just make your prompt history readable).
 - **`venvutil diff` (`vdiff`)**: Compare package lists across environments or at points in time.
@@ -55,6 +56,7 @@ There's a lot under the hood. If you want robust shell tools for Python, you can
 The logs are well formatted for CI/CD pipelines, development shops, and QA groups for keeping track of changes to the environment, down to who, what and when. This allows for virtual environments to be recreated consistently across environments, as well as helping to figure out what changes made something go wrong.
 
 ### Main Global VenvUtil Log
+
 This is the master log file with all Pip and Conda "potentially destructive" commands logged.
 
 ```
@@ -100,12 +102,11 @@ This is the log for a single venv, showing the full command line, the virtual en
 
 Want to know **who** nuked your venv, or **when** a dependency got updated and broke your model training run? You've got a paper trail.
 
-
 ## Quick Install
 
 Clone the repo and source the wrappers:
 
-```
+```bash
 git clone https://github.com/unixwzrd/venvutil
 cd venvutil
 bash setup.sh install
@@ -138,5 +139,3 @@ If you break something or want to contribute, open an issue or PR-be the first!
 Built by [unixwzrd](https://unixwzrd.ai) - for devs who'd rather code than debug "dependency hell." Mia the AI assistant approves. 🐾
 
 *If you use VenvUtil and it makes your life better (or worse), let me know! And yes-support, coffee, and ideas are always appreciated.*
-
-

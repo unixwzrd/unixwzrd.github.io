@@ -18,7 +18,7 @@ If you ever want a masterclass in humility, try refactoring the same codebase fo
 
 ### March: Modularization, Rollbacks, and Finding the Right Structure
 
-When I first started hacking away at this project, I thought: _Let's break it up into proper modules, peel off core logic, make it testable._ Classic software engineering optimism, right? I went from a monolithic, slightly terrifying `TorchDevice.py` to a clean directory tree: `core/`, `ops/`, `utils/`, and so on. Each refactor was followed by a wave of test failures, which in turn led to more test improvements. Some nights I'd modularize a component, run the test suite, then revert the next morning because something fundamental broke.
+When I first started hacking away at this project, I thought: *Let's break it up into proper modules, peel off core logic, make it testable.* Classic software engineering optimism, right? I went from a monolithic, slightly terrifying `TorchDevice.py` to a clean directory tree: `core/`, `ops/`, `utils/`, and so on. Each refactor was followed by a wave of test failures, which in turn led to more test improvements. Some nights I'd modularize a component, run the test suite, then revert the next morning because something fundamental broke.
 
 The modular approach *finally* stuck around late spring-mostly because I started moving one feature at a time, keeping all old interfaces backward-compatible until the dust settled. This made for a fair bit of duplicate code and awkward shims at first, but by late May, everything was centralized, and core tests were passing. I also stabilized the "CPU override" feature, letting you explicitly force everything to the CPU (`cpu:-1`), which has saved my bacon in cross-platform workflows more than once.
 
@@ -55,7 +55,8 @@ This is to the point I believe it is usable, but don't expect it to be bug-free.
 
 It's not perfect: about 13% of Transformers tests still fail, and some CUDA-specific features are fundamentally unsupported on Apple hardware. If you see something that can be fixed, please [submit a PR](https://github.com/unixwzrd/TorchDevice). If you hit a bug or run into a compatibility nightmare, open an issue and include the logs-the more cryptic the error, the better.
 
-#### Next up on my roadmap:
+#### Next up on my roadmap
+
 - Passing more Transformers tests
 - Shoring up missing functionality support for MPS from CUDA
 - Reducing the default log verbosity (my scroll finger needs a break)
@@ -63,7 +64,8 @@ It's not perfect: about 13% of Transformers tests still fail, and some CUDA-spec
 - Improving error diagnostics for easier debugging
 - Further modularizing test utilities and improving docs for contributors
 
-#### Give It a Shot!
+#### Give It a Shot
+
 It's as simple as cloning the repo, installing the dependencies, and running the tests.
 
 ```bash
@@ -95,14 +97,12 @@ If you spot something that could be improved, open a PR, contributions of any si
 ## If You Want to Support TorchDevice
 
 - [⭐ Star on GitHub](https://github.com/unixwzrd/TorchDevice)
-- [Patreon](https://www.patreon.com/unixwzrd), [Ko-Fi](https://ko-fi.com/unixwzrd), [Buy Me a Coffee](https://www.buymeacoffee.com/unixwzrd)
 - File issues, write docs, or just try it out and let me know what breaks
 
 ### Final Thought
+
 If you're stuck porting CUDA code to Apple Silicon, or just want to squeeze more life out of that PyTorch project, give TorchDevice a shot. It's not magic, but after three months of rolling up my sleeves, if anything, the log messages will help identify spots in your code for migration.
 
 **Changelog, docs, demos, and full project details [on GitHub](https://github.com/unixwzrd/TorchDevice).**
 
 *- M S (unixwzrd)*
-
-

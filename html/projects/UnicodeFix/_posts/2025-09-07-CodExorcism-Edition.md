@@ -92,15 +92,10 @@ I built a big chunk of this release using Willow Voice, a Whisper-powered dictat
 
 UnicodeFix works beautifully today. A packaged macOS app (drag-and-drop, bundled Python, zero setup) is on the roadmap - but indie projects move by demand.
 
-If this tool saved your bacon (or kept your professor off your back), fueling development helps:
-
-- [Patreon](https://patreon.com/unixwzrd)
-- [Ko-Fi](https://ko-fi.com/unixwzrd)
-- [Buy Me a Coffee](https://buymeacoffee.com/unixwzrd)
+If this tool saved your bacon (or kept your professor off your back), fueling development helps, feel free to support my work in teh links below.
 
 One coffee = one more tool released into the wild.
 
 ---
 
 Codex summoned the Unicode daemons. UnicodeFix cast them out. Until the next round of the arms race - enjoy the silence.
-

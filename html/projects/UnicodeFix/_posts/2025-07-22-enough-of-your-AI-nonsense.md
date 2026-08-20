@@ -42,11 +42,11 @@ Reddit is full of people complaining about "Cursor Unicode garbage" or professor
 
 It's easy.
 
-| Action            | How to Use UnicodeFix                          |
-|:------------------|:-----------------------------------------------|
-| Paste into Vim    | <code>%!cleanup-text</code>                              |
-| On the clipboard  | <code>pbpaste &#124; cleanup-text &#124; pbcopy</code>    |
-| Batch files       | <code>cleanup-text *.txt</code>                           |
+| Action           | How to Use UnicodeFix                                  |
+| :--------------- | :----------------------------------------------------- |
+| Paste into Vim   | <code>%!cleanup-text</code>                            |
+| On the clipboard | <code>pbpaste &#124; cleanup-text &#124; pbcopy</code> |
+| Batch files      | <code>cleanup-text *.txt</code>                        |
 
 Finder right-click? Use the macOS Shortcut.
 
@@ -175,14 +175,9 @@ Full docs and more usage examples are in the repo.
 
 ## The Big Picture
 
-UnicodeFix isn't just a code tool.
-It's my daily sanity check, my digital lint roller, and my way to make sure my work (and yours) stays readable, reviewable, and truly *human*.
+UnicodeFix isn't just a code tool.  It's my daily sanity check, my digital lint roller, and my way to make sure my work (and yours) stays readable, reviewable, and truly *human*.
 
-It's open source, free, and runs everywhere.
-Use it, star it, share it, and if it saves you as much time as it's saved me, consider supporting development:
-
-- [Patreon](https://patreon.com/unixwzrd)
-- [Ko-Fi](https://ko-fi.com/unixwzrd)
+It's open source, free, and runs everywhere.  Use it, star it, share it, and if it saves you as much time as it's saved me.
 
 Or just spread the word - the Unicode war isn't over, but at least we have some decent artillery now.
 

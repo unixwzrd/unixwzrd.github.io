@@ -41,6 +41,7 @@ Getting this app back into Apple's review queue was not straightforward. Here's 
 To reiterate, this is a **simple, no-nonsense Safari extension** that lets you **export your ChatGPT conversations to JSON**. No ads, no tracking-just a clean way to download your chat logs for archival or content reuse. The file is saved in your **Downloads folder** using the conversation's title from OpenAI.
 
 I personally use this extension for:
+
 - Printing chat logs for reference.
 - Extracting useful responses and formatting them into Markdown.
 - Archiving conversations for future use.
@@ -55,6 +56,7 @@ An unexpected but incredibly useful scenario happened just this morning: we hit 
 ## **Extra Tools for Command Line Users**
 
 If you're comfortable with the command line, check out my [VenvUtil](https://github.com/unixwzrd/venvutil) project. It includes tools to:
+
 - Convert exported JSON files into **HTML or Markdown**.
 - Format and clean up conversations for **printing**.
 - Make archiving and retrieval **easier**.
@@ -65,12 +67,8 @@ If you want to build it yourself, you may download the source code as well as a 
 
 ## **Support My Work**
 
-This extension is priced at **$1.99**, but if you'd like to support me further, you can do so here:
-- [Patreon](https://patreon.com/unixwzrd)
-- [Ko-Fi](https://ko-fi.com/unixwzrd)
+This extension is priced at **$1.99**
 
 This has been an exhausting process, and I'm just glad to finally have it back in Apple's queue. Fingers crossed for a smooth approval this time!
 
-If you are looking fro someone to help you with a project, I am available for hire. I have a wide range of skills and can be a great asset to your team. My specialties are Unix/Linux/macOS system and database administration, automation, and application development and am rather adept with Python, Bash, and a variety of other tools.
-
-
+If you are looking for someone to help you with a project, I am available for hire. I have a wide range of skills and can be a great asset to your team. My specialties are Unix/Linux/macOS system and database administration, automation, and application development and am rather adept with Python, Bash, and a variety of other tools.

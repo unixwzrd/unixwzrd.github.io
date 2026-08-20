@@ -213,12 +213,6 @@ This will filter all the Unicode/UTF-8 and replace it with the closest ASCII cha
 
 ## Get It
 
-If you found all this helpful, you may download the GitHub repository from the link below. If you find the tools useful, it would be great if you could help support our work at:
-
-- [Patreon](https://patreon.com/unixwzrd)
-- [Ko-Fi](https://ko-fi.com/unixwzrd)
-
 Get it on my GitHub: [https://github.com/unixwzrd/UnicodeFix](https://github.com/unixwzrd/UnicodeFix)
 
 Let us know what features you might like to see in the future.
-

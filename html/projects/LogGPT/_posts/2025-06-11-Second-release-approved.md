@@ -51,13 +51,3 @@ This means you now have a **fully compliant, signed, and seamless Safari extensi
 ### For Developers & Power Users
 
 LogGPT is open source! You can build the extension yourself using the [GitHub repository](https://github.com/unixwzrd/LogGPT), and take advantage of companion CLI tools for converting JSON exports into Markdown, HTML, and chunked formats, perfect for advanced AI workflows or archiving.
-
----
-
-### Support & Stay Connected
-
-If you find LogGPT useful and want to support continued development, consider a small purchase on the Mac App Store or support me directly via [Patreon](https://patreon.com/unixwzrd) or [Ko-Fi](https://ko-fi.com/unixwzrd).
-
-Stay tuned for more posts on advanced usage tips, integration with AI pipelines, and updates on new features!
-
-

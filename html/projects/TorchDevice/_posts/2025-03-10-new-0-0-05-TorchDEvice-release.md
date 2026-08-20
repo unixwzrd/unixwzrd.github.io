@@ -25,6 +25,7 @@ PyTorch is extensively optimized for CUDA hardware. However, developers using Ap
 Apart from improving testing, more functionality is now working in this version. Compatibility with Streams, Events, and Context management.
 
 ### CPU Override Feature
+
 The highlight of this release is the new **CPU override functionality**, enabling developers to explicitly force CPU usage, invaluable for:
 
 - **Debugging and testing** GPU-dependent code on a CPU.
@@ -32,6 +33,7 @@ The highlight of this release is the new **CPU override functionality**, enablin
 - **Resource management** by reserving GPU resources for specific tasks.
 
 Activation is straightforward:
+
 ```python
 import torch
 import TorchDevice
@@ -51,27 +53,19 @@ TorchDevice 0.0.5 is extensively tested using HuggingFace Transformers, successf
 Comprehensive Documentation & Examples
 
 We've expanded the documentation to clearly guide developers through installation, configuration, and troubleshooting, making adoption effortless.
-  - Detailed README
-  - Practical usage examples and tutorials
-  - Open community support and contributions via GitHub issues and pull requests
+
+- Detailed README
+- Practical usage examples and tutorials
+- Open community support and contributions via GitHub issues and pull requests
 
 What's Next?
 
 Our future plans include:
-  - Enhanced runtime flexibility for CPU overrides
-  - Granular control over device selection per operation
-  - Performance optimizations for mixed-device workflows
+
+- Enhanced runtime flexibility for CPU overrides
+- Granular control over device selection per operation
+- Performance optimizations for mixed-device workflows
 
 Community and Support
 
 TorchDevice is actively developed and maintained, and your support helps us accelerate improvements and features. If you or your organization finds value in TorchDevice, consider supporting development through sponsorship or donations.
-
-## Help Support Our Projects
-
-If you find this useful help support my work;
-  - [Patreon](https://patreon.com/unixwzrd)
-  - [Ko-Fi](https://ko-fi.com/unixwzrd)
-
-Your feedback drives our roadmap. Let's make PyTorch more accessible and efficient for everyone.
-
-
