@@ -14,6 +14,7 @@ from tts_bridge_lab import (
     build_upstream_payload,
     make_tone_wav,
     operational_events_redact_inputs,
+    safe_header_value,
 )
 
 
@@ -61,6 +62,9 @@ class TTSBridgeLabTests(unittest.TestCase):
                         [safe_event, f"leaked input: {leaked_input}"], SYNTHESIS_INPUTS
                     )
                 )
+
+    def test_header_values_remove_response_splitting_line_breaks(self) -> None:
+        self.assertEqual(safe_header_value("ogg\r\nX-Injected: yes"), "oggX-Injected: yes")
 
     def test_complete_lab_contract(self) -> None:
         report = execute_lab()

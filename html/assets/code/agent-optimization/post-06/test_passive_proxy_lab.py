@@ -12,7 +12,14 @@ from pathlib import Path
 from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 
-from passive_proxy_lab import JsonlMetrics, classify_route, make_proxy_handler, parse_upstream
+from passive_proxy_lab import (
+    JsonlMetrics,
+    classify_route,
+    make_proxy_handler,
+    parse_upstream,
+    safe_header_name,
+    safe_header_value,
+)
 
 
 class CaptureUpstream(BaseHTTPRequestHandler):
@@ -184,6 +191,12 @@ class PassiveProxyLabTests(unittest.TestCase):
     def test_upstream_user_information_is_rejected(self) -> None:
         with self.assertRaisesRegex(ValueError, "must not include user information"):
             parse_upstream("http://invented-user:invented-secret@127.0.0.1:18081")
+
+    def test_forwarded_response_headers_reject_response_splitting_material(self) -> None:
+        self.assertEqual(safe_header_name("X-Lab-Trace"), "X-Lab-Trace")
+        self.assertIsNone(safe_header_name("X-Bad\r\nInjected"))
+        self.assertIsNone(safe_header_name("X-Bad:Injected"))
+        self.assertEqual(safe_header_value("ok\r\nX-Injected: yes"), "okX-Injected: yes")
 
 
 if __name__ == "__main__":

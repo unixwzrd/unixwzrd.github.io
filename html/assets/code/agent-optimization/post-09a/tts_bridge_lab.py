@@ -21,6 +21,11 @@ FORMAT_FALLBACKS = {"ogg": "wav", "opus": "wav"}
 REDACTION_MARKER = "<redacted input text>"
 
 
+def safe_header_value(value: str) -> str:
+    """Remove line breaks before writing a value to an HTTP response header."""
+    return value.replace("\r", "").replace("\n", "")
+
+
 def operational_events_redact_inputs(events: list[str], synthesis_inputs: tuple[str, ...]) -> bool:
     event_text = "\n".join(events)
     return REDACTION_MARKER in event_text and all(value not in event_text for value in synthesis_inputs)
@@ -222,8 +227,14 @@ class BridgeHandler(BaseHTTPRequestHandler):
                 self.send_header("Content-Type", "audio/wav")
                 self.send_header("Content-Length", str(len(response_body)))
                 if downgraded_from:
-                    self.send_header("X-TTS-Bridge-Requested-Format", downgraded_from)
-                    self.send_header("X-TTS-Bridge-Delivered-Format", delivered_format)
+                    self.send_header(
+                        "X-TTS-Bridge-Requested-Format",
+                        safe_header_value(downgraded_from),
+                    )
+                    self.send_header(
+                        "X-TTS-Bridge-Delivered-Format",
+                        safe_header_value(delivered_format),
+                    )
                 self.end_headers()
                 self.wfile.write(response_body)
         except error.HTTPError as exc:

@@ -17,6 +17,7 @@ import argparse
 import http.client
 import json
 import os
+import re
 import stat
 import threading
 import time
@@ -49,6 +50,8 @@ ROUTE_CLASSES = {
     "/healthz": "health",
 }
 
+HEADER_NAME_RE = re.compile(r"^[!#$%&'*+\-.^_`|~0-9A-Za-z]+$")
+
 
 def utc_now() -> str:
     return datetime.now(timezone.utc).isoformat()
@@ -74,6 +77,19 @@ def classify_route(request_target: str) -> str:
 
     path = urlsplit(request_target).path.rstrip("/") or "/"
     return ROUTE_CLASSES.get(path, "other")
+
+
+def safe_header_name(name: str) -> str | None:
+    """Return a header name only if it is a valid RFC 9110 field name."""
+    sanitized = name.replace("\r", "").replace("\n", "").replace(":", "")
+    if sanitized != name:
+        return None
+    return sanitized if HEADER_NAME_RE.fullmatch(sanitized) else None
+
+
+def safe_header_value(value: str) -> str:
+    """Remove line breaks before writing a value to an HTTP response header."""
+    return value.replace("\r", "").replace("\n", "")
 
 
 class JsonlMetrics:
@@ -153,7 +169,10 @@ def make_proxy_handler(
                 lowered = name.lower()
                 if lowered in HOP_BY_HOP_HEADERS or lowered == "content-length":
                     continue
-                self.send_header(name, value)
+                safe_name = safe_header_name(name)
+                if safe_name is None:
+                    continue
+                self.send_header(safe_name, safe_header_value(value))
             self.send_header("Content-Length", str(len(body)))
             self.send_header("Connection", "close")
             self.end_headers()
