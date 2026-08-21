@@ -84,6 +84,8 @@ The wrapper reports the bridge process, listener, bridge HTTP health, configured
 | Speech request | Can the complete path return audio within its bound? | Health can pass while a specific synthesis request fails or times out |
 | Client playback | Can the consuming application use the returned media? | A valid WAV response does not prove a separate MP3 or playback path |
 
+That distinction stopped being theoretical during a recovery after one host panicked and rebooted. External model and reference storage was unavailable, while the bridge reported the selected audio and transcript paths as missing in its own filesystem namespace and forwarded them for upstream resolution as designed. Poor synthesis was reported during the same recovery period. Once storage was restored, the reference files were readable and direct and bridged clone-reference acceptance passed. I cannot honestly say the panic caused the poor output, that the engine used a particular fallback, or that the transcript content was mismatched. I can say that a running process, healthy HTTP endpoints, and even returned audio did not establish that cloned speech was ready.
+
 This is why I did not solve cold model loading by making every timeout large. The bridge uses a bounded upstream timeout for synthesis. A desktop client can give its speech route a longer bound while leaving ordinary API and liveness requests short. When the request still fails, the operator can check bridge health, upstream health, and the model host in that order instead of repeatedly increasing a global timeout.
 
 Retries need the same discipline. Retrying a connection failure once the model becomes reachable is different from restarting an engine after a crash. Replaying a synthesis request can also duplicate work after the client has gone away. The current behavior is manual or explicitly approved lifecycle recovery, not an autonomous restart loop.
@@ -105,6 +107,8 @@ This creates three separate runtime contracts:
 | Media executable | TTS product environment | Must be available to the noninteractive process and tested in each required output path |
 
 That explicit ownership is less convenient than activating one large development environment and much easier to explain after an upgrade.
+
+A dated deployment correction made that upgrade rule much less abstract. The active engine used a Qwen3 TTS 0.6B-family artifact. An attempted move to MLX-Audio 0.5.0 was returned to a patched 0.4.1 runtime after the newer runtime failed the required clone-reference acceptance boundary. A version check and generic synthesis were too weak because they did not prove that the request entered the intended in-context voice-cloning path. Those versions describe one accepted deployment on one date; they are not universal compatibility requirements or a recommendation to pin somebody else's environment the same way.
 
 ## Automatic Recovery Is Still a Proposal
 
@@ -135,13 +139,15 @@ I also avoid setting `HF_HUB_OFFLINE=1` as a telemetry shortcut. Offline mode ch
 
 ## Current State
 
-The current beta includes the Python TTS Bridge, its schema-v2 template, a typed OpenAI-compatible speech boundary, neutral alias and paired-path resolution, pronunciation mapping, response-format fallback, bridge and upstream health, explicit interpreter configuration, bounded upstream requests, input-redacted payload logging, and reviewed lifecycle integration. All fourteen focused bridge tests pass. Dated private deployment evidence confirms that the architectural path has returned speech through the bridge and that independent bridge restart and dependency-ordered cold start have worked in that environment.
+The current beta includes the Python TTS Bridge, its schema-v2 template, a typed OpenAI-compatible speech boundary, neutral alias and paired-path resolution, pronunciation mapping, response-format fallback, bridge and upstream health, explicit interpreter configuration, bounded upstream requests, input-redacted payload logging, and reviewed lifecycle integration. The bridge validates voice-map structure at startup, derives a same-base transcript path when needed, and exposes whether its configured sample directory exists in the bridge's own namespace. It deliberately forwards a missing local reference path so an upstream engine on another filesystem can resolve it. All fourteen focused bridge tests pass. Dated private deployment evidence confirms that direct and bridged requests entered the required clone-reference path and returned valid audio after reference storage was restored.
 
 That private evidence is not a public release claim. Final-artifact TTS, bridge, dependency, individual restart, cold-start, and outage repetitions remain open. The generalized provider contract and third-party provider support remain deferred. Current compatibility pins also remain in place until newer engine and library combinations pass voice-reference and protocol acceptance.
 
 ## Next Work
 
 The next work is intentionally less glamorous than adding another voice. The final artifact needs the remaining protocol and lifecycle repetitions. The provider contract needs a clear local and remote path model without shipping voices or credentials. Compatibility updates need isolated engine, reference, output-format, and rollback checks. Telemetry controls need managed deployment plus observed egress evidence.
+
+Clone-reference readiness also has to move to the inference host, where a check can observe the model artifact and the filesystem that actually owns the selected pair. An adapter-owned readiness or `doctor` check should verify that the model root and both reference files are readable regular files, optionally verify a versioned pair manifest and hashes, and then run an explicitly authorized bounded clone-reference canary. Generic TTS readiness and clone-reference readiness need separate results. A cloning alias should fail closed when its required pair is unavailable; generic speech may remain available only through an explicitly selected path that does not claim cloning. Even that would prove file identity and exercised behavior, not that transcript content semantically matches the recording without operator review.
 
 The proposed recovery policy also needs an implementation and a failure-injection test before it can move out of a diagram. It must preserve explicit stops, use bounded cadence, expose every attempt, distinguish network loss from a process crash, and stop when its retry budget is exhausted.
 
