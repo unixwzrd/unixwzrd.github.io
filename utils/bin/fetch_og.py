@@ -688,6 +688,8 @@ permalink: /projects/{project_data['name']}/
         draft_template = drafts_dir / "template-blog-entry.md"
         if not draft_template.exists():
             draft_content = f"""---
+# Required before moving this draft to _posts:
+# permalink_slug: stable-lowercase-url-slug
 layout: post
 title: \"New {project_data['title']} Update\"
 date: 2024-03-14
@@ -743,6 +745,7 @@ How users can participate or provide feedback.
         sample_post = posts_dir / f"{current_date}-{project_data['name'].lower()}-introduction.md"
         if not sample_post.exists():
             sample_content = f"""---
+permalink_slug: {project_data['name'].lower()}-introduction
 layout: post
 title: \"Introducing {project_data['title']}\"
 date: {current_date}

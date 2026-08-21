@@ -1,4 +1,5 @@
 ---
+permalink_slug: "parental-alienation-awareness-part-5"
 short_url: "https://unixwzrd.ai/s/3a01f97914/"
 layout: post
 title: "Parental Alienation Awareness - Part 5"
@@ -52,4 +53,3 @@ In summary, parental alienation is **widespread, harmful, and costly**, but it i
 <td style="width: 50%; text-align: right;"><a href="/projects/PA-Awareness-1/2025/09/25/parental-alienation-awareness-references/">References →</a></td>
 </tr>
 </table>
-

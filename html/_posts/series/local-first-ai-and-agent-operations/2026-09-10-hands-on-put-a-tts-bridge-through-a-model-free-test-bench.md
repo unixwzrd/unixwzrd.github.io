@@ -7,7 +7,7 @@ date: 2026-09-10 08:00:00 -0500
 categories: [hands-on]
 tags: [ai, agent-optimization, agent-workflows, tts, python, testing, openai-compatible, local-first, privacy]
 image: /assets/images/blog/agent-optimization/post-09-voice-cloning-operations-hero.png
-excerpt: "Build a model-free TTS test bench with a fake OpenAI-compatible upstream, generated tone audio, neutral aliases, layered health checks, bounded timeouts, redacted operational events, and deterministic cleanup."
+excerpt: "Build a model-free TTS test bench with bounded capability and registry metadata, opaque registered references, a legacy compatibility path, layered health, redacted events, and deterministic cleanup."
 series: "Local First AI and Agent Operations"
 series_part: "9A"
 series_order: 95
@@ -20,38 +20,35 @@ series_next_title: "Squeezing More Inference from Apple Silicon with MLXForge"
 published: true
 ---
 
-The [main Part 9 article]({{ page.series_previous_url | relative_url }}) separates an agent-facing speech API from the engine that actually generates audio. This lab lets you test that boundary without installing a model, borrowing somebody's voice, or pointing a client at a network provider.
+The [main Part 9 article]({{ page.series_previous_url | relative_url }}) separates an agent-facing speech API from the engine that generates audio and owns its references. This lab lets you test that boundary without installing a model, borrowing somebody's voice, or pointing a client at a network provider.
 
-I wanted the exercise to prove the operational contract rather than create a toy voice-cloning demo. It generates a short tone WAV, writes an invented matching transcript, starts a fake OpenAI-compatible speech upstream and a small teaching bridge on ephemeral loopback ports, and then checks the happy path and the failures I care about. When it finishes, both servers stop and the temporary reference material is removed.
+I wanted the exercise to prove the operational contract rather than create a toy voice-cloning demo. It generates a short tone WAV and an invented transcript, starts a fake OpenAI-compatible speech engine and a small teaching bridge on ephemeral loopback ports, and then checks the successful paths and the failures I care about. When it finishes, both servers stop and the temporary material is removed.
 
-The tone is not speech and does not represent a person. The aliases `narrator` and `guide` are invented. Nothing in the package measures voice similarity, speaker identity, model quality, GPU behavior, or production latency.
+The preferred path uses an opaque registered-reference ID. One synthetic path pair remains so the older compatibility contract is visible and testable. The tone is not speech and does not represent a person. Nothing in the package measures voice similarity, speaker identity, model quality, GPU behavior, or production latency.
 
 <!--more-->
 
 ## What You Will Build and Verify
 
-The package contains a teaching bridge, fake upstream, complete runner, five regression tests, README, and an empty dependency declaration because the lab uses only the Python standard library.
+The package contains a teaching bridge, fake upstream, complete runner, seven regression tests, README, and an empty dependency declaration because it uses only the Python standard library.
 
 {% include blog_diagram.html
    src="/assets/images/blog/agent-optimization/post-09a-model-free-tts-lab.svg"
-   alt="The model-free lab generates temporary tone and transcript material, starts a teaching bridge and fake upstream, runs happy-path and failure cases, checks health and operational-event redaction boundaries, and cleans up both servers and temporary files."
+   alt="The model-free lab generates temporary tone and transcript material, starts a teaching bridge and fake upstream with capability and registry APIs, reuses a bounded metadata cache, checks an opaque registered reference, retains one legacy path-pair case, fails closed after an unavailable-registry refresh and on an unsupported control, tests transport failures, verifies redaction, and cleans up."
    variant="series" %}
-
-The complete run checks these behaviors:
 
 | Check | Required result |
 | --- | --- |
-| Bridge health | HTTP 200 while the teaching bridge is running |
-| Upstream health | HTTP 200 while the fake upstream is running |
-| Neutral alias | Case-insensitive `NARRATOR` selects the generated audio and transcript pair |
-| Upstream request | The configured pair replaces the alias before the fake upstream sees the payload |
+| Metadata discovery | The bridge caches capability data plus registry reachability and count for a bounded interval |
+| Alias source | The bridge exposes its configured aliases and does not retain the registry's reference IDs |
+| Preferred alias | Case-insensitive `NARRATOR` becomes one opaque `reference_id` |
+| Boundary check | No audio or transcript path crosses the bridge for the registered alias |
+| Legacy compatibility | `guide` selects the generated audio and transcript path pair |
+| Validation failures | An unavailable registry refresh returns 502 and an unsupported instruction returns 422, both before synthesis |
 | Format compatibility | An OGG request is explicitly delivered as WAV |
-| Returned media | Response bytes match the generated tone exactly |
-| Operational log | Contains `<redacted input text>` and none of the three invented synthesis inputs |
-| Invalid input | Missing `input` returns HTTP 400 |
-| Bounded timeout | A deliberately slow upstream returns HTTP 502 |
-| Split health | Bridge health remains HTTP 200 after the upstream stops, while the next speech request returns HTTP 502 |
-| Cleanup | Both server threads stop and the temporary reference directory is removed |
+| Operational events | Input and reference details are replaced with redaction markers |
+| Split health | Bridge health remains 200 after the upstream stops, while synthesis returns 502 |
+| Cleanup | Both server threads stop and the temporary directory is removed |
 
 ## Step 1: Put the Lab in an Isolated Directory
 
@@ -64,8 +61,6 @@ run_lab.py
 test_lab.py
 tts_bridge_lab.py
 ```
-
-The publication package provides the same files as individual source disclosures and as one archive. The archive is the convenient path; the disclosures make the implementation reviewable without forcing a browser download.
 
 Download the [complete five-file Hands-On 9A package]({{ '/assets/code/agent-optimization/post-09a/hands-on-09a-model-free-tts-bridge-lab.zip' | relative_url }}). Every file is also available below through the site's standard collapsed source viewer.
 
@@ -82,27 +77,27 @@ Download the [complete five-file Hands-On 9A package]({{ '/assets/code/agent-opt
 There is no install step. Confirm that your Python is recent enough and that the dependency file contains no package requirements:
 
 ```bash
-python --version
+python3 --version
 sed -n '1,20p' requirements.txt
 ```
 
-The current drafting environment uses Python 3.12. The code depends only on standard-library modules such as `http.server`, `urllib`, `tempfile`, `wave`, and `unittest`.
+The code uses standard-library modules such as `http.server`, `urllib`, `tempfile`, `wave`, and `unittest`.
 
-## Step 2: Read the Safety Boundary Before Running It
+## Step 2: Read the Safety Boundary
 
-The runner creates everything under a new `TemporaryDirectory`. The generated WAV is a low-amplitude tone lasting a fraction of a second. Its sidecar transcript says only that it is invented. The services bind to `127.0.0.1` on ports selected by the operating system, and the fake upstream returns the same generated bytes it receives from the lab fixture.
+The runner creates everything under a new `TemporaryDirectory`. The generated WAV is a low-amplitude tone lasting a fraction of a second. Its transcript says only that it is invented. Both services bind to `127.0.0.1` on ports selected by the operating system.
 
-The lab does not read your TTS configuration, scan a samples directory, inherit a provider token, or contact a remote service. It also does not use launchd or LLM-Ops-Kit. That keeps the experiment focused on the request and observation boundary.
+The lab does not read your TTS configuration, scan a samples directory, inherit a provider token, or contact a remote service. It also does not use launchd or LLM-Ops-Kit. That keeps the exercise focused on the request and observation boundary.
 
 ## Step 3: Run the Complete Acceptance Sequence
 
 Run the bounded report first:
 
 ```bash
-python run_lab.py
+python3 run_lab.py
 ```
 
-The command should exit zero and print one line per acceptance condition. The exact temporary paths and ephemeral ports are deliberately absent from the report. The important portion looks like this:
+The command should exit zero. The exact temporary paths, ephemeral ports, reference ID, and invented inputs are deliberately absent from the 23-condition report. The important portion looks like this:
 
 ```text
 bridge_health                              200
@@ -111,10 +106,17 @@ speech_status                              200
 audio_matches_generated_tone               True
 requested_format                           ogg
 delivered_format                           wav
-alias_removed_before_upstream              True
-reference_audio_selected                   True
-matching_transcript_selected               True
+registered_alias_uses_opaque_id            True
+registered_request_omits_paths             True
+metadata_cache_reused                      True
+legacy_compatibility_status                200
+legacy_pair_selected                       True
+registry_unavailable_status                502
+registry_failure_precedes_synthesis        True
+unsupported_control_status                 422
+control_failure_precedes_synthesis         True
 input_redacted_in_events                   True
+references_redacted_in_events              True
 invalid_input_status                       400
 timeout_status                             502
 bridge_health_after_upstream_stop          200
@@ -123,62 +125,76 @@ temporary_reference_directory_removed      True
 servers_stopped                            True
 ```
 
-This is a deterministic contract report, not a benchmark. It contains status codes, selected-format names, and Boolean comparisons. It does not print the audio bytes, request text, reference paths, or event payloads.
+This is a deterministic contract report, not a benchmark. It contains status codes, selected-format names, and Boolean comparisons. It does not print audio bytes, request text, reference details, temporary paths, or event payloads.
 
-## Step 4: Follow the Alias and Reference Pair
+## Step 4: Follow the Preferred Registered Alias
 
-The runner creates one generated tone and one matching text sidecar, then supplies this in-memory mapping:
+The teaching bridge receives an in-memory alias map with two deliberately different contracts:
 
 ```python
 voice_map = {
-    "narrator": {"sample": "narrator.wav"},
+    "narrator": {"reference_id": "ref_lab_narrator"},
     "guide": {"sample": "narrator.wav", "ref_text": "narrator.txt"},
 }
 ```
 
-When the request uses `NARRATOR`, the lookup is case-insensitive. The teaching bridge removes the alias from the upstream payload and replaces it with the resolved `ref_audio` and `ref_text` pair. The fake upstream records the structured payload so the runner can compare both paths with the files it created, but the bounded report emits only `True` or `False`.
+The first entry is the preferred form. The configured alias supplies the invented identifier. The fake registry returns a record, but the teaching bridge retains only registry reachability and count rather than copying its IDs. When the request uses `NARRATOR`, the bridge removes the alias and forwards only the configured opaque identifier with the target request. The fake engine, like the production engine, remains authoritative for whether that ID is valid.
 
-The behavior is deliberately similar to the current bridge without pretending that this small fixture is the product. It does not prove ownership or consent. It proves that a reviewed mapping selects two files as one operational pair.
+The runner calls bridge health first, which forces a metadata refresh. The next two synthesis requests reuse the resulting capability and registry metadata instead of performing another discovery round trip. The production cache is bounded to 30 seconds; the lab verifies reuse without sleeping for that interval.
 
-## Step 5: Watch Compatibility Without Hiding It
+The identifier is visible here because it is a synthetic fixture. The product redacts reference content and paths, while an opaque ID may remain for operational correlation and must stay out of public evidence. This lab takes the stricter teaching route and redacts the ID from its events too. The point is not that this particular string is special. The point is that the client and bridge do not need the engine's filesystem layout.
 
-The speech request asks for OGG. The teaching bridge knows that its fake upstream returns WAV, so it sends `response_format: wav` upstream and returns two headers:
+## Step 5: Keep One Legacy Path Pair Honest
+
+The `guide` alias exercises the older compatibility path. It resolves the generated WAV and matching transcript, then forwards both synthetic paths to the fake upstream. That case is intentionally labeled legacy compatibility rather than presented as the normal cross-host design.
+
+It remains useful coverage. Existing deployments sometimes need a transition period, and removing the test would make it easy to break an explicitly supported compatibility path by accident. The boundary is that server paths must be allowlisted in a real engine and should not become the default interface between hosts.
+
+## Step 6: Fail Before Synthesis
+
+The runner expires the teaching cache, makes the fake registry return an error, records how many synthesis requests the upstream has received, and calls the bridge again. The failed refresh marks discovery unreachable, the bridge returns 502, and the synthesis count does not change.
+
+It then restores discovery and asks a Qwen-family clone request to use an explicit instruction control. The discovered capability data says that this control is incompatible with reference cloning, so the bridge returns 422 before synthesis. A changed capability revision by itself is not rejected, and the bridge does not validate reference-ID membership locally. Those decisions mirror the current production boundary rather than inventing a stricter bridge contract.
+
+These are not cosmetic checks. They prove that an unavailable discovery refresh and a capability-driven control conflict stop before synthesis while ID validity remains the engine's job.
+
+## Step 7: Watch Compatibility Without Hiding It
+
+The successful request asks for OGG. The teaching bridge knows that its fake upstream returns WAV, so it sends `response_format: wav` upstream and returns two headers:
 
 ```text
 X-TTS-Bridge-Requested-Format: ogg
 X-TTS-Bridge-Delivered-Format: wav
 ```
 
-That is a compatibility decision the caller can observe. The lab then compares the response body with the generated tone byte for byte. A matching result proves that the bridge returned the fake upstream's media unchanged after translating the request. It says nothing about how a real codec, model, or player would behave.
+The lab compares the response body with the generated tone byte for byte. That proves that the bridge returned the fake upstream's media unchanged after translating the request. It says nothing about a real codec, model, or player.
 
-## Step 6: Separate Health from Request Success
+## Step 8: Separate Health from Request Success
 
-The fake upstream first delays its response longer than the bridge's configured `0.05`-second bound. The bridge converts that transport failure into HTTP 502. The short value exists only to keep the lab quick; it is not a production timeout recommendation.
+The fake upstream first delays synthesis longer than the bridge's configured `0.05` second bound. The bridge converts that transport failure into HTTP 502. The short value keeps the lab quick; it is not a production timeout recommendation.
 
-The runner then stops the upstream completely. The bridge continues to answer its own `/health` endpoint with HTTP 200 because its process and listener are still healthy. The next synthesis request returns HTTP 502 because the required upstream is gone.
+The runner then stops the upstream. The bridge continues to answer its own health endpoint with HTTP 200 because its process and listener are healthy, but that forced health refresh marks discovery unreachable. The next speech request returns HTTP 502 because the required upstream metadata is no longer reachable.
 
-That result is the central lesson of the lab. A green bridge is not a green model path. An operator needs both observations, plus a real synthesis check when validating the complete service.
+That result is the central lesson. A green bridge is not a green synthesis path. An operator needs separate bridge, discovery, engine, and real-request observations.
 
-## Step 7: Check the Redaction Boundary
+## Step 9: Check Both Redaction Boundaries
 
-Before forwarding, the teaching bridge copies the structured payload and replaces its `input` value with `<redacted input text>` in the operational event. The upstream still receives the invented input because it needs text to fulfill the request. The runner verifies that the event contains the marker and that none of the happy-path, timeout, or unavailable-upstream inputs appears in any operational event.
+Before forwarding, the teaching bridge copies its structured payload for an operational event. It replaces the target input and any `reference_id`, `ref_audio`, or `ref_text` value with markers. The upstream still receives the invented input and required reference because it needs them to fulfill the request.
 
-This is a narrow logging check. It does not prove that every library, reverse proxy, client, crash reporter, or upstream service has the same redaction policy. It proves only the behavior of the packaged teaching bridge.
+The runner verifies that none of its six invented inputs, the synthetic reference ID, or either temporary path appears in any event. This is a narrow logging check. It does not prove that every client, reverse proxy, dependency, or crash reporter has the same policy.
 
-## Step 8: Run the Regression Tests
+## Step 10: Run the Regression Tests
 
-Run all five tests with verbose names:
+Run all seven tests with verbose names:
 
 ```bash
-python -m unittest -v test_lab.py
+python3 -m unittest -v test_lab.py
 ```
 
-The first test checks alias, paired-path, and format normalization directly. The second proves that an unknown alias remains an upstream voice rather than manufacturing a reference pair. The third injects each invented synthesis input into an operational event and confirms that every leak is rejected. The fourth confirms that response-header values cannot retain carriage returns or line feeds. The fifth reruns the complete acceptance sequence, including timeout, upstream loss, redaction, and cleanup.
-
-You can also compile every Python file without running the network fixture:
+The focused tests cover registered-ID forwarding, legacy pair selection, unknown upstream voices, input redaction, reference redaction, response-header line-break removal, and the complete acceptance sequence. You can also compile every Python file without running the servers:
 
 ```bash
-python -m py_compile tts_bridge_lab.py run_lab.py test_lab.py
+python3 -m py_compile tts_bridge_lab.py run_lab.py test_lab.py
 ```
 
 ## Cleanup and End State
@@ -189,16 +205,16 @@ If you interrupt the process, it still has no authority to modify a production s
 
 ## What This Lab Cannot Prove
 
-The lab does not load a TTS model, clone a voice, evaluate similarity, measure inference speed, exercise a GPU, test a remote network, validate launchd, or prove automatic recovery. It does not make a reference path portable and does not enforce ownership or consent. It also does not establish that the production bridge is ready for every third-party provider.
+The lab does not load a TTS model, clone a voice, evaluate similarity, measure inference speed, exercise a GPU, test a remote network, validate launchd, or prove automatic recovery. It does not enforce ownership or consent, and it does not establish that a production bridge supports every third-party provider.
 
-Those omissions are intentional. The useful result is a small executable model of the compatibility boundary, including its failure states, without requiring sensitive or expensive material.
+Those omissions are intentional. The useful result is a small executable model of the preferred registered-reference boundary, its legacy compatibility path, and its discovery failures without requiring sensitive or expensive material.
 
 ## Current State
 
-The five-file companion runs with the Python standard library. Its complete acceptance runner exits zero, all five regression tests pass, and all Python files compile. The generated media and transcript are temporary, synthetic, and removed during cleanup. No model, GPU, credential, remote provider, real voice, or private path is used.
+The five-file companion runs with the Python standard library. Its complete 23-condition acceptance runner exits zero, all seven regression tests pass, and all Python files compile. The generated media and transcript are temporary, synthetic, and removed during cleanup. No model, GPU, credential, remote provider, real voice, or private path is used.
 
 ## Next Work
 
-The next technical step belongs in the real product acceptance process: repeat bridge and TTS protocol checks against the final artifact, exercise cold start and outage behavior, and test any provider contract with operator-supplied synthetic fixtures before using authorized voice material.
+The next technical step belongs in product acceptance: repeat bridge and TTS protocol checks against the final artifact, exercise cold start and outage behavior, perform human listening review separately, and test rollback with authorized material kept inside the inference service boundary.
 
-The proposed restart policy from Part 9 is not part of this lab. It needs its own implementation, desired-state contract, bounded retry tests, explicit-stop test, outage gating, restart counters, and exhausted-budget evidence before a future Hands-On exercise can present it as runnable behavior.
+The proposed restart policy from Part 9 is not part of this lab. It needs its own implementation, desired-state contract, bounded retry tests, explicit-stop test, discovery gating, restart counters, and exhausted-budget evidence before a future Hands-On exercise can present it as runnable behavior.

@@ -1,4 +1,6 @@
 ---
+permalink_slug: "unicodefix-wolf-edition"
+legacy_project_permalink: "/projects/UnicodeFix/2026/01/14/unicodefix-wolf-edition-v1-2-0-it-solves-problems-now-with-api-support/"
 short_url: "https://unixwzrd.ai/s/0380074875/"
 layout: post
 title: "UnicodeFix - Wolf Edition v1.2.0 (It Solves Problems.) Now with API support."

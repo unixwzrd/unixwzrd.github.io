@@ -1,4 +1,6 @@
 ---
+permalink_slug: "venvutil-summer-update"
+legacy_project_permalink: "/projects/venvutil/2025/06/25/venvutil-update-smarter-shell-based-python-environment-management/"
 short_url: "https://unixwzrd.ai/s/f760a1ea96/"
 image: /assets/images/projects/venvutil/Herding-Cats-and-Virtual-Environments.png
 title: "VenvUtil Update: Smarter Shell-Based Python Environment Management"

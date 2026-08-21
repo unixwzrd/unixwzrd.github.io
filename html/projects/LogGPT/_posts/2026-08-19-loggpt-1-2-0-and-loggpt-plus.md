@@ -1,4 +1,6 @@
 ---
+permalink_slug: "loggpt-1-2-0-and-loggpt-plus"
+legacy_project_permalink: "/projects/LogGPT/2026/08/19/loggpt-1-2-0-and-loggpt-plus-preserve-conversations-and-artifacts/"
 short_link_basis: "/projects/LogGPT/_posts/2026-08-19-loggpt-1-2-0-and-loggpt-plus.md"
 short_url: "https://unixwzrd.ai/s/39e7b3ae47/"
 layout: post

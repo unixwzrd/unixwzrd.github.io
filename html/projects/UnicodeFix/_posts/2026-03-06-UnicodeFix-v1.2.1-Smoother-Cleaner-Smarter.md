@@ -1,4 +1,6 @@
 ---
+permalink_slug: "unicodefix-v1-2-1-smoother-cleaner-smarter"
+legacy_project_permalink: "/projects/UnicodeFix/2026/03/06/unicodefix-v1-2-1-smoother-installs-cleaner-reports-less-weirdness/"
 short_url: "https://unixwzrd.ai/s/59dac1e575/"
 layout: post
 title: "UnicodeFix v1.2.1: Smoother Installs, Cleaner Reports, Less Weirdness"

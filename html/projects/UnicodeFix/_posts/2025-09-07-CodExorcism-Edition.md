@@ -1,4 +1,6 @@
 ---
+permalink_slug: "codexorcism-edition"
+legacy_project_permalink: "/projects/UnicodeFix/2025/09/07/codexorcism-the-power-of-unicodefix-compels-you/"
 short_url: "https://unixwzrd.ai/s/d484ce610e/"
 layout: post
 title: 'CodExorcism: The Power of UnicodeFix Compels You'

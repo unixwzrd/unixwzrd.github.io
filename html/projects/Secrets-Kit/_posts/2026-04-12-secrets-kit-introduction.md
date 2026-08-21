@@ -1,4 +1,6 @@
 ---
+permalink_slug: "secrets-kit-introduction"
+legacy_project_permalink: "/projects/Secrets-Kit/2026/04/12/introducing-secrets-kit/"
 short_url: "https://unixwzrd.ai/s/0a859e361c/"
 layout: post
 title: "Introducing Secrets Kit"
@@ -79,4 +81,3 @@ The repository and documentation are here:
 If you want the project overview rather than the dated launch write-up, start here instead:
 
 [Secrets Kit project page](/projects/Secrets-Kit/)
-

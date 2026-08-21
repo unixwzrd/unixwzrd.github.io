@@ -1,4 +1,6 @@
 ---
+permalink_slug: "minor-changes"
+legacy_project_permalink: "/projects/UnicodeFix/2025/07/28/unicodefix-2025-07-28-extended-ascii-global-ready/"
 short_url: "https://unixwzrd.ai/s/84ee9c68e5/"
 layout: post
 title: "UnicodeFix: 2025-07-28: Extended ASCII, Global Ready"
@@ -25,4 +27,3 @@ cat résumé.txt | cleanup-text > resume.txt
 Stay human. Stay global. UnicodeFix it.
 
 * *Mia & the Unixwzrd*
-

@@ -168,6 +168,31 @@ class SiteReliabilityMonitor:
         except ValueError:
             return default_date
 
+    def _redirect_paths_from_front_matter(
+        self, front_matter: Optional[Dict[str, Any]]
+    ) -> List[str]:
+        """Return compatibility redirect paths declared by a page or post."""
+        if not front_matter:
+            return []
+
+        raw_redirects = front_matter.get("redirect_from")
+        if raw_redirects is None:
+            redirects = []
+        elif isinstance(raw_redirects, list):
+            redirects = raw_redirects
+        else:
+            redirects = [raw_redirects]
+
+        legacy = front_matter.get("legacy_project_permalink")
+        if legacy:
+            redirects.append(legacy)
+
+        return [
+            self._normalize_page_path(str(path))
+            for path in redirects
+            if str(path).strip()
+        ]
+
     def _discover_critical_pages(self) -> List[str]:
         """Auto-discover critical pages from Jekyll file structure."""
         critical_pages = set()
@@ -234,24 +259,25 @@ class SiteReliabilityMonitor:
                                             month = f"{post_date:%m}"
                                             day = f"{post_date:%d}"
 
-                                            # Project posts always use the custom permalink defined in
-                                            # case_preserving_permalinks.rb (title-derived, lowercase slug).
-                                            if front_matter and front_matter.get(
-                                                "title"
-                                            ):
-                                                title_for_slug = front_matter.get(
-                                                    "title"
-                                                )
-                                            else:
-                                                title_for_slug = title
-
-                                            slug = self._slugify(
-                                                title_for_slug, preserve_case=False
+                                            # Project posts freeze their canonical slug so title or
+                                            # source-file edits cannot silently move public URLs.
+                                            slug_source = (
+                                                front_matter.get("permalink_slug")
+                                                if front_matter
+                                                else None
                                             )
+                                            if not slug_source:
+                                                slug_source = title
+                                            slug = self._slugify(str(slug_source))
                                             post_url = f"/projects/{project_name}/{year}/{month}/{day}/{slug}/"
 
                                             critical_pages.add(
                                                 self._normalize_page_path(post_url)
+                                            )
+                                            critical_pages.update(
+                                                self._redirect_paths_from_front_matter(
+                                                    front_matter
+                                                )
                                             )
 
                 # Discover general blog posts

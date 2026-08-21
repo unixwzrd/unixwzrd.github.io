@@ -1,4 +1,5 @@
 ---
+permalink_slug: "parental-alienation-awareness-introduction"
 short_url: "https://unixwzrd.ai/s/48bdafa4a5/"
 layout: post
 title: "Parental Alienation Awareness - Introduction"
@@ -74,4 +75,3 @@ We welcome contributions and feedback. Here's how you can get involved:
 <td style="width: 100%; text-align: center;"><a href="/projects/PA-Awareness-1/2025/09/25/parental-alienation-awareness-part-1/">Part 1: Prevalence and Scope of Parental Alienation →</a></td>
 </tr>
 </table>
-

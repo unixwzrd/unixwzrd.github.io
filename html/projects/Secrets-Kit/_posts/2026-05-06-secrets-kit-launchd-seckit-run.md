@@ -1,4 +1,6 @@
 ---
+permalink_slug: "launchd-seckit-run-and-invisible-env-vars"
+legacy_project_permalink: "/projects/Secrets-Kit/2026/05/04/secrets-kit-1-2-launchd-seckit-run-and-invisible-env-vars/"
 short_url: "https://unixwzrd.ai/s/53370b7288/"
 layout: post
 slug: launchd-seckit-run-and-invisible-env-vars
@@ -123,4 +125,3 @@ Repo and deeper docs: [Secrets-Kit on GitHub](https://github.com/unixwzrd/Secret
 ---
 
 *P.S. If you already read the gentle introduction post, this is the one where the rubber meets `launchd`. Same philosophy: fewer secrets on disk, fewer secrets in argv, fewer apologies later.*
-

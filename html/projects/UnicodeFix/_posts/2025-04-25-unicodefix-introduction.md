@@ -1,4 +1,6 @@
 ---
+permalink_slug: "unicodefix-introduction"
+legacy_project_permalink: "/projects/UnicodeFix/2025/04/25/unicodefix-the-day-invisible-characters-broke-everything/"
 short_url: "https://unixwzrd.ai/s/e46cbed77a/"
 layout: post
 title: "UnicodeFix: The Day Invisible Characters Broke Everything"

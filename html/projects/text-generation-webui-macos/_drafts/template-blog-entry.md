@@ -1,4 +1,6 @@
 ---
+# Required before moving this draft to _posts:
+# permalink_slug: stable-lowercase-url-slug
 image: /assets/images/default-og-image.png
 layout: post
 title: "New Text Generation WebUI macOS Update"

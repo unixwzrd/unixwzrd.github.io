@@ -1,4 +1,6 @@
 ---
+permalink_slug: "new-0-0-05-torchdevice-release"
+legacy_project_permalink: "/projects/TorchDevice/2025/03/05/announcing-torchdevice-0-0-5-beta-transparent-hardware-redirection-for-pytorch/"
 short_url: "https://unixwzrd.ai/s/ca959fd361/"
 layout: post
 image: /assets/images/projects/TorchDevice/TorchDevice001.png

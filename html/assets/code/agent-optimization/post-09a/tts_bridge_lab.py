@@ -19,6 +19,8 @@ from urllib import error, request
 
 FORMAT_FALLBACKS = {"ogg": "wav", "opus": "wav"}
 REDACTION_MARKER = "<redacted input text>"
+REFERENCE_REDACTION_MARKER = "<redacted reference>"
+METADATA_CACHE_SECONDS = 30.0
 
 
 def safe_header_value(value: str) -> str:
@@ -29,6 +31,13 @@ def safe_header_value(value: str) -> str:
 def operational_events_redact_inputs(events: list[str], synthesis_inputs: tuple[str, ...]) -> bool:
     event_text = "\n".join(events)
     return REDACTION_MARKER in event_text and all(value not in event_text for value in synthesis_inputs)
+
+
+def operational_events_redact_references(events: list[str], references: tuple[str, ...]) -> bool:
+    event_text = "\n".join(events)
+    return REFERENCE_REDACTION_MARKER in event_text and all(
+        value not in event_text for value in references
+    )
 
 
 def make_tone_wav(path: Path, *, seconds: float = 0.08, frequency: float = 440.0) -> bytes:
@@ -53,6 +62,19 @@ class FakeUpstreamState:
     received: list[dict[str, Any]] = field(default_factory=list)
     delay_seconds: float = 0.0
     fail_status: int | None = None
+    registry_reachable: bool = True
+    capability_revision: str = "lab-capability-v1"
+    capability_requests: int = 0
+    registry_requests: int = 0
+    references: list[dict[str, Any]] = field(
+        default_factory=lambda: [
+            {
+                "reference_id": "ref_lab_narrator",
+                "name": "narrator",
+                "clone_capable": True,
+            }
+        ]
+    )
 
 
 @dataclass
@@ -62,6 +84,7 @@ class BridgeConfig:
     voice_map: dict[str, dict[str, str]]
     timeout_seconds: float = 1.0
     events: list[str] = field(default_factory=list)
+    upstream_metadata: dict[str, Any] = field(default_factory=dict)
 
 
 class ManagedServer:
@@ -88,18 +111,90 @@ def normalize_format(requested: str) -> tuple[str, str | None]:
     return delivered, requested if delivered != requested else None
 
 
-def resolve_alias(voice: str, cfg: BridgeConfig) -> tuple[Path, Path] | None:
+def resolve_alias(voice: str, cfg: BridgeConfig) -> dict[str, str] | None:
     entry = cfg.voice_map.get((voice or "").strip().lower())
     if entry is None:
         return None
+    if "reference_id" in entry:
+        return {"reference_id": entry["reference_id"]}
     sample = (cfg.samples_dir / entry["sample"]).resolve()
     transcript_name = entry.get("ref_text") or sample.with_suffix(".txt").name
     transcript = (cfg.samples_dir / transcript_name).resolve()
-    return sample, transcript
+    return {"ref_audio": str(sample), "ref_text": str(transcript)}
+
+
+class DiscoveryUnavailable(RuntimeError):
+    pass
+
+
+class CapabilityValidation(ValueError):
+    pass
+
+
+def fetch_json(url: str, *, timeout: float) -> dict[str, Any]:
+    try:
+        with request.urlopen(url, timeout=timeout) as response:
+            value = json.loads(response.read().decode("utf-8"))
+    except Exception as exc:  # noqa: BLE001
+        raise DiscoveryUnavailable("upstream discovery unavailable") from exc
+    if not isinstance(value, dict):
+        raise DiscoveryUnavailable("upstream discovery returned an invalid document")
+    return value
+
+
+def refresh_upstream_metadata(cfg: BridgeConfig, *, force: bool = False) -> dict[str, Any]:
+    cached = cfg.upstream_metadata
+    now = time.monotonic()
+    if (
+        not force
+        and cached
+        and now - float(cached.get("checked_at", 0.0)) < METADATA_CACHE_SECONDS
+    ):
+        return cached
+    base = cfg.upstream_base.rstrip("/")
+    try:
+        capabilities = fetch_json(base + "/audio/capabilities", timeout=cfg.timeout_seconds)
+        registry = fetch_json(base + "/audio/references", timeout=cfg.timeout_seconds)
+        records = registry.get("data")
+        if not isinstance(records, list):
+            raise DiscoveryUnavailable("reference registry returned an invalid document")
+        refreshed = {
+            "reachable": True,
+            "capabilities": capabilities,
+            "reference_count": len(records),
+            "checked_at": now,
+        }
+    except DiscoveryUnavailable:
+        refreshed = {
+            "reachable": False,
+            "capabilities": {},
+            "reference_count": 0,
+            "checked_at": now,
+        }
+    cfg.upstream_metadata = refreshed
+    return refreshed
+
+
+def apply_style_controls(
+    output: dict[str, Any], incoming: dict[str, Any], capabilities: dict[str, Any]
+) -> None:
+    instruction = incoming.get("instruction")
+    if instruction is None:
+        return
+    if not isinstance(instruction, str) or not instruction.strip():
+        raise CapabilityValidation("instruction must be a non-empty string")
+    clone_active = any(key in output for key in ("ref_audio", "reference_id"))
+    if clone_active and capabilities.get("family") == "qwen3_tts":
+        raise CapabilityValidation(
+            "Qwen reference cloning does not support explicit instruction controls"
+        )
+    if "instruct" not in set(capabilities.get("style_controls", [])):
+        raise CapabilityValidation("loaded model does not support instruction")
+    output["instruct"] = instruction
 
 
 def build_upstream_payload(
-    incoming: dict[str, Any], cfg: BridgeConfig
+    incoming: dict[str, Any], cfg: BridgeConfig, capabilities: dict[str, Any] | None = None
 ) -> tuple[dict[str, Any], str, str | None]:
     text = incoming.get("input")
     if not isinstance(text, str):
@@ -114,14 +209,14 @@ def build_upstream_payload(
     }
 
     voice = str(incoming.get("voice", ""))
-    pair = resolve_alias(voice, cfg)
-    if pair is None:
+    reference = resolve_alias(voice, cfg)
+    if reference is None:
         if voice:
             output["voice"] = voice
     else:
-        sample, transcript = pair
-        output["ref_audio"] = str(sample)
-        output["ref_text"] = str(transcript)
+        output.update(reference)
+
+    apply_style_controls(output, incoming, capabilities or {})
 
     return output, delivered_format, downgraded_from
 
@@ -131,6 +226,35 @@ class FakeUpstreamHandler(BaseHTTPRequestHandler):
         if self.path in ("/health", "/v1/health"):
             payload = json.dumps({"ok": True, "kind": "fake-upstream"}).encode()
             self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(payload)))
+            self.end_headers()
+            self.wfile.write(payload)
+            return
+        state: FakeUpstreamState = self.server.state  # type: ignore[attr-defined]
+        if self.path == "/v1/audio/capabilities":
+            state.capability_requests += 1
+            payload = json.dumps(
+                {
+                    "revision": state.capability_revision,
+                    "family": "qwen3_tts",
+                    "style_controls": ["instruct"],
+                }
+            ).encode()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(payload)))
+            self.end_headers()
+            self.wfile.write(payload)
+            return
+        if self.path == "/v1/audio/references":
+            state.registry_requests += 1
+            if not state.registry_reachable:
+                payload = json.dumps({"error": "registry_unavailable"}).encode()
+                self.send_response(503)
+            else:
+                payload = json.dumps({"data": state.references}).encode()
+                self.send_response(200)
             self.send_header("Content-Type", "application/json")
             self.send_header("Content-Length", str(len(payload)))
             self.end_headers()
@@ -182,6 +306,7 @@ class BridgeHandler(BaseHTTPRequestHandler):
     def do_GET(self) -> None:  # noqa: N802
         if self.path in ("/health", "/v1/health"):
             cfg: BridgeConfig = self.server.config  # type: ignore[attr-defined]
+            metadata = refresh_upstream_metadata(cfg, force=True)
             self._json(
                 200,
                 {
@@ -189,6 +314,11 @@ class BridgeHandler(BaseHTTPRequestHandler):
                     "kind": "teaching-bridge",
                     "upstream": cfg.upstream_base,
                     "voice_alias_count": len(cfg.voice_map),
+                    "registry_reachable": bool(metadata.get("reachable", False)),
+                    "reference_count": int(metadata.get("reference_count", 0)),
+                    "capability_revision": metadata.get("capabilities", {}).get(
+                        "revision", ""
+                    ),
                 },
             )
             return
@@ -205,13 +335,31 @@ class BridgeHandler(BaseHTTPRequestHandler):
             incoming = json.loads(self.rfile.read(length).decode("utf-8"))
             if not isinstance(incoming, dict):
                 raise ValueError("payload must be an object")
-            outgoing, delivered_format, downgraded_from = build_upstream_payload(incoming, cfg)
         except (json.JSONDecodeError, UnicodeDecodeError, ValueError) as exc:
+            self._json(400, {"error": f"input_validation: {exc}"})
+            return
+
+        metadata = refresh_upstream_metadata(cfg)
+        if not metadata.get("reachable", False):
+            self._json(502, {"error": "upstream_discovery_unavailable"})
+            return
+
+        try:
+            outgoing, delivered_format, downgraded_from = build_upstream_payload(
+                incoming, cfg, metadata.get("capabilities", {})
+            )
+        except CapabilityValidation as exc:
+            self._json(422, {"error": f"style_validation: {exc}"})
+            return
+        except ValueError as exc:
             self._json(400, {"error": f"input_validation: {exc}"})
             return
 
         redacted = dict(outgoing)
         redacted["input"] = REDACTION_MARKER
+        for field in ("reference_id", "ref_audio", "ref_text"):
+            if field in redacted:
+                redacted[field] = REFERENCE_REDACTION_MARKER
         cfg.events.append("upstream payload: " + json.dumps(redacted, sort_keys=True))
         body = json.dumps(outgoing).encode()
         req = request.Request(

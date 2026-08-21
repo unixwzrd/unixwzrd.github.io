@@ -1,4 +1,6 @@
 ---
+# Required before moving this draft to _posts:
+# permalink_slug: stable-lowercase-url-slug
 layout: post
 title: "New Unicodefix Update"
 date: 2024-03-14

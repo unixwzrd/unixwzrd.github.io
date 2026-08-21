@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-08-21: Stable project permalinks and compatibility redirects
+
+- Froze all project-post canonical URL segments with explicit `permalink_slug` front matter so title and source-file edits cannot move published pages.
+- Preserved the 26 former title-based project URLs as compatibility redirects without changing the current canonical paths used by Giscus.
+- Updated the reliability monitor to check frozen canonical paths and declared redirects, and added a post-build CI verifier for project permalink outputs.
+
 ## 2026-08-18: Blog source organization and series directory
 
 - Grouped general-site posts by series first, then by primary category for standalone articles; social copy now lives beside its article as an excluded text sidecar.

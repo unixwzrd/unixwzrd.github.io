@@ -31,10 +31,11 @@ jobs:
         run: |
           JEKYLL_ENV=production bundle exec jekyll build --trace --verbose
 
-      - name: Verify short URL redirects
+      - name: Verify permalink redirects
         run: |
           bundle exec ruby scripts/backfill_short_url_front_matter.rb --check
           bundle exec ruby scripts/verify_short_url_redirects.rb
+          bundle exec ruby scripts/verify_project_permalink_redirects.rb
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -47,4 +48,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-

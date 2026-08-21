@@ -1,4 +1,6 @@
 ---
+permalink_slug: "unicodefix-v2-0-0-ghostmark-edition"
+legacy_project_permalink: "/projects/UnicodeFix/2026/08/20/unicodefix-v2-0-0-the-ghostmark-edition/"
 short_link_basis: "/projects/UnicodeFix/_posts/2026-08-20-unicodefix-v2-0-0-ghostmark-edition.md"
 short_url: "https://unixwzrd.ai/s/80c3c94c20/"
 layout: post

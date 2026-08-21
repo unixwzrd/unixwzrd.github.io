@@ -134,15 +134,21 @@ projects/
 │       └── YYYY-MM-DD-project1-title.md
 ```
 
-### Project post URL slug (`slug`)
+### Project post URL slug (`permalink_slug`)
 
-Permalinks for project posts are built from **`title`**, so a heading like `Secrets Kit 1.2:` becomes `secrets-kit-1-2-...` in the path. To use a shorter, stable segment without changing the visible title, set an explicit slug:
+Every project post must freeze its canonical URL segment independently of its title and source filename:
 
 ```yaml
-slug: launchd-seckit-run-and-invisible-env-vars
+permalink_slug: launchd-seckit-run-and-invisible-env-vars
 ```
 
-(`slug` is normalized the same way as title-derived slugs: lowercased, non-alphanumeric → hyphens.)
+Use lowercase letters, numbers, and single hyphens. Never change `permalink_slug` after publication. If an older canonical path must continue working, preserve it separately:
+
+```yaml
+legacy_project_permalink: /projects/Example/2026/08/20/former-title-based-path/
+```
+
+The project permalink plugin merges that compatibility path into `redirect_from` without replacing existing redirects or the post's short URL.
 
 ## Source code disclosures
 

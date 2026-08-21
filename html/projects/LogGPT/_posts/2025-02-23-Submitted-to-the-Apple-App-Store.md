@@ -1,4 +1,6 @@
 ---
+permalink_slug: "submitted-to-the-apple-app-store"
+legacy_project_permalink: "/projects/LogGPT/2025/02/23/introducing-loggpt-chatgpt-chatlog-export/"
 short_url: "https://unixwzrd.ai/s/0ce5d8bd74/"
 image: /assets/images/default-og-image.png
 layout: post

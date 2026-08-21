@@ -1,4 +1,6 @@
 ---
+permalink_slug: "re-submitted-to-the-apple-app-stor"
+legacy_project_permalink: "/projects/LogGPT/2025/03/20/submitted-again-to-the-apple-app-store/"
 short_url: "https://unixwzrd.ai/s/f919ecb65e/"
 excerpt: "## UPDATE: [LogGPT Available Now on the Apple App Store Now!](https://apps.apple.com/us/app/loggpt/id6743342693)"
 image: /assets/images/projects/LogGPT/LogGPT.png

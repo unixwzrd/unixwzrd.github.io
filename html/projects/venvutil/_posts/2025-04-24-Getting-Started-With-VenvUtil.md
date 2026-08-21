@@ -1,4 +1,6 @@
 ---
+permalink_slug: "getting-started-with-venvutil"
+legacy_project_permalink: "/projects/venvutil/2025/04/24/getting-started-with-venvutil-python-virtual-environment-management/"
 short_url: "https://unixwzrd.ai/s/bdfaa3162a/"
 image: /assets/images/projects/venvutil/Conjuring-VenvUtil.png
 title: "Getting Started with VenvUtil: Python Virtual Environment Management"
@@ -58,5 +60,4 @@ If you want better control over your Python environments - and fewer late-night 
 ---
 
 Built by [unixwzrd](https://unixwzrd.ai) - making virtual environment management a little more sane, one shell command at a time.
-
 

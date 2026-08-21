@@ -60,6 +60,16 @@ class FetchOgFallbackTests(unittest.TestCase):
             self.assertTrue(intro_post_dir.exists())
             self.assertTrue(image_dir.exists())
             self.assertTrue(gitkeep_file.exists())
+            self.assertIn(
+                "# permalink_slug: stable-lowercase-url-slug",
+                draft_template.read_text(encoding="utf-8"),
+            )
+            intro_posts = list(intro_post_dir.glob("*.md"))
+            self.assertEqual(len(intro_posts), 1)
+            self.assertIn(
+                "permalink_slug: llm-ops-kit-introduction",
+                intro_posts[0].read_text(encoding="utf-8"),
+            )
 
             projects = write_projects_data.call_args.args[0]
             self.assertEqual(len(projects), 1)

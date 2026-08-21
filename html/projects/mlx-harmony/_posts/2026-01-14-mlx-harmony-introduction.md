@@ -1,4 +1,6 @@
 ---
+permalink_slug: "mlx-harmony-introduction"
+legacy_project_permalink: "/projects/mlx-harmony/2026/01/14/mlx-harmony-notes-from-an-earlier-experiment/"
 short_url: "https://unixwzrd.ai/s/4e1bd2bb19/"
 layout: post
 title: "MLX Harmony: Notes from an Earlier Experiment"

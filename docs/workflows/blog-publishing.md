@@ -51,7 +51,7 @@ html/
    ```bash
    mv _drafts/title.md _posts/YYYY-MM-DD-short-descriptive-title.md
    ```
-2. The **URL slug** for project posts comes from **`title`** unless you set **`slug:`** in front matter (use this to avoid version numbers or long titles in the path). See [templates/blog-templates.md](../templates/blog-templates.md).
+2. Set the immutable **`permalink_slug:`** for every project post. It controls the canonical URL independently of the title and filename and must not change after publication. See [templates/blog-templates.md](../templates/blog-templates.md).
 3. Optional but recommended: add **`short_url`** after the first build or run:
    ```bash
    bundle exec ruby scripts/backfill_short_url_front_matter.rb html/projects/ProjectName/_posts/YYYY-MM-DD-....md
@@ -63,6 +63,7 @@ html/
    ---
    layout: post
    title: "Your Project Post Title"
+   permalink_slug: your-project-post-title
    date: YYYY-MM-DD
    category: ProjectName
    tags: [tag1, tag2]

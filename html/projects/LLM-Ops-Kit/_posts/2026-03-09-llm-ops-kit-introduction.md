@@ -1,4 +1,6 @@
 ---
+permalink_slug: "llm-ops-kit-introduction"
+legacy_project_permalink: "/projects/LLM-Ops-Kit/2026/03/09/introducing-llm-ops-kit/"
 short_url: "https://unixwzrd.ai/s/4164d53773/"
 layout: post
 title: "Introducing LLM Ops Kit"

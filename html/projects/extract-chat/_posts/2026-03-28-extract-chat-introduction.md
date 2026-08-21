@@ -1,4 +1,6 @@
 ---
+permalink_slug: "extract-chat-introduction"
+legacy_project_permalink: "/projects/extract-chat/2026/03/28/introducing-extract-chat/"
 short_url: "https://unixwzrd.ai/s/f1883c0fcd/"
 layout: post
 title: "Introducing Extract Chat"
@@ -64,4 +66,3 @@ If that sounds like the missing piece in your workflow, start with the repositor
 [View extract-chat on GitHub](https://github.com/unixwzrd/extract-chat)
 
 If you are already using [LogGPT](/projects/LogGPT/), this is the obvious next tool to add. If you are not, this should still make sense on its own: your conversation history should be easier to read, easier to reuse, and easier to keep. That is exactly what `extract-chat` is for.
-

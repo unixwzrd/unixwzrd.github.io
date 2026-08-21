@@ -1,4 +1,6 @@
 ---
+permalink_slug: "second-release-approved"
+legacy_project_permalink: "/projects/LogGPT/2025/06/11/loggpt-new-1-0-5-your-chatgpt-conversations-exported-with-privacy-ease/"
 short_url: "https://unixwzrd.ai/s/45bcbed622/"
 layout: post
 title: "LogGPT: NEW 1.0.5 - Your ChatGPT Conversations, Exported with Privacy & Ease"

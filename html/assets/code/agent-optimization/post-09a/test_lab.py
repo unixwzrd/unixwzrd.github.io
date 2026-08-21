@@ -10,15 +10,31 @@ from pathlib import Path
 from run_lab import SYNTHESIS_INPUTS, execute_lab
 from tts_bridge_lab import (
     REDACTION_MARKER,
+    REFERENCE_REDACTION_MARKER,
     BridgeConfig,
     build_upstream_payload,
     make_tone_wav,
     operational_events_redact_inputs,
+    operational_events_redact_references,
     safe_header_value,
 )
 
 
 class TTSBridgeLabTests(unittest.TestCase):
+    def test_registered_alias_forwards_only_an_opaque_reference_id(self) -> None:
+        config = BridgeConfig(
+            upstream_base="http://127.0.0.1:1/v1",
+            samples_dir=Path("/invented/not-used"),
+            voice_map={"narrator": {"reference_id": "ref_lab_narrator"}},
+        )
+        outgoing, _, _ = build_upstream_payload(
+            {"input": "Invented text.", "voice": "NARRATOR"}, config
+        )
+        self.assertEqual(outgoing["reference_id"], "ref_lab_narrator")
+        self.assertNotIn("voice", outgoing)
+        self.assertNotIn("ref_audio", outgoing)
+        self.assertNotIn("ref_text", outgoing)
+
     def test_alias_selects_audio_and_matching_transcript(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -63,6 +79,21 @@ class TTSBridgeLabTests(unittest.TestCase):
                     )
                 )
 
+    def test_operational_event_redaction_rejects_reference_details(self) -> None:
+        safe_event = (
+            'upstream payload: {"input": "<redacted input text>", '
+            f'"reference_id": "{REFERENCE_REDACTION_MARKER}"}}'
+        )
+        sensitive = ("ref_lab_narrator", "/invented/reference.wav")
+        self.assertTrue(operational_events_redact_references([safe_event], sensitive))
+        for leaked_reference in sensitive:
+            with self.subTest(leaked_reference=leaked_reference):
+                self.assertFalse(
+                    operational_events_redact_references(
+                        [safe_event, f"leaked reference: {leaked_reference}"], sensitive
+                    )
+                )
+
     def test_header_values_remove_response_splitting_line_breaks(self) -> None:
         self.assertEqual(safe_header_value("ogg\r\nX-Injected: yes"), "oggX-Injected: yes")
 
@@ -74,10 +105,17 @@ class TTSBridgeLabTests(unittest.TestCase):
         self.assertTrue(report["audio_matches_generated_tone"])
         self.assertEqual(report["requested_format"], "ogg")
         self.assertEqual(report["delivered_format"], "wav")
-        self.assertTrue(report["alias_removed_before_upstream"])
-        self.assertTrue(report["reference_audio_selected"])
-        self.assertTrue(report["matching_transcript_selected"])
+        self.assertTrue(report["registered_alias_uses_opaque_id"])
+        self.assertTrue(report["registered_request_omits_paths"])
+        self.assertTrue(report["metadata_cache_reused"])
+        self.assertEqual(report["legacy_compatibility_status"], 200)
+        self.assertTrue(report["legacy_pair_selected"])
+        self.assertEqual(report["registry_unavailable_status"], 502)
+        self.assertTrue(report["registry_failure_precedes_synthesis"])
+        self.assertEqual(report["unsupported_control_status"], 422)
+        self.assertTrue(report["control_failure_precedes_synthesis"])
         self.assertTrue(report["input_redacted_in_events"])
+        self.assertTrue(report["references_redacted_in_events"])
         self.assertEqual(report["invalid_input_status"], 400)
         self.assertEqual(report["timeout_status"], 502)
         self.assertEqual(report["bridge_health_after_upstream_stop"], 200)

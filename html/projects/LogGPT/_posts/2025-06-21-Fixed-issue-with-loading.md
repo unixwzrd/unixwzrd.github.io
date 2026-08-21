@@ -1,4 +1,6 @@
 ---
+permalink_slug: "fixed-issue-with-loading"
+legacy_project_permalink: "/projects/LogGPT/2025/06/21/loggpt-new-1-0-6-fixed-issue-with-loading/"
 short_url: "https://unixwzrd.ai/s/a9e3ebad01/"
 layout: post
 title: "LogGPT: NEW 1.0.6 - Fixed issue with loading"
@@ -48,5 +50,4 @@ Once all files are uploaded, I will provide your initial instructions, and we wi
 ```
 
 Be sure to change the file count, overlap and anything else that is needed to make it work for your use case.
-
 

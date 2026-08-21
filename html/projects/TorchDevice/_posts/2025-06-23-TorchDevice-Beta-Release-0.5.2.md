@@ -1,4 +1,6 @@
 ---
+permalink_slug: "torchdevice-beta-release-0-5-2"
+legacy_project_permalink: "/projects/TorchDevice/2025/06/22/torchdevice-0-5-2-still-beta-but-three-months-of-refactoring-testing-and-real-world-breakthroughs/"
 short_url: "https://unixwzrd.ai/s/d767379bd0/"
 layout: post
 title: "TorchDevice 0.5.2: Still Beta, but Three Months of Refactoring, Testing, and Real-World Breakthroughs"

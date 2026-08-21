@@ -1,4 +1,6 @@
 ---
+permalink_slug: "loggpt-introduction"
+legacy_project_permalink: "/projects/LogGPT/2025/04/16/introducing-loggpt-one-click-chatgpt-conversation-export-with-full-privacy/"
 short_url: "https://unixwzrd.ai/s/adbd190dcc/"
 layout: post
 title: "Introducing LogGPT: One-Click ChatGPT Conversation Export with Full Privacy"
@@ -81,4 +83,3 @@ We welcome contributions, feedback, and feature requests!
 - Visit our [GitHub repository](https://github.com/unixwzrd/LogGPT)
 - Open an issue or pull request
 - Join the discussion and help shape the future of LogGPT
-
