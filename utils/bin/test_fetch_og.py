@@ -6,6 +6,8 @@ import json
 from pathlib import Path
 from unittest import mock
 
+import yaml
+
 import fetch_og
 import requests
 
@@ -315,6 +317,41 @@ class FetchOgFallbackTests(unittest.TestCase):
         with mock.patch("sys.argv", ["fetch_og.py", "--refresh-images"]):
             args = fetch_og.parse_args()
         self.assertTrue(args.refresh_images)
+
+    def test_write_projects_data_indents_project_list(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            base_dir = Path(tmpdir)
+            (base_dir / "html/_data").mkdir(parents=True, exist_ok=True)
+
+            projects = [
+                {
+                    "name": "LogGPT",
+                    "owner": "unixwzrd",
+                    "title": "LogGPT and LogGPT Plus",
+                    "description": (
+                        "Safari extension for exporting ChatGPT conversations as JSON, "
+                        "with an optional Plus upgrade that preserves generated artifacts."
+                    ),
+                    "image_url": "/assets/images/projects/LogGPT/LogGPT-Plus.png",
+                    "banner_image_url": "/assets/images/projects/LogGPT-banner.png",
+                    "page_url": "/projects/LogGPT/",
+                    "visibility": "public",
+                    "repo_url": "https://github.com/unixwzrd/LogGPT",
+                }
+            ]
+
+            self.assertTrue(fetch_og.write_projects_data(projects, base_dir))
+
+            content = (base_dir / "html/_data/github_projects.yml").read_text(
+                encoding="utf-8"
+            )
+            self.assertIn("projects:\n  - name: LogGPT", content)
+            self.assertNotIn("projects:\n- name:", content)
+            self.assertIn("description: |", content)
+
+            loaded = yaml.safe_load(content)
+            self.assertEqual(len(loaded["projects"]), 1)
+            self.assertEqual(loaded["projects"][0]["name"], "LogGPT")
 
 
 if __name__ == "__main__":

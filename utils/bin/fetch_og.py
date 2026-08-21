@@ -802,28 +802,46 @@ We welcome contributions and feedback. Here's how you can get involved:
         return False
 
 
+class LiteralStr(str):
+    """Marker for multi-line YAML block descriptions."""
+
+
+class IndentedDumper(yaml.SafeDumper):
+    """PyYAML dumper that indents list items under mapping keys."""
+
+
+def _literal_str_presenter(dumper, data):
+    if len(data) > 60:
+        return dumper.represent_scalar("tag:yaml.org,2002:str", data, style="|")
+    return dumper.represent_scalar("tag:yaml.org,2002:str", data)
+
+
+def _increase_indent(self, flow=False, indentless=True):
+    # PyYAML defaults to indentless sequences; repos.yml expects indented lists.
+    return yaml.SafeDumper.increase_indent(self, flow, False)
+
+
+IndentedDumper.increase_indent = _increase_indent
+IndentedDumper.add_representer(LiteralStr, _literal_str_presenter)
+
+
 def write_projects_data(projects: List[Dict], base_dir: Path) -> bool:
     """Write processed projects data to github_projects.yml."""
     output_file = base_dir / "html/_data/github_projects.yml"
     try:
-        class LiteralStr(str):
-            pass
-
-        def literal_presenter(dumper, data):
-            if len(data) > 60:
-                return dumper.represent_scalar("tag:yaml.org,2002:str", data, style="|")
-            return dumper.represent_scalar("tag:yaml.org,2002:str", data, style='"')
-
-        yaml.add_representer(LiteralStr, literal_presenter)
-
+        serializable_projects = []
         for project in projects:
-            if len(project.get("description", "")) > 60:
-                project["description"] = LiteralStr(project["description"])
+            entry = dict(project)
+            description = entry.get("description", "")
+            if len(description) > 60:
+                entry["description"] = LiteralStr(description)
+            serializable_projects.append(entry)
 
         with open(output_file, "w", encoding="utf-8") as f:
             yaml.dump(
-                {"projects": projects},
+                {"projects": serializable_projects},
                 f,
+                Dumper=IndentedDumper,
                 allow_unicode=True,
                 default_flow_style=False,
                 indent=2,
