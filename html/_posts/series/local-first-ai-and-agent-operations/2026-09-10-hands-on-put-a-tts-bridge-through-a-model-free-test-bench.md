@@ -20,9 +20,9 @@ series_next_title: "Squeezing More Inference from Apple Silicon with MLXForge"
 published: true
 ---
 
-The [main Part 9 article]({{ page.series_previous_url | relative_url }}) separates an agent-facing speech API from the engine that generates audio and owns its references. This lab lets you test that boundary without installing a model, borrowing somebody's voice, or pointing a client at a network provider.
+In the [main Part 9 article]({{ page.series_previous_url | relative_url }}), I separated the speech API an agent sees from the engine that generates audio and owns its references. This lab gives you a safe way to exercise that boundary without installing a model, borrowing somebody's voice, or pointing a client at a network provider.
 
-I wanted the exercise to prove the operational contract rather than create a toy voice-cloning demo. It generates a short tone WAV and an invented transcript, starts a fake OpenAI-compatible speech engine and a small teaching bridge on ephemeral loopback ports, and then checks the successful paths and the failures I care about. When it finishes, both servers stop and the temporary material is removed.
+I built the exercise to prove the operational contract, not to create a toy voice-cloning demo. It generates a short tone WAV and an invented transcript, starts a fake OpenAI-compatible speech engine and a small teaching bridge on ephemeral loopback ports, and walks through both successful requests and the failures I care about. When it finishes, both servers stop and the temporary material disappears with them.
 
 The preferred path uses an opaque registered-reference ID. One synthetic path pair remains so the older compatibility contract is visible and testable. The tone is not speech and does not represent a person. Nothing in the package measures voice similarity, speaker identity, model quality, GPU behavior, or production latency.
 
@@ -30,7 +30,7 @@ The preferred path uses an opaque registered-reference ID. One synthetic path pa
 
 ## What You Will Build and Verify
 
-The package contains a teaching bridge, fake upstream, complete runner, seven regression tests, README, and an empty dependency declaration because it uses only the Python standard library.
+The package contains a teaching bridge, a fake upstream, a complete runner, seven regression tests, a README, and an intentionally empty dependency declaration. Everything runs on the Python standard library.
 
 {% include blog_diagram.html
    src="/assets/images/blog/agent-optimization/post-09a-model-free-tts-lab.svg"
@@ -74,7 +74,7 @@ Download the [complete five-file Hands-On 9A package]({{ '/assets/code/agent-opt
 
 {% include source_code.html source="/assets/code/agent-optimization/post-09a/tts_bridge_lab.py" language="python" title="tts_bridge_lab.py" %}
 
-There is no install step. Confirm that your Python is recent enough and that the dependency file contains no package requirements:
+There is nothing to install. Check that your Python is recent enough and confirm that the dependency file contains no package requirements:
 
 ```bash
 python3 --version
@@ -97,7 +97,7 @@ Run the bounded report first:
 python3 run_lab.py
 ```
 
-The command should exit zero. The exact temporary paths, ephemeral ports, reference ID, and invented inputs are deliberately absent from the 23-condition report. The important portion looks like this:
+The command should exit zero. I deliberately keep exact temporary paths, ephemeral ports, the reference ID, and invented inputs out of the 23-condition report. The useful portion looks like this:
 
 ```text
 bridge_health                              200
@@ -142,13 +142,13 @@ The first entry is the preferred form. The configured alias supplies the invente
 
 The runner calls bridge health first, which forces a metadata refresh. The next two synthesis requests reuse the resulting capability and registry metadata instead of performing another discovery round trip. The production cache is bounded to 30 seconds; the lab verifies reuse without sleeping for that interval.
 
-The identifier is visible here because it is a synthetic fixture. The product redacts reference content and paths, while an opaque ID may remain for operational correlation and must stay out of public evidence. This lab takes the stricter teaching route and redacts the ID from its events too. The point is not that this particular string is special. The point is that the client and bridge do not need the engine's filesystem layout.
+The identifier is visible in the source because it is a synthetic fixture. The product redacts reference content and paths; an opaque ID may remain for operational correlation, but it must stay out of public evidence. I made the lab stricter and redacted the ID from its events too. The string itself is unimportant. What matters is that neither the client nor the bridge needs to know the engine's filesystem layout.
 
 ## Step 5: Keep One Legacy Path Pair Honest
 
 The `guide` alias exercises the older compatibility path. It resolves the generated WAV and matching transcript, then forwards both synthetic paths to the fake upstream. That case is intentionally labeled legacy compatibility rather than presented as the normal cross-host design.
 
-It remains useful coverage. Existing deployments sometimes need a transition period, and removing the test would make it easy to break an explicitly supported compatibility path by accident. The boundary is that server paths must be allowlisted in a real engine and should not become the default interface between hosts.
+I kept this case because existing deployments sometimes need a transition period, and removing the test would make it easy to break an explicitly supported compatibility path by accident. In a real engine, server paths must be allowlisted, and they should never become the default interface between hosts.
 
 ## Step 6: Fail Before Synthesis
 
@@ -156,7 +156,7 @@ The runner expires the teaching cache, makes the fake registry return an error, 
 
 It then restores discovery and asks a Qwen-family clone request to use an explicit instruction control. The discovered capability data says that this control is incompatible with reference cloning, so the bridge returns 422 before synthesis. A changed capability revision by itself is not rejected, and the bridge does not validate reference-ID membership locally. Those decisions mirror the current production boundary rather than inventing a stricter bridge contract.
 
-These are not cosmetic checks. They prove that an unavailable discovery refresh and a capability-driven control conflict stop before synthesis while ID validity remains the engine's job.
+These are not cosmetic checks. They show that an unavailable discovery refresh and a capability-driven control conflict both stop before synthesis, while ID validity remains the engine's job.
 
 ## Step 7: Watch Compatibility Without Hiding It
 
@@ -175,7 +175,7 @@ The fake upstream first delays synthesis longer than the bridge's configured `0.
 
 The runner then stops the upstream. The bridge continues to answer its own health endpoint with HTTP 200 because its process and listener are healthy, but that forced health refresh marks discovery unreachable. The next speech request returns HTTP 502 because the required upstream metadata is no longer reachable.
 
-That result is the central lesson. A green bridge is not a green synthesis path. An operator needs separate bridge, discovery, engine, and real-request observations.
+That result is the reason I built the lab. A green bridge does not mean the synthesis path is green. You need separate observations for the bridge, discovery, engine, and a real request.
 
 ## Step 9: Check Both Redaction Boundaries
 
@@ -199,7 +199,7 @@ python3 -m py_compile tts_bridge_lab.py run_lab.py test_lab.py
 
 ## Cleanup and End State
 
-No manual cleanup is required after a successful run. `run_lab.py` stops the fake upstream and bridge in a `finally` block. The temporary directory then removes the generated tone and transcript. The final two report lines verify both conditions.
+You should not have to clean up after a successful run. `run_lab.py` stops the fake upstream and bridge in a `finally` block, then the temporary directory removes the generated tone and transcript. The final two report lines verify both conditions instead of asking you to trust that cleanup happened.
 
 If you interrupt the process, it still has no authority to modify a production service or configuration. An abandoned temporary directory contains only a generated tone and invented transcript and can be removed through the operating system's normal temporary-file lifecycle.
 
@@ -207,7 +207,7 @@ If you interrupt the process, it still has no authority to modify a production s
 
 The lab does not load a TTS model, clone a voice, evaluate similarity, measure inference speed, exercise a GPU, test a remote network, validate launchd, or prove automatic recovery. It does not enforce ownership or consent, and it does not establish that a production bridge supports every third-party provider.
 
-Those omissions are intentional. The useful result is a small executable model of the preferred registered-reference boundary, its legacy compatibility path, and its discovery failures without requiring sensitive or expensive material.
+I left those things out on purpose. The useful result is a small executable model of the preferred registered-reference boundary, its legacy compatibility path, and its discovery failures, all without requiring sensitive or expensive material.
 
 ## Current State
 
@@ -215,6 +215,6 @@ The five-file companion runs with the Python standard library. Its complete 23-c
 
 ## Next Work
 
-The next technical step belongs in product acceptance: repeat bridge and TTS protocol checks against the final artifact, exercise cold start and outage behavior, perform human listening review separately, and test rollback with authorized material kept inside the inference service boundary.
+The next technical step belongs in product acceptance, not this teaching fixture. That means repeating the bridge and TTS protocol checks against the final artifact, exercising cold start and outage behavior, performing human listening review separately, and testing rollback with authorized material kept inside the inference service boundary.
 
 The proposed restart policy from Part 9 is not part of this lab. It needs its own implementation, desired-state contract, bounded retry tests, explicit-stop test, discovery gating, restart counters, and exhausted-budget evidence before a future Hands-On exercise can present it as runnable behavior.

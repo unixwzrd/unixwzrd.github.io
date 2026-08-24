@@ -28,21 +28,21 @@ published: true
   {% assign hands_on_link_ready = true %}
 {% endif %}
 
-I had a speech endpoint that could report itself healthy while the service behind it was unavailable. That sounds contradictory until the endpoint is treated as what it actually is: a bridge. Its process can be running, its HTTP listener can be answering, and its configuration can be readable while the model is still loading or its reference material is unavailable.
+I had a speech endpoint reporting healthy while the service behind it was unavailable. At first glance that makes no sense, but the endpoint was doing exactly what I had asked it to do. The bridge process was running, its HTTP listener was answering, and its configuration was readable. None of those checks told me whether the model had finished loading or whether its reference material was available.
 
-The distinction became more important when speech requests came from an agent on another host. Ordinary REST calls were expected to finish quickly, but a local TTS engine could need much longer during a cold load. Raising every client timeout would have hidden unrelated failures. Leaving the speech timeout short made a working local model look broken. The useful fix was to stop treating text-to-speech as one opaque feature and operate the request path as a small chain of services.
+That distinction mattered once speech requests started coming from an agent on another host. Most REST calls should finish quickly, while a local TTS engine may take considerably longer during a cold load. Raising every timeout would hide unrelated failures, but keeping the speech timeout short would make a working local model look broken. I eventually stopped treating text-to-speech as one opaque feature and began operating the request path as the small chain of services it really was.
 
-That chain also forced an ethical boundary into the design. A voice alias is convenient configuration. It is not proof that anybody owns a sample, has permission to use it, or has consented to a generated voice. This system is limited to an operator's own material, purpose-made synthetic references, or material the operator is explicitly authorized to use. This is an operations story, not a mechanism for impersonation or a collection of voices to distribute.
+Following that chain also forced me to be explicit about an ethical boundary. A voice alias is convenient configuration, not proof that anybody owns a sample, has permission to use it, or has consented to a generated voice. I limit this system to my own material, purpose-made synthetic references, or material I am explicitly authorized to use. What follows is an operations story, not a recipe for impersonation or a collection of voices to distribute.
 
 <!--more-->
 
 ## The Agent-Facing Interface Needed to Stay Boring
 
-The agent already knew how to call an OpenAI-compatible speech endpoint. I did not want it to know which local engine happened to be running, where its model lived, or how that engine represented a cloned voice. That knowledge belonged behind a compatibility boundary.
+The agent already knew how to call an OpenAI-compatible speech endpoint, and I wanted to keep it that way. It should not need to know which local engine happened to be running, where the model lived, or how that engine represented a cloned voice. Those details belonged behind the compatibility boundary.
 
 The TTS Bridge accepts an OpenAI-compatible speech request, normalizes it, applies reviewed defaults, consults bounded discovery metadata, and forwards a compatible request to the engine. It can select an operator-defined alias, apply a small pronunciation map to the target text, translate model-specific controls, and normalize an unsupported OGG or Opus request to WAV. When it substitutes a format, it reports the requested and delivered formats in response headers instead of quietly pretending it returned something else.
 
-The engine owns model loading, inference, generated media, and the reference registry. The bridge owns the stable agent-facing contract. They now run together on the inference host under the same service identity, with the bridge reaching the engine over loopback. The agent host is only a client. It does not need a model runtime, a sample filesystem, or a fallback bridge.
+The resulting ownership split is fairly simple. The engine owns model loading, inference, generated media, and the reference registry; the bridge owns the stable agent-facing contract. They now run together on the inference host under the same service identity, and the bridge reaches the engine over loopback. The agent host is just a client, with no model runtime, sample filesystem, or fallback bridge to maintain.
 
 {% include blog_diagram.html
    src="/assets/images/blog/agent-optimization/post-09-tts-request-and-ownership.svg"
@@ -64,9 +64,9 @@ The generalized provider contract and third-party provider recipes remain deferr
 
 My first bridge configuration mapped a neutral alias to an audio path and a matching transcript path. That worked, but it exposed an awkward cross-host truth: a filesystem path has meaning only to the process that reads it. Sending a path from one machine to another does not make the file appear there, and checking it on the client tells me nothing about the engine's namespace.
 
-That became painfully obvious during recovery from an unrelated host failure. External storage holding model and reference material was unavailable. The bridge could still run, and audio could still be returned, but the system had not established that the intended clone-reference path was ready. After the storage was restored, direct and bridged clone-reference checks passed. I cannot honestly claim that the host failure caused every poor result seen during that period or that a transcript mismatch occurred. I can say that process health and returned audio were not strong enough acceptance tests.
+I learned that lesson during recovery from an unrelated host failure. External storage holding model and reference material was unavailable, yet the bridge could still run and the system could still return audio. What it had not established was that the intended clone-reference path was ready. Direct and bridged clone-reference checks passed after storage was restored. I cannot honestly claim that the host failure caused every poor result seen during that period, or that a transcript mismatch occurred. I can say that process health and returned audio were not strong enough acceptance tests.
 
-The correction was architectural. The inference service now owns each accepted audio file and transcript as one immutable registry record. Registration gives the pair an opaque `reference_id` and records its hashes atomically. The bridge maps an operator-friendly alias such as `narrator` to that identifier. Neither the agent nor the bridge needs the raw paths or transcript content.
+The correction was architectural rather than another path check. The inference service now owns each accepted audio file and transcript as one immutable registry record. Registration gives the pair an opaque `reference_id` and records both hashes atomically. The bridge maps an operator-friendly alias such as `narrator` to that identifier, leaving neither the agent nor the bridge with a reason to know the raw paths or transcript content.
 
 This is a much better cross-host contract:
 
@@ -76,11 +76,11 @@ This is a much better cross-host contract:
 | Inline reference object | Explicit bounded request using authorized material | Sensitive content crosses the request boundary and requires stricter handling |
 | Legacy server paths | Allowlisted compatibility with an existing deployment | Paths remain host-specific and are disabled unless an operator explicitly permits roots |
 
-The semantic match still needs a human. A digest can prove that I am using the same audio and text I reviewed earlier. It cannot listen to the recording and certify that the transcript says what was spoken.
+The semantic match still needs a human ear. A digest can prove that I am using the same audio and text I reviewed earlier, but it cannot listen to a recording and certify that the transcript says what was spoken.
 
 ## Discovery Became Part of Readiness
 
-Co-location removed the most fragile filesystem boundary, but it did not make the bridge blind. The bridge refreshes engine capabilities and registry metadata, then reuses that result for up to 30 seconds. The cache retains the capability data plus registry reachability and count, not the registry's reference IDs. Configured aliases remain the bridge's source for alias-to-ID mappings, while the engine remains authoritative for whether an ID is valid.
+Co-location removed the most fragile filesystem boundary, but I still did not want the bridge operating blind. It refreshes engine capabilities and registry metadata, then reuses that result for up to 30 seconds. The cache retains capability data plus registry reachability and count, not the registry's reference IDs. Alias-to-ID mappings still come from the bridge's configured aliases, while the engine remains authoritative for whether an ID is valid.
 
 The cached capability family and supported-control list let the bridge reject an incompatible request before synthesis. When a refresh cannot reach either discovery endpoint, it replaces the cached result with an unreachable state and the request fails closed. A request may reuse still-current metadata between refreshes, so this is a bounded cache rather than a fresh discovery round trip on every synthesis call. Reference-ID validity is left to the engine instead of being guessed from a bridge-side copy of the registry.
 
@@ -102,7 +102,7 @@ The wrapper reports the bridge process, listener, bridge HTTP health, configured
 | Speech request | Can the complete path return valid audio within its bound? | Speaker similarity, intelligibility, or consent |
 | Human listening review | Is the output acceptable for the intended use? | Future stability or recovery behavior |
 
-This is why I did not solve cold model loading by making every timeout large. The bridge uses a bounded upstream timeout for synthesis. A client can give speech a longer bound while leaving ordinary API and liveness requests short. When a request fails, the operator can check the bridge, discovery, engine, and synthesis layers in order instead of repeatedly increasing one global timeout.
+I resisted the easy fix of making every timeout large. The bridge uses a bounded upstream timeout for synthesis, while a client can give speech a longer allowance without relaxing ordinary API and liveness requests. When something fails, I can check the bridge, discovery, engine, and synthesis layers in order instead of repeatedly increasing one global number and hoping for the best.
 
 Retries need the same discipline. Retrying a connection failure after the engine becomes reachable is different from restarting an engine after a crash. Replaying synthesis can also duplicate work after the caller has gone away. Current recovery remains manual and reviewed, not an autonomous restart loop.
 
@@ -112,13 +112,13 @@ Retries need the same discipline. Retrying a connection failure after the engine
 
 The clean cold-start tests exposed a familiar macOS service problem: a command that worked in an interactive terminal failed when started noninteractively. Bare `python` did not reliably select the product environment, and audio-format work depended on a media executable that was available in the terminal but absent from the managed process path.
 
-The durable repair was an explicit, immutable runtime. In this deployment, the accepted engine reports patched MLX-Audio `0.5.0+unixwzrd.1` from a UV-managed product environment. The version is a dated fact about this deployment, not a universal recommendation. What matters is that the exact runtime passed the required clone-reference, long-text, streaming-recovery, malformed-request recovery, and model-isolation checks before promotion. A package version and a generic synthesis smoke test would not have established that.
+The durable repair was to make the runtime explicit and immutable. In this deployment, the accepted engine reports patched MLX-Audio `0.5.0+unixwzrd.1` from a UV-managed product environment. That version is a dated fact about this deployment, not a recommendation for everybody else. The important part is that the exact runtime passed clone-reference, long-text, streaming-recovery, malformed-request recovery, and model-isolation checks before promotion. A package version and a generic synthesis smoke test would not have told me any of that.
 
 LLM-Ops-Kit's Python remains a separate ownership boundary from the engine runtime. The bridge and engine may be co-located without sharing an accidental shell environment. That separation makes upgrades and rollback more explainable than one large development environment activated through a profile.
 
 ## Automatic Recovery Is Still a Proposal
 
-An unstable engine makes automatic restart tempting. A naive `KeepAlive` policy is not enough. It can turn an intentional stop into a fight between the operator and the service manager, restart rapidly during an outage, and erase the difference between one crash and a persistent failure.
+When an engine is unstable, automatic restart is tempting. A naive `KeepAlive` policy would make things worse by turning an intentional stop into a fight with the service manager, restarting rapidly during an outage, and hiding the difference between one crash and a persistent failure.
 
 The recovery design under consideration is opt-in and has not been deployed. It requires desired-running state, bounded backoff, a visible restart count, the last exit status, the last successful recovery, and a retry budget. An explicit operator stop changes desired state and suppresses recovery. A crash while desired state remains running can enter the bounded recovery path. Exhaustion remains visible instead of being disguised as a process that restarts forever.
 
@@ -153,7 +153,7 @@ Legacy path pairs remain available only as explicitly allowlisted compatibility 
 
 ## Next Work
 
-The next work is less about adding voices and more about preserving the contract through failure. Final-artifact repetition still needs to cover cold start, outage, restart, rollback, and client reconnection. Human listening review remains separate from objective WAV and protocol checks. The public provider contract still needs a clear local and remote boundary without shipping voices, credentials, or reference material.
+I am less interested in adding more voices right now than in preserving this contract when things fail. Final-artifact repetition still has to cover cold start, outage, restart, rollback, and client reconnection. Human listening review remains separate from objective WAV and protocol checks, and the public provider contract still needs a clear local and remote boundary that does not ship voices, credentials, or reference material.
 
 The proposed recovery policy also needs implementation and failure injection before it can move out of a diagram. It must preserve explicit stops, use bounded cadence, expose every attempt, distinguish discovery failure from a process crash, and stop when its retry budget is exhausted.
 

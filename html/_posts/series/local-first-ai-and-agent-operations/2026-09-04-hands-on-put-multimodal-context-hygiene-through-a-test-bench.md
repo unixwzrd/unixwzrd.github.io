@@ -22,11 +22,11 @@ series_next_date: 2026-09-06 10:00:00 -0500
 published: true
 ---
 
-The [main Part 7 article]({{ page.series_previous_url | relative_url }}) explains why I moved media-history filtering into the selected Qwen Jinja template instead of letting the model proxy rewrite requests. This companion is where you can take that explanation apart and see whether it holds up.
+In the [main Part 7 article]({{ page.series_previous_url | relative_url }}), I explained why media-history filtering belongs in the selected Qwen Jinja template instead of inside a model proxy that is supposed to remain passive. This companion lets you take that explanation apart and see whether it actually holds up.
 
-I did not want another page of source code readers were expected to accept on faith. The useful part is running the same invented conversation through both templates and asking plain questions. Did the old image payload disappear? Did the latest audio result and native vision placeholder remain? Did ordinary tool history stay byte-for-byte identical?
+I did not want to publish another page of source code and ask readers to accept it on faith. The useful part is running the same invented conversation through both templates and asking plain questions: Did the old image payload disappear? Did the latest audio result and native vision placeholder remain? Did ordinary tool history stay byte-for-byte identical?
 
-That is what this lab does. It does not need a model, GPU, private capture, or production agent configuration. Python and Jinja are enough for the core exercise. If you already have LLM-Ops-Kit installed, there is an optional final section that sends the same sanitized request through the model-proxy renderer so you can see where the proxy fits without mistaking it for the component performing the filtering.
+That is the whole point of this lab. You do not need a model, GPU, private capture, or production agent configuration; Python and Jinja are enough for the core exercise. If LLM-Ops-Kit is already installed, the optional final section sends the same sanitized request through the model-proxy renderer. It shows where the proxy fits without pretending that the proxy performs the filtering.
 
 <!--more-->
 
@@ -39,7 +39,7 @@ The package contains both Qwen templates, seven invented fixtures, expected resu
    alt="Sanitized fixtures rendered through stock and derived Qwen templates, compared by a bounded inspector, and checked by eleven executable tests."
    variant="series" %}
 
-By the end of the lab, you will have verified these boundaries yourself:
+The lab gives you enough evidence to verify these boundaries yourself:
 
 | Experiment | Result that must hold |
 | --- | --- |
@@ -55,7 +55,7 @@ The character counts in this lab are measurements of invented rendered strings. 
 
 ## Step 1: Unpack the Lab in Its Own Directory
 
-Download the [complete twelve-file Hands-On 7A package]({{ '/assets/code/agent-optimization/post-07a/hands-on-07a-qwen-media-history-test-bench.zip' | relative_url }}) and expand it into a new working directory. Do not mix it into a model installation yet. The whole point of the first pass is to understand the template behavior before it is attached to a runtime.
+Download the [complete twelve-file Hands-On 7A package]({{ '/assets/code/agent-optimization/post-07a/hands-on-07a-qwen-media-history-test-bench.zip' | relative_url }}) and expand it into a fresh working directory. Do not mix it into a model installation yet. I want the first pass to be about understanding the template behavior before a runtime or live model can complicate the result.
 
 Every file is also available below through the site's standard source viewer. The disclosures stay collapsed until you choose one, and each file can be downloaded separately.
 
@@ -121,7 +121,7 @@ python -m unittest -v test_media_history_template.py test_inspect_fixture.py
 
 The expected result is eleven passing tests. Three cover template provenance, fixture behavior, and fixture-name agreement. Eight cover the reader-facing inspector, including ordinary-history equivalence, negative aggregate-result cases, textual-image removal, native placeholder retention, the intended malformed-ordering error, and the strict 4,096-character boundary.
 
-A rendered prompt can look plausible while quietly dropping a role boundary, tool result, or assistant-generation marker. These tests do not prove good model output, but they do prove agreement with the published fixture contract.
+A rendered prompt can look perfectly plausible while quietly dropping a role boundary, tool result, or assistant-generation marker. These tests do not prove that the model will produce a good answer, but they do prove agreement with the published fixture contract.
 
 ## Step 4: Compare All Seven Fixtures Without Dumping the Payloads
 
@@ -145,7 +145,7 @@ malformed_ordering                 error     error       n/a expected error
 ordinary_text_tool_history           409       409         0           pass
 ```
 
-Those numbers are deterministic for the packaged fixtures and templates. The negative delta is the difference between the derived rendered character count and the stock rendered character count. It tells us how much invented rendered text the policy removed in this particular case. It says nothing by itself about tokenizer behavior, KV-cache allocation, latency, cost, or answer quality.
+Those numbers are deterministic for the packaged fixtures and templates. The negative delta is simply the derived character count minus the stock character count. It tells me how much invented rendered text the policy removed in this particular fixture, and nothing by itself about tokenizer behavior, KV-cache allocation, latency, cost, or answer quality.
 
 The zero-delta cases matter too. Native structured media keeps its Qwen placeholders. The incidental-signature fixture stays intact because a marker without image-result structure is not enough to classify an image exchange.
 
@@ -157,7 +157,7 @@ Ask the inspector for the textual-image case as JSON:
 python inspect_fixture.py textual_image_exchanges --json
 ```
 
-The result reports 10,975 stock characters, 156 derived characters, and seven passing absence checks without printing the canary expansions. That tells me whether the contract held without turning a test log into a synthetic media archive.
+The result reports 10,975 stock characters, 156 derived characters, and seven passing absence checks without printing the canary expansions. I can see whether the contract held without turning the test log into another synthetic media archive.
 
 Now use the lower-level renderer to prove that the markers really are present under the stock template and absent under the derivative:
 
@@ -242,11 +242,11 @@ The expected output is:
 4097: removed
 ```
 
-I like this experiment because it removes a lot of vague language. The condition is greater than 4,096, not greater than or equal to it. The other image-result structure and marker checks still apply. Moving that number by one character changes the routing decision, which is exactly the sort of edge that belongs in a canary rather than a comment.
+I like this experiment because it leaves very little room for vague language. The condition is greater than 4,096, not greater than or equal to it, and the other image-result structure and marker checks still apply. One character changes the routing decision. That is exactly the sort of edge I would rather capture in a canary than explain in a comment and hope everybody interprets the same way.
 
 ## Step 8: See Where the Passive Model Proxy Fits
 
-The core lab calls Jinja directly so there is no proxy or live model to distract from the policy. In an installed LLM-Ops-Kit route, the passive proxy can render a diagnostic view while forwarding the original OpenAI-compatible request upstream unchanged. The model runtime then uses the selected template to construct the actual prompt. For those views to agree, both rendering paths must reference the same template file.
+The core lab calls Jinja directly because a proxy or live model would only distract from the policy being tested. In an installed LLM-Ops-Kit route, the passive proxy can render a diagnostic view while forwarding the original OpenAI-compatible request upstream unchanged. The model runtime then uses the selected template to construct the actual prompt. Both rendering paths must point at the same template file if I expect those two views to agree.
 
 {% include blog_diagram.html
    src="/assets/images/blog/agent-optimization/post-07a-proxy-template-boundary.svg"
@@ -317,7 +317,7 @@ The stock diagnostic contains the textual image canaries and the derived diagnos
 
 Render-only mode does not start the proxy or send bytes across a network, so this exercise does not independently prove passive forwarding. It shows that selecting a different diagnostic template changes the rendered view without changing the input payload recorded by the tool. The proxy's byte-preservation contract is covered by its production regressions and by Hands-On 6A. In a live route, the filtering still happens when the selected template renders message history, not while the proxy forwards the request.
 
-This exercise writes only invented data, but its rendered and raw logs are still content-bearing artifacts. Do not repeat it with a private capture merely because the command is convenient.
+This exercise writes only invented data, but its rendered and raw logs are still content-bearing artifacts. I would not repeat it with a private capture merely because the command happens to be convenient.
 
 ## Step 9: Clean Up the Lab Evidence
 
@@ -334,7 +334,7 @@ rm -f ./sanitized-media-request.json \
 deactivate
 ```
 
-If you skipped the optional proxy exercise, those files will not exist and there is nothing to remove. Keep the package itself if you want a known comparison baseline. Keep the stock fallback with the derivative if you move on to a private runtime canary.
+If you skipped the optional proxy exercise, those files will not exist and there is nothing to remove. Keep the package if you want a known comparison baseline, and keep the stock fallback beside the derivative if you move on to a private runtime canary. A rollback file stored somewhere else is not much of a rollback plan.
 
 ## What This Lab Does Not Prove
 
@@ -352,4 +352,4 @@ The tutorial, inspector, tests, requirements file, package, and two diagrams pas
 
 The lab uses its own twelve-file archive, leaving the approved Part 7 download unchanged. A later revision may add a bounded model-generation canary after the render-only contract remains stable across the exact model and runtime under test.
 
-The next production-facing step is still a bounded model and runtime canary, not a larger synthetic benchmark. The lesson I want readers to keep is simpler: give the same invented history to the stock and derived paths, verify what changed, verify what did not, and keep the passive observer out of the mutation business.
+The next production-facing step is still a bounded model and runtime canary, not a larger synthetic benchmark. The lesson I want readers to take away is simpler: give the same invented history to the stock and derived paths, verify what changed, verify what did not, and keep the passive observer out of the mutation business.
