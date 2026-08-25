@@ -5,7 +5,7 @@ excerpt: "Use SSH host aliases, isolated user accounts, and secure tunnels to ed
 image: /assets/images/scope-and-mission-creeps.png
 layout: post
 title: "Scope Creep Has Never Been This Easy"
-date: 2026-08-25 17:30:00 -0500
+date: 2026-08-25
 categories: [technology]
 tags: [codex, ai, ai-agents, developer-workflow]
 ---
