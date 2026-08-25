@@ -6,7 +6,7 @@ title: "Parental Alienation Awareness - Part 1"
 date: 2025-09-25
 sequence: 1
 category: PA-Awareness-1
-tags: [parental-alienation, research, prevalence, scope]
+tags: [parental-alienation, research]
 excerpt: "How common is parental alienation? Recent research indicates it affects millions of parents and children across demographics and borders."
 image: /assets/images/projects/PA-devastation-1.png
 published: true

@@ -9,7 +9,8 @@ redirect_from:
   - /projects/TorchDevice/2025/03/10/new-0-0-05-TorchDEvice-release/
 date: "2025-03-05"
 category: TorchDevice
-tags: [introduction, overview, pytorch, apple-silicon, mps, cuda]
+tags: [pytorch, apple-silicon, mps, cuda]
+content_type: introduction
 published: true
 excerpt: "We're pleased to announce the release of **TorchDevice 0.0.5 Beta**, a significant milestone in simplifying hardware compatibility for PyTorch applications. This release introduces robust enhancements, thorough testing, and a powerful new **CPU override feature** to ensure seamless integration across CUDA and Apple Silicon (Metal) hardware."
 ---

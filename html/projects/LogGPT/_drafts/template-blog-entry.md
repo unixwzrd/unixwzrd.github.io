@@ -5,7 +5,9 @@ image: /assets/images/default-og-image.png
 layout: post
 title: "New LogGPT ChatGPT Chatlog Exportort Update"
 category: LogGPT
-tags: [development, update]
+content_type: update
+# Choose 2-6 canonical tags from html/_data/tag_taxonomy.yml.
+tags: []
 # author: Michael Sullivan
 # For drafts, use either:
 # published: false  (won't show up at all)

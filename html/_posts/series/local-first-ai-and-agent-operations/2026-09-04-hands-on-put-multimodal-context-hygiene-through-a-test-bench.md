@@ -5,7 +5,7 @@ layout: post
 title: "Hands-On: Put Multimodal Context Hygiene Through a Test Bench"
 date: 2026-09-04 08:00:00 -0500
 categories: [hands-on]
-tags: [ai, agent-optimization, agent-workflows, python, qwen, jinja, multimodal, context-hygiene, model-proxy, testing, local-first]
+tags: [ai, agent-operations, ai-agents, python, qwen, jinja, multimodal, context-hygiene, model-proxy, testing, local-first]
 image: /assets/images/blog/agent-optimization/post-07-multimodal-context-hygiene-hero.png
 excerpt: "Run sanitized conversations through stock and derived Qwen templates, verify exactly what changes, exercise the routing boundary, and inspect the passive model-proxy relationship."
 series: "Local First AI and Agent Operations"

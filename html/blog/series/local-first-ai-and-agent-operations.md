@@ -16,6 +16,8 @@ image: /assets/images/blog/agent-optimization/post-01-local-ai-operations-system
 
 This planned 13-part series follows the work of turning a local-first collection of AI models, agents, services, memory, and developer tools into an environment I can inspect, recover, and improve without hiding the hard parts behind another layer of automation.
 
+Hermes Agent is the system I am operating throughout the series, so names such as `Dashboard` and `Gateway` refer to Hermes components unless I say otherwise. I do not expect every reader to use Hermes. What matters beyond this particular system are the boundaries and habits around it: clear ownership, OpenAI-compatible services, deterministic workflows, governed memory, passive observation, and tests run from the process that actually has to work.
+
 The main installments appear in [Technology](/blog/technology/). Runnable companion articles appear in [Hands-On](/blog/hands-on/). The companions are optional: they sit beside the main sequence instead of interrupting it, so you can follow the engineering argument straight through or pause when you want to build the smaller working example.
 
 {% include series_index.html series="Local First AI and Agent Operations" %}

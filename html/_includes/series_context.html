@@ -5,5 +5,8 @@
   {%- else -%}
     <p><strong>Part {{ page.series_part }} of a planned {{ page.series_total }}-part series: <a href="{{ page.series_url | relative_url }}">{{ page.series }}</a>.</strong>{% if page.series_previous_url %} If you are joining the series here, start with <a href="{{ page.series_previous_url | relative_url }}">{{ page.series_previous_title }}</a>.{% endif %}</p>
   {%- endif -%}
+{%- if page.series == "Local First AI and Agent Operations" -%}
+  <p><strong>About this series:</strong> I use Hermes Agent as the running example. Names specific to Hermes are identified in the article, while the engineering lessons are meant to apply more broadly.</p>
+{%- endif -%}
 </aside>
 {%- endif -%}

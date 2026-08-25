@@ -6,7 +6,8 @@ title: "Parental Alienation Awareness - Introduction"
 date: 2025-09-25
 sequence: 0
 category: PA-Awareness-1
-tags: [introduction, overview, parental-alienation, research, advocacy]
+tags: [parental-alienation, research, advocacy]
+content_type: introduction
 excerpt: "Welcome to the Parental Alienation Awareness project blog. Here we share research-based insights on the scope, impact, and damage of parental alienation to children, families, and society."
 image: /assets/images/projects/PA-devastation-1.png
 published: true

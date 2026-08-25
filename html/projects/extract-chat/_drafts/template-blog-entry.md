@@ -5,7 +5,9 @@ layout: post
 title: "New Extract Chat Update"
 date: 2024-03-14
 category: extract-chat
-tags: [development, update]
+content_type: update
+# Choose 2-6 canonical tags from html/_data/tag_taxonomy.yml.
+tags: []
 excerpt: "Brief introduction about this update"
 image: /assets/images/projects/extract-chat.png
 # author: Michael Sullivan

@@ -7,7 +7,9 @@ image: /assets/images/projects/Case-Analytics/boy-robot-road-unizwzrd-mia-watchi
 title: "Parental Alienation Detection and Prevention using Artificial Intelligence Analytics"
 layout: post
 category: Case-Analytics
-tags: [alpha-release, ai-analysis, parental-alienation, family-law, communication-analysis]
+tags: [ai, parental-alienation, family-law, research]
+content_type: release
+release_stage: alpha
 date: 2025-06-19
 published: true
 redirect_from:

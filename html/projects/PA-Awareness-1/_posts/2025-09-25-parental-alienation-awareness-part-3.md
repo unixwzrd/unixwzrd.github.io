@@ -6,7 +6,7 @@ title: "Parental Alienation Awareness - Part 3"
 date: 2025-09-25
 sequence: 3
 category: PA-Awareness-1
-tags: [parental-alienation, research, consequences, trauma, children, parents]
+tags: [parental-alienation, research, family-impact]
 excerpt: "Parental alienation inflicts serious and often lasting harm on both children and targeted parents, with psychological effects comparable to other adverse childhood experiences."
 image: /assets/images/projects/PA-devastation-1.png
 published: true

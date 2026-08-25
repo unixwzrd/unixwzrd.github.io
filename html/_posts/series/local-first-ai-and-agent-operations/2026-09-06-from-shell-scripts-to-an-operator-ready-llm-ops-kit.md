@@ -5,7 +5,7 @@ layout: post
 title: "From Shell Scripts to an Operator-Ready LLM-Ops-Kit"
 date: 2026-09-06 10:00:00 -0500
 categories: [technology]
-tags: [ai, agent-optimization, agent-workflows, llm-ops-kit, local-first, control-plane, devops, macos, ssh, textual]
+tags: [ai, agent-operations, ai-agents, llm-ops-kit, local-first, ai-operations, devops, macos, ssh, textual]
 image: /assets/images/blog/agent-optimization/post-08-operator-ready-llm-ops-kit-hero.png
 excerpt: "The shell scripts worked, but they could not explain the system. I turned that useful experiment into a small control plane with one configuration model, inspectable plans, typed lifecycle boundaries, and recovery."
 series: "Local First AI and Agent Operations"
@@ -33,11 +33,12 @@ The proof of concept had done its job by showing that the services could operate
 
 The old arrangement mixed shell variables, environment files, service wrappers, host assumptions, and repository state. Even I could not always explain which value would win without tracing the startup path. It might come from a global shell file, a model-specific file, an interactive environment, or whichever copy of the repository happened to be on that host.
 
-LLM-Ops-Kit now uses canonical schema-version-two JSON with an explicit precedence chain:
+LLM-Ops-Kit now puts that answer in canonical schema-version-two JSON. I can follow the precedence from top to bottom, with each later layer allowed to replace the value above it. The final CLI override lasts for only that invocation:
 
-```text
-shipped defaults -> global configuration -> referenced profile -> host snapshot -> temporary CLI override
-```
+{% include blog_diagram.html
+   src="/assets/images/blog/agent-optimization/post-08-configuration-precedence.svg"
+   alt="Configuration precedence flows from shipped defaults through global configuration, a referenced profile, and a role-filtered host snapshot to a temporary CLI override. The later layers determine the effective configuration."
+   variant="series" %}
 
 There is one desired-state authority. Mutable configuration lives there, while deployed commands read checksummed desired-state revisions selected through `current-config`. The installed LLM-Ops-Kit runtime is a separate rollback domain selected through the immutable release's `current` and `previous` links. Trusted control hosts receive the complete secret-free catalog they need for global status and dependency planning. Component hosts receive role-filtered snapshots containing only the profiles needed for their work. Secret values are not part of either snapshot; configuration carries references such as `env:EXAMPLE_TOKEN`, not the token itself.
 

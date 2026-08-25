@@ -13,3 +13,9 @@ repos:
         entry: bundle exec ruby scripts/backfill_short_url_front_matter.rb
         pass_filenames: true
         files: ^html/.*\.(md|html)$
+      - id: tag-taxonomy
+        name: Validate canonical blog tags
+        language: system
+        entry: bundle exec ruby scripts/check_tag_taxonomy.rb
+        pass_filenames: false
+        files: ^(?:html/(?:_data/tag_taxonomy\.yml|_posts/.*\.md|projects/[^/]+/_posts/.*\.md)|scripts/check_tag_taxonomy\.rb)$

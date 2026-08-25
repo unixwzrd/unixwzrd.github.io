@@ -5,7 +5,7 @@ layout: post
 title: "When a Local AI Stack Becomes an Operations System"
 date: 2026-08-17 08:00:00 -0500
 categories: [technology]
-tags: [ai, agent-optimization, local-first-ai, llm-ops, macos, apple-silicon, operations, agent-workflows]
+tags: [ai, agent-operations, local-first-ai, ai-operations, macos, apple-silicon, ai-agents]
 image: /assets/images/blog/agent-optimization/post-01-local-ai-operations-system-hero.png
 excerpt: "The model may be running while the system around it is still broken. This is how a local-first AI experiment became an operations problem involving ownership, dependencies, readiness, recovery, and rollback."
 series: "Local First AI and Agent Operations"

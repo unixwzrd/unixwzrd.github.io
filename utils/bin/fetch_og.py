@@ -694,7 +694,9 @@ layout: post
 title: \"New {project_data['title']} Update\"
 date: 2024-03-14
 category: {project_data['name']}
-tags: [development, update]
+content_type: update
+# Choose 2-6 canonical tags from html/_data/tag_taxonomy.yml.
+tags: []
 excerpt: \"Brief introduction about this update\"
 image: /assets/images/projects/{project_data['name']}.png
 # show_support: false
@@ -750,7 +752,9 @@ layout: post
 title: \"Introducing {project_data['title']}\"
 date: {current_date}
 category: {project_data['name']}
-tags: [introduction, overview]
+content_type: introduction
+# Choose 2-6 canonical tags from html/_data/tag_taxonomy.yml.
+tags: []
 excerpt: \"Welcome to the {project_data['title']} project blog. Here we'll share updates, insights, and progress on our development journey.\"
 image: /assets/images/projects/{project_data['name']}.png
 # show_support: false

@@ -5,7 +5,7 @@ layout: post
 title: "Multimodal Context Hygiene with a Jinja Chat Template"
 date: 2026-09-02 10:00:00 -0500
 categories: [technology]
-tags: [ai, agent-optimization, agent-workflows, qwen, jinja, multimodal, context-hygiene, model-proxy, hermes, local-first]
+tags: [ai, agent-operations, ai-agents, qwen, jinja, multimodal, context-hygiene, model-proxy, hermes, local-first]
 image: /assets/images/blog/agent-optimization/post-07-multimodal-context-hygiene-hero.png
 excerpt: "Old textual media results can consume context long after they stop helping the model. I moved that cleanup into a tested Qwen chat template while keeping the diagnostic proxy passive."
 series: "Local First AI and Agent Operations"

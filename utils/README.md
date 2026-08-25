@@ -86,12 +86,51 @@ Scripts and configs used to **validate**, **build**, **refresh project metadata*
 
 | Resource | Purpose |
 |----------|---------|
+| [bin/article-tts](bin/article-tts) | Extract the prose from a rendered post, divide it into paragraph-aware chunks, and optionally send it to the configured TTS Bridge for playback and retained WAV/MP3 artifacts. Use `--dry-run` to inspect exactly what would be spoken. |
 | [bin/push-twitter](bin/push-twitter) / [bin/push-social-media](bin/push-social-media) | Social publish helpers (operator use). |
 | [bin/test_services.sh](bin/test_services.sh) | Service smoke tests. |
 | [bin/test_email.py](bin/test_email.py) | Email / alert tests. |
 | [bin/quick_test.py](bin/quick_test.py) / [bin/test_file_watcher.py](bin/test_file_watcher.py) | Dev tests. |
 | [output/](output/) | Generated reports (e.g. dependency graphs) when produced. |
 | [log/](log/) | Local log output directory (gitignored where applicable). |
+
+### Read a rendered article through the TTS Bridge
+
+The default extractor reads only `.post-content.e-content`. It keeps the title, headings, paragraphs, list items, blockquotes, visible link text, and inline code words. It omits URLs, HTML tags, series context and navigation, diagrams, captions, tables, code blocks, source disclosures, support material, forms, audio, video, and comments.
+
+Inspect the exact text and chunk sizes without calling TTS:
+
+```bash
+utils/bin/article-tts \
+  http://127.0.0.1:4000/technology/2026/09/08/voice-cloning-across-hosts-making-tts-operational/ \
+  --dry-run
+```
+
+Generate, play, and retain the article audio:
+
+```bash
+TTS_BRIDGE_URL="http://127.0.0.1:11440/v1" \
+TTS_BRIDGE_VOICE="narrator" \
+utils/bin/article-tts \
+  http://127.0.0.1:4000/technology/2026/09/08/voice-cloning-across-hosts-making-tts-operational/ \
+  --play
+```
+
+Without `--output-dir`, the tool creates a new system temporary directory and prints its location. Supply an explicit directory to retain the extracted article, chunk text, chunk WAV files, joined WAV, MP3, and manifest. Reusing a directory resumes completed WAV chunks whose files remain present.
+
+For editorial listening in the browser, start the loopback relay in a separate terminal:
+
+```bash
+TTS_BRIDGE_URL="http://127.0.0.1:11440/v1" \
+TTS_BRIDGE_VOICE="narrator" \
+utils/bin/article-tts --browser-server
+```
+
+Development-mode post pages display a small player at the bottom of the viewport. Select article text and press **Play** to hear only that selection, or press **Play** without a selection to hear the complete article body. **Pause**, **Resume**, and **Stop** act on the in-browser queue. Leaving the page stops playback.
+
+The browser sends sentence-aware chunks to the relay on `127.0.0.1:11441`. The relay accepts only the local Jekyll origins by default, keeps the configured bridge endpoint and voice out of page JavaScript, and never writes browser-playback audio to disk. Each short WAV response is decoded in browser memory and the next chunk is prepared while the current one plays. This is buffered chunk playback rather than byte-level streaming because the current TTS Bridge completes each WAV response before returning it.
+
+The player is excluded from production Jekyll builds. If the local site or relay uses a different port, repeat `--allow-origin` when starting the relay and set `articleTtsRelayUrl` in browser local storage to the new loopback relay URL.
 
 ---
 
@@ -102,5 +141,3 @@ Jekyll-specific helpers live next to the site config, not under `utils/`:
 - [scripts/backfill_short_url_front_matter.rb](../scripts/backfill_short_url_front_matter.rb) - sync `short_url` front matter with `/s/<code>/` rules. Documented in [docs/templates/blog-templates.md](../docs/templates/blog-templates.md).
 
 **Updated:** 2026-05-02
-
-

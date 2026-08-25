@@ -5,7 +5,9 @@ layout: post
 title: "New LLM Ops Kit Update"
 date: 2024-03-14
 category: LLM-Ops-Kit
-tags: [development, update]
+content_type: update
+# Choose 2-6 canonical tags from html/_data/tag_taxonomy.yml.
+tags: []
 excerpt: "Brief introduction about this update"
 image: /assets/images/projects/LLM-Ops-Kit.png
 # author: Michael Sullivan

@@ -20,6 +20,9 @@ html/
 ## Creating a New Post
 
 ### General Blog Post
+
+The ordered blog landing-page cards, recent-post sections, and Blog navigation entries are configured in `html/_data/blog_sections.yml`. Move an entry to reorder it or set `visible: false` to hide it from those discovery surfaces without changing its posts, category, page, or URLs.
+
 1. Create the dated file under `html/_posts/series/<series-slug>/` for a series article, or `html/_posts/<primary-category>/` for a standalone article:
    ```
    YYYY-MM-DD-descriptive-title.md
@@ -32,7 +35,7 @@ html/
    title: "Your Post Title"
    date: YYYY-MM-DD HH:MM:SS -0500
    categories: [category1, category2]
-   tags: [tag1, tag2]
+   tags: [ai, developer-workflow]
    ---
    ```
 
@@ -66,7 +69,8 @@ html/
    permalink_slug: your-project-post-title
    date: YYYY-MM-DD
    category: ProjectName
-   tags: [tag1, tag2]
+   content_type: release
+   tags: [python, developer-tools]
    ---
    ```
 
@@ -97,10 +101,12 @@ html/
    ```
 
 ### Categories and Tags
-- Use relevant categories
-- Add descriptive tags
-- Be consistent with naming
-- Check existing tags for ideas
+- Categories select the editorial section; project categories associate project posts with their project.
+- `series` identifies an ordered article series.
+- `content_type` describes what the post is: `introduction`, `release`, `update`, or `reference`. Omit it for an ordinary article.
+- Choose approximately 2-6 topical tags from `html/_data/tag_taxonomy.yml`; do not invent an alias in post front matter.
+- Run `bundle exec ruby scripts/list_tags.rb` to see the valid tags without opening the website.
+- A Jekyll build fails when a published or scheduled post uses an unknown, retired, or aliased tag.
 
 ## Publishing Process
 

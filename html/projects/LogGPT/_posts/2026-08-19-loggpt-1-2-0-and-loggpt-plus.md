@@ -7,7 +7,8 @@ layout: post
 title: "LogGPT 1.2.0 and LogGPT Plus: Preserve Conversations and Artifacts"
 date: 2026-08-19
 category: LogGPT
-tags: [release, loggpt-plus, app-store, safari-extension, privacy, chatgpt, json-export, artifact-export, macos]
+tags: [loggpt-plus, app-store, safari-extension, privacy, chatgpt, data-portability, artifacts, macos]
+content_type: release
 excerpt: "LogGPT 1.2.0 introduces LogGPT Plus, a permanent upgrade that can preserve a ChatGPT conversation and its generated or uploaded artifacts together in one ZIP archive."
 image: /assets/images/projects/LogGPT/LogGPT-Plus.png
 published: true

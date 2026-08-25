@@ -5,7 +5,7 @@ layout: post
 title: "Voice Cloning Across Hosts: Making TTS Operational"
 date: 2026-09-08 10:00:00 -0500
 categories: [technology]
-tags: [ai, agent-optimization, agent-workflows, tts, voice-cloning, llm-ops-kit, local-first, privacy, macos, openai-compatible]
+tags: [ai, agent-operations, ai-agents, tts, voice-cloning, llm-ops-kit, local-first, privacy, macos, openai-compatible]
 image: /assets/images/blog/agent-optimization/post-09-voice-cloning-operations-hero.png
 excerpt: "A healthy speech bridge does not prove that the model behind it is ready. Part 9 follows the co-located bridge, registered references, runtime ownership, and recovery boundaries that made cross-host TTS operational."
 series: "Local First AI and Agent Operations"
@@ -33,6 +33,10 @@ I had a speech endpoint reporting healthy while the service behind it was unavai
 That distinction mattered once speech requests started coming from an agent on another host. Most REST calls should finish quickly, while a local TTS engine may take considerably longer during a cold load. Raising every timeout would hide unrelated failures, but keeping the speech timeout short would make a working local model look broken. I eventually stopped treating text-to-speech as one opaque feature and began operating the request path as the small chain of services it really was.
 
 Following that chain also forced me to be explicit about an ethical boundary. A voice alias is convenient configuration, not proof that anybody owns a sample, has permission to use it, or has consented to a generated voice. I limit this system to my own material, purpose-made synthetic references, or material I am explicitly authorized to use. What follows is an operations story, not a recipe for impersonation or a collection of voices to distribute.
+
+That leaves a practical question: where does the reference come from? It does not come from this article. In my system it has to be a recording I made myself, purpose-made synthetic material, or a recording I have explicit permission to use. When I run a transcript-conditioned Qwen model such as Base or CustomVoice through my patched MLX-Audio Qwen handler, I also need a word-for-word transcript of that recording. I learned not to treat the transcript as a rough label for the clip. The recording and the words are one reference pair, and changing or omitting words can quickly spoil the result. Some supported models accept audio alone, so I check the input contract, format, useful sample length, and recording requirements for the model I am actually running.
+
+Hermes Agent is the client at the other end of this particular chain. When I refer to the `Dashboard` or `Gateway`, I mean those Hermes components rather than generic parts of every agent framework. The names are specific, but the problem is not. Any agent that can call an OpenAI-compatible speech endpoint still needs clear ownership, useful health checks, tests from the real client process, and a recovery path I can explain when something fails.
 
 <!--more-->
 
@@ -108,7 +112,7 @@ Retries need the same discipline. Retrying a connection failure after the engine
 
 {% if hands_on_link_ready %}The lab also [separates bridge health from request success]({{ page.series_companion_url | relative_url }}#step-8-separate-health-from-request-success) after the fake upstream stops.{% endif %}
 
-The most misleading failure in this deployment happened outside that chain. Direct requests from an operator shell reached the relocated bridge, but requests from the Hermes Dashboard did not appear in the bridge log at all. macOS unified logs showed that the Dashboard's LaunchAgent process context was being denied Local Network access by NECP. The resulting `No route to host` looked like an IP-routing failure even though the bridge, route, and API were working.
+The most misleading failure in this deployment happened outside that chain. Direct requests from an operator shell reached the relocated bridge, but requests from the Hermes Dashboard did not appear in the bridge log at all. macOS unified logs showed NECP denying Local Network access to the Dashboard's LaunchAgent process. NECP is the macOS network-policy subsystem involved in enforcing [Local Network privacy](https://developer.apple.com/documentation/technotes/tn3179-understanding-local-network-privacy) decisions. The resulting `No route to host` looked like an IP-routing failure even though the bridge, route, and API were working.
 
 That incident changed the client lifecycle rather than the bridge topology. LLM-Ops-Kit now manages the Dashboard as a standalone background process, while the Gateway remains a launchd component. The bridge remains co-located with the engine and reaches it over loopback. Correct network permission and a real Dashboard-originated synthesis request were required before I called the repair accepted. A generic `GET /v1/models` was not useful evidence because the bridge does not implement that route; its relevant observations are `/health`, `/v1/audio/voices`, and `POST /v1/audio/speech`.
 

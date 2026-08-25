@@ -43,6 +43,7 @@
   var dtsPageType = '{% if page.permalink == "/404.html" %}404_page{% elsif page.search_page %}search_page{% elsif page.layout == "post" %}blog_post{% elsif page.layout == "project" or (page.layout == "page" and page.url contains "/projects/") %}project_page{% else %}site_page{% endif %}';
   var dtsPageCategory = '{{ page.category | default: "general" | escape }}';
   var dtsPageTags = '{{ page.tags | join: "," | escape }}';
+  var dtsPageContentType = '{{ page.content_type | default: "article" | escape }}';
   var dtsCommonParams = {
     page_location: dtsCurrentLocation,
     page_path: dtsCurrentPath,
@@ -50,7 +51,8 @@
     visitor_type: dtsVisitorType,
     page_type: dtsPageType,
     page_category: dtsPageCategory,
-    page_tags: dtsPageTags
+    page_tags: dtsPageTags,
+    page_content_type: dtsPageContentType
   };
   gtag('js', new Date());
 
@@ -72,6 +74,7 @@
     'custom_dimension3': dtsPageTags,
     'page_category': dtsPageCategory,
     'page_tags': dtsPageTags,
+    'page_content_type': dtsPageContentType,
     'visitor_type': dtsVisitorType
   });
   {% endif %}

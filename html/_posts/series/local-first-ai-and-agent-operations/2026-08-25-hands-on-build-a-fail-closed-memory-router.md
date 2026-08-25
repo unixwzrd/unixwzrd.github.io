@@ -5,7 +5,7 @@ layout: post
 title: "Hands-On: Build a Fail-Closed Memory Router"
 date: 2026-08-25 08:00:00 -0500
 categories: [hands-on]
-tags: [ai, agent-optimization, agent-workflows, python, memory, authorization, local-first, privacy, retrieval]
+tags: [ai, agent-operations, ai-agents, python, memory, security, local-first, privacy, retrieval]
 image: /assets/images/blog/agent-optimization/post-03a-fail-closed-memory-router-hero.png
 excerpt: "Authorization has to choose the candidate set before relevance ranking begins. This runnable Python router and its seven canaries make that ordering visible and testable."
 series: "Local First AI and Agent Operations"

@@ -6,7 +6,8 @@ layout: post
 title: "MLX Harmony: Notes from an Earlier Experiment"
 date: 2026-01-14
 category: mlx-harmony
-tags: [introduction, overview, mlx, local-llms, apple-silicon]
+tags: [mlx, local-llms, apple-silicon]
+content_type: introduction
 excerpt: "A retained note about an earlier GPT-OSS and MLX prompting experiment."
 image: /assets/images/projects/mlx-harmony.png
 # author: Michael Sullivan

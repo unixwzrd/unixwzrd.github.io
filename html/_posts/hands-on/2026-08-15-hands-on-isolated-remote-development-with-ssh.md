@@ -5,7 +5,7 @@ layout: post
 title: "Hands-On: Isolated Remote Development with SSH"
 date: 2026-08-15 20:30:00 -0500
 categories: [hands-on]
-tags: [ssh, remote-development, remote-debugging, vscode, cursor, windsurf, python, debugpy, macos, linux, vps]
+tags: [ssh, remote-development, vscode, cursor, windsurf, python, macos, linux]
 image: /assets/images/Isolated-Remote-Development-with-SSH.png
 excerpt: "A step-by-step tutorial for using SSH keys, isolated accounts, remote editor workspaces, and tunneled Python debugging on the same Mac, another machine, or a VPS."
 published: true

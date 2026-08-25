@@ -70,6 +70,10 @@ class FetchOgFallbackTests(unittest.TestCase):
                 "permalink_slug: llm-ops-kit-introduction",
                 intro_posts[0].read_text(encoding="utf-8"),
             )
+            self.assertIn(
+                "content_type: introduction",
+                intro_posts[0].read_text(encoding="utf-8"),
+            )
 
             projects = write_projects_data.call_args.args[0]
             self.assertEqual(len(projects), 1)

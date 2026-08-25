@@ -5,7 +5,7 @@ layout: post
 title: "A Passive Model Proxy as an AI Debugging Instrument"
 date: 2026-08-29 10:00:00 -0500
 categories: [technology]
-tags: [ai, agent-optimization, agent-workflows, model-proxy, observability, debugging, jinja, local-first, privacy, python]
+tags: [ai, agent-operations, ai-agents, model-proxy, observability, debugging, jinja, local-first, privacy, python]
 image: /assets/images/blog/agent-optimization/post-06-passive-model-proxy-hero.png
 excerpt: "A request can look correct while the rendered prompt is wrong. I built a passive model proxy to inspect the request, template output, and response without changing the evidence."
 series: "Local First AI and Agent Operations"

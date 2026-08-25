@@ -1,0 +1,309 @@
+# Canonical vocabulary for tags used by published and scheduled posts.
+#
+# Authors choose IDs from `tags`. The Topics index uses the order and grouping
+# below. `aliases` preserve old Topics fragment anchors and tell maintainers how
+# retired spellings were consolidated; aliases are not valid in new front matter.
+# Article status belongs in `content_type`, not in `tags`.
+settings:
+  recommended_min_tags: 2
+  recommended_max_tags: 6
+
+groups:
+  - id: ai-and-agents
+    label: AI and Agents
+  - id: development-and-operations
+    label: Development and Operations
+  - id: data-privacy-and-security
+    label: Data, Privacy, and Security
+  - id: text-and-provenance
+    label: Text and Provenance
+  - id: family-law-and-research
+    label: Family Law and Research
+  - id: projects-and-platforms
+    label: Projects and Platforms
+
+content_types:
+  - id: introduction
+    label: Introductions
+    source_tags: [introduction, overview]
+  - id: release
+    label: Releases
+    source_tags: [release, alpha-release]
+  - id: update
+    label: Updates
+    source_tags: [update, project-updates]
+  - id: reference
+    label: References
+    source_tags: [references, citations]
+
+tags:
+  - id: ai
+    label: AI
+    group: ai-and-agents
+    aliases: [ai-analysis]
+  - id: ai-agents
+    label: AI Agents
+    group: ai-and-agents
+    aliases: [agent-workflows, agents, workflows]
+  - id: agent-operations
+    label: Agent Operations
+    group: ai-and-agents
+    aliases: [agent-optimization, optimization]
+  - id: ai-operations
+    label: AI Operations
+    group: ai-and-agents
+    aliases: [llm-ops, operations, ai-infrastructure, control-plane]
+  - id: local-first
+    label: Local First
+    group: ai-and-agents
+  - id: local-first-ai
+    label: Local First AI
+    group: ai-and-agents
+  - id: local-llms
+    label: Local LLMs
+    group: ai-and-agents
+  - id: memory
+    label: Memory
+    group: ai-and-agents
+  - id: retrieval
+    label: Retrieval
+    group: ai-and-agents
+  - id: knowledge-management
+    label: Knowledge Management
+    group: ai-and-agents
+  - id: knowledge-graphs
+    label: Knowledge Graphs
+    group: ai-and-agents
+  - id: model-proxy
+    label: Model Proxy
+    group: ai-and-agents
+  - id: multimodal
+    label: Multimodal
+    group: ai-and-agents
+  - id: context-hygiene
+    label: Context Hygiene
+    group: ai-and-agents
+  - id: observability
+    label: Observability
+    group: ai-and-agents
+  - id: governance
+    label: Governance
+    group: ai-and-agents
+  - id: caching
+    label: Caching
+    group: ai-and-agents
+  - id: benchmarking
+    label: Benchmarking
+    group: ai-and-agents
+  - id: token-optimization
+    label: Token Optimization
+    group: ai-and-agents
+  - id: openai-compatible
+    label: OpenAI Compatible
+    group: ai-and-agents
+  - id: tts
+    label: TTS
+    group: ai-and-agents
+  - id: voice-cloning
+    label: Voice Cloning
+    group: ai-and-agents
+  - id: ai-tools
+    label: AI Tools
+    group: ai-and-agents
+  - id: coding-assistants
+    label: Coding Assistants
+    group: ai-and-agents
+
+  - id: python
+    label: Python
+    group: development-and-operations
+  - id: developer-tools
+    label: Developer Tools
+    group: development-and-operations
+    aliases: [source-code]
+  - id: developer-workflow
+    label: Developer Workflow
+    group: development-and-operations
+  - id: devops
+    label: DevOps
+    group: development-and-operations
+  - id: testing
+    label: Testing
+    group: development-and-operations
+  - id: debugging
+    label: Debugging
+    group: development-and-operations
+  - id: remote-development
+    label: Remote Development
+    group: development-and-operations
+    aliases: [remote-debugging, debugpy, vps]
+  - id: ssh
+    label: SSH
+    group: development-and-operations
+  - id: virtual-environments
+    label: Virtual Environments
+    group: development-and-operations
+  - id: conda
+    label: Conda
+    group: development-and-operations
+  - id: jekyll
+    label: Jekyll
+    group: development-and-operations
+    aliases: [css, scss, liquid]
+  - id: website-development
+    label: Website Development
+    group: development-and-operations
+  - id: markdown
+    label: Markdown
+    group: development-and-operations
+  - id: jinja
+    label: Jinja
+    group: development-and-operations
+  - id: textual
+    label: Textual
+    group: development-and-operations
+  - id: sqlite
+    label: SQLite
+    group: development-and-operations
+  - id: launchd
+    label: launchd
+    group: development-and-operations
+  - id: macos
+    label: macOS
+    group: development-and-operations
+  - id: linux
+    label: Linux
+    group: development-and-operations
+  - id: apple-silicon
+    label: Apple Silicon
+    group: development-and-operations
+  - id: pytorch
+    label: PyTorch
+    group: development-and-operations
+  - id: cuda
+    label: CUDA
+    group: development-and-operations
+  - id: mps
+    label: MPS
+    group: development-and-operations
+  - id: mlx
+    label: MLX
+    group: development-and-operations
+  - id: qwen
+    label: Qwen
+    group: development-and-operations
+  - id: vscode
+    label: VS Code
+    group: development-and-operations
+  - id: cursor
+    label: Cursor
+    group: development-and-operations
+  - id: windsurf
+    label: Windsurf
+    group: development-and-operations
+  - id: open-source
+    label: Open Source
+    group: development-and-operations
+  - id: self-hosting
+    label: Self Hosting
+    group: development-and-operations
+
+  - id: privacy
+    label: Privacy
+    group: data-privacy-and-security
+  - id: security
+    label: Security
+    group: data-privacy-and-security
+    aliases: [security-hygiene, authorization]
+  - id: secrets-management
+    label: Secrets Management
+    group: data-privacy-and-security
+  - id: data-portability
+    label: Data Portability
+    group: data-privacy-and-security
+    aliases: [json-export, zip]
+  - id: artifacts
+    label: Artifacts
+    group: data-privacy-and-security
+    aliases: [artifact-export]
+  - id: deterministic-systems
+    label: Deterministic Systems
+    group: data-privacy-and-security
+  - id: local-ops
+    label: Local Operations
+    group: data-privacy-and-security
+
+  - id: unicode
+    label: Unicode
+    group: text-and-provenance
+  - id: text-cleaning
+    label: Text Cleaning
+    group: text-and-provenance
+  - id: text-forensics
+    label: Text Forensics
+    group: text-and-provenance
+  - id: ai-detection
+    label: AI Detection
+    group: text-and-provenance
+    aliases: [authorship-signals]
+  - id: provenance
+    label: Provenance
+    group: text-and-provenance
+  - id: c2pa
+    label: C2PA
+    group: text-and-provenance
+  - id: watermarking
+    label: Watermarking
+    group: text-and-provenance
+  - id: image-metadata
+    label: Image Metadata
+    group: text-and-provenance
+    aliases: [exiftool]
+
+  - id: parental-alienation
+    label: Parental Alienation
+    group: family-law-and-research
+  - id: family-impact
+    label: Family Impact
+    group: family-law-and-research
+    aliases: [children, parents, victims, perpetrators, dynamics, consequences, trauma]
+  - id: family-law
+    label: Family Law
+    group: family-law-and-research
+    aliases: [courts, custody, divorce, legal-system]
+  - id: research
+    label: Research
+    group: family-law-and-research
+    aliases: [communication-analysis, prevalence, scope]
+  - id: advocacy
+    label: Advocacy
+    group: family-law-and-research
+    aliases: [societal-impact, public-awareness]
+
+  - id: chatgpt
+    label: ChatGPT
+    group: projects-and-platforms
+  - id: app-store
+    label: App Store
+    group: projects-and-platforms
+  - id: safari-extension
+    label: Safari Extension
+    group: projects-and-platforms
+  - id: llm-ops-kit
+    label: LLM Ops Kit
+    group: projects-and-platforms
+  - id: loggpt
+    label: LogGPT
+    group: projects-and-platforms
+  - id: loggpt-plus
+    label: LogGPT Plus
+    group: projects-and-platforms
+  - id: case-analytics
+    label: Case Analytics
+    group: projects-and-platforms
+  - id: hermes
+    label: Hermes
+    group: projects-and-platforms
+  - id: codex
+    label: Codex
+    group: projects-and-platforms

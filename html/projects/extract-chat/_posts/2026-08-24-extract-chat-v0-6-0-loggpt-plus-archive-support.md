@@ -6,7 +6,8 @@ layout: post
 title: "extract-chat v0.6.0: From LogGPT Plus ZIP to a Usable Local Archive"
 date: 2026-08-24
 category: extract-chat
-tags: [release, chatgpt, loggpt, zip, artifacts, markdown, html, data-portability, knowledge-management, local-first, macos, python, open-source]
+tags: [chatgpt, loggpt, data-portability, artifacts, markdown, knowledge-management, local-first, macos, python, open-source]
+content_type: release
 excerpt: "extract-chat v0.6.0 can safely open a LogGPT Plus ZIP, preserve its generated and uploaded artifacts, relink them in readable Markdown or HTML, and split long conversations into upload-safe continuity chunks."
 image:
   path: /assets/images/projects/extract-chat-banner.png

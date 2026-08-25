@@ -42,11 +42,11 @@
       </div>
       <div class="nav-dropdown-menu">
         <a class="nav-dropdown-item" href="{{ '/blog/' | relative_url }}">All Blogs</a>
-        <a class="nav-dropdown-item" href="{{ '/blog/general/' | relative_url }}">General</a>
-        <a class="nav-dropdown-item" href="{{ '/blog/parental-alienation/' | relative_url }}">Parental Alienation</a>
-        <a class="nav-dropdown-item" href="{{ '/blog/technology/' | relative_url }}">Technology</a>
-        <a class="nav-dropdown-item" href="{{ '/blog/series/' | relative_url }}">Series</a>
-        <a class="nav-dropdown-item" href="{{ '/blog/hands-on/' | relative_url }}">Hands-On</a>
+        {% for blog_section in site.data.blog_sections.sections %}
+          {% if blog_section.visible %}
+            <a class="nav-dropdown-item" href="{{ blog_section.url | relative_url }}">{{ blog_section.title }}</a>
+          {% endif %}
+        {% endfor %}
         <a class="nav-dropdown-item" href="{{ '/topics/' | relative_url }}">Topics</a>
       </div>
     </div>

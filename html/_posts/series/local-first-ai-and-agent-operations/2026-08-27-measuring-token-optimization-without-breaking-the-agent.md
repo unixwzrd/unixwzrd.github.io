@@ -5,7 +5,7 @@ layout: post
 title: "Measuring Token Optimization Without Breaking the Agent"
 date: 2026-08-27 10:00:00 -0500
 categories: [technology]
-tags: [ai, agent-optimization, agent-workflows, token-optimization, benchmarking, observability, caching, local-first, privacy, macos]
+tags: [ai, agent-operations, ai-agents, token-optimization, benchmarking, observability, caching, local-first, privacy, macos]
 image: /assets/images/blog/agent-optimization/post-05-measuring-token-optimization-hero.png
 excerpt: "One test used fewer input tokens and still made the agent slower. That result changed how I measure optimization: preserve correctness, record the whole task, and keep the raw path available."
 series: "Local First AI and Agent Operations"

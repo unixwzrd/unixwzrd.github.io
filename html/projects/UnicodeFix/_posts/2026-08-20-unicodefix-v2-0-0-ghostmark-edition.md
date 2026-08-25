@@ -8,7 +8,8 @@ title: "UnicodeFix v2.0.1: The Ghostmark Edition"
 date: 2026-08-20
 last_modified_at: 2026-08-24 12:00:00 -0500
 category: UnicodeFix
-tags: [release, unicode, text-forensics, provenance, c2pa, watermarking, authorship-signals, image-metadata, exiftool, markdown, source-code, privacy, python, open-source]
+tags: [unicode, text-forensics, provenance, c2pa, watermarking, ai-detection, image-metadata, markdown, developer-tools, privacy, python, open-source]
+content_type: release
 excerpt: "UnicodeFix v2.0.1 extends Ghostmark's evidence-based local auditing and deliberate cleanup to image metadata and recognized C2PA/JUMBF provenance while preserving pixel data and refusing unsupported watermark claims."
 image: /assets/images/projects/UnicodeFix-banner.png
 published: true

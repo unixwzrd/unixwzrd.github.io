@@ -6,7 +6,7 @@ title: "Parental Alienation Awareness - Part 5"
 date: 2025-09-25
 sequence: 5
 category: PA-Awareness-1
-tags: [parental-alienation, research, societal-impact, public-awareness]
+tags: [parental-alienation, research, advocacy]
 excerpt: "Parental alienation has broader social, economic, and public health implications affecting communities, healthcare systems, and society at large."
 image: /assets/images/projects/PA-devastation-1.png
 published: true

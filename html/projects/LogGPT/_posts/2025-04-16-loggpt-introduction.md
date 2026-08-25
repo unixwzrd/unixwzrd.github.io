@@ -6,7 +6,7 @@ layout: post
 title: "Introducing LogGPT: One-Click ChatGPT Conversation Export with Full Privacy"
 date: 2025-04-16
 category: LogGPT
-tags: [chatgpt, safari-extension, privacy, ai-tools, json-export, macos, open-source]
+tags: [chatgpt, safari-extension, privacy, ai-tools, data-portability, macos, open-source]
 excerpt: "LogGPT is a streamlined, privacy-first tool for exporting your entire ChatGPT conversation history in JSON format-no spyware, no adware, no data collection."
 image: /assets/images/projects/LogGPT.png
 draft: true

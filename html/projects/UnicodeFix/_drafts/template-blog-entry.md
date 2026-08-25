@@ -5,7 +5,9 @@ layout: post
 title: "New Unicodefix Update"
 date: 2024-03-14
 category: UnicodeFix
-tags: [development, update]
+content_type: update
+# Choose 2-6 canonical tags from html/_data/tag_taxonomy.yml.
+tags: []
 excerpt: "Brief introduction about this update"
 image: /assets/images/projects/UnicodeFix.png
 # author: Michael Sullivan

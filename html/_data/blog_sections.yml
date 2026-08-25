@@ -1,0 +1,43 @@
+# Ordered blog landing-page and navigation configuration.
+# Move entries to reorder them. Set visible: false to hide an entry from the
+# /blog/ cards, recent-post sections, and Blog navigation without removing its
+# page, posts, category, or existing URLs.
+sections:
+  - id: general
+    title: General
+    url: /blog/general/
+    button_label: Read General Posts
+    section: general
+    visible: false
+
+  - id: technology
+    title: Technology
+    url: /blog/technology/
+    button_label: Read Technology Posts
+    section: technology
+    exclude_series: true
+    visible: true
+
+  - id: series
+    title: Series
+    url: /blog/series/
+    button_label: Browse Series
+    series: Local First AI and Agent Operations
+    visible: true
+
+  - id: hands-on
+    title: Hands-On
+    url: /blog/hands-on/
+    button_label: Read Hands-On Posts
+    section: hands-on
+    exclude_series: true
+    visible: true
+
+  - id: parental-alienation
+    title: Parental Alienation
+    url: /blog/parental-alienation/
+    button_label: Read Parental Alienation Posts
+    section: parental-alienation
+    additional_category: PA-Awareness-1
+    additional_category_primary_only: true
+    visible: true

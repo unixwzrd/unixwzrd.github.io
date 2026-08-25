@@ -9,7 +9,8 @@ redirect_from:
   - /projects/venvutil/2025/06/26/Venvutil-Summer-Update/
 date: "2025-06-25"
 category: venvutil
-tags: [update, python, virtual-environments, conda, developer-tools]
+tags: [python, virtual-environments, conda, developer-tools]
+content_type: update
 draft: false
 published: true
 excerpt: "The VenvUtil shell toolkit is evolving fast: improved command logging, smarter environment rollbacks, easier cloning, and real-world robustness for anyone working in Python on macOS or Linux."

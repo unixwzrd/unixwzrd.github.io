@@ -6,7 +6,8 @@ title: "Parental Alienation Awareness - References"
 date: 2025-09-25
 sequence: 6
 category: PA-Awareness-1
-tags: [parental-alienation, research, references, citations]
+tags: [parental-alienation, research]
+content_type: reference
 excerpt: "Comprehensive references and citations for all research papers in the Parental Alienation Awareness series."
 image: /assets/images/projects/PA-devastation-1.png
 published: true

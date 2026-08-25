@@ -5,7 +5,7 @@ layout: post
 title: "Hands-On: Build an Idempotent Intake Manifest"
 date: 2026-08-21 08:00:00 -0500
 categories: [hands-on]
-tags: [ai, agent-optimization, agent-workflows, python, sqlite, deterministic-systems, local-first, knowledge-management]
+tags: [ai, agent-operations, ai-agents, python, sqlite, deterministic-systems, local-first, knowledge-management]
 image: /assets/images/blog/agent-optimization/post-02a-idempotent-manifest-hero.png
 excerpt: "A first import is easy. I built and tested a bounded Python and SQLite manifest that keeps source identity and history intact across reruns, changes, disappearance, and restoration."
 series: "Local First AI and Agent Operations"

@@ -6,7 +6,7 @@ title: "Parental Alienation Awareness - Part 4"
 date: 2025-09-25
 sequence: 4
 category: PA-Awareness-1
-tags: [parental-alienation, research, legal-system, divorce, custody, courts]
+tags: [parental-alienation, research, family-law]
 excerpt: "How parental alienation manifests in divorce and custody battles, and how courts have been handling such cases including errors and reforms."
 image: /assets/images/projects/PA-devastation-1.png
 published: true

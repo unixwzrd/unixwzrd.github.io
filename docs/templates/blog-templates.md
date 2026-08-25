@@ -29,7 +29,10 @@ When working with the post layout, remember that all frontmatter variables are a
 {{ page.author }}
 {{ page.categories }}
 {{ page.tags }}
+{{ page.content_type }}
 ```
+
+The canonical tag vocabulary lives in `html/_data/tag_taxonomy.yml`. List it from the repository root with `bundle exec ruby scripts/list_tags.rb`. Use `content_type` for introductions, releases, updates, and reference posts rather than adding those values to `tags`.
 
 ### Important Variables
 

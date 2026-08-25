@@ -5,7 +5,7 @@ layout: post
 title: "Hands-On: Put a TTS Bridge Through a Model-Free Test Bench"
 date: 2026-09-10 08:00:00 -0500
 categories: [hands-on]
-tags: [ai, agent-optimization, agent-workflows, tts, python, testing, openai-compatible, local-first, privacy]
+tags: [ai, agent-operations, ai-agents, tts, python, testing, openai-compatible, local-first, privacy]
 image: /assets/images/blog/agent-optimization/post-09-voice-cloning-operations-hero.png
 excerpt: "Build a model-free TTS test bench with bounded capability and registry metadata, opaque registered references, a legacy compatibility path, layered health, redacted events, and deterministic cleanup."
 series: "Local First AI and Agent Operations"
@@ -25,6 +25,8 @@ In the [main Part 9 article]({{ page.series_previous_url | relative_url }}), I s
 I built the exercise to prove the operational contract, not to create a toy voice-cloning demo. It generates a short tone WAV and an invented transcript, starts a fake OpenAI-compatible speech engine and a small teaching bridge on ephemeral loopback ports, and walks through both successful requests and the failures I care about. When it finishes, both servers stop and the temporary material disappears with them.
 
 The preferred path uses an opaque registered-reference ID. One synthetic path pair remains so the older compatibility contract is visible and testable. The tone is not speech and does not represent a person. Nothing in the package measures voice similarity, speaker identity, model quality, GPU behavior, or production latency.
+
+Moving from this lab to a real engine means replacing the generated tone with a recording you have the right to use. That can be your own voice, purpose-made synthetic material, or a recording whose speaker gave explicit permission. If the model is transcript-conditioned, you also need to write down exactly what was said and keep that transcript with the recording when you register it. Some supported models use audio alone, so check the contract for the model you chose instead of copying the Qwen requirements blindly. The lab deliberately gives you neither a real voice nor a transcript to reuse.
 
 <!--more-->
 
@@ -220,7 +222,7 @@ GET  /v1/audio/voices
 POST /v1/audio/speech
 ```
 
-Run those checks first from an authorized operator context, then repeat the speech request through the real client process. That second check matters on macOS. A Dashboard started in a LaunchAgent security context can be denied Local Network access by NECP even when the same URL succeeds under `curl` in a terminal. In that failure mode, the client sees `No route to host`, the bridge records no matching request, and macOS unified logs attribute the denial to the client process. Other LAN services may still work because they run in different process and privacy contexts.
+Run those checks first from an authorized operator context, then repeat the speech request through the real client process. Here, `Dashboard` means the Hermes Agent Dashboard, not a generic web dashboard. That second check matters on macOS because NECP can deny Local Network access to a Dashboard running as a LaunchAgent even when the same URL works under `curl` in a terminal. NECP is the macOS network-policy subsystem involved in enforcing [Local Network privacy](https://developer.apple.com/documentation/technotes/tn3179-understanding-local-network-privacy) decisions. In that failure mode, the client sees `No route to host`, the bridge records no matching request, and macOS unified logs point back to the client process. Other LAN services may still work because they run in different process and privacy contexts.
 
 The repair is not to move the bridge back or weaken its API. Correct the client process's Local Network and applicable network-filter permission, or move that client into a reviewed lifecycle context that has the required access. After changing supervision, recheck the component driver, process owner, logs, health, voice discovery, and one real synthesis request. A stack restart is not acceptance by itself: verify every required component returned to `running/healthy`, and restart a missed client or tunnel explicitly while treating the incomplete stack operation as a control-plane defect to fix.
 

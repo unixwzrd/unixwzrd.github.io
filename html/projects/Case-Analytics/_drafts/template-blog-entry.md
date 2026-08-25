@@ -5,7 +5,9 @@ image: /assets/images/default-og-image.png
 title: "New Case Analytics Update"
 layout: post
 category: Case-Analytics
-tags: [development, update]
+content_type: update
+# Choose 2-6 canonical tags from html/_data/tag_taxonomy.yml.
+tags: []
 author: Michael Sullivan
 draft: true
 excerpt: "Brief introduction about this update (this will appear in previews)."

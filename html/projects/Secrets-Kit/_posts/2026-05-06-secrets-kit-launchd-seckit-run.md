@@ -7,7 +7,8 @@ slug: launchd-seckit-run-and-invisible-env-vars
 title: "Secrets Kit 1.2: launchd, seckit run, and invisible env vars"
 date: 2026-05-04
 category: Secrets-Kit
-tags: [release, launchd, seckit-run, macos, secrets-management, agents, local-ops]
+tags: [launchd, macos, secrets-management, ai-agents, local-ops]
+content_type: release
 excerpt: "Version 1.2 leans into the boring superpower: run real programs - Hermes, OpenClaw, whatever - without painting secrets on the process list, and wire that story into launchd without turning your plist into a confession booth."
 image: /assets/images/projects/Secrets-Kit-Banner.png
 published: true

@@ -6,7 +6,7 @@ title: "Parental Alienation Awareness - Part 2"
 date: 2025-09-25
 sequence: 2
 category: PA-Awareness-1
-tags: [parental-alienation, research, perpetrators, victims, dynamics]
+tags: [parental-alienation, research, family-impact]
 excerpt: "Understanding who alienates and who is alienated: both mothers and fathers can be perpetrators or victims of parental alienation."
 image: /assets/images/projects/PA-devastation-1.png
 published: true

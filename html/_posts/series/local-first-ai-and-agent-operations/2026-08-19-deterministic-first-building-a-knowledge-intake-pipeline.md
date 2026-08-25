@@ -5,7 +5,7 @@ layout: post
 title: "Deterministic First: Building a Knowledge Intake Pipeline"
 date: 2026-08-19 08:00:00 -0500
 categories: [technology]
-tags: [ai, agent-optimization, agent-workflows, knowledge-management, deterministic-systems, local-first, privacy, memory, macos]
+tags: [ai, agent-operations, ai-agents, knowledge-management, deterministic-systems, local-first, privacy, memory, macos]
 image: /assets/images/blog/agent-optimization/post-02-deterministic-intake-hero.png
 excerpt: "Before a model can decide what matters, the system still has to identify what exists, what changed, where it came from, and whether a human decision has already been made. I moved those jobs into a deterministic intake pipeline."
 series: "Local First AI and Agent Operations"

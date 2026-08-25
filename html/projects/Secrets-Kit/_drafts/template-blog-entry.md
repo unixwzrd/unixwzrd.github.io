@@ -5,7 +5,9 @@ layout: post
 title: "New Secrets Kit Update"
 date: 2024-03-14
 category: Secrets-Kit
-tags: [development, update]
+content_type: update
+# Choose 2-6 canonical tags from html/_data/tag_taxonomy.yml.
+tags: []
 excerpt: "Brief introduction about this update"
 image: /assets/images/projects/Secrets-Kit.png
 # author: Michael Sullivan

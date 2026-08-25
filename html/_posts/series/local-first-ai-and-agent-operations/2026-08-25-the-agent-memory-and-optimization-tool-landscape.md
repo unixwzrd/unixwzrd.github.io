@@ -5,7 +5,7 @@ layout: post
 title: "The Agent Memory and Optimization Tool Landscape"
 date: 2026-08-25 10:00:00 -0500
 categories: [technology]
-tags: [ai, agent-optimization, agent-workflows, optimization, memory, caching, observability, local-first, privacy, macos]
+tags: [ai, agent-operations, ai-agents, memory, caching, observability, local-first, privacy, macos]
 image: /assets/images/blog/agent-optimization/post-04-tool-landscape-hero.png
 excerpt: "Memory, caching, compression, shell reduction, routing, and observability do different jobs. I stopped looking for one winner and built a correctness-first way to evaluate complementary layers."
 series: "Local First AI and Agent Operations"

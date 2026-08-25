@@ -5,7 +5,7 @@ layout: post
 title: "Memory Is a Governance Problem, Not Just a Vector Database"
 date: 2026-08-23 08:00:00 -0500
 categories: [technology]
-tags: [ai, agent-optimization, agent-workflows, memory, knowledge-management, governance, local-first, privacy, retrieval, macos]
+tags: [ai, agent-operations, ai-agents, memory, knowledge-management, governance, local-first, privacy, retrieval, macos]
 image: /assets/images/blog/agent-optimization/post-03-memory-governance-hero.png
 excerpt: "A relevant memory from the wrong context is not a better result; it is a disclosure. I moved authorization ahead of ranking and kept durable authority separate from disposable retrieval state."
 series: "Local First AI and Agent Operations"

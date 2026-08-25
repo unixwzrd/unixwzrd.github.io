@@ -6,7 +6,8 @@ layout: post
 title: "Introducing Secrets Kit"
 date: 2026-04-12
 category: Secrets-Kit
-tags: [introduction, overview, secrets-management, macos, security-hygiene, local-ops, agent-workflows]
+tags: [secrets-management, macos, security, local-ops, ai-agents]
+content_type: introduction
 excerpt: "Secrets Kit is a local macOS tool for keeping API keys, passwords, tokens, and other sensitive values out of scattered .env files and shell startup scripts while still making them usable for real runtimes."
 image: /assets/images/projects/Secrets-Kit-Banner.png
 # author: unixwzrd
