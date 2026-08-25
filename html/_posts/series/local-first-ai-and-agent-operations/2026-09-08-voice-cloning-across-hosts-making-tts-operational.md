@@ -108,6 +108,14 @@ Retries need the same discipline. Retrying a connection failure after the engine
 
 {% if hands_on_link_ready %}The lab also [separates bridge health from request success]({{ page.series_companion_url | relative_url }}#step-8-separate-health-from-request-success) after the fake upstream stops.{% endif %}
 
+The most misleading failure in this deployment happened outside that chain. Direct requests from an operator shell reached the relocated bridge, but requests from the Hermes Dashboard did not appear in the bridge log at all. macOS unified logs showed that the Dashboard's LaunchAgent process context was being denied Local Network access by NECP. The resulting `No route to host` looked like an IP-routing failure even though the bridge, route, and API were working.
+
+That incident changed the client lifecycle rather than the bridge topology. LLM-Ops-Kit now manages the Dashboard as a standalone background process, while the Gateway remains a launchd component. The bridge remains co-located with the engine and reaches it over loopback. Correct network permission and a real Dashboard-originated synthesis request were required before I called the repair accepted. A generic `GET /v1/models` was not useful evidence because the bridge does not implement that route; its relevant observations are `/health`, `/v1/audio/voices`, and `POST /v1/audio/speech`.
+
+This is the broader rule: test network access from the exact process, user, and security context that will make the production request. A successful terminal command proves the endpoint is reachable from that terminal. It does not prove that a LaunchAgent, sandboxed application, container, service account, or background worker has the same permission.
+
+{% if hands_on_link_ready %}Hands-On 9A turns that lesson into a [production-mapping checklist]({{ page.series_companion_url | relative_url }}#step-11-map-the-lab-to-the-managed-service) without pretending the model-free fixture tested macOS networking or process supervision.{% endif %}
+
 ## The Runtime Is Part of the Product
 
 The clean cold-start tests exposed a familiar macOS service problem: a command that worked in an interactive terminal failed when started noninteractively. Bare `python` did not reliably select the product environment, and audio-format work depended on a media executable that was available in the terminal but absent from the managed process path.
@@ -145,11 +153,11 @@ I also avoid using `HF_HUB_OFFLINE=1` as a telemetry shortcut. Offline mode chan
 
 ## Current State
 
-The deployed service now co-locates the TTS Bridge and patched MLX-Audio engine on the inference host. The engine owns immutable registered audio and transcript pairs and remains authoritative for reference-ID validity. The bridge maps configured neutral aliases to opaque IDs, caches capabilities plus registry reachability and count for a bounded interval, validates controls strictly, performs model-specific compatibility translation, and redacts target text and reference content or paths from diagnostics. The agent host is a client only.
+The deployed service now co-locates the TTS Bridge and patched MLX-Audio engine on the inference host. LLM-Ops-Kit manages the bridge as a standalone background component through its dedicated adapter rather than through launchd; its explicit `restart_policy=never` preserves intentional stops. The engine owns immutable registered audio and transcript pairs and remains authoritative for reference-ID validity. The bridge maps configured neutral aliases to opaque IDs, caches capabilities plus registry reachability and count for a bounded interval, validates controls strictly, performs model-specific compatibility translation, and redacts target text and reference content or paths from diagnostics. The agent host is a client only, and its Dashboard is now a separately managed background process after the LaunchAgent network-context failure.
 
 The focused bridge source suite passes all eighteen tests. A real agent request through the deployed bridge returned valid audio after direct, alias, inline-reference, registered-reference, long-text, streaming-recovery, malformed-request recovery, and isolated-model canaries passed. Those results establish protocol and operational acceptance for this deployment. They do not establish universal provider compatibility, semantic transcript verification, consent, or subjective voice quality.
 
-Legacy path pairs remain available only as explicitly allowlisted compatibility behavior. Generic component relocation and automatic recovery are not implemented. The cutover that moved these services was a reviewed manual operation, not a host-field edit or a `component move` command.
+Legacy path pairs remain available only as explicitly allowlisted compatibility behavior. Generic component relocation and automatic recovery are not implemented. The cutover that moved these services was a reviewed manual operation, not a host-field edit or a `component move` command. The subsequent stack restart also required explicit Dashboard and tunnel starts after those components did not return automatically, so a successful stack command is not yet sufficient acceptance evidence for this topology.
 
 ## Next Work
 

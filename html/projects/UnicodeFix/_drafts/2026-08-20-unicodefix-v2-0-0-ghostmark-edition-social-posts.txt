@@ -75,6 +75,17 @@ Audit hidden Unicode, C2PA provenance, formatting, and configured watermark sign
 
 No generic AI-detector claims.
 
+#AIDetection #AIWatermarks
+
+https://unixwzrd.ai/projects/UnicodeFix/2026/08/20/unicodefix-v2-0-0-ghostmark-edition/
+
+
+UnicodeFix v2.0.0 Ghostmark Edition is out.
+
+Audit hidden Unicode, C2PA provenance, formatting, and configured watermark signals locally. Preview exact changes. Clean only supported findings.
+
+No generic AI-detector claims.
+
 https://unixwzrd.ai/s/80c3c94c20/
 
 #UnicodeFix

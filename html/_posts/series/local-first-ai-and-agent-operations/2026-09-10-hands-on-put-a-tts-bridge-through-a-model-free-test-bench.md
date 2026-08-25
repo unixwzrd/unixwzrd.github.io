@@ -197,6 +197,33 @@ The focused tests cover registered-ID forwarding, legacy pair selection, unknown
 python3 -m py_compile tts_bridge_lab.py run_lab.py test_lab.py
 ```
 
+## Step 11: Map the Lab to the Managed Service
+
+The lab deliberately keeps process supervision out of the fixture, but a production investigation cannot stop at a successful request from an interactive shell. In the deployment behind this article, LLM-Ops-Kit manages the bridge as a standalone background component through its dedicated `tts-bridge` adapter. It is not a launchd job. The bridge depends on the TTS engine, runs from the toolkit's immutable Python runtime, and uses `restart_policy=never`, so an intentional stop remains stopped.
+
+Inspect the managed component through the control plane rather than inferring its configuration from a shell environment. Substitute your own qualified component ID:
+
+```bash
+llmops component status demo-speech:tts-bridge
+llmops config effective component demo-speech:tts-bridge
+llmops component logs demo-speech:tts-bridge --list
+llmops component logs demo-speech:tts-bridge --channel service --lines 200
+```
+
+The effective configuration should make the ownership boundary visible: the bridge belongs on the inference host beside the engine, listens on its client-facing address, and reaches the engine over loopback. The selected configuration revision, component host, execution user, dependency, interpreter, listener, upstream, health target, and log channel should agree. Do not treat an old mutable tree on a non-authority host as current configuration; inspect the authority-selected effective revision.
+
+Then test the protocol in layers. A bridge may legitimately return 404 for an API route it does not implement, so use its actual contract rather than a generic model-server probe:
+
+```text
+GET  /health
+GET  /v1/audio/voices
+POST /v1/audio/speech
+```
+
+Run those checks first from an authorized operator context, then repeat the speech request through the real client process. That second check matters on macOS. A Dashboard started in a LaunchAgent security context can be denied Local Network access by NECP even when the same URL succeeds under `curl` in a terminal. In that failure mode, the client sees `No route to host`, the bridge records no matching request, and macOS unified logs attribute the denial to the client process. Other LAN services may still work because they run in different process and privacy contexts.
+
+The repair is not to move the bridge back or weaken its API. Correct the client process's Local Network and applicable network-filter permission, or move that client into a reviewed lifecycle context that has the required access. After changing supervision, recheck the component driver, process owner, logs, health, voice discovery, and one real synthesis request. A stack restart is not acceptance by itself: verify every required component returned to `running/healthy`, and restart a missed client or tunnel explicitly while treating the incomplete stack operation as a control-plane defect to fix.
+
 ## Cleanup and End State
 
 You should not have to clean up after a successful run. `run_lab.py` stops the fake upstream and bridge in a `finally` block, then the temporary directory removes the generated tone and transcript. The final two report lines verify both conditions instead of asking you to trust that cleanup happened.
@@ -205,7 +232,7 @@ If you interrupt the process, it still has no authority to modify a production s
 
 ## What This Lab Cannot Prove
 
-The lab does not load a TTS model, clone a voice, evaluate similarity, measure inference speed, exercise a GPU, test a remote network, validate launchd, or prove automatic recovery. It does not enforce ownership or consent, and it does not establish that a production bridge supports every third-party provider.
+The lab does not load a TTS model, clone a voice, evaluate similarity, measure inference speed, exercise a GPU, test a remote network, validate launchd or another process supervisor, or prove automatic recovery. The operational mapping above is a production diagnostic checklist, not evidence produced by the model-free fixture. The lab does not enforce ownership or consent, and it does not establish that a production bridge supports every third-party provider.
 
 I left those things out on purpose. The useful result is a small executable model of the preferred registered-reference boundary, its legacy compatibility path, and its discovery failures, all without requiring sensitive or expensive material.
 
@@ -215,6 +242,6 @@ The five-file companion runs with the Python standard library. Its complete 23-c
 
 ## Next Work
 
-The next technical step belongs in product acceptance, not this teaching fixture. That means repeating the bridge and TTS protocol checks against the final artifact, exercising cold start and outage behavior, performing human listening review separately, and testing rollback with authorized material kept inside the inference service boundary.
+The next technical step belongs in product acceptance, not this teaching fixture. That means repeating the bridge and TTS protocol checks against the final artifact from both the operator context and the actual client runtime, exercising cold start and outage behavior, confirming stack operations restore every managed process, performing human listening review separately, and testing rollback with authorized material kept inside the inference service boundary.
 
 The proposed restart policy from Part 9 is not part of this lab. It needs its own implementation, desired-state contract, bounded retry tests, explicit-stop test, discovery gating, restart counters, and exhausted-budget evidence before a future Hands-On exercise can present it as runnable behavior.

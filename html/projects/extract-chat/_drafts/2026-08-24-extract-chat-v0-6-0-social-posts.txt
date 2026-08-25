@@ -1,0 +1,153 @@
+extract-chat v0.6.0 social drafts
+
+Release article:
+https://unixwzrd.ai/projects/extract-chat/2026/08/24/extract-chat-v0-6-0-loggpt-plus-archive-support/
+
+Short URL:
+https://unixwzrd.ai/s/04e48453a4/
+
+GitHub repository:
+https://github.com/unixwzrd/extract-chat
+
+Suggested hashtags:
+#ExtractChat #LogGPT #ChatGPT #DataPortability #LocalFirst
+
+Alternate hashtags:
+#Python #OpenSource #KnowledgeManagement #DigitalArchiving #AIWorkflows #macOS
+
+
+==================================================
+LINKEDIN
+==================================================
+
+A ChatGPT conversation is often more than text.
+
+It may include generated images, uploaded documents, spreadsheets, audio, source archives, and other files that gave the discussion its context. LogGPT Plus can preserve those materials with the conversation in a ZIP. extract-chat v0.6.0 can now turn that archive into a readable, reusable local record.
+
+The release adds:
+
+- safe ingestion of LogGPT Plus ZIP archives, including traversal and symlink defenses
+- local organization and relinking of generated, uploaded, and derived artifacts
+- combined Markdown and HTML export
+- canonical output names that keep each conversation and its files together
+- turn-aware continuity chunks with overlap and a hard 524,288-byte limit
+- an initial native macOS front end for selecting JSON or ZIP input and common export options
+
+Original artifacts remain available. Small CSV or TSV files may be shown as readable tables, but the source downloads are not replaced by those previews.
+
+The division of responsibility is straightforward: LogGPT Plus captures the authenticated conversation and artifacts; extract-chat processes the resulting package locally. There is no hosted conversion service in the middle.
+
+Read the v0.6.0 release announcement:
+https://unixwzrd.ai/s/04e48453a4/
+
+#ExtractChat #LogGPT #ChatGPT #DataPortability #LocalFirst #Python #OpenSource
+
+
+---- Personal repost ----
+
+The part I wanted to get right in extract-chat 0.6.0 was the handoff from capture to a durable local archive.
+
+LogGPT Plus can preserve a ChatGPT conversation and its generated or uploaded files in one ZIP. extract-chat now validates that archive, organizes the artifacts, relinks them in readable Markdown and HTML, and can split long conversations into bounded continuity chunks.
+
+The original JSON and files remain yours, so the archive can be reprocessed instead of being locked into one rendering.
+
+https://unixwzrd.ai/s/04e48453a4/
+
+#ExtractChat #LogGPT #DataPortability #LocalFirst
+
+
+==================================================
+X / TWITTER
+==================================================
+
+extract-chat v0.6.0 can now turn a LogGPT Plus ZIP into a readable local archive: Markdown, HTML, preserved artifacts, local links, and bounded continuity chunks.
+
+ZIP extraction rejects traversal and symlink members.
+
+https://unixwzrd.ai/s/04e48453a4/
+
+#ExtractChat #LogGPT
+
+
+Alt version:
+
+LogGPT Plus captures the conversation and artifacts. extract-chat 0.6.0 turns that ZIP into readable Markdown/HTML with organized local files and upload-safe continuity chunks.
+
+No hosted conversion service required.
+
+https://unixwzrd.ai/s/04e48453a4/
+
+#DataPortability #LocalFirst
+
+
+==================================================
+BLUESKY
+==================================================
+
+extract-chat v0.6.0 now accepts LogGPT Plus ZIP archives, safely extracts their conversation and artifacts, relinks local files in Markdown/HTML, and creates bounded continuity chunks for reuse.
+
+The original files remain part of the archive.
+
+https://unixwzrd.ai/s/04e48453a4/
+
+
+Alt version:
+
+From one LogGPT Plus ZIP to a readable local archive: extract-chat 0.6.0 adds safe ZIP ingestion, artifact preservation, Markdown + HTML output, canonical naming, and turn-aware chunks.
+
+https://unixwzrd.ai/s/04e48453a4/
+
+
+==================================================
+MASTODON
+==================================================
+
+extract-chat v0.6.0 is now available.
+
+The release accepts either standalone ChatGPT conversation JSON or a LogGPT Plus ZIP. For an archive, it safely extracts the conversation, rejects traversal and symlink members, organizes generated and uploaded artifacts, and rewrites Markdown and HTML links to prefer the preserved local files.
+
+It also adds canonical output naming, combined Markdown and HTML generation, and turn-aware continuity chunks with configurable overlap and a hard 524,288-byte maximum.
+
+Original artifacts remain available even when small CSV or TSV files are also rendered as tables. Authenticated downloading remains LogGPT Plus's responsibility; extract-chat processes the local package without a hosted conversion service.
+
+https://unixwzrd.ai/s/04e48453a4/
+
+#ExtractChat #LogGPT #ChatGPT #DataPortability #LocalFirst #OpenSource
+
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+extract-chat v0.6.0: From LogGPT Plus ZIP to a Usable Local Archive
+
+Subtitle:
+Safely unpack a preserved ChatGPT conversation, keep its artifacts, and turn the result into readable Markdown, HTML, and continuity chunks.
+
+Body:
+
+A useful ChatGPT conversation is rarely just text. It may include generated images, uploaded documents, spreadsheets, audio, source archives, and other files that supplied important context.
+
+LogGPT Plus can preserve those materials with the conversation in a ZIP archive. extract-chat v0.6.0 can now consume that archive and turn it into a readable, portable local record.
+
+The original JSON workflow remains available, but the same positional input now accepts a LogGPT Plus ZIP. extract-chat finds the conversation, organizes generated, uploaded, and derived artifacts under a conversation-named output directory, and creates Markdown, HTML, or both. Links in those documents prefer the local preserved files.
+
+Archive handling is defensive. Version 0.6.0 rejects absolute paths, traversal attempts, and symbolic-link members before extraction. A local archive should be able to populate its assigned export directory, not choose arbitrary destinations elsewhere on the machine.
+
+The release also preserves a useful distinction between an artifact and its presentation. Small CSV or TSV files may be displayed as tables, but their original downloads remain available. A readable preview does not replace the source file.
+
+For long conversations, extract-chat can create continuity chunks at turn boundaries with optional overlap. Final Markdown parts are measured after their headers and overlap are applied, and each part is held to a hard 524,288-byte maximum. This produces more deliberate handoff material than cutting a transcript at arbitrary byte positions.
+
+An initial native macOS front end is also included for selecting JSON or ZIP input and common export controls. The CLI remains the primary public interface, and the macOS application still requires a separately built and signed helper before App Store distribution.
+
+The workflow between the two projects is now clear: LogGPT Plus captures the authenticated conversation and its artifacts; the ZIP becomes a durable local handoff; and extract-chat validates and renders that package. No hosted conversion service is required, and the original archive remains available for later reprocessing.
+
+Read the full v0.6.0 release announcement:
+https://unixwzrd.ai/s/04e48453a4/
+
+Get extract-chat on GitHub:
+https://github.com/unixwzrd/extract-chat
+
+Tags:
+extract-chat, LogGPT, ChatGPT, Data Portability, Digital Archiving, Local First, Python, Open Source, Knowledge Management, AI Workflows, macOS
