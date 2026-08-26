@@ -40,6 +40,11 @@ module Jekyll
 
       errors = []
       site.posts.docs.each do |post|
+        # Draft-inclusive preview builds load historical and unfinished drafts
+        # into site.posts. Keep those previews usable; canonical tags become a
+        # hard requirement once a post is moved into a publishable _posts tree.
+        next if draft?(post)
+
         label = post.relative_path
         post_tags = Array(post.data["tags"]).map(&:to_s)
 
@@ -69,6 +74,11 @@ module Jekyll
     end
 
     private
+
+    def draft?(post)
+      path = post.relative_path.to_s.tr("\\", "/")
+      path.start_with?("_drafts/") || path.include?("/_drafts/")
+    end
 
     def unique_ids!(entries, kind)
       ids = entries.map { |entry| entry["id"].to_s }

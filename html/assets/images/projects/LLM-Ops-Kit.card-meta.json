@@ -3,7 +3,7 @@
   "contributors_count": 2,
   "description": "Operational toolkit for running, deploying, debugging, and maintaining self-hosted AI stacks across hosts.",
   "forks_count": 0,
-  "language": "Shell",
+  "language": "Python",
   "name": "LLM-Ops-Kit",
   "open_issues_count": 0,
   "owner": "unixwzrd",
@@ -11,20 +11,20 @@
   "title": "LLM Ops Kit",
   "top_languages": [
     {
-      "color": "#89e051",
-      "name": "Shell",
-      "share": "50%"
-    },
-    {
       "color": "#3572A5",
       "name": "Python",
-      "share": "47%"
+      "share": "87%"
+    },
+    {
+      "color": "#89e051",
+      "name": "Shell",
+      "share": "11%"
     },
     {
       "color": "#a52a22",
       "name": "Jinja",
-      "share": "3%"
+      "share": "2%"
     }
   ],
-  "updated_at": "2026-06-10T11:38:13Z"
+  "updated_at": "2026-08-26T13:01:28Z"
 }
