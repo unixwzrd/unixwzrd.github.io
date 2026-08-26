@@ -110,5 +110,6 @@ layout: default
 </article>
 
 {% unless jekyll.environment == 'production' %}
-  <script src="{{ '/assets/js/article-tts-player.js' | relative_url }}" defer></script>
+  {% assign article_tts_asset_version = site.github.build_revision | default: site.time | date: "%s" %}
+  <script src="{{ '/assets/js/article-tts-player.js' | relative_url }}?v={{ article_tts_asset_version }}" defer></script>
 {% endunless %}

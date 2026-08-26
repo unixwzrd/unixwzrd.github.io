@@ -126,7 +126,7 @@ TTS_BRIDGE_VOICE="narrator" \
 utils/bin/article-tts --browser-server
 ```
 
-Development-mode post pages display a small player at the bottom of the viewport. Select article text and press **Play** to hear only that selection, or press **Play** without a selection to hear the complete article body. **Pause**, **Resume**, and **Stop** act on the in-browser queue. Leaving the page stops playback.
+Development-mode post pages display a small player at the bottom of the viewport. Select article text and press **Play** to hear only that selection. With no selection, click within the article and press **Play** to continue from that cursor position to the end. If no article cursor has been established, **Play** starts with the complete article. **Restart** always begins again at the article title, while **Pause**, **Resume**, and **Stop** act on the in-browser queue. Leaving the page stops playback.
 
 The browser sends sentence-aware chunks to the relay on `127.0.0.1:11441`. The relay accepts only the local Jekyll origins by default, keeps the configured bridge endpoint and voice out of page JavaScript, and never writes browser-playback audio to disk. Each short WAV response is decoded in browser memory and the next chunk is prepared while the current one plays. This is buffered chunk playback rather than byte-level streaming because the current TTS Bridge completes each WAV response before returning it.
 

@@ -37,14 +37,16 @@
   player.setAttribute("aria-label", "Article text-to-speech player");
   player.innerHTML = `
     <span class="article-tts-player__label">Listen</span>
+    <button type="button" class="article-tts-player__button" data-action="restart" title="Restart from the beginning of the article">Restart</button>
     <button type="button" class="article-tts-player__button" data-action="play">Play</button>
     <button type="button" class="article-tts-player__button" data-action="pause" disabled>Pause</button>
     <button type="button" class="article-tts-player__button" data-action="stop" disabled>Stop</button>
-    <span class="article-tts-player__status" role="status" aria-live="polite">Select text, or play the whole post.</span>
+    <span class="article-tts-player__status" role="status" aria-live="polite">Select text, place the cursor, or play the whole post.</span>
   `;
   document.body.append(player);
   document.body.classList.add("article-tts-enabled");
 
+  const restartButton = player.querySelector('[data-action="restart"]');
   const playButton = player.querySelector('[data-action="play"]');
   const pauseButton = player.querySelector('[data-action="pause"]');
   const stopButton = player.querySelector('[data-action="stop"]');
@@ -61,7 +63,9 @@
   let pendingBuffer = null;
   let bufferPromises = new Map();
   let controllers = new Set();
-  let queuedSelectionText = "";
+  let queuedReadingTarget = null;
+  let lastArticleCaret = null;
+  let playbackScope = "article";
 
   function setStatus(message) {
     status.textContent = message;
@@ -90,26 +94,29 @@
       .trim();
   }
 
-  function selectedArticleText() {
-    const selection = window.getSelection();
-    if (!selection || selection.isCollapsed || selection.rangeCount === 0) {
-      return "";
-    }
-    const range = selection.getRangeAt(0);
-    const container = range.commonAncestorContainer.nodeType === Node.ELEMENT_NODE
+  function rangeContainer(range) {
+    return range.commonAncestorContainer.nodeType === Node.ELEMENT_NODE
       ? range.commonAncestorContainer
       : range.commonAncestorContainer.parentElement;
-    if (!container || !article.contains(container)) {
-      return "";
-    }
-    return cleanText(selection.toString());
   }
 
-  function wholeArticleText() {
-    const clone = article.cloneNode(true);
-    clone.querySelectorAll(removedSelectors.join(",")).forEach((node) => node.remove());
-    clone.querySelectorAll("img").forEach((node) => node.remove());
-    clone.querySelectorAll("a").forEach((link) => {
+  function currentArticleRange() {
+    const selection = window.getSelection();
+    if (!selection || selection.rangeCount === 0) {
+      return null;
+    }
+    const range = selection.getRangeAt(0);
+    const container = rangeContainer(range);
+    if (!container || !article.contains(container)) {
+      return null;
+    }
+    return range.cloneRange();
+  }
+
+  function readableTextFromFragment(fragment, includeTitle = false) {
+    fragment.querySelectorAll(removedSelectors.join(",")).forEach((node) => node.remove());
+    fragment.querySelectorAll("img").forEach((node) => node.remove());
+    fragment.querySelectorAll("a").forEach((link) => {
       const visible = link.textContent.trim();
       const href = (link.getAttribute("href") || "").trim();
       if (/^(https?:\/\/|www\.)/i.test(visible) || visible === href) {
@@ -120,12 +127,16 @@
     });
 
     const blocks = [];
-    const title = cleanText(document.querySelector(".post-title")?.textContent || "");
-    if (title) {
-      blocks.push(/[.!?]$/.test(title) ? title : `${title}.`);
+    if (includeTitle) {
+      const title = cleanText(document.querySelector(".post-title")?.textContent || "");
+      if (title) {
+        blocks.push(/[.!?]$/.test(title) ? title : `${title}.`);
+      }
     }
-    clone.querySelectorAll("h2, h3, h4, p, li, blockquote").forEach((node) => {
-      if (node.parentElement?.closest("h2, h3, h4, p, li, blockquote") !== null) {
+    const blockSelector = "h2, h3, h4, p, li, blockquote";
+    fragment.querySelectorAll(blockSelector).forEach((node) => {
+      const parentBlock = node.parentElement?.closest(blockSelector);
+      if (parentBlock && fragment.contains(parentBlock)) {
         return;
       }
       let text = cleanText(node.textContent);
@@ -139,7 +150,43 @@
         blocks.push(text);
       }
     });
+    if (blocks.length === 0) {
+      const fallback = cleanText(fragment.textContent || "");
+      if (fallback) {
+        blocks.push(fallback);
+      }
+    }
     return blocks.join("\n\n");
+  }
+
+  function wholeArticleText() {
+    return readableTextFromFragment(article.cloneNode(true), true);
+  }
+
+  function textFromCaret(range) {
+    const readingRange = range.cloneRange();
+    try {
+      readingRange.setEnd(article, article.childNodes.length);
+    } catch (_error) {
+      return "";
+    }
+    return readableTextFromFragment(readingRange.cloneContents());
+  }
+
+  function readingTarget() {
+    const selection = window.getSelection();
+    const range = currentArticleRange();
+    if (range && selection && !selection.isCollapsed) {
+      return { text: cleanText(selection.toString()), scope: "selection" };
+    }
+    if (range?.collapsed) {
+      lastArticleCaret = range.cloneRange();
+      return { text: textFromCaret(range), scope: "cursor" };
+    }
+    if (lastArticleCaret) {
+      return { text: textFromCaret(lastArticleCaret), scope: "cursor" };
+    }
+    return { text: wholeArticleText(), scope: "article" };
   }
 
   function splitLongText(text) {
@@ -215,7 +262,11 @@
         if (expectedSession !== sessionId) {
           return null;
         }
-        return await audioContext.decodeAudioData(bytes);
+        try {
+          return await audioContext.decodeAudioData(bytes);
+        } catch (error) {
+          throw new Error("browser could not decode the returned audio", { cause: error });
+        }
       } finally {
         controllers.delete(controller);
       }
@@ -246,6 +297,9 @@
         return;
       }
 
+      if (audioContext.state !== "running") {
+        await audioContext.resume();
+      }
       activeSource = audioContext.createBufferSource();
       activeSource.buffer = pendingBuffer;
       activeSource.connect(audioContext.destination);
@@ -259,7 +313,7 @@
         playCurrent(expectedSession);
       }, { once: true });
       activeSource.start();
-      setStatus(`Playing ${currentIndex + 1} of ${chunks.length}.`);
+      setStatus(`Playing ${currentIndex + 1} of ${chunks.length} from ${playbackScope}.`);
       if (currentIndex + 1 < chunks.length) {
         loadBuffer(currentIndex + 1, expectedSession).catch(() => {});
       }
@@ -269,18 +323,22 @@
       }
       stopped = true;
       setControls();
-      setStatus("TTS helper unavailable. Start utils/bin/article-tts --browser-server.");
+      if (error.message.includes("decode the returned audio")) {
+        setStatus("The helper returned audio, but the browser could not decode it.");
+      } else {
+        setStatus("TTS helper unavailable. Start utils/bin/article-tts --browser-server.");
+      }
       console.error("Article TTS playback failed:", error);
     }
   }
 
-  async function startOrResume() {
-    if (paused && !stopped) {
+  async function startOrResume(forcedTarget = null) {
+    if (!forcedTarget && paused && !stopped) {
       paused = false;
       await audioContext.resume();
       setControls({ playing: true });
       if (activeSource) {
-        setStatus(`Playing ${currentIndex + 1} of ${chunks.length}.`);
+        setStatus(`Playing ${currentIndex + 1} of ${chunks.length} from ${playbackScope}.`);
       } else {
         playCurrent(sessionId);
       }
@@ -288,20 +346,23 @@
     }
 
     stopPlayback(false);
-    const text = queuedSelectionText || selectedArticleText() || wholeArticleText();
-    queuedSelectionText = "";
-    chunks = makeChunks(text);
+    const target = forcedTarget || queuedReadingTarget || readingTarget();
+    queuedReadingTarget = null;
+    chunks = makeChunks(target.text);
     if (chunks.length === 0) {
       setStatus("No readable article text was found.");
       return;
     }
 
-    audioContext = new AudioContextClass();
+    if (!audioContext || audioContext.state === "closed") {
+      audioContext = new AudioContextClass();
+    }
     await audioContext.resume();
     sessionId += 1;
     currentIndex = 0;
     stopped = false;
     paused = false;
+    playbackScope = target.scope;
     bufferPromises = new Map();
     setControls({ playing: true });
     playCurrent(sessionId);
@@ -337,24 +398,61 @@
     chunks = [];
     currentIndex = 0;
     if (audioContext) {
-      audioContext.close().catch(() => {});
-      audioContext = null;
+      if (showStatus) {
+        audioContext.suspend().catch(() => {});
+      }
     }
     setControls();
     if (showStatus) {
-      setStatus("Stopped. Select text, or play the whole post.");
+      setStatus("Stopped. Select text, place the cursor, or play the whole post.");
     }
   }
 
+  article.addEventListener("pointerup", (event) => {
+    const selection = window.getSelection();
+    const range = currentArticleRange();
+    if (range?.collapsed && selection?.isCollapsed) {
+      lastArticleCaret = range.cloneRange();
+      return;
+    }
+    if (selection && !selection.isCollapsed) {
+      return;
+    }
+
+    let pointerRange = null;
+    if (document.caretPositionFromPoint) {
+      const position = document.caretPositionFromPoint(event.clientX, event.clientY);
+      if (position) {
+        pointerRange = document.createRange();
+        pointerRange.setStart(position.offsetNode, position.offset);
+        pointerRange.collapse(true);
+      }
+    } else if (document.caretRangeFromPoint) {
+      pointerRange = document.caretRangeFromPoint(event.clientX, event.clientY);
+    }
+    const container = pointerRange ? rangeContainer(pointerRange) : null;
+    if (container && article.contains(container)) {
+      lastArticleCaret = pointerRange.cloneRange();
+    }
+  });
   playButton.addEventListener("pointerdown", () => {
-    queuedSelectionText = selectedArticleText();
+    queuedReadingTarget = readingTarget();
   });
   playButton.addEventListener("click", () => startOrResume().catch((error) => {
     setControls();
     setStatus("The browser could not start audio playback.");
     console.error("Article TTS start failed:", error);
   }));
+  restartButton.addEventListener("click", () => startOrResume({ text: wholeArticleText(), scope: "beginning" }).catch((error) => {
+    setControls();
+    setStatus("The browser could not restart audio playback.");
+    console.error("Article TTS restart failed:", error);
+  }));
   pauseButton.addEventListener("click", () => pausePlayback());
   stopButton.addEventListener("click", () => stopPlayback());
-  window.addEventListener("pagehide", () => stopPlayback(false));
+  window.addEventListener("pagehide", () => {
+    stopPlayback(false);
+    audioContext?.close().catch(() => {});
+    audioContext = null;
+  });
 })();
