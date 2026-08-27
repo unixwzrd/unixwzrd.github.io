@@ -1,0 +1,93 @@
+Squeezing More Inference from Apple Silicon: llama.cpp Today, MLXForge Later - social drafts
+
+Scheduled article:
+https://unixwzrd.ai/technology/2026/09/12/squeezing-more-inference-from-apple-silicon-llama-cpp-today-mlxforge-later/
+
+Short URL:
+https://unixwzrd.ai/s/15bffdd90d/
+
+Suggested hashtags:
+#LocalAI #AppleSilicon #LlamaCpp #AgentEngineering #LLMOps
+
+
+==================================================
+LINKEDIN
+==================================================
+
+The first inference performance problem I tried to solve was not one problem.
+
+A model can load slowly, wait behind another request, spend too long processing a large prompt, delay the first token, or generate each new token too slowly. From the far end of an agent conversation, all of those failures look like the same complaint: the model is slow.
+
+Part 10 of Local First AI and Agent Operations separates those costs and explains why correctness and run identity have to come before a performance comparison. It also documents the llama.cpp runtime I use today, including the difference between my quick local maintenance loop and the stricter procedure I would require before publishing benchmark evidence.
+
+MLXForge remains private and under substantial refactoring. It does not get to replace the working runtime because its roadmap sounds promising. It has to earn that change with qualification and repeatable evidence.
+
+https://unixwzrd.ai/s/15bffdd90d/
+
+#LocalAI #AppleSilicon #LlamaCpp #AgentEngineering #LLMOps
+
+
+==================================================
+X / TWITTER
+==================================================
+
+"The model is slow" can mean load time, queueing, prompt prefill, first-token delay, decode, transport, or the client itself.
+
+Part 10 separates those costs, documents llama.cpp as the runtime I use today, and explains what MLXForge must prove later.
+
+https://unixwzrd.ai/s/15bffdd90d/
+
+#LocalAI #AppleSilicon #LlamaCpp
+
+
+==================================================
+BLUESKY
+==================================================
+
+I stopped treating inference performance as one stopwatch reading. Loading, queueing, prefill, first-token delay, and decode are different problems, and a faster wrong answer is still wrong.
+
+Part 10 documents llama.cpp today and the evidence MLXForge must produce later.
+
+https://unixwzrd.ai/s/15bffdd90d/
+
+#LocalAI #AgentEngineering
+
+
+==================================================
+MASTODON
+==================================================
+
+An agent can feel slow for several unrelated reasons: storage and model loading, queueing, prompt prefill, time to first token, token decode, transport, or client presentation.
+
+Part 10 of Local First AI and Agent Operations pulls those phases apart and puts correctness, artifact identity, workload identity, and execution conditions ahead of performance arithmetic.
+
+The current runtime is llama.cpp on Apple Silicon. I also include the host-specific build configuration I use, while clearly separating my direct Make-based maintenance loop from the stronger validation workflow required for a public tutorial or benchmark. MLXForge remains a private successor under substantial refactoring, not a production replacement waiting for a dramatic chart.
+
+https://unixwzrd.ai/s/15bffdd90d/
+
+#LocalAI #AppleSilicon #LlamaCpp #AgentEngineering #LLMOps
+
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Squeezing More Inference from Apple Silicon: llama.cpp Today, MLXForge Later
+
+Subtitle:
+Why load time, prompt prefill, first-token latency, and decode need separate measurements, and why correctness and run identity come before speed.
+
+Body:
+
+The first inference performance problem I tried to solve was not one problem. A model could load slowly, wait behind another request, spend too long processing a large prompt, delay the first generated token, or decode each new token too slowly. From the client, those costs looked nearly identical.
+
+Part 10 separates those phases and explains the comparison contract I use before believing a speed result. It documents llama.cpp as the qualified runtime operating today, including the host-specific build and the difference between a practical local update and a reproducible benchmark procedure.
+
+MLXForge remains private and under substantial refactoring before production qualification and later performance work. The point is not to announce a winner. It is to make sure a future comparison has earned the right to exist.
+
+Full article:
+https://unixwzrd.ai/technology/2026/09/12/squeezing-more-inference-from-apple-silicon-llama-cpp-today-mlxforge-later/
+
+Tags:
+Local AI, Apple Silicon, llama.cpp, agent engineering, inference benchmarking

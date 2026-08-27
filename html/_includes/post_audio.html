@@ -1,0 +1,30 @@
+{% if page.audio %}
+  {% assign post_audio_src = page.audio %}
+  {% assign post_audio_type = "audio/mpeg" %}
+  {% assign post_audio_title = "Listen to this article" %}
+  {% assign post_audio_download = true %}
+
+  {% if page.audio.src %}
+    {% assign post_audio_src = page.audio.src %}
+    {% assign post_audio_type = page.audio.type | default: post_audio_type %}
+    {% assign post_audio_title = page.audio.title | default: post_audio_title %}
+    {% if page.audio.download == false %}
+      {% assign post_audio_download = false %}
+    {% endif %}
+  {% endif %}
+
+  <section class="post-audio" aria-labelledby="post-audio-title">
+    <div class="post-audio__heading">
+      <p class="post-audio__title" id="post-audio-title">{{ post_audio_title | escape }}</p>
+      {% if page.audio.duration %}
+        <span class="post-audio__duration">{{ page.audio.duration | escape }}</span>
+      {% endif %}
+    </div>
+    <audio class="post-audio__player" controls preload="metadata" src="{{ post_audio_src | relative_url }}" aria-label="{{ post_audio_title | escape }}">
+      Your browser does not support embedded audio.
+    </audio>
+    {% if post_audio_download %}
+      <p class="post-audio__download"><a href="{{ post_audio_src | relative_url }}" download>Download MP3</a></p>
+    {% endif %}
+  </section>
+{% endif %}

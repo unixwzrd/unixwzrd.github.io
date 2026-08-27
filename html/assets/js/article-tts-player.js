@@ -52,9 +52,22 @@
   const stopButton = player.querySelector('[data-action="stop"]');
   const status = player.querySelector(".article-tts-player__status");
   const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+  const usesNativeAudio = /Safari/i.test(navigator.userAgent) && !/(Chrome|Chromium|CriOS|Edg|OPR|FxiOS)/i.test(navigator.userAgent);
+  const nativeAudio = usesNativeAudio ? document.createElement("audio") : null;
+  const silentWav = "data:audio/wav;base64,UklGRsQAAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+
+  if (nativeAudio) {
+    nativeAudio.hidden = true;
+    nativeAudio.preload = "auto";
+    nativeAudio.setAttribute("playsinline", "");
+    nativeAudio.setAttribute("aria-hidden", "true");
+    document.body.append(nativeAudio);
+  }
 
   let audioContext = null;
   let activeSource = null;
+  let activeObjectUrl = null;
+  let objectUrls = new Set();
   let sessionId = 0;
   let chunks = [];
   let currentIndex = 0;
@@ -76,6 +89,34 @@
     playButton.disabled = playing && !isPaused;
     pauseButton.disabled = !playing || isPaused;
     stopButton.disabled = !playing;
+  }
+
+  function ensureAudioContext() {
+    if (!audioContext || audioContext.state === "closed") {
+      audioContext = new AudioContextClass();
+    }
+    return audioContext;
+  }
+
+  function primeAudioOutput() {
+    if (usesNativeAudio) {
+      if (!nativeAudio.getAttribute("src") || nativeAudio.src.startsWith("data:")) {
+        nativeAudio.src = silentWav;
+      }
+      nativeAudio.play().catch(() => {});
+      return;
+    }
+
+    const context = ensureAudioContext();
+    context.resume().catch(() => {});
+
+    // Safari may refuse a source started after the asynchronous TTS request
+    // unless audio was first touched during the user's button gesture.
+    const source = context.createBufferSource();
+    source.buffer = context.createBuffer(1, 1, context.sampleRate);
+    source.connect(context.destination);
+    source.start(0);
+    source.addEventListener("ended", () => source.disconnect(), { once: true });
   }
 
   function cleanText(value) {
@@ -258,6 +299,16 @@
         if (!response.ok) {
           throw new Error(`relay returned HTTP ${response.status}`);
         }
+        if (usesNativeAudio) {
+          const blob = await response.blob();
+          if (expectedSession !== sessionId) {
+            return null;
+          }
+          const url = URL.createObjectURL(blob);
+          objectUrls.add(url);
+          return { url };
+        }
+
         const bytes = await response.arrayBuffer();
         if (expectedSession !== sessionId) {
           return null;
@@ -297,22 +348,38 @@
         return;
       }
 
-      if (audioContext.state !== "running") {
-        await audioContext.resume();
-      }
-      activeSource = audioContext.createBufferSource();
-      activeSource.buffer = pendingBuffer;
-      activeSource.connect(audioContext.destination);
-      activeSource.addEventListener("ended", () => {
+      const chunkEnded = () => {
         if (expectedSession !== sessionId || stopped) {
           return;
+        }
+        if (activeObjectUrl) {
+          URL.revokeObjectURL(activeObjectUrl);
+          objectUrls.delete(activeObjectUrl);
+          activeObjectUrl = null;
         }
         activeSource = null;
         pendingBuffer = null;
         currentIndex += 1;
         playCurrent(expectedSession);
-      }, { once: true });
-      activeSource.start();
+      };
+
+      if (usesNativeAudio) {
+        activeObjectUrl = pendingBuffer.url;
+        activeSource = nativeAudio;
+        nativeAudio.src = activeObjectUrl;
+        nativeAudio.currentTime = 0;
+        nativeAudio.addEventListener("ended", chunkEnded, { once: true });
+        await nativeAudio.play();
+      } else {
+        if (audioContext.state !== "running") {
+          await audioContext.resume();
+        }
+        activeSource = audioContext.createBufferSource();
+        activeSource.buffer = pendingBuffer;
+        activeSource.connect(audioContext.destination);
+        activeSource.addEventListener("ended", chunkEnded, { once: true });
+        activeSource.start();
+      }
       setStatus(`Playing ${currentIndex + 1} of ${chunks.length} from ${playbackScope}.`);
       if (currentIndex + 1 < chunks.length) {
         loadBuffer(currentIndex + 1, expectedSession).catch(() => {});
@@ -335,7 +402,11 @@
   async function startOrResume(forcedTarget = null) {
     if (!forcedTarget && paused && !stopped) {
       paused = false;
-      await audioContext.resume();
+      if (usesNativeAudio) {
+        await nativeAudio.play();
+      } else {
+        await audioContext.resume();
+      }
       setControls({ playing: true });
       if (activeSource) {
         setStatus(`Playing ${currentIndex + 1} of ${chunks.length} from ${playbackScope}.`);
@@ -354,10 +425,10 @@
       return;
     }
 
-    if (!audioContext || audioContext.state === "closed") {
-      audioContext = new AudioContextClass();
+    if (!usesNativeAudio) {
+      ensureAudioContext();
+      await audioContext.resume();
     }
-    await audioContext.resume();
     sessionId += 1;
     currentIndex = 0;
     stopped = false;
@@ -373,7 +444,11 @@
       return;
     }
     paused = true;
-    await audioContext?.suspend();
+    if (usesNativeAudio) {
+      nativeAudio.pause();
+    } else {
+      await audioContext?.suspend();
+    }
     setControls({ playing: true, isPaused: true });
     setStatus(`Paused at ${currentIndex + 1} of ${chunks.length}.`);
   }
@@ -384,7 +459,12 @@
     paused = false;
     controllers.forEach((controller) => controller.abort());
     controllers.clear();
-    if (activeSource) {
+    if (usesNativeAudio) {
+      nativeAudio.pause();
+      nativeAudio.removeAttribute("src");
+      nativeAudio.load();
+      activeSource = null;
+    } else if (activeSource) {
       try {
         activeSource.stop();
       } catch (_error) {
@@ -393,6 +473,9 @@
       activeSource.disconnect();
       activeSource = null;
     }
+    objectUrls.forEach((url) => URL.revokeObjectURL(url));
+    objectUrls.clear();
+    activeObjectUrl = null;
     pendingBuffer = null;
     bufferPromises.clear();
     chunks = [];
@@ -437,17 +520,27 @@
   });
   playButton.addEventListener("pointerdown", () => {
     queuedReadingTarget = readingTarget();
+    primeAudioOutput();
   });
-  playButton.addEventListener("click", () => startOrResume().catch((error) => {
-    setControls();
-    setStatus("The browser could not start audio playback.");
-    console.error("Article TTS start failed:", error);
-  }));
-  restartButton.addEventListener("click", () => startOrResume({ text: wholeArticleText(), scope: "beginning" }).catch((error) => {
-    setControls();
-    setStatus("The browser could not restart audio playback.");
-    console.error("Article TTS restart failed:", error);
-  }));
+  playButton.addEventListener("click", () => {
+    primeAudioOutput();
+    startOrResume().catch((error) => {
+      setControls();
+      setStatus("The browser could not start audio playback.");
+      console.error("Article TTS start failed:", error);
+    });
+  });
+  restartButton.addEventListener("pointerdown", () => {
+    primeAudioOutput();
+  });
+  restartButton.addEventListener("click", () => {
+    primeAudioOutput();
+    startOrResume({ text: wholeArticleText(), scope: "beginning" }).catch((error) => {
+      setControls();
+      setStatus("The browser could not restart audio playback.");
+      console.error("Article TTS restart failed:", error);
+    });
+  });
   pauseButton.addEventListener("click", () => pausePlayback());
   stopButton.addEventListener("click", () => stopPlayback());
   window.addEventListener("pagehide", () => {

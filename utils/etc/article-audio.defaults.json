@@ -1,0 +1,9 @@
+{
+  "site_url": "http://127.0.0.1:4000",
+  "posts_root": "html/_posts",
+  "assets_root": "html/assets/audio/blog",
+  "profile": "local-narration-v1",
+  "max_chars": 1200,
+  "page_timeout": 20.0,
+  "tts_timeout": 300.0
+}

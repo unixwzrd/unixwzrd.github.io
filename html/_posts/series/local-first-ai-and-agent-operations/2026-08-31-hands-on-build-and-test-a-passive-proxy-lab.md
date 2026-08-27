@@ -11,7 +11,7 @@ excerpt: "Run a passive proxy, deterministic fake model endpoint, and six privac
 series: "Local First AI and Agent Operations"
 series_part: "6A"
 series_order: 65
-series_total: 13
+series_total: 14
 series_url: /blog/series/local-first-ai-and-agent-operations/
 series_companion_of: 6
 series_previous_title: "A Passive Model Proxy as an AI Debugging Instrument"

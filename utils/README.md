@@ -87,6 +87,7 @@ Scripts and configs used to **validate**, **build**, **refresh project metadata*
 | Resource | Purpose |
 |----------|---------|
 | [bin/article-tts](bin/article-tts) | Extract the prose from a rendered post, divide it into paragraph-aware chunks, and optionally send it to the configured TTS Bridge for playback and retained WAV/MP3 artifacts. Use `--dry-run` to inspect exactly what would be spoken. |
+| [bin/article-audio](bin/article-audio) | Check rendered posts for missing or stale public MP3 narration and generate only the files whose cleaned prose or public narration profile changed. |
 | [bin/push-twitter](bin/push-twitter) / [bin/push-social-media](bin/push-social-media) | Social publish helpers (operator use). |
 | [bin/test_services.sh](bin/test_services.sh) | Service smoke tests. |
 | [bin/test_email.py](bin/test_email.py) | Email / alert tests. |
@@ -131,6 +132,47 @@ Development-mode post pages display a small player at the bottom of the viewport
 The browser sends sentence-aware chunks to the relay on `127.0.0.1:11441`. The relay accepts only the local Jekyll origins by default, keeps the configured bridge endpoint and voice out of page JavaScript, and never writes browser-playback audio to disk. Each short WAV response is decoded in browser memory and the next chunk is prepared while the current one plays. This is buffered chunk playback rather than byte-level streaming because the current TTS Bridge completes each WAV response before returning it.
 
 The player is excluded from production Jekyll builds. If the local site or relay uses a different port, repeat `--allow-origin` when starting the relay and set `articleTtsRelayUrl` in browser local storage to the new loopback relay URL.
+
+The shared `post` layout injects this development player into every local blog post. It does not depend on `audio` front matter and it never appears in a production build.
+
+### Generate retained MP3 narration
+
+`article-audio` uses the same rendered-prose extractor as `article-tts`, but it publishes only the joined MP3 and a privacy-safe identity manifest. It compares the hash of the cleaned rendered article text, the narration profile name, the chunk size, and the MP3 hash. File timestamps are not used, so a metadata-only edit does not force expensive synthesis and touching an unchanged file does not make its narration stale.
+
+Check one post without contacting the TTS Bridge:
+
+```bash
+utils/bin/article-audio --check \
+  html/_posts/technology/2025-04-08-Remote-Debugging-With-VSCode.md
+```
+
+Check every publishable post that the local Jekyll server can render:
+
+```bash
+utils/bin/article-audio --check --all
+```
+
+Generate or refresh one MP3 while the local Jekyll server and TTS engine are available:
+
+```bash
+TTS_BRIDGE_URL="http://127.0.0.1:11440/v1" \
+TTS_BRIDGE_VOICE="narrator" \
+utils/bin/article-audio --generate \
+  html/_posts/technology/2025-04-08-Remote-Debugging-With-VSCode.md
+```
+
+Use `--generate --all` for an intentional batch. Current MP3s are reused; only missing or stale items call TTS. `--force` regenerates selected audio even when the manifest is current. A failed synthesis occurs in a temporary directory and leaves the last complete published MP3 untouched.
+
+Tracked public defaults live in `utils/etc/article-audio.defaults.json`. The file contains no bridge endpoint, model, or voice alias. Supply those private values through `TTS_BRIDGE_URL`, `TTS_BRIDGE_VOICE`, and optional `TTS_BRIDGE_MODEL`. Change the public `profile` value when the intended narration voice, model, or synthesis policy changes and every old manifest should become stale.
+
+Generated files use this layout:
+
+```text
+html/assets/audio/blog/<category>/YYYY-MM-DD-<slug>.mp3
+html/assets/audio/blog/<category>/YYYY-MM-DD-<slug>.audio.json
+```
+
+Generation does not edit post front matter. After listening to and approving an MP3, add the printed `audio` path to that post. The production player appears only after this opt-in.
 
 ---
 

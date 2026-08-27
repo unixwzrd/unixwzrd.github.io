@@ -11,7 +11,7 @@ excerpt: "Memory, caching, compression, shell reduction, routing, and observabil
 series: "Local First AI and Agent Operations"
 series_part: 4
 series_order: 40
-series_total: 13
+series_total: 14
 series_url: /blog/series/local-first-ai-and-agent-operations/
 series_previous_title: "Memory Is a Governance Problem, Not Just a Vector Database"
 series_previous_url: /technology/2026/08/23/memory-is-a-governance-problem-not-just-a-vector-database/

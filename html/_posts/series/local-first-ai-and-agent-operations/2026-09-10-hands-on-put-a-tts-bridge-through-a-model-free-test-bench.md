@@ -11,12 +11,14 @@ excerpt: "Build a model-free TTS test bench with bounded capability and registry
 series: "Local First AI and Agent Operations"
 series_part: "9A"
 series_order: 95
-series_total: 13
+series_total: 14
 series_url: /blog/series/local-first-ai-and-agent-operations/
 series_companion_of: 9
 series_previous_title: "Voice Cloning Across Hosts: Making TTS Operational"
 series_previous_url: /technology/2026/09/08/voice-cloning-across-hosts-making-tts-operational/
-series_next_title: "Squeezing More Inference from Apple Silicon with MLXForge"
+series_next_title: "Squeezing More Inference from Apple Silicon: llama.cpp Today, MLXForge Later"
+series_next_url: /technology/2026/09/12/squeezing-more-inference-from-apple-silicon-llama-cpp-today-mlxforge-later/
+series_next_date: 2026-09-12 10:00:00 -0500
 published: true
 ---
 

@@ -11,7 +11,7 @@ excerpt: "Old textual media results can consume context long after they stop hel
 series: "Local First AI and Agent Operations"
 series_part: 7
 series_order: 70
-series_total: 13
+series_total: 14
 series_url: /blog/series/local-first-ai-and-agent-operations/
 series_previous_title: "A Passive Model Proxy as an AI Debugging Instrument"
 series_previous_url: /technology/2026/08/29/a-passive-model-proxy-as-an-ai-debugging-instrument/

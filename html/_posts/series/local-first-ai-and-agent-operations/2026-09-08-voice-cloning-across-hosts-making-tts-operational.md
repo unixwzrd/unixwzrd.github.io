@@ -7,15 +7,18 @@ date: 2026-09-08 10:00:00 -0500
 categories: [technology]
 tags: [ai, agent-operations, ai-agents, tts, voice-cloning, llm-ops-kit, local-first, privacy, macos, openai-compatible]
 image: /assets/images/blog/agent-optimization/post-09-voice-cloning-operations-hero.png
+audio: /assets/audio/blog/technology/2026-09-08-voice-cloning-across-hosts-making-tts-operational.mp3
 excerpt: "A healthy speech bridge does not prove that the model behind it is ready. Part 9 follows the co-located bridge, registered references, runtime ownership, and recovery boundaries that made cross-host TTS operational."
 series: "Local First AI and Agent Operations"
 series_part: 9
 series_order: 90
-series_total: 13
+series_total: 14
 series_url: /blog/series/local-first-ai-and-agent-operations/
 series_previous_title: "From Shell Scripts to an Operator-Ready LLM-Ops-Kit"
 series_previous_url: /technology/2026/09/06/from-shell-scripts-to-an-operator-ready-llm-ops-kit/
-series_next_title: "Squeezing More Inference from Apple Silicon with MLXForge"
+series_next_title: "Squeezing More Inference from Apple Silicon: llama.cpp Today, MLXForge Later"
+series_next_url: /technology/2026/09/12/squeezing-more-inference-from-apple-silicon-llama-cpp-today-mlxforge-later/
+series_next_date: 2026-09-12 10:00:00 -0500
 series_companion_title: "Hands-On: Put a TTS Bridge Through a Model-Free Test Bench"
 series_companion_url: /hands-on/2026/09/10/hands-on-put-a-tts-bridge-through-a-model-free-test-bench/
 series_companion_date: 2026-09-10 08:00:00 -0500

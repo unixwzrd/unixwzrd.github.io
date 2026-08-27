@@ -584,3 +584,9 @@ zsdoc/data
 /utils/etc/
 /utils/log/
 /utils/output/
+/utils/var/
+
+# Public, non-secret defaults for the article-audio workflow.
+!/utils/etc/
+/utils/etc/*
+!/utils/etc/article-audio.defaults.json

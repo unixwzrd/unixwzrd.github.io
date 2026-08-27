@@ -11,7 +11,7 @@ excerpt: "A request can look correct while the rendered prompt is wrong. I built
 series: "Local First AI and Agent Operations"
 series_part: 6
 series_order: 60
-series_total: 13
+series_total: 14
 series_url: /blog/series/local-first-ai-and-agent-operations/
 series_previous_title: "Measuring Token Optimization Without Breaking the Agent"
 series_previous_url: /technology/2026/08/27/measuring-token-optimization-without-breaking-the-agent/

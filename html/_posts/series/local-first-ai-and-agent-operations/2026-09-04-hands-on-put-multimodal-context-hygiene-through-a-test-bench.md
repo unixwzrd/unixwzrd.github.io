@@ -11,7 +11,7 @@ excerpt: "Run sanitized conversations through stock and derived Qwen templates, 
 series: "Local First AI and Agent Operations"
 series_part: "7A"
 series_order: 75
-series_total: 13
+series_total: 14
 series_url: /blog/series/local-first-ai-and-agent-operations/
 series_companion_of: 7
 series_previous_title: "Multimodal Context Hygiene with a Jinja Chat Template"

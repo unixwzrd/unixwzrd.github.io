@@ -11,7 +11,7 @@ excerpt: "The model may be running while the system around it is still broken. T
 series: "Local First AI and Agent Operations"
 series_part: 1
 series_order: 10
-series_total: 13
+series_total: 14
 series_url: /blog/series/local-first-ai-and-agent-operations/
 series_next_title: "Deterministic First: Building a Knowledge Intake Pipeline"
 series_next_url: /technology/2026/08/19/deterministic-first-building-a-knowledge-intake-pipeline/

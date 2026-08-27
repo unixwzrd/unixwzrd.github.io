@@ -30,6 +30,7 @@ If you have a resource you would like added, [contact us](/contact).
 - [AI and Technology Tools](#ai-and-technology-tools)
   - [AI Assisted Development Tools](#ai-assisted-development-tools)
   - [General AI Resources](#general-ai-resources)
+  - [Cost Control, Memory and Caching](#cost-control-memory-and-caching)
   - [Local AI and Security Tools](#local-ai-and-security-tools)
   - [Text to Speech](#text-to-speech)
   - [Speech to Text](#speech-to-text)
@@ -65,6 +66,11 @@ I primarily use Cursor. These products move rapidly, but Cursor has been the mos
 - [Anthropic Intelligence](https://www.anthropic.com/) - AI research and development tools.
 - [Hugging Face](https://huggingface.co/) - Open-source AI tools.
 - [OpenAI](https://openai.com/) - AI research and development tools, and ChatGPT.
+
+### Cost Control, Memory and Caching
+
+- [Mnemosyne](https://mnemosyne.site/en/) - A universal memory layer for any AI agent. SQLite-backed, local-first, one pure-Python dependency. One pip install. That is all. May be condigured usig local embedding models, vector stores, and more. Woeks with Hermes Agent, Claude Code, Codex, Cursor, and more. When used with local embedding/classifier it cal be 100% local. 
+- [TiboTattle](https://tibotattle.com/) - TiboTattle is a local-first Mac app for understanding personal Codex usage. It estimates your seven-day allowance in API-equivalent terms, keeps its reset history, and shows uncertainty instead of filling gaps with guesses.
 
 ### Local AI and Security Tools
 

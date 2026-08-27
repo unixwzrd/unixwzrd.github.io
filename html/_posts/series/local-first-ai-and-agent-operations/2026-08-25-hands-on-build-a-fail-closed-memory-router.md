@@ -11,7 +11,7 @@ excerpt: "Authorization has to choose the candidate set before relevance ranking
 series: "Local First AI and Agent Operations"
 series_part: "3A"
 series_order: 35
-series_total: 13
+series_total: 14
 series_url: /blog/series/local-first-ai-and-agent-operations/
 series_companion_of: 3
 series_previous_title: "Memory Is a Governance Problem, Not Just a Vector Database"

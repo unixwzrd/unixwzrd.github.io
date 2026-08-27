@@ -1,0 +1,95 @@
+Hands-On: Build a Fail-Closed Inference Benchmark Comparator - social drafts
+
+Scheduled article:
+https://unixwzrd.ai/hands-on/2026/09/14/hands-on-build-a-fail-closed-inference-benchmark-comparator/
+
+Short URL:
+https://unixwzrd.ai/s/93a01b62c9/
+
+Suggested hashtags:
+#Python #Benchmarking #LocalAI #Testing #Reproducibility
+
+
+==================================================
+LINKEDIN
+==================================================
+
+A benchmark comparator should be willing to refuse the comparison.
+
+Hands-On 10A turns that rule into a small Python lab. The standard-library tool validates a closed schema, checks artifact and workload identity, rejects incompatible execution state, blocks performance output after correctness drift, and only then calculates median, direction-aware deltas.
+
+The package uses invented JSON fixtures. It needs no model, GPU, Apple Silicon machine, network service, provider account, or private benchmark evidence. You can inspect all eight files in the article, download the complete package, run its 20-condition walkthrough, and exercise nine regression tests.
+
+The interesting result is not a speed number. It is watching a misleading comparison stop before arithmetic gives it an air of authority.
+
+https://unixwzrd.ai/s/93a01b62c9/
+
+#Python #Benchmarking #LocalAI #Testing #Reproducibility
+
+
+==================================================
+X / TWITTER
+==================================================
+
+A useful benchmark comparator sometimes says no.
+
+Hands-On 10A is an eight-file Python lab that rejects incompatible identity, profiled runs, and correctness drift before calculating performance deltas.
+
+No model, GPU, network, or private evidence required.
+
+https://unixwzrd.ai/s/93a01b62c9/
+
+#Python #Benchmarking #LocalAI
+
+
+==================================================
+BLUESKY
+==================================================
+
+This little Python lab refuses to calculate speed when the artifact, workload, execution state, or normalized output no longer matches.
+
+It uses invented fixtures and the standard library, so you can break the comparison contract safely and see exactly where it stops.
+
+https://unixwzrd.ai/s/93a01b62c9/
+
+#Python #Reproducibility
+
+
+==================================================
+MASTODON
+==================================================
+
+Benchmark arithmetic is easy. Deciding whether two runs deserve to be compared is the harder and more important part.
+
+Hands-On 10A provides a complete standard-library Python comparator with invented fixtures. It validates an exact schema, separates repeatability from optimization, rejects identity and execution-state mismatches, blocks metrics after correctness failure, and renders one bounded result as JSON, TSV, or Markdown.
+
+The downloadable lab includes 20 acceptance conditions and nine unit tests. It runs without a model, GPU, provider, network connection, or private benchmark data.
+
+https://unixwzrd.ai/s/93a01b62c9/
+
+#Python #Benchmarking #LocalAI #Testing #Reproducibility
+
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Hands-On: Build a Fail-Closed Inference Benchmark Comparator
+
+Subtitle:
+Use a small standard-library Python lab to reject incompatible or incorrect runs before calculating performance deltas.
+
+Body:
+
+Most benchmark examples begin with arithmetic. This one begins by asking whether the baseline and candidate still describe the same experiment.
+
+Hands-On 10A packages that decision into eight inspectable files. The comparator validates a closed schema, checks artifact and workload identity, separates repeatability from optimization, rejects incompatible execution state, stops after correctness drift, and calculates median direction-aware deltas only for eligible runs.
+
+Everything is synthetic. The lab requires no model, GPU, provider account, network service, or private evidence. The complete package, collapsed source viewers, 20-condition walkthrough, and nine regression tests are included.
+
+Full article:
+https://unixwzrd.ai/hands-on/2026/09/14/hands-on-build-a-fail-closed-inference-benchmark-comparator/
+
+Tags:
+Python, benchmarking, testing, reproducibility, local AI

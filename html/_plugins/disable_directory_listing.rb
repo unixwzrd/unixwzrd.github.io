@@ -3,6 +3,9 @@
 
 require 'webrick'
 
+# WEBrick does not ship an MP3 mapping, while browsers expect audio/mpeg.
+WEBrick::HTTPUtils::DefaultMimeTypes['mp3'] = 'audio/mpeg'
+
 # Override WEBrick's FileHandler to disable directory listings
 module WEBrick
   class HTTPServlet::FileHandler
@@ -51,7 +54,11 @@ module WEBrick
 
       # Call the original method for all other requests
       original_do_GET(req, res)
-    rescue => e
+    rescue WEBrick::HTTPStatus::Status => e
+      # WEBrick uses status exceptions for normal responses such as byte-range
+      # 206 Partial Content and 304 Not Modified. Preserve that control flow.
+      raise e
+    rescue StandardError => e
       # If anything goes wrong, try to serve our custom 404 page
       custom_404_path = @root + "/404.html"
       if File.exist?(custom_404_path)

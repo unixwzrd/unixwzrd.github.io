@@ -34,6 +34,27 @@ When working with the post layout, remember that all frontmatter variables are a
 
 The canonical tag vocabulary lives in `html/_data/tag_taxonomy.yml`. List it from the repository root with `bundle exec ruby scripts/list_tags.rb`. Use `content_type` for introductions, releases, updates, and reference posts rather than adding those values to `tags`.
 
+### Optional retained article audio
+
+The local development build adds the dynamic proofreading player to every post automatically. Public narration is separate and opt-in. Once a generated MP3 has been reviewed, add either a simple path:
+
+```yaml
+audio: /assets/audio/blog/technology/2026-09-12-example-post.mp3
+```
+
+or the expanded form:
+
+```yaml
+audio:
+  src: /assets/audio/blog/technology/2026-09-12-example-post.mp3
+  type: audio/mpeg
+  title: "Listen to this article"
+  duration: "18 minutes"
+  download: true
+```
+
+The shared post layout places the static player below the hero image and above the article body. It renders nothing when `audio` is absent. Generate and check retained narration with `utils/bin/article-audio`; see `utils/README.md` for the workflow. Do not add front matter until the MP3 has been reviewed and its narration manifest is current.
+
 ### Important Variables
 
 When working with the post layout, remember that all frontmatter variables are accessed through the `page` object:

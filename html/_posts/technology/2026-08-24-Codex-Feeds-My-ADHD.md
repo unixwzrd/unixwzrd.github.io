@@ -1,7 +1,6 @@
 ---
 short_link_basis: "/_posts/technology/2026-08-24-Codex-Feeds-My-ADHD.md"
 short_url: "https://unixwzrd.ai/s/7037a514e9/"
-excerpt: "Use SSH host aliases, isolated user accounts, and secure tunnels to edit and debug Python on the same Mac or a remote system with VS Code, Cursor, Windsurf, and related editors."
 image: /assets/images/scope-and-mission-creeps.png
 layout: post
 title: "Scope Creep Has Never Been This Easy"

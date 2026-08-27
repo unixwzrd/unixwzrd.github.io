@@ -11,7 +11,7 @@ excerpt: "The shell scripts worked, but they could not explain the system. I tur
 series: "Local First AI and Agent Operations"
 series_part: 8
 series_order: 80
-series_total: 13
+series_total: 14
 series_url: /blog/series/local-first-ai-and-agent-operations/
 series_previous_title: "Multimodal Context Hygiene with a Jinja Chat Template"
 series_previous_url: /technology/2026/09/02/multimodal-context-hygiene-with-a-jinja-chat-template/

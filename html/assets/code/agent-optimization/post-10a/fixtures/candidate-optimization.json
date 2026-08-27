@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "identity": {
+    "run_id": "synthetic-candidate-01",
+    "engine": "engine-a",
+    "source_fingerprint": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "artifact_fingerprint": "2222222222222222222222222222222222222222222222222222222222222222",
+    "workload_fingerprint": "3333333333333333333333333333333333333333333333333333333333333333",
+    "machine_class": "synthetic-apple-silicon-lab",
+    "memory_gb": 32,
+    "warm_cold": "warm",
+    "profiled": false,
+    "concurrency": 1,
+    "batch_size": 1,
+    "context_tokens": 4096,
+    "sampling_fingerprint": "4444444444444444444444444444444444444444444444444444444444444444"
+  },
+  "correctness": {
+    "passed": true,
+    "normalized_output_hash": "5555555555555555555555555555555555555555555555555555555555555555"
+  },
+  "observations": [
+    {"ttft_ms": 190.0, "prompt_tokens_per_s": 546.0, "decode_tokens_per_s": 32.2, "peak_wired_mb": 11820.0},
+    {"ttft_ms": 188.0, "prompt_tokens_per_s": 550.0, "decode_tokens_per_s": 32.5, "peak_wired_mb": 11800.0},
+    {"ttft_ms": 186.0, "prompt_tokens_per_s": 554.0, "decode_tokens_per_s": 32.8, "peak_wired_mb": 11780.0}
+  ]
+}

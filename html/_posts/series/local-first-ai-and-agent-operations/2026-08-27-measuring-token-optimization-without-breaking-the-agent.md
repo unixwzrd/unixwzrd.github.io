@@ -11,7 +11,7 @@ excerpt: "One test used fewer input tokens and still made the agent slower. That
 series: "Local First AI and Agent Operations"
 series_part: 5
 series_order: 50
-series_total: 13
+series_total: 14
 series_url: /blog/series/local-first-ai-and-agent-operations/
 series_previous_title: "The Agent Memory and Optimization Tool Landscape"
 series_previous_url: /technology/2026/08/25/the-agent-memory-and-optimization-tool-landscape/

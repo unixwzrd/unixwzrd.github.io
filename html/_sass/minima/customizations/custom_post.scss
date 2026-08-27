@@ -225,6 +225,50 @@
   max-height: 78rem;
 }
 
+.post-audio {
+  margin: 0 0 2rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid #315c85;
+  border-radius: 0.65rem;
+  background: #0c1117;
+  box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.25);
+}
+
+.post-audio__heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.55rem;
+}
+
+.post-audio__title,
+.post-audio__download {
+  margin: 0;
+}
+
+.post-audio__title {
+  color: #dcecff;
+  font-weight: 700;
+}
+
+.post-audio__duration {
+  color: #aebdcb;
+  font-size: 0.88rem;
+}
+
+.post-audio__player {
+  display: block;
+  width: 100%;
+  min-height: 2.5rem;
+}
+
+.post-audio__download {
+  margin-top: 0.45rem;
+  font-size: 0.88rem;
+  text-align: right;
+}
+
 .article-tts-enabled {
   padding-bottom: 5.5rem;
 }

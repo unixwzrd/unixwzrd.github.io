@@ -11,7 +11,7 @@ excerpt: "Before a model can decide what matters, the system still has to identi
 series: "Local First AI and Agent Operations"
 series_part: 2
 series_order: 20
-series_total: 13
+series_total: 14
 series_url: /blog/series/local-first-ai-and-agent-operations/
 series_previous_title: "When a Local AI Stack Becomes an Operations System"
 series_previous_url: /technology/2026/08/17/when-a-local-ai-stack-becomes-an-operations-system/

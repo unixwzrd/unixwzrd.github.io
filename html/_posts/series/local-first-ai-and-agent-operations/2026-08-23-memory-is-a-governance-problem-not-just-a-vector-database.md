@@ -11,7 +11,7 @@ excerpt: "A relevant memory from the wrong context is not a better result; it is
 series: "Local First AI and Agent Operations"
 series_part: 3
 series_order: 30
-series_total: 13
+series_total: 14
 series_url: /blog/series/local-first-ai-and-agent-operations/
 series_previous_title: "Deterministic First: Building a Knowledge Intake Pipeline"
 series_previous_url: /technology/2026/08/19/deterministic-first-building-a-knowledge-intake-pipeline/

@@ -11,7 +11,7 @@ excerpt: "A first import is easy. I built and tested a bounded Python and SQLite
 series: "Local First AI and Agent Operations"
 series_part: "2A"
 series_order: 25
-series_total: 13
+series_total: 14
 series_url: /blog/series/local-first-ai-and-agent-operations/
 series_companion_of: 2
 series_previous_title: "Deterministic First: Building a Knowledge Intake Pipeline"
