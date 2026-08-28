@@ -170,6 +170,5 @@ Legal services and eligibility vary by location. These directories provide infor
 ### Other Regional Legal Aid
 
 - [Australia: Legal Assistance Services](https://www.ag.gov.au/legal-system/legal-assistance-services) - Official directory of legal-aid commissions and other assistance providers by state and territory.
-
 - [Canada: Provincial and Territorial Legal Aid Plans](https://canada.justice.gc.ca/eng/fund-fina/gov-gouv/aid-aide/index.html) - Official links to legal-aid services administered by each province and territory.
 - [United Kingdom: Check if You Can Get Legal Aid](https://www.gov.uk/legal-aid/check-legal-aid) - Official eligibility checker and guidance for obtaining legal aid.
