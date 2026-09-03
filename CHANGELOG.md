@@ -1,5 +1,32 @@
 # Changelog
 
+This changelog records changes to site behavior, operational tooling, scripts, build validation, and shared templates. Routine articles, post corrections, publication dates, and social copy do not require entries. The entries below were backfilled on September 2 from repository history; their dates identify the recorded changes, not a verified deployment date.
+
+## 2026-09-02: Safari extension access to the local TTS relay
+
+- Added origin-pattern matching to the browser TTS relay and allowed Safari Web Extension origins alongside local Jekyll origins. Ordinary external webpage origins remain rejected by default.
+- Updated `--allow-origin` help and relay documentation, with regression coverage for the default allowlist, extension speech requests, and rejected external origins.
+
+## 2026-08-27: Retained narration and Safari audio compatibility
+
+- Added `utils/bin/article-audio`, its defaults file, and tests for checking or generating narration for one post or an explicitly selected batch. Missing or stale narration is detected from cleaned prose, narration profile, chunk size, and audio hashes rather than file timestamps.
+- Kept synthesis intermediates in a temporary directory and staged completed MP3 replacements so a synthesis failure leaves the previous complete MP3 intact. Retained artifacts contain the MP3 and an identity manifest, not the intermediate text and WAV chunks.
+- Added the shared `post_audio.html` player, enabled only by a post's `audio` front matter. Audio generation does not enable that player or edit front matter automatically.
+- Added Safari's native-audio playback path, user-gesture audio initialization, and in-memory object-URL cleanup to the dynamic proofreader.
+- Corrected the local directory-listing handler to preserve WEBrick's normal HTTP status control flow, including `206 Partial Content` and `304 Not Modified`, instead of turning audio byte-range responses into error pages.
+
+## 2026-08-26: Proofreader controls and draft-inclusive validation
+
+- Improved the local proofreader's selection and cursor handling, added Restart, and preserved pause/resume behavior across asynchronous chunk preparation. Versioned the injected JavaScript URL to avoid stale cached controls.
+- Excluded actual draft documents from the strict tag validator while retaining canonical-tag enforcement for publishable and scheduled posts, allowing draft-inclusive local previews to start normally.
+
+## 2026-08-25: Article TTS tooling and taxonomy checks
+
+- Added `utils/bin/article-tts` for rendered-prose extraction, dry-run inspection, paragraph-aware chunking, TTS playback, resumable chunk artifacts, and joined WAV/MP3 output. The extractor excludes page furniture, raw URLs, code blocks, tables, and media while retaining readable article text.
+- Added a loopback browser relay and development-only player in the shared post layout. Browser playback keeps audio in memory, supports selection or whole-article reading, and keeps bridge endpoint and voice configuration out of page JavaScript. Responses are buffered audio chunks, not byte-level streaming.
+- Added the canonical tag/content-type validator, tag inventory utilities, and GitHub Actions taxonomy check. Updated generated project-post templates to use `content_type` and prompt authors to choose canonical tags.
+- Moved blog-section navigation to shared data and added content-type metadata to analytics.
+
 ## 2026-08-21: Stable project permalinks and compatibility redirects
 
 - Froze all project-post canonical URL segments with explicit `permalink_slug` front matter so title and source-file edits cannot move published pages.
