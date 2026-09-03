@@ -1,7 +1,7 @@
 Hands-On: Build a Fail-Closed Inference Benchmark Comparator - social drafts
 
 Scheduled article:
-https://unixwzrd.ai/hands-on/2026/09/14/hands-on-build-a-fail-closed-inference-benchmark-comparator/
+https://unixwzrd.ai/hands-on/2026/09/12/hands-on-build-a-fail-closed-inference-benchmark-comparator/
 
 Short URL:
 https://unixwzrd.ai/s/93a01b62c9/
@@ -89,7 +89,7 @@ Hands-On 10A packages that decision into eight inspectable files. The comparator
 Everything is synthetic. The lab requires no model, GPU, provider account, network service, or private evidence. The complete package, collapsed source viewers, 20-condition walkthrough, and nine regression tests are included.
 
 Full article:
-https://unixwzrd.ai/hands-on/2026/09/14/hands-on-build-a-fail-closed-inference-benchmark-comparator/
+https://unixwzrd.ai/hands-on/2026/09/12/hands-on-build-a-fail-closed-inference-benchmark-comparator/
 
 Tags:
 Python, benchmarking, testing, reproducibility, local AI

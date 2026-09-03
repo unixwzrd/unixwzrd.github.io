@@ -1,7 +1,7 @@
 Hands-On: Put Multimodal Context Hygiene Through a Test Bench - social drafts
 
 Scheduled article:
-https://unixwzrd.ai/hands-on/2026/09/04/hands-on-put-multimodal-context-hygiene-through-a-test-bench/
+https://unixwzrd.ai/hands-on/2026/09/02/hands-on-put-multimodal-context-hygiene-through-a-test-bench/
 
 Short URL:
 https://unixwzrd.ai/s/d038dc533a/
@@ -83,7 +83,7 @@ The Part 7 article explains why stale textual media history belongs in a reviewe
 The lab includes seven invented fixtures, a bounded stock-versus-derived inspector, eleven tests, the exact 4,096/4,097-character boundary, native media preservation checks, expected failure cases, and an optional model-proxy diagnostic comparison. The complete attributed twelve-file package is included.
 
 Full article:
-https://unixwzrd.ai/hands-on/2026/09/04/hands-on-put-multimodal-context-hygiene-through-a-test-bench/
+https://unixwzrd.ai/hands-on/2026/09/02/hands-on-put-multimodal-context-hygiene-through-a-test-bench/
 
 Tags:
 Agent engineering, local AI, LLM operations, Qwen, Python

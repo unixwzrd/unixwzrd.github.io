@@ -20,6 +20,7 @@ import requests
 from utils.bin.article_tts import (
     BrowserRelayConfig,
     BrowserRelayServer,
+    DEFAULT_BROWSER_ORIGINS,
     chunk_blocks,
     extract_article,
     join_audio,
@@ -193,6 +194,11 @@ class AudioArtifactTests(unittest.TestCase):
 
 
 class BrowserRelayTests(unittest.TestCase):
+    def test_default_origins_include_local_jekyll_and_safari_webreader(self) -> None:
+        self.assertIn("http://127.0.0.1:4000", DEFAULT_BROWSER_ORIGINS)
+        self.assertIn("http://localhost:4000", DEFAULT_BROWSER_ORIGINS)
+        self.assertIn("safari-web-extension://*", DEFAULT_BROWSER_ORIGINS)
+
     def test_relays_allowed_browser_audio_without_exposing_bridge_configuration(self) -> None:
         received: list[dict[str, object]] = []
 
@@ -220,7 +226,7 @@ class BrowserRelayTests(unittest.TestCase):
             voice="review-voice",
             model=None,
             timeout=5.0,
-            allowed_origins=frozenset({"http://127.0.0.1:4000"}),
+            allowed_origins=frozenset({"http://127.0.0.1:4000", "safari-web-extension://*"}),
         )
         relay = BrowserRelayServer(("127.0.0.1", 0), make_browser_relay_handler(config))
         relay_thread = threading.Thread(target=relay.serve_forever, daemon=True)
@@ -255,6 +261,15 @@ class BrowserRelayTests(unittest.TestCase):
                 [{"input": "Only this selected paragraph.", "response_format": "wav", "voice": "review-voice"}],
             )
 
+            extension_response = requests.post(
+                f"{relay_url}/v1/audio/speech",
+                headers={"Origin": "safari-web-extension://personal-webreader"},
+                json={"input": "Read through the extension."},
+                timeout=5,
+            )
+            self.assertEqual(extension_response.status_code, 200)
+            self.assertEqual(extension_response.headers["Access-Control-Allow-Origin"], "safari-web-extension://personal-webreader")
+
             denied = requests.post(
                 f"{relay_url}/v1/audio/speech",
                 headers={"Origin": "https://example.invalid"},
@@ -262,7 +277,7 @@ class BrowserRelayTests(unittest.TestCase):
                 timeout=5,
             )
             self.assertEqual(denied.status_code, 403)
-            self.assertEqual(len(received), 1)
+            self.assertEqual(len(received), 2)
         finally:
             relay.shutdown()
             relay.server_close()

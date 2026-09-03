@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "identity": {
+    "run_id": "invented-baseline",
+    "engine": "invented-engine",
+    "source_fingerprint": "1111111111111111111111111111111111111111111111111111111111111111",
+    "binary_fingerprint": "2222222222222222222222222222222222222222222222222222222222222222",
+    "target_artifact_fingerprint": "3333333333333333333333333333333333333333333333333333333333333333",
+    "tokenizer_fingerprint": "4444444444444444444444444444444444444444444444444444444444444444",
+    "template_fingerprint": "5555555555555555555555555555555555555555555555555555555555555555",
+    "workload_fingerprint": "6666666666666666666666666666666666666666666666666666666666666666",
+    "sampling_fingerprint": "7777777777777777777777777777777777777777777777777777777777777777",
+    "extra_arguments_fingerprint": "8888888888888888888888888888888888888888888888888888888888888888",
+    "runtime_configuration_fingerprint": "df0c8acfff17073fc2c8af4c11937ee0796fb13bf599e00bc2d92d4b0bbe1890",
+    "runtime_configuration": {
+      "speculative_method": "none",
+      "draft_artifact_fingerprint": null,
+      "method_arguments": {"draft_tokens": 0}
+    },
+    "sampling": {"mode": "greedy", "seed": null},
+    "cache": {"kv_format": "invented-default", "prompt_cache": false},
+    "machine_class": "invented-machine-class",
+    "memory_gb": 64,
+    "warm_cold": "warm",
+    "profiled": false,
+    "concurrency": 1,
+    "batch_size": 1,
+    "context_tokens": 4096,
+    "threads": 8
+  },
+  "intervention": {
+    "kind": "speculative_method",
+    "phase": "decode",
+    "reviewed_dependent_paths": [
+      "runtime_configuration.speculative_method",
+      "runtime_configuration.draft_artifact_fingerprint",
+      "runtime_configuration.method_arguments"
+    ]
+  },
+  "active_path": {
+    "status": "confirmed",
+    "expected_marker": "speculation_disabled",
+    "observed_marker": "speculation_disabled",
+    "counter_name": "accepted_draft_tokens",
+    "counter_value": 0
+  },
+  "correctness": {
+    "passed": true,
+    "normalized_output_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "observations": [
+    {"ttft_ms": 210.0, "prompt_tokens_per_s": 100.0, "decode_tokens_per_s": 20.0, "peak_wired_mb": 12000.0},
+    {"ttft_ms": 205.0, "prompt_tokens_per_s": 102.0, "decode_tokens_per_s": 20.5, "peak_wired_mb": 12050.0},
+    {"ttft_ms": 215.0, "prompt_tokens_per_s": 99.0, "decode_tokens_per_s": 19.8, "peak_wired_mb": 11980.0}
+  ]
+}

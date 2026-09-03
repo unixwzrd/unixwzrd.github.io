@@ -3,7 +3,7 @@ short_url: "https://unixwzrd.ai/s/93a01b62c9/"
 short_link_basis: "/_posts/series/local-first-ai-and-agent-operations/2026-09-14-hands-on-build-a-fail-closed-inference-benchmark-comparator.md"
 layout: post
 title: "Hands-On: Build a Fail-Closed Inference Benchmark Comparator"
-date: 2026-09-14 08:00:00 -0500
+date: 2026-09-12 10:00:00 -0500
 categories: [hands-on]
 tags: [ai, agent-operations, benchmarking, testing, python, privacy]
 image: /assets/images/blog/agent-optimization/post-10-apple-silicon-inference-hero.png
@@ -17,6 +17,10 @@ series_companion_of: 10
 series_previous_title: "Squeezing More Inference from Apple Silicon: llama.cpp Today, MLXForge Later"
 series_previous_url: /technology/2026/09/12/squeezing-more-inference-from-apple-silicon-llama-cpp-today-mlxforge-later/
 series_next_title: "Where Local Inference Performance Actually Comes From"
+series_next_url: /technology/2026/09/16/where-local-inference-performance-actually-comes-from/
+series_next_date: 2026-09-16 10:00:00 -0500
+redirect_from:
+  - /hands-on/2026/09/14/hands-on-build-a-fail-closed-inference-benchmark-comparator/
 published: true
 ---
 

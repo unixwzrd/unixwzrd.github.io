@@ -3,7 +3,7 @@ short_link_basis: "/_posts/2026-08-21-hands-on-build-an-idempotent-intake-manife
 short_url: "https://unixwzrd.ai/s/9807a49a51/"
 layout: post
 title: "Hands-On: Build an Idempotent Intake Manifest"
-date: 2026-08-21 08:00:00 -0500
+date: 2026-08-19 08:00:00 -0500
 categories: [hands-on]
 tags: [ai, agent-operations, ai-agents, python, sqlite, deterministic-systems, local-first, knowledge-management]
 image: /assets/images/blog/agent-optimization/post-02a-idempotent-manifest-hero.png
@@ -19,6 +19,8 @@ series_previous_url: /technology/2026/08/19/deterministic-first-building-a-knowl
 series_next_title: "Memory Is a Governance Problem, Not Just a Vector Database"
 series_next_url: /technology/2026/08/23/memory-is-a-governance-problem-not-just-a-vector-database/
 series_next_date: 2026-08-23 08:00:00 -0500
+redirect_from:
+  - /hands-on/2026/08/21/hands-on-build-an-idempotent-intake-manifest/
 published: true
 ---
 

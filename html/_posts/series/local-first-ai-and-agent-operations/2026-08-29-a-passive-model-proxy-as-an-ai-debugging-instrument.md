@@ -19,8 +19,8 @@ series_next_title: "Multimodal Context Hygiene with a Jinja Chat Template"
 series_next_url: /technology/2026/09/02/multimodal-context-hygiene-with-a-jinja-chat-template/
 series_next_date: 2026-09-02 10:00:00 -0500
 series_companion_title: "Hands-On: Build and Test a Passive Proxy Lab"
-series_companion_url: /hands-on/2026/08/31/hands-on-build-and-test-a-passive-proxy-lab/
-series_companion_date: 2026-08-31 08:00:00 -0500
+series_companion_url: /hands-on/2026/08/29/hands-on-build-and-test-a-passive-proxy-lab/
+series_companion_date: 2026-08-29 10:00:00 -0500
 published: true
 ---
 

@@ -1,0 +1,76 @@
+Where Local Inference Performance Actually Comes From - social drafts
+
+Scheduled article:
+https://unixwzrd.ai/technology/2026/09/16/where-local-inference-performance-actually-comes-from/
+
+Generated short URL (verified against the existing local site's redirect):
+https://unixwzrd.ai/s/6e4099c398/
+
+Suggested hashtags:
+#LocalAI #Inference #Benchmarking #AppleSilicon
+
+==================================================
+LINKEDIN
+==================================================
+
+I can turn on a speculative path and still make the whole request slower. That is the trouble with treating model tuning as a collection of flags.
+
+Part 11 separates the decisions I can make as an operator from those that need a compatible model and runtime, and those that belong to architecture or conversion. I walk through weight and KV-cache quantization, prompt reuse, draft models, MTP, and Engram without pretending they are interchangeable.
+
+The historical MTP example establishes that the path ran, not that it was faster. The companion lab makes that evidence boundary something you can test.
+
+https://unixwzrd.ai/s/6e4099c398/
+
+#LocalAI #Inference #Benchmarking #AppleSilicon
+
+==================================================
+X / TWITTER
+==================================================
+
+Cache size, quantization, draft models, MTP: they solve different problems. Part 11 asks which layer owns the change and what would prove it helped.
+
+No universal settings or borrowed speed claims.
+
+https://unixwzrd.ai/s/6e4099c398/
+
+#LocalAI #Benchmarking
+
+==================================================
+BLUESKY
+==================================================
+
+Turning a feature on is not proof that it helped. Part 11 separates cache, quantization, and speculative generation, with diagrams and an optional Python lab.
+
+https://unixwzrd.ai/s/6e4099c398/
+
+#LocalAI
+
+==================================================
+MASTODON
+==================================================
+
+An active speculative path can still be slower. A smaller cache can lose information the task needed.
+
+Part 11 walks through the decisions behind inference tuning: weights, KV state, reusable prefixes, draft models, MTP, and architecture-level memory. The goal is a controlled experiment, not a bigger collection of flags.
+
+https://unixwzrd.ai/s/6e4099c398/
+
+#LocalAI #Inference #Benchmarking #AppleSilicon
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Where Local Inference Performance Actually Comes From
+
+Body:
+
+I can turn on a speculative path and still make the whole request slower. That is the trouble with treating model tuning as a collection of flags.
+
+Part 11 separates the decisions I can make as an operator from those that need a compatible model and runtime, and those that belong to architecture or conversion. I walk through weight and KV-cache quantization, prompt reuse, draft models, MTP, and Engram without pretending they are interchangeable.
+
+The historical MTP example establishes that the path ran, not that it was faster. The companion lab makes that evidence boundary something you can test.
+
+Read the full article:
+https://unixwzrd.ai/s/6e4099c398/

@@ -19,8 +19,8 @@ series_next_title: "The Agent Memory and Optimization Tool Landscape"
 series_next_url: /technology/2026/08/25/the-agent-memory-and-optimization-tool-landscape/
 series_next_date: 2026-08-25 10:00:00 -0500
 series_companion_title: "Hands-On: Build a Fail-Closed Memory Router"
-series_companion_url: /hands-on/2026/08/25/hands-on-build-a-fail-closed-memory-router/
-series_companion_date: 2026-08-25 08:00:00 -0500
+series_companion_url: /hands-on/2026/08/23/hands-on-build-a-fail-closed-memory-router/
+series_companion_date: 2026-08-23 08:00:00 -0500
 published: true
 ---
 

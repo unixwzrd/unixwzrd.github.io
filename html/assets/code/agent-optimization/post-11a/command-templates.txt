@@ -1,0 +1,27 @@
+# Illustrative templates only. These commands are not executed by the lab.
+# Replace every angle-bracket placeholder in an operator-owned, separately reviewed adapter.
+
+# Baseline: speculative method disabled
+<llama-server> \
+  --model <authorized-target-artifact> \
+  --temp 0 \
+  --ctx-size <frozen-context> \
+  --parallel <frozen-slots> \
+  --cache-type-k <frozen-kv-format> \
+  --cache-type-v <frozen-kv-format> \
+  --spec-type none
+
+# Candidate: the same frozen command with one structured intervention
+<llama-server> \
+  --model <same-authorized-target-artifact> \
+  --temp 0 \
+  --ctx-size <same-frozen-context> \
+  --parallel <same-frozen-slots> \
+  --cache-type-k <same-frozen-kv-format> \
+  --cache-type-v <same-frozen-kv-format> \
+  --spec-type <candidate_method> \
+  --spec-draft-model <optional-reviewed-draft-artifact> \
+  --spec-draft-n-max <reviewed-draft-count>
+
+# The intervention owns only spec-type, optional draft identity, and method arguments.
+# Any other difference makes the experiment ineligible.

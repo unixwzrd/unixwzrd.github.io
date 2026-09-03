@@ -1,0 +1,76 @@
+Hands-On: Tune One llama.cpp Variable at a Time - social drafts
+
+Scheduled article:
+https://unixwzrd.ai/hands-on/2026/09/16/hands-on-tune-one-llama-cpp-variable-at-a-time/
+
+Generated short URL (verified against the existing local site's redirect):
+https://unixwzrd.ai/s/2242756a12/
+
+Suggested hashtags:
+#Python #Benchmarking #Testing #LocalAI
+
+==================================================
+LINKEDIN
+==================================================
+
+Before I trust a benchmark number, I want to know whether the two runs deserve to be compared.
+
+Hands-On 11A is a small Python lab built around that question. Enable one invented speculative method, freeze the unrelated settings, check that the intended path was active, and require correctness before calculating performance deltas.
+
+The ZIP includes the comparator dependency. The walkthrough checks 15 conditions and the suite runs 19 tests. Every record is invented: no model, GPU, provider account, or network service is needed.
+
+https://unixwzrd.ai/s/2242756a12/
+
+#Python #Benchmarking #Testing #LocalAI
+
+==================================================
+X / TWITTER
+==================================================
+
+One intervention. Frozen conditions. Active-path evidence. Correctness before arithmetic.
+
+Hands-On 11A is a downloadable Python lab with invented records, 15 checks, and 19 tests.
+
+https://unixwzrd.ai/s/2242756a12/
+
+#LocalAI #Benchmarking
+
+==================================================
+BLUESKY
+==================================================
+
+A Python lab for the question before the benchmark: are these runs comparable? Invented records, a complete ZIP, 15 checks, and 19 tests. No model required.
+
+https://unixwzrd.ai/s/2242756a12/
+
+#LocalAI
+
+==================================================
+MASTODON
+==================================================
+
+Hands-On 11A turns one-variable tuning into an inspectable Python lab.
+
+It rejects unrelated configuration drift, unproven active paths, and incorrect output before calculating metrics. The archive includes its comparator dependency, all four invented fixtures, and the tests. No real performance claim is hidden in the sample numbers.
+
+https://unixwzrd.ai/s/2242756a12/
+
+#Python #Benchmarking #Testing #LocalAI
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Hands-On: Tune One llama.cpp Variable at a Time
+
+Body:
+
+Before I trust a benchmark number, I want to know whether the two runs deserve to be compared.
+
+Hands-On 11A is a small Python lab built around that question. Enable one invented speculative method, freeze the unrelated settings, check that the intended path was active, and require correctness before calculating performance deltas.
+
+The ZIP includes the comparator dependency. The walkthrough checks 15 conditions and the suite runs 19 tests. Every record is invented: no model, GPU, provider account, or network service is needed.
+
+Read the full article:
+https://unixwzrd.ai/s/2242756a12/

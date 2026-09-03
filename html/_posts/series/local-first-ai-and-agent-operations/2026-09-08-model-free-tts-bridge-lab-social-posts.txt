@@ -1,7 +1,7 @@
 Hands-On: Put a TTS Bridge Through a Model-Free Test Bench - social drafts
 
 Scheduled article:
-https://unixwzrd.ai/hands-on/2026/09/10/hands-on-put-a-tts-bridge-through-a-model-free-test-bench/
+https://unixwzrd.ai/hands-on/2026/09/08/hands-on-put-a-tts-bridge-through-a-model-free-test-bench/
 
 Short URL:
 https://unixwzrd.ai/s/9153038fbc/
@@ -87,7 +87,7 @@ The lab generates a short tone and invented transcript, starts a teaching bridge
 The package uses only the Python standard library and includes seven regressions. It is a protocol and failure-behavior lab, not a voice-quality demonstration.
 
 Full article:
-https://unixwzrd.ai/hands-on/2026/09/10/hands-on-put-a-tts-bridge-through-a-model-free-test-bench/
+https://unixwzrd.ai/hands-on/2026/09/08/hands-on-put-a-tts-bridge-through-a-model-free-test-bench/
 
 Tags:
 Python, local AI, text to speech, software testing, agent engineering

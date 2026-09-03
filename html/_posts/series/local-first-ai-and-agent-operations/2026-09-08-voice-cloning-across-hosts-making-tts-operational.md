@@ -20,8 +20,8 @@ series_next_title: "Squeezing More Inference from Apple Silicon: llama.cpp Today
 series_next_url: /technology/2026/09/12/squeezing-more-inference-from-apple-silicon-llama-cpp-today-mlxforge-later/
 series_next_date: 2026-09-12 10:00:00 -0500
 series_companion_title: "Hands-On: Put a TTS Bridge Through a Model-Free Test Bench"
-series_companion_url: /hands-on/2026/09/10/hands-on-put-a-tts-bridge-through-a-model-free-test-bench/
-series_companion_date: 2026-09-10 08:00:00 -0500
+series_companion_url: /hands-on/2026/09/08/hands-on-put-a-tts-bridge-through-a-model-free-test-bench/
+series_companion_date: 2026-09-08 10:00:00 -0500
 published: true
 ---
 

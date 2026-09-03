@@ -19,8 +19,8 @@ series_next_title: "Memory Is a Governance Problem, Not Just a Vector Database"
 series_next_url: /technology/2026/08/23/memory-is-a-governance-problem-not-just-a-vector-database/
 series_next_date: 2026-08-23 08:00:00 -0500
 series_companion_title: "Hands-On: Build an Idempotent Intake Manifest"
-series_companion_url: /hands-on/2026/08/21/hands-on-build-an-idempotent-intake-manifest/
-series_companion_date: 2026-08-21 08:00:00 -0500
+series_companion_url: /hands-on/2026/08/19/hands-on-build-an-idempotent-intake-manifest/
+series_companion_date: 2026-08-19 08:00:00 -0500
 published: true
 ---
 

@@ -3,7 +3,7 @@ short_link_basis: "/_posts/series/local-first-ai-and-agent-operations/2026-09-10
 short_url: "https://unixwzrd.ai/s/9153038fbc/"
 layout: post
 title: "Hands-On: Put a TTS Bridge Through a Model-Free Test Bench"
-date: 2026-09-10 08:00:00 -0500
+date: 2026-09-08 10:00:00 -0500
 categories: [hands-on]
 tags: [ai, agent-operations, ai-agents, tts, python, testing, openai-compatible, local-first, privacy]
 image: /assets/images/blog/agent-optimization/post-09-voice-cloning-operations-hero.png
@@ -19,6 +19,8 @@ series_previous_url: /technology/2026/09/08/voice-cloning-across-hosts-making-tt
 series_next_title: "Squeezing More Inference from Apple Silicon: llama.cpp Today, MLXForge Later"
 series_next_url: /technology/2026/09/12/squeezing-more-inference-from-apple-silicon-llama-cpp-today-mlxforge-later/
 series_next_date: 2026-09-12 10:00:00 -0500
+redirect_from:
+  - /hands-on/2026/09/10/hands-on-put-a-tts-bridge-through-a-model-free-test-bench/
 published: true
 ---
 

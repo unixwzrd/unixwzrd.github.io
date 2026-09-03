@@ -3,7 +3,7 @@ short_link_basis: "/_posts/2026-08-25-hands-on-build-a-fail-closed-memory-router
 short_url: "https://unixwzrd.ai/s/dde867f837/"
 layout: post
 title: "Hands-On: Build a Fail-Closed Memory Router"
-date: 2026-08-25 08:00:00 -0500
+date: 2026-08-23 08:00:00 -0500
 categories: [hands-on]
 tags: [ai, agent-operations, ai-agents, python, memory, security, local-first, privacy, retrieval]
 image: /assets/images/blog/agent-optimization/post-03a-fail-closed-memory-router-hero.png
@@ -19,6 +19,8 @@ series_previous_url: /technology/2026/08/23/memory-is-a-governance-problem-not-j
 series_next_title: "The Agent Memory and Optimization Tool Landscape"
 series_next_url: /technology/2026/08/25/the-agent-memory-and-optimization-tool-landscape/
 series_next_date: 2026-08-25 10:00:00 -0500
+redirect_from:
+  - /hands-on/2026/08/25/hands-on-build-a-fail-closed-memory-router/
 published: true
 ---
 

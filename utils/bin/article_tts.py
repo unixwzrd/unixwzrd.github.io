@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import fnmatch
 import hashlib
 import http.server
 import json
@@ -25,7 +26,11 @@ from bs4 import BeautifulSoup, Tag
 DEFAULT_SELECTOR = ".post-content.e-content"
 DEFAULT_MAX_CHARS = 1200
 DEFAULT_BROWSER_PORT = 11441
-DEFAULT_BROWSER_ORIGINS = ("http://127.0.0.1:4000", "http://localhost:4000")
+DEFAULT_BROWSER_ORIGINS = (
+    "http://127.0.0.1:4000",
+    "http://localhost:4000",
+    "safari-web-extension://*",
+)
 MAX_BROWSER_REQUEST_BYTES = 64 * 1024
 MAX_BROWSER_INPUT_CHARS = 5000
 USER_AGENT = "unixwzrd-article-tts/1.0"
@@ -291,11 +296,12 @@ def make_browser_relay_handler(config: BrowserRelayConfig) -> type[http.server.B
             sys.stderr.write("article-tts relay: " + format_string % args + "\n")
 
         def _origin_allowed(self) -> bool:
-            return self.headers.get("Origin", "") in config.allowed_origins
+            origin = self.headers.get("Origin", "")
+            return any(fnmatch.fnmatchcase(origin, pattern) for pattern in config.allowed_origins)
 
         def _cors_headers(self) -> None:
             origin = self.headers.get("Origin", "")
-            if origin in config.allowed_origins:
+            if any(fnmatch.fnmatchcase(origin, pattern) for pattern in config.allowed_origins):
                 self.send_header("Access-Control-Allow-Origin", origin)
                 self.send_header("Vary", "Origin")
             if self.headers.get("Access-Control-Request-Private-Network", "").lower() == "true":
@@ -486,7 +492,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--browser-server", action="store_true", help="Run the loopback relay used by the development-only post player")
     parser.add_argument("--listen-host", default="127.0.0.1", help="Browser relay listen address; loopback only (default: 127.0.0.1)")
     parser.add_argument("--listen-port", type=int, default=DEFAULT_BROWSER_PORT, help=f"Browser relay listen port (default: {DEFAULT_BROWSER_PORT})")
-    parser.add_argument("--allow-origin", action="append", help="Allowed local page origin; may be repeated (defaults to localhost:4000 variants)")
+    parser.add_argument("--allow-origin", action="append", help="Allowed browser origin pattern; may be repeated (defaults to local Jekyll and Safari WebReader origins)")
     return parser
 
 

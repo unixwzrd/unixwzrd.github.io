@@ -3,7 +3,7 @@ short_link_basis: "/_posts/2026-08-31-hands-on-build-and-test-a-passive-proxy-la
 short_url: "https://unixwzrd.ai/s/8e69f0aff9/"
 layout: post
 title: "Hands-On: Build and Test a Passive Proxy Lab"
-date: 2026-08-31 08:00:00 -0500
+date: 2026-08-29 10:00:00 -0500
 categories: [hands-on]
 tags: [ai, agent-operations, ai-agents, python, model-proxy, observability, testing, local-first, privacy]
 image: /assets/images/blog/agent-optimization/post-06-passive-model-proxy-hero.png
@@ -17,6 +17,8 @@ series_companion_of: 6
 series_previous_title: "A Passive Model Proxy as an AI Debugging Instrument"
 series_previous_url: /technology/2026/08/29/a-passive-model-proxy-as-an-ai-debugging-instrument/
 series_next_title: "Multimodal Context Hygiene with a Jinja Chat Template"
+redirect_from:
+  - /hands-on/2026/08/31/hands-on-build-and-test-a-passive-proxy-lab/
 published: true
 ---
 

@@ -3,7 +3,7 @@ short_url: "https://unixwzrd.ai/s/d038dc533a/"
 short_link_basis: "/_posts/2026-09-04-hands-on-put-multimodal-context-hygiene-through-a-test-bench.md"
 layout: post
 title: "Hands-On: Put Multimodal Context Hygiene Through a Test Bench"
-date: 2026-09-04 08:00:00 -0500
+date: 2026-09-02 10:00:00 -0500
 categories: [hands-on]
 tags: [ai, agent-operations, ai-agents, python, qwen, jinja, multimodal, context-hygiene, model-proxy, testing, local-first]
 image: /assets/images/blog/agent-optimization/post-07-multimodal-context-hygiene-hero.png
@@ -19,6 +19,8 @@ series_previous_url: /technology/2026/09/02/multimodal-context-hygiene-with-a-ji
 series_next_title: "From Shell Scripts to an Operator-Ready LLM-Ops-Kit"
 series_next_url: /technology/2026/09/06/from-shell-scripts-to-an-operator-ready-llm-ops-kit/
 series_next_date: 2026-09-06 10:00:00 -0500
+redirect_from:
+  - /hands-on/2026/09/04/hands-on-put-multimodal-context-hygiene-through-a-test-bench/
 published: true
 ---
 

@@ -1,7 +1,7 @@
 Hands-On: Build an Idempotent Intake Manifest - social drafts
 
 Scheduled article:
-https://unixwzrd.ai/hands-on/2026/08/21/hands-on-build-an-idempotent-intake-manifest/
+https://unixwzrd.ai/hands-on/2026/08/19/hands-on-build-an-idempotent-intake-manifest/
 
 Short URL:
 https://unixwzrd.ai/s/9807a49a51/
@@ -85,7 +85,7 @@ This hands-on follow-up uses the Python standard library and SQLite to build a b
 Eight executable canaries cover the lifecycle, selection boundaries, extractor upgrades, root-scoped reconciliation, metadata refresh, rollback, and schema migration. The utility deliberately stops before summaries, human review, and retrieval policy because those are different stages with different failure modes.
 
 Full article:
-https://unixwzrd.ai/hands-on/2026/08/21/hands-on-build-an-idempotent-intake-manifest/
+https://unixwzrd.ai/hands-on/2026/08/19/hands-on-build-an-idempotent-intake-manifest/
 
 Tags:
 Python, SQLite, agent engineering, local AI, deterministic systems

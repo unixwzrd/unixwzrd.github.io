@@ -1,7 +1,7 @@
 Hands-On: Build a Fail-Closed Memory Router - social drafts
 
 Scheduled article:
-https://unixwzrd.ai/hands-on/2026/08/25/hands-on-build-a-fail-closed-memory-router/
+https://unixwzrd.ai/hands-on/2026/08/23/hands-on-build-a-fail-closed-memory-router/
 
 Short URL:
 https://unixwzrd.ai/s/dde867f837/
@@ -84,7 +84,7 @@ This companion article builds a deliberately small router using only the Python 
 Seven canaries test the boundary, including a recording scorer that proves private content never reaches ranking during a general query. The article includes the complete utility and test suite as readable, downloadable files.
 
 Full article:
-https://unixwzrd.ai/hands-on/2026/08/25/hands-on-build-a-fail-closed-memory-router/
+https://unixwzrd.ai/hands-on/2026/08/23/hands-on-build-a-fail-closed-memory-router/
 
 Tags:
 Python, agent engineering, local AI, privacy engineering, AI memory

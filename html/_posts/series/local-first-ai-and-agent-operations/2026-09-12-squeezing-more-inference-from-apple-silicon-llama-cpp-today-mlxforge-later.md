@@ -16,9 +16,11 @@ series_url: /blog/series/local-first-ai-and-agent-operations/
 series_previous_title: "Voice Cloning Across Hosts: Making TTS Operational"
 series_previous_url: /technology/2026/09/08/voice-cloning-across-hosts-making-tts-operational/
 series_next_title: "Where Local Inference Performance Actually Comes From"
+series_next_url: /technology/2026/09/16/where-local-inference-performance-actually-comes-from/
+series_next_date: 2026-09-16 10:00:00 -0500
 series_companion_title: "Hands-On: Build a Fail-Closed Inference Benchmark Comparator"
-series_companion_url: /hands-on/2026/09/14/hands-on-build-a-fail-closed-inference-benchmark-comparator/
-series_companion_date: 2026-09-14 08:00:00 -0500
+series_companion_url: /hands-on/2026/09/12/hands-on-build-a-fail-closed-inference-benchmark-comparator/
+series_companion_date: 2026-09-12 10:00:00 -0500
 published: true
 ---
 

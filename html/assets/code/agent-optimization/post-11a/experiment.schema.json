@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/local-first-agent-operations/post-11a/experiment.schema.json",
+  "title": "Model-neutral one-intervention inference experiment",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "identity", "intervention", "active_path", "correctness", "observations"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["run_id", "engine", "source_fingerprint", "binary_fingerprint", "target_artifact_fingerprint", "tokenizer_fingerprint", "template_fingerprint", "workload_fingerprint", "sampling_fingerprint", "extra_arguments_fingerprint", "runtime_configuration_fingerprint", "runtime_configuration", "sampling", "cache", "machine_class", "memory_gb", "warm_cold", "profiled", "concurrency", "batch_size", "context_tokens", "threads"],
+      "properties": {
+        "run_id": {"type": "string", "minLength": 1},
+        "engine": {"type": "string", "minLength": 1},
+        "source_fingerprint": {"$ref": "#/$defs/fingerprint"},
+        "binary_fingerprint": {"$ref": "#/$defs/fingerprint"},
+        "target_artifact_fingerprint": {"$ref": "#/$defs/fingerprint"},
+        "tokenizer_fingerprint": {"$ref": "#/$defs/fingerprint"},
+        "template_fingerprint": {"$ref": "#/$defs/fingerprint"},
+        "workload_fingerprint": {"$ref": "#/$defs/fingerprint"},
+        "sampling_fingerprint": {"$ref": "#/$defs/fingerprint"},
+        "extra_arguments_fingerprint": {"$ref": "#/$defs/fingerprint"},
+        "runtime_configuration_fingerprint": {"$ref": "#/$defs/fingerprint"},
+        "runtime_configuration": {"$ref": "#/$defs/runtimeConfiguration"},
+        "sampling": {"$ref": "#/$defs/sampling"},
+        "cache": {"$ref": "#/$defs/cache"},
+        "machine_class": {"type": "string", "minLength": 1},
+        "memory_gb": {"type": "integer", "minimum": 1},
+        "warm_cold": {"enum": ["warm", "cold"]},
+        "profiled": {"type": "boolean"},
+        "concurrency": {"type": "integer", "minimum": 1},
+        "batch_size": {"type": "integer", "minimum": 1},
+        "context_tokens": {"type": "integer", "minimum": 1},
+        "threads": {"type": "integer", "minimum": 1}
+      }
+    },
+    "intervention": {"$ref": "#/$defs/intervention"},
+    "active_path": {"$ref": "#/$defs/activePath"},
+    "correctness": {"$ref": "#/$defs/correctness"},
+    "observations": {
+      "type": "array",
+      "minItems": 3,
+      "items": {"$ref": "#/$defs/observation"}
+    }
+  },
+  "$defs": {
+    "fingerprint": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "runtimeConfiguration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["speculative_method", "draft_artifact_fingerprint", "method_arguments"],
+      "properties": {
+        "speculative_method": {"type": "string", "enum": ["none", "candidate_method"]},
+        "draft_artifact_fingerprint": {"anyOf": [{"$ref": "#/$defs/fingerprint"}, {"type": "null"}]},
+        "method_arguments": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["draft_tokens"],
+          "properties": {"draft_tokens": {"type": "integer", "minimum": 0}}
+        }
+      }
+    },
+    "sampling": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "seed"],
+      "properties": {"mode": {"const": "greedy"}, "seed": {"type": "null"}}
+    },
+    "cache": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kv_format", "prompt_cache"],
+      "properties": {"kv_format": {"type": "string", "minLength": 1}, "prompt_cache": {"type": "boolean"}}
+    },
+    "intervention": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "phase", "reviewed_dependent_paths"],
+      "properties": {
+        "kind": {"const": "speculative_method"},
+        "phase": {"const": "decode"},
+        "reviewed_dependent_paths": {
+          "const": ["runtime_configuration.speculative_method", "runtime_configuration.draft_artifact_fingerprint", "runtime_configuration.method_arguments"]
+        }
+      }
+    },
+    "activePath": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "expected_marker", "observed_marker", "counter_name", "counter_value"],
+      "properties": {
+        "status": {"enum": ["confirmed", "inactive", "contradictory", "unknown"]},
+        "expected_marker": {"type": "string", "pattern": "^[a-z][a-z0-9_]{0,63}$"},
+        "observed_marker": {"type": "string", "pattern": "^(|[a-z][a-z0-9_]{0,63})$"},
+        "counter_name": {"const": "accepted_draft_tokens"},
+        "counter_value": {"type": "integer", "minimum": 0}
+      }
+    },
+    "correctness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["passed", "normalized_output_hash"],
+      "properties": {"passed": {"type": "boolean"}, "normalized_output_hash": {"$ref": "#/$defs/fingerprint"}}
+    },
+    "observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ttft_ms", "prompt_tokens_per_s", "decode_tokens_per_s", "peak_wired_mb"],
+      "properties": {
+        "ttft_ms": {"type": "number", "minimum": 0},
+        "prompt_tokens_per_s": {"type": "number", "minimum": 0},
+        "decode_tokens_per_s": {"type": "number", "minimum": 0},
+        "peak_wired_mb": {"type": "number", "minimum": 0}
+      }
+    }
+  }
+}

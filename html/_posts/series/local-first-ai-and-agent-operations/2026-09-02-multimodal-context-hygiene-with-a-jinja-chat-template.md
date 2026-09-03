@@ -19,8 +19,8 @@ series_next_title: "From Shell Scripts to an Operator-Ready LLM-Ops-Kit"
 series_next_url: /technology/2026/09/06/from-shell-scripts-to-an-operator-ready-llm-ops-kit/
 series_next_date: 2026-09-06 10:00:00 -0500
 series_companion_title: "Hands-On: Put Multimodal Context Hygiene Through a Test Bench"
-series_companion_url: /hands-on/2026/09/04/hands-on-put-multimodal-context-hygiene-through-a-test-bench/
-series_companion_date: 2026-09-04 08:00:00 -0500
+series_companion_url: /hands-on/2026/09/02/hands-on-put-multimodal-context-hygiene-through-a-test-bench/
+series_companion_date: 2026-09-02 10:00:00 -0500
 published: true
 ---
 
