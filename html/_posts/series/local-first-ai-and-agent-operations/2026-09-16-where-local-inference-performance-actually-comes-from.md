@@ -1,4 +1,6 @@
 ---
+short_url: "https://unixwzrd.ai/s/6e4099c398/"
+short_link_basis: "/_posts/series/local-first-ai-and-agent-operations/2026-09-16-where-local-inference-performance-actually-comes-from.md"
 layout: post
 title: "Where Local Inference Performance Actually Comes From"
 date: 2026-09-16 10:00:00 -0500
@@ -38,11 +40,11 @@ The first distinction I needed was not between fast and slow. It was between cha
 
 *The first useful question is not which flag to change, but which layer owns the proposed change.*
 
-| Decision layer | Examples | What has to be true |
-| --- | --- | --- |
-| Operator and runtime | Context, batch shape, parallel slots, thread and device placement, weight choice, KV-cache format and limits, prompt reuse | The engine and artifact already support the setting, and the resulting work remains comparable |
-| Compatible acceleration path | Separate draft model, embedded MTP heads, EAGLE-style drafting, n-gram or lookup speculation | The model and runtime expose a compatible path, the path is observably active, and the target still verifies the result |
-| Architecture, conversion, and training | MTP training, Engram conditional memory, model geometry, conversion and quantization recipes | The capability exists in the artifact or conversion pipeline and survives load, generation, correctness, and save/reload qualification |
+| Decision layer                         | Examples                                                                                                                   | What has to be true                                                                                                                    |
+| -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| Operator and runtime                   | Context, batch shape, parallel slots, thread and device placement, weight choice, KV-cache format and limits, prompt reuse | The engine and artifact already support the setting, and the resulting work remains comparable                                         |
+| Compatible acceleration path           | Separate draft model, embedded MTP heads, EAGLE-style drafting, n-gram or lookup speculation                               | The model and runtime expose a compatible path, the path is observably active, and the target still verifies the result                |
+| Architecture, conversion, and training | MTP training, Engram conditional memory, model geometry, conversion and quantization recipes                               | The capability exists in the artifact or conversion pipeline and survives load, generation, correctness, and save/reload qualification |
 
 The boundary is not perfectly clean. Choosing a different quantized artifact is an operator action, but producing that artifact belongs to conversion. Enabling MTP may look like a runtime option, but it does nothing useful unless the artifact contains the required heads and the runtime knows how to exercise them. The important part is that my evidence obligation changes when I cross layers.
 
@@ -60,12 +62,12 @@ This is why I do not have a universal recommendation for bit width, context, or 
 
 The terminology gets muddy because several useful mechanisms contain the word cache, while the agent system also has durable memory. I keep four concepts separate:
 
-| State | Purpose | Reuse boundary |
-| --- | --- | --- |
-| Live KV cache | Attention state for tokens already processed in an active sequence | The current model execution and its exact sequence state |
-| Prompt or prefix cache | Reusable computed state for an identical eligible prefix | Exact model, tokenizer, template, prefix bytes or tokens, adapters, media identity, and cache layout |
-| Persisted session state | Saved execution state intended to resume later | All prompt-cache identity plus compatible runtime and serialization versions |
-| Agent memory | Durable facts, notes, decisions, and provenance selected for later retrieval | Knowledge-governance and authorization policy, not an inference-cache identity |
+| State                   | Purpose                                                                      | Reuse boundary                                                                                       |
+| ----------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| Live KV cache           | Attention state for tokens already processed in an active sequence           | The current model execution and its exact sequence state                                             |
+| Prompt or prefix cache  | Reusable computed state for an identical eligible prefix                     | Exact model, tokenizer, template, prefix bytes or tokens, adapters, media identity, and cache layout |
+| Persisted session state | Saved execution state intended to resume later                               | All prompt-cache identity plus compatible runtime and serialization versions                         |
+| Agent memory            | Durable facts, notes, decisions, and provenance selected for later retrieval | Knowledge-governance and authorization policy, not an inference-cache identity                       |
 
 A reusable prefix can save work when many requests begin the same way. It can also restore the wrong state if its identity is too weak. Text tokens alone may not distinguish two multimodal requests. A template revision can change the effective prompt without changing the visible user text. An adapter, tokenizer, model revision, or policy change can make an old cache ineligible even when the beginning of the conversation looks familiar.
 
@@ -79,7 +81,7 @@ Speculative decoding is easier to understand when I stop describing it as a shor
 
 {% include blog_diagram.html src="/assets/images/blog/agent-optimization/post-11-speculative-verification.svg" alt="A separate draft model, embedded MTP heads, or n-gram lookup proposes tokens which the target model verifies before accepted tokens advance the sequence" variant="wide" %}
 
-*Drafting can come from several places, but proposal is never the same thing as acceptance.*
+<center>*Drafting can come from several places, but proposal is never the same thing as acceptance.*</center>
 
 A conventional speculative setup uses a smaller draft model. That model has its own weights, cache, compute cost, and compatibility requirements. Embedded multi-token prediction, or MTP, can use additional prediction heads retained with the target artifact as a self-drafting path when the runtime supports it. Draftless methods such as n-gram lookup search patterns already present in the token history and do not load another model at all.
 

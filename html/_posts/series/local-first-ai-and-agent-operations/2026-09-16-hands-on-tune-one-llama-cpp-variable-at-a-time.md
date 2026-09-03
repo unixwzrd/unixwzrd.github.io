@@ -1,4 +1,5 @@
 ---
+short_url: "https://unixwzrd.ai/s/2242756a12/"
 short_link_basis: "/_posts/series/local-first-ai-and-agent-operations/2026-09-18-hands-on-tune-one-llama-cpp-variable-at-a-time.md"
 layout: post
 title: "Hands-On: Tune One llama.cpp Variable at a Time"
