@@ -2,7 +2,7 @@
 # Required before moving this draft to _posts:
 # permalink_slug: stable-lowercase-url-slug
 layout: post
-title: "New Web Reader for Safari Update"
+title: "New WebReader for Safari Update"
 date: 2024-03-14
 category: WebReader
 content_type: update

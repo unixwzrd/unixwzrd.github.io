@@ -69,7 +69,7 @@ projects:
     repo_url: https://github.com/unixwzrd/extract-chat
   - name: WebReader
     owner: unixwzrd
-    title: Web Reader for Safari
+    title: WebReader for Safari
     description: |-
       A local-first Safari extension that reads selected text or complete articles aloud through your own text-to-speech system.
     image_url: /assets/images/projects/WebReader.png

@@ -44,7 +44,7 @@ repositories:
   - name: WebReader
     owner: unixwzrd
     overrides:
-      title: "Web Reader for Safari"
+      title: "WebReader for Safari"
       description: "A local-first Safari extension that reads selected text or complete articles aloud through your own text-to-speech system."
       banner_image_url: "/assets/images/projects/WebReader/webreader-banner.png"
   - name: mlx-harmony
