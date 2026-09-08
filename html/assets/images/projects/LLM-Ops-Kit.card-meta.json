@@ -13,12 +13,12 @@
     {
       "color": "#3572A5",
       "name": "Python",
-      "share": "87%"
+      "share": "88%"
     },
     {
       "color": "#89e051",
       "name": "Shell",
-      "share": "11%"
+      "share": "10%"
     },
     {
       "color": "#a52a22",
@@ -26,5 +26,5 @@
       "share": "2%"
     }
   ],
-  "updated_at": "2026-08-26T13:01:28Z"
+  "updated_at": "2026-09-08T11:22:45Z"
 }

@@ -1,0 +1,30 @@
+{
+  "card_style_version": 8,
+  "contributors_count": 1,
+  "description": "A local-first Safari extension that reads selected text or complete web articles aloud through a configurable TTS relay, with cursor-aware playback and no persistent audio.",
+  "forks_count": 0,
+  "language": "JavaScript",
+  "name": "WebReader",
+  "open_issues_count": 0,
+  "owner": "unixwzrd",
+  "stargazers_count": 1,
+  "title": "Web Reader for Safari",
+  "top_languages": [
+    {
+      "color": "#f7df1e",
+      "name": "JavaScript",
+      "share": "60%"
+    },
+    {
+      "color": "#3572A5",
+      "name": "Python",
+      "share": "27%"
+    },
+    {
+      "color": "#ff9f43",
+      "name": "Swift",
+      "share": "8%"
+    }
+  ],
+  "updated_at": "2026-09-07T05:03:10Z"
+}

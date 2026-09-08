@@ -7,6 +7,8 @@
   - [Monitoring and scheduled ops](#monitoring-and-scheduled-ops)
   - [Fixes and one-off maintenance](#fixes-and-one-off-maintenance)
   - [Misc / social / tests](#misc--social--tests)
+    - [Read a rendered article through the TTS Bridge](#read-a-rendered-article-through-the-tts-bridge)
+    - [Generate retained MP3 narration](#generate-retained-mp3-narration)
   - [Repo root scripts (outside `utils/`)](#repo-root-scripts-outside-utils)
 
 
@@ -20,80 +22,80 @@ Scripts and configs used to **validate**, **build**, **refresh project metadata*
 
 ## Validation and pre-commit
 
-| Resource | Purpose |
-|----------|---------|
-| [bin/check_site.sh](bin/check_site.sh) | Run the numbered check suite (env, permalinks, links, Jekyll build, images, ...). |
-| [bin/check-site](bin/check-site) | Convenience entry (if present) for the same flow. |
-| [bin/checks/](bin/checks/) | Individual checks: `01_environment.sh`, `02_permalinks.sh`, `04_link_checker.sh`, `05_site_link_checker.sh` (HTMLProofer on `_site/`), `07_jekyll_build.sh`, `12_image_paths.sh`, `06_external_link_checker.sh` (opt-in / network), and others. |
-| [bin/check_nested_slashless_links.py](bin/check_nested_slashless_links.py) | Deep link sanity helper. |
-| [bin/validate_frontmatter.py](bin/validate_frontmatter.py) | Front matter checks. |
-| [bin/validate_permalink_consistency.py](bin/validate_permalink_consistency.py) | Permalink consistency. |
+| Resource                                                                       | Purpose                                                                                                                                                                                                                                         |
+| ------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [bin/check_site.sh](bin/check_site.sh)                                         | Run the numbered check suite (env, permalinks, links, Jekyll build, images, ...).                                                                                                                                                               |
+| [bin/check-site](bin/check-site)                                               | Convenience entry (if present) for the same flow.                                                                                                                                                                                               |
+| [bin/checks/](bin/checks/)                                                     | Individual checks: `01_environment.sh`, `02_permalinks.sh`, `04_link_checker.sh`, `05_site_link_checker.sh` (HTMLProofer on `_site/`), `07_jekyll_build.sh`, `12_image_paths.sh`, `06_external_link_checker.sh` (opt-in / network), and others. |
+| [bin/check_nested_slashless_links.py](bin/check_nested_slashless_links.py)     | Deep link sanity helper.                                                                                                                                                                                                                        |
+| [bin/validate_frontmatter.py](bin/validate_frontmatter.py)                     | Front matter checks.                                                                                                                                                                                                                            |
+| [bin/validate_permalink_consistency.py](bin/validate_permalink_consistency.py) | Permalink consistency.                                                                                                                                                                                                                          |
 
 ---
 
 ## Builds and local services
 
-| Resource | Purpose |
-|----------|---------|
-| [bin/jekyll-site](bin/jekyll-site) | Production-style Jekyll build wrapper (often with post-build checks). |
-| [bin/site-service](bin/site-service) | Start/stop/restart local Jekyll (and related dev helpers). |
-| [bin/file_watcher](bin/file_watcher) / [bin/file_watcher.py](bin/file_watcher.py) | File watching during development. |
-| [bin/watch_image_paths.py](bin/watch_image_paths.py) | Watch / fix image path issues. |
-| [bin/watchers/](bin/watchers/) | Watcher helpers ([watchers/README.md](bin/watchers/README.md)). |
+| Resource                                                                          | Purpose                                                               |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [bin/jekyll-site](bin/jekyll-site)                                                | Production-style Jekyll build wrapper (often with post-build checks). |
+| [bin/site-service](bin/site-service)                                              | Start/stop/restart local Jekyll (and related dev helpers).            |
+| [bin/file_watcher](bin/file_watcher) / [bin/file_watcher.py](bin/file_watcher.py) | File watching during development.                                     |
+| [bin/watch_image_paths.py](bin/watch_image_paths.py)                              | Watch / fix image path issues.                                        |
+| [bin/watchers/](bin/watchers/)                                                    | Watcher helpers ([watchers/README.md](bin/watchers/README.md)).       |
 
 ---
 
 ## OpenGraph, thumbnails, and project data
 
-| Resource | Purpose |
-|----------|---------|
-| [bin/fetch_og.py](bin/fetch_og.py) | Fetches OG metadata and images; merges with [html/_data/repos.yml](../html/_data/repos.yml); writes [html/_data/github_projects.yml](../html/_data/github_projects.yml). **Do not hand-edit** `github_projects.yml`. |
-| [bin/test_fetch_og.py](bin/test_fetch_og.py) | Tests for the OG pipeline. |
-| [bin/checks/05_update_project_data.sh](bin/checks/05_update_project_data.sh) | Hook in the check suite for refreshing project data when appropriate. |
+| Resource                                                                     | Purpose                                                                                                                                                                                                              |
+| ---------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [bin/fetch_og.py](bin/fetch_og.py)                                           | Fetches OG metadata and images; merges with [html/_data/repos.yml](../html/_data/repos.yml); writes [html/_data/github_projects.yml](../html/_data/github_projects.yml). **Do not hand-edit** `github_projects.yml`. |
+| [bin/test_fetch_og.py](bin/test_fetch_og.py)                                 | Tests for the OG pipeline.                                                                                                                                                                                           |
+| [bin/checks/05_update_project_data.sh](bin/checks/05_update_project_data.sh) | Hook in the check suite for refreshing project data when appropriate.                                                                                                                                                |
 
 ---
 
 ## Monitoring and scheduled ops
 
-| Resource | Purpose |
-|----------|---------|
+| Resource                                                           | Purpose                                                        |
+| ------------------------------------------------------------------ | -------------------------------------------------------------- |
 | [bin/site_reliability_monitor.py](bin/site_reliability_monitor.py) | Health checks, deployment verification hooks, optional alerts. |
-| [bin/manage_monitoring_pages.py](bin/manage_monitoring_pages.py) | Manage tracked pages for monitoring. |
-| [bin/scheduled_tasks.py](bin/scheduled_tasks.py) | Periodic maintenance tasks. |
-| [bin/setup_site_monitoring.sh](bin/setup_site_monitoring.sh) | Initial monitoring setup. |
-| [bin/setup_crontab.sh](bin/setup_crontab.sh) | Example crontab wiring. |
-| [bin/post_commit_monitor.sh](bin/post_commit_monitor.sh) | Post-push verification helper. |
-| [bin/periodic_monitor.sh](bin/periodic_monitor.sh) | Periodic monitor entry. |
-| [bin/test_external_links.py](bin/test_external_links.py) | External link testing utility. |
-| [etc/site_monitor_config.json](etc/site_monitor_config.json) | Monitor configuration (JSON). |
-| [etc/scheduled_tasks_config.json](etc/scheduled_tasks_config.json) | Scheduled task config. |
+| [bin/manage_monitoring_pages.py](bin/manage_monitoring_pages.py)   | Manage tracked pages for monitoring.                           |
+| [bin/scheduled_tasks.py](bin/scheduled_tasks.py)                   | Periodic maintenance tasks.                                    |
+| [bin/setup_site_monitoring.sh](bin/setup_site_monitoring.sh)       | Initial monitoring setup.                                      |
+| [bin/setup_crontab.sh](bin/setup_crontab.sh)                       | Example crontab wiring.                                        |
+| [bin/post_commit_monitor.sh](bin/post_commit_monitor.sh)           | Post-push verification helper.                                 |
+| [bin/periodic_monitor.sh](bin/periodic_monitor.sh)                 | Periodic monitor entry.                                        |
+| [bin/test_external_links.py](bin/test_external_links.py)           | External link testing utility.                                 |
+| [etc/site_monitor_config.json](etc/site_monitor_config.json)       | Monitor configuration (JSON).                                  |
+| [etc/scheduled_tasks_config.json](etc/scheduled_tasks_config.json) | Scheduled task config.                                         |
 
 ---
 
 ## Fixes and one-off maintenance
 
-| Resource | Purpose |
-|----------|---------|
-| [bin/fix_image_case_sensitivity.py](bin/fix_image_case_sensitivity.py) | Case-correct image paths (macOS vs Linux). |
-| [bin/fix_image_paths.py](bin/fix_image_paths.py) | Path repairs. |
-| [bin/fix_internal_links.py](bin/fix_internal_links.py) / [bin/fix_broken_links.py](bin/fix_broken_links.py) | Link repair helpers. |
-| [bin/fix_frontmatter.py](bin/fix_frontmatter.py) / [bin/fix_all_frontmatter.py](bin/fix_all_frontmatter.py) | Front matter cleanup. |
-| [bin/site_crawl_check.py](bin/site_crawl_check.py) | Crawl-oriented checks. |
+| Resource                                                                                                    | Purpose                                    |
+| ----------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
+| [bin/fix_image_case_sensitivity.py](bin/fix_image_case_sensitivity.py)                                      | Case-correct image paths (macOS vs Linux). |
+| [bin/fix_image_paths.py](bin/fix_image_paths.py)                                                            | Path repairs.                              |
+| [bin/fix_internal_links.py](bin/fix_internal_links.py) / [bin/fix_broken_links.py](bin/fix_broken_links.py) | Link repair helpers.                       |
+| [bin/fix_frontmatter.py](bin/fix_frontmatter.py) / [bin/fix_all_frontmatter.py](bin/fix_all_frontmatter.py) | Front matter cleanup.                      |
+| [bin/site_crawl_check.py](bin/site_crawl_check.py)                                                          | Crawl-oriented checks.                     |
 
 ---
 
 ## Misc / social / tests
 
-| Resource | Purpose |
-|----------|---------|
-| [bin/article-tts](bin/article-tts) | Extract the prose from a rendered post, divide it into paragraph-aware chunks, and optionally send it to the configured TTS Bridge for playback and retained WAV/MP3 artifacts. Use `--dry-run` to inspect exactly what would be spoken. |
-| [bin/article-audio](bin/article-audio) | Check rendered posts for missing or stale public MP3 narration and generate only the files whose cleaned prose or public narration profile changed. |
-| [bin/push-twitter](bin/push-twitter) / [bin/push-social-media](bin/push-social-media) | Social publish helpers (operator use). |
-| [bin/test_services.sh](bin/test_services.sh) | Service smoke tests. |
-| [bin/test_email.py](bin/test_email.py) | Email / alert tests. |
-| [bin/quick_test.py](bin/quick_test.py) / [bin/test_file_watcher.py](bin/test_file_watcher.py) | Dev tests. |
-| [output/](output/) | Generated reports (e.g. dependency graphs) when produced. |
-| [log/](log/) | Local log output directory (gitignored where applicable). |
+| Resource                                                                                      | Purpose                                                                                                                                                                                                                                  |
+| --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [bin/article-tts](bin/article-tts)                                                            | Extract the prose from a rendered post, divide it into paragraph-aware chunks, and optionally send it to the configured TTS Bridge for playback and retained WAV/MP3 artifacts. Use `--dry-run` to inspect exactly what would be spoken. |
+| [bin/article-audio](bin/article-audio)                                                        | Check rendered posts for missing or stale public MP3 narration and generate only the files whose cleaned prose or public narration profile changed.                                                                                      |
+| [bin/push-twitter](bin/push-twitter) / [bin/push-social-media](bin/push-social-media)         | Social publish helpers (operator use).                                                                                                                                                                                                   |
+| [bin/test_services.sh](bin/test_services.sh)                                                  | Service smoke tests.                                                                                                                                                                                                                     |
+| [bin/test_email.py](bin/test_email.py)                                                        | Email / alert tests.                                                                                                                                                                                                                     |
+| [bin/quick_test.py](bin/quick_test.py) / [bin/test_file_watcher.py](bin/test_file_watcher.py) | Dev tests.                                                                                                                                                                                                                               |
+| [output/](output/)                                                                            | Generated reports (e.g. dependency graphs) when produced.                                                                                                                                                                                |
+| [log/](log/)                                                                                  | Local log output directory (gitignored where applicable).                                                                                                                                                                                |
 
 ### Read a rendered article through the TTS Bridge
 
@@ -129,7 +131,7 @@ utils/bin/article-tts --browser-server
 
 Development-mode post pages display a small player at the bottom of the viewport. Select article text and press **Play** to hear only that selection. With no selection, click within the article and press **Play** to continue from that cursor position to the end. If no article cursor has been established, **Play** starts with the complete article. **Restart** always begins again at the article title, while **Pause**, **Resume**, and **Stop** act on the in-browser queue. Leaving the page stops playback.
 
-The browser sends sentence-aware chunks to the relay on `127.0.0.1:11441`. The relay accepts the local Jekyll origins and the locally installed Safari WebReader extension by default, keeps the configured bridge endpoint and voice out of page JavaScript, and never writes browser-playback audio to disk. Ordinary external webpage origins remain rejected. Each short WAV response is decoded in browser memory and the next chunk is prepared while the current one plays. This is buffered chunk playback rather than byte-level streaming because the current TTS Bridge completes each WAV response before returning it.
+The browser sends sentence-aware chunks to the relay on `127.0.0.1:11441`. The relay accepts the local Jekyll origins and the locally installed Web Reader for Safari extension by default, keeps the configured bridge endpoint and voice out of page JavaScript, and never writes browser-playback audio to disk. Ordinary external webpage origins remain rejected. Each short WAV response is decoded in browser memory and the next chunk is prepared while the current one plays. This is buffered chunk playback rather than byte-level streaming because the current TTS Bridge completes each WAV response before returning it.
 
 The player is excluded from production Jekyll builds. If the local site or relay uses a different port, repeat `--allow-origin` when starting the relay and set `articleTtsRelayUrl` in browser local storage to the new loopback relay URL.
 
