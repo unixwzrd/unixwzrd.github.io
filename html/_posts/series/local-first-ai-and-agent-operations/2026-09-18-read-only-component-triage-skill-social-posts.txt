@@ -1,0 +1,78 @@
+Hands-On: Package a Read-Only Component Triage Skill - social drafts
+
+Scheduled article:
+https://unixwzrd.ai/hands-on/2026/09/18/hands-on-package-a-read-only-component-triage-skill/
+
+Generated short URL:
+https://unixwzrd.ai/s/2f1f452380/
+
+Suggested hashtags:
+#LocalAI #AgentOperations #Python #Testing
+
+==================================================
+LINKEDIN
+==================================================
+
+An operational skill should make a good procedure easier to repeat. It should not make it easier to slip past the operator.
+
+Hands-On 12A packages that boundary as a small, downloadable Python lab. It reads invented and already-sanitized evidence, checks captured status against canonical restart plans, and renders a deterministic review packet. It never calls the control plane or executes the operation it displays.
+
+The package uses only the Python standard library. Its acceptance runner checks 14 conditions, and the unit suite contains 27 tests covering incomplete and stale evidence, malformed input, privacy failures, plan consistency, and the no-execution boundary.
+
+https://unixwzrd.ai/s/2f1f452380/
+
+#LocalAI #AgentOperations #Python #Testing
+
+==================================================
+X / TWITTER
+==================================================
+
+Package the triage, not the orchestrator.
+
+Hands-On 12A is a model-free Python lab that turns invented operational evidence into a review packet without calling a control plane or executing a command.
+
+https://unixwzrd.ai/s/2f1f452380/
+
+#LocalAI #Python
+
+==================================================
+BLUESKY
+==================================================
+
+A small Python lab for packaging operational judgment without building a second control plane: invented evidence, closed validation, deterministic review packets, and no execution path.
+
+https://unixwzrd.ai/s/2f1f452380/
+
+#LocalAI #AgentOperations
+
+==================================================
+MASTODON
+==================================================
+
+Hands-On 12A turns a read-only component-triage procedure into a downloadable teaching package.
+
+It validates invented evidence, preserves incomplete and stale states, checks status against canonical plans, and displays a fixed argument array only when the packet is ready for human review. It does not run that array, call LLM-Ops-Kit, open a network path, or start a subprocess.
+
+The standard-library package includes its schema, fixtures, golden output, manifest, acceptance runner, and 27-test unit suite.
+
+https://unixwzrd.ai/s/2f1f452380/
+
+#LocalAI #AgentOperations #Python #Testing
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Hands-On: Package a Read-Only Component Triage Skill
+
+Body:
+
+An operational skill should make a good procedure easier to repeat. It should not make it easier to slip past the operator.
+
+Hands-On 12A packages that boundary as a small, downloadable Python lab. It reads invented and already-sanitized evidence, checks captured status against canonical restart plans, and renders a deterministic review packet. It never calls the control plane or executes the operation it displays.
+
+The package uses only the Python standard library. Its acceptance runner checks 14 conditions, and the unit suite contains 27 tests covering incomplete and stale evidence, malformed input, privacy failures, plan consistency, and the no-execution boundary.
+
+Read the full article:
+https://unixwzrd.ai/s/2f1f452380/

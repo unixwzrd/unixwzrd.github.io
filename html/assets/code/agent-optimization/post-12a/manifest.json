@@ -1,0 +1,20 @@
+{
+  "name": "llmops-component-triage",
+  "release": "0.1.0-teaching",
+  "evidence_schema_versions": [1],
+  "minimum_python": "3.10",
+  "capabilities": ["read_fixture", "validate", "correlate", "render"],
+  "excluded_capabilities": ["network", "subprocess", "shell", "secret", "filesystem_discovery", "package_manager", "llmops_execution", "lifecycle_mutation"],
+  "files": {
+    "README.md": "4eefaf896151ad72427c5196bedc16cc670bf95de355930f7a1d621e14ae97e9",
+    "SKILL.md": "fabd7ea38f8aefac0d79490a9fa1936e37e67157fbc83c65396a1cc649a4a7c1",
+    "fixtures/complete.json": "f6e9f3ebaff00f16ef9e43fc729560252025614ad3842fd5cf7907bf02f9add7",
+    "fixtures/expected-complete.md": "34825231442c80f13909b8a316a25fc7e1ff15bdb31250955779670141b4c1b8",
+    "fixtures/stale.json": "79c13c4f93e8213d9a8b295d4a0ca483809877f5d0802d9252ebb82d5d350ded",
+    "fixtures/unobserved.json": "d7f8ad4c32409bdf27357fd1356ea531f65737c1d55e0a0b7fb6be5956686dbb",
+    "run_lab.py": "477de0932c65917ffb874b01c1c2413f0d2a109e850f4acf227414aaf6c33285",
+    "schemas/evidence-envelope.schema.json": "82cd9764f825369402fe0dcd86cfb66e936cede3299367c72b762b008c5000be",
+    "scripts/triage_packet.py": "23100884dc1b412a40932e86eb9b57f88ce25b38b194734d75086481c658c5cf",
+    "test_triage_packet.py": "0cafb5008a1dfe913770582c73a533f92ab8d217cfe9cbff067e6b2bd44bef62"
+  }
+}

@@ -17,6 +17,7 @@ series_previous_title: "Where Local Inference Performance Actually Comes From"
 series_previous_url: /technology/2026/09/16/where-local-inference-performance-actually-comes-from/
 series_next_title: "Running Multiple Agents Safely on One LAN"
 series_companion_title: "Hands-On: Package a Read-Only Component Triage Skill"
+series_companion_url: /hands-on/2026/09/18/hands-on-package-a-read-only-component-triage-skill/
 series_companion_date: 2026-09-18 10:00:00 -0500
 published: true
 ---
@@ -103,7 +104,7 @@ Dependency traversal, lifecycle locks, process discovery, remote command constru
 
 There is a subtle launcher problem here too. Read-only intent, read-only command semantics, and a read-only invocation path are not the same thing. A skill may select a status command that never mutates component state, yet the installed launcher may check an approved release manifest and update its own runtime before dispatch. Calling the selected subcommand read-only does not make the entire invocation mutation-free.
 
-That is why the first hands-on companion will use bundled, invented captures and execute no subprocess at all. It can teach the evidence contract and show equivalent fixed argument arrays without invoking an installed control plane. A future live collector would need its own qualification: pinned runtime identity, explicit update policy, current schema verification, bounded transport, redaction, and separate tests.
+That is why the [Hands-On companion]({{ page.series_companion_url | relative_url }}#start-with-the-boundary) uses bundled, invented captures and executes no subprocess at all. It makes the evidence contract runnable and shows equivalent fixed argument arrays without invoking an installed control plane. A future live collector would need its own qualification: pinned runtime identity, explicit update policy, current schema verification, bounded transport, redaction, and separate tests.
 
 ## Portable Logic, Private Mapping
 
@@ -123,7 +124,7 @@ The existing lifecycle template follows the same shape for tools more generally:
 
 ## Hands-On 12A: Package the Triage, Not the Orchestrator
 
-The companion lab will turn this boundary into a small installable skill. It will load invented status and restart-plan captures, validate a closed schema, redact disallowed material, and render a deterministic approval packet. One fixture will contain incomplete observation so the reader can see the skill refuse to manufacture certainty.
+The [companion lab]({{ page.series_companion_url | relative_url }}#render-the-complete-packet) turns this boundary into a small installable skill. It loads invented status and restart-plan captures, validates a closed schema, rejects recognizable prohibited material, and renders a deterministic approval packet. One fixture contains incomplete observation so the reader can see the skill refuse to manufacture certainty.
 
 The default lab will not call `llmops`, a shell, SSH, a package manager, or a lifecycle operation. It will not start, stop, restart, update, roll back, edit configuration, fetch secrets, or inspect a live topology. The point is to make the decision boundary runnable before connecting it to a real system.
 
@@ -137,6 +138,6 @@ An agent-neutral operational skill remains deferred work. The historical memory 
 
 ## Next Work
 
-Hands-On 12A will package the read-only component-triage workflow against invented captured evidence. Its first job is to prove that the skill can explain a plan, preserve incomplete state, redact private material, and stop before mutation. Only after that contract is reviewed would I consider a live collector, and that collector would have to make launcher behavior and update policy explicit.
+Hands-On 12A now packages the read-only component-triage workflow against invented captured evidence. It proves the bounded teaching claim that the skill can explain a plan, preserve incomplete state, reject recognizable private material without echoing it, and stop before mutation. The [execution-surface audit]({{ page.series_companion_url | relative_url }}#audit-the-execution-surface) makes that boundary inspectable rather than leaving it as a promise in the prose. A live collector remains separate work and would have to make launcher behavior and update policy explicit.
 
 Part 13 will take the same ownership question into multi-agent operation on a local network, where process identity, workspace isolation, and comparative testing become harder to wave away.

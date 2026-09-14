@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/llmops-component-triage/evidence-envelope.schema.json",
+  "title": "Sanitized component triage evidence envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "capture", "request", "status", "target_plan", "cascade_plan"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "capture": {
+      "type": "object", "additionalProperties": false,
+      "required": ["captured_at", "toolkit_version", "config_hash", "catalog_hash"],
+      "properties": {
+        "captured_at": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"},
+        "toolkit_version": {"type": "string", "pattern": "^[a-z][a-z0-9-]{0,31}$"},
+        "config_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "catalog_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "request": {
+      "type": "object", "additionalProperties": false,
+      "required": ["component", "action", "cascade"],
+      "properties": {"component": {"$ref": "#/$defs/component"}, "action": {"const": "restart"}, "cascade": {"const": true}}
+    },
+    "status": {"type": "array", "items": {"$ref": "#/$defs/status"}},
+    "target_plan": {"type": "array", "items": {"$ref": "#/$defs/operation"}},
+    "cascade_plan": {"type": "array", "items": {"$ref": "#/$defs/operation"}}
+  },
+  "$defs": {
+    "component": {"type": "string", "pattern": "^[a-z][a-z0-9-]{0,31}:[a-z][a-z0-9-]{0,31}$"},
+    "symbol": {"type": "string", "pattern": "^[a-z][a-z0-9-]{0,31}$"},
+    "status": {
+      "type": "object", "additionalProperties": false,
+      "required": ["lifecycle", "desired_lifecycle", "health", "condition", "observability", "component", "host", "execution_user", "driver", "component_version", "toolkit_version", "config_hash", "catalog_hash", "error"],
+      "properties": {
+        "lifecycle": {"enum": ["running", "stopped", "unknown"]}, "desired_lifecycle": {"enum": ["running", "stopped"]},
+        "health": {"enum": ["healthy", "unhealthy", "unknown", "not-applicable"]}, "condition": {"$ref": "#/$defs/symbol"},
+        "observability": {"enum": ["observed", "unreachable", "unobserved"]}, "component": {"$ref": "#/$defs/component"},
+        "host": {"$ref": "#/$defs/symbol"}, "execution_user": {"$ref": "#/$defs/symbol"}, "driver": {"$ref": "#/$defs/symbol"},
+        "component_version": {"$ref": "#/$defs/symbol"}, "toolkit_version": {"$ref": "#/$defs/symbol"},
+        "config_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "catalog_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"}, "error": {"type": "string", "maxLength": 80, "pattern": "^$|^[a-z][a-z0-9-]{0,31}$"}
+      }
+    },
+    "operation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["component", "host", "driver", "action", "command"],
+      "properties": {"component": {"$ref": "#/$defs/component"}, "host": {"$ref": "#/$defs/symbol"}, "driver": {"$ref": "#/$defs/symbol"}, "action": {"enum": ["stop", "restart", "start"]}, "command": {"const": "<redacted-by-capture-adapter>"}}
+    }
+  }
+}

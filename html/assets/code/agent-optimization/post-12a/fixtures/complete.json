@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "capture": {"captured_at": "2030-01-02T03:04:05Z", "toolkit_version": "example", "config_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "catalog_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"},
+  "request": {"component": "demo-stack:model-proxy", "action": "restart", "cascade": true},
+  "status": [
+    {"lifecycle": "running", "desired_lifecycle": "running", "health": "healthy", "condition": "ready", "observability": "observed", "component": "demo-stack:model", "host": "model-node", "execution_user": "service-user", "driver": "process", "component_version": "example", "toolkit_version": "example", "config_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "catalog_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "error": ""},
+    {"lifecycle": "running", "desired_lifecycle": "running", "health": "healthy", "condition": "ready", "observability": "observed", "component": "demo-stack:model-proxy", "host": "model-node", "execution_user": "service-user", "driver": "process", "component_version": "example", "toolkit_version": "example", "config_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "catalog_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "error": ""},
+    {"lifecycle": "running", "desired_lifecycle": "running", "health": "healthy", "condition": "ready", "observability": "observed", "component": "demo-stack:agent", "host": "agent-node", "execution_user": "service-user", "driver": "process", "component_version": "example", "toolkit_version": "example", "config_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "catalog_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "error": ""}
+  ],
+  "target_plan": [
+    {"component": "demo-stack:model-proxy", "host": "model-node", "driver": "process", "action": "restart", "command": "<redacted-by-capture-adapter>"}
+  ],
+  "cascade_plan": [
+    {"component": "demo-stack:agent", "host": "agent-node", "driver": "process", "action": "stop", "command": "<redacted-by-capture-adapter>"},
+    {"component": "demo-stack:model-proxy", "host": "model-node", "driver": "process", "action": "restart", "command": "<redacted-by-capture-adapter>"},
+    {"component": "demo-stack:agent", "host": "agent-node", "driver": "process", "action": "start", "command": "<redacted-by-capture-adapter>"}
+  ]
+}
