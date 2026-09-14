@@ -19,7 +19,9 @@ Version 1.2.1 has been submitted to Apple and is currently in App Store review.
 
 [Get LogGPT from the Mac App Store](https://apps.apple.com/us/app/loggpt/id6743342693?mt=12)
 
-You do not need to wait for the review to finish before getting LogGPT. The current release remains available from the same listing, and the App Store will offer the 1.2.1 update after Apple approves it. Existing owners receive the update at no additional charge, and LogGPT supports Family Sharing.
+Available on the App Store now. Existing owners receive the update at no additional charge, and LogGPT supports Family Sharing.
+
+Your chats, no tracking, no collection, total privacy.
 
 ## Know What the Conversation Contains
 
@@ -49,4 +51,4 @@ The ZIP produced by LogGPT Plus works directly with [Extract Chat](/projects/ext
 
 That division remains useful: LogGPT captures the authenticated conversation and its associated files in Safari, while Extract Chat processes the resulting archive locally. I am exploring ways to make that handoff easier in the future—possibly through a native application, a droplet-style workflow, or tighter integration—but no particular form has been chosen yet.
 
-LogGPT 1.2.1 is awaiting Apple’s approval. You can [get the current version from the Mac App Store now](https://apps.apple.com/us/app/loggpt/id6743342693?mt=12) and receive the update from the same listing once it is released.
+LogGPT 1.2.1 is ready now. You can [get the current version from the Mac App Store now](https://apps.apple.com/us/app/loggpt/id6743342693?mt=12) and receive the update from the same listing once it is approved by Apple.
