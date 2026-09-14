@@ -1,5 +1,9 @@
 LogGPT 1.2.1 social drafts
 
+UPDATE 2026-09-14:
+LogGPT 1.3.0 is the next update and adds ChatGPT Work artifact support. It is now in Apple’s review process.
+https://unixwzrd.ai/s/fc2100d255/
+
 Release article:
 https://unixwzrd.ai/projects/LogGPT/2026/09/13/loggpt-1-2-1-export-progress-and-cancellation/
 

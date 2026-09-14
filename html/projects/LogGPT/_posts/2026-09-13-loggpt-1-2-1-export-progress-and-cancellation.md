@@ -13,9 +13,11 @@ image: /assets/images/projects/LogGPT/LogGPT-Plus.png
 published: true
 ---
 
+> **Update — September 14, 2026:** LogGPT 1.3.0 is now in Apple’s review process and adds artifact support for ChatGPT Work. If you get LogGPT now, the App Store will provide the 1.3.0 update when it is released. [See what is new in LogGPT 1.3.0.](/projects/LogGPT/2026/09/14/loggpt-1-3-0-chatgpt-work-artifact-support/)
+
 **LogGPT 1.2.1** is a usability-focused follow-up to the artifact-preservation features introduced in LogGPT 1.2.0. The update makes large LogGPT Plus exports easier to understand while they are running—and gives you a safe way to stop one when it is taking longer than expected.
 
-Version 1.2.1 has been submitted to Apple and is currently in App Store review.
+Version 1.2.1 was released on the App Store on September 13, 2026. The ChatGPT Work compatibility update described above is now in Apple’s review process.
 
 [Get LogGPT from the Mac App Store](https://apps.apple.com/us/app/loggpt/id6743342693?mt=12)
 
@@ -51,4 +53,4 @@ The ZIP produced by LogGPT Plus works directly with [Extract Chat](/projects/ext
 
 That division remains useful: LogGPT captures the authenticated conversation and its associated files in Safari, while Extract Chat processes the resulting archive locally. I am exploring ways to make that handoff easier in the future—possibly through a native application, a droplet-style workflow, or tighter integration—but no particular form has been chosen yet.
 
-LogGPT 1.2.1 is ready now. You can [get the current version from the Mac App Store now](https://apps.apple.com/us/app/loggpt/id6743342693?mt=12) and receive the update from the same listing once it is approved by Apple.
+You can [get LogGPT from the Mac App Store](https://apps.apple.com/us/app/loggpt/id6743342693?mt=12). Existing owners receive subsequent updates from the same listing at no additional charge.
