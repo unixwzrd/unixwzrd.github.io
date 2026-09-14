@@ -25,3 +25,5 @@ The main installments appear in [Technology](/blog/technology/). Runnable compan
 ## Across the Series
 
 Later installments also cover measuring token optimization, passive model-proxy instrumentation, multimodal context hygiene, operator-ready packaging, cross-host voice services, Apple Silicon inference measurement, cache and quantization choices, speculative decoding and MTP, installable skills, safe multi-agent operation on one LAN, and an honest public-release readiness assessment.
+
+{% include support_block.html %}

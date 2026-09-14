@@ -49,6 +49,9 @@ tags:
     label: Agent Operations
     group: ai-and-agents
     aliases: [agent-optimization, optimization]
+  - id: agent-skills
+    label: Agent Skills
+    group: ai-and-agents
   - id: ai-operations
     label: AI Operations
     group: ai-and-agents
@@ -123,6 +126,9 @@ tags:
     aliases: [source-code]
   - id: developer-workflow
     label: Developer Workflow
+    group: development-and-operations
+  - id: automation
+    label: Automation
     group: development-and-operations
   - id: devops
     label: DevOps

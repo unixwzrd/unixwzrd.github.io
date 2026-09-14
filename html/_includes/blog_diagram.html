@@ -20,3 +20,6 @@
     <a href="{{ diagram_viewer_url }}" target="_blank" rel="noopener">Open full-size diagram</a>
   </figcaption>
 </figure>
+{%- if include.caption -%}
+  <p class="blog-diagram-caption"><em>{{ include.caption | escape }}</em></p>
+{%- endif -%}

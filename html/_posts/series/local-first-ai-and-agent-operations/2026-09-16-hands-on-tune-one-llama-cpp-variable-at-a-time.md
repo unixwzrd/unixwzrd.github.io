@@ -17,6 +17,8 @@ series_companion_of: 11
 series_previous_title: "Where Local Inference Performance Actually Comes From"
 series_previous_url: /technology/2026/09/16/where-local-inference-performance-actually-comes-from/
 series_next_title: "Packaging Agent Operations as Installable Skills"
+series_next_url: /technology/2026/09/18/packaging-agent-operations-as-installable-skills/
+series_next_date: 2026-09-18 10:00:00 -0500
 redirect_from:
   - /hands-on/2026/09/18/hands-on-tune-one-llama-cpp-variable-at-a-time/
 published: true
@@ -36,9 +38,7 @@ The candidate is allowed to change three related pieces of configuration: the me
 
 That distinction matters because a real separate-draft experiment cannot change only a single scalar flag. It needs a draft artifact and method arguments too. Those are dependent parts of one intervention, not three excuses to change the rest of the system.
 
-{% include blog_diagram.html src="/assets/images/blog/agent-optimization/post-11a-one-intervention-lab.svg" alt="A fail-closed lab validates closed records, greedy sampling, frozen identity, one structured intervention, active-path evidence, correctness, and Part 10A metric projection" variant="wide" %}
-
-*The metric projection is the last step. Most mistakes should stop the experiment before arithmetic begins.*
+{% include blog_diagram.html src="/assets/images/blog/agent-optimization/post-11a-one-intervention-lab.svg" alt="A fail-closed lab validates closed records, greedy sampling, frozen identity, one structured intervention, active-path evidence, correctness, and Part 10A metric projection" caption="The metric projection is the last step. Most mistakes should stop the experiment before arithmetic begins." variant="wide" %}
 
 ## Get Oriented
 

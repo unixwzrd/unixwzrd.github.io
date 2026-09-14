@@ -1,0 +1,143 @@
+LogGPT 1.2.1 social drafts
+
+Release article:
+https://unixwzrd.ai/projects/LogGPT/2026/09/13/loggpt-1-2-1-export-progress-and-cancellation/
+
+Short URL:
+https://unixwzrd.ai/s/b3b9b2f23f/
+
+Mac App Store:
+https://apps.apple.com/us/app/loggpt/id6743342693?mt=12
+
+Status:
+Submitted to Apple and currently in App Store review.
+
+Suggested hashtags:
+#LogGPT #ChatGPT #SafariExtension #DataPortability #macOS
+
+Alternate hashtags:
+#DigitalArchiving #Privacy #LocalFirst #Artifacts #DeveloperTools
+
+
+==================================================
+LINKEDIN
+==================================================
+
+Large exports should not leave you wondering whether anything is happening.
+
+LogGPT 1.2.1 is a usability-focused follow-up to the artifact preservation added in LogGPT Plus 1.2.0. Before an export begins, LogGPT Plus now shows total, generated, and uploaded artifact counts. During the export, it reports:
+
+- the current phase
+- the number of artifacts collected
+- the filename being processed
+- progress across the complete artifact set
+- unavailable artifact counts
+- ZIP creation progress
+
+Long exports can also be cancelled during conversation retrieval, artifact collection, or ZIP creation. The browser download begins only after the archive is complete, so cancelling does not leave a partial ZIP behind.
+
+The resulting archive continues to work directly with Extract Chat, which can create Markdown and HTML with references to the preserved local files.
+
+Version 1.2.1 has been submitted to Apple and is currently in App Store review. The current LogGPT release remains available now; existing owners will receive the update at no additional charge once Apple approves it. LogGPT also supports Family Sharing.
+
+Read the update:
+https://unixwzrd.ai/s/b3b9b2f23f/
+
+#LogGPT #ChatGPT #SafariExtension #DataPortability #macOS
+
+
+---- Personal repost ----
+
+LogGPT Plus could already preserve a conversation and its artifacts. Version 1.2.1 makes that process much easier to follow when a conversation contains a lot of files.
+
+You can see the counts before exporting, follow each artifact while it is collected, watch ZIP creation progress, and cancel safely without creating a partial download.
+
+The update is with Apple for review now.
+
+https://unixwzrd.ai/s/b3b9b2f23f/
+
+#LogGPT #DataPortability #DigitalArchiving
+
+
+==================================================
+X / TWITTER
+==================================================
+
+LogGPT 1.2.1 adds artifact counts, file-by-file progress, ZIP creation status, and safe cancellation for large LogGPT Plus exports.
+
+It is currently in App Store review. Existing owners get the update at no additional charge after approval.
+
+https://unixwzrd.ai/s/b3b9b2f23f/
+
+#LogGPT #ChatGPT
+
+
+Alt version:
+
+Exporting 139 ChatGPT artifacts should not look like nothing is happening.
+
+LogGPT 1.2.1 shows counts, filenames, collection progress, and ZIP progress—and lets you cancel without leaving a partial download.
+
+Now in App Store review.
+
+https://unixwzrd.ai/s/b3b9b2f23f/
+
+
+==================================================
+BLUESKY
+==================================================
+
+LogGPT 1.2.1 makes large LogGPT Plus exports easier to follow: artifact counts before export, the current filename and progress while collecting, ZIP creation status, and safe cancellation without a partial download.
+
+The update is currently in App Store review.
+
+https://unixwzrd.ai/s/b3b9b2f23f/
+
+
+==================================================
+MASTODON
+==================================================
+
+LogGPT 1.2.1 is a usability update for large LogGPT Plus exports.
+
+The export choices now show total, generated, and uploaded artifact counts. While an archive is being prepared, LogGPT reports the current file, completed artifact count, unavailable count, and ZIP creation progress.
+
+You can cancel conversation retrieval, artifact collection, or ZIP creation without producing a partial browser download. Completed archives remain directly compatible with Extract Chat for local Markdown and HTML conversion.
+
+Version 1.2.1 is currently in App Store review. Existing owners receive the update at no additional charge once Apple approves it, and LogGPT supports Family Sharing.
+
+https://unixwzrd.ai/s/b3b9b2f23f/
+
+#LogGPT #ChatGPT #DataPortability #macOS #Privacy
+
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+LogGPT 1.2.1 Makes Large Artifact Exports Easier to Follow and Cancel
+
+Subtitle:
+See what LogGPT Plus found, follow each file as it is collected, and safely stop an export that is taking too long.
+
+Body:
+
+LogGPT Plus 1.2.0 added the ability to preserve a ChatGPT conversation and its generated or uploaded artifacts in one ZIP archive. Version 1.2.1 builds on that foundation with clearer feedback for conversations containing many files.
+
+Before an export begins, the selection dialog now reports total, generated, and uploaded artifact counts. During collection, LogGPT displays the number completed, the current filename, a progress bar, and unavailable artifact information. ZIP creation also reports progress.
+
+Long-running exports can now be cancelled during conversation retrieval, artifact collection, or ZIP creation. LogGPT creates the browser download only after the complete archive is ready, so cancelling an unfinished operation does not leave a partial ZIP behind. It also prevents duplicate exports while one is already being prepared.
+
+Completed LogGPT Plus archives remain directly compatible with Extract Chat. The local utility can unpack the ZIP, organize its artifacts, and create Markdown, HTML, or both with references to the preserved files.
+
+LogGPT 1.2.1 has been submitted to Apple and is currently in App Store review. The current release remains available from the same listing. Existing owners will receive version 1.2.1 at no additional charge after approval, and LogGPT supports Family Sharing.
+
+Read the full update:
+https://unixwzrd.ai/projects/LogGPT/2026/09/13/loggpt-1-2-1-export-progress-and-cancellation/
+
+Get LogGPT on the Mac App Store:
+https://apps.apple.com/us/app/loggpt/id6743342693?mt=12
+
+Tags:
+LogGPT, ChatGPT, Safari Extension, Data Portability, Digital Archiving, macOS, Privacy, Local First

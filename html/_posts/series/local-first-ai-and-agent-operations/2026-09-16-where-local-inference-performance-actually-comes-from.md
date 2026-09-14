@@ -16,6 +16,8 @@ series_url: /blog/series/local-first-ai-and-agent-operations/
 series_previous_title: "Squeezing More Inference from Apple Silicon: llama.cpp Today, MLXForge Later"
 series_previous_url: /technology/2026/09/12/squeezing-more-inference-from-apple-silicon-llama-cpp-today-mlxforge-later/
 series_next_title: "Packaging Agent Operations as Installable Skills"
+series_next_url: /technology/2026/09/18/packaging-agent-operations-as-installable-skills/
+series_next_date: 2026-09-18 10:00:00 -0500
 series_companion_title: "Hands-On: Tune One llama.cpp Variable at a Time"
 series_companion_url: /hands-on/2026/09/16/hands-on-tune-one-llama-cpp-variable-at-a-time/
 series_companion_date: 2026-09-16 10:00:00 -0500
@@ -36,9 +38,7 @@ I eventually stopped treating tuning as a bag of command-line flags. The more us
 
 The first distinction I needed was not between fast and slow. It was between changes I could make as an operator, changes that required a compatible model and runtime, and changes that belonged to model design or conversion. Those layers interact, but they are not interchangeable.
 
-{% include blog_diagram.html src="/assets/images/blog/agent-optimization/post-11-performance-layers.svg" alt="Three layers of inference performance decisions: operator and runtime controls, compatible acceleration paths, and architecture conversion or training choices" variant="wide" %}
-
-*The first useful question is not which flag to change, but which layer owns the proposed change.*
+{% include blog_diagram.html src="/assets/images/blog/agent-optimization/post-11-performance-layers.svg" alt="Three layers of inference performance decisions: operator and runtime controls, compatible acceleration paths, and architecture conversion or training choices" caption="The first useful question is not which flag to change, but which layer owns the proposed change." variant="wide" %}
 
 | Decision layer                         | Examples                                                                                                                   | What has to be true                                                                                                                    |
 | -------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
@@ -79,9 +79,7 @@ Agent memory is a different layer entirely. LLM-Wiki, the Main Vault, and derive
 
 Speculative decoding is easier to understand when I stop describing it as a shortcut and describe it as proposal followed by verification. A cheaper path proposes several likely tokens. The target model evaluates those proposals together. Accepted tokens advance the sequence, rejected proposals are discarded, and the target remains authoritative.
 
-{% include blog_diagram.html src="/assets/images/blog/agent-optimization/post-11-speculative-verification.svg" alt="A separate draft model, embedded MTP heads, or n-gram lookup proposes tokens which the target model verifies before accepted tokens advance the sequence" variant="wide" %}
-
-<center>*Drafting can come from several places, but proposal is never the same thing as acceptance.*</center>
+{% include blog_diagram.html src="/assets/images/blog/agent-optimization/post-11-speculative-verification.svg" alt="A separate draft model, embedded MTP heads, or n-gram lookup proposes tokens which the target model verifies before accepted tokens advance the sequence" caption="Drafting can come from several places, but proposal is never the same thing as acceptance." variant="wide" %}
 
 A conventional speculative setup uses a smaller draft model. That model has its own weights, cache, compute cost, and compatibility requirements. Embedded multi-token prediction, or MTP, can use additional prediction heads retained with the target artifact as a self-drafting path when the runtime supports it. Draftless methods such as n-gram lookup search patterns already present in the token history and do not load another model at all.
 
@@ -125,9 +123,7 @@ I want MLXForge to become the place where conversion provenance and model-specif
 
 Once I know which phase is slow, I can choose the first family of variables worth testing. The map is deliberately conservative. It does not promise that the first experiment will win. It only keeps me from changing five unrelated things and then inventing a story about the result.
 
-{% include blog_diagram.html src="/assets/images/blog/agent-optimization/post-11-bottleneck-first-experiment.svg" alt="Measured cold load, prefill, decode, memory pressure, and concurrency bottlenecks leading to separate first experiment families" variant="wide" %}
-
-*A measured phase narrows the first experiment. It does not choose a universal setting.*
+{% include blog_diagram.html src="/assets/images/blog/agent-optimization/post-11-bottleneck-first-experiment.svg" alt="Measured cold load, prefill, decode, memory pressure, and concurrency bottlenecks leading to separate first experiment families" caption="A measured phase narrows the first experiment. It does not choose a universal setting." variant="wide" %}
 
 For the local MTP question, the next benchmark is quite small. I start by recording the effective runtime configuration, then freeze the binary, artifact, prompt and template bytes, workload, sampling, context, slot count, cache formats, threads, repetitions, and machine conditions. On an artifact and runtime qualified for embedded MTP, the baseline disables it and the candidate enables only that path. Both retain correctness, time to first token, prompt and decode throughput, end-to-end latency, memory, active-path evidence, and draft acceptance.
 
