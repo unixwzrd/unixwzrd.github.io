@@ -1,0 +1,78 @@
+Hands-On: Audit an Isolated Agent Testbed Before First Run - social drafts
+
+Scheduled article:
+https://unixwzrd.ai/hands-on/2026/09/20/hands-on-audit-an-isolated-agent-testbed-before-first-run/
+
+Generated short URL:
+https://unixwzrd.ai/s/b042c7cef2/
+
+Suggested hashtags:
+#LocalAI #AgentOperations #Python #Testing
+
+==================================================
+LINKEDIN
+==================================================
+
+It is cheaper to find a shared state directory in JSON than after two agents have written into it.
+
+Hands-On 13A is a small, model-free Python preflight for an isolated agent testbed. It rejects shared roots, same-host port collisions, reused credential references, contradictory knowledge ownership, and incomplete lifecycle declarations before provisioning begins.
+
+The successful result says `MANIFEST READY FOR ISOLATED TEST`. It does not say the machine is isolated or secure. The package stops at the point where live inspection and retained evidence need to begin.
+
+https://unixwzrd.ai/s/b042c7cef2/
+
+#LocalAI #AgentOperations #Python #Testing
+
+==================================================
+X / TWITTER
+==================================================
+
+Find the shared root before two agents write into it.
+
+Hands-On 13A is a downloadable Python preflight for roots, ports, credentials, knowledge ownership, shared inference declarations, and teardown plans.
+
+https://unixwzrd.ai/s/b042c7cef2/
+
+#LocalAI #Python
+
+==================================================
+BLUESKY
+==================================================
+
+A model-free Python lab that makes an inconsistent two-agent plan fail before provisioning. It checks declarations, preserves the boundary to live evidence, and never calls the control plane.
+
+https://unixwzrd.ai/s/b042c7cef2/
+
+#LocalAI #AgentOperations
+
+==================================================
+MASTODON
+==================================================
+
+Hands-On 13A turns the declaration side of agent isolation into a downloadable, standard-library Python lab.
+
+The fixtures expose shared roots, same-host port collisions, and two writers on one shared Vault. The runner checks 16 conditions, and the 33-test suite covers deterministic output, closed fields, privacy rejection, ownership rules, inference canaries, teardown conflicts, and the package's no-network, no-execution boundary.
+
+A clean result is permission to start live testing. It is not a security certificate.
+
+https://unixwzrd.ai/s/b042c7cef2/
+
+#LocalAI #AgentOperations #Python #Testing
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Hands-On: Audit an Isolated Agent Testbed Before First Run
+
+Body:
+
+It is cheaper to find a shared state directory in JSON than after two agents have written into it.
+
+Hands-On 13A is a small, model-free Python preflight for an isolated agent testbed. It rejects shared roots, same-host port collisions, reused credential references, contradictory knowledge ownership, and incomplete lifecycle declarations before provisioning begins.
+
+The successful result says `MANIFEST READY FOR ISOLATED TEST`. It does not say the machine is isolated or secure. The package stops at the point where live inspection and retained evidence need to begin.
+
+Read the full article:
+https://unixwzrd.ai/s/b042c7cef2/

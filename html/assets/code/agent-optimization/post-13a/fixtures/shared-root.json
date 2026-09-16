@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "testbed_id": "shared-root-lab",
+  "agents": [
+    {
+      "id": "agent-a", "host": "edge-node", "execution_user": "operator-a",
+      "process_manager": {"mode": "standalone", "domain": "service-domain-a", "bootstrap_test_plan": []},
+      "roots": {"config": "shared:config", "state": "agent-a:state", "logs": "agent-a:logs", "cache": "agent-a:cache", "workspace": "agent-a:workspace", "memory": "agent-a:memory"},
+      "credential_refs": ["credential-canary-a"], "channel_refs": ["channel-canary-a"],
+      "listeners": [{"service": "gateway", "port": 46101}],
+      "teardown": {"remove": ["runtime-a"], "preserve": ["reviewed-notes-a"]}
+    },
+    {
+      "id": "agent-b", "host": "edge-node", "execution_user": "operator-b",
+      "process_manager": {"mode": "standalone", "domain": "service-domain-b", "bootstrap_test_plan": []},
+      "roots": {"config": "shared:config", "state": "agent-b:state", "logs": "agent-b:logs", "cache": "agent-b:cache", "workspace": "agent-b:workspace", "memory": "agent-b:memory"},
+      "credential_refs": ["credential-canary-b"], "channel_refs": ["channel-canary-b"],
+      "listeners": [{"service": "gateway", "port": 46201}],
+      "teardown": {"remove": ["runtime-b"], "preserve": ["reviewed-notes-b"]}
+    }
+  ],
+  "authoritative_stores": [{"id": "immutable-corpus", "shared": true, "writable": false, "owner": null, "writers": [], "readers": ["agent-a", "agent-b"], "transport": "readonly-copy"}],
+  "shared_inference": {"id": "model-node", "clients": ["agent-a", "agent-b"], "request_identity": "per-client", "contention_test": "queue-canary", "failure_test": "failure-canary"}
+}

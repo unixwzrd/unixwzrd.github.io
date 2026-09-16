@@ -1,0 +1,76 @@
+Running Multiple Agents Safely on One LAN - social drafts
+
+Scheduled article:
+https://unixwzrd.ai/technology/2026/09/20/running-multiple-agents-safely-on-one-lan/
+
+Generated short URL:
+https://unixwzrd.ai/s/9945a5197f/
+
+Suggested hashtags:
+#LocalAI #AgentOperations #SelfHostedAI #AppleSilicon
+
+==================================================
+LINKEDIN
+==================================================
+
+A second macOS account and a spare machine looked like a clean way to test another agent. Then I started asking what, exactly, the word "separate" was supposed to prove.
+
+Part 13 works through the boundaries that a username does not settle: configuration authority, process ownership, ports, credentials, writable knowledge, shared inference, failure containment, and teardown. The agents can own separate state and still interfere through the same queue, cache budget, model server, or synchronized storage.
+
+The point is not to make a small LAN look like a datacenter. It is to know which claims the evidence actually supports before I call the testbed isolated.
+
+https://unixwzrd.ai/s/9945a5197f/
+
+#LocalAI #AgentOperations #SelfHostedAI #AppleSilicon
+
+==================================================
+X / TWITTER
+==================================================
+
+A second user account is useful. It is not proof of isolation.
+
+Part 13 follows the ownership boundaries across processes, ports, credentials, knowledge stores, shared inference, and teardown.
+
+https://unixwzrd.ai/s/9945a5197f/
+
+#LocalAI #AgentOperations
+
+==================================================
+BLUESKY
+==================================================
+
+Two agents can have different accounts and still collide through ports, writable knowledge, shared inference capacity, or a teardown procedure nobody tested.
+
+Part 13 is about making those boundaries observable.
+
+https://unixwzrd.ai/s/9945a5197f/
+
+#LocalAI #SelfHostedAI
+
+==================================================
+MASTODON
+==================================================
+
+I wanted a clean second-agent testbed on a modest Mac, with inference supplied by another machine on the LAN. The hardware part was easy. The ownership questions were not.
+
+Part 13 separates process identity, configuration, ports, credentials, durable knowledge, shared inference, lifecycle, failure containment, and teardown into evidence gates. It also explains why a synchronized Vault is transport rather than a lock manager, and why a shared model server creates shared fate even when private state is separate.
+
+https://unixwzrd.ai/s/9945a5197f/
+
+#LocalAI #AgentOperations #SelfHostedAI #AppleSilicon
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Running Multiple Agents Safely on One LAN
+
+Body:
+
+A second macOS account and a spare machine looked like a clean way to test another agent. Then I started asking what, exactly, the word "separate" was supposed to prove.
+
+Part 13 works through the boundaries that a username does not settle: configuration authority, process ownership, ports, credentials, writable knowledge, shared inference, failure containment, and teardown. The agents can own separate state and still interfere through the same queue, cache budget, model server, or synchronized storage.
+
+Read the full article:
+https://unixwzrd.ai/s/9945a5197f/

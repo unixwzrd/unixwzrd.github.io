@@ -17,6 +17,8 @@ series_companion_of: 12
 series_previous_title: "Packaging Agent Operations as Installable Skills"
 series_previous_url: /technology/2026/09/18/packaging-agent-operations-as-installable-skills/
 series_next_title: "Running Multiple Agents Safely on One LAN"
+series_next_url: /technology/2026/09/20/running-multiple-agents-safely-on-one-lan/
+series_next_date: 2026-09-20 10:00:00 -0500
 published: true
 ---
 

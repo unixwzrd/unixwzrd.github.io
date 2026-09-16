@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "name": "agent-isolation-preflight",
+  "runtime": "python>=3.10",
+  "capabilities": ["read_supplied_manifest", "validate_declaration", "render_report"],
+  "forbidden_capabilities": ["provision_user", "inspect_live_system", "open_network", "start_process", "read_secret", "write_authoritative_store", "certify_security"],
+  "files": {
+    "README.md": "c76fdfe3d5609b5f1f6810e1d8d1926afe4c7f766b75e9b13d3e1d8a997e7614",
+    "fixtures/ready.json": "65c772d3f7418d624cb8e9e6d57db945d35980775ff67ef775e955b2b69786e7",
+    "fixtures/shared-port.json": "a288e47e3c91eaaa77ee96a5530139f71773e6d23faa07e64070566ceb621c8d",
+    "fixtures/shared-root.json": "7f21d10f9269adb54a6c0c1fa7382d108a06f20a98fca547a0df2631b52d8b42",
+    "fixtures/shared-vault-writers.json": "af0e9ce8c5aec7f23b21a1d3882cfc3109eae8995654a6c1844d8d02d157d051",
+    "isolation_preflight.py": "df6a269973b93cb4c876f8f711dcd36527bc9dba341cc93e5c623c30a39d215c",
+    "run_lab.py": "190e9bb1ee4ab0358ec3b052ba7b200873f6f8dbdad54433b60e849588b655f0",
+    "test_isolation_preflight.py": "26f40254bee1ee5a304326fba0b693be441585a85c32b612ab7f9392acbc85c0"
+  }
+}

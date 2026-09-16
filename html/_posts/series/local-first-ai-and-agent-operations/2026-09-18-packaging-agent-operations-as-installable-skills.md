@@ -16,6 +16,8 @@ series_url: /blog/series/local-first-ai-and-agent-operations/
 series_previous_title: "Where Local Inference Performance Actually Comes From"
 series_previous_url: /technology/2026/09/16/where-local-inference-performance-actually-comes-from/
 series_next_title: "Running Multiple Agents Safely on One LAN"
+series_next_url: /technology/2026/09/20/running-multiple-agents-safely-on-one-lan/
+series_next_date: 2026-09-20 10:00:00 -0500
 series_companion_title: "Hands-On: Package a Read-Only Component Triage Skill"
 series_companion_url: /hands-on/2026/09/18/hands-on-package-a-read-only-component-triage-skill/
 series_companion_date: 2026-09-18 10:00:00 -0500
