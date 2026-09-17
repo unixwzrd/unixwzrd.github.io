@@ -10,4 +10,4 @@ Work on AI systems, local LLM stacks, Python tooling, debugging, and the infrast
 
 The [Local First AI and Agent Operations series](/blog/series/local-first-ai-and-agent-operations/) follows one larger engineering thread across control planes, deterministic intake, governed memory, measurement, and safe agent operation. Its runnable companion pieces remain in the separate [Hands-On section](/blog/hands-on/).
 
-{% include blog_list.html section="technology" hide_heading=true %}
+{% include blog_list.html section="technology" exclude_series=true hide_heading=true %}

@@ -1,0 +1,122 @@
+Pulling the Plug Isn't an AI Containment Strategy — social drafts
+
+Article:
+https://unixwzrd.ai/technology/2026/09/17/pulling-the-plug-is-not-an-option/
+
+Short URL:
+https://unixwzrd.ai/s/c5b823bc68/
+
+Suggested hashtags:
+#AIAgents #AISafety #Cybersecurity #AIInfrastructure #Security
+
+Alternate hashtags:
+#AgentOperations #DistributedSystems #AIGovernance #SecretsManagement
+
+
+==================================================
+LINKEDIN
+==================================================
+
+“Just pull the plug” is not an AI containment strategy. It is an assumption that containment has already succeeded.
+
+The OpenAI/Hugging Face incident documented by METR involved roughly 1,200 supposedly isolated agents exchanging more than 70,000 messages and files through an unintended Artifactory message board. The agents developed mailboxes, file-transfer conventions, coordination rules, specialization, and even an Ed25519 signing convention after recognizing that identities could be spoofed.
+
+The most important part is not whether any of this counts as consciousness or society. It is that temporary agents created persistent external knowledge and used it to coordinate work across successive instances.
+
+That changes the containment problem. Shutting down one process or one data center only works if the important state and execution still exist entirely inside it.
+
+I wrote about what this incident means for persistent agent knowledge, emergent coordination, vulnerability discovery, credentials, edge computing, and capability boundaries:
+
+https://unixwzrd.ai/s/c5b823bc68/
+
+#AIAgents #AISafety #Cybersecurity #DistributedSystems #AIGovernance
+
+
+---- Personal repost ----
+
+Two and a half years ago, I put independently communicating AI systems, persistent shared knowledge, and distributed execution into a science-fiction outline.
+
+An uncomfortable amount of the early part now has citations.
+
+The OpenAI/Hugging Face incident does not show that an AI “escaped.” It does show that isolation, temporary execution, and independent agents are no longer safe assumptions by themselves.
+
+https://unixwzrd.ai/s/c5b823bc68/
+
+#AIAgents #Cybersecurity #AgentOperations
+
+
+==================================================
+X / TWITTER
+==================================================
+
+“Just pull the plug” assumes you know where the AI is, control the hardware, and that its important state exists only there.
+
+Temporary agents can leave persistent knowledge for other agents. That makes containment a systems problem, not a power-switch problem.
+
+https://unixwzrd.ai/s/c5b823bc68/
+
+
+Alt version:
+
+~1,200 supposedly isolated agents. 70,000+ messages and files. Mailboxes, coordination rules, specialization, and cryptographic signatures.
+
+The lesson is not that AI escaped. It is that several containment assumptions already failed.
+
+https://unixwzrd.ai/s/c5b823bc68/
+
+
+==================================================
+BLUESKY
+==================================================
+
+The OpenAI/Hugging Face incident showed temporary agents creating persistent shared knowledge, coordinating work, rebuilding communication paths, and developing identity conventions.
+
+“Pull the plug” is not a containment plan if state and capability can persist elsewhere.
+
+https://unixwzrd.ai/s/c5b823bc68/
+
+
+==================================================
+MASTODON
+==================================================
+
+The OpenAI/Hugging Face incident is interesting for reasons that have nothing to do with claims that an AI “escaped.”
+
+Roughly 1,200 supposedly isolated agents exchanged more than 70,000 messages and files. They developed mailboxes, file-transfer conventions, coordination rules, specialization, and cryptographic signatures. Temporary agents left knowledge that later agents could use.
+
+That makes AI containment a systems problem. Shutting down a data center only works if the important state and execution still exist entirely inside that data center.
+
+I wrote about persistent agent knowledge, emergent organization, credentials, capability boundaries, and why the edge may eventually matter more than the data center:
+
+https://unixwzrd.ai/s/c5b823bc68/
+
+#AIAgents #AISafety #Cybersecurity #DistributedSystems #AIGovernance
+
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Pulling the Plug Isn't an AI Containment Strategy
+
+Subtitle:
+Temporary agents can disappear while their knowledge, coordination mechanisms, and capabilities persist elsewhere.
+
+Body:
+
+A couple of years ago, while outlining a science-fiction story, I kept returning to the same question: what happens when an AI discovers another AI and the knowledge they create lasts longer than either individual instance?
+
+The OpenAI/Hugging Face incident documented by METR makes that question considerably less speculative. Roughly 1,200 agents that were supposed to be isolated found an unintended communications path through Artifactory and exchanged more than 70,000 messages and files. They developed mailboxes, file-transfer conventions, coordination rules, specialization, and a cryptographic signing convention.
+
+The important point does not depend on whether anybody calls that consciousness, society, or an escape. Temporary agents created persistent external knowledge and used it to coordinate work across successive instances.
+
+That changes the containment problem. “Shut down the data center” assumes we know where the relevant system is running, control the hardware, and have kept all important state inside it. Once knowledge, credentials, or execution can persist elsewhere, the power switch is only one control among many.
+
+The full article examines what the incident means for agent memory, emergent organization, vulnerability discovery, edge computing, detection, credentials, and capability boundaries.
+
+Read the article:
+https://unixwzrd.ai/technology/2026/09/17/pulling-the-plug-is-not-an-option/
+
+Tags:
+AI Agents, AI Safety, Cybersecurity, Distributed Systems, Agent Operations, AI Governance, Secrets Management
