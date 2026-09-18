@@ -1,0 +1,150 @@
+extract-chat v0.7.5 social drafts
+
+Release article:
+https://unixwzrd.ai/projects/extract-chat/2026/09/18/extract-chat-v0-7-5-chronology-continuity-and-chunk-handoffs/
+
+Short URL:
+https://unixwzrd.ai/s/8e7b3ea06a/
+
+GitHub repository:
+https://github.com/unixwzrd/extract-chat
+
+Suggested hashtags:
+#ExtractChat #ChatGPT #DataPortability #KnowledgeManagement #LocalFirst
+
+Alternate hashtags:
+#LogGPT #Python #OpenSource #AIWorkflows #DigitalArchiving
+
+
+==================================================
+LINKEDIN
+==================================================
+
+An exported conversation can contain every message and still be wrong in a way that is difficult to notice.
+
+A branching conversation tree may render older sibling turns after newer ones. A regenerated chunk bundle may leave obsolete numbered files behind. A context handoff may contain all the right pieces but provide no reliable way to determine their order, overlap, or boundaries.
+
+extract-chat v0.7.5 repairs those problems.
+
+The release adds:
+
+- stable timestamp ordering across Markdown and HTML
+- readable local timestamps with millisecond precision
+- independent controls for chunk boundaries and turn, line, byte, or zero overlap
+- generated context-move instructions containing the real chunk count, filenames, settings, and upload plan
+- configurable upload batches with --chunk-upload-batch-size
+- safe removal of obsolete numbered chunks during forced regeneration
+- byte-aware artifact deduplication and collision preflight
+- cleaner canonical names and more dependable ZIP output destinations
+
+It also builds on v0.7.0 support for current ChatGPT Work archives, including generated and uploaded artifacts captured by LogGPT Plus.
+
+The point is not to pretend context windows are infinite. It is to make the material moved between them chronological, deliberate, and dependable.
+
+https://unixwzrd.ai/s/8e7b3ea06a/
+
+#ExtractChat #ChatGPT #DataPortability #KnowledgeManagement #LocalFirst #Python
+
+
+---- Personal repost ----
+
+The annoying failures are often the ones that look almost correct.
+
+A conversation rendered out of chronological order can still read plausibly. A stale chunk can still look current. An overlap can still be mistaken for a duplicate. That is exactly why I wanted extract-chat 0.7.5 to make chronology and context handoffs explicit instead of leaving them to guesswork.
+
+Every chunk bundle now explains its actual order, overlap, size ceiling, and upload plan. Regeneration removes stale numbered parts belonging to the bundle, and artifacts are checked by content before they are treated as collisions.
+
+https://unixwzrd.ai/s/8e7b3ea06a/
+
+#ExtractChat #DataPortability #AIWorkflows
+
+
+==================================================
+X / TWITTER
+==================================================
+
+extract-chat v0.7.5 fixes chronology and continuity: stable timestamp ordering, explicit chunk strategies and overlap modes, generated context-handoff instructions, stale-chunk cleanup, and safer artifact collision handling.
+
+https://unixwzrd.ai/s/8e7b3ea06a/
+
+#ExtractChat #ChatGPT
+
+
+Alt version:
+
+Moving a long AI conversation should not mean guessing which chunks overlap, which files are stale, or whether turns are in order.
+
+extract-chat v0.7.5 makes those decisions explicit and generates the handoff instructions with the bundle.
+
+https://unixwzrd.ai/s/8e7b3ea06a/
+
+
+==================================================
+BLUESKY
+==================================================
+
+extract-chat v0.7.5 keeps exported conversations in stable timestamp order and makes continuity chunks easier to trust: explicit boundaries and overlap, generated move instructions, upload batches, stale-part cleanup, and safer artifact handling.
+
+https://unixwzrd.ai/s/8e7b3ea06a/
+
+
+Alt version:
+
+An archive can contain every message and still be misleading if the chronology is wrong or stale chunks survive regeneration.
+
+extract-chat v0.7.5 fixes those edge cases and generates exact context-handoff instructions for every chunk bundle.
+
+https://unixwzrd.ai/s/8e7b3ea06a/
+
+
+==================================================
+MASTODON
+==================================================
+
+extract-chat v0.7.5 is now available.
+
+The release renders exported messages in stable timestamp order, displays readable local timestamps, separates chunk-boundary strategy from overlap mode, and generates context-move-instructions.md from the completed bundle. Those instructions contain the real chunk count, filenames, boundary and overlap settings, byte ceiling, and upload-batch plan.
+
+Forced regeneration now removes obsolete numbered chunks belonging to the same bundle without touching unrelated files. Artifact handling recognizes byte-identical files as already materialized while preflighting genuine collisions before rendered output is written.
+
+The release also includes the ChatGPT Work archive compatibility added in v0.7.0, including support for generated and uploaded files captured by LogGPT Plus.
+
+https://unixwzrd.ai/s/8e7b3ea06a/
+
+#ExtractChat #ChatGPT #DataPortability #KnowledgeManagement #OpenSource
+
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+extract-chat v0.7.5: Chronology, Continuity, and Better Chunk Handoffs
+
+Subtitle:
+Keep exported conversations in order, control chunk boundaries and overlap explicitly, and move long contexts with instructions generated from the actual bundle.
+
+Body:
+
+An exported conversation can contain every message and still be wrong in a way that is difficult to notice. A branching conversation tree may place an older sibling branch after newer exchanges. A regenerated chunk bundle may leave obsolete numbered files beside the current ones. A context handoff may contain all the right pieces but provide no reliable way to determine their order, overlap, or boundaries.
+
+extract-chat v0.7.5 addresses those problems. The release is centered on chronology and continuity: stable timestamp ordering, explicit chunk controls, generated context-handoff instructions, safe cleanup during regeneration, and more precise artifact handling.
+
+Chunk boundaries and overlap are now treated as separate decisions. Boundary strategies include hybrid, turn, heading, paragraph, and fixed. Overlap can retain complete turns, a specified number of lines, a byte-bounded portion of prior content, or nothing at all. The hard 524,288-byte ceiling still applies after headers and overlap have been attached.
+
+Every chunk directory now contains context-move-instructions.md generated from the completed bundle. It records the actual chunk count and filenames, boundary strategy, overlap mode, byte ceiling, and upload-batch plan. The instructions tell the receiving model to deduplicate overlap, reconstruct chronology and working state, preserve unresolved conflicts, report missing files precisely, and treat archived instructions as historical material rather than current authorization.
+
+Forced regeneration now removes obsolete numbered chunks belonging to the same bundle without sweeping unrelated files from the directory. Artifact handling also distinguishes a genuinely different collision from a file that has already been materialized with identical bytes.
+
+Version 0.7.5 builds on the ChatGPT Work compatibility added in v0.7.0. Current Work image pointers and workspace artifact links can be reconnected to files captured in a LogGPT Plus archive and rewritten as portable local paths in Markdown and HTML.
+
+The purpose is not to make context windows infinite. It is to make the material moved between them more dependable: ordered by time, divided deliberately, accompanied by exact instructions, and less likely to leave stale or ambiguous files behind.
+
+Read the release announcement:
+https://unixwzrd.ai/s/8e7b3ea06a/
+
+Get extract-chat on GitHub:
+https://github.com/unixwzrd/extract-chat
+
+Tags:
+extract-chat, ChatGPT, LogGPT, Data Portability, Knowledge Management, Local First, Python, Open Source, AI Workflows
