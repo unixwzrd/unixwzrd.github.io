@@ -457,12 +457,38 @@
 }
 
 // Blog Pagination Controls
+.pagination-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  margin: 2rem 0;
+}
+
+.pagination-size {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #fff;
+  font-size: 1rem;
+
+  select {
+    background: #222;
+    color: #fff;
+    border: 1px solid #555;
+    border-radius: 6px;
+    padding: 0.4em 0.7em;
+    font: inherit;
+  }
+}
+
 .pagination {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1.2rem;
-  margin: 2rem 0 2rem 0;
+  margin: 0;
 }
 
 .page-info {
@@ -472,6 +498,7 @@
 }
 
 .pagination-btn {
+  display: inline-block;
   background: #222;
   color: #fff;
   border: 1px solid #555;
@@ -479,6 +506,7 @@
   padding: 0.4em 1.2em;
   font-size: 1rem;
   cursor: pointer;
+  text-decoration: none;
   transition: background 0.2s, color 0.2s, border 0.2s;
 }
 
@@ -488,6 +516,10 @@
   color: #111;
   border: 1px solid #fff;
   outline: none;
+}
+
+.pagination-btn[hidden] {
+  display: none;
 }
 
 /**

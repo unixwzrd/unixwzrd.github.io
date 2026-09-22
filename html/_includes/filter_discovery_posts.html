@@ -25,6 +25,10 @@ and anything marked list_exclude: true.
   {% if post.list_exclude %}
     {% assign include_post = false %}
   {% endif %}
+  {% assign post_project = site.data.github_projects.projects | where: "name", post.category | first %}
+  {% if post_project and post_project.visibility == 'none' %}
+    {% assign include_post = false %}
+  {% endif %}
   {% if include.category and include.category != '' %}
     {% assign post_category = post.category | default: '' %}
     {% unless post_category == include.category %}

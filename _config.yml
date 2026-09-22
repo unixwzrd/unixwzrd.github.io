@@ -137,6 +137,8 @@ excerpt_separator: "<!--more-->"
 show_excerpts: true
 excerpt_word_limit: 50
 site_blogs_count: 10
+archive_posts_count: 10
+archive_page_sizes: [10, 25, 50]
 project_blog_count: 5
 
 # SEO specific settings

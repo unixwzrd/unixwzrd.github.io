@@ -41,7 +41,8 @@
         </label>
       </div>
       <div class="nav-dropdown-menu">
-        <a class="nav-dropdown-item" href="{{ '/blog/' | relative_url }}">All Blogs</a>
+        <a class="nav-dropdown-item" href="{{ '/blog/' | relative_url }}">Blog Home</a>
+        <a class="nav-dropdown-item" href="{{ '/blog/all/' | relative_url }}">All Posts</a>
         {% for blog_section in site.data.blog_sections.sections %}
           {% if blog_section.visible %}
             <a class="nav-dropdown-item" href="{{ blog_section.url | relative_url }}">{{ blog_section.title }}</a>

@@ -7,6 +7,9 @@ Parameters:
 - series: (optional) Only list posts from this named series.
 - exclude_series: (optional) Exclude series posts from this listing.
 - limit: (optional) Maximum number of posts to show.
+- posts_per_page: (optional) Number of posts per page without limiting the complete listing.
+- page_sizes: (optional) Allowed page-size choices for an interactive selector.
+- show_source: (optional) Show the editorial section or project that owns each post.
 - heading: (optional) Heading override.
 - hide_heading: (optional) When true, suppresses the include heading output.
 {% endcomment %}
@@ -33,9 +36,9 @@ Parameters:
     <h2>Blog Entries</h2>
 {% endif %}
 
-<ul class="post-list">
-    {% include filter_discovery_posts.html section=include.section category=include.category additional_category=include.additional_category additional_category_primary_only=include.additional_category_primary_only series=include.series exclude_series=include.exclude_series %}
-    {% assign posts_to_show = discovery_posts %}
+<div class="blog-list-container">
+{% include filter_discovery_posts.html section=include.section category=include.category additional_category=include.additional_category additional_category_primary_only=include.additional_category_primary_only series=include.series exclude_series=include.exclude_series %}
+{% assign posts_to_show = discovery_posts %}
 
     {% if posts_to_show.size > 0 %}
         <!-- Discovery lists: list_sort_key ascending = newest first (keys are negative). -->
@@ -44,6 +47,8 @@ Parameters:
 
         {% if include.limit %}
             {% assign max_posts = include.limit | plus: 0 %}
+        {% elsif include.posts_per_page %}
+            {% assign max_posts = include.posts_per_page | plus: 0 %}
         {% elsif include.category %}
             {% assign max_posts = page.project_blog_count | default: site.project_blog_count %}
         {% else %}
@@ -66,15 +71,18 @@ Parameters:
         {% endif %}
 
         <div class="blog-pagination-container" data-posts-per-page="{{ max_posts }}" data-total-pages="{{ total_pages }}">
+            <ul class="post-list">
             {% for post in posts_to_render %}
-            <div class="blog-post-item" data-post-index="{{ forloop.index0 }}">
-                <li>
+                <li class="blog-post-item" data-post-index="{{ forloop.index0 }}">
                     <h3>
                         <a class="post-link" href="{{ post.url | relative_url }}">
                             {{ post.title | escape }}
                         </a>
                     </h3>
                     {% include post_list_meta.html post=post format="%B %-d, %Y" %}
+                    {% if include.show_source %}
+                        {% include post_list_source.html post=post %}
+                    {% endif %}
                     <div class="post-excerpt">
                         {% if post.excerpt and post.excerpt != '' %}
                             {{ post.excerpt | strip_images | markdownify | process_heading }}
@@ -83,84 +91,109 @@ Parameters:
                         {% endif %}
                     </div>
                 </li>
-            </div>
             {% endfor %}
+            </ul>
 
             <!-- Pagination -->
             {% if total_pages > 1 %}
-            <div class="pagination">
-                <button class="pagination-btn prev-btn" onclick="changePage(-1)" style="display: none;">← Previous</button>
-                <span class="page-info">Page <span id="current-page">1</span> of {{ total_pages }}</span>
-                <button class="pagination-btn next-btn" onclick="changePage(1)">Next →</button>
+            <div class="pagination-toolbar">
+                {% if include.page_sizes %}
+                <label class="pagination-size">
+                    Posts per page
+                    <select class="posts-per-page">
+                        {% for page_size in include.page_sizes %}
+                            {% assign numeric_page_size = page_size | plus: 0 %}
+                            {% if numeric_page_size > 0 %}
+                            <option value="{{ numeric_page_size }}"{% if numeric_page_size == max_posts %} selected{% endif %}>{{ numeric_page_size }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </label>
+                {% endif %}
+                <nav class="pagination" aria-label="Blog archive pages">
+                    <a class="pagination-btn prev-btn" href="{{ page.url | relative_url }}" hidden>← Previous</a>
+                    <span class="page-info">Page <span class="current-page">1</span> of <span class="total-pages">{{ total_pages }}</span></span>
+                    <a class="pagination-btn next-btn" href="?page=2">Next →</a>
+                </nav>
             </div>
             {% endif %}
         </div>
 
         {% if total_pages > 1 %}
         <script>
-        let currentPage = 1;
-        const postsPerPage = {{ max_posts }};
-        const totalPages = {{ total_pages }};
-
-        function showPage(pageNum) {
-            const container = document.querySelector('.blog-pagination-container');
+        (() => {
+            const script = document.currentScript;
+            const container = script.previousElementSibling;
             const posts = container.querySelectorAll('.blog-post-item');
-            const startIndex = (pageNum - 1) * postsPerPage;
-            const endIndex = startIndex + postsPerPage;
+            const defaultPostsPerPage = Number(container.dataset.postsPerPage);
+            const sizeSelect = container.querySelector('.posts-per-page');
+            const allowedPageSizes = sizeSelect
+                ? Array.from(sizeSelect.options, option => Number(option.value))
+                : [defaultPostsPerPage];
+            const pageParam = 'page';
+            const pageSizeParam = 'per_page';
+            const params = new URLSearchParams(window.location.search);
+            const requestedPostsPerPage = Number.parseInt(params.get(pageSizeParam), 10);
+            const postsPerPage = allowedPageSizes.includes(requestedPostsPerPage)
+                ? requestedPostsPerPage
+                : defaultPostsPerPage;
+            const totalPages = Math.max(1, Math.ceil(posts.length / postsPerPage));
 
-            posts.forEach((post, index) => {
-                if (index >= startIndex && index < endIndex) {
-                    post.style.display = 'block';
+            const pageUrl = (pageNumber, pageSize = postsPerPage) => {
+                const url = new URL(window.location.href);
+                if (pageNumber <= 1) {
+                    url.searchParams.delete(pageParam);
                 } else {
-                    post.style.display = 'none';
+                    url.searchParams.set(pageParam, pageNumber);
                 }
+                if (pageSize === defaultPostsPerPage) {
+                    url.searchParams.delete(pageSizeParam);
+                } else {
+                    url.searchParams.set(pageSizeParam, pageSize);
+                }
+                return `${url.pathname}${url.search}${url.hash}`;
+            };
+
+            const requestedPage = Number.parseInt(params.get(pageParam), 10);
+            const currentPage = Number.isFinite(requestedPage)
+                ? Math.min(Math.max(requestedPage, 1), totalPages)
+                : 1;
+
+            const canonicalUrl = pageUrl(currentPage);
+            const currentUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+            if (canonicalUrl !== currentUrl) {
+                window.history.replaceState({}, '', canonicalUrl);
+            }
+
+            const startIndex = (currentPage - 1) * postsPerPage;
+            const endIndex = startIndex + postsPerPage;
+            posts.forEach((post, index) => {
+                post.hidden = index < startIndex || index >= endIndex;
             });
 
-            document.getElementById('current-page').textContent = pageNum;
+            container.querySelector('.current-page').textContent = currentPage;
+            container.querySelector('.total-pages').textContent = totalPages;
+            container.dataset.totalPages = totalPages;
 
-            // Show/hide pagination buttons
-            const prevBtn = document.querySelector('.prev-btn');
-            const nextBtn = document.querySelector('.next-btn');
-
-            if (pageNum === 1) {
-                prevBtn.style.display = 'none';
-            } else {
-                prevBtn.style.display = 'inline-block';
+            if (sizeSelect) {
+                sizeSelect.value = String(postsPerPage);
+                sizeSelect.addEventListener('change', () => {
+                    window.location.assign(pageUrl(1, Number(sizeSelect.value)));
+                });
             }
 
-            if (pageNum === totalPages) {
-                nextBtn.style.display = 'none';
-            } else {
-                nextBtn.style.display = 'inline-block';
-            }
+            const previous = container.querySelector('.prev-btn');
+            previous.hidden = currentPage <= 1;
+            previous.href = pageUrl(currentPage - 1);
 
-            // Update URL without reloading
-            const url = new URL(window.location);
-            url.searchParams.set('page', pageNum);
-            window.history.pushState({}, '', url);
-        }
-
-        function changePage(delta) {
-            const newPage = currentPage + delta;
-            if (newPage >= 1 && newPage <= totalPages) {
-                currentPage = newPage;
-                showPage(currentPage);
-            }
-        }
-
-        // Initialize pagination
-        document.addEventListener('DOMContentLoaded', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const pageParam = urlParams.get('page');
-            if (pageParam) {
-                currentPage = parseInt(pageParam);
-            }
-            showPage(currentPage);
-        });
+            const next = container.querySelector('.next-btn');
+            next.hidden = currentPage >= totalPages;
+            next.href = pageUrl(currentPage + 1);
+        })();
         </script>
         {% endif %}
     {% else %}
         <p>No blog entries yet. Check back soon for updates!</p>
     {% endif %}
-</ul>
+</div>
 {% endunless %}

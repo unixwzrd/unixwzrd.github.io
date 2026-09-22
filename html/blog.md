@@ -17,6 +17,11 @@ For related project work, start with [Secrets Kit](/projects/Secrets-Kit/), [LLM
 </aside>
 
 <div class="blog-section-grid">
+  <section class="blog-section-card">
+    <h2><a href="{{ '/blog/all/' | relative_url }}">All Posts</a></h2>
+    <p>Browse the complete chronological archive across the main blog, series, Hands-On articles, and project blogs.</p>
+    <a class="button-link" href="{{ '/blog/all/' | relative_url }}">Browse All Posts</a>
+  </section>
   {% for blog_section in site.data.blog_sections.sections %}
     {% if blog_section.visible %}
       {% assign blog_section_page = site.pages | where: "url", blog_section.url | first %}

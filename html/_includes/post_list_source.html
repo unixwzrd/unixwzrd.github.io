@@ -1,0 +1,53 @@
+{% comment %}
+  Source labels for the complete chronological blog archive.
+  Standard sections and series are resolved through _data/blog_sections.yml;
+  project labels are resolved through _data/github_projects.yml.
+  Parameter:
+  - post: (required) the post object
+{% endcomment %}
+{%- assign source_section = nil -%}
+{%- for blog_section in site.data.blog_sections.sections -%}
+  {%- assign matches_section = false -%}
+  {%- if blog_section.section and include.post.categories contains blog_section.section -%}
+    {%- assign matches_section = true -%}
+  {%- elsif blog_section.additional_category and include.post.categories contains blog_section.additional_category -%}
+    {%- assign matches_section = true -%}
+  {%- endif -%}
+  {%- if matches_section -%}
+    {%- assign source_section = blog_section -%}
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- assign source_label = source_section.title | default: '' -%}
+{%- assign source_url = source_section.url | default: '' -%}
+{%- if source_label == '' and include.post.category -%}
+  {%- assign source_project = site.data.github_projects.projects | where: 'name', include.post.category | first -%}
+  {%- if source_project -%}
+    {%- capture source_label -%}Project: {{ source_project.title }}{%- endcapture -%}
+    {%- assign source_url = source_project.page_url -%}
+  {%- else -%}
+    {%- assign source_label = include.post.category | replace: '-', ' ' | capitalize -%}
+  {%- endif -%}
+{%- endif -%}
+
+{%- assign series_section = site.data.blog_sections.sections | where: 'series', include.post.series | first -%}
+{%- assign series_label = series_section.title | default: 'Series' -%}
+{%- assign series_url = include.post.series_url | default: series_section.url | default: '/blog/series/' -%}
+
+{%- if source_label != '' or include.post.series -%}
+  <span class="post-list-source">
+    {%- if source_label != '' -%}
+      <span class="post-meta__separator">·</span>
+      {%- if source_url != '' -%}
+        <a href="{{ source_url | relative_url }}">{{ source_label | strip | escape }}</a>
+      {%- else -%}
+        {{ source_label | strip | escape }}
+      {%- endif -%}
+    {%- endif -%}
+    {%- if include.post.series -%}
+      <span class="post-meta__separator">·</span>
+      <a href="{{ series_url | relative_url }}">{{ series_label | strip | escape }}</a>
+    {%- endif -%}
+  </span>
+{%- endif -%}
