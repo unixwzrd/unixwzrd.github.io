@@ -11,7 +11,7 @@ excerpt: "An operational skill should package judgment, evidence, and approval b
 series: "Local First AI and Agent Operations"
 series_part: 12
 series_order: 120
-series_total: 14
+series_total: 17
 series_url: /blog/series/local-first-ai-and-agent-operations/
 series_previous_title: "Where Local Inference Performance Actually Comes From"
 series_previous_url: /technology/2026/09/16/where-local-inference-performance-actually-comes-from/
@@ -24,7 +24,7 @@ series_companion_date: 2026-09-18 10:00:00 -0500
 published: true
 ---
 
-This is Part 12 of the fourteen-part Local-First Agent Operations series. In [Part 11]({{ page.series_previous_url | relative_url }}), I worked downward through model and runtime performance. This time I am moving back up the stack to a question that sounds simpler than it is: once I have a reliable operating procedure, how do I make it available to an agent without accidentally building another control plane inside a prompt?
+This is Part 12 of the seventeen-part Local-First Agent Operations series. In [Part 11]({{ page.series_previous_url | relative_url }}), I worked downward through model and runtime performance. This time I am moving back up the stack to a question that sounds simpler than it is: once I have a reliable operating procedure, how do I make it available to an agent without accidentally building another control plane inside a prompt?
 
 I arrived at that question through two failures that looked unrelated. In one, I told a stack to stop and discovered that some of it was still running. In the other, I repaired a memory integration, confirmed that the package and configuration were present, and still did not have memory in the live agent. Both failures were useful because they exposed the same mistake from opposite directions. I had confused a declared intention with an observed result.
 

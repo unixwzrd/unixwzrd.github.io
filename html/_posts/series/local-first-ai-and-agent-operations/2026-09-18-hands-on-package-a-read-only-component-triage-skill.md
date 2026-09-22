@@ -11,7 +11,7 @@ excerpt: "Run a model-free Python lab that validates invented operational eviden
 series: "Local First AI and Agent Operations"
 series_part: "12A"
 series_order: 125
-series_total: 14
+series_total: 17
 series_url: /blog/series/local-first-ai-and-agent-operations/
 series_companion_of: 12
 series_previous_title: "Packaging Agent Operations as Installable Skills"

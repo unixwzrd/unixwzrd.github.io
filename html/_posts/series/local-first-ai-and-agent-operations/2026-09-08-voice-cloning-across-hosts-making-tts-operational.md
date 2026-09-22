@@ -12,7 +12,7 @@ excerpt: "A healthy speech bridge does not prove that the model behind it is rea
 series: "Local First AI and Agent Operations"
 series_part: 9
 series_order: 90
-series_total: 14
+series_total: 17
 series_url: /blog/series/local-first-ai-and-agent-operations/
 series_previous_title: "From Shell Scripts to an Operator-Ready LLM-Ops-Kit"
 series_previous_url: /technology/2026/09/06/from-shell-scripts-to-an-operator-ready-llm-ops-kit/

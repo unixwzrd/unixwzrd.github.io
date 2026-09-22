@@ -11,12 +11,14 @@ excerpt: "Run a model-free Python preflight that rejects shared roots, port coll
 series: "Local First AI and Agent Operations"
 series_part: "13A"
 series_order: 135
-series_total: 14
+series_total: 17
 series_url: /blog/series/local-first-ai-and-agent-operations/
 series_companion_of: 13
 series_previous_title: "Running Multiple Agents Safely on One LAN"
 series_previous_url: /technology/2026/09/20/running-multiple-agents-safely-on-one-lan/
-series_next_title: "What Remains Before a Public Release"
+series_next_title: "What a Prerelease Still Has to Prove"
+series_next_url: /technology/2026/09/22/what-a-prerelease-still-has-to-prove/
+series_next_date: 2026-09-22 10:00:00 -0500
 published: true
 ---
 

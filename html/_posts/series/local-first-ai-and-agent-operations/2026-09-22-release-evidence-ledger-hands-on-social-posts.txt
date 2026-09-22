@@ -1,0 +1,78 @@
+Hands-On: Build a Fail-Closed Release Evidence Ledger - social drafts
+
+Scheduled article:
+https://unixwzrd.ai/hands-on/2026/09/22/hands-on-build-a-fail-closed-release-evidence-ledger/
+
+Generated short URL:
+https://unixwzrd.ai/s/7afa6d66f9/
+
+Suggested hashtags:
+#ReleaseEngineering #DevOps #Python #AgentOperations
+
+==================================================
+LINKEDIN
+==================================================
+
+A release packet can contain true facts and still tell the wrong story. A green CI result may belong to another archive. A public prerelease may exist while runtime acceptance remains incomplete. An approval claim may have no decision record behind it.
+
+Hands-On 14A turns those problems into a small, offline Python lab. It binds evidence to one artifact identity, rejects missing and stale records, and stops at `EVIDENCE PACKET READY FOR REVIEW`. It cannot build, approve, or publish anything.
+
+The complete standard-library package, checksum, fixtures, tests, and source are included.
+
+https://unixwzrd.ai/s/7afa6d66f9/
+
+#ReleaseEngineering #DevOps #Python #AgentOperations
+
+==================================================
+X / TWITTER
+==================================================
+
+Can a release-evidence packet prove less than its filename claims?
+
+Hands-On 14A uses an offline Python lab to reject missing gates, mixed artifact identities, stale evidence, and invented approval.
+
+https://unixwzrd.ai/s/7afa6d66f9/
+
+#ReleaseEngineering #Python
+
+==================================================
+BLUESKY
+==================================================
+
+The useful success state for a release-evidence validator is not `RELEASE READY`. It is `EVIDENCE PACKET READY FOR REVIEW`.
+
+Hands-On 14A makes that boundary runnable with Python and invented fixtures.
+
+https://unixwzrd.ai/s/7afa6d66f9/
+
+#DevOps #Python
+
+==================================================
+MASTODON
+==================================================
+
+Hands-On 14A is a model-free, offline release-evidence lab. It checks that every required gate has a record, every result belongs to the same artifact, evidence is current enough, and publication or approval claims have matching support.
+
+Broken packets stop with bounded error codes. The clean packet becomes ready for human review, not automatically ready for release.
+
+The article includes the package, checksum, collapsed source, fixtures, runner, and unit tests.
+
+https://unixwzrd.ai/s/7afa6d66f9/
+
+#ReleaseEngineering #AgentOperations #DevOps #Python
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Hands-On: Build a Fail-Closed Release Evidence Ledger
+
+Body:
+
+A release conversation can go wrong while everyone is still stating true facts about different artifacts or different stages of acceptance.
+
+This lab gives those facts separate places to live. It validates an invented evidence packet, binds every result to one artifact identity, rejects unsupported claims, and stops before any release action. The complete standard-library Python package and tests are included.
+
+Read and run the lab:
+https://unixwzrd.ai/s/7afa6d66f9/

@@ -11,7 +11,7 @@ excerpt: "Build a standard-library benchmark comparator that rejects incompatibl
 series: "Local First AI and Agent Operations"
 series_part: "10A"
 series_order: 105
-series_total: 14
+series_total: 17
 series_url: /blog/series/local-first-ai-and-agent-operations/
 series_companion_of: 10
 series_previous_title: "Squeezing More Inference from Apple Silicon: llama.cpp Today, MLXForge Later"

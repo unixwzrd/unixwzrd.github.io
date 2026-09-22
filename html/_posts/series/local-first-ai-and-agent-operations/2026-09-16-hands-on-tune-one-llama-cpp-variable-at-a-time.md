@@ -11,7 +11,7 @@ excerpt: "Run a model-free Python lab that checks one controlled intervention, a
 series: "Local First AI and Agent Operations"
 series_part: "11A"
 series_order: 115
-series_total: 14
+series_total: 17
 series_url: /blog/series/local-first-ai-and-agent-operations/
 series_companion_of: 11
 series_previous_title: "Where Local Inference Performance Actually Comes From"

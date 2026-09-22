@@ -11,18 +11,20 @@ excerpt: "A second account or spare machine is useful, but safe multi-agent oper
 series: "Local First AI and Agent Operations"
 series_part: 13
 series_order: 130
-series_total: 14
+series_total: 17
 series_url: /blog/series/local-first-ai-and-agent-operations/
 series_previous_title: "Packaging Agent Operations as Installable Skills"
 series_previous_url: /technology/2026/09/18/packaging-agent-operations-as-installable-skills/
-series_next_title: "What Remains Before a Public Release"
+series_next_title: "What a Prerelease Still Has to Prove"
+series_next_url: /technology/2026/09/22/what-a-prerelease-still-has-to-prove/
+series_next_date: 2026-09-22 10:00:00 -0500
 series_companion_title: "Hands-On: Audit an Isolated Agent Testbed Before First Run"
 series_companion_url: /hands-on/2026/09/20/hands-on-audit-an-isolated-agent-testbed-before-first-run/
 series_companion_date: 2026-09-20 10:00:00 -0500
 published: true
 ---
 
-This is Part 13 of the fourteen-part Local-First Agent Operations series. In [Part 12]({{ page.series_previous_url | relative_url }}), I packaged operational judgment without turning a skill into another control plane. That raises the next question almost immediately: if I want a second agent for testing, how separate is separate enough?
+This is Part 13 of the seventeen-part Local-First Agent Operations series. In [Part 12]({{ page.series_previous_url | relative_url }}), I packaged operational judgment without turning a skill into another control plane. That raises the next question almost immediately: if I want a second agent for testing, how separate is separate enough?
 
 My first answer was the obvious one. Give the agent another macOS account, perhaps put it on an older machine, and let it use the model server over the LAN. Different username, different home directory, different process. It looks tidy on a whiteboard.
 
@@ -153,4 +155,4 @@ The complete second-agent environment has not yet passed the full matrix. Proces
 
 The next step is to freeze the artifact under test, record its version and digest, and run the matrix on isolated Apple Silicon and Intel accounts. The evidence package needs to remain sanitized while retaining enough identity, timing, lifecycle, port, and ownership information to explain every pass or failure.
 
-Only after that will a second agent become useful for neutral implementation comparison. At that point I can give Hermes and another client equivalent tasks, capture prompt overhead and runtime behavior, and discuss the differences from measurements instead of preference. Part 14 will close the series by placing this unfinished acceptance work beside the remaining release gates rather than pretending that a long checklist is already a release.
+Only after that will a second agent become useful for neutral implementation comparison. At that point I can give Hermes and another client equivalent tasks, capture prompt overhead and runtime behavior, and discuss the differences from measurements instead of preference. Part 14 places this unfinished acceptance work beside the remaining release gates rather than pretending that a long checklist is already a release.

@@ -1,0 +1,80 @@
+What a Prerelease Still Has to Prove - social drafts
+
+Scheduled article:
+https://unixwzrd.ai/technology/2026/09/22/what-a-prerelease-still-has-to-prove/
+
+Generated short URL:
+https://unixwzrd.ai/s/7be6df4ff1/
+
+Suggested hashtags:
+#LocalAI #AgentOperations #ReleaseEngineering #DevOps
+
+==================================================
+LINKEDIN
+==================================================
+
+I went into Part 14 expecting to write about what remained before LLM-Ops-Kit had anything public. Then I compared the release checklist with the repository and found a public prerelease several versions ahead of the acceptance document.
+
+That did not make the checklist useless, and it did not make the prerelease fully accepted. It meant I had been treating three separate records as one: what the source implements, what one exact artifact has actually passed, and what has been authorized or published.
+
+This article is about keeping those ledgers separate without pretending the real public artifact does not exist.
+
+https://unixwzrd.ai/s/7be6df4ff1/
+
+#LocalAI #AgentOperations #ReleaseEngineering #DevOps
+
+==================================================
+X / TWITTER
+==================================================
+
+A public prerelease, a verified archive, and green CI are real evidence. They are not automatically complete runtime acceptance.
+
+Part 14 separates capability, exact-artifact testing, and publication into three ledgers.
+
+https://unixwzrd.ai/s/7be6df4ff1/
+
+#ReleaseEngineering #LocalAI
+
+==================================================
+BLUESKY
+==================================================
+
+The uncomfortable release question is not simply, "Did we publish something?"
+
+It is, "Which exact artifact did each test exercise, and what remains unobserved?"
+
+Part 14 works through that boundary.
+
+https://unixwzrd.ai/s/7be6df4ff1/
+
+#LocalAI #DevOps
+
+==================================================
+MASTODON
+==================================================
+
+LLM-Ops-Kit already had a public prerelease, clean manifest, verified archive digest, and green CI while an older acceptance checklist still named an earlier candidate.
+
+That mismatch led me to three ledgers: implemented capability, exact-artifact acceptance, and authorization or publication. They share an artifact identity, but they do not advance in lockstep.
+
+Part 14 explains what the current prerelease proves, what it does not prove, and why old evidence should not silently follow a new archive.
+
+https://unixwzrd.ai/s/7be6df4ff1/
+
+#LocalAI #AgentOperations #ReleaseEngineering #DevOps
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+What a Prerelease Still Has to Prove
+
+Body:
+
+I went into Part 14 expecting to write about what remained before LLM-Ops-Kit had anything public. Then I found a public prerelease several versions ahead of the acceptance document.
+
+That mismatch exposed three separate records: what the source implements, what one exact artifact has actually passed, and what has been authorized or published. The article explains why those ledgers need to stay separate even when they all describe the same release.
+
+Read the full article:
+https://unixwzrd.ai/s/7be6df4ff1/

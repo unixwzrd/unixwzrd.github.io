@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "name": "release-evidence-ledger",
+  "runtime": "python>=3.10",
+  "capabilities": ["read_supplied_packet", "validate_evidence_identity", "render_review_summary"],
+  "forbidden_capabilities": ["build", "install", "open_network", "run_git", "query_ci", "sign", "upload", "approve", "publish", "infer_release_readiness"],
+  "files": {
+    "README.md": "09d218452d83850a8fb91e60b3418cf2d484b2da95b2b0f492f25973230b1b6e",
+    "fixtures/identity-mismatch.json": "c6eacc79c5fdf3494c0ba0a3ce8468c5e4d5448b0fcdfb46154d5df9178fd5d1",
+    "fixtures/manifest-mismatch.json": "5e0737f18d46524acec96435f1c9cfbd69e28ceeeaa0289d442a6fe80a2eefe3",
+    "fixtures/missing-gate.json": "e0effed79b9f522600eb5e75ac6d4edb8d0abf08747e62b708a9c638d12a6fd1",
+    "fixtures/review-ready.json": "5aab52d38e8fbd9667a62b621eca278aff104818a3e3c3784233ee2081a5c197",
+    "fixtures/stale-evidence.json": "c1f356f3ead134d5054203d471acbcdda3059cf74df8ec955ee643effed16acc",
+    "fixtures/unsupported-approval.json": "f0d570fb6ab3638c391425ebe93eb4496a2f4785fd0b12488475c6af4f80c834",
+    "release_evidence.py": "4eb77d10b5de8130070d2585328c39ea4d6973f7b908cedda0c49c2f3fbf0f07",
+    "run_lab.py": "394ff43e853cca8f705261b106872c77edfbf8512d298110bd3268d9215f5f41",
+    "test_release_evidence.py": "46b7a5c5bf9e42f3957515b7d32a4c64f336cd34fc5d4c7bf72a5a49e42df376"
+  }
+}

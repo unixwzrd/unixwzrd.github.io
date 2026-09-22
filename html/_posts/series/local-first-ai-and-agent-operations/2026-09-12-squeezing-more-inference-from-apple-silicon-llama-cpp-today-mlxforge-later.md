@@ -11,7 +11,7 @@ excerpt: "A slow response can hide model loading, queueing, prompt prefill, firs
 series: "Local First AI and Agent Operations"
 series_part: 10
 series_order: 100
-series_total: 14
+series_total: 17
 series_url: /blog/series/local-first-ai-and-agent-operations/
 series_previous_title: "Voice Cloning Across Hosts: Making TTS Operational"
 series_previous_url: /technology/2026/09/08/voice-cloning-across-hosts-making-tts-operational/

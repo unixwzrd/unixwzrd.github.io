@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "packet_id": "missing-gate",
+  "evaluation_time": "2026-09-20T12:00:00Z",
+  "max_evidence_age_days": 30,
+  "artifact": {
+    "name": "example-ops-kit",
+    "version": "1.4.0b3",
+    "release_tag": "1.4.0b3",
+    "source_commit": "1111111111111111111111111111111111111111",
+    "archive_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "manifest_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+  },
+  "publication_observation": {
+    "state": "prerelease",
+    "tag": "1.4.0b3",
+    "observed_at": "2026-09-18T10:00:00Z",
+    "evidence_ref": "public-release-record"
+  },
+  "required_gates": [
+    {"gate_id": "release-metadata", "required": true},
+    {"gate_id": "isolated-install", "required": true}
+  ],
+  "evidence": [
+    {
+      "evidence_id": "public-release-record",
+      "gate_id": "release-metadata",
+      "artifact_version": "1.4.0b3",
+      "source_commit": "1111111111111111111111111111111111111111",
+      "archive_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "manifest_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "observed_at": "2026-09-18T10:00:00Z",
+      "result": "pass",
+      "architectures": ["public-metadata"]
+    }
+  ],
+  "claims": {
+    "acceptance": "incomplete",
+    "approval": "unobserved",
+    "approval_evidence_ref": null
+  }
+}

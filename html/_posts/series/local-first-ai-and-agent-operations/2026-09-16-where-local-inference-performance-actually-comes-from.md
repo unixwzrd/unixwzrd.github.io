@@ -11,7 +11,7 @@ excerpt: "Cache size, quantization, draft models, and MTP solve different proble
 series: "Local First AI and Agent Operations"
 series_part: 11
 series_order: 110
-series_total: 14
+series_total: 17
 series_url: /blog/series/local-first-ai-and-agent-operations/
 series_previous_title: "Squeezing More Inference from Apple Silicon: llama.cpp Today, MLXForge Later"
 series_previous_url: /technology/2026/09/12/squeezing-more-inference-from-apple-silicon-llama-cpp-today-mlxforge-later/
@@ -24,7 +24,7 @@ series_companion_date: 2026-09-16 10:00:00 -0500
 published: true
 ---
 
-This is Part 11 of the fourteen-part Local-First Agent Operations series. In [Part 10](/technology/2026/09/12/squeezing-more-inference-from-apple-silicon-llama-cpp-today-mlxforge-later/), I broke inference latency into phases and put a fail-closed comparison contract around the results. That gave me a much better answer to the question, "Where is the time going?" It did not answer the next question, which was, "What should I touch?"
+This is Part 11 of the seventeen-part Local-First Agent Operations series. In [Part 10](/technology/2026/09/12/squeezing-more-inference-from-apple-silicon-llama-cpp-today-mlxforge-later/), I broke inference latency into phases and put a fail-closed comparison contract around the results. That gave me a much better answer to the question, "Where is the time going?" It did not answer the next question, which was, "What should I touch?"
 
 That second question is where performance work gets interesting, and where it can get expensive in a hurry. A trace may show that prompt processing dominates a request, but shrinking the context can throw away information the agent needs. A smaller quantization may fit comfortably in memory and quietly damage the work I actually care about. A speculative path may produce impressive decode numbers while consuming enough memory to make the rest of the machine miserable.
 

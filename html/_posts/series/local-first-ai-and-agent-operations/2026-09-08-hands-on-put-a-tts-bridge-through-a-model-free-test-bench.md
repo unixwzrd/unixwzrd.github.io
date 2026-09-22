@@ -11,7 +11,7 @@ excerpt: "Build a model-free TTS test bench with bounded capability and registry
 series: "Local First AI and Agent Operations"
 series_part: "9A"
 series_order: 95
-series_total: 14
+series_total: 17
 series_url: /blog/series/local-first-ai-and-agent-operations/
 series_companion_of: 9
 series_previous_title: "Voice Cloning Across Hosts: Making TTS Operational"
