@@ -1,0 +1,23 @@
+// Source for post-01-url-identity.svg/png. Project-post path rules shown; other posts differ.
+digraph url_identity {
+  graph [rankdir=LR, bgcolor="#111827", pad="0.3", nodesep="0.38", ranksep="0.72", splines=polyline, fontname="Helvetica"];
+  node [shape=box, style="rounded,filled", color="#4b5563", fillcolor="#1f2937", fontcolor="#f3f4f6", fontname="Helvetica", fontsize=15, margin="0.18,0.12"];
+  edge [color="#e5a85c", fontcolor="#d1d5db", fontname="Helvetica", fontsize=11, penwidth=2, arrowsize=0.75];
+
+  source [label="Post source file\nmay move", fillcolor="#26374a", color="#67c5d6"];
+  frozen [label="Frozen post metadata\npublication date + permalink_slug", fillcolor="#30415a", color="#67c5d6"];
+  basis [label="Immutable\nshort_link_basis", fillcolor="#30415a", color="#67c5d6"];
+  canonical [label="Canonical project-post URL", fillcolor="#3a3440", color="#e5a85c"];
+  short [label="/s/<code>/ redirect", fillcolor="#3a3440", color="#e5a85c"];
+  legacy [label="Declared legacy URL\ncompatibility redirect"];
+
+  source -> frozen [label="content carries IDs"];
+  source -> basis [label="content carries basis"];
+  frozen -> canonical;
+  basis -> short [label="deterministic hash"];
+  short -> canonical [label="redirect"];
+  legacy -> canonical [label="redirect", style=dashed, color="#67c5d6"];
+
+  { rank=same; frozen; basis; legacy; }
+  { rank=same; canonical; short; }
+}

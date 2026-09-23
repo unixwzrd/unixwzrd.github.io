@@ -1,0 +1,26 @@
+// Source for post-01-project-flow.svg/png. Render with dot -Tsvg or dot -Tpng.
+digraph project_flow {
+  graph [rankdir=LR, bgcolor="#111827", pad="0.3", nodesep="0.36", ranksep="0.7", splines=polyline, fontname="Helvetica"];
+  node [shape=box, style="rounded,filled", color="#4b5563", fillcolor="#1f2937", fontcolor="#f3f4f6", fontname="Helvetica", fontsize=15, margin="0.18,0.12"];
+  edge [color="#e5a85c", fontcolor="#d1d5db", fontname="Helvetica", fontsize=11, penwidth=2, arrowsize=0.75];
+
+  catalog [label="Authored YAML\nproject catalog", fillcolor="#26374a", color="#67c5d6"];
+  generator [label="Project data\ngenerator", fillcolor="#30415a", color="#67c5d6"];
+  generated [label="Generated project\ndata and local card", fillcolor="#26374a", color="#67c5d6"];
+  scaffold [label="Landing page and\nblog directories", fillcolor="#29384a"];
+  liquid [label="Shared Liquid\nlayouts and includes", fillcolor="#3a3440", color="#e5a85c"];
+  menu [label="Project menu"];
+  listing [label="Projects page"];
+  blog [label="Project blog"];
+
+  catalog -> generator [label="refresh"];
+  generator -> generated;
+  generator -> scaffold [label="if page absent", style=dashed, color="#67c5d6"];
+  generated -> liquid;
+  scaffold -> liquid;
+  liquid -> menu;
+  liquid -> listing;
+  liquid -> blog;
+
+  { rank=same; menu; listing; blog; }
+}

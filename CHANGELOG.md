@@ -2,6 +2,22 @@
 
 This changelog records changes to site behavior, operational tooling, scripts, build validation, and shared templates. Routine articles, post corrections, publication dates, and social copy do not require entries. The entries below were backfilled on September 2 from repository history; their dates identify the recorded changes, not a verified deployment date.
 
+## 2026-09-22: Complete blog archive and configurable pagination
+
+- Added `/blog/all/` as a chronological archive of discoverable main-site, series, Hands-On, and project posts. Kept `/blog/` as the section hub and labeled the navigation links **Blog Home** and **All Posts** accordingly.
+- Added source links to archive entries using the configured blog sections and project catalog. Series posts show both their editorial section and series; project posts marked `visibility: none` are excluded from discovery listings.
+- Gave the archive its own `archive_posts_count` setting and configurable `archive_page_sizes` choices, currently 10, 25, and 50. The shared pagination include uses ordinary Previous/Next links, preserves the selected size in `?per_page=`, supports browser history and bookmarks, and normalizes invalid page or size values.
+- Corrected shared blog-list markup so list items are direct children of the list, updated the pagination controls, and documented the archive behavior in `docs/guides/blog-pagination.md`.
+
+## 2026-09-17: Separate Technology and series listings
+
+- Excluded series posts from the Technology section index so readers can browse standalone Technology posts separately from the series directory. Technology series posts retain their category and existing article URLs.
+
+## 2026-09-13: Diagram captions and taxonomy additions
+
+- Added optional captions to the shared `blog_diagram.html` include with matching post styling.
+- Added `agent-skills` and `automation` to the canonical tag taxonomy for published posts.
+
 ## 2026-09-02: Safari extension access to the local TTS relay
 
 - Added origin-pattern matching to the browser TTS relay and allowed Safari Web Extension origins alongside local Jekyll origins. Ordinary external webpage origins remain rejected by default.
