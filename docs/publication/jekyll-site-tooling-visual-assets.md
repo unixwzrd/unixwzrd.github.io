@@ -24,3 +24,20 @@ dot -Tpng -Gdpi=150 docs/publication/diagrams/src/jekyll-post-01-url-identity.do
 The project diagram distinguishes authored catalog input, generated data and cards, conditional scaffolding, and the Liquid views. The URL diagram is scoped to project posts, for which publication date and `permalink_slug` define the canonical route. Both diagrams use a dark canvas, have alternative text in the article, and open through the site's full-size viewer.
 
 Browser review on the running local Jekyll server found the banner and both SVGs loaded. At a 1280-pixel viewport the labels were visible in context. At a 390-pixel viewport the figures scaled within the page and their labels became small; the full-size viewer link remains the readable route on narrow screens. This is a known presentation limit of wide diagrams, not evidence that the viewer itself was tested on a phone.
+
+## Part 2 additions
+
+The local Part 2 draft uses `html/assets/images/blog/jekyll-site-tooling/post-02-local-preview-hero.png` and `post-02-preview-path.svg`. A PNG companion is retained at `post-02-preview-path.png`; the Graphviz source is `docs/publication/diagrams/src/jekyll-post-02-preview-path.dot`.
+
+The banner was generated with the built-in imagegen tool using this prompt:
+
+> Create a finished wide editorial banner illustration for a dark-themed engineering blog post about operating a local Jekyll preview server. Landscape 2:1 composition, intended crop around 1600x800. Make it visually related to a refined tactile publishing-workbench series: two distinct clean page views on one desktop workbench, one view suggesting upcoming editorial material through a subtle translucent amber layer, the other showing a crisp current-publication view in cool teal; a small restrained mechanical switch or lever links them, with a quiet stack of markdown pages feeding the preview apparatus. The workbench should feel hands-on and practical, not magical. Deep charcoal/navy background, warm amber and cool teal accents, realistic material texture, crisp readable silhouettes at thumbnail size, moderate negative space at the edges. No people, no code text, no letters, no words, no logos, no fake UI labels, no AI brain imagery, no neon cyberpunk, no stock-photo look.
+
+Render the diagram from the repository root:
+
+```bash
+dot -Tsvg docs/publication/diagrams/src/jekyll-post-02-preview-path.dot -o html/assets/images/blog/jekyll-site-tooling/post-02-preview-path.svg
+dot -Tpng -Gdpi=150 docs/publication/diagrams/src/jekyll-post-02-preview-path.dot -o html/assets/images/blog/jekyll-site-tooling/post-02-preview-path.png
+```
+
+The diagram separates optional metadata refresh, the production build and Pagefind indexing, and the development server's two content modes. It does not imply that Pagefind is regenerated after every watched edit.

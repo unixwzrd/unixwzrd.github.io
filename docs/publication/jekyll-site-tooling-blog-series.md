@@ -2,7 +2,7 @@
 
 ## Project Status
 
-Updated September 22, 2026 after the initial source review and the Publisher's authorization to maintain the series and preview its opening locally. The Publisher confirmed the CHANGELOG update; reconciliation and Part 1's packet are prepared. Part 1 and the landing page now live under `html/` for browser review. No installment has technical or editorial approval.
+Updated September 23, 2026. The Publisher has published Part 1 and asked for Part 2 in the same personal voice. Part 2 is a local, future-dated browser draft with a provisional October 1 date. Its source packet and visual assets are linked below; technical and editorial review of Part 2 remain open.
 
 - [Source inventory and evidence boundaries](jekyll-site-tooling-inventory.md)
 - [Review journal](jekyll-site-tooling-review.md)
@@ -10,6 +10,7 @@ Updated September 22, 2026 after the initial source review and the Publisher's a
 - [Part 1 review draft](jekyll-site-tooling-part-01-draft.md)
 - [Series landing review draft](jekyll-site-tooling-series-landing-draft.md)
 - [Part 1 visual assets and render sources](jekyll-site-tooling-visual-assets.md)
+- [Part 2 evidence packet and local draft handoff](jekyll-site-tooling-part-02-packet.md)
 
 The editorial spine is a concrete publishing problem, the implementation it produced, and its remaining limits. Keep ten main installments. Companions are optional and should earn their place through an independently useful exercise.
 
@@ -35,9 +36,9 @@ Lean technical when a choice needs teeth, but keep the argument readable. Explai
 
 ## Publication Boundary
 
-The current scope includes research, drafting, and maintenance of series planning and review documents under `docs/publication/`. It does not authorize changes to site behavior, scripts, configuration, workflows, generated data, posts, Git history, deployment, or publication.
+The Publisher has authorized local post-tree drafts and browser previews for this series. Part 1 has been published by the Publisher. This does not authorize commits, pushes, deployment, or remote publication of Part 2.
 
-Keep research and review packets under `docs/publication/`. The Publisher requested that Part 1 and the landing page appear in the local Jekyll browser preview, so their current sources are `html/_posts/series/beyond-static-building-a-publication-system-around-jekyll/2026-09-22-jekyll-one-problem-at-a-time.md` and `html/blog/series/beyond-static-building-a-publication-system-around-jekyll.md`. Do not rebuild or restart the watched local Jekyll server merely to make a source edit visible. Do not create alternate build destinations inside the repository. Commit, push, deployment, and remote publication remain separate decisions.
+Keep research and review packets under `docs/publication/`. Parts 1 and 2 and the landing page are in the Jekyll source tree; their exact paths are in the linked packets. Do not rebuild or restart the watched local Jekyll server merely to make a source edit visible. Do not create alternate build destinations inside the repository. Commit, push, deployment, and remote publication remain separate decisions.
 
 Before describing any tool as current, tested, deployed, automatic, or reliable, verify that claim against its present source, documentation, tests, workflow configuration, and retained operational evidence. The repository contains older utilities, backups, derived output, runtime files, and documentation that may no longer describe the active path.
 
@@ -284,7 +285,7 @@ Keep technical approval, editorial approval, and publication authority separate.
 
 ## Next Assignment
 
-The [initial inventory](jekyll-site-tooling-inventory.md) records the source review and open evidence gaps. Extend it where the next article needs evidence instead of repeating the whole survey. The maintenance CHANGELOG has been reconciled. Part 1 and its landing page are now in the Jekyll source tree for local browser review. Next review those sources against the packet's claim boundaries and return them for technical and editorial review. Continue to answer:
+The [initial inventory](jekyll-site-tooling-inventory.md) records the source review and open evidence gaps. The maintenance CHANGELOG has been reconciled, and the Publisher has published Part 1. Part 2 is now a future-dated local browser draft with its [evidence packet](jekyll-site-tooling-part-02-packet.md) and visuals. Next collect the Publisher's voice and factual edits, settle its publication date, then review the final rendered article before any remote publication. For later installments, continue to answer:
 
 - Which commands are current entry points and which are backups, compatibility paths, or historical utilities?
 - Which scripts have tests, and what do those tests actually prove?
@@ -306,5 +307,5 @@ Before drafting any post, produce the required source inventory, fact table, pri
 
 Write in a natural first-person engineering voice, with prose carrying the story and tables, diagrams, and code supporting it. Avoid em dashes and en dashes in narrative prose. Use reproducible dark-site diagrams instead of ASCII art. End articles with Current State and Next Work.
 
-Keep drafts and review material under `docs/publication/` until the Publisher explicitly approves Jekyll adaptation and a publication date. Do not commit, push, deploy, publish, rebuild or restart the watched Jekyll server, alter site behavior, or repair tooling during the initial inventory.
+Keep evidence packets and review material under `docs/publication/`. The Publisher has authorized local browser drafts under the Jekyll post tree; use a provisional future date until the publication date is settled. Do not commit, push, deploy, or remote-publish without Publisher direction. Do not rebuild or restart the watched Jekyll server merely to make an ordinary source edit visible.
 ```

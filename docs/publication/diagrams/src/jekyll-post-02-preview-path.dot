@@ -1,0 +1,23 @@
+// Source for post-02-preview-path.svg/png. Render with dot -Tsvg or dot -Tpng.
+digraph preview_path {
+  graph [rankdir=LR, bgcolor="#111827", pad="0.3", nodesep="0.38", ranksep="0.7", splines=polyline, fontname="Helvetica"];
+  node [shape=box, style="rounded,filled", color="#4b5563", fillcolor="#1f2937", fontcolor="#f3f4f6", fontname="Helvetica", fontsize=14, margin="0.18,0.12"];
+  edge [color="#e5a85c", fontcolor="#d1d5db", fontname="Helvetica", fontsize=11, penwidth=2, arrowsize=0.75];
+
+  start [label="jekyll-site start", fillcolor="#30415a", color="#67c5d6"];
+  refresh [label="Optional project\nmetadata refresh"];
+  build [label="Clean production\nJekyll build", fillcolor="#26374a", color="#67c5d6"];
+  index [label="Pagefind index"];
+  serve [label="Development\nJekyll server", fillcolor="#3a3440", color="#e5a85c"];
+  review [label="Review view\nfuture + drafts + unpublished"];
+  current [label="Current-content view\nwithout inclusion flags"];
+
+  start -> refresh [label="unless -n"];
+  refresh -> build;
+  start -> build [label="with -n", style=dashed, color="#67c5d6"];
+  build -> index;
+  index -> serve;
+  serve -> review [label="default"];
+  serve -> current [label="--current"];
+  { rank=same; review; current; }
+}

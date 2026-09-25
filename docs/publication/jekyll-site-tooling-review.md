@@ -2,6 +2,18 @@
 
 Preserve entries and prepend new ones. Planning, technical review, editorial approval, and publication authority are separate decisions.
 
+## 2026-09-23 15:55 CDT (America/Chicago, UTC-05:00)
+
+**Author:** Codex, primary series agent. **Role:** Part 2 author and local reviewer. **Decision:** Draft Part 2 in the Publisher's first-person, problem-by-problem voice, using the now-published Part 1 as the tonal reference. Keep the October 1 source date provisional and the article local for review.
+
+**Evidence reviewed:** Current `jekyll-site` command parser and build/serve paths; Jekyll config restart note; series index and navigation includes; maintenance CHANGELOG and service guide with drift bounded by the Publisher's FileWatcher correction; published Part 1 prose and navigation; running local preview. The [Part 2 packet](jekyll-site-tooling-part-02-packet.md) records the fact, privacy, and conflict review.
+
+**Changes:** Added the Part 2 post, a generated editorial banner, and a source-backed Graphviz preview-path diagram with SVG and PNG renders. Added a next route and scheduled date to Part 1 navigation, and updated the series handoff and visual record. No service, script, template, or configuration behavior was changed.
+
+**Validation:** The local Part 2 article, landing-page entry, previous/next navigation, banner, and SVG returned HTTP 200. A Playwright browser snapshot showed the title, banner, series context, article sections, diagram, and footer. The source-bound short-link check passed; the taxonomy validator accepted 72 published and scheduled posts. The SVG parsed as XML and the post has one excerpt marker. The browser console's two 404s came from Giscus looking for a discussion for the new local route; it reports that a discussion will be created if someone comments. The browser session was closed. No commit, push, or deployment occurred.
+
+**Next gate:** Publisher voice and factual review of Part 2, then settle its publication date and final metadata before any remote publication.
+
 ## 2026-09-22 15:57 CDT (America/Chicago, UTC-05:00)
 
 **Author:** Codex, primary series agent. **Role:** Visual author and browser reviewer. **Decision:** Add a distinctive banner and two explanatory diagrams to Part 1 at the Publisher's request.

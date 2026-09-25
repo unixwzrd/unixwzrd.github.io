@@ -13,6 +13,8 @@ series_order: 10
 series_total: 10
 series_url: /blog/series/beyond-static-building-a-publication-system-around-jekyll/
 series_next_title: "A Local Jekyll Server I Can Actually Operate"
+series_next_url: /technology/2026/10/01/a-local-jekyll-server-i-can-actually-operate/
+series_next_date: 2026-10-01 08:00:00 -0500
 image: /assets/images/blog/jekyll-site-tooling/post-01-publishing-workbench-hero.png
 ---
 

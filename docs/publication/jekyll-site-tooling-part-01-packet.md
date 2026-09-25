@@ -1,6 +1,6 @@
 # Part 1: Jekyll, One Problem at a Time
 
-Status: pre-draft packet prepared September 22, 2026. At the Publisher's request, Part 1 and the series landing page now live in Jekyll's source tree for local browser preview; the two drafts under this directory are superseded review copies. Browser visibility is not editorial approval or remote publication. Series: **Beyond Static: Building a Publication System Around Jekyll**. See the [inventory](jekyll-site-tooling-inventory.md) for the source review and [journal](jekyll-site-tooling-review.md) for decisions.
+Status: pre-draft packet prepared September 22, 2026. The Publisher has since published Part 1. Its post and the series landing page live in Jekyll's source tree; the two drafts under this directory are superseded review copies. Series: **Beyond Static: Building a Publication System Around Jekyll**. See the [inventory](jekyll-site-tooling-inventory.md) for the source review and [journal](jekyll-site-tooling-review.md) for decisions.
 
 ## Editorial intent
 
