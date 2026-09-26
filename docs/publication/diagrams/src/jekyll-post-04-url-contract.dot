@@ -1,0 +1,21 @@
+// Part 4: separate project-post canonical route, declared legacy route, and deterministic short redirect.
+digraph url_contract {
+  graph [rankdir=LR, bgcolor="#111827", pad="0.34", nodesep="0.5", ranksep="0.8", splines=polyline, fontname="Helvetica"];
+  node [shape=box, style="rounded,filled", color="#4b5563", fillcolor="#1f2937", fontcolor="#f3f4f6", fontname="Helvetica", fontsize=14, margin="0.18,0.13"];
+  edge [color="#e5a85c", fontcolor="#d1d5db", fontname="Helvetica", fontsize=11, penwidth=2, arrowsize=0.75];
+  source [label="Project post source\nmay move or be renamed", fillcolor="#26374a", color="#67c5d6"];
+  identity [label="project directory + date\n+ permalink_slug", fillcolor="#26374a", color="#67c5d6"];
+  canonical [label="Canonical project URL", fillcolor="#33453d", color="#85cfa8"];
+  legacy [label="Declared legacy URL\nlegacy_project_permalink"];
+  basis [label="Frozen short_link_basis\n+ configured origin"];
+  short [label="Deterministic /s/ redirect"];
+  source -> identity [label="front matter"];
+  identity -> canonical;
+  source -> legacy [label="optional field"];
+  source -> basis [label="immutable field"];
+  basis -> short [label="SHA-256, 10 hex"];
+  legacy -> canonical [label="redirect"];
+  short -> canonical [label="redirect"];
+  {rank=same; identity; legacy; basis;}
+  {rank=same; canonical; short;}
+}

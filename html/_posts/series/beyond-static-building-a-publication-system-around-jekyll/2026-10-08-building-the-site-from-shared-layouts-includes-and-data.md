@@ -15,6 +15,8 @@ series_url: /blog/series/beyond-static-building-a-publication-system-around-jeky
 series_previous_title: "A Local Jekyll Server I Can Actually Operate"
 series_previous_url: /technology/2026/10/01/a-local-jekyll-server-i-can-actually-operate/
 series_next_title: "Stable URLs in a Repository That Keeps Moving"
+series_next_url: /technology/2026/10/15/stable-urls-in-a-repository-that-keeps-moving/
+series_next_date: 2026-10-15 08:00:00 -0500
 series_companion_title: "Hands-On: Find the Limits of a Jekyll Metadata Check"
 series_companion_url: /hands-on/2026/10/08/hands-on-find-the-limits-of-a-jekyll-metadata-check/
 series_companion_date: 2026-10-08 10:00:00 -0500
@@ -67,6 +69,8 @@ I will get into how the YAML catalog becomes project data in Part 5. For this ar
 ## Then the YAML Had to Line Up
 
 There is a tradeoff. Once several templates read the same fields, the YAML at the top of a page matters a lot more. `layout` decides which template chain runs. `category` connects a project page to its generated entry. Other fields decide where a post appears, which image gets used, and what a reader sees in a list. A typo is no longer confined to one paragraph of Markdown.
+
+I am not limited to the front-matter fields Jekyll starts with. I can add a field for something this site needs, then teach an include, layout, or plugin what to do with it. That is how `series_order` controls reading order, `update_notice` with a later `last_modified_at` can bring an older article back into discovery, and `audio` can put a player on a post I have chosen to narrate. Merely adding a YAML key does not make any of that happen; the code that reads it is the other half of the feature. That is a useful pattern if you are extending your own site, and it is also why I need to document what each field means.
 
 Project pages use singular `category` for that lookup. Standard blog posts use `categories` for sections such as Technology or Hands-On. A series post needs its name, part, reading order, landing page, and navigation links to agree. The post layout also reads the title, date, image, and any update, correction, or audio fields. The discovery list reads some of those fields for a different reason. I can update an older article and let it surface again in discovery without changing its original publication date.
 

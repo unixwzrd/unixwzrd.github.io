@@ -102,11 +102,14 @@ The project catalog and Liquid composition are central to the series, rather tha
 | Scaffolding | `main` invokes `generate_project_files` when the landing page is absent. The helper creates image, project, `_drafts`, and `_posts` directories, a landing page, a draft template, and a dated draft-marked introduction; existing target files are preserved |
 | Generated catalog | `write_projects_data` writes the processed list to `github_projects.yml` without sorting it. The inspected listing and menu loops consume that order |
 | Project listing | `html/projects.md` invokes `projects_list.html` separately for private and public groups. The include selects matching visibility and excludes `none` |
-| Menu | `navigation.html`, included by `header.html`, iterates generated projects and excludes `none` |
+| Projects menu | `navigation.html`, included by `header.html`, places fixed "All Projects" first, then iterates generated projects in retained catalog order and excludes `none` |
+| Blog menu and hub | `blog_sections.yml` supplies ordered visible section entries to `navigation.html` and `blog.md`; fixed Blog Home, All Posts, and Topics links surround the dropdown's data-driven entries. `visible: false` hides a section from these views without removing its page or posts |
+| Menu interaction | `custom_layout.scss` presents a checkbox-driven dropdown on narrow layouts and hover/focus-driven dropdowns at wider layouts; source defines behavior but browser interaction still needs review before article claims |
 | Template hierarchy | `_layouts/project.html` inherits `page`, which inherits `default`; `default` supplies head, header, content, and footer. Project layout uses `project_lookup.html` to match `page.category` against generated project names |
 | Project blogs | Project layout invokes `blog_list.html category=page.category`; that shared include delegates selection to `filter_discovery_posts.html`, sorts discovery results, and adds shared metadata and pagination |
 | Discovery policy | Shared filtering excludes draft/unpublished/list-excluded material and posts belonging to `none` projects. The project blog include also suppresses a hidden project's list |
 | Search boundary | Project/page layouts contain Pagefind body and exclusion markers. This establishes indexing intent, not a verified project-specific search filter or deployed index |
+| Front-matter extensions | `series_order` controls series indexes; `update_notice` with a later `last_modified_at` promotes discovery order; `audio` enables the post audio include; project `category` connects a page to generated data. These fields work because current Liquid or plugin consumers read them, not because arbitrary YAML keys acquire behavior on their own |
 
 Visibility here controls presentation. Private projects can still have publicly presented descriptions and project blogs while their repository links are omitted. `none` filters the inspected lists and menu; this review does not establish removal of pages, feeds, sitemaps, or search entries. No access-control claim should follow from those flags.
 

@@ -2,6 +2,78 @@
 
 Preserve entries and prepend new ones. Planning, technical review, editorial approval, and publication authority are separate decisions.
 
+## 2026-09-25 22:05 CDT (America/Chicago, UTC-05:00)
+
+**Author:** Codex, primary series agent. **Role:** Part 3 editorial and Part 5 architecture reviewer. **Decision:** Give YAML-driven dropdown ordering and custom front-matter fields explicit treatment in the series, following the Publisher's corrections.
+
+**Evidence reviewed:** `navigation.html`, `header.html`, `blog_sections.yml`, Blog hub, Projects page and list include, generated project data flow in `fetch_og.py`, series index, discovery metadata plugin, post layout and audio include, and responsive dropdown styles. Project and Blog menus have different data and ordering rules; front-matter extensions require Liquid or plugin consumers.
+
+**Changes:** Added a first-person paragraph to Part 3 explaining that custom front-matter fields acquire behavior through site code, with verified series, update, and audio examples. Expanded Part 5's outline to trace the two YAML-to-dropdown paths, project grouping, fixed menu links, distinct ordering rules, and build-time generation. Updated the source inventory with those distinctions.
+
+**Validation:** The revised Part 3 paragraph rendered in the watched local preview. Source review confirmed the menu and front-matter consumers; `git diff --check` passed. No menu behavior, service, commit, push, or deployment changed.
+
+**Next gate:** Publisher reviews Part 3's added paragraph. Before drafting Part 5, verify the responsive menu behavior in a browser and use invented project data in public examples.
+
+## 2026-09-25 22:02 CDT (America/Chicago, UTC-05:00)
+
+**Author:** Codex, primary series agent. **Role:** Reuse and packaging reviewer. **Decision:** Record a candidate path for readers to reuse selected Jekyll tools, starting with the short-link mechanism after an explicit package license is chosen. Do not present the existing Hands-On archives as installable software.
+
+**Evidence reviewed:** Hands-On 2A/3A/4A archives and source, active short-link and taxonomy plugins, source-viewer filter, project generator, local service wrapper, repository README and LICENSE, and official Jekyll documentation for `_plugins`, gem-based plugins, and themes.
+
+**Changes:** Added the [reuse packaging plan](jekyll-site-tooling-reuse-packaging.md) and linked it from the series outline. It ranks short links, taxonomy, project publishing, technical-content presentation, and local operations by extraction effort; defines a short-link pilot with a clean sample site and output checks; and records that `html/` is currently all rights reserved while `utils/` and `scripts/` are MIT-licensed. No license, production code, archive, or site behavior changed.
+
+**Validation:** Checked the archive contents, repository license text, and plugin/wrapper dependencies; `git diff --check` passed. This is a packaging proposal, not a released or independently installable component.
+
+**Next gate:** Publisher decides which component and license, if any, to prepare for external reuse. Build and test a concrete isolated package before any publication decision.
+
+## 2026-09-25 21:59 CDT (America/Chicago, UTC-05:00)
+
+**Author:** Codex, primary series agent. **Role:** Series architecture and editorial reviewer. **Decision:** Make the multi-section publication model and operating automation explicit across later installments, following the Publisher's direction.
+
+**Evidence reviewed:** `blog_sections.yml`, Blog hub, Technology/Hands-On/Series and archive pages, shared discovery filter, project layout and listing, `fetch_og.py` scaffolding path, `jekyll-site`, `check_site.sh`, this checkout's installed Git pre-commit hook, `.pre-commit-config.yaml`, and the Pages workflow. General is configured but currently hidden from the Blog hub. The installed hook invokes the numbered check suite with project-data refresh skipped; the separate pre-commit framework config and CI workflow have different scopes.
+
+**Changes:** Added a cross-series map to the outline. Part 5 now leads with distinct article sections, series, and project update blogs before following one YAML-defined project through generation, landing page, navigation, and its posts. Part 2 explicitly owns service lifecycle; Part 8 compares local commit checks, opt-in link checks, and CI; Part 10 joins the different content routes in the editorial lifecycle. The next assignment now carries that structure forward. No Jekyll source or scripts changed.
+
+**Validation:** Rechecked the outlined routes and tool boundaries against current source; `git diff --check` passed. This was a planning change, not a test of every configured check or a remote deployment. No service was restarted, committed, pushed, or deployed.
+
+**Next gate:** Publisher reviews the revised series emphasis. Before drafting Part 5 or Part 8, refresh the specific source and operational evidence those articles will claim.
+
+## 2026-09-25 21:55 CDT (America/Chicago, UTC-05:00)
+
+**Author:** Codex, primary series agent. **Role:** Part 4 editorial reviewer. **Decision:** Make site ownership and redirect control the central short-link advantage, following the Publisher's clarification.
+
+**Evidence reviewed:** The Publisher's statement that the site controls its own short links and can maintain them when page-naming conventions change; the current `short_link_basis` and redirect behavior; existing Part 4 and Hands-On 4A drafts.
+
+**Changes:** Added the ownership rationale to the article opening, explained how a frozen basis preserves the shared `/s/` path while a changed full-length URL needs a separate redirect, and echoed that motivation in Hands-On 4A. Updated the Part 4 packet and series outline to retain the distinction.
+
+**Validation:** Both local pages rendered the revised paragraphs, and `git diff --check` passed. No service was restarted, committed, pushed, or deployed.
+
+**Next gate:** Publisher reviews the Part 4 pair for voice and technical emphasis before deciding publication timing.
+
+## 2026-09-25 21:53 CDT (America/Chicago, UTC-05:00)
+
+**Author:** Codex, primary series agent. **Role:** Part 4 editorial reviewer. **Decision:** Put the Publisher's stated reason for building short links into the article, ahead of the hashing mechanics.
+
+**Evidence reviewed:** The Publisher's correction that short links serve X/Twitter, Bluesky, and other character-limited social posts and were built into this Jekyll site instead of delegated to an external shortening service; current Part 4 and Hands-On 4A prose; the existing short-link plugin and redirect flow reviewed in the Part 4 packet.
+
+**Changes:** Reworked the main article's opening and short-link section in the Publisher's first-person voice, and added the same motivation to the Hands-On introduction. Updated the Part 4 packet and series outline so later editing retains the distinction between why the feature exists and how its code works.
+
+**Validation:** Both edited articles rendered the new wording in the watched local Jekyll preview. `git diff --check` passed. No service was restarted, committed, pushed, or deployed.
+
+**Next gate:** Publisher reviews the revised Part 4 pair and settles publication timing.
+
+## 2026-09-25 21:40 CDT (America/Chicago, UTC-05:00)
+
+**Author:** Codex, primary series agent. **Role:** Part 4 and Hands-On 4A author and local reviewer. **Decision:** Continue the series with a source-bound explanation of canonical project URLs, declared legacy redirects, and deterministic short links. Keep October 15 as a provisional local review date.
+
+**Evidence reviewed:** Current project-permalink and short-link plugins, backfill and generated-output verifiers, Pages workflow, representative front matter, August 18 and 21 changelog entries, prior installments, and the Publisher's instruction to continue. The [Part 4 packet](jekyll-site-tooling-part-04-packet.md) separates implemented behavior, configured checks, historical claims, drift, and privacy limits.
+
+**Changes:** Added Part 4 and Hands-On 4A to the local Jekyll post tree, linked Part 3 forward, created a series-consistent banner and editable Graphviz URL diagram, and packaged an isolated three-case Ruby lab using a byte-for-byte snapshot of the active short-link module. Updated the series outline and visual record. No production plugin or URL behavior changed.
+
+**Validation:** Clean extraction passed the lab ZIP checksum and all three cases. The main post, companion, series listing, short redirect, diagram, ZIP, and source-viewer assets returned HTTP 200. Playwright showed both articles with their expected series context and sections; its console errors came from Giscus looking for discussions that do not yet exist for these local routes. The short-link front-matter check, taxonomy check for 77 published and scheduled posts, future-inclusive generated short-link and project redirect verifiers, SVG XML parse, and `git diff --check` passed. No commit, push, or deployment occurred.
+
+**Next gate:** Publisher reviews Part 4 and 4A for voice, technical emphasis, and exercise size before dates or remote publication are decided.
+
 ## 2026-09-25 21:13 CDT (America/Chicago, UTC-05:00)
 
 **Author:** Codex, primary series agent. **Role:** Hands-On 3A author and local reviewer. **Decision:** Add a runnable companion to Part 3 that shows the current taxonomy plugin's actual limits. Keep the October 8 date provisional for local browser review.

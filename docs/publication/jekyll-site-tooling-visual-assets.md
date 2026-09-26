@@ -64,3 +64,20 @@ dot -Tpng -Gdpi=150 docs/publication/diagrams/src/jekyll-post-03-metadata-contra
 The first diagram is limited to the project-page layout path and includes verified in current source; it is not a full runtime graph. The second distinguishes metadata consumed during rendering from the smaller tags/content-type subset enforced by the current taxonomy validator.
 
 Hands-On 3A reuses the Part 3 banner and metadata-contract SVG. Its caption scopes the lab to the checked tags/content-type branch; the other diagram branches remain outside the runnable exercise.
+
+## Part 4 additions
+
+The local Part 4 draft uses `html/assets/images/blog/jekyll-site-tooling/post-04-stable-urls-hero.png` and `post-04-url-contract.svg`; the diagram also has a PNG companion. Its editable source is `docs/publication/diagrams/src/jekyll-post-04-url-contract.dot`. Hands-On 4A reuses both visual assets and explicitly scopes its runnable exercise to the short-link branch.
+
+The banner was generated with the built-in imagegen tool using this prompt:
+
+> Create a finished wide 2:1 editorial banner illustration for Part 4 of a dark engineering-blog series about a customized Jekyll website. Match the established tactile publishing workbench mood: deep charcoal/navy, restrained warm amber and cool teal highlights, realistic paper/card material, precise mechanical details, generous crop-safe negative space. Depict one durable central published page card with a subtle golden anchor or fixed metal pin, while a paper source sheet changes position on the workbench and two older paths feed toward the anchored page through slim physical guide channels. A small separate short-link token also points to the same page. Communicate stable public identity amid moving source material, without making a literal flowchart. Crisp silhouettes readable at thumbnail size. No people, no readable text, no letters, no numbers, no code, no logos, no fake UI labels, no AI brain, no neon cyberpunk.
+
+Render the diagram from the repository root:
+
+```bash
+dot -Tsvg docs/publication/diagrams/src/jekyll-post-04-url-contract.dot -o html/assets/images/blog/jekyll-site-tooling/post-04-url-contract.svg
+dot -Tpng -Gdpi=150 docs/publication/diagrams/src/jekyll-post-04-url-contract.dot -o html/assets/images/blog/jekyll-site-tooling/post-04-url-contract.png
+```
+
+The figure depicts only the project-post canonical route, a declared legacy redirect, and a basis-derived short redirect. It does not imply that an ordinary series post gets a `permalink_slug` or that the isolated lab writes redirect HTML.

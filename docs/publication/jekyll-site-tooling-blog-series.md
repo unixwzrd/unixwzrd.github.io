@@ -2,7 +2,7 @@
 
 ## Project Status
 
-Updated September 25, 2026. The Publisher has published Part 1 and moved the series to Part 3. Parts 2 and 3 and their Hands-On companions are in the Jekyll post tree for local review. The October 1 and October 8 dates are provisional until the Publisher settles publication timing. Source packets and visual assets are linked below.
+Updated September 25, 2026. The Publisher has published Part 1 and asked to continue after reviewing the Part 3 pair. Parts 2 through 4 and their Hands-On companions are in the Jekyll post tree for local review. The October 1, 8, and 15 dates are provisional until the Publisher settles publication timing. Source packets and visual assets are linked below.
 
 - [Source inventory and evidence boundaries](jekyll-site-tooling-inventory.md)
 - [Review journal](jekyll-site-tooling-review.md)
@@ -12,8 +12,12 @@ Updated September 25, 2026. The Publisher has published Part 1 and moved the ser
 - [Part 1 visual assets and render sources](jekyll-site-tooling-visual-assets.md)
 - [Part 2 evidence packet and local draft handoff](jekyll-site-tooling-part-02-packet.md)
 - [Part 3 evidence packet and local draft handoff](jekyll-site-tooling-part-03-packet.md)
+- [Part 4 evidence packet and local draft handoff](jekyll-site-tooling-part-04-packet.md)
+- [Reusable package candidates and first pilot](jekyll-site-tooling-reuse-packaging.md)
 
 The editorial spine is a concrete publishing problem, the implementation it produced, and its remaining limits. Keep ten main installments. Companions are optional and should earn their place through an independently useful exercise.
+
+When a mechanism is useful beyond this site, distinguish a teaching lab from a reusable package. The [reuse plan](jekyll-site-tooling-reuse-packaging.md) ranks candidate extractions and records the current license boundary; no article should call the lab ZIPs installable tools for other sites yet.
 
 ## Working Title
 
@@ -29,6 +33,8 @@ The series should explain why those tools became necessary, how they fit togethe
 
 The narrative belongs in first person. The interesting story is not that Jekyll can render Markdown. It is how a static site became easier to operate after repeated publishing mistakes, browser differences, future-post review problems, link drift, diagram scaling, source-code downloads, and the discovery that listening to an article catches problems that visual proofreading misses.
 
+The Publisher's larger point must remain visible: this is not operated as one undifferentiated blog with a drafts folder. Jekyll's posts and drafts still supply useful mechanics, but the site presents several article sections, series and Hands-On companions, and a project directory whose entries have their own landing pages and update blogs. Shared data, layouts, and filters connect these views. The operational scripts and validation gates make that structure manageable when it changes. Describe this as the site's extension of Jekyll's ordinary blog workflow, not as a limitation that Jekyll itself cannot support multiple sections.
+
 Use the Publisher's own [early site-building account](../../html/_posts/technology/2024-09-27-Building-This-Site-With-AI.md) and [scope-creep post](../../html/_posts/technology/2026-08-24-Codex-Feeds-My-ADHD.md), along with published Part 1, as voice references. Start with a specific frustration or observation, explain the fix in first person, and keep room for candid asides and short emphatic lines. Preserve the technical detail without turning the story into generic process prose. Do not copy old typos or invent personal incidents to imitate the voice.
 
 ## Audience
@@ -39,9 +45,9 @@ Lean technical when a choice needs teeth, but keep the argument readable. Explai
 
 ## Publication Boundary
 
-The Publisher has authorized local post-tree drafts and browser previews for this series. Part 1 has been published by the Publisher. The current Part 3 task does not authorize commits, pushes, deployment, or remote publication of new installments.
+The Publisher has authorized local post-tree drafts and browser previews for this series. Part 1 has been published by the Publisher. The current Part 4 task does not authorize commits, pushes, deployment, or remote publication of new installments.
 
-Keep research and review packets under `docs/publication/`. Parts 1 through 3, Hands-On 2A and 3A, and the landing page are in the Jekyll source tree; their exact paths are in the linked packets. Do not rebuild or restart the watched local Jekyll server merely to make a source edit visible. Do not create alternate build destinations inside the repository. Commit, push, deployment, and remote publication remain separate decisions.
+Keep research and review packets under `docs/publication/`. Parts 1 through 4, Hands-On 2A through 4A, and the landing page are in the Jekyll source tree; their exact paths are in the linked packets. Do not rebuild or restart the watched local Jekyll server merely to make a source edit visible. Do not create alternate build destinations inside the repository. Commit, push, deployment, and remote publication remain separate decisions.
 
 Before describing any tool as current, tested, deployed, automatic, or reliable, verify that claim against its present source, documentation, tests, workflow configuration, and retained operational evidence. The repository contains older utilities, backups, derived output, runtime files, and documentation that may no longer describe the active path.
 
@@ -77,6 +83,7 @@ Start with these source groups. Narrow the list for each post rather than readin
 - `html/_layouts/`
 - `html/_includes/`
 - `html/_plugins/`
+- `html/_data/blog_sections.yml`, `html/_includes/navigation.html`, and `html/_sass/minima/customizations/custom_layout.scss` for dropdown content, order, and interaction
 - `html/blog/`
 - Representative posts under `html/_posts/`, selected only when needed to verify rendered conventions
 - Site styles and JavaScript referenced by the applicable layouts or includes
@@ -149,6 +156,18 @@ Treat `utils/output/`, PID files, logs, caches, `.DS_Store`, `__pycache__`, back
 
 ## Revised Ten-Part Outline
 
+### Cross-series map: where the expanded publication model belongs
+
+| Concern | Current site evidence | Main treatment |
+| --- | --- | --- |
+| Distinct article sections | `blog_sections.yml` configures Technology, Series, Hands-On, Parental Alienation, and General; General currently has `visible: false` in the Blog hub. The archive spans main and project posts. | Part 5 shows the reader-facing map, section filtering, series order, and cross-section discovery; Part 3 establishes the shared includes underneath it. |
+| Menu and page placement | The Blog dropdown and Blog hub iterate the ordered visible entries in `blog_sections.yml`. The Projects dropdown iterates generated project data, while the Projects page groups that data into private and public sections. Series landing pages sort by `series_order`. | Part 3 introduces the reusable Liquid paths; Part 5 follows both YAML-to-menu flows and explains why menu order, project grouping, series reading order, and discovery order are different rules. |
+| One blog per project | `repos.yml` feeds generated project data and, when a landing page is absent, scaffolding can create its page plus `_drafts` and `_posts` directories. `project.html` lists posts selected by its project category. | Part 5 follows one project from catalog entry to page, listing, navigation, and update blog. Part 4 explains the project-post URL contract. |
+| Local operation | `jekyll-site` owns build, start, restart, stop, preview flags, optional metadata refresh, and optional link check. Drafts and future posts are preview mechanics, not the organizing model for the whole publication. | Part 2 explains the wrapper and local preview; Part 10 places its use in the full editorial lifecycle. |
+| Checks before publication | This checkout's installed Git pre-commit hook calls `check_site.sh` with the project-data refresh step skipped. The separate `.pre-commit-config.yaml` defines focused short-link and taxonomy hooks; the Pages workflow has a narrower production build and verification path. | Part 8 compares the actual hook, numbered suite, opt-in link checks, repairs, and CI gates. Part 9 covers checks after deployment. |
+
+The map assigns a home to each subject; it is not a claim that every configured hook runs in every clone or that every listed article section is currently visible. Check the current source and operator workflow again before drafting each later installment.
+
 ### 1. Jekyll, One Problem at a Time
 
 Tell the cumulative story through several concrete problems and the changes that answered them. The Publisher describes Jekyll as increasingly frustrating until extending the site became the practical way forward. Use the older CHANGELOG entries to establish the sequence: shared blog lists, project directories and templates, early pagination and check work; then link and image corrections, preview and URL repairs; then frozen identities, metadata, technical artifacts, listening, and the complete archive. The CHANGELOG records changes, not verified deployment dates or a single turning point. Explain why editing Markdown became only one part of publishing without reciting every feature or claiming all historical tooling remains in use.
@@ -159,6 +178,8 @@ The architecture diagram should show the authoring tree, local operational tools
 
 Tell the story of wrapping Jekyll startup, restart, process checks, future-post display, draft review, environment selection, and optional refresh work in a predictable command. The wrapper defaults to future, draft, and unpublished content; `--current` removes those inclusion flags. Both serving modes use the development environment, so current-content preview is not identical to a production build. Explain why ordinary content changes should not trigger manual rebuilds or restarts. Do not infer a public `status` command from internal process checks.
 
+This installment is the local service chapter: startup and shutdown, production build before development serving, Pagefind indexing in the wrapper, rebuild or restart boundaries, and the optional link-check switch. Do not present drafts as the site's complete publishing model; they are one preview input within a larger set of sections and project blogs.
+
 Inspect `jekyll-site`, PID handling, and documented service behavior. The Publisher confirms that FileWatcher is not in use; exclude it from the active workflow and do not spend further research on it. If explaining `site-service`, distinguish its optional watcher orchestration from actual operator use. Keep process-management claims bounded to the current scripts and tested operating systems.
 
 **Hands-On 2A:** Build a small, isolated Jekyll fixture in current and review modes with a two-choice wrapper and a check of the generated HTML. It deliberately exercises the inclusion flags without starting a server or copying this site's operational side effects.
@@ -167,29 +188,43 @@ Inspect `jekyll-site`, PID handling, and documented service behavior. The Publis
 
 Explain the template hierarchy first: project pages inherit the project layout, which inherits page and then default; default supplies the shared site shell. Trace how includes reuse project lookup, navigation, post filtering, list metadata, and pagination instead of copying presentation into each page. Use the existing template-dependency graph as a research aid, verifying its edges against current source before reuse. Then cover the metadata contract behind layouts, categories, content types, tags, images, dates, update notices, series fields, and audio. Explain why permissive YAML is not enough once multiple listings, taxonomies, feeds, comments, social metadata, and automated checks depend on those fields.
 
+Make front-matter extensibility an explicit reader takeaway: the Publisher adds site-specific keys, and Liquid includes, layouts, or plugins give those keys behavior. Use verified examples such as `series_order`, `update_notice` plus `last_modified_at`, `audio`, project `category`, and `short_link_basis`. A new key alone changes nothing; its consumers and checks make it part of the site's publishing contract. Distinguish topical `tags` from arbitrary custom front-matter keys.
+
+Part 3 can show that `header.html` includes a shared navigation template; leave the detailed dropdown ordering and its YAML/data sources to Part 5, where the reader can see a catalog edit reach both menus and page lists.
+
 This post should address the difference between current canonical validators and older scripts whose assumptions may have drifted. Do not hide conflicting validators; identify which path the build and CI actually enforce.
 
 **Hands-On 3A:** Run a frozen copy of the current tag-taxonomy plugin against invented posts. Show which tags and content types it rejects, and show that a missing series order still passes this particular check. The companion does not pretend the active plugin enforces a full front-matter schema.
 
 ### 4. Stable URLs in a Repository That Keeps Moving
 
-Explain the transition from title-derived project paths to required immutable `permalink_slug`, compatibility redirects, immutable `short_link_basis`, deterministic short URLs, and publication dates as part of canonical identity. Show why a source file can move while a public URL and discussion identity must remain stable. Leave update-driven list ordering to Part 5.
+Explain the transition from title-derived project paths to required immutable `permalink_slug`, compatibility redirects, immutable `short_link_basis`, deterministic short URLs, and publication dates as part of canonical identity. The Publisher built short links for X/Twitter, Bluesky, and other character-limited social posts, keeping ownership of the addresses and redirects inside this Jekyll site instead of using an external shortener. A frozen basis can preserve a shared short address through a page-naming change; an old full-length URL still needs its own redirect. Put that motivation and control ahead of the hash mechanism. Show why a source file can move while a public URL and discussion identity must remain stable. Leave update-driven list ordering to Part 5.
 
 Use the permalink and short-link plugins, backfill script, redirect verifiers, and update-ordering documentation as the primary sources. Clearly separate canonical URLs, redirect paths, and social short links.
 
-**Possible Hands-On 4A:** Generate and verify deterministic short links without relying on a hosted shortening service.
+**Hands-On 4A:** Run a frozen copy of the current short-link module against invented posts to show a fixed basis surviving a source move, the source-path fallback changing, and a mismatched declared short URL failing. The exercise does not create Jekyll redirects or verify remote reachability.
 
 ### 5. From a YAML Project Catalog to a Project Publishing System
 
+Open by stepping back from the idea of a single blog stream. The site has Technology articles, Hands-On tutorials, series, a Parental Alienation section, a configured but currently hidden General section, an all-posts archive, and project-specific update blogs. These are different reader routes over posts and project data, not separate Jekyll installations. Show how a series has its own order and landing page, why Hands-On stays discoverable without flooding the Technology index, and how the archive crosses the boundaries. Do not describe General as a currently visible Blog-hub card.
+
 Make one new project the main narrative example: define it in the YAML catalog, generate its metadata and local card, scaffold its landing page and blog directories, then let shared Liquid consumers place it in project listings and navigation. Explain public, private, and undisplayed project choices as presentation states, with private repository links omitted and `none` entries filtered from the inspected lists. Do not describe these fields as access controls or assume they remove generated pages. Trace catalog order through generation to display.
 
+Give the dropdowns their own concrete scene. `header.html` includes `navigation.html`; the Projects dropdown keeps fixed "All Projects" first and then loops through generated projects whose visibility is not `none`. The generator reads the ordered `repositories` list in `repos.yml` and writes processed project data without sorting it, so moving an entry in the authored catalog can change its relative menu position after regeneration. The Projects page consumes the same generated list but displays private and public groups separately, preserving relative order within each group. Do not promise that a failed or skipped catalog entry appears anywhere.
+
+The Blog dropdown has fixed "Blog Home" and "All Posts" links, then visible sections in the order written in `blog_sections.yml`, then a fixed "Topics" link. The Blog hub uses those same visible section entries for cards and recent lists; `visible: false` removes a section from those views without removing its page or posts. The configured Series recent list currently selects the Local First AI series, while `/blog/series/` discovers all series landing pages; distinguish those two views. Series landing cards have their own `series_order`, and post lists have discovery sorting. A YAML edit changes the generated presentation on the next build; it is not a live database update in the reader's browser. Show how the Liquid includes and responsive dropdown styles turn those data choices into navigation without claiming every placement is controlled by one YAML file.
+
+Make the dedicated project blog a concrete payoff, not a footnote: `generate_project_files` creates `_posts` and `_drafts` under the project when scaffolding a new page, and `project.html` uses the project's category to show its updates through the shared blog list. The generated introduction is only a starter draft that needs the Publisher's editorial work. A catalog edit alone does not mean a finished article appears; the generator must run, the landing page may already exist, and content still has to be written and reviewed.
+
 Cover series metadata, main articles, lettered Hands-On companions, previous and next navigation, series landing pages, category separation, discovery lists, excerpts, and update-aware ordering. The story should focus on helping readers move coherently through related material while keeping tutorials out of the general Technology stream.
+
+Return to front matter as the connection between authored content and those views. One post can carry a category, project identity, series order, companion relationship, update notice, image, and optional audio. Show which values affect a single page and which reach menus, lists, feeds, or redirects; do not imply the current taxonomy validator enforces all of them.
 
 Extend the story to project publishing: repository configuration, fetched GitHub and OpenGraph metadata, manual overrides, cached images, generated cards, and scaffolded project files. Identify which values the author owns and which outputs the generator maintains. Use `fetch_og.py` and its tests as primary evidence without implying every build refreshes project data. The Publisher reports that GitHub thumbnail rate limiting motivated locally generated cards; use that as attributed engineering history. The implementation still fetches repository metadata and retains fallback image paths. Scaffolding runs from the main generator when the project landing page is absent; it is not an unconditional repair of every missing child file. The starter introduction is a draft-marked template requiring editorial work, not an automatically completed article.
 
 Use the complete `/blog/all/` archive to demonstrate reuse: source labels resolve through section/project data, page-size choices come from configuration, and ordinary links preserve pagination state in the URL. The archive uses the shared update-aware discovery sort; do not call it strictly ordered by original publication date. Explain the separate Technology index and its exclusion of series without implying a category or URL change.
 
-Include a data-flow diagram showing how authored metadata and generated project data reach landing pages, series indexes, navigation, and discovery lists. Explain publication order, series order, and update-driven discovery as separate decisions. Treat Pagefind search as a bounded subsection: the local wrapper invokes indexing, but the inspected deployment workflow does not. Resolve that evidence gap before claiming production search works. Avoid presenting Liquid conventions as universally applicable outside this site.
+Include a data-flow diagram with two input paths: `repos.yml → fetch_og.py → github_projects.yml → Projects dropdown/page/project blog`, and `blog_sections.yml → Blog dropdown/hub/recent lists`. Add separate labels for `series_order` and update-driven discovery sorting. Explain publication order, project catalog order, grouped display order, section order, series order, and update-driven discovery as separate decisions. Treat Pagefind search as a bounded subsection: the local wrapper invokes indexing, but the inspected deployment workflow does not. Resolve that evidence gap before claiming production search works. Avoid presenting Liquid conventions as universally applicable outside this site.
 
 **Possible Hands-On 5A:** Combine invented repository metadata and manual overrides into a project card without network access.
 
@@ -219,6 +254,8 @@ Do not publish private TTS endpoints, voice samples, transcripts, model paths, v
 
 Map the local checks and GitHub workflow: environment, permalinks, Jekyll doctor, internal and external links, large files, builds, required files, Liquid syntax, front matter, navigation, image paths, taxonomy, short URLs, and redirects. Explain the value and cost of layering quick focused checks ahead of a full production build.
 
+Use the present checkout's installed `.git/hooks/pre-commit` as local evidence: it calls `check_site.sh` while skipping the project-data refresh step. Compare that with the separate optional `pre-commit` framework configuration and with `jekyll-site -c`, which opts into an HTMLProofer link pass. Identify which checks run by default, which are opt-in, which can rebuild or alter files, and which are actually configured in GitHub Actions. A commit hook is not a push hook; describe the Publisher's review-before-push practice without claiming that every push runs the entire local suite.
+
 Separate observational checks from source repairs, generated-data refreshes, Git staging, and build-output replacement. The numbered suite includes mutating steps and must not be recommended as a read-only audit. Show the GitHub Actions gates separately from the broader local suite and optional pre-commit configuration. Hook configuration does not prove installation. Identify duplicate, historical, or partially overlapping checks rather than claiming the directory is a perfectly unified framework. Report commands and pass counts only after current execution against an identified revision.
 
 **Possible Hands-On 8A:** Construct a small fail-fast prepublication check runner with independent, diagnosable gates.
@@ -232,6 +269,8 @@ Separate implemented monitoring from configured scheduling and from any currentl
 ### 10. Closing the Publishing Loop Without Pretending It Is a CMS
 
 Bring the workflow together: drafting, technical review, local preview, diagrams and code, TTS proofreading, taxonomy and URL checks, social drafts, support and discussion blocks, future dates, commit and push boundaries, GitHub Pages deployment, and post-publication monitoring.
+
+Close the loop across the site's actual content map: a standalone article, a series installment, and a project update enter through different metadata and reader routes but share the same local operation, review, URL, validation, deployment, and monitoring concerns. Make the lifecycle diagram show those entry paths joining at explicit human gates rather than collapsing them into one generic blog post.
 
 End with what is still manual and why. Human review, publication authority, social posting, donation messaging, and editorial judgment should remain visible rather than being described as defects awaiting total automation.
 
@@ -288,7 +327,7 @@ Keep technical approval, editorial approval, and publication authority separate.
 
 ## Next Assignment
 
-The [initial inventory](jekyll-site-tooling-inventory.md) records the source review and open evidence gaps. The maintenance CHANGELOG has been reconciled, and the Publisher has published Part 1. Parts 2 and 3 and Hands-On 2A and 3A are in the Jekyll source tree for local review, with source packets, downloadable labs, and visuals. Next collect the Publisher's voice and factual edits on the Part 3 pair and settle its dates. For later installments, continue to answer:
+The [initial inventory](jekyll-site-tooling-inventory.md) records the source review and open evidence gaps. The maintenance CHANGELOG has been reconciled, and the Publisher has published Part 1. Parts 2 through 4 and Hands-On 2A through 4A are in the Jekyll source tree for local review, with source packets, downloadable labs, and visuals. Next collect the Publisher's voice and factual edits on the Part 4 pair and settle dates for remaining local drafts. When starting Part 5, lead with the expanded article, series, and project-blog map before tracing one project through the YAML generator. Reserve the detailed commit checks and deployment gates for Part 8. For later installments, continue to answer:
 
 - Which commands are current entry points and which are backups, compatibility paths, or historical utilities?
 - Which scripts have tests, and what do those tests actually prove?
