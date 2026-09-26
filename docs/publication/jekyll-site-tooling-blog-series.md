@@ -2,7 +2,7 @@
 
 ## Project Status
 
-Updated September 26, 2026. The Publisher has pushed the series through Part 4 and asked for the next installment. Part 5 and Hands-On 5A are in the Jekyll post tree for local review. October 22 is a provisional preview date; the Publisher will settle remote publication timing. Source packets and visual assets are linked below.
+Updated September 26, 2026. The Publisher approved Part 5 and Hands-On 5A and committed that pair in this checkout. Part 6 and Hands-On 6A are in the Jekyll post tree for local review, with October 29 as a provisional preview date. Source packets and visual assets are linked below.
 
 - [Source inventory and evidence boundaries](jekyll-site-tooling-inventory.md)
 - [Review journal](jekyll-site-tooling-review.md)
@@ -14,6 +14,7 @@ Updated September 26, 2026. The Publisher has pushed the series through Part 4 a
 - [Part 3 evidence packet and local draft handoff](jekyll-site-tooling-part-03-packet.md)
 - [Part 4 evidence packet and local draft handoff](jekyll-site-tooling-part-04-packet.md)
 - [Part 5 evidence packet and local draft handoff](jekyll-site-tooling-part-05-packet.md)
+- [Part 6 evidence packet and local draft handoff](jekyll-site-tooling-part-06-packet.md)
 - [Reusable package candidates and first pilot](jekyll-site-tooling-reuse-packaging.md)
 
 The editorial spine is a concrete publishing problem, the implementation it produced, and its remaining limits. Keep ten main installments. Companions are optional and should earn their place through an independently useful exercise.
@@ -46,9 +47,9 @@ Lean technical when a choice needs teeth, but keep the argument readable. Explai
 
 ## Publication Boundary
 
-The Publisher has authorized local post-tree drafts and browser previews for this series and has pushed the prior installments. The current Part 5 task does not authorize commits, pushes, deployment, or remote publication of the new installment.
+The Publisher has authorized local post-tree drafts and browser previews for this series and has handled publication of prior installments. The current Part 6 task does not authorize commits, pushes, deployment, or remote publication of the new installment.
 
-Keep research and review packets under `docs/publication/`. Parts 1 through 5, Hands-On 2A through 5A, and the landing page are in the Jekyll source tree; their exact paths are in the linked packets. Do not restart the watched local Jekyll server merely to make a source edit visible. Do not create alternate build destinations inside the repository. Commit, push, deployment, and remote publication remain separate decisions.
+Keep research and review packets under `docs/publication/`. Parts 1 through 6, Hands-On 2A through 5A, and the landing page are in the Jekyll source tree; their exact paths are in the linked packets. Do not restart the watched local Jekyll server merely to make a source edit visible. Do not create alternate build destinations inside the repository. Commit, push, deployment, and remote publication remain separate decisions.
 
 Before describing any tool as current, tested, deployed, automatic, or reliable, verify that claim against its present source, documentation, tests, workflow configuration, and retained operational evidence. The repository contains older utilities, backups, derived output, runtime files, and documentation that may no longer describe the active path.
 
@@ -231,11 +232,13 @@ Include a data-flow diagram with two input paths: `repos.yml → fetch_og.py →
 
 ### 6. Diagrams and Source Code That Behave Like Editorial Content
 
-Explain why raw ASCII diagrams, unconstrained SVGs, forced downloads, and inconsistent code blocks were not good enough. Cover reproducible Mermaid or Graphviz sources, dark-background rendering, constrained responsive presentation, click-to-expand viewing, Escape-safe overlays, centered captions, and collapsed source viewers with explicit download actions.
+Explain why raw ASCII diagrams, unconstrained SVGs, forced downloads, and inconsistent code blocks were not good enough. Cover reproducible Mermaid or Graphviz sources, dark-background rendering, constrained responsive presentation, a separate full-size viewer with Close/Escape controls, centered captions, and collapsed source viewers with explicit download actions.
 
-The key distinction is between the editorial diagram, the reproducible source, the generated SVG or PNG, and the viewer. For source code, show that the inline highlighted view reads the downloadable artifact itself, with real-path containment under `assets/code`. This avoids maintaining a separate excerpt but does not prove the program works. Verify the separate viewer page and overlay behavior before describing either interaction.
+The key distinction is between the editorial diagram, the reproducible source, the generated SVG or PNG, and the viewer. For source code, show that the inline highlighted view reads the downloadable artifact itself, with real-path containment under `assets/code`. This avoids maintaining a separate excerpt but does not prove the program works. Verify the separate viewer page and source disclosure behavior before describing either interaction.
 
-**Possible Hands-On 6A:** Add a responsive, accessible SVG viewer and a collapsed source-code disclosure to a minimal Jekyll site.
+Show one actual `.dot` and one `.mmd` figure, expose both source files through the article's existing source viewer, and show their `dot`/`mmdc` commands and the site's explicit Python rendering helper. Give readers upstream Graphviz source-build and Mermaid CLI installation/documentation links without implying the Publisher uses Homebrew; explain that pip's Graphviz Python wrapper does not install the `dot` executable. Keep embedded Markdown diagrams and automatic pre-build regeneration clearly labeled as a possible future integration, not current behavior; a source/render hash is a stronger freshness key than Markdown modification time.
+
+**Hands-On 6A local draft:** Download the actual Part 6 DOT and MMD sources, render each with installed `dot` and `mmdc`, change a label, and inspect the new SVGs. Connect that explicit authoring step to the site's source disclosure, rendered image assets, and `blog_diagram.html` include. No package-installation exercise or rebuild automation claim.
 
 ### 7. Proofreading a Blog by Listening to It
 
@@ -328,7 +331,7 @@ Keep technical approval, editorial approval, and publication authority separate.
 
 ## Next Assignment
 
-The [initial inventory](jekyll-site-tooling-inventory.md) records the source review and open evidence gaps. The maintenance CHANGELOG has been reconciled, and the Publisher has pushed the series through Part 4. Part 5 and Hands-On 5A are now in the Jekyll source tree for local review, with a source packet, offline lab, and visuals. Next collect the Publisher's voice and factual edits on the Part 5 pair and settle dates. Part 6 covers editorial diagrams and source files; reserve the detailed commit checks and deployment gates for Part 8. For later installments, continue to answer:
+The [initial inventory](jekyll-site-tooling-inventory.md) records the source review and open evidence gaps. The maintenance CHANGELOG has been reconciled, and the Publisher approved Part 5 and Hands-On 5A. Part 6 and Hands-On 6A are now in the Jekyll source tree for local review, with a source packet and visuals. Next collect the Publisher's voice and factual edits on the pair and settle their date. The article demonstrates the existing viewer components; 6A exercises the two installed renderers without building an installation lab. Reserve the detailed commit checks and deployment gates for Part 8. For later installments, continue to answer:
 
 - Which commands are current entry points and which are backups, compatibility paths, or historical utilities?
 - Which scripts have tests, and what do those tests actually prove?

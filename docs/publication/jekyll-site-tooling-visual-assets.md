@@ -96,3 +96,18 @@ Render the diagram from the repository root:
 dot -Tsvg docs/publication/diagrams/src/jekyll-post-05-publishing-paths.dot -o html/assets/images/blog/jekyll-site-tooling/post-05-publishing-paths.svg
 dot -Tpng -Gdpi=150 docs/publication/diagrams/src/jekyll-post-05-publishing-paths.dot -o html/assets/images/blog/jekyll-site-tooling/post-05-publishing-paths.png
 ```
+
+## Part 6 additions
+
+Part 6 uses `html/assets/images/blog/jekyll-site-tooling/post-06-diagrams-and-source-hero.png`. Its two figures separate the editable-diagram/render/viewer route from the source-file/highlight/download route. Their editable sources are `html/assets/code/jekyll-site-tooling/post-06/jekyll-post-06-diagram-path.dot` (Graphviz) and `jekyll-post-06-source-path.mmd` (Mermaid). The article exposes these same source files through its collapsed source viewer, with explicit downloads. Each has SVG and PNG renders in the blog image asset directory. The Mermaid SVG's percentage width is replaced with numeric width and height from its `viewBox`, matching the publication convention documented in `docs/templates/blog-templates.md`.
+
+The banner was generated with the built-in imagegen tool using this prompt:
+
+> Create a finished wide 2:1 editorial banner illustration for Part 6 of an established dark engineering-blog series about extending a Jekyll website. Match a tactile publishing workbench mood: deep charcoal/navy background, restrained warm amber and cool teal highlights, realistic paper/card material, precision tools, gentle depth, generous crop-safe negative space. On the workbench show one editable technical diagram sheet and one code manuscript becoming two finished article elements: a crisp dark-canvas diagram panel with distinct connected shapes, and a neatly folded source-code panel with an explicit small download-tab shape. A magnifying frame or desk loupe suggests that the diagram can be opened larger. The transformation should feel mechanical and editorial rather than magical or a literal flowchart. Crisp silhouettes at thumbnail size. No people, no readable text, no letters, no numbers, no code glyphs, no logos, no fake UI labels, no AI brain, no neon cyberpunk.
+
+Render both figures from the repository root with the authoring helper, which writes SVG and PNG and normalizes Mermaid SVG dimensions:
+
+```bash
+python3 utils/bin/render-blog-diagram.py html/assets/code/jekyll-site-tooling/post-06/jekyll-post-06-diagram-path.dot html/assets/images/blog/jekyll-site-tooling/post-06-diagram-path
+python3 utils/bin/render-blog-diagram.py html/assets/code/jekyll-site-tooling/post-06/jekyll-post-06-source-path.mmd html/assets/images/blog/jekyll-site-tooling/post-06-source-path
+```

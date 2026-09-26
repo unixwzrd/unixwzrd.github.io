@@ -1,0 +1,10 @@
+digraph DiagramPath {
+  graph [bgcolor="#111923", pad="0.3", rankdir="LR", nodesep="0.38", ranksep="0.62", fontname="Helvetica", fontcolor="#edf2f5", label="One figure, two reading sizes", labelloc="t", fontsize=20];
+  node [shape=box, style="rounded,filled", color="#587080", fillcolor="#20303d", fontcolor="#f4f5f6", fontname="Helvetica", fontsize=13, margin="0.19,0.13"];
+  edge [color="#9db1bc", arrowsize=0.7, penwidth=1.5];
+  source [label="Editable source\nGraphviz or Mermaid", fillcolor="#513d28", color="#d4a660"];
+  render [label="Rendered assets\nSVG for article\nPNG retained"];
+  include [label="blog_diagram.html\nalt text + caption\nconstrained preview", fillcolor="#234243", color="#73b8b5"];
+  viewer [label="Separate SVG viewer\nfit + zoom + pan\nClose or Escape", fillcolor="#263958", color="#80a6d7"];
+  source -> render -> include -> viewer;
+}

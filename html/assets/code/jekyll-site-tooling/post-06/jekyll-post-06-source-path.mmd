@@ -1,0 +1,16 @@
+flowchart LR
+  file["assets/code/.../run_lab.py<br/>reviewed source file"]
+  check["Resolved path check<br/>and Rouge highlighting"]
+  preview["Collapsed disclosure<br/>read without download"]
+  download["Explicit download link<br/>gets the same file"]
+  file --> check --> preview
+  file --> download
+  classDef source fill:#513d28,stroke:#d4a660,color:#f4f5f6
+  classDef process fill:#234243,stroke:#73b8b5,color:#f4f5f6
+  classDef output fill:#20303d,stroke:#587080,color:#f4f5f6
+  classDef action fill:#263958,stroke:#80a6d7,color:#f4f5f6
+  class file source
+  class check process
+  class preview output
+  class download action
+  linkStyle default stroke:#9db1bc,stroke-width:2px

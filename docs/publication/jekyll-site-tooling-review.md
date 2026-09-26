@@ -2,6 +2,54 @@
 
 Preserve entries and prepend new ones. Planning, technical review, editorial approval, and publication authority are separate decisions.
 
+## 2026-09-26 10:37 CDT (America/Chicago, UTC-05:00)
+
+**Author:** Codex, primary series agent. **Role:** Hands-On 6A author and local validator. **Decision:** Add a small source-to-image companion using the two actual Part 6 diagram files and already installed renderers. Keep installation and Jekyll build automation outside the lab's claims.
+
+**Evidence reviewed:** Part 6's DOT/MMD sources and renderer, the existing 2A–5A companion structure, `series_navigation.html`, public source routes, current checkout RVM gemset, and the local browser preview.
+
+**Changes:** Added a future-dated 6A post in the Hands-On category with source downloads, DOT/Mermaid render commands, label-edit checks, a reviewed figure, and a bounded explanation of how the source and image enter this site. Linked Part 6 to it through companion metadata, updated the series outline and Part 6 packet, and left Part 7 as the next main installment. No package archive, installation workflow, Jekyll hook, commit, or deployment was added.
+
+**Validation:** Downloaded both public sources from localhost and ran the article's DOT/Mermaid SVG/PNG commands and label-edit checks in a temporary directory. The repo helper also rendered both sources to separate temporary outputs. A future-inclusive Jekyll build passed using the checkout RVM gemset; the new short-link check, taxonomy check for 81 posts, and `git diff --check` passed. The new post and short route returned HTTP 200; Playwright showed the 6A title, series context, source links, figure, and commands. Existing Giscus 404s reflected a discussion not yet created for this future post.
+
+**Next gate:** Publisher reviews the new 6A page and Part 6's companion link in the local browser, including voice and scope. The October 29 date remains provisional.
+
+## 2026-09-26 10:25 CDT (America/Chicago, UTC-05:00)
+
+**Author:** Codex, primary series agent. **Role:** Part 6 correction and local validator. **Decision:** Align the installation story with the Publisher's source-built Graphviz environment and make the two diagram inputs available as real article source disclosures. Continue to describe rendering as an explicit authoring step; no rebuild automation or separate Hands-On 6A was added.
+
+**Evidence reviewed:** Publisher's correction, the Part 6 article and `.dot`/`.mmd` sources, `source_code.html` and its confined source filter, `jekyll-site` build path, official Graphviz source-build and Mermaid CLI instructions, and the running local preview.
+
+**Changes:** Replaced the Homebrew example with source-build guidance and official links. Moved both Part 6 diagram inputs to `html/assets/code/jekyll-site-tooling/post-06/`, updated the renderer commands and publication notes, and included both files in the article through collapsed viewers with downloads. Their published source paths are also the inputs to the Python renderer. Automatic rendering on rebuild and embedded-Markdown substitution remain unimplemented proposals.
+
+**Validation:** Both moved sources rendered to SVG and PNG in isolated temporary directories. A future-inclusive Jekyll build passed using the checkout's RVM gemset; the short-link check, taxonomy check for 80 posts, generated disclosure/download links, byte-for-byte copied public sources, live HTTP 200 for the article and source/diagram assets, and `git diff --check` passed. The system Bundler lacked three lockfile gem versions, so the checkout gemset was used; no dependency files were changed.
+
+**Next gate:** Publisher reviews the revised article in the local browser. Do not imply the diagrams regenerate automatically during publishing, or add a tool-installation lab that has not been independently tested.
+
+## 2026-09-26 10:14 CDT (America/Chicago, UTC-05:00)
+
+**Author:** Codex, primary series agent. **Role:** Part 6 source-diagram editor. **Decision:** Explain DOT and Mermaid in the article and add an explicit Python renderer for separate source files. Defer embedded-Markdown substitution and automatic build/pre-commit integration as optional future work.
+
+**Evidence reviewed:** Current Part 6 draft and two figure sources, the site's diagram template convention, installed `dot` and `mmdc`, official Graphviz and Mermaid documentation, the related publication renderer's Mermaid SVG sizing rule, and local browser output.
+
+**Changes:** Converted Part 6's source-code flow figure from DOT to Mermaid, added DOT/MMD examples, official install/documentation links, direct render commands, and a bounded embedded-source proposal to the article. Added `utils/bin/render-blog-diagram.py` for explicit SVG/PNG rendering of either source type and documented it in the utility/template guides and visual record. The site build wrapper, hooks, and deployment workflow were not changed.
+
+**Validation:** The helper rendered both Part 6 figures in an isolated directory and in the site asset directory. A malformed DOT input failed without replacing prior outputs. The Mermaid SVG has numeric dimensions and parsed as XML; both PNGs were nonempty. The future-inclusive Jekyll build, short-link check, taxonomy check for 80 posts, `git diff --check`, local Part 6 route, and Mermaid diagram viewer check passed. No commit, push, or remote deployment occurred for Part 6.
+
+**Next gate:** Publisher reviews the expanded Part 6 article and decides later whether build-time diagram generation is worth integrating. The embedded-Markdown option has no implementation commitment.
+
+## 2026-09-26 09:42 CDT (America/Chicago, UTC-05:00)
+
+**Author:** Codex, primary series agent. **Role:** Part 6 author and local reviewer. **Decision:** Put a first-person Part 6 draft in the local Jekyll post tree, using the existing diagram and source-code presentation mechanisms as live examples. A separate 6A lab remains optional; the main article demonstrates both mechanisms directly.
+
+**Evidence reviewed:** `blog_diagram.html`, `source_code.html`, `source_code_filter.rb`, the separate diagram viewer, shared post/code styles, current publishing template guide, diagram source/render pairs, Part 5A's runner, changelog entries, and local browser behavior. The [Part 6 packet](jekyll-site-tooling-part-06-packet.md) records claim, privacy, and drift boundaries. The Publisher committed the Part 5 pair while this draft was underway.
+
+**Changes:** Added Part 6 with a new banner and two editable Graphviz figures, updated the series handoff and visual record, and linked Part 5 and 5A forward to its provisional route. No production viewer, filter, or stylesheet behavior changed.
+
+**Validation:** Future-inclusive Jekyll build, targeted short-link check, taxonomy check for 80 posts, SVG parse, local HTTP routes, short-link output, Playwright disclosure/viewer checks, mobile viewer controls, and `git diff --check` passed. Giscus returned 404 for the as-yet-uncreated discussion on the local Part 6 route. No commit, push, or remote deployment occurred for Part 6.
+
+**Next gate:** Publisher reviews Part 6's voice, technical emphasis, visuals, and date before deciding whether a separate Hands-On 6A would add enough value.
+
 ## 2026-09-26 09:18 CDT (America/Chicago, UTC-05:00)
 
 **Author:** Codex, primary series agent. **Role:** Hands-On 5A editor. **Decision:** Make the existing offline lab directly inspectable after the Publisher asked for the companion.

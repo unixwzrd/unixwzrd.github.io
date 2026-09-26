@@ -38,6 +38,7 @@ Scripts and configs used to **validate**, **build**, **refresh project metadata*
 | Resource                                                                          | Purpose                                                               |
 | --------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | [bin/jekyll-site](bin/jekyll-site)                                                | Production-style Jekyll build wrapper (often with post-build checks). |
+| [bin/render-blog-diagram.py](bin/render-blog-diagram.py)                           | Explicitly render one `.dot` or `.mmd` source to an SVG/PNG pair; requires `dot` or `mmdc` on `PATH`. |
 | [bin/site-service](bin/site-service)                                              | Start/stop/restart local Jekyll (and related dev helpers).            |
 | [bin/file_watcher](bin/file_watcher) / [bin/file_watcher.py](bin/file_watcher.py) | File watching during development.                                     |
 | [bin/watch_image_paths.py](bin/watch_image_paths.py)                              | Watch / fix image path issues.                                        |

@@ -15,6 +15,8 @@ series_url: /blog/series/beyond-static-building-a-publication-system-around-jeky
 series_previous_title: "Stable URLs in a Repository That Keeps Moving"
 series_previous_url: /technology/2026/10/15/stable-urls-in-a-repository-that-keeps-moving/
 series_next_title: "Diagrams and Source Code That Behave Like Editorial Content"
+series_next_url: /technology/2026/10/29/diagrams-and-source-code-that-behave-like-editorial-content/
+series_next_date: 2026-10-29 08:00:00 -0500
 series_companion_title: "Hands-On: Follow a Project Through the Catalog"
 series_companion_url: /hands-on/2026/10/22/hands-on-follow-a-project-through-the-catalog/
 series_companion_date: 2026-10-22 10:00:00 -0500

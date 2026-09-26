@@ -195,6 +195,10 @@ All code presentation uses the shared post-skin rules in `html/_sass/minima/cust
 
 Keep the Mermaid or Graphviz source with the publication material and generate both SVG and PNG assets. Embed the SVG through the shared diagram include; retain the PNG as a fallback or social-production asset.
 
+When readers should inspect and download the exact diagram source, place the `.dot` or `.mmd` under `html/assets/code/` and show it with the shared `source_code.html` disclosure. Render from that same public file so the article does not maintain a second source copy. Part 6 follows this convention.
+
+For an explicit local render, `python3 utils/bin/render-blog-diagram.py SOURCE OUTPUT_STEM` generates both formats from a `.dot` or `.mmd` source. `OUTPUT_STEM` omits the extension. The helper requires the Graphviz `dot` executable for `.dot` or Mermaid CLI `mmdc` for `.mmd`; it does not install either tool or run automatically as part of Jekyll. Its Mermaid path also gives the SVG numeric dimensions from its `viewBox` for the viewer.
+
 ```liquid
 {% include blog_diagram.html
    src="/assets/images/blog/example/architecture.svg"

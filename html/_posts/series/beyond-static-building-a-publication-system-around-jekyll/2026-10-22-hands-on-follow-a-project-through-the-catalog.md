@@ -16,6 +16,8 @@ series_companion_of: 5
 series_previous_title: "From a YAML Project Catalog to a Project Publishing System"
 series_previous_url: /technology/2026/10/22/from-a-yaml-project-catalog-to-a-project-publishing-system/
 series_next_title: "Diagrams and Source Code That Behave Like Editorial Content"
+series_next_url: /technology/2026/10/29/diagrams-and-source-code-that-behave-like-editorial-content/
+series_next_date: 2026-10-29 08:00:00 -0500
 image: /assets/images/blog/jekyll-site-tooling/post-05-project-catalog-hero.png
 ---
 
