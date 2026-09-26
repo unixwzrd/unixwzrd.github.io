@@ -1,0 +1,18 @@
+// Source for post-03-metadata-contract.svg/png. Shows current consumers and checked subset.
+digraph metadata_contract {
+  graph [rankdir=LR, bgcolor="#111827", pad="0.32", nodesep="0.4", ranksep="0.75", splines=polyline, fontname="Helvetica"];
+  node [shape=box, style="rounded,filled", color="#4b5563", fillcolor="#1f2937", fontcolor="#f3f4f6", fontname="Helvetica", fontsize=14, margin="0.18,0.12"];
+  edge [color="#e5a85c", fontcolor="#d1d5db", fontname="Helvetica", fontsize=11, penwidth=2, arrowsize=0.75];
+  front [label="Authored front matter", fillcolor="#26374a", color="#67c5d6"];
+  layout [label="Layouts\nimage + dates + audio"];
+  lists [label="Discovery lists\ncategory + update notice"];
+  series [label="Series views\nname + order + links"];
+  taxonomy [label="Tag taxonomy check\ntags + content_type", fillcolor="#3a3440", color="#e5a85c"];
+  ci [label="Pre-commit + CI\nconfigured checks"];
+  front -> layout;
+  front -> lists;
+  front -> series;
+  front -> taxonomy [label="checked subset"];
+  taxonomy -> ci;
+  {rank=same; layout; lists; series; taxonomy;}
+}

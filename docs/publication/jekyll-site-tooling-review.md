@@ -2,6 +2,42 @@
 
 Preserve entries and prepend new ones. Planning, technical review, editorial approval, and publication authority are separate decisions.
 
+## 2026-09-25 21:13 CDT (America/Chicago, UTC-05:00)
+
+**Author:** Codex, primary series agent. **Role:** Hands-On 3A author and local reviewer. **Decision:** Add a runnable companion to Part 3 that shows the current taxonomy plugin's actual limits. Keep the October 8 date provisional for local browser review.
+
+**Evidence reviewed:** Current `html/_plugins/03_tag_taxonomy_validator.rb`, the site's taxonomy data, series metadata and source-code include conventions, Part 3's metadata diagram, the existing Hands-On 2A package pattern, and the author's published voice references.
+
+**Changes:** Added a first-person Hands-On 3A post and linked it from Part 3. Packaged a byte-for-byte snapshot of the active taxonomy plugin with invented data and seven cases, an isolated runner, retained build logs, a ZIP, and a SHA-256 checksum. Reused Part 3's banner and metadata diagram. Updated the Part 3 packet, series outline, and visual record. No site tooling or production content was changed.
+
+**Validation:** A clean extracted archive passed SHA-256 verification and all seven cases. Valid metadata, a missing series order, and an old-tag draft were accepted; unknown, aliased, and duplicate tags and an unknown content type were rejected. The lab's accepted missing series order proves only that this plugin does not check it; the fixture has no series index. The local Hands-On post, parent companion link, series listing, code viewers, ZIP, and checksum rendered over HTTP. Playwright showed the article and linked assets; its only console errors were Giscus 404s for a discussion that does not yet exist on the new route. Short-link and tag-taxonomy checks passed for 77 published and scheduled posts, as did shell syntax, copied-plugin comparison, and `git diff --check`. No commit, push, or deployment occurred.
+
+**Next gate:** Publisher reviews Part 3 and 3A in the local browser for voice, exercise size, and technical emphasis, then settles publication timing.
+
+## 2026-09-25 21:06 CDT (America/Chicago, UTC-05:00)
+
+**Author:** Codex, primary series agent. **Role:** Part 3 editorial reviewer. **Decision:** Rewrite Part 3's prose in a more personal, candid first-person voice at the Publisher's request, retaining the verified technical claims.
+
+**Evidence reviewed:** The Publisher's 2024 *Building This Site With AI* account of Jekyll's learning curve and early navigation trouble; the 2026 *Scope Creep Has Never Been This Easy* post's pacing and direct asides; published Part 1; current Part 3 draft; current navigation and layout source.
+
+**Changes:** Reworked the opening, headings, transitions, and conclusions around the author's frustration with repeated markup and the moment Jekyll's hierarchy became useful. Added a source-backed link to his earlier site-building account and connected its navigation rabbit hole to today's generated project menu. Kept the YAML example, layout chain, metadata details, diagrams, and validation limits. Added a voice note to the series handoff for later installments.
+
+**Validation:** The local Part 3 article and its linked 2024 post returned HTTP 200. The running Jekyll preview rebuilt the article after the edit and rendered the revised opening and menu paragraph. `git diff --check` passed. No service was restarted, committed, pushed, or deployed during this pass.
+
+**Next gate:** Publisher reads the revised local article for voice and any factual correction before choosing a publication date.
+
+## 2026-09-25 21:02 CDT (America/Chicago, UTC-05:00)
+
+**Author:** Codex, primary series agent. **Role:** Part 3 author and local reviewer. **Decision:** Draft Part 3 around a single project page's verified layout and include path, then explain the metadata contract and its actual validation boundary. Keep October 8 as a provisional local preview date.
+
+**Evidence reviewed:** Current `project`, `page`, `default`, and `post` layouts; project lookup, header/navigation, projects list, blog list, discovery filter, post metadata, and series includes; generated-data consumers; tag taxonomy data and validator; configured pre-commit and Pages checks; older mutating front-matter script; published Part 1 and local Part 2 voice. The [Part 3 packet](jekyll-site-tooling-part-03-packet.md) records source locators, limits, and privacy review.
+
+**Changes:** Added a first-person Part 3 article to the Jekyll post tree, a series-consistent banner, and two Graphviz source diagrams with SVG/PNG renders. Linked Part 2 and Hands-On 2A forward to the provisional Part 3 route. Updated the series handoff and visual-asset record. No site behavior or tooling code was changed.
+
+**Validation:** The local article and series listing returned HTTP 200, as did the banner and both SVGs. Playwright showed the article title, Part 3 series context, both full-size diagram links, Current State, and Next Work. The browser console's 404s came from Giscus finding no discussion for the new local route; its client reports one will be created on first comment. The source-bound short-link check and canonical tag-taxonomy check passed (76 published and scheduled posts). Both SVGs parsed as XML, the post has one excerpt marker, and `git diff --check` passed. No commit, push, or deployment occurred.
+
+**Next gate:** Publisher reviews Part 3 for voice, factual emphasis, and diagram clarity. Its publication date remains provisional; Hands-On 3A is optional and should be drafted only if it adds a useful exercise.
+
 ## 2026-09-25 20:56 CDT (America/Chicago, UTC-05:00)
 
 **Author:** Codex, primary series agent. **Role:** Hands-On 2A source reviewer and editor. **Decision:** Clarify that the lab models the active site's preview inclusion flags, then show the remaining operational stages it deliberately omits.

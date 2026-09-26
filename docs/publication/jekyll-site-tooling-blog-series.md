@@ -2,7 +2,7 @@
 
 ## Project Status
 
-Updated September 25, 2026. The Publisher has published Part 1 and asked to finish Part 2 and add a Hands-On companion where useful. Part 2 is already in the Jekyll post tree; Hands-On 2A now accompanies it in the local preview. Their October 1 dates are provisional until the Publisher settles publication timing. The source packet and visual assets are linked below.
+Updated September 25, 2026. The Publisher has published Part 1 and moved the series to Part 3. Parts 2 and 3 and their Hands-On companions are in the Jekyll post tree for local review. The October 1 and October 8 dates are provisional until the Publisher settles publication timing. Source packets and visual assets are linked below.
 
 - [Source inventory and evidence boundaries](jekyll-site-tooling-inventory.md)
 - [Review journal](jekyll-site-tooling-review.md)
@@ -11,6 +11,7 @@ Updated September 25, 2026. The Publisher has published Part 1 and asked to fini
 - [Series landing review draft](jekyll-site-tooling-series-landing-draft.md)
 - [Part 1 visual assets and render sources](jekyll-site-tooling-visual-assets.md)
 - [Part 2 evidence packet and local draft handoff](jekyll-site-tooling-part-02-packet.md)
+- [Part 3 evidence packet and local draft handoff](jekyll-site-tooling-part-03-packet.md)
 
 The editorial spine is a concrete publishing problem, the implementation it produced, and its remaining limits. Keep ten main installments. Companions are optional and should earn their place through an independently useful exercise.
 
@@ -28,6 +29,8 @@ The series should explain why those tools became necessary, how they fit togethe
 
 The narrative belongs in first person. The interesting story is not that Jekyll can render Markdown. It is how a static site became easier to operate after repeated publishing mistakes, browser differences, future-post review problems, link drift, diagram scaling, source-code downloads, and the discovery that listening to an article catches problems that visual proofreading misses.
 
+Use the Publisher's own [early site-building account](../../html/_posts/technology/2024-09-27-Building-This-Site-With-AI.md) and [scope-creep post](../../html/_posts/technology/2026-08-24-Codex-Feeds-My-ADHD.md), along with published Part 1, as voice references. Start with a specific frustration or observation, explain the fix in first person, and keep room for candid asides and short emphatic lines. Preserve the technical detail without turning the story into generic process prose. Do not copy old typos or invent personal incidents to imitate the voice.
+
 ## Audience
 
 The primary audience is an experienced developer, technical writer, independent publisher, or small team running a static site without a full content-management system. Posts should remain approachable to readers who understand Markdown and Git but may not know Liquid, Ruby plugins, browser audio behavior, or GitHub Actions.
@@ -36,9 +39,9 @@ Lean technical when a choice needs teeth, but keep the argument readable. Explai
 
 ## Publication Boundary
 
-The Publisher has authorized local post-tree drafts and browser previews for this series. Part 1 has been published by the Publisher. This does not authorize commits, pushes, deployment, or remote publication of Part 2.
+The Publisher has authorized local post-tree drafts and browser previews for this series. Part 1 has been published by the Publisher. The current Part 3 task does not authorize commits, pushes, deployment, or remote publication of new installments.
 
-Keep research and review packets under `docs/publication/`. Parts 1 and 2 and the landing page are in the Jekyll source tree; their exact paths are in the linked packets. Do not rebuild or restart the watched local Jekyll server merely to make a source edit visible. Do not create alternate build destinations inside the repository. Commit, push, deployment, and remote publication remain separate decisions.
+Keep research and review packets under `docs/publication/`. Parts 1 through 3, Hands-On 2A and 3A, and the landing page are in the Jekyll source tree; their exact paths are in the linked packets. Do not rebuild or restart the watched local Jekyll server merely to make a source edit visible. Do not create alternate build destinations inside the repository. Commit, push, deployment, and remote publication remain separate decisions.
 
 Before describing any tool as current, tested, deployed, automatic, or reliable, verify that claim against its present source, documentation, tests, workflow configuration, and retained operational evidence. The repository contains older utilities, backups, derived output, runtime files, and documentation that may no longer describe the active path.
 
@@ -166,7 +169,7 @@ Explain the template hierarchy first: project pages inherit the project layout, 
 
 This post should address the difference between current canonical validators and older scripts whose assumptions may have drifted. Do not hide conflicting validators; identify which path the build and CI actually enforce.
 
-**Possible Hands-On 3A:** Validate a small set of invented posts against a closed tag taxonomy and required front-matter contract.
+**Hands-On 3A:** Run a frozen copy of the current tag-taxonomy plugin against invented posts. Show which tags and content types it rejects, and show that a missing series order still passes this particular check. The companion does not pretend the active plugin enforces a full front-matter schema.
 
 ### 4. Stable URLs in a Repository That Keeps Moving
 
@@ -285,7 +288,7 @@ Keep technical approval, editorial approval, and publication authority separate.
 
 ## Next Assignment
 
-The [initial inventory](jekyll-site-tooling-inventory.md) records the source review and open evidence gaps. The maintenance CHANGELOG has been reconciled, and the Publisher has published Part 1. Part 2 and Hands-On 2A are in the Jekyll source tree for local review, with the [Part 2 packet](jekyll-site-tooling-part-02-packet.md), downloadable lab, and visuals. Next collect the Publisher's voice and factual edits, settle both publication dates, and review the final rendered pair before any remote publication. For later installments, continue to answer:
+The [initial inventory](jekyll-site-tooling-inventory.md) records the source review and open evidence gaps. The maintenance CHANGELOG has been reconciled, and the Publisher has published Part 1. Parts 2 and 3 and Hands-On 2A and 3A are in the Jekyll source tree for local review, with source packets, downloadable labs, and visuals. Next collect the Publisher's voice and factual edits on the Part 3 pair and settle its dates. For later installments, continue to answer:
 
 - Which commands are current entry points and which are backups, compatibility paths, or historical utilities?
 - Which scripts have tests, and what do those tests actually prove?

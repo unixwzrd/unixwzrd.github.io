@@ -43,3 +43,24 @@ dot -Tpng -Gdpi=150 docs/publication/diagrams/src/jekyll-post-02-preview-path.do
 The diagram separates optional metadata refresh, the production build and Pagefind indexing, and the development server's two content modes. It does not imply that Pagefind is regenerated after every watched edit.
 
 Hands-On 2A reuses the Part 2 banner and preview-path SVG. Its caption explicitly limits the exercise to the content switch; the full production-build, indexing, and process stages in the diagram belong to the real site wrapper and are not reproduced by the lab.
+
+## Part 3 additions
+
+The local Part 3 draft uses `html/assets/images/blog/jekyll-site-tooling/post-03-shared-layouts-hero.png`, `post-03-layout-chain.svg`, and `post-03-metadata-contract.svg`. PNG companions are retained for both diagrams. Their editable sources are `docs/publication/diagrams/src/jekyll-post-03-layout-chain.dot` and `jekyll-post-03-metadata-contract.dot`.
+
+The banner was generated with the built-in imagegen tool using this prompt:
+
+> Create a finished wide 2:1 editorial banner illustration for the third article in a dark engineering-blog series about a customized Jekyll website. Make it visually consistent with tactile publishing-workbench artwork: deep charcoal and navy, restrained amber and cool teal highlights, realistic paper/card material and precise mechanical details. Show one authored project page or simple sheet at the left passing through three visibly nested reusable frames/layers, branching into a coherent site header, project detail card, and blog-list cards on the right. The image should communicate composition and reuse, not a literal flowchart. Clear silhouettes at thumbnail size, sophisticated quiet workbench mood, generous crop-safe edges. No people, no readable text, no letters, no code, no logos, no fake UI labels, no AI brain, no neon cyberpunk.
+
+Render the diagrams from the repository root:
+
+```bash
+dot -Tsvg docs/publication/diagrams/src/jekyll-post-03-layout-chain.dot -o html/assets/images/blog/jekyll-site-tooling/post-03-layout-chain.svg
+dot -Tpng -Gdpi=150 docs/publication/diagrams/src/jekyll-post-03-layout-chain.dot -o html/assets/images/blog/jekyll-site-tooling/post-03-layout-chain.png
+dot -Tsvg docs/publication/diagrams/src/jekyll-post-03-metadata-contract.dot -o html/assets/images/blog/jekyll-site-tooling/post-03-metadata-contract.svg
+dot -Tpng -Gdpi=150 docs/publication/diagrams/src/jekyll-post-03-metadata-contract.dot -o html/assets/images/blog/jekyll-site-tooling/post-03-metadata-contract.png
+```
+
+The first diagram is limited to the project-page layout path and includes verified in current source; it is not a full runtime graph. The second distinguishes metadata consumed during rendering from the smaller tags/content-type subset enforced by the current taxonomy validator.
+
+Hands-On 3A reuses the Part 3 banner and metadata-contract SVG. Its caption scopes the lab to the checked tags/content-type branch; the other diagram branches remain outside the runnable exercise.

@@ -15,6 +15,8 @@ series_url: /blog/series/beyond-static-building-a-publication-system-around-jeky
 series_previous_title: "Jekyll, One Problem at a Time"
 series_previous_url: /technology/2026/09/22/jekyll-one-problem-at-a-time/
 series_next_title: "Building the Site from Shared Layouts, Includes, and Data"
+series_next_url: /technology/2026/10/08/building-the-site-from-shared-layouts-includes-and-data/
+series_next_date: 2026-10-08 08:00:00 -0500
 series_companion_title: "Hands-On: Build a Jekyll Preview Switch"
 series_companion_url: /hands-on/2026/10/01/hands-on-build-a-jekyll-preview-switch/
 series_companion_date: 2026-10-01 10:00:00 -0500

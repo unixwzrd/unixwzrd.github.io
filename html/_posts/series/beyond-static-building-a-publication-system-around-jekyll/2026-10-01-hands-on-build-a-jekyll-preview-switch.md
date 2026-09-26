@@ -16,6 +16,8 @@ series_companion_of: 2
 series_previous_title: "A Local Jekyll Server I Can Actually Operate"
 series_previous_url: /technology/2026/10/01/a-local-jekyll-server-i-can-actually-operate/
 series_next_title: "Building the Site from Shared Layouts, Includes, and Data"
+series_next_url: /technology/2026/10/08/building-the-site-from-shared-layouts-includes-and-data/
+series_next_date: 2026-10-08 08:00:00 -0500
 image: /assets/images/blog/jekyll-site-tooling/post-02-local-preview-hero.png
 ---
 

@@ -1,0 +1,25 @@
+// Source for post-03-layout-chain.svg/png. Verified against current layout and include files.
+digraph layout_chain {
+  graph [rankdir=LR, bgcolor="#111827", pad="0.32", nodesep="0.4", ranksep="0.68", splines=polyline, fontname="Helvetica"];
+  node [shape=box, style="rounded,filled", color="#4b5563", fillcolor="#1f2937", fontcolor="#f3f4f6", fontname="Helvetica", fontsize=14, margin="0.18,0.12"];
+  edge [color="#e5a85c", fontcolor="#d1d5db", fontname="Helvetica", fontsize=11, penwidth=2, arrowsize=0.75];
+  source [label="Project page\nfront matter + Markdown", fillcolor="#26374a", color="#67c5d6"];
+  project [label="project layout\nlookup + project blog", fillcolor="#30415a", color="#67c5d6"];
+  page [label="page layout\ntitle + banner + content", fillcolor="#30415a", color="#67c5d6"];
+  base [label="default layout\nhead + header + footer", fillcolor="#30415a", color="#67c5d6"];
+  data [label="Generated project data"];
+  lookup [label="project_lookup include"];
+  blog [label="blog_list include"];
+  filter [label="filter_discovery_posts include"];
+  nav [label="navigation include"];
+  source -> project [label="layout: project"];
+  project -> page [label="inherits"];
+  page -> base [label="inherits"];
+  data -> lookup;
+  lookup -> project;
+  project -> blog;
+  blog -> filter;
+  data -> nav;
+  base -> nav;
+  {rank=same; lookup; blog; nav;}
+}

@@ -1,0 +1,16 @@
+groups:
+  - id: development
+    label: Development
+
+tags:
+  - id: jekyll
+    label: Jekyll
+    group: development
+    aliases: [old-jekyll]
+  - id: automation
+    label: Automation
+    group: development
+
+content_types:
+  - id: release
+    label: Release
