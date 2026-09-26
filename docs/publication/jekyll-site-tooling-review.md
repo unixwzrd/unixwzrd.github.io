@@ -2,6 +2,30 @@
 
 Preserve entries and prepend new ones. Planning, technical review, editorial approval, and publication authority are separate decisions.
 
+## 2026-09-26 09:18 CDT (America/Chicago, UTC-05:00)
+
+**Author:** Codex, primary series agent. **Role:** Hands-On 5A editor. **Decision:** Make the existing offline lab directly inspectable after the Publisher asked for the companion.
+
+**Evidence reviewed:** Current Hands-On 5A post and packaged runner, the project generator, the lab's baseline result, and the local preview state. The Publisher is restarting the Jekyll server, so Codex did not start or stop it.
+
+**Changes:** Added `--reorder` and `--show-hidden` runs to the invented lab, printed generated order, repository-link presence, override result, and starter-file summary, updated the post and README instructions, and refreshed the ZIP and checksum. The live generator and catalog were untouched.
+
+**Validation:** Baseline and both variations passed with no network access. ZIP checksum and archive integrity passed. After the Publisher restarted the server, the Hands-On route, ZIP, and runner source returned HTTP 200. Playwright showed the new command sequence and comparison text in the rendered page. `git diff --check` passed.
+
+**Next gate:** Publisher reviews the companion's voice and exercise size in the local browser.
+
+## 2026-09-26 05:58 CDT (America/Chicago, UTC-05:00)
+
+**Author:** Codex, primary series agent. **Role:** Part 5 author and local reviewer. **Decision:** Put the next main installment and an offline Hands-On 5A in the Jekyll post tree for the Publisher's browser review. October 22 remains a provisional local preview date.
+
+**Evidence reviewed:** Current `fetch_og.py` and tests, project and Blog YAML consumers, navigation and project layouts, series/discovery paths, prior installments, the Publisher's corrections, and the pushed series state. The [Part 5 packet](jekyll-site-tooling-part-05-packet.md) records the claim limits and privacy boundary.
+
+**Changes:** Added Part 5 and Hands-On 5A, linked Part 4 forward, generated a series-consistent banner and editable project/Blog data-flow diagram, and packaged an invented offline generator lab with source and checksum. Updated the series handoff and visual record. No production generator, template, menu, or deployment behavior changed.
+
+**Validation:** Future-inclusive Jekyll build, short-link check, taxonomy check for 79 posts, all 12 `fetch_og.py` tests, extracted lab assertions, ZIP checksum, SVG parse, local HTTP routes, mobile Blog dropdown, and `git diff --check` passed. Playwright found only Giscus 404s for discussions missing on the local preview routes. No commit, push, or remote deployment occurred.
+
+**Next gate:** Publisher reviews the Part 5 pair for voice, factual emphasis, lab size, and dates before any remote publication decision.
+
 ## 2026-09-25 22:05 CDT (America/Chicago, UTC-05:00)
 
 **Author:** Codex, primary series agent. **Role:** Part 3 editorial and Part 5 architecture reviewer. **Decision:** Give YAML-driven dropdown ordering and custom front-matter fields explicit treatment in the series, following the Publisher's corrections.

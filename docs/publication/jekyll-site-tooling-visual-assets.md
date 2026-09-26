@@ -81,3 +81,18 @@ dot -Tpng -Gdpi=150 docs/publication/diagrams/src/jekyll-post-04-url-contract.do
 ```
 
 The figure depicts only the project-post canonical route, a declared legacy redirect, and a basis-derived short redirect. It does not imply that an ordinary series post gets a `permalink_slug` or that the isolated lab writes redirect HTML.
+
+## Part 5 additions
+
+Part 5 and Hands-On 5A use `html/assets/images/blog/jekyll-site-tooling/post-05-project-catalog-hero.png`. The editable data-flow figure is `docs/publication/diagrams/src/jekyll-post-05-publishing-paths.dot`, rendered as `post-05-publishing-paths.svg` and `.png`. The figure keeps the project generator, Blog section YAML, and front-matter/discovery paths separate.
+
+The banner was generated with the built-in imagegen tool using this prompt:
+
+> Create a finished wide 2:1 editorial banner illustration for Part 5 of a dark engineering blog series about a customized Jekyll website. Match the established tactile publishing workbench aesthetic: deep charcoal/navy background, restrained warm amber and cool teal highlights, realistic paper/card material, precise mechanical details, generous crop-safe negative space. Show a single tidy catalog sheet on a workbench feeding a small mechanical publishing apparatus; from it emerge a polished project card, a project landing page with several update cards, and an orderly navigation strip. Alongside it, a second smaller stack of section cards feeds a separate navigation strip. Convey controlled organization and build-time assembly, not a literal flowchart. Crisp silhouettes readable at thumbnail size. No people, no readable text, no letters, no numbers, no code, no logos, no fake UI labels, no AI brain, no neon cyberpunk.
+
+Render the diagram from the repository root:
+
+```bash
+dot -Tsvg docs/publication/diagrams/src/jekyll-post-05-publishing-paths.dot -o html/assets/images/blog/jekyll-site-tooling/post-05-publishing-paths.svg
+dot -Tpng -Gdpi=150 docs/publication/diagrams/src/jekyll-post-05-publishing-paths.dot -o html/assets/images/blog/jekyll-site-tooling/post-05-publishing-paths.png
+```

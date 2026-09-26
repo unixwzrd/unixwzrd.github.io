@@ -1,0 +1,17 @@
+digraph PublishingPaths {
+  graph [bgcolor="#111923", pad="0.3", ranksep="0.62", nodesep="0.35", fontname="Helvetica", fontcolor="#e8edf2", label="Two authored lists, several reader routes", labelloc="t", fontsize=20];
+  node [shape=box, style="rounded,filled", color="#536475", fillcolor="#1e2b38", fontcolor="#f1f3f4", fontname="Helvetica", fontsize=13, margin="0.18,0.12"];
+  edge [color="#91aab9", arrowsize=0.7, penwidth=1.4];
+  repos [label="repos.yml\nordered projects", fillcolor="#4d3a25", color="#d4a660"];
+  generator [label="fetch_og.py\nmetadata + overrides\nlocal cards + first-page scaffolding"];
+  generated [label="github_projects.yml\ngenerated project data"];
+  projectviews [label="Projects dropdown\nProjects page groups\nproject landing + blog"];
+  sections [label="blog_sections.yml\nordered visible sections", fillcolor="#214446", color="#6db7b2"];
+  blogviews [label="Blog dropdown\nBlog hub + recent lists"];
+  frontmatter [label="post front matter\ncategory + series_order + update notice", fillcolor="#263853"];
+  discovery [label="series reading order\narchive discovery order\nproject update lists"];
+  repos -> generator -> generated -> projectviews;
+  sections -> blogviews;
+  frontmatter -> discovery;
+  generated -> discovery [style=dashed, label="visibility + project identity", fontcolor="#b2c5ce"];
+}

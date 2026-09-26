@@ -15,6 +15,8 @@ series_url: /blog/series/beyond-static-building-a-publication-system-around-jeky
 series_previous_title: "Building the Site from Shared Layouts, Includes, and Data"
 series_previous_url: /technology/2026/10/08/building-the-site-from-shared-layouts-includes-and-data/
 series_next_title: "From a YAML Project Catalog to a Project Publishing System"
+series_next_url: /technology/2026/10/22/from-a-yaml-project-catalog-to-a-project-publishing-system/
+series_next_date: 2026-10-22 08:00:00 -0500
 series_companion_title: "Hands-On: Keep a Short Link Through a Source Move"
 series_companion_url: /hands-on/2026/10/15/hands-on-keep-a-short-link-through-a-source-move/
 series_companion_date: 2026-10-15 10:00:00 -0500

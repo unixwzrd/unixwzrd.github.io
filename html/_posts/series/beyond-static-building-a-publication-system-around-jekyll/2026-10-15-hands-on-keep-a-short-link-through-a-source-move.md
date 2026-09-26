@@ -16,6 +16,8 @@ series_companion_of: 4
 series_previous_title: "Stable URLs in a Repository That Keeps Moving"
 series_previous_url: /technology/2026/10/15/stable-urls-in-a-repository-that-keeps-moving/
 series_next_title: "From a YAML Project Catalog to a Project Publishing System"
+series_next_url: /technology/2026/10/22/from-a-yaml-project-catalog-to-a-project-publishing-system/
+series_next_date: 2026-10-22 08:00:00 -0500
 image: /assets/images/blog/jekyll-site-tooling/post-04-stable-urls-hero.png
 ---
 

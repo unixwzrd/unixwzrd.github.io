@@ -2,7 +2,7 @@
 
 ## Project Status
 
-Updated September 25, 2026. The Publisher has published Part 1 and asked to continue after reviewing the Part 3 pair. Parts 2 through 4 and their Hands-On companions are in the Jekyll post tree for local review. The October 1, 8, and 15 dates are provisional until the Publisher settles publication timing. Source packets and visual assets are linked below.
+Updated September 26, 2026. The Publisher has pushed the series through Part 4 and asked for the next installment. Part 5 and Hands-On 5A are in the Jekyll post tree for local review. October 22 is a provisional preview date; the Publisher will settle remote publication timing. Source packets and visual assets are linked below.
 
 - [Source inventory and evidence boundaries](jekyll-site-tooling-inventory.md)
 - [Review journal](jekyll-site-tooling-review.md)
@@ -13,6 +13,7 @@ Updated September 25, 2026. The Publisher has published Part 1 and asked to cont
 - [Part 2 evidence packet and local draft handoff](jekyll-site-tooling-part-02-packet.md)
 - [Part 3 evidence packet and local draft handoff](jekyll-site-tooling-part-03-packet.md)
 - [Part 4 evidence packet and local draft handoff](jekyll-site-tooling-part-04-packet.md)
+- [Part 5 evidence packet and local draft handoff](jekyll-site-tooling-part-05-packet.md)
 - [Reusable package candidates and first pilot](jekyll-site-tooling-reuse-packaging.md)
 
 The editorial spine is a concrete publishing problem, the implementation it produced, and its remaining limits. Keep ten main installments. Companions are optional and should earn their place through an independently useful exercise.
@@ -45,9 +46,9 @@ Lean technical when a choice needs teeth, but keep the argument readable. Explai
 
 ## Publication Boundary
 
-The Publisher has authorized local post-tree drafts and browser previews for this series. Part 1 has been published by the Publisher. The current Part 4 task does not authorize commits, pushes, deployment, or remote publication of new installments.
+The Publisher has authorized local post-tree drafts and browser previews for this series and has pushed the prior installments. The current Part 5 task does not authorize commits, pushes, deployment, or remote publication of the new installment.
 
-Keep research and review packets under `docs/publication/`. Parts 1 through 4, Hands-On 2A through 4A, and the landing page are in the Jekyll source tree; their exact paths are in the linked packets. Do not rebuild or restart the watched local Jekyll server merely to make a source edit visible. Do not create alternate build destinations inside the repository. Commit, push, deployment, and remote publication remain separate decisions.
+Keep research and review packets under `docs/publication/`. Parts 1 through 5, Hands-On 2A through 5A, and the landing page are in the Jekyll source tree; their exact paths are in the linked packets. Do not restart the watched local Jekyll server merely to make a source edit visible. Do not create alternate build destinations inside the repository. Commit, push, deployment, and remote publication remain separate decisions.
 
 Before describing any tool as current, tested, deployed, automatic, or reliable, verify that claim against its present source, documentation, tests, workflow configuration, and retained operational evidence. The repository contains older utilities, backups, derived output, runtime files, and documentation that may no longer describe the active path.
 
@@ -226,7 +227,7 @@ Use the complete `/blog/all/` archive to demonstrate reuse: source labels resolv
 
 Include a data-flow diagram with two input paths: `repos.yml → fetch_og.py → github_projects.yml → Projects dropdown/page/project blog`, and `blog_sections.yml → Blog dropdown/hub/recent lists`. Add separate labels for `series_order` and update-driven discovery sorting. Explain publication order, project catalog order, grouped display order, section order, series order, and update-driven discovery as separate decisions. Treat Pagefind search as a bounded subsection: the local wrapper invokes indexing, but the inspected deployment workflow does not. Resolve that evidence gap before claiming production search works. Avoid presenting Liquid conventions as universally applicable outside this site.
 
-**Possible Hands-On 5A:** Combine invented repository metadata and manual overrides into a project card without network access.
+**Hands-On 5A:** Run the frozen project generator on invented repository metadata and overrides without network access. Compare baseline output with a reordered catalog and a changed visibility field; inspect generated project data and starter files. The lab stubs card rendering and does not build Jekyll menus.
 
 ### 6. Diagrams and Source Code That Behave Like Editorial Content
 
@@ -327,7 +328,7 @@ Keep technical approval, editorial approval, and publication authority separate.
 
 ## Next Assignment
 
-The [initial inventory](jekyll-site-tooling-inventory.md) records the source review and open evidence gaps. The maintenance CHANGELOG has been reconciled, and the Publisher has published Part 1. Parts 2 through 4 and Hands-On 2A through 4A are in the Jekyll source tree for local review, with source packets, downloadable labs, and visuals. Next collect the Publisher's voice and factual edits on the Part 4 pair and settle dates for remaining local drafts. When starting Part 5, lead with the expanded article, series, and project-blog map before tracing one project through the YAML generator. Reserve the detailed commit checks and deployment gates for Part 8. For later installments, continue to answer:
+The [initial inventory](jekyll-site-tooling-inventory.md) records the source review and open evidence gaps. The maintenance CHANGELOG has been reconciled, and the Publisher has pushed the series through Part 4. Part 5 and Hands-On 5A are now in the Jekyll source tree for local review, with a source packet, offline lab, and visuals. Next collect the Publisher's voice and factual edits on the Part 5 pair and settle dates. Part 6 covers editorial diagrams and source files; reserve the detailed commit checks and deployment gates for Part 8. For later installments, continue to answer:
 
 - Which commands are current entry points and which are backups, compatibility paths, or historical utilities?
 - Which scripts have tests, and what do those tests actually prove?
