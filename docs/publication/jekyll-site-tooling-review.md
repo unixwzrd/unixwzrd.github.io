@@ -2,6 +2,30 @@
 
 Preserve entries and prepend new ones. Planning, technical review, editorial approval, and publication authority are separate decisions.
 
+## 2026-09-25 20:56 CDT (America/Chicago, UTC-05:00)
+
+**Author:** Codex, primary series agent. **Role:** Hands-On 2A source reviewer and editor. **Decision:** Clarify that the lab models the active site's preview inclusion flags, then show the remaining operational stages it deliberately omits.
+
+**Evidence reviewed:** Current `utils/bin/jekyll-site` start and restart paths; Hands-On 2A post, packaged README, and its extracted archive; local rendered companion route. The wrapper uses a production build and Pagefind pass before either development serve mode. The default serve assignment includes `--future --drafts --unpublished`, and `--current` replaces it with an assignment without those flags.
+
+**Changes:** Added a read-only source-inspection command and a direct mapping from lab modes to the site's `start` and `start --current` behavior. Explained the optional OG refresh, output replacement, production build, Pagefind index, development server, and PID management that are outside the lab. Updated the package README and regenerated its ZIP and checksum.
+
+**Validation:** The revised ZIP passed SHA-256 verification and `verify.sh` from a clean extraction. The local article rendered the new mapping section and the revised package returned HTTP 200. `git diff --check` passed. No live wrapper operation or service restart was run.
+
+**Next gate:** Publisher reviews whether the closer connection to the actual site operation answers the 2A concern and whether any further voice edits are needed.
+
+## 2026-09-25 20:52 CDT (America/Chicago, UTC-05:00)
+
+**Author:** Codex, primary series agent. **Role:** Part 2 and Hands-On 2A author/reviewer. **Decision:** Keep the already-committed Part 2 as the main narrative and add a small runnable companion for the current/review content switch. The Publisher requested local site review; the October 1 dates remain provisional.
+
+**Evidence reviewed:** Current Part 2 source and rendered route, Jekyll series metadata and companion conventions, `jekyll-site` inclusion flags, isolated fixture behavior under installed Jekyll 4.3.4, extracted archive, and local browser render. The [Part 2 packet](jekyll-site-tooling-part-02-packet.md) records the lab's boundary.
+
+**Changes:** Added Hands-On 2A under the Jekyll post tree and linked it from Part 2. Added a ten-source-file lab with a two-mode build wrapper and generated-HTML verifier, plus a ZIP and checksum. Reused the Part 2 banner and preview diagram; no production script, configuration, or layout changed.
+
+**Validation:** The clean extracted ZIP passed its SHA-256 check and `verify.sh`: current output contained the ordinary post, and review output contained all four fixture posts. Changing the future post's date to the past produced the expected verification failure. The local Hands-On article, parent companion link, series listing, ZIP, checksum, and source-viewer assets returned HTTP 200. Playwright showed Part 2A, its download links, source viewers, diagram, and article sections. The only browser console errors were Giscus 404 responses for a discussion that does not exist for this new local route; Giscus says one will be created on first comment. The source-bound short-link check, taxonomy validation for 75 published and scheduled posts, `bash -n`, and `git diff --check` passed. No remote publication was performed.
+
+**Next gate:** Publisher reviews the Part 2/2A pair in the local browser, especially voice and exercise size, then settles dates and any edits before remote publication.
+
 ## 2026-09-23 15:55 CDT (America/Chicago, UTC-05:00)
 
 **Author:** Codex, primary series agent. **Role:** Part 2 author and local reviewer. **Decision:** Draft Part 2 in the Publisher's first-person, problem-by-problem voice, using the now-published Part 1 as the tonal reference. Keep the October 1 source date provisional and the article local for review.

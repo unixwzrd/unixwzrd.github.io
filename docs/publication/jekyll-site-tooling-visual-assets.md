@@ -41,3 +41,5 @@ dot -Tpng -Gdpi=150 docs/publication/diagrams/src/jekyll-post-02-preview-path.do
 ```
 
 The diagram separates optional metadata refresh, the production build and Pagefind indexing, and the development server's two content modes. It does not imply that Pagefind is regenerated after every watched edit.
+
+Hands-On 2A reuses the Part 2 banner and preview-path SVG. Its caption explicitly limits the exercise to the content switch; the full production-build, indexing, and process stages in the diagram belong to the real site wrapper and are not reproduced by the lab.

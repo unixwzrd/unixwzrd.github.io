@@ -2,7 +2,7 @@
 
 ## Project Status
 
-Updated September 23, 2026. The Publisher has published Part 1 and asked for Part 2 in the same personal voice. Part 2 is a local, future-dated browser draft with a provisional October 1 date. Its source packet and visual assets are linked below; technical and editorial review of Part 2 remain open.
+Updated September 25, 2026. The Publisher has published Part 1 and asked to finish Part 2 and add a Hands-On companion where useful. Part 2 is already in the Jekyll post tree; Hands-On 2A now accompanies it in the local preview. Their October 1 dates are provisional until the Publisher settles publication timing. The source packet and visual assets are linked below.
 
 - [Source inventory and evidence boundaries](jekyll-site-tooling-inventory.md)
 - [Review journal](jekyll-site-tooling-review.md)
@@ -158,7 +158,7 @@ Tell the story of wrapping Jekyll startup, restart, process checks, future-post 
 
 Inspect `jekyll-site`, PID handling, and documented service behavior. The Publisher confirms that FileWatcher is not in use; exclude it from the active workflow and do not spend further research on it. If explaining `site-service`, distinguish its optional watcher orchestration from actual operator use. Keep process-management claims bounded to the current scripts and tested operating systems.
 
-**Possible Hands-On 2A:** Build a small future-post-aware Jekyll wrapper with explicit current-site and review-site modes.
+**Hands-On 2A:** Build a small, isolated Jekyll fixture in current and review modes with a two-choice wrapper and a check of the generated HTML. It deliberately exercises the inclusion flags without starting a server or copying this site's operational side effects.
 
 ### 3. Building the Site from Shared Layouts, Includes, and Data
 
@@ -285,7 +285,7 @@ Keep technical approval, editorial approval, and publication authority separate.
 
 ## Next Assignment
 
-The [initial inventory](jekyll-site-tooling-inventory.md) records the source review and open evidence gaps. The maintenance CHANGELOG has been reconciled, and the Publisher has published Part 1. Part 2 is now a future-dated local browser draft with its [evidence packet](jekyll-site-tooling-part-02-packet.md) and visuals. Next collect the Publisher's voice and factual edits, settle its publication date, then review the final rendered article before any remote publication. For later installments, continue to answer:
+The [initial inventory](jekyll-site-tooling-inventory.md) records the source review and open evidence gaps. The maintenance CHANGELOG has been reconciled, and the Publisher has published Part 1. Part 2 and Hands-On 2A are in the Jekyll source tree for local review, with the [Part 2 packet](jekyll-site-tooling-part-02-packet.md), downloadable lab, and visuals. Next collect the Publisher's voice and factual edits, settle both publication dates, and review the final rendered pair before any remote publication. For later installments, continue to answer:
 
 - Which commands are current entry points and which are backups, compatibility paths, or historical utilities?
 - Which scripts have tests, and what do those tests actually prove?

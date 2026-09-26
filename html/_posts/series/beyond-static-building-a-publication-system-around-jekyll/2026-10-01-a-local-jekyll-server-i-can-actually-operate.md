@@ -15,6 +15,9 @@ series_url: /blog/series/beyond-static-building-a-publication-system-around-jeky
 series_previous_title: "Jekyll, One Problem at a Time"
 series_previous_url: /technology/2026/09/22/jekyll-one-problem-at-a-time/
 series_next_title: "Building the Site from Shared Layouts, Includes, and Data"
+series_companion_title: "Hands-On: Build a Jekyll Preview Switch"
+series_companion_url: /hands-on/2026/10/01/hands-on-build-a-jekyll-preview-switch/
+series_companion_date: 2026-10-01 10:00:00 -0500
 image: /assets/images/blog/jekyll-site-tooling/post-02-local-preview-hero.png
 ---
 
@@ -65,6 +68,8 @@ The most useful thing about this setup is the separation of questions. In editor
 I also do not need a second file-watching service to get the normal edit-and-reload loop. Jekyll already watches the source while serving. There is older watcher code in this repository, but it is not part of how I operate the site now. Keeping that distinction clear prevents a historical experiment from turning into a fictional dependency in the story.
 
 This is still a personal operator tool. It assumes the site's local environment, Ruby setup, generated-data workflow, and chosen port. That is fine for my site. The useful pattern is not the exact shell script. It is deciding which preview question I am asking, making that choice visible in the command, and knowing which steps have side effects before I run them.
+
+The [Hands-On 2A companion]({{ page.series_companion_url | relative_url }}) makes that small choice runnable against an invented Jekyll site. It builds current and review outputs in separate directories, so you can inspect exactly which posts each mode includes without touching your own server.
 
 ## Current State
 

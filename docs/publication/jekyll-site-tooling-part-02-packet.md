@@ -1,6 +1,6 @@
 # Part 2: A Local Jekyll Server I Can Actually Operate
 
-Status: local browser draft prepared September 23, 2026. The October 1 date in the post is provisional and supplies a future-dated series preview. It is not a publication decision. The Publisher has published Part 1 and asked that Part 2 use the same first-person voice.
+Status: Part 2 local browser draft prepared September 23, 2026. On September 25 the Publisher asked to finish it and add a Hands-On companion if useful. Hands-On 2A is now in the local post tree and linked from Part 2. Both October 1 dates are provisional and supply a future-dated series preview. The Publisher has published Part 1; this packet does not record remote publication of Part 2 or 2A.
 
 ## Source inventory and claim boundaries
 
@@ -35,3 +35,11 @@ The article contains no environment values, private paths, project catalog rows,
 Open with the concrete irritation of an invisible future post. Explain the two editorial questions and how the wrapper's inclusion flags answer them. Trace the build-and-serve stages with one diagram, then distinguish ordinary watched edits from restart and refresh decisions. Close by treating preview as one review step and leading into the layout hierarchy in Part 3.
 
 The local post is `html/_posts/series/beyond-static-building-a-publication-system-around-jekyll/2026-10-01-a-local-jekyll-server-i-can-actually-operate.md`. The rendered route is `/technology/2026/10/01/a-local-jekyll-server-i-can-actually-operate/`. The date and title remain editorial choices until the Publisher accepts them. Part 1's next-link metadata now points to the provisional Part 2 route so preview navigation works and a production build can show its scheduled date before release. No commit, push, or deployment occurred in this drafting turn.
+
+## Hands-On 2A companion
+
+The local companion is `html/_posts/series/beyond-static-building-a-publication-system-around-jekyll/2026-10-01-hands-on-build-a-jekyll-preview-switch.md`, rendered at `/hands-on/2026/10/01/hands-on-build-a-jekyll-preview-switch/`. Its ten-file package lives under `html/assets/code/jekyll-site-tooling/post-02a/preview-lab/`; a reproducibly ordered ZIP and SHA-256 file are next to it. The parent post links the companion, and the series landing lists it under Hands-On Companions.
+
+The lab uses an invented site with one ordinary, one future, one draft, and one unpublished post. `preview.sh current` omits inclusion flags and `preview.sh review` passes `--future --drafts --unpublished`. `verify.sh` checks the generated index, not merely Jekyll's exit status. The extracted archive passed the checksum and verification run under the checkout's Ruby/Jekyll environment. A changed-date negative case failed with `current view unexpectedly contains FUTURE-POST-MARKER`, as intended. The exercise uses `jekyll build`, with fixed destinations inside the package and no server/process management. It does not prove the full website wrapper or deployed site behavior.
+
+The Publisher asked whether 2A reflects current operation. The article and packaged README now map the lab's two inclusion modes directly to `jekyll-site start` and `start --current`, and identify the production build, Pagefind index, optional metadata refresh, development server, and PID handling that the lab intentionally leaves out. They also explain why a preview-visible future post is not automatically present in the Pagefind index. This is a source-backed relationship to the active wrapper, not a claim that the toy lab duplicates it.
