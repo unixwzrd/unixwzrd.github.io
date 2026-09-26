@@ -255,4 +255,6 @@ exclude:
   - utils/
   - vendor/
   - docs/
+  # Hands-On 2A's nested Jekyll site is a downloadable fixture, not site content.
+  - assets/code/jekyll-site-tooling/post-02a/preview-lab/site/
   - "**/*-social-posts.txt"
