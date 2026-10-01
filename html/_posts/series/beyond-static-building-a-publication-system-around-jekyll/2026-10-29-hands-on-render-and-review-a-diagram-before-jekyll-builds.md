@@ -16,6 +16,8 @@ series_companion_of: 6
 series_previous_title: "Diagrams and Source Code That Behave Like Editorial Content"
 series_previous_url: /technology/2026/10/29/diagrams-and-source-code-that-behave-like-editorial-content/
 series_next_title: "Proofreading a Blog by Listening to It"
+series_next_url: /technology/2026/11/05/proofreading-a-blog-by-listening-to-it/
+series_next_date: 2026-11-05 08:00:00 -0600
 image: /assets/images/blog/jekyll-site-tooling/post-06-diagrams-and-source-hero.png
 ---
 

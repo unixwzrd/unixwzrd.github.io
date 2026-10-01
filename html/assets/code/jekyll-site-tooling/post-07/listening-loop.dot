@@ -1,0 +1,22 @@
+digraph ListeningLoop {
+  graph [bgcolor="#111923", pad="0.35", rankdir="TB", nodesep="0.42", ranksep="0.65", fontname="Helvetica", fontcolor="#edf2f5", label="One editing pass by ear", labelloc="t", fontsize=20];
+  node [shape=box, style="rounded,filled", color="#587080", fillcolor="#20303d", fontcolor="#f4f5f6", fontname="Helvetica", fontsize=13, margin="0.18,0.13"];
+  edge [color="#9db1bc", arrowsize=0.7, penwidth=1.5];
+
+  preview [label="Rendered Jekyll post\narticle body", fillcolor="#513d28", color="#d4a660"];
+  prose [label="Readable prose\nno page furniture or code"];
+  chunks [label="Paragraph-aware\nspeech chunks"];
+  relay [label="Loopback relay\nconfigured TTS bridge", fillcolor="#234243", color="#73b8b5"];
+  listen [label="Buffered browser playback\nselection, cursor, or full post", fillcolor="#263958", color="#80a6d7"];
+  revise [label="Revise the source\nand preview again", fillcolor="#513d28", color="#d4a660"];
+
+  { rank=same; preview; prose; chunks; }
+  { rank=same; revise; listen; relay; }
+
+  preview -> prose -> chunks [constraint=false];
+  chunks -> relay;
+  relay -> listen -> revise [constraint=false];
+  revise -> preview [style=dashed, color="#d4a660", constraint=false, label="next pass", fontcolor="#d4a660", fontsize=11];
+  preview -> revise [style=invis, weight=4];
+  prose -> listen [style=invis, weight=4];
+}

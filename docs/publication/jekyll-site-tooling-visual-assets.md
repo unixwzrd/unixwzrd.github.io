@@ -111,3 +111,15 @@ Render both figures from the repository root with the authoring helper, which wr
 python3 utils/bin/render-blog-diagram.py html/assets/code/jekyll-site-tooling/post-06/jekyll-post-06-diagram-path.dot html/assets/images/blog/jekyll-site-tooling/post-06-diagram-path
 python3 utils/bin/render-blog-diagram.py html/assets/code/jekyll-site-tooling/post-06/jekyll-post-06-source-path.mmd html/assets/images/blog/jekyll-site-tooling/post-06-source-path
 ```
+
+## Part 7 additions
+
+Part 7 uses `html/assets/images/blog/jekyll-site-tooling/post-07-listening-proofread-hero.png`, a 2:1 banner generated with the built-in imagegen tool. The final prompt was:
+
+> Use case: stylized-concept. Asset type: wide 2:1 editorial banner for an established dark technical Jekyll blog series. Depict proofreading a written article by listening to it, on a deep charcoal and midnight navy writing desk. Show one manuscript page with abstract unreadable lines, over-ear headphones, and a subtle waveform-like ribbon of light crossing the paper toward a pencil ready for revision. Use tactile editorial illustration with realistic paper and metal textures, restrained photographic depth, warm amber and muted teal accents, clean silhouettes and crop-safe negative space. No person, face, readable text, letters, numbers, logos, fake UI labels, AI brain, or neon cyberpunk.
+
+The source-to-listening-loop diagram is `html/assets/code/jekyll-site-tooling/post-07/listening-loop.dot`. Its SVG and PNG are `html/assets/images/blog/jekyll-site-tooling/post-07-listening-loop.svg` and `.png`. The figure maps the editorial path, not a recorded TTS invocation. Render both outputs from the repository root with:
+
+```bash
+python3 utils/bin/render-blog-diagram.py html/assets/code/jekyll-site-tooling/post-07/listening-loop.dot html/assets/images/blog/jekyll-site-tooling/post-07-listening-loop
+```

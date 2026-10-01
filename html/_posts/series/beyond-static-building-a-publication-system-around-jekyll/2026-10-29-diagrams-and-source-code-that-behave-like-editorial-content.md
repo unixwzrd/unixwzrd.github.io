@@ -18,6 +18,8 @@ series_companion_title: "Hands-On: Render and Review a Diagram Before Jekyll Bui
 series_companion_url: /hands-on/2026/10/29/hands-on-render-and-review-a-diagram-before-jekyll-builds/
 series_companion_date: 2026-10-29 10:00:00 -0500
 series_next_title: "Proofreading a Blog by Listening to It"
+series_next_url: /technology/2026/11/05/proofreading-a-blog-by-listening-to-it/
+series_next_date: 2026-11-05 08:00:00 -0600
 image: /assets/images/blog/jekyll-site-tooling/post-06-diagrams-and-source-hero.png
 ---
 

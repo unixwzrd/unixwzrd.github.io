@@ -2,6 +2,42 @@
 
 Preserve entries and prepend new ones. Planning, technical review, editorial approval, and publication authority are separate decisions.
 
+## 2026-09-28 06:06 CDT (America/Chicago, UTC-05:00)
+
+**Author:** Codex, primary series agent. **Role:** Part 7 author and source reviewer. **Decision:** Make the separate article-TTS browser relay an explicit step in Part 7 after the Publisher noticed it was missing.
+
+**Evidence reviewed:** `utils/bin/article-tts`, `article_tts.py` argument and relay server paths, `utils/README.md`, `jekyll-site` startup path, and an origin-qualified local relay health request. The relay answered HTTP 200 with `{"status":"ok"}` on port 11441; this is listener evidence, not a synthesis or voice-quality test.
+
+**Changes:** Added the documented `utils/bin/article-tts --browser-server` command and stated that it runs separately from Jekyll with locally supplied bridge configuration. Updated the series outline and Part 7 packet. No service configuration or private voice values were changed.
+
+**Validation:** The future-inclusive development Jekyll build passed. Rendered Part 7 HTML and the live local preview both contain the helper command and process boundary; `git diff --check` passed. No live speech request was made.
+
+**Next gate:** Publisher reviews the new paragraph in the local post before any commit or remote publication.
+
+## 2026-09-28 06:03 CDT (America/Chicago, UTC-05:00)
+
+**Author:** Codex, primary series agent. **Role:** Part 7 author and source reviewer. **Decision:** Add the Publisher's current LLM-Ops-Kit and patched MLX-Audio path to the local Part 7 draft without turning the proofreading article into another voice-cloning operations article. Editorial review and publication remain with the Publisher.
+
+**Evidence reviewed:** The Publisher's current architecture correction, website relay source, the published Local First AI voice-cloning article, and LLM-Ops-Kit's remote-cloning guide. The site source proves only that the loopback relay calls a configured speech endpoint; the Publisher identifies that upstream as the managed TTS Bridge.
+
+**Changes:** Added one first-person paragraph separating the website relay, managed bridge, and patched synthesis engine, with a link to the earlier detailed article. Updated the Part 7 packet and series outline. No endpoint, voice alias, reference material, or runtime configuration was added.
+
+**Validation:** The future-inclusive development Jekyll build passed. The rendered Part 7 HTML contains the added paragraph and its Part 9 short link resolves in the built site. The local Part 7 route returned HTTP 200 and `git diff --check` passed. No live synthesis or subjective voice-quality test is claimed.
+
+**Next gate:** Publisher reviews the local Part 7 prose and its provisional date before any commit or remote publication.
+
+## 2026-09-26 10:52 CDT (America/Chicago, UTC-05:00)
+
+**Author:** Codex, primary series agent. **Role:** Part 7 author and local reviewer. **Decision:** Draft Part 7 in the local Jekyll post tree, centered on the Publisher's documented proofreading-by-ear experience. Keep browser listening distinct from retained MP3 publication, and leave Hands-On 7A and narration companion 7B optional pending the Publisher's review.
+
+**Evidence reviewed:** The Publisher's “Scope Creep Has Never Been This Easy” post, current article player JavaScript, development-only post layout, rendered-HTML Python extractor and relay, retained audio command and include, utility documentation, focused tests, existing series navigation, and the live local preview. During this work the Publisher committed the Part 6 pair at `0f128b8`; `origin/main` currently matches that commit. Remote publication was not independently checked.
+
+**Changes:** Added Part 7 at a provisional November 5 date, a 2:1 banner generated with the built-in imagegen tool, a public editable DOT figure source with SVG/PNG renders, a source disclosure, a Part 7 evidence packet, and forward links from Part 6 and Hands-On 6A. The prose opens from the Publisher's own account of the tool's scope creep, then follows rendered prose extraction, player controls, buffered relay playback, Safari handling, editorial review, and the separate narration decision. No TTS service, site player, release hook, or production audio was changed.
+
+**Validation:** Development and production future-inclusive Jekyll builds passed. The production Part 7 output had neither the development player script nor an opt-in published audio player. The targeted short-link check, taxonomy check for 82 posts, SVG parse, and `git diff --check` passed. The focused article TTS suite passed 13 tests in an isolated Python dependency environment after the default Python lacked `requests`. A final dry run of the live Part 7 page extracted eight chunks without a speech request; that review prompted two prose fixes. The article, short URL, source file, and diagram returned HTTP 200 locally. Playwright showed the page title, series context, figure, source disclosure and download, and development Listen controls. Actual voice output and Safari playback were not exercised in this turn.
+
+**Next gate:** Publisher reviews Part 7's voice, technical emphasis, banner, and provisional date in the local browser. Decide later whether a separate dry-run exercise or retained-narration companion adds enough value.
+
 ## 2026-09-26 10:37 CDT (America/Chicago, UTC-05:00)
 
 **Author:** Codex, primary series agent. **Role:** Hands-On 6A author and local validator. **Decision:** Add a small source-to-image companion using the two actual Part 6 diagram files and already installed renderers. Keep installation and Jekyll build automation outside the lab's claims.

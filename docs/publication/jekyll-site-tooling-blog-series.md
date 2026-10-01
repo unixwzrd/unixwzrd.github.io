@@ -2,7 +2,7 @@
 
 ## Project Status
 
-Updated September 26, 2026. The Publisher approved Part 5 and Hands-On 5A and committed that pair in this checkout. Part 6 and Hands-On 6A are in the Jekyll post tree for local review, with October 29 as a provisional preview date. Source packets and visual assets are linked below.
+Updated September 26, 2026. The Publisher committed Part 6 and Hands-On 6A at `0f128b8`, which currently matches `origin/main`; remote publication was not independently checked here. Part 7 is in the Jekyll post tree for local review, with November 5 as its provisional date. Source packets and visual assets are linked below.
 
 - [Source inventory and evidence boundaries](jekyll-site-tooling-inventory.md)
 - [Review journal](jekyll-site-tooling-review.md)
@@ -15,6 +15,7 @@ Updated September 26, 2026. The Publisher approved Part 5 and Hands-On 5A and co
 - [Part 4 evidence packet and local draft handoff](jekyll-site-tooling-part-04-packet.md)
 - [Part 5 evidence packet and local draft handoff](jekyll-site-tooling-part-05-packet.md)
 - [Part 6 evidence packet and local draft handoff](jekyll-site-tooling-part-06-packet.md)
+- [Part 7 evidence packet and local draft handoff](jekyll-site-tooling-part-07-packet.md)
 - [Reusable package candidates and first pilot](jekyll-site-tooling-reuse-packaging.md)
 
 The editorial spine is a concrete publishing problem, the implementation it produced, and its remaining limits. Keep ten main installments. Companions are optional and should earn their place through an independently useful exercise.
@@ -47,9 +48,9 @@ Lean technical when a choice needs teeth, but keep the argument readable. Explai
 
 ## Publication Boundary
 
-The Publisher has authorized local post-tree drafts and browser previews for this series and has handled publication of prior installments. The current Part 6 task does not authorize commits, pushes, deployment, or remote publication of the new installment.
+The Publisher has authorized local post-tree drafts and browser previews for this series and has handled publication of prior installments. The current Part 7 task does not authorize commits, pushes, deployment, or remote publication of the new installment.
 
-Keep research and review packets under `docs/publication/`. Parts 1 through 6, Hands-On 2A through 5A, and the landing page are in the Jekyll source tree; their exact paths are in the linked packets. Do not restart the watched local Jekyll server merely to make a source edit visible. Do not create alternate build destinations inside the repository. Commit, push, deployment, and remote publication remain separate decisions.
+Keep research and review packets under `docs/publication/`. Parts 1 through 7, Hands-On 2A through 6A, and the landing page are in the Jekyll source tree; their exact paths are in the linked packets. Do not restart the watched local Jekyll server merely to make a source edit visible. Do not create alternate build destinations inside the repository. Commit, push, deployment, and remote publication remain separate decisions.
 
 Before describing any tool as current, tested, deployed, automatic, or reliable, verify that claim against its present source, documentation, tests, workflow configuration, and retained operational evidence. The repository contains older utilities, backups, derived output, runtime files, and documentation that may no longer describe the active path.
 
@@ -244,6 +245,10 @@ Show one actual `.dot` and one `.mmd` figure, expose both source files through t
 
 Tell the story of noticing voice, rhythm, repeated phrasing, and first-person inconsistencies only after hearing an article aloud. Explain rendered-body extraction, removal of page furniture, raw URLs, code blocks, tables, and media while retaining visible link text and inline code words, paragraph-aware chunking, selection and cursor playback, pause and restart controls, Safari behavior, the loopback relay, and why dynamic browser playback should remain ephemeral.
 
+Name the real speech path in one bounded paragraph: the site's loopback relay calls the LLM-Ops-Kit-managed TTS Bridge, which presents a stable speech contract and maps the configured voice to a registered reference; the Publisher's patched MLX-Audio engine performs synthesis. Link the published Local First AI voice-cloning installment for the operational detail. Keep private configuration and reference material out of the post, and do not imply the site repository or a local build verifies live voice quality.
+
+Make the browser helper explicit: `utils/bin/article-tts --browser-server` runs separately from the Jekyll server, with the bridge URL and voice supplied through the local environment. The Jekyll startup wrapper does not manage this relay. Show the command without exposing deployment-specific values.
+
 Keep the main article centered on the editing experience. Introduce retained narration as a separate publication decision and move its implementation detail to companion 7B. Freshness checks include cleaned prose, source identity, a public narration profile, chunk size, and the MP3 hash. Private voice or model changes require an intentional profile change; the manifest does not automatically discover them.
 
 Describe staged replacement precisely: the MP3 and manifest are replaced separately, not as one atomic transaction. A synthesis failure before replacement preserves the previous MP3; broader crash-recovery claims require additional evidence.
@@ -331,7 +336,7 @@ Keep technical approval, editorial approval, and publication authority separate.
 
 ## Next Assignment
 
-The [initial inventory](jekyll-site-tooling-inventory.md) records the source review and open evidence gaps. The maintenance CHANGELOG has been reconciled, and the Publisher approved Part 5 and Hands-On 5A. Part 6 and Hands-On 6A are now in the Jekyll source tree for local review, with a source packet and visuals. Next collect the Publisher's voice and factual edits on the pair and settle their date. The article demonstrates the existing viewer components; 6A exercises the two installed renderers without building an installation lab. Reserve the detailed commit checks and deployment gates for Part 8. For later installments, continue to answer:
+The [initial inventory](jekyll-site-tooling-inventory.md) records the source review and open evidence gaps. The maintenance CHANGELOG has been reconciled, and the Publisher committed the Part 6 pair while Part 7 was being drafted. Part 7 is in the Jekyll source tree for local review, with a source packet and visuals. Next collect the Publisher's voice and factual edits on Part 7 and settle its date. It keeps temporary proofreading separate from the optional retained-narration companion. Reserve the detailed commit checks and deployment gates for Part 8. For later installments, continue to answer:
 
 - Which commands are current entry points and which are backups, compatibility paths, or historical utilities?
 - Which scripts have tests, and what do those tests actually prove?
