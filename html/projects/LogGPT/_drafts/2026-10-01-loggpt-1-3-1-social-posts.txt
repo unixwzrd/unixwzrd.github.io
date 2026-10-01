@@ -1,0 +1,61 @@
+LogGPT 1.3.1 social drafts
+
+Release article: https://unixwzrd.ai/s/85549c98d6/
+Mac App Store: https://apps.apple.com/us/app/loggpt/id6743342693?mt=12
+
+Use the availability wording below until the App Store listing shows 1.3.1. After that, replace it with "LogGPT 1.3.1 is available now."
+
+
+==================================================
+LINKEDIN
+==================================================
+
+ChatGPT changed its conversation title bar, and LogGPT's download button stopped showing up where it should. LogGPT 1.3.1 fixes that.
+
+The button now appears just before Share in the current ChatGPT layout. The extension also handles earlier layouts and puts the button back if ChatGPT replaces the title bar as you move between conversations.
+
+The export workflow hasn't changed; this update makes sure you can get to it. If you already own LogGPT, the App Store will deliver 1.3.1 at no additional charge when Apple makes it available.
+
+Details: https://unixwzrd.ai/s/85549c98d6/
+
+#LogGPT #ChatGPT #SafariExtension #macOS
+
+
+==================================================
+PERSONAL REPOST
+==================================================
+
+One of those small fixes that matters a lot: ChatGPT moved things around in its title bar, so LogGPT's download button could disappear. Version 1.3.1 puts it back before Share and keeps it there when you switch conversations without reloading the page.
+
+https://unixwzrd.ai/s/85549c98d6/
+
+
+==================================================
+X / TWITTER
+==================================================
+
+LogGPT 1.3.1 fixes the missing download button after ChatGPT changed its title bar. It now sits before Share and returns if ChatGPT replaces the bar during in-page navigation. Existing owners get the update at no additional charge when available.
+
+https://unixwzrd.ai/s/85549c98d6/
+
+
+==================================================
+BLUESKY
+==================================================
+
+ChatGPT changed its title bar, and LogGPT's download button could disappear. LogGPT 1.3.1 restores it before Share and keeps it in place as you move between conversations. The export workflow itself is unchanged.
+
+https://unixwzrd.ai/s/85549c98d6/
+
+
+==================================================
+MASTODON
+==================================================
+
+LogGPT 1.3.1 fixes a compatibility issue caused by a change to ChatGPT's conversation title bar. The download button now appears before Share in the current layout, while support for earlier layouts remains. It also comes back if ChatGPT replaces the visible title bar during in-page navigation.
+
+If you already have LogGPT, the App Store will deliver the update at no additional charge when Apple makes it available.
+
+https://unixwzrd.ai/s/85549c98d6/
+
+#LogGPT #ChatGPT #SafariExtension #macOS
