@@ -1,0 +1,61 @@
+LogGPT 1.3.2 social drafts
+
+Release article: https://unixwzrd.ai/s/c6c0f02119/
+Mac App Store: https://apps.apple.com/us/app/loggpt/id6743342693?mt=12
+
+Status: Submitted to Apple. Do not say "available now" until the App Store lists 1.3.2.
+
+
+==================================================
+LINKEDIN
+==================================================
+
+ChatGPT moved its conversation controls again. LogGPT 1.3.1 brought the download button back, but while switching conversations we found a race in the follow-up button handling that could freeze Safari.
+
+LogGPT 1.3.2 fixes that race. The extension now skips hidden conversation headers, avoids trying to insert the button relative to itself, and handles page changes without repeatedly rebuilding the button. You should be able to move between conversations and still find Download where you expect it, without reloading the page.
+
+This is a stability fix; the export workflow itself has not changed. I've submitted 1.3.2 to Apple, and existing owners will receive the update at no additional charge when it becomes available.
+
+Read the update: https://unixwzrd.ai/s/c6c0f02119/
+
+#LogGPT #ChatGPT #SafariExtension #macOS
+
+
+==================================================
+PERSONAL REPOST
+==================================================
+
+Well, that was a quick follow-up. ChatGPT changed its UI, we put the LogGPT download button back, and then found a race that could freeze Safari as you switched conversations. I've fixed it in 1.3.2 and sent the update to Apple.
+
+https://unixwzrd.ai/s/c6c0f02119/
+
+
+==================================================
+X / TWITTER
+==================================================
+
+LogGPT 1.3.2 fixes a race that could freeze Safari when switching ChatGPT conversations. The download button now stays in place without repeatedly reconciling itself. Submitted to Apple; existing owners get the update at no additional charge when available.
+
+https://unixwzrd.ai/s/c6c0f02119/
+
+
+==================================================
+BLUESKY
+==================================================
+
+ChatGPT changed its UI, LogGPT restored its download button, and we found a race that could freeze Safari when switching conversations. LogGPT 1.3.2 fixes that follow-up issue. I've submitted it to Apple.
+
+https://unixwzrd.ai/s/c6c0f02119/
+
+
+==================================================
+MASTODON
+==================================================
+
+LogGPT 1.3.2 is a stability update. A race in the download button's handling of ChatGPT conversation changes could freeze Safari when switching conversations. The fix ignores hidden headers, prevents the button from anchoring itself, and limits how often it responds to page changes.
+
+The export workflow is unchanged. I've submitted the update to Apple; existing owners will receive it at no additional charge when it becomes available.
+
+https://unixwzrd.ai/s/c6c0f02119/
+
+#LogGPT #ChatGPT #SafariExtension #macOS

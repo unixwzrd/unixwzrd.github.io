@@ -13,6 +13,8 @@ image: /assets/images/projects/LogGPT/LogGPT-Plus.png
 published: true
 ---
 
+**October 3 update:** [LogGPT 1.3.2](/projects/LogGPT/2026/10/03/loggpt-1-3-2-safari-conversation-switching-fix/) fixes a button-handling race that could freeze Safari when switching conversations. The follow-up has been submitted to Apple.
+
 ChatGPT changed the structure of its conversation title bar, and the LogGPT download button stopped appearing where it should. **LogGPT 1.3.1** fixes that compatibility issue.
 
 The button now sits directly before **Share** in ChatGPT’s current action group. LogGPT also still recognizes earlier title-bar layouts and restores the button if ChatGPT replaces the visible bar while you move between conversations without reloading the page.
