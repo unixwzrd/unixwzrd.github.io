@@ -3,7 +3,7 @@ title: "Terms of Service"
 layout: page
 permalink: /Policies/General_ToS/
 image: /assets/images/default-og-image.png
-excerpt: "Effective Date: 2025-02-01"
+excerpt: "Terms for using the Distributed Thinking Systems website, including content limitations, third-party links, and liability."
 ---
 
 Effective Date: 2025-02-01

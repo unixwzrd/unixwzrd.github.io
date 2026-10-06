@@ -131,7 +131,7 @@ collections:
   project_posts:
     output: true
 
-tagline: "Mostly computing on and off."
+tagline: "Local AI, Secure Automation, and Unix Systems"
 page_excerpts: false
 excerpt_separator: "<!--more-->"
 show_excerpts: true
@@ -257,4 +257,12 @@ exclude:
   - docs/
   # Hands-On 2A's nested Jekyll site is a downloadable fixture, not site content.
   - assets/code/jekyll-site-tooling/post-02a/preview-lab/site/
+  # Part 3A's nested lab page and cases belong in the downloadable fixture, not the public site.
+  - assets/code/jekyll-site-tooling/post-03a/taxonomy-lab/site/index.md
+  - assets/code/jekyll-site-tooling/post-03a/taxonomy-lab/cases/
   - "**/*-social-posts.txt"
+
+# The Part 3A article offers these nested lab files as individual downloads.
+include:
+  - assets/code/jekyll-site-tooling/post-03a/taxonomy-lab/site/_data/tag_taxonomy.yml
+  - assets/code/jekyll-site-tooling/post-03a/taxonomy-lab/site/_plugins/03_tag_taxonomy_validator.rb

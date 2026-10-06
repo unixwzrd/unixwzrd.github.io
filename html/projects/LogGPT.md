@@ -5,7 +5,7 @@ appstore_link: https://apps.apple.com/us/app/loggpt/id6743342693?mt=12
 category: LogGPT
 permalink: /projects/LogGPT/
 image: /assets/images/projects/LogGPT/LogGPT-Plus.png
-excerpt: "LogGPT 1.3.0 exports ChatGPT and ChatGPT Work conversations as structured JSON, while LogGPT Plus preserves generated and uploaded artifacts in a portable ZIP."
+excerpt: "LogGPT for Safari exports ChatGPT conversations as structured JSON; the LogGPT Plus upgrade preserves generated and uploaded artifacts in a portable ZIP."
 ---
 
 ## Local Archives for ChatGPT Conversations and Artifacts
@@ -35,7 +35,7 @@ LogGPT fits the broader Distributed Thinking Systems stack as the capture layer 
 
 ## Development & Availability
 
-LogGPT is available for **Safari on macOS** through its [App Store listing](https://apps.apple.com/us/app/loggpt/id6743342693?mt=12). Version 1.2.1 is the current public release. Version 1.3.0 is now in Apple’s review process and adds ChatGPT Work artifact support while retaining the export progress and cancellation introduced in 1.2.1. Anyone getting LogGPT now will receive version 1.3.0 through the same App Store listing when it is released. Existing owners receive the update at no additional charge, and LogGPT supports Family Sharing. Basic JSON export remains available without the upgrade; LogGPT Plus is a permanent in-app purchase. The project is also available on [GitHub](https://github.com/unixwzrd/LogGPT).
+LogGPT is available for **Safari on macOS** through its [App Store listing](https://apps.apple.com/us/app/loggpt/id6743342693?mt=12). Basic JSON export remains available without the upgrade; LogGPT Plus is a permanent in-app purchase. App Store updates arrive when Apple approves them, and LogGPT supports Family Sharing. The project is also available on [GitHub](https://github.com/unixwzrd/LogGPT).
 
 For details on **installation, usage, and technical documentation**, refer to the project's **[README](https://github.com/unixwzrd/LogGPT)**.
 

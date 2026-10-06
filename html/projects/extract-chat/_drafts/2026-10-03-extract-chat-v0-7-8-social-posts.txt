@@ -1,0 +1,113 @@
+extract-chat v0.7.8 social drafts
+
+Release article:
+https://unixwzrd.ai/projects/extract-chat/2026/10/03/extract-chat-v0-7-8-transcript-fidelity-and-archive-repairs/
+
+Short URL:
+https://unixwzrd.ai/s/a2dfbc9bc2/
+
+Tagged release:
+https://github.com/unixwzrd/extract-chat/tree/v0.7.8
+
+Publish these after the site article and short URL are live.
+
+Suggested hashtags:
+#ExtractChat #ChatGPT #LogGPT #DataPortability #OpenSource
+
+
+==================================================
+LINKEDIN
+==================================================
+
+An exported conversation can look complete while quietly losing part of a message or pointing to a file that isn't there anymore. Those are the bugs I wanted to get out of extract-chat.
+
+Version 0.7.8 preserves `Sources` blocks and `References` headings when they are part of the message itself, including text pasted from a document or code. It also handles exports that mix timestamps in seconds and milliseconds, and uses an unknown date instead of aborting when a timestamp is outside the supported calendar range.
+
+This update includes the v0.7.7 archive repairs too: older ZIP filenames can be recovered when the artifact manifest confirms them, files differing only by letter case no longer overwrite each other on case-insensitive systems, and Markdown and HTML links point to preserved local artifacts rather than temporary extraction paths. The original ZIP and JSON stay untouched.
+
+If you use LogGPT to save conversations and extract-chat to make them readable, this release is about keeping the transcript and its files together, even when the export came from a different generation of ChatGPT.
+
+Read the update: https://unixwzrd.ai/s/a2dfbc9bc2/
+
+#ExtractChat #LogGPT #ChatGPT #DataPortability #OpenSource
+
+
+---- Personal repost ----
+
+The frustrating archive bugs are the ones that leave you with something that looks mostly right. A heading in the original message gets mistaken for generated output, or a file link works only while the temporary extraction directory exists.
+
+extract-chat 0.7.8 fixes those cases, handles mixed timestamp formats, and carries forward the older-ZIP and artifact repairs from 0.7.7. The source files don't get rewritten.
+
+https://unixwzrd.ai/s/a2dfbc9bc2/
+
+#ExtractChat #DataPortability
+
+
+==================================================
+X / TWITTER
+==================================================
+
+extract-chat v0.7.8 keeps authored Sources/References text, handles mixed timestamp units, and repairs older LogGPT ZIP artifact links. Original ZIPs and JSON stay untouched.
+
+https://unixwzrd.ai/s/a2dfbc9bc2/
+
+#ExtractChat #LogGPT
+
+
+Alt version:
+
+An archive isn't portable if a file link points into a temporary directory. extract-chat 0.7.8 keeps linked artifacts with the rendered Markdown/HTML and fixes cases where authored Sources or References text was cut off.
+
+https://unixwzrd.ai/s/a2dfbc9bc2/
+
+
+==================================================
+BLUESKY
+==================================================
+
+extract-chat v0.7.8 keeps more of the original conversation intact: authored Sources and References sections survive rendering, mixed timestamp formats no longer derail dated output, and older LogGPT ZIP artifacts keep working local links.
+
+https://unixwzrd.ai/s/a2dfbc9bc2/
+
+
+==================================================
+MASTODON
+==================================================
+
+extract-chat v0.7.8 is available as a tagged release. It fixes a transcript-rendering bug that could cut off a message when the author's own text contained a Sources block or References heading. It also handles mixed second/millisecond timestamps and falls back to an unknown date for out-of-range values rather than aborting the export.
+
+The release includes the v0.7.7 archive repairs: manifest-confirmed recovery of older UTF-8 ZIP filenames, distinct output names for files that differ only by case, and local artifact links that survive after temporary extraction files are gone. Original ZIPs and JSON are not rewritten.
+
+https://unixwzrd.ai/s/a2dfbc9bc2/
+
+#ExtractChat #LogGPT #ChatGPT #DataPortability #OpenSource
+
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+extract-chat v0.7.8: Keep the Whole Conversation and Its Files
+
+Subtitle:
+Transcript-fidelity, timestamp, and older-archive repairs for LogGPT downloads.
+
+Body:
+
+An exported conversation can appear complete while losing the end of a message or leaving links to files that only existed during extraction. Version 0.7.8 addresses both problems.
+
+When a message includes its own Sources block or References heading, extract-chat now keeps that authored text in Markdown and HTML rather than confusing it with a generated section. It also handles exports mixing Unix timestamps in seconds and milliseconds. A date outside the supported calendar range becomes an unknown date instead of stopping the entire export.
+
+The release includes the archive repairs from v0.7.7. Older ZIP member names can be recovered when the artifact manifest confirms the intended UTF-8 path. Files whose paths differ only by case remain distinct on case-insensitive filesystems. Linked artifacts are copied beside the rendered output, so Markdown and HTML don't depend on a temporary extraction directory. Derived manifests record changed output paths while preserving the original archive path; the source ZIP and JSON remain untouched.
+
+LogGPT captures the conversation and available artifacts. extract-chat turns that local JSON or ZIP into a readable record you can keep and reprocess.
+
+Read the full update:
+https://unixwzrd.ai/s/a2dfbc9bc2/
+
+Get extract-chat:
+https://github.com/unixwzrd/extract-chat/tree/v0.7.8
+
+Tags:
+extract-chat, LogGPT, ChatGPT, Data Portability, Open Source, Python, Digital Archiving

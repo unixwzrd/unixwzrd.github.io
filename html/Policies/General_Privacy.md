@@ -3,7 +3,7 @@ title: "General Privacy Policy"
 layout: page
 permalink: /Policies/General_Privacy/
 image: /assets/images/default-og-image.png
-excerpt: "Effective Date: 2025-02-01"
+excerpt: "Privacy policy for the LogGPT Safari extension, including its local handling of chat exports and user data."
 ---
 
 Effective Date: 2025-02-01
