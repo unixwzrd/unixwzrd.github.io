@@ -3,7 +3,7 @@ short_url: "https://unixwzrd.ai/s/ac9e64bf66/"
 short_link_basis: "/_posts/series/beyond-static-building-a-publication-system-around-jekyll/2026-11-05-proofreading-a-blog-by-listening-to-it.md"
 layout: post
 title: "Proofreading a Blog by Listening to It"
-date: 2026-11-05 08:00:00 -0600
+date: 2026-10-11 11:00:00 -0500
 categories: [technology]
 tags: [jekyll, website-development, developer-workflow, automation]
 excerpt: "I can read a draft three times and still miss the sentence that sounds wrong. Listening to the rendered post gives me another way to edit it."
@@ -13,9 +13,13 @@ series_order: 70
 series_total: 10
 series_url: /blog/series/beyond-static-building-a-publication-system-around-jekyll/
 series_previous_title: "Diagrams and Source Code That Behave Like Editorial Content"
-series_previous_url: /technology/2026/10/29/diagrams-and-source-code-that-behave-like-editorial-content/
+series_previous_url: /technology/2026/10/11/diagrams-and-source-code-that-behave-like-editorial-content/
 series_next_title: "Checks, Repairs, and the Gates Before Deployment"
+series_next_url: /technology/2026/10/11/checks-repairs-and-the-gates-before-deployment/
+series_next_date: 2026-10-11 11:15:00 -0500
 image: /assets/images/blog/jekyll-site-tooling/post-07-listening-proofread-hero.png
+redirect_from:
+  - /technology/2026/11/05/proofreading-a-blog-by-listening-to-it/
 ---
 
 I was proofreading a blog post and thought it would be useful if the page could read a paragraph back to me. I already had local text-to-speech, so why not select some text, press Play, and listen? Then I wanted Pause. And Stop. And Restart. Before long I was thinking about saving an MP3 too. I wrote about that tangent in [Scope Creep Has Never Been This Easy]({{ '/s/7037a514e9/' | relative_url }}). The original job was still to finish the article.
@@ -33,7 +37,7 @@ The proofreader starts with the rendered post body. It keeps the title, headings
 The Python command makes that boundary easy to inspect before any voice is involved. With the local review server running and the repository's Python dependencies available, I can ask what it would read:
 
 ```bash
-python3 utils/bin/article_tts.py http://localhost:4000/technology/2026/11/05/proofreading-a-blog-by-listening-to-it/ --dry-run
+python3 utils/bin/article_tts.py http://localhost:4000/technology/2026/10/11/proofreading-a-blog-by-listening-to-it/ --dry-run
 ```
 
 That prints the extracted prose and the size of each proposed chunk without contacting the speech engine. I use it when a post has a new kind of include or an odd bit of formatting. If the extractor swallowed a paragraph or started reading a code listing, I want to find that before listening. The browser player has its own JavaScript extraction path with the same editorial aim, so a dry run is a check of the command-line path, not a byte-for-byte preview of every browser request.

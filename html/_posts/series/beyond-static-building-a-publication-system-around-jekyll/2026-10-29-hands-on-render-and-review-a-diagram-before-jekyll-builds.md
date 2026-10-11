@@ -3,7 +3,7 @@ short_url: "https://unixwzrd.ai/s/98d8e525e3/"
 short_link_basis: "/_posts/series/beyond-static-building-a-publication-system-around-jekyll/2026-10-29-hands-on-render-and-review-a-diagram-before-jekyll-builds.md"
 layout: post
 title: "Hands-On: Render and Review a Diagram Before Jekyll Builds"
-date: 2026-10-29 10:00:00 -0500
+date: 2026-10-11 10:15:00 -0500
 categories: [hands-on]
 tags: [jekyll, website-development, developer-workflow, automation]
 excerpt: "Take the actual DOT and Mermaid sources from Part 6, render them locally, change a label, and see where the Jekyll build begins."
@@ -14,11 +14,13 @@ series_total: 10
 series_url: /blog/series/beyond-static-building-a-publication-system-around-jekyll/
 series_companion_of: 6
 series_previous_title: "Diagrams and Source Code That Behave Like Editorial Content"
-series_previous_url: /technology/2026/10/29/diagrams-and-source-code-that-behave-like-editorial-content/
+series_previous_url: /technology/2026/10/11/diagrams-and-source-code-that-behave-like-editorial-content/
 series_next_title: "Proofreading a Blog by Listening to It"
-series_next_url: /technology/2026/11/05/proofreading-a-blog-by-listening-to-it/
-series_next_date: 2026-11-05 08:00:00 -0600
+series_next_url: /technology/2026/10/11/proofreading-a-blog-by-listening-to-it/
+series_next_date: 2026-10-11 11:00:00 -0500
 image: /assets/images/blog/jekyll-site-tooling/post-06-diagrams-and-source-hero.png
+redirect_from:
+  - /hands-on/2026/10/29/hands-on-render-and-review-a-diagram-before-jekyll-builds/
 ---
 
 The [Part 6 article]({{ page.series_previous_url | relative_url }}) shows two diagrams in the finished page. This exercise starts one step earlier, with the actual `.dot` and `.mmd` files behind them. I want to see a source edit turn into a new SVG and PNG before Jekyll ever gets involved. That is how I work on this site today: render, inspect, and then let Jekyll publish the reviewed image.

@@ -3,7 +3,7 @@ short_url: "https://unixwzrd.ai/s/2d11ffe75d/"
 short_link_basis: "/_posts/series/beyond-static-building-a-publication-system-around-jekyll/2026-10-22-from-a-yaml-project-catalog-to-a-project-publishing-system.md"
 layout: post
 title: "From a YAML Project Catalog to a Project Publishing System"
-date: 2026-10-22 08:00:00 -0500
+date: 2026-10-11 09:00:00 -0500
 categories: [technology]
 tags: [jekyll, website-development, developer-workflow, automation]
 excerpt: "A project is more than one page here. I wanted one catalog entry to lead to a card, a place in navigation, a landing page, and a blog for its updates."
@@ -13,14 +13,16 @@ series_order: 50
 series_total: 10
 series_url: /blog/series/beyond-static-building-a-publication-system-around-jekyll/
 series_previous_title: "Stable URLs in a Repository That Keeps Moving"
-series_previous_url: /technology/2026/10/15/stable-urls-in-a-repository-that-keeps-moving/
+series_previous_url: /technology/2026/10/11/stable-urls-in-a-repository-that-keeps-moving/
 series_next_title: "Diagrams and Source Code That Behave Like Editorial Content"
-series_next_url: /technology/2026/10/29/diagrams-and-source-code-that-behave-like-editorial-content/
-series_next_date: 2026-10-29 08:00:00 -0500
+series_next_url: /technology/2026/10/11/diagrams-and-source-code-that-behave-like-editorial-content/
+series_next_date: 2026-10-11 10:00:00 -0500
 series_companion_title: "Hands-On: Follow a Project Through the Catalog"
-series_companion_url: /hands-on/2026/10/22/hands-on-follow-a-project-through-the-catalog/
-series_companion_date: 2026-10-22 10:00:00 -0500
+series_companion_url: /hands-on/2026/10/11/hands-on-follow-a-project-through-the-catalog/
+series_companion_date: 2026-10-11 09:15:00 -0500
 image: /assets/images/blog/jekyll-site-tooling/post-05-project-catalog-hero.png
+redirect_from:
+  - /technology/2026/10/22/from-a-yaml-project-catalog-to-a-project-publishing-system/
 ---
 
 Jekyll started out looking like a way to publish a blog. I still have blog posts, but there is no longer one stream that makes sense for everything on this site. A technical article, a tutorial, a series installment, and an update about one of my projects have different jobs. I wanted readers to find each one where it belongs without maintaining a second website every time the material grew.

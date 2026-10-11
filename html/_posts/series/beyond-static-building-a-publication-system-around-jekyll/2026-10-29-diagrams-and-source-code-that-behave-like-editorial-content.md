@@ -3,7 +3,7 @@ short_url: "https://unixwzrd.ai/s/8608a60e12/"
 short_link_basis: "/_posts/series/beyond-static-building-a-publication-system-around-jekyll/2026-10-29-diagrams-and-source-code-that-behave-like-editorial-content.md"
 layout: post
 title: "Diagrams and Source Code That Behave Like Editorial Content"
-date: 2026-10-29 08:00:00 -0500
+date: 2026-10-11 10:00:00 -0500
 categories: [technology]
 tags: [jekyll, website-development, developer-workflow, automation]
 excerpt: "A correct diagram can still be unreadable, and a useful code file can take over an article. I gave each artifact a place in the reading flow."
@@ -13,14 +13,16 @@ series_order: 60
 series_total: 10
 series_url: /blog/series/beyond-static-building-a-publication-system-around-jekyll/
 series_previous_title: "From a YAML Project Catalog to a Project Publishing System"
-series_previous_url: /technology/2026/10/22/from-a-yaml-project-catalog-to-a-project-publishing-system/
+series_previous_url: /technology/2026/10/11/from-a-yaml-project-catalog-to-a-project-publishing-system/
 series_companion_title: "Hands-On: Render and Review a Diagram Before Jekyll Builds"
-series_companion_url: /hands-on/2026/10/29/hands-on-render-and-review-a-diagram-before-jekyll-builds/
-series_companion_date: 2026-10-29 10:00:00 -0500
+series_companion_url: /hands-on/2026/10/11/hands-on-render-and-review-a-diagram-before-jekyll-builds/
+series_companion_date: 2026-10-11 10:15:00 -0500
 series_next_title: "Proofreading a Blog by Listening to It"
-series_next_url: /technology/2026/11/05/proofreading-a-blog-by-listening-to-it/
-series_next_date: 2026-11-05 08:00:00 -0600
+series_next_url: /technology/2026/10/11/proofreading-a-blog-by-listening-to-it/
+series_next_date: 2026-10-11 11:00:00 -0500
 image: /assets/images/blog/jekyll-site-tooling/post-06-diagrams-and-source-hero.png
+redirect_from:
+  - /technology/2026/10/29/diagrams-and-source-code-that-behave-like-editorial-content/
 ---
 
 I can explain a publishing path in prose, but sometimes the reader needs to see the pieces at once. That is when I reach for a diagram. The trouble is that a diagram can be technically correct and still be miserable to read: too wide for the article, tiny labels on a phone, or dark lines that disappear against the site's background. Code has a similar problem. A few commands belong in the story, but a complete script can swallow several screens before the reader gets back to the point.

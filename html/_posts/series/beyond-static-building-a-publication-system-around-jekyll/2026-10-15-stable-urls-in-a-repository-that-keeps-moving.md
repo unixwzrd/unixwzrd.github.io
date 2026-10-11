@@ -3,7 +3,7 @@ short_link_basis: "/_posts/series/beyond-static-building-a-publication-system-ar
 short_url: "https://unixwzrd.ai/s/213165a2ee/"
 layout: post
 title: "Stable URLs in a Repository That Keeps Moving"
-date: 2026-10-15 08:00:00 -0500
+date: 2026-10-11 08:00:00 -0500
 categories: [technology]
 tags: [jekyll, website-development, developer-workflow, automation]
 excerpt: "I can reorganize the source all I want, but a link I have already given somebody needs a more deliberate kind of change."
@@ -15,12 +15,14 @@ series_url: /blog/series/beyond-static-building-a-publication-system-around-jeky
 series_previous_title: "Building the Site from Shared Layouts, Includes, and Data"
 series_previous_url: /technology/2026/10/08/building-the-site-from-shared-layouts-includes-and-data/
 series_next_title: "From a YAML Project Catalog to a Project Publishing System"
-series_next_url: /technology/2026/10/22/from-a-yaml-project-catalog-to-a-project-publishing-system/
-series_next_date: 2026-10-22 08:00:00 -0500
+series_next_url: /technology/2026/10/11/from-a-yaml-project-catalog-to-a-project-publishing-system/
+series_next_date: 2026-10-11 09:00:00 -0500
 series_companion_title: "Hands-On: Keep a Short Link Through a Source Move"
-series_companion_url: /hands-on/2026/10/15/hands-on-keep-a-short-link-through-a-source-move/
-series_companion_date: 2026-10-15 10:00:00 -0500
+series_companion_url: /hands-on/2026/10/11/hands-on-keep-a-short-link-through-a-source-move/
+series_companion_date: 2026-10-11 08:15:00 -0500
 image: /assets/images/blog/jekyll-site-tooling/post-04-stable-urls-hero.png
+redirect_from:
+  - /technology/2026/10/15/stable-urls-in-a-repository-that-keeps-moving/
 ---
 
 I have moved a lot of files around in this repository. Organizing the source is my problem. A reader who saved a link to an article should not have to care which directory I decided to put the Markdown in this week.

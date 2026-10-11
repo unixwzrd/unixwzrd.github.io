@@ -123,3 +123,13 @@ The source-to-listening-loop diagram is `html/assets/code/jekyll-site-tooling/po
 ```bash
 python3 utils/bin/render-blog-diagram.py html/assets/code/jekyll-site-tooling/post-07/listening-loop.dot html/assets/images/blog/jekyll-site-tooling/post-07-listening-loop
 ```
+
+## Part 8 additions
+
+Part 8 and Hands-On 8A use `html/assets/images/blog/jekyll-site-tooling/post-08-checks-and-gates-hero.png`, a 2:1 banner generated with the built-in imagegen tool. The prompt asked for a dark tactile publishing workbench, distinct inspection stations, a human-operated gate, a return path for repair, and no text or logos. The editable diagram source is `html/assets/code/jekyll-site-tooling/post-08/check-boundaries.dot`; its SVG and PNG companions are under `html/assets/images/blog/jekyll-site-tooling/`. It depicts the conceptual local-to-Pages sequence, not a claim that all local checks are mandatory or read-only.
+
+Render the diagram from the repository root with:
+
+```bash
+python3 utils/bin/render-blog-diagram.py html/assets/code/jekyll-site-tooling/post-08/check-boundaries.dot html/assets/images/blog/jekyll-site-tooling/post-08-check-boundaries
+```

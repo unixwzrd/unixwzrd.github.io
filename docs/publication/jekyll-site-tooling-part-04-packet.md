@@ -1,6 +1,6 @@
 # Part 4: Stable URLs in a Repository That Keeps Moving
 
-Status: source-reviewed local draft, September 25, 2026. October 15 is a provisional preview date. The Publisher authorized continuing the series and has not set a remote publication date.
+Status: source-reviewed September 25, 2026, and previously committed. On October 11 the Publisher asked to move the remaining installments forward; this post and Hands-On 4A now have October 11 front-matter dates locally. The original source filenames and short-link bases remain stable, and the old dated routes redirect to the new ones. No push of the revised dates has occurred.
 
 Publisher correction: the short-link feature was motivated by sharing articles on X/Twitter, Bluesky, and other character-limited social posts. Keeping redirects in the Jekyll site avoided relying on an external shortening service. This first-person motivation is now in the main article and Hands-On introduction; the current plugin and Jekyll redirect generation support the implementation claim.
 

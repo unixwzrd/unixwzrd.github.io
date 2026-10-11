@@ -2,7 +2,7 @@
 
 ## Project Status
 
-Updated September 26, 2026. The Publisher committed Part 6 and Hands-On 6A at `0f128b8`, which currently matches `origin/main`; remote publication was not independently checked here. Part 7 is in the Jekyll post tree for local review, with November 5 as its provisional date. Source packets and visual assets are linked below.
+Updated October 11, 2026. Parts 1 through 7 and Hands-On 2A through 6A are committed in the Jekyll post tree. At the Publisher's direction, Parts 4 through 8 and their companions now have October 11 front-matter dates in local changes, preserving their order for the next production build. Part 8 and Hands-On 8A remain uncommitted local review drafts. Source packets and visual assets are linked below.
 
 - [Source inventory and evidence boundaries](jekyll-site-tooling-inventory.md)
 - [Review journal](jekyll-site-tooling-review.md)
@@ -16,6 +16,7 @@ Updated September 26, 2026. The Publisher committed Part 6 and Hands-On 6A at `0
 - [Part 5 evidence packet and local draft handoff](jekyll-site-tooling-part-05-packet.md)
 - [Part 6 evidence packet and local draft handoff](jekyll-site-tooling-part-06-packet.md)
 - [Part 7 evidence packet and local draft handoff](jekyll-site-tooling-part-07-packet.md)
+- [Part 8 evidence packet and publishing handoff](jekyll-site-tooling-part-08-packet.md)
 - [Reusable package candidates and first pilot](jekyll-site-tooling-reuse-packaging.md)
 
 The editorial spine is a concrete publishing problem, the implementation it produced, and its remaining limits. Keep ten main installments. Companions are optional and should earn their place through an independently useful exercise.
@@ -48,9 +49,9 @@ Lean technical when a choice needs teeth, but keep the argument readable. Explai
 
 ## Publication Boundary
 
-The Publisher has authorized local post-tree drafts and browser previews for this series and has handled publication of prior installments. The current Part 7 task does not authorize commits, pushes, deployment, or remote publication of the new installment.
+The Publisher authorized moving the remaining series installments forward but explicitly reserved the push until after reviewing and validating Part 8 and its companion. The revised October 11 dates make Parts 4 through 8 eligible in the next production build; they are not live merely because local source changed. The live site showed only Parts 1 and 2 on October 11, despite Part 3's October 8 source date, because a date does not trigger the current Pages workflow to rebuild.
 
-Keep research and review packets under `docs/publication/`. Parts 1 through 7, Hands-On 2A through 6A, and the landing page are in the Jekyll source tree; their exact paths are in the linked packets. Do not restart the watched local Jekyll server merely to make a source edit visible. Do not create alternate build destinations inside the repository. Commit, push, deployment, and remote publication remain separate decisions.
+Keep research and review packets under `docs/publication/`. Parts 1 through 8, Hands-On 2A through 6A and 8A, and the landing page are in the Jekyll source tree; their exact paths are in the linked packets. Do not restart the watched local Jekyll server merely to make a source edit visible. Do not create alternate build destinations inside the repository.
 
 Before describing any tool as current, tested, deployed, automatic, or reliable, verify that claim against its present source, documentation, tests, workflow configuration, and retained operational evidence. The repository contains older utilities, backups, derived output, runtime files, and documentation that may no longer describe the active path.
 
@@ -263,11 +264,11 @@ Do not publish private TTS endpoints, voice samples, transcripts, model paths, v
 
 Map the local checks and GitHub workflow: environment, permalinks, Jekyll doctor, internal and external links, large files, builds, required files, Liquid syntax, front matter, navigation, image paths, taxonomy, short URLs, and redirects. Explain the value and cost of layering quick focused checks ahead of a full production build.
 
-Use the present checkout's installed `.git/hooks/pre-commit` as local evidence: it calls `check_site.sh` while skipping the project-data refresh step. Compare that with the separate optional `pre-commit` framework configuration and with `jekyll-site -c`, which opts into an HTMLProofer link pass. Identify which checks run by default, which are opt-in, which can rebuild or alter files, and which are actually configured in GitHub Actions. A commit hook is not a push hook; describe the Publisher's review-before-push practice without claiming that every push runs the entire local suite.
+Use the present checkout's installed `.git/hooks/pre-commit` as local evidence: it attempts to skip the project-data refresh step, but passes the name with `.sh` while `check_site.sh` compares names without the extension. The skip therefore misses in the inspected hook. Compare that with the separate optional `pre-commit` framework configuration and with `jekyll-site -c`, which opts into an HTMLProofer link pass. Identify which checks run by default, which are opt-in, which can rebuild or alter files, and which are actually configured in GitHub Actions. A commit hook is not a push hook; describe the Publisher's review-before-push practice without claiming that every push runs the entire local suite.
 
 Separate observational checks from source repairs, generated-data refreshes, Git staging, and build-output replacement. The numbered suite includes mutating steps and must not be recommended as a read-only audit. Show the GitHub Actions gates separately from the broader local suite and optional pre-commit configuration. Hook configuration does not prove installation. Identify duplicate, historical, or partially overlapping checks rather than claiming the directory is a perfectly unified framework. Report commands and pass counts only after current execution against an identified revision.
 
-**Possible Hands-On 8A:** Construct a small fail-fast prepublication check runner with independent, diagnosable gates.
+**Hands-On 8A:** Run a small Python prepublication checker against invented front matter, local links, and image paths. The source is downloadable; each scenario retains its isolated fixture and shows where fail-fast execution stops. It does not run the site's mutating check suite.
 
 ### 9. Monitoring a Static Site After Deployment
 
@@ -336,7 +337,7 @@ Keep technical approval, editorial approval, and publication authority separate.
 
 ## Next Assignment
 
-The [initial inventory](jekyll-site-tooling-inventory.md) records the source review and open evidence gaps. The maintenance CHANGELOG has been reconciled, and the Publisher committed the Part 6 pair while Part 7 was being drafted. Part 7 is in the Jekyll source tree for local review, with a source packet and visuals. Next collect the Publisher's voice and factual edits on Part 7 and settle its date. It keeps temporary proofreading separate from the optional retained-narration companion. Reserve the detailed commit checks and deployment gates for Part 8. For later installments, continue to answer:
+The [initial inventory](jekyll-site-tooling-inventory.md) records the source review and open evidence gaps. Parts 1 through 7 and companions 2A through 6A are committed, and the remaining dates have been moved to October 11 in the local source. Part 8 and Hands-On 8A cover the local and Pages check boundaries and await the Publisher's review before any push. After that, research the actual monitoring configuration and runtime evidence for Part 9. For later installments, continue to answer:
 
 - Which commands are current entry points and which are backups, compatibility paths, or historical utilities?
 - Which scripts have tests, and what do those tests actually prove?

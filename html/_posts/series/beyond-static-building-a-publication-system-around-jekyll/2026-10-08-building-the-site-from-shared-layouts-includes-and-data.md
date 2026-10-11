@@ -15,8 +15,8 @@ series_url: /blog/series/beyond-static-building-a-publication-system-around-jeky
 series_previous_title: "A Local Jekyll Server I Can Actually Operate"
 series_previous_url: /technology/2026/10/01/a-local-jekyll-server-i-can-actually-operate/
 series_next_title: "Stable URLs in a Repository That Keeps Moving"
-series_next_url: /technology/2026/10/15/stable-urls-in-a-repository-that-keeps-moving/
-series_next_date: 2026-10-15 08:00:00 -0500
+series_next_url: /technology/2026/10/11/stable-urls-in-a-repository-that-keeps-moving/
+series_next_date: 2026-10-11 08:00:00 -0500
 series_companion_title: "Hands-On: Find the Limits of a Jekyll Metadata Check"
 series_companion_url: /hands-on/2026/10/08/hands-on-find-the-limits-of-a-jekyll-metadata-check/
 series_companion_date: 2026-10-08 10:00:00 -0500

@@ -3,7 +3,7 @@ short_url: "https://unixwzrd.ai/s/472134b8b4/"
 short_link_basis: "/_posts/series/beyond-static-building-a-publication-system-around-jekyll/2026-10-22-hands-on-follow-a-project-through-the-catalog.md"
 layout: post
 title: "Hands-On: Follow a Project Through the Catalog"
-date: 2026-10-22 10:00:00 -0500
+date: 2026-10-11 09:15:00 -0500
 categories: [hands-on]
 tags: [jekyll, website-development, developer-workflow, automation]
 excerpt: "Run an offline copy of the project generator on three invented repositories and inspect the data and scaffolding it produces."
@@ -14,11 +14,13 @@ series_total: 10
 series_url: /blog/series/beyond-static-building-a-publication-system-around-jekyll/
 series_companion_of: 5
 series_previous_title: "From a YAML Project Catalog to a Project Publishing System"
-series_previous_url: /technology/2026/10/22/from-a-yaml-project-catalog-to-a-project-publishing-system/
+series_previous_url: /technology/2026/10/11/from-a-yaml-project-catalog-to-a-project-publishing-system/
 series_next_title: "Diagrams and Source Code That Behave Like Editorial Content"
-series_next_url: /technology/2026/10/29/diagrams-and-source-code-that-behave-like-editorial-content/
-series_next_date: 2026-10-29 08:00:00 -0500
+series_next_url: /technology/2026/10/11/diagrams-and-source-code-that-behave-like-editorial-content/
+series_next_date: 2026-10-11 10:00:00 -0500
 image: /assets/images/blog/jekyll-site-tooling/post-05-project-catalog-hero.png
+redirect_from:
+  - /hands-on/2026/10/22/hands-on-follow-a-project-through-the-catalog/
 ---
 
 I can describe the project catalog all day, but I find it easier to understand once I can see what a single refresh writes. This lab runs a frozen copy of the current project generator against three invented repositories. It keeps the experiment out of the real site and replaces GitHub requests and image rendering with local stand-ins.

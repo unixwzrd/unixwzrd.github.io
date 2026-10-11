@@ -3,7 +3,7 @@ short_link_basis: "/_posts/series/beyond-static-building-a-publication-system-ar
 short_url: "https://unixwzrd.ai/s/d73dbf7bb9/"
 layout: post
 title: "Hands-On: Keep a Short Link Through a Source Move"
-date: 2026-10-15 10:00:00 -0500
+date: 2026-10-11 08:15:00 -0500
 categories: [hands-on]
 tags: [jekyll, website-development, developer-workflow, automation]
 excerpt: "Run the site's short-link calculation on invented posts and watch what stays fixed when a source path changes."
@@ -14,11 +14,13 @@ series_total: 10
 series_url: /blog/series/beyond-static-building-a-publication-system-around-jekyll/
 series_companion_of: 4
 series_previous_title: "Stable URLs in a Repository That Keeps Moving"
-series_previous_url: /technology/2026/10/15/stable-urls-in-a-repository-that-keeps-moving/
+series_previous_url: /technology/2026/10/11/stable-urls-in-a-repository-that-keeps-moving/
 series_next_title: "From a YAML Project Catalog to a Project Publishing System"
-series_next_url: /technology/2026/10/22/from-a-yaml-project-catalog-to-a-project-publishing-system/
-series_next_date: 2026-10-22 08:00:00 -0500
+series_next_url: /technology/2026/10/11/from-a-yaml-project-catalog-to-a-project-publishing-system/
+series_next_date: 2026-10-11 09:00:00 -0500
 image: /assets/images/blog/jekyll-site-tooling/post-04-stable-urls-hero.png
+redirect_from:
+  - /hands-on/2026/10/15/hands-on-keep-a-short-link-through-a-source-move/
 ---
 
 I put short links into this site so I could share articles on X/Twitter, Bluesky, and other places with tight post lengths without depending on an external redirect service. I want those links under our control, including when I change how the article's page is named. If I calculate a short link from a source path and then reorganize the source, though, the same calculation gives me a different link. That is exactly what I was trying to avoid.

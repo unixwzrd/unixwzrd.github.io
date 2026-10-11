@@ -1,0 +1,20 @@
+digraph CheckBoundaries {
+  graph [bgcolor="#111923", pad="0.35", rankdir="TB", nodesep="0.45", ranksep="0.60", fontname="Helvetica", fontcolor="#edf2f5", label="A check is evidence, not a publishing decision", labelloc="t", fontsize=20];
+  node [shape=box, style="rounded,filled", color="#587080", fillcolor="#20303d", fontcolor="#f4f5f6", fontname="Helvetica", fontsize=12, margin="0.17,0.12"];
+  edge [color="#9db1bc", arrowsize=0.7, penwidth=1.5];
+  source [label="Article source\nmetadata, links, assets", fillcolor="#513d28", color="#d4a660"];
+  focused [label="Focused checks\nshort URLs, tags, redirects"];
+  suite [label="Local numbered suite\nbuilds plus repair steps"];
+  review [label="Review changed files\nand rendered site", fillcolor="#234243", color="#73b8b5"];
+  push [label="Human push decision", fillcolor="#513d28", color="#d4a660"];
+  ci [label="Pages workflow\nproduction build + verifiers"];
+  deploy [label="Pages deployment", fillcolor="#263958", color="#80a6d7"];
+  { rank=same; source; focused; suite; review; }
+  { rank=same; push; ci; deploy; }
+  source -> focused -> suite -> review [constraint=false];
+  review -> push;
+  push -> ci -> deploy [constraint=false];
+  focused -> ci [style=invis, weight=4];
+  suite -> deploy [style=invis, weight=4];
+  review:n -> source:n [style=dashed, color="#d4a660", constraint=false];
+}

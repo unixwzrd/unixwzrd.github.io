@@ -1,6 +1,6 @@
 # Part 6: Diagrams and Source Code That Behave Like Editorial Content
 
-Status: source-reviewed local Part 6 and Hands-On 6A drafts, September 26, 2026. October 29 is a provisional preview date, subject to Publisher review. The Publisher committed Part 5 during this draft; this packet does not assert its remote deployment.
+Status: source-reviewed September 26, 2026, and previously committed. On October 11 the Publisher asked to move the remaining installments forward; this post and Hands-On 6A now have October 11 front-matter dates locally. The original source filenames and short-link bases remain stable, and the old dated routes redirect to the new ones. No push of the revised dates has occurred.
 
 ## Source inventory and claim boundaries
 

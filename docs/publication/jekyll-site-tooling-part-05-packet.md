@@ -1,6 +1,6 @@
 # Part 5: From a YAML Project Catalog to a Project Publishing System
 
-Status: source-reviewed local draft, September 26, 2026. October 22 is a provisional preview date. The Publisher authorized the next installment and local browser review; remote publication remains a separate decision.
+Status: source-reviewed September 26, 2026, and previously committed. On October 11 the Publisher asked to move the remaining installments forward; this post and Hands-On 5A now have October 11 front-matter dates locally. The original source filenames and short-link bases remain stable, and the old dated routes redirect to the new ones. No push of the revised dates has occurred.
 
 ## Source and claim review
 

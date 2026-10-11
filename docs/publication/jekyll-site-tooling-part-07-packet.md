@@ -1,6 +1,6 @@
 # Part 7: Proofreading a Blog by Listening to It
 
-Status: local source-reviewed draft, September 26, 2026. November 5 at 08:00 CST is a provisional preview date. No commit, push, deployment, speech generation, or published MP3 is implied.
+Status: source-reviewed September 26, 2026, and previously committed. On October 11 the Publisher asked to move the remaining installments forward; this post now has an October 11 front-matter date locally. Its original source filename and short-link basis remain stable, and the old dated route redirects to the new one. No push of the revised date, speech generation, or published MP3 is implied.
 
 ## Source inventory and claim boundaries
 

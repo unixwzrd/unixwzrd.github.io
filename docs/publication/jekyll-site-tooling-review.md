@@ -2,6 +2,30 @@
 
 Preserve entries and prepend new ones. Planning, technical review, editorial approval, and publication authority are separate decisions.
 
+## 2026-10-11 11:40 CDT (America/Chicago, UTC-05:00)
+
+**Author:** Codex, primary series agent. **Role:** Series date and URL reviewer. **Decision:** Apply the Publisher's direction to move the remaining installments forward. Keep Part 3's October 8 date; date Parts 4 through 8 and companions on October 11 in series order. Preserve declared short-link bases and redirect the previously planned canonical routes.
+
+**Evidence reviewed:** The current live site served Parts 1 and 2 but not Part 3 on October 11; the last successful Pages run was October 6. Current Jekyll front matter, series navigation, short-link injector and backfill checks, redirect plugin, production output, and Pages workflow were inspected. The Publisher explicitly reserved any push until reviewing Part 8 and its companion.
+
+**Changes:** Updated nine posts' front-matter dates, series navigation dates and canonical URLs, the Part 7 dry-run example URL, and date-related handoff documents. Each moved post retains its source filename and `short_link_basis` and gains a redirect from its originally planned route.
+
+**Validation:** The production Jekyll build passed and emitted all nine new October 11 routes plus redirects at the old paths. The nine declared short URLs stayed unchanged and point to the new routes. Short-link front matter, generated short-link redirects, project permalink redirects, tag taxonomy, and `git diff --check` passed. Playwright opened the moved Part 7, Part 8, and Hands-On 8A routes; Part 7 links forward to Part 8, Part 8 links to its companion, and the companion's source disclosure opens a working download link.
+
+**Next gate:** Publisher reviews Part 8, Hands-On 8A, and the accelerated series dates. No commit or push until that review.
+
+## 2026-10-11 (America/Chicago)
+
+**Author:** Codex, primary series agent. **Role:** Part 8 and Hands-On 8A author. **Decision:** Prepare the next installment and a runnable, isolated check-runner lab for the Publisher's requested continuation and publication. Use the established weekly sequence after Part 7 unless the Publisher selects immediate public visibility.
+
+**Evidence reviewed:** The installed pre-commit hook, `check_site.sh`, numbered check scripts, optional `.pre-commit-config.yaml`, `jekyll-site`, Pages workflow, short-link and taxonomy tools, and prior series posts for voice and structure. The hook's `--skip 05_update_project_data.sh` does not match the runner's extensionless check name, so the draft reports the observed mismatch.
+
+**Changes:** Added Part 8 and Hands-On 8A to the Jekyll post tree, a generated banner, editable DOT source with SVG/PNG renders, a downloadable Python lab, Part 7 forward navigation, and an evidence packet. The lab uses caller-selected new directories and does not invoke the site's mutating suite.
+
+**Validation:** The clean lab case passed; three fault cases stopped at their intended gates. Short-link front matter was generated and checked with the repository's Ruby tool. The future-inclusive development build passed; both articles, short routes, diagram and code assets, and series landing entries exist in its output. A production build passed and excluded the future-dated posts. The tag taxonomy checker accepted 87 published and scheduled posts. Playwright showed the article banner, series context, diagram/source links, and companion source disclosure/download; the new-post Giscus requests returned 404 in preview, as no discussion exists yet. `git diff --check` passed. Production deployment has not been attempted.
+
+**Next gate:** Publisher reviews the local article, lab, and date choice. Do not push before that review; after it, recheck the exact source and deployment result.
+
 ## 2026-09-28 06:06 CDT (America/Chicago, UTC-05:00)
 
 **Author:** Codex, primary series agent. **Role:** Part 7 author and source reviewer. **Decision:** Make the separate article-TTS browser relay an explicit step in Part 7 after the Publisher noticed it was missing.
