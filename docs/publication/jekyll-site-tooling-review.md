@@ -2,6 +2,18 @@
 
 Preserve entries and prepend new ones. Planning, technical review, editorial approval, and publication authority are separate decisions.
 
+## 2026-10-11 15:53 CDT (America/Chicago, UTC-05:00)
+
+**Author:** Codex, primary series agent. **Role:** Part 9 author and local technical reviewer. **Decision:** Prepare "Monitoring a Static Site After Deployment" and Hands-On 9A in the Jekyll post tree for the Publisher's review, keeping the October 11 sequence after Part 8. The Publisher reported committing and pushing Part 8; the Pages run for `186bfa7` succeeded and the public Part 8 route returned HTTP 200 in a focused check.
+
+**Evidence reviewed:** The sitemap crawler, source-aware reliability monitor and its two discovery tests, wrappers for periodic and post-commit invocation, cron setup script, page-management helper, scheduled-task placeholders, Pages workflow, current operator guides, and Part 8. The [Part 9 packet](jekyll-site-tooling-part-09-packet.md) records claim boundaries, documentation drift, privacy scope, and the detailed narrative outline. The current post-commit method checks immediately despite guide text that says it waits for deployment.
+
+**Changes:** Added Part 9 and a standalone loopback lab companion, a generated banner, editable DOT source with SVG/PNG renders, Part 8 forward navigation, and updated series and visual-asset documents. The lab never reads monitor configuration or contacts the public site.
+
+**Validation:** Both monitor discovery tests passed. The lab passed its healthy case and failed as designed for a missing image and a wrong redirect. Short-link, taxonomy, production-build, generated-redirect, project-redirect, development-build, local HTTP, browser-rendering, source-download, and `git diff --check` validations passed. Browser console errors came from Giscus discussions that do not yet exist for the local routes. No monitoring schedule or email delivery was claimed or tested.
+
+**Next gate:** Publisher reviews the article, companion, diagrams, and October 11 date in the local browser. No commit or push in this drafting turn.
+
 ## 2026-10-11 11:40 CDT (America/Chicago, UTC-05:00)
 
 **Author:** Codex, primary series agent. **Role:** Series date and URL reviewer. **Decision:** Apply the Publisher's direction to move the remaining installments forward. Keep Part 3's October 8 date; date Parts 4 through 8 and companions on October 11 in series order. Preserve declared short-link bases and redirect the previously planned canonical routes.

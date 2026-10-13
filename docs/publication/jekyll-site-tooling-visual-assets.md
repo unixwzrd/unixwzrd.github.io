@@ -133,3 +133,15 @@ Render the diagram from the repository root with:
 ```bash
 python3 utils/bin/render-blog-diagram.py html/assets/code/jekyll-site-tooling/post-08/check-boundaries.dot html/assets/images/blog/jekyll-site-tooling/post-08-check-boundaries
 ```
+
+## Part 9 additions
+
+Part 9 and Hands-On 9A use `html/assets/images/blog/jekyll-site-tooling/post-09-after-deployment-hero.png`, a 2:1 banner generated with the built-in imagegen tool and copied into the website assets. Final prompt:
+
+> Create a wide 2:1 editorial banner illustration for a technical Jekyll publishing-series article about monitoring a static site after deployment. Visually consistent with a dark, cinematic, tactile workshop aesthetic: deep navy and charcoal, warm brass/amber lamps, subtle paper texture, realistic handcrafted mechanisms. Distinct scene from a printing assembly line: on a nighttime coastal cliff, a small illuminated publishing workshop at left has sent a finished paper page across a thin bridge of light to a distant lighthouse-like public website at right; in the foreground, a compact brass observation instrument with three simple indicator lights examines the distant page, its image, and a link path. One path terminates at a small broken marker to show that a successful build can still leave a broken public asset. Elegant, restrained, human-scale, no people, no logos, no text, no UI screenshots, no charts, no readable symbols or letters. Strong horizontal composition; central and right features visible under a blog title overlay if needed. High quality digital painting with believable physical detail.
+
+The article's editable diagram is `html/assets/code/jekyll-site-tooling/post-09/observation-boundaries.dot`; its SVG and PNG renders are under `html/assets/images/blog/jekyll-site-tooling/`. It separates deployment from two explicitly invoked observations and a human investigation. Render it from the repository root with:
+
+```bash
+python3 utils/bin/render-blog-diagram.py html/assets/code/jekyll-site-tooling/post-09/observation-boundaries.dot html/assets/images/blog/jekyll-site-tooling/post-09-observation-boundaries
+```

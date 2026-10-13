@@ -1,6 +1,6 @@
 # Part 8: Checks, Repairs, and the Gates Before Deployment
 
-Status: local review draft for the Jekyll post tree, October 11, 2026. At the Publisher's direction, the post and companion now carry October 11 front-matter dates after Part 7. The Publisher explicitly reserved the push until after review and validation. They are eligible for the next production build but are not live yet.
+Status: Publisher-reviewed, committed, and pushed October 11, 2026. The post and companion carry October 11 front-matter dates after Part 7. The Pages run for commit `186bfa7` succeeded, and the public Part 8 article returned HTTP 200 in a focused check. The validation section below records the earlier local pre-push review, not a complete public-site crawl.
 
 ## Source and claim boundaries
 

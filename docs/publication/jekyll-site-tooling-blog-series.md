@@ -2,7 +2,7 @@
 
 ## Project Status
 
-Updated October 11, 2026. Parts 1 through 7 and Hands-On 2A through 6A are committed in the Jekyll post tree. At the Publisher's direction, Parts 4 through 8 and their companions now have October 11 front-matter dates in local changes, preserving their order for the next production build. Part 8 and Hands-On 8A remain uncommitted local review drafts. Source packets and visual assets are linked below.
+Updated October 11, 2026. The Publisher committed and pushed the series through Part 8 and Hands-On 8A. The Pages workflow for that push succeeded, and the public Part 8 route returned HTTP 200 in a focused check. Part 9 and Hands-On 9A are now local review drafts dated October 11; they have not been committed or pushed. Source packets and visual assets are linked below.
 
 - [Source inventory and evidence boundaries](jekyll-site-tooling-inventory.md)
 - [Review journal](jekyll-site-tooling-review.md)
@@ -17,6 +17,7 @@ Updated October 11, 2026. Parts 1 through 7 and Hands-On 2A through 6A are commi
 - [Part 6 evidence packet and local draft handoff](jekyll-site-tooling-part-06-packet.md)
 - [Part 7 evidence packet and local draft handoff](jekyll-site-tooling-part-07-packet.md)
 - [Part 8 evidence packet and publishing handoff](jekyll-site-tooling-part-08-packet.md)
+- [Part 9 evidence packet and local draft handoff](jekyll-site-tooling-part-09-packet.md)
 - [Reusable package candidates and first pilot](jekyll-site-tooling-reuse-packaging.md)
 
 The editorial spine is a concrete publishing problem, the implementation it produced, and its remaining limits. Keep ten main installments. Companions are optional and should earn their place through an independently useful exercise.
@@ -337,7 +338,7 @@ Keep technical approval, editorial approval, and publication authority separate.
 
 ## Next Assignment
 
-The [initial inventory](jekyll-site-tooling-inventory.md) records the source review and open evidence gaps. Parts 1 through 7 and companions 2A through 6A are committed, and the remaining dates have been moved to October 11 in the local source. Part 8 and Hands-On 8A cover the local and Pages check boundaries and await the Publisher's review before any push. After that, research the actual monitoring configuration and runtime evidence for Part 9. For later installments, continue to answer:
+The [initial inventory](jekyll-site-tooling-inventory.md) records the source review and open evidence gaps. The Publisher committed and pushed through Part 8 and Hands-On 8A. Part 9 and Hands-On 9A examine the served-site crawler, source-aware monitor, and scheduling boundaries; they are local review drafts. After their review, prepare Part 10 around the actual human publishing loop. For later installments, continue to answer:
 
 - Which commands are current entry points and which are backups, compatibility paths, or historical utilities?
 - Which scripts have tests, and what do those tests actually prove?

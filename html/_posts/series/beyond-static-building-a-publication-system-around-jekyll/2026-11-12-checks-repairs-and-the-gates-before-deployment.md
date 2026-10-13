@@ -18,6 +18,8 @@ series_companion_title: "Hands-On: Build a Small Prepublication Check Runner"
 series_companion_url: /hands-on/2026/10/11/hands-on-build-a-small-prepublication-check-runner/
 series_companion_date: 2026-10-11 11:30:00 -0500
 series_next_title: "Monitoring a Static Site After Deployment"
+series_next_url: /technology/2026/10/11/monitoring-a-static-site-after-deployment/
+series_next_date: 2026-10-11 15:45:00 -0500
 image: /assets/images/blog/jekyll-site-tooling/post-08-checks-and-gates-hero.png
 redirect_from:
   - /technology/2026/11/12/checks-repairs-and-the-gates-before-deployment/

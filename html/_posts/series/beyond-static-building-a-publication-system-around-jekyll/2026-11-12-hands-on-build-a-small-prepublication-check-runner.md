@@ -16,6 +16,8 @@ series_companion_of: 8
 series_previous_title: "Checks, Repairs, and the Gates Before Deployment"
 series_previous_url: /technology/2026/10/11/checks-repairs-and-the-gates-before-deployment/
 series_next_title: "Monitoring a Static Site After Deployment"
+series_next_url: /technology/2026/10/11/monitoring-a-static-site-after-deployment/
+series_next_date: 2026-10-11 15:45:00 -0500
 image: /assets/images/blog/jekyll-site-tooling/post-08-checks-and-gates-hero.png
 redirect_from:
   - /hands-on/2026/11/12/hands-on-build-a-small-prepublication-check-runner/
