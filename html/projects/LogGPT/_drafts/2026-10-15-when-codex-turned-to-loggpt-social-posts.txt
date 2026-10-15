@@ -1,0 +1,114 @@
+When Codex turned to LogGPT — social drafts
+
+Article:
+https://unixwzrd.ai/projects/LogGPT/2026/10/15/when-codex-turned-to-loggpt/
+
+Short URL:
+https://unixwzrd.ai/s/5925af7da1/
+
+Publish after the article and short URL are live. The account describes this observed session; it does not establish a general six-message limit for ChatGPT attachments or an official OpenAI recommendation.
+
+
+==================================================
+LINKEDIN
+==================================================
+
+This morning, Codex used a Safari extension I wrote to solve a problem I hadn't told it how to solve.
+
+I wanted to move a long ChatGPT Work conversation into a Codex development project. We had been designing an APFS backup system, and I wanted the history behind the specification as well as the specification itself.
+
+The native conversation attachment supplied the receiving chat with only six messages in this attempt. Codex recovered the handoff separately, then opened the source conversation in Safari and went looking for LogGPT.
+
+It already knew about the extension from its supplied memory. The surprise was its decision to use it. When Safari's JavaScript automation was disabled, it used macOS Accessibility to identify and press the download button instead.
+
+The result was 1,651 message records across the exported branches and 97 artifacts. The agent checked the files and used the preserved sources to recover the design context. I checked the archive again while writing the article: all 97 artifact hashes matched.
+
+I built LogGPT so people could keep their conversations and files. Watching a coding agent select it to complete an assignment was not on my roadmap.
+
+Full story: https://unixwzrd.ai/s/5925af7da1/
+
+#LogGPT #Codex #AIAgents #DataPortability
+
+
+---- Personal repost ----
+
+I expected LogGPT to be useful to people saving their ChatGPT work. I hadn't expected Codex to remember the extension, decide it would solve a transfer problem, open Safari, and use it without being told to.
+
+It recovered 1,651 message records and 97 artifacts for a new development project, with file checks afterward. A fairly substantial holy-shit moment over the morning coffee.
+
+https://unixwzrd.ai/s/5925af7da1/
+
+
+==================================================
+X / TWITTER
+==================================================
+
+I asked Codex to move a long ChatGPT conversation into a coding project. It remembered LogGPT, the Safari extension I wrote, and chose to use it: 1,651 message records, 97 artifacts, verified files. I hadn't told it to use LogGPT.
+
+https://unixwzrd.ai/s/5925af7da1/
+
+
+Alt version:
+
+Codex's chat attachment brought over six messages in this attempt. It then used my LogGPT Safari extension to recover 1,651 message records and 97 artifacts. Prior knowledge, independent tool choice, checked results. That got my attention.
+
+https://unixwzrd.ai/s/5925af7da1/
+
+
+==================================================
+BLUESKY
+==================================================
+
+Codex used a Safari extension I wrote to recover a ChatGPT conversation for a coding project: 1,651 message records and 97 artifacts. It knew about LogGPT from memory; I hadn't told it to use it. Then it verified the files. That was quite a morning.
+
+https://unixwzrd.ai/s/5925af7da1/
+
+
+==================================================
+MASTODON
+==================================================
+
+I asked Codex to move a long ChatGPT Work conversation into a development project. Its first attachment returned six messages in this attempt, so it turned to LogGPT, my Safari extension.
+
+It knew the product from memory and used macOS Accessibility to press Download. Result: 1,651 message records and 97 artifacts, with hashes checked and design context recovered from local files. I hadn't suggested LogGPT.
+
+https://unixwzrd.ai/s/5925af7da1/
+
+#LogGPT #Codex #DataPortability
+
+
+==================================================
+REDDIT / DEVELOPER COMMUNITY
+==================================================
+
+Title:
+Codex used a Safari extension I wrote to recover a 1,651-message ChatGPT conversation and 97 artifacts
+
+Body:
+
+I develop LogGPT, a Safari extension for exporting ChatGPT conversations. This morning I watched Codex decide to use it while trying to move a conversation into a coding project. I had given the agent permission to control my computer, but hadn't told it to use LogGPT.
+
+The task was to recover the discussion behind an APFS backup design. The receiving Codex chat got only a six-message preview through the native attachment in this attempt. It also recovered the handoff document, but I wanted the larger record.
+
+The agent knew about LogGPT from its starting memory summary. It opened the exact conversation in Safari and explicitly looked for the download control. Safari's JavaScript-from-Apple-Events setting was disabled, so it left that setting alone and used macOS Accessibility. It identified an AXButton titled "Download conversation," with help text offering JSON or JSON plus artifacts, and invoked its press action.
+
+The export contained 1,651 message records across all exported branches, 1,631 on the current branch, and 97 downloaded artifacts. Those counts include tool messages. The migration checks covered SHA-256 hashes, ZIP CRCs, extracted bytes, and conversation links. The new project used the preserved sources to recover design details missing from the preview.
+
+I asked the agent for a post-mortem afterward. It correctly distinguished remembering a known tool from discovering an unfamiliar product, and it couldn't establish the exact moment that candidate became its preferred fallback. The observable part was still striking: it selected software outside its dedicated tool menu, operated the interface, and checked the outcome.
+
+The archive is a local source collection Codex can search, not an import of every message into one active context window or a synchronized replacement for the ChatGPT conversation.
+
+I wrote up the sequence here: https://unixwzrd.ai/s/5925af7da1/
+
+
+==================================================
+SUBSTACK NOTE
+==================================================
+
+I built LogGPT to preserve ChatGPT conversations and their files. This morning, Codex remembered it, opened Safari, and used it to solve a conversation-transfer problem without me suggesting the extension.
+
+The exported record contained 1,651 messages and 97 artifacts. The agent verified the files and made the sources available to a new development project. The interesting part was watching it connect a known piece of software to a problem its first approach hadn't solved.
+
+Apparently, even Codex appreciates a decent export button.
+
+https://unixwzrd.ai/s/5925af7da1/
