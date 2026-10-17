@@ -16,6 +16,8 @@ series_companion_of: 9
 series_previous_title: "Monitoring a Static Site After Deployment"
 series_previous_url: /technology/2026/10/11/monitoring-a-static-site-after-deployment/
 series_next_title: "Closing the Publishing Loop Without Pretending It Is a CMS"
+series_next_url: /technology/2026/10/16/closing-the-publishing-loop-without-pretending-it-is-a-cms/
+series_next_date: 2026-10-16 08:00:00 -0500
 image: /assets/images/blog/jekyll-site-tooling/post-09-after-deployment-hero.png
 ---
 

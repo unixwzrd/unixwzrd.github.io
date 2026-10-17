@@ -145,3 +145,15 @@ The article's editable diagram is `html/assets/code/jekyll-site-tooling/post-09/
 ```bash
 python3 utils/bin/render-blog-diagram.py html/assets/code/jekyll-site-tooling/post-09/observation-boundaries.dot html/assets/images/blog/jekyll-site-tooling/post-09-observation-boundaries
 ```
+
+## Part 10 additions
+
+Part 10 and Hands-On 10A use `html/assets/images/blog/jekyll-site-tooling/post-10-publishing-loop-hero.png`, a 2:1 banner generated with the built-in imagegen tool and copied into the website assets. The final prompt was:
+
+> Create a finished wide 2:1 editorial banner illustration for the final installment of a dark, tactile engineering-blog series about extending a Jekyll website into a practical publishing system. Distinct from a conveyor belt, a diagram, or a literal UI: at a nighttime publishing desk, three different physical bundles arrive from the left (a standalone manuscript, a small ordered series of bound pages, and a project folder with update cards). They converge at a human-scale brass reading desk with a warm lamp, a pencil, and an open decision gate, then one carefully finished page travels toward a small illuminated public library window at the right. Beyond the window, two subtle return paths suggest a public conversation and a private letter, without iconography or readable text. Deep navy and charcoal, restrained amber/brass, muted teal, realistic paper and metal texture, cinematic depth, crisp silhouette at thumbnail size, crop-safe composition. No people or hands, no logos, no letters, no readable text, no code, no charts, no UI screenshots, no neon cyberpunk, no AI brain. The visual should feel like careful editorial craft and deliberate publication, not total automation.
+
+The editable diagram is `html/assets/code/jekyll-site-tooling/post-10/publishing-loop.dot`; its SVG and PNG renders are under `html/assets/images/blog/jekyll-site-tooling/`. It shows three content entry paths, explicit human editorial and push decisions, Pages, public verification, and the reader's choice of public discussion or private mail-client draft. Render it from the repository root with:
+
+```bash
+python3 utils/bin/render-blog-diagram.py html/assets/code/jekyll-site-tooling/post-10/publishing-loop.dot html/assets/images/blog/jekyll-site-tooling/post-10-publishing-loop
+```

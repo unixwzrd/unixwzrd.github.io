@@ -2,7 +2,7 @@
 
 ## Project Status
 
-Updated October 11, 2026. The Publisher committed and pushed the series through Part 8 and Hands-On 8A. The Pages workflow for that push succeeded, and the public Part 8 route returned HTTP 200 in a focused check. Part 9 and Hands-On 9A are now local review drafts dated October 11; they have not been committed or pushed. Source packets and visual assets are linked below.
+Updated October 16, 2026. The Publisher committed and pushed through Part 9 and Hands-On 9A. The Pages workflow for that series push succeeded, and a focused public request to Part 9 returned HTTP 200. Part 10 and Hands-On 10A are local review drafts dated October 16; they have not been committed or pushed. Source packets and visual assets are linked below.
 
 - [Source inventory and evidence boundaries](jekyll-site-tooling-inventory.md)
 - [Review journal](jekyll-site-tooling-review.md)
@@ -18,6 +18,7 @@ Updated October 11, 2026. The Publisher committed and pushed the series through 
 - [Part 7 evidence packet and local draft handoff](jekyll-site-tooling-part-07-packet.md)
 - [Part 8 evidence packet and publishing handoff](jekyll-site-tooling-part-08-packet.md)
 - [Part 9 evidence packet and local draft handoff](jekyll-site-tooling-part-09-packet.md)
+- [Part 10 evidence packet and local draft handoff](jekyll-site-tooling-part-10-packet.md)
 - [Reusable package candidates and first pilot](jekyll-site-tooling-reuse-packaging.md)
 
 The editorial spine is a concrete publishing problem, the implementation it produced, and its remaining limits. Keep ten main installments. Companions are optional and should earn their place through an independently useful exercise.
@@ -50,9 +51,9 @@ Lean technical when a choice needs teeth, but keep the argument readable. Explai
 
 ## Publication Boundary
 
-The Publisher authorized moving the remaining series installments forward but explicitly reserved the push until after reviewing and validating Part 8 and its companion. The revised October 11 dates make Parts 4 through 8 eligible in the next production build; they are not live merely because local source changed. The live site showed only Parts 1 and 2 on October 11, despite Part 3's October 8 source date, because a date does not trigger the current Pages workflow to rebuild.
+The Publisher authorized moving the remaining series installments forward and has since committed and pushed through Part 9 and Hands-On 9A. The October 16 Part 10 pair is in the local Jekyll source for review. A date alone does not trigger the Pages workflow to rebuild, and local preview does not imply remote publication. Preserve the Publisher's review and push decision for this final pair.
 
-Keep research and review packets under `docs/publication/`. Parts 1 through 8, Hands-On 2A through 6A and 8A, and the landing page are in the Jekyll source tree; their exact paths are in the linked packets. Do not restart the watched local Jekyll server merely to make a source edit visible. Do not create alternate build destinations inside the repository.
+Keep research and review packets under `docs/publication/`. Parts 1 through 10, their current Hands-On companions, and the landing page are in the Jekyll source tree; their exact paths are in the linked packets. Do not restart the watched local Jekyll server merely to make a source edit visible. Do not create alternate build destinations inside the repository.
 
 Before describing any tool as current, tested, deployed, automatic, or reliable, verify that claim against its present source, documentation, tests, workflow configuration, and retained operational evidence. The repository contains older utilities, backups, derived output, runtime files, and documentation that may no longer describe the active path.
 
@@ -281,7 +282,7 @@ Separate implemented monitoring from configured scheduling and from any currentl
 
 Bring the workflow together: drafting, technical review, local preview, diagrams and code, TTS proofreading, taxonomy and URL checks, social drafts, support and discussion blocks, future dates, commit and push boundaries, GitHub Pages deployment, and post-publication monitoring.
 
-Close the loop across the site's actual content map: a standalone article, a series installment, and a project update enter through different metadata and reader routes but share the same local operation, review, URL, validation, deployment, and monitoring concerns. Make the lifecycle diagram show those entry paths joining at explicit human gates rather than collapsing them into one generic blog post.
+Close the loop across the site's actual content map: a standalone article, a series installment, and a project update enter through different metadata and reader routes but share the same local operation, review, URL, validation, deployment, and monitoring concerns. Make the lifecycle diagram show those entry paths joining at explicit human gates rather than collapsing them into one generic blog post. The shared engagement area exposes Giscus discussion, and the contact page composes a private mail-client draft. Explain both without claiming a site-side submission or guaranteed participation.
 
 End with what is still manual and why. Human review, publication authority, social posting, donation messaging, and editorial judgment should remain visible rather than being described as defects awaiting total automation.
 
@@ -338,7 +339,7 @@ Keep technical approval, editorial approval, and publication authority separate.
 
 ## Next Assignment
 
-The [initial inventory](jekyll-site-tooling-inventory.md) records the source review and open evidence gaps. The Publisher committed and pushed through Part 8 and Hands-On 8A. Part 9 and Hands-On 9A examine the served-site crawler, source-aware monitor, and scheduling boundaries; they are local review drafts. After their review, prepare Part 10 around the actual human publishing loop. For later installments, continue to answer:
+The [initial inventory](jekyll-site-tooling-inventory.md) records the source review and open evidence gaps. The Publisher committed and pushed through Part 9 and Hands-On 9A. Part 10 and Hands-On 10A are in the Jekyll post tree for local review, with a lifecycle diagram and reusable publication-record template. Review technical claims, voice, links, visuals, and the public contact/discussion explanation before the Publisher chooses whether to commit and push. For later maintenance or spin-off articles, continue to answer:
 
 - Which commands are current entry points and which are backups, compatibility paths, or historical utilities?
 - Which scripts have tests, and what do those tests actually prove?

@@ -2,6 +2,18 @@
 
 Preserve entries and prepend new ones. Planning, technical review, editorial approval, and publication authority are separate decisions.
 
+## 2026-10-16 08:52 CDT (America/Chicago, UTC-05:00)
+
+**Author:** Codex, primary series agent. **Role:** Part 10 author and local technical reviewer. **Decision:** Prepare the closing article and Hands-On 10A in the Jekyll post tree for the Publisher's review. Include public Giscus discussion and the contact form's private mail-client draft as the reader-response paths, with their limits stated plainly.
+
+**Evidence reviewed:** Current standalone, series, and project post structures; layouts and engagement includes; contact form and JavaScript; local tool and Pages boundaries; Part 9 source and current published route; Giscus documentation. The [Part 10 packet](jekyll-site-tooling-part-10-packet.md) records the claim status, privacy limits, drift, and narrative outline.
+
+**Changes:** Added both October 16 posts, Part 9 forward navigation, a generated banner, editable DOT diagram with SVG/PNG renders, a downloadable one-page publication-record template, and updated series and visual-asset documents. The article describes social posting as a human choice and distinguishes opening an email draft from sending a message.
+
+**Validation:** Short-link front matter, tag taxonomy, isolated production build, generated short and project redirects, required output assets, series navigation, local HTTP routes, browser rendering, and `git diff --check` passed. Giscus reported no discussion for the new local route; no reader response or delivery was tested. The watched server was not restarted.
+
+**Next gate:** Publisher reviews Part 10, Hands-On 10A, banner, diagram, and October 16 date locally. No commit or push in this drafting turn.
+
 ## 2026-10-11 15:53 CDT (America/Chicago, UTC-05:00)
 
 **Author:** Codex, primary series agent. **Role:** Part 9 author and local technical reviewer. **Decision:** Prepare "Monitoring a Static Site After Deployment" and Hands-On 9A in the Jekyll post tree for the Publisher's review, keeping the October 11 sequence after Part 8. The Publisher reported committing and pushing Part 8; the Pages run for `186bfa7` succeeded and the public Part 8 route returned HTTP 200 in a focused check.

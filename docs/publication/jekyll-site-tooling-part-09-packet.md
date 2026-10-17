@@ -1,6 +1,6 @@
 # Part 9: Monitoring a Static Site After Deployment
 
-Status: local article and Hands-On 9A draft for Publisher review, dated October 11, 2026. No commit or push in this drafting turn.
+Status: article and Hands-On 9A committed in `3325443` after Publisher review. The Pages run for that commit succeeded, and a focused public request to Part 9 returned HTTP 200 on October 16. The validation below records the earlier local drafting turn; it does not claim a full post-deployment audit.
 
 ## Pre-draft source inventory
 

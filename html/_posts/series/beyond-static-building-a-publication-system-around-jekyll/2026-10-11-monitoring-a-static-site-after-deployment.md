@@ -18,6 +18,8 @@ series_companion_title: "Hands-On: Check What the Deployed Site Serves"
 series_companion_url: /hands-on/2026/10/11/hands-on-check-what-the-deployed-site-serves/
 series_companion_date: 2026-10-11 15:50:00 -0500
 series_next_title: "Closing the Publishing Loop Without Pretending It Is a CMS"
+series_next_url: /technology/2026/10/16/closing-the-publishing-loop-without-pretending-it-is-a-cms/
+series_next_date: 2026-10-16 08:00:00 -0500
 image: /assets/images/blog/jekyll-site-tooling/post-09-after-deployment-hero.png
 ---
 
