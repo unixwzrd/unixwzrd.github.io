@@ -22,6 +22,15 @@ jobs:
           ruby-version: '3.3'
           bundler-cache: true
 
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install site tooling
+        run: python -m pip install -r requirements.txt
+
       - name: Clean old site and cache
         run: |
           rm -rf _site
@@ -30,6 +39,22 @@ jobs:
       - name: Build with Jekyll
         run: |
           JEKYLL_ENV=production bundle exec jekyll build --trace --verbose
+
+      - name: Build search index
+        run: |
+          python -m pagefind --site _site --output-subdir pagefind \
+            --root-selector '[data-pagefind-body]' \
+            --exclude-selectors '[data-pagefind-ignore]' --force-language en
+          test -s _site/pagefind/pagefind.js
+          test -s _site/pagefind/pagefind-entry.json
+          python -c 'import json; index=json.load(open("_site/pagefind/pagefind-entry.json")); assert index["languages"]["en"]["page_count"] > 0, "Empty search index"'
+
+      - name: Verify reader experience and internal links
+        run: |
+          READER_SITE="$GITHUB_WORKSPACE/_site" bundle exec ruby scripts/test_reader_experience.rb
+          bundle exec ruby utils/bin/checks/check_permalinks.rb
+          bundle exec htmlproofer ./_site --disable-external --allow-hash-href \
+            --check-internal-hash --allow-missing-href
 
       - name: Verify permalink redirects
         run: |

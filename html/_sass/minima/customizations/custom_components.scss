@@ -2,13 +2,13 @@
 
 // Blockquote Styling
 blockquote {
-  color: #60c0ee;
-  background: #000000;
-  border-left-color: #5592b4;
+  color: var(--site-quote-color);
+  background: var(--site-surface);
+  border-left-color: $link-base-color;
 }
 
 // Table Styling
-table {
+table:not(.project-table) {
   border: 1px solid $border-color;
   border-collapse: collapse;
 
@@ -66,6 +66,11 @@ code {
   border-spacing: 20px;
   border: none;
   padding: 5px;
+
+  tr, tr:nth-child(even), td {
+    background: transparent;
+    border: none;
+  }
 }
 
 .project-image {
@@ -120,7 +125,7 @@ code {
 
 // Obfuscated Email Link
 #obfuscated-email a {
-  color: #0000cc;
+  color: $link-base-color;
   text-decoration: underline;
 }
 
@@ -199,7 +204,7 @@ code {
 .contact-field input:focus,
 .contact-field select:focus,
 .contact-field textarea:focus {
-  outline: 2px solid color-mix(in srgb, $brand-color 60%, white 40%);
+  outline: 2px solid $link-base-color;
   outline-offset: 1px;
 }
 
@@ -285,7 +290,7 @@ code {
 }
 
 .series-navigation__label {
-  color: color-mix(in srgb, $text-color 68%, $background-color 32%);
+  color: $brand-color;
   font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.04em;

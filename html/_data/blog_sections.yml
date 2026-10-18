@@ -22,7 +22,7 @@ sections:
     title: Series
     url: /blog/series/
     button_label: Browse Series
-    series: Local First AI and Agent Operations
+    series_only: true
     visible: true
 
   - id: hands-on
@@ -30,7 +30,6 @@ sections:
     url: /blog/hands-on/
     button_label: Read Hands-On Posts
     section: hands-on
-    exclude_series: true
     visible: true
 
   - id: parental-alienation

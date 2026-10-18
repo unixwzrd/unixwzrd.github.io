@@ -1,24 +1,24 @@
 // Unified code presentation for inline code, fenced blocks, and full source files.
 // This file is intentionally imported after the active Minima skin.
 
-$code-surface: #0d1117;
-$code-surface-raised: #111820;
-$code-surface-muted: #090d12;
-$code-border: #30363d;
-$code-text: #e6edf3;
-$code-muted: #8b949e;
-$code-blue: #79c0ff;
-$code-cyan: #76e3ea;
-$code-green: #7ee787;
-$code-orange: #ffa657;
-$code-pink: #ff7b72;
-$code-purple: #d2a8ff;
-$code-string: #a5d6ff;
+$code-surface: var(--site-code-surface);
+$code-surface-raised: var(--site-code-raised);
+$code-surface-muted: var(--site-code-muted-surface);
+$code-border: var(--site-code-border);
+$code-text: var(--site-code-text);
+$code-muted: var(--site-code-muted);
+$code-blue: var(--site-code-blue);
+$code-cyan: var(--site-code-cyan);
+$code-green: var(--site-code-green);
+$code-orange: var(--site-code-orange);
+$code-pink: var(--site-code-pink);
+$code-purple: var(--site-code-purple);
+$code-string: var(--site-code-string);
 
 // Inline code should be distinct without looking like a miniature code block.
 :not(pre) > code {
   padding: 0.12em 0.38em;
-  border: 1px solid #2d3f52;
+  border: 1px solid $code-border;
   border-radius: 5px;
   background: $code-surface-raised;
   color: $code-string;
@@ -84,28 +84,30 @@ pre > code,
   color: #ffffff;
 }
 
-// Rouge token palette: readable on the dark surface across Python, shell,
+// Rouge token palette: paired surfaces across Python, shell,
 // JSON, YAML, HTML, CSS, configuration files, and diffs.
-.highlight {
+.highlight,
+.highlight .highlight {
   .c, .c1, .ch, .cm, .cp, .cpf, .cs { color: $code-muted; font-style: italic; }
-  .err { color: #ffa198; background: rgba(248, 81, 73, 0.16); }
+  .err { color: var(--site-code-error); background: var(--site-code-error-bg); }
   .k, .kc, .kd, .kp, .kr, .kt { color: $code-pink; }
   .kn { color: $code-pink; }
   .o, .ow { color: $code-pink; }
-  .p, .pm { color: #c9d1d9; }
+  .p, .pm { color: $code-text; }
   .l, .ld, .m, .mb, .mf, .mh, .mi, .mo, .il { color: $code-blue; }
   .s, .s1, .s2, .sa, .sb, .sc, .sd, .se, .sh, .si, .sr, .ss, .sx, .dl { color: $code-string; }
-  .n, .ni, .nl, .nn, .nv, .py, .vc, .vg, .vi { color: $code-text; }
+  .n, .ni, .nl, .nn, .nv, .py, .vc, .vg, .vi, .esc, .g { color: $code-text; }
   .na, .nb, .bp { color: $code-cyan; }
   .nc, .ne, .nf, .fm { color: $code-purple; }
   .nd, .no, .nt, .nx, .vm { color: $code-green; }
-  .gd { color: #ffa198; background: rgba(248, 81, 73, 0.12); }
-  .gi { color: $code-green; background: rgba(46, 160, 67, 0.12); }
+  .gd, .gd .x { color: var(--site-code-error); background: var(--site-code-error-bg); }
+  .gi, .gi .x { color: $code-green; background: var(--site-code-insert-bg); }
   .gh, .gu { color: $code-blue; font-weight: 700; }
-  .go, .gp { color: $code-muted; }
-  .gr, .gt { color: #ffa198; }
-  .ge { font-style: italic; }
-  .gs { font-weight: 700; }
+  .go, .gp, .w { color: $code-muted; }
+  .gr, .gt { color: var(--site-code-error); }
+  .ge, .ges { font-style: italic; }
+  .gs, .ges { font-weight: 700; }
+  .hll { background: $code-surface-raised; }
 }
 
 // Full-file disclosures use the same editor surface with clearer chrome.
@@ -128,7 +130,7 @@ pre > code,
 
 .source-code-disclosure summary:hover,
 .source-code-disclosure summary:focus-visible {
-  background: #16202b;
+  background: var(--site-surface-raised);
 }
 
 .source-code-disclosure__identity {
@@ -141,7 +143,7 @@ pre > code,
 
 .source-code-disclosure__language {
   padding: 0.14rem 0.42rem;
-  border: 1px solid #36536d;
+  border: 1px solid $code-border;
   border-radius: 999px;
   color: $code-blue;
   font-family: $base-font-family;
@@ -163,11 +165,14 @@ pre > code,
   align-items: center;
   min-height: 2rem;
   padding: 0.35rem 0.7rem;
-  border: 1px solid #36536d;
+  border: 1px solid $code-border;
   border-radius: 6px;
   background: $code-surface-raised;
+  color: $code-blue;
   font-size: 0.82rem;
 }
+
+.source-code-disclosure__hint { color: $code-blue; }
 
 .source-code-disclosure__code {
   background: $code-surface;
@@ -180,7 +185,7 @@ pre > code,
 
 .highlight pre,
 .source-code-disclosure__code pre {
-  scrollbar-color: #52677a $code-surface;
+  scrollbar-color: var(--minima-brand-color) $code-surface;
   scrollbar-width: thin;
 }
 
@@ -199,7 +204,7 @@ pre > code,
 .source-code-disclosure__code pre::-webkit-scrollbar-thumb {
   border: 3px solid $code-surface;
   border-radius: 999px;
-  background: #52677a;
+  background: var(--minima-brand-color);
 }
 
 @media screen and (max-width: $on-palm) {

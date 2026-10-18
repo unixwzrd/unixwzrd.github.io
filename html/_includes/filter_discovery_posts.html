@@ -7,6 +7,7 @@ Optional parameters:
 - additional_category: include this project category alongside `section`
 - additional_category_primary_only: include only its sequence-zero introduction
 - series: only posts whose `series` front matter matches
+- series_only: only posts with nonempty `series` front matter
 - exclude_series: omit posts with nonempty `series` front matter
 
 Excludes drafts, unpublished posts, _drafts paths, social-post working files,
@@ -62,8 +63,11 @@ and anything marked list_exclude: true.
       {% assign include_post = false %}
     {% endunless %}
   {% endif %}
+  {% assign post_series = post.series | default: '' | strip %}
+  {% if include.series_only and post_series == '' %}
+    {% assign include_post = false %}
+  {% endif %}
   {% if include.exclude_series %}
-    {% assign post_series = post.series | default: '' %}
     {% unless post_series == '' %}
       {% assign include_post = false %}
     {% endunless %}

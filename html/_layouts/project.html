@@ -37,7 +37,8 @@ layout: page
 
                     <!-- Nested row for links: GitHub link only for public projects -->
                     <div class="links-row">
-                        {% if project.visibility != 'private' %}
+                        {% assign project_repo_url = project.repo_url | default: '' | strip %}
+                        {% if project.visibility == 'public' and project_repo_url != '' %}
                         <a class="github-link" href="{{ project.repo_url }}" target="_blank"
                             rel="noopener noreferrer">View on GitHub</a>
                         {% endif %}
@@ -45,6 +46,12 @@ layout: page
                 </td>
             </tr>
         </table>
+        {% endif %}
+
+        {% if page.project_intro %}
+        <section class="project-intro" aria-label="About this project and getting started">
+            {{ page.project_intro | markdownify }}
+        </section>
         {% endif %}
 
         {% include blog_list.html category=page.category %}

@@ -1,5 +1,18 @@
-// assets/css/style.scss
+---
+---
+// This page overrides the theme's generated stylesheet, not a static SCSS copy.
 @import "minima/initialize";
 @import "minima/skins/{{ site.minima.skin | default: 'auto' }}";
 
-/* Intentionally left minimal; custom overrides live in component-specific styles. */
+// Emit custom components once and after the skin, including Rouge overrides.
+@import "minima/customizations/custom_theme";
+@import "minima/customizations/custom_variables";
+@import "minima/customizations/custom_base";
+@import "minima/customizations/custom_layout";
+@import "minima/customizations/custom_header";
+@import "minima/customizations/custom_components";
+@import "minima/customizations/custom_post";
+@import "minima/customizations/custom_projects";
+@import "minima/customizations/custom_search";
+@import "minima/customizations/custom_taxonomy";
+@import "minima/customizations/custom_code";

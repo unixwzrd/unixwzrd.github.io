@@ -4,6 +4,8 @@ short_url: "https://unixwzrd.ai/s/c474212fd8/"
 excerpt: "Use SSH host aliases, isolated user accounts, and secure tunnels to edit and debug Python on the same Mac or a remote system with VS Code, Cursor, Windsurf, and related editors."
 image: /assets/images/vibing-remote-debugging.png
 layout: post
+toc: true
+discussion_prompt: "What has caused the most trouble in your remote development setup: account isolation, SSH access, or attaching the debugger? I'd be interested to hear what worked, and what turned into more trouble than it was worth."
 title: "Remote Debugging with VS Code and Its Derivatives"
 redirect_from:
   - /2025/04/08/Remote-Debugging-With-VSCode/

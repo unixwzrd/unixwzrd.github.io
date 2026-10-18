@@ -2,6 +2,17 @@
 
 This changelog records changes to site behavior, operational tooling, scripts, build validation, and shared templates. Routine articles, post corrections, publication dates, and social copy do not require entries. The entries below were backfilled on September 2 from repository history; their dates identify the recorded changes, not a verified deployment date.
 
+## 2026-10-18: Theme consistency, discovery, and discussion-first engagement
+
+- Added consistent browser-following light and dark palettes for page furniture, tables, code/Rouge tokens, source disclosures, forms, pagination, and shared components. Made the local stylesheet an actual Jekyll page and corrected import order so custom components are emitted once after the active skin rather than being superseded by the theme stylesheet. Kept existing transparent diagram artwork on its dark viewing canvas in either page appearance.
+- Broadened the blog hub's Series Recent list to all series and included series companions in Hands-On, preserving standalone-only Technology, eligibility rules, and update-aware ordering.
+- Added build-time **On this page** navigation by default for regular and project blog posts, using existing H2/H3 anchors. The initially collapsed native disclosure works without JavaScript, is excluded from search indexing, and is omitted when there are no eligible headings. Individual posts can opt out with `toc: false`.
+- Added optional Markdown `project_intro` before project update history, initially populated for LogGPT and Extract Chat while retaining their fuller descriptions below the history.
+- Reordered shared engagement to discussion, RSS, then one support block; repaired the RSS include and added optional `discussion_prompt` with tutorial examples. Preserved comment/support opt-outs and existing Giscus discussion identities.
+- Added focused template/filter regression tests, a repeatable desktop/mobile browser contrast and navigation check, and authoring documentation. No content URLs, short-link identities, publication dates, categories, or series order were changed by this maintenance work.
+- Added Pagefind indexing to the Pages workflow using the existing pinned Python tooling and local indexing options, with search-bundle checks, rendered reader regressions, permalink validation, and offline HTMLProofer checks before deployment.
+- Restored five legacy section anchors used by six series links without changing current headings or article URLs. Suppressed GitHub buttons for nonpublic projects or missing repository URLs without removing retained project pages. Corrected the standalone permalink check's asset-fixture exclusion.
+
 ## 2026-09-22: Complete blog archive and configurable pagination
 
 - Added `/blog/all/` as a chronological archive of discoverable main-site, series, Hands-On, and project posts. Kept `/blog/` as the section hub and labeled the navigation links **Blog Home** and **All Posts** accordingly.

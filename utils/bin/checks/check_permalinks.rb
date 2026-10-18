@@ -17,7 +17,6 @@ def check_front_matter(file_path)
         # Skip certain files and layouts
         return [] if ['home', 'default', 'post'].include?(data['layout'])
         return [] if file_path.end_with?('404.html')
-        return [] if file_path.start_with?('assets/')
         return [] if ['feed.xml', 'sitemap.xml', 'redirects.json', 'robots.txt'].include?(File.basename(file_path))
         return [] if file_path.end_with?('.scss', '.css', '.map', '.liquid', '.xml', '.json', '.txt')
         return [] if file_path.include?('_includes/') || file_path.include?('_layouts/') || file_path.include?('_archives/')
@@ -51,6 +50,7 @@ def main
   
   files.each do |file|
     relative_path = file.sub("#{html_dir}/", '')
+    next if relative_path.start_with?('assets/')
     errors = check_front_matter(file)
     all_errors[relative_path] = errors if errors.any?
   end

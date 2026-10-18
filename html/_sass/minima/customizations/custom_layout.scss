@@ -470,13 +470,13 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: #fff;
+  color: $text-color;
   font-size: 1rem;
 
   select {
-    background: #222;
-    color: #fff;
-    border: 1px solid #555;
+    background: var(--site-surface);
+    color: $text-color;
+    border: 1px solid $border-color;
     border-radius: 6px;
     padding: 0.4em 0.7em;
     font: inherit;
@@ -493,15 +493,15 @@
 
 .page-info {
   font-size: 1.1rem;
-  color: #fff;
+  color: $text-color;
   letter-spacing: 0.03em;
 }
 
 .pagination-btn {
   display: inline-block;
-  background: #222;
-  color: #fff;
-  border: 1px solid #555;
+  background: var(--site-surface);
+  color: $text-color;
+  border: 1px solid $border-color;
   border-radius: 6px;
   padding: 0.4em 1.2em;
   font-size: 1rem;
@@ -512,10 +512,11 @@
 
 .pagination-btn:hover,
 .pagination-btn:focus {
-  background: #fff;
-  color: #111;
-  border: 1px solid #fff;
-  outline: none;
+  background: var(--site-surface-raised);
+  color: $text-color;
+  border: 1px solid $border-color;
+  outline: 2px solid $link-base-color;
+  outline-offset: 2px;
 }
 
 .pagination-btn[hidden] {

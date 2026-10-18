@@ -2,7 +2,7 @@
 .breadcrumbs {
   margin-bottom: 1.5rem;
   padding: 0.5rem 0;
-  border-bottom: 1px solid #e1e4e8;
+  border-bottom: 1px solid $border-color-01;
 }
 
 .breadcrumb-list {
@@ -13,7 +13,7 @@
   flex-wrap: wrap;
   align-items: center;
   font-size: 0.875rem;
-  color: #586069;
+  color: $brand-color;
 }
 
 .breadcrumb-item {
@@ -23,29 +23,29 @@
   &:not(:last-child)::after {
     content: "›";
     margin: 0 0.5rem;
-    color: #d1d5da;
+    color: $brand-color;
     font-weight: bold;
   }
 }
 
 .breadcrumb-link {
-  color: #0366d6;
+  color: $link-base-color;
   text-decoration: none;
   transition: color 0.2s ease;
   
   &:hover {
-    color: #0056b3;
+    color: $link-hover-color;
     text-decoration: underline;
   }
   
   &:focus {
-    outline: 2px solid #0366d6;
+    outline: 2px solid $link-base-color;
     outline-offset: 2px;
   }
 }
 
 .breadcrumb-current {
-  color: #8b949e;
+  color: $brand-color;
   font-weight: 500;
 }
 

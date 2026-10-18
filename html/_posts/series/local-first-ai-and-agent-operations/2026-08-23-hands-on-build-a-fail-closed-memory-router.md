@@ -48,6 +48,8 @@ You need Python 3 and `curl`. The walkthrough uses `/tmp/memory-router-demo` and
 | Exercise writes | Unknown contexts are denied while an explicit private context selects its bank |
 | Read the implementation | Candidate construction, deduplication, scoring, and ranking stay in the required order |
 
+<div id="start-with-three-bounded-outcomes"></div>
+
 ## Step 1: Start with Three Bounded Outcomes
 
 I began with the smallest context table that could fail closed. An unknown context can read general material but cannot write memory. A recognized general context stays in the general bank. A recognized private context can read general and private material while writing only to the private bank.
@@ -106,6 +108,8 @@ python3 memory_router.py private-room "cedar lantern"
 The private canary becomes eligible, and every result retains its source-bank tag. Combining two authorized projections should not erase provenance merely because their records appear in one ranked list. That bank tag is not a complete source graph, but it keeps the example honest about where each result came from.
 
 This pair of commands is useful because it separates relevance from permission without changing the query. The words are identical. Only the resolved context changes, and that decision changes which records exist from the scorer’s point of view.
+
+<div id="prove-what-the-demonstration-claims"></div>
 
 ## Step 4: Run the Canary Suite
 

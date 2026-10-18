@@ -3,6 +3,10 @@ layout: project
 title: "LogGPT and LogGPT Plus for Safari"
 appstore_link: https://apps.apple.com/us/app/loggpt/id6743342693?mt=12
 category: LogGPT
+project_intro: |
+  LogGPT for Safari exports ChatGPT conversations as structured JSON for local archiving and processing. The LogGPT Plus upgrade adds available generated and uploaded artifacts, packaged with the conversation and an artifact manifest in a portable ZIP.
+
+  [Get LogGPT from the Mac App Store](https://apps.apple.com/us/app/loggpt/id6743342693?mt=12), then use the download button beside Share in a ChatGPT conversation. For installation and usage details, see the [project documentation](https://github.com/unixwzrd/LogGPT).
 permalink: /projects/LogGPT/
 image: /assets/images/projects/LogGPT/LogGPT-Plus.png
 excerpt: "LogGPT for Safari exports ChatGPT conversations as structured JSON; the LogGPT Plus upgrade preserves generated and uploaded artifacts in a portable ZIP."

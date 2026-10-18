@@ -47,6 +47,8 @@ Use a shell with Python 3 and `curl`. The walkthrough builds everything under `/
 | Inspect and test it | SQLite state and eight canaries agree with the command output |
 | Hand it off | Review and retrieval eligibility remain separate decisions |
 
+<div id="start-with-the-contract"></div>
+
 ## Step 1: Define the Manifest Contract
 
 I started with one row for every allowlisted Markdown or text file. There is nothing particularly glamorous in the record, but every field answers a question I know I will have to ask later:
@@ -82,6 +84,8 @@ I am including both complete files because sample code is much more useful when 
 {% include source_code.html source="/assets/code/agent-optimization/intake_manifest.py" language="python" title="intake_manifest.py" %}
 
 {% include source_code.html source="/assets/code/agent-optimization/test_intake_manifest.py" language="python" title="test_intake_manifest.py" %}
+
+<div id="run-a-clean-end-to-end-scan"></div>
 
 ## Step 3: Run a Clean End-to-End Scan
 
@@ -214,6 +218,8 @@ The eight canaries cover the failure modes I care about at this boundary:
 | Schema migration | The original teaching schema upgrades without losing its row or state |
 
 The ordering matters here. The integrity check runs before commit, so a source-read failure or failed `PRAGMA quick_check` rolls back the source changes from that invocation. Schema migration commits separately, which allows an older manifest to be upgraded even when a later source scan fails.
+
+<div id="hand-off-to-review-without-granting-retrieval"></div>
 
 ## Step 7: Hand Off to Review Without Granting Retrieval
 

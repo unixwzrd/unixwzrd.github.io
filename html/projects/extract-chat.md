@@ -2,6 +2,10 @@
 layout: project
 title: "Extract Chat"
 category: extract-chat
+project_intro: |
+  Extract Chat converts ChatGPT conversation JSON and LogGPT ZIP exports into readable Markdown or HTML. Processing runs locally, with references to available artifacts preserved in the extracted output.
+
+  Start with the [installation and usage instructions](https://github.com/unixwzrd/extract-chat#readme). Export a conversation with [LogGPT](/projects/LogGPT/), then use Extract Chat to convert the JSON or ZIP into a format suited to review, archiving, or downstream tools.
 image: /assets/images/projects/extract-chat-banner.png
 permalink: /projects/extract-chat/
 excerpt: "Extract Chat turns downloaded ChatGPT or OpenAI conversation JSON into readable Markdown or HTML, preserves the useful structure, and makes it practical to archive, publish, or chunk conversations for downstream AI workflows."

@@ -34,6 +34,44 @@ When working with the post layout, remember that all frontmatter variables are a
 
 The canonical tag vocabulary lives in `html/_data/tag_taxonomy.yml`. List it from the repository root with `bundle exec ruby scripts/list_tags.rb`. Use `content_type` for introductions, releases, updates, and reference posts rather than adding those values to `tags`.
 
+### Contents navigation and optional discussion prompts
+
+Regular and project blog posts get build-time contents navigation automatically. Individual posts may opt out, and discussion prompts remain optional:
+
+```yaml
+toc: false # Only needed to suppress this post's contents navigation
+discussion_prompt: "What has worked in your setup, and where have you run into trouble?"
+```
+
+`toc` defaults to true for both `posts` and `project_posts` in `_config.yml`. The post layout adds an initially collapsed **On this page** disclosure after the series context and before the article prose. It lists rendered H2 and H3 headings with existing IDs, nests H3 entries under their preceding H2, and omits headings inside quotations, figures, navigation, and disclosures. It does not create or change heading IDs, needs no JavaScript, and renders nothing when no eligible headings exist. The contents block is excluded from Pagefind indexing. Existing Jekyll processes must load the defaults and Ruby hook on their next normal restart; an older watcher omits the contents block rather than repeating the article.
+
+No per-post setting or include is needed for main-site or project articles using `layout: post`, and there is no need to maintain the list by hand. Set `toc: false` only when an article should not show it; short posts without suitable headings already omit it automatically. Project landing pages and blog indexes are unaffected. When renaming an existing section, preserve its formerly shared fragment with a unique `<div id="former-heading-id"></div>` immediately before the new heading; this keeps old links working without adding duplicate contents entries or an empty Markdown paragraph.
+
+`discussion_prompt` is optional Markdown displayed with the discussion section. Use the author's conversational technical voice for article prompts. Shared interface text and company/project introductions should remain professional and organization-appropriate, not first-person personal narration. Existing article prose does not need rewriting to enable either feature.
+
+The engagement order is discussion, RSS subscription, then support. The existing neutral GitHub Discussions explanation remains when no prompt is supplied. `comments: false` hides the discussion and prompt; `show_support: false` hides the support section and its divider. RSS remains available independently. Giscus continues to use its configured repository, category, and pathname mapping, so layout changes do not create a new discussion identity.
+
+### Optional project introduction
+
+Project landing pages can supply a short Markdown introduction before their update history, without moving the complete description below it:
+
+```yaml
+project_intro: |
+  A concise description of what the project does and who it helps.
+
+  Start with the [installation and usage documentation](https://example.com/docs/).
+```
+
+This field is opt-in; pages without it retain their previous content order. LogGPT and Extract Chat are the initial examples. Keep introductions factual, professional, and brief, and link to authoritative getting-started instructions rather than repeating release details.
+
+### Theme and reader-experience validation
+
+The site follows the browser's light/dark preference using paired CSS custom properties, with no JavaScript preference or theme switch. `html/assets/css/style.scss` must retain its empty YAML front matter so Jekyll compiles it in place of the theme's stylesheet. It imports Minima initialization and the active skin before emitting custom components exactly once. The auto-loaded `custom-styles.scss` hook is intentionally non-emitting. Palette inputs and early variable bindings live in `custom-variables.scss`; additional component/code tokens live in `custom_theme.scss`.
+
+Run focused fixture tests with `bundle exec ruby scripts/test_reader_experience.rb`. Set `READER_SITE=/absolute/path/to/built/site` to add rendered integration checks; optional `READER_BASELINE=/absolute/path/to/prior/build` also compares original heading anchors and canonical links. Against an already served isolated build, open its SSH article with Playwright CLI and run `playwright-cli run-code --filename scripts/check_reader_experience_browser.js`. The browser check uses the current page's origin, exercises both appearances at desktop and mobile widths, checks rendered text/control contrast, source disclosures, and contents keyboard/fragment navigation with and without JavaScript, and saves ignored screenshots under `output/playwright/`. It never submits forms or comments. This is targeted regression coverage, not a full accessibility certification.
+
+The Pages workflow builds the Pagefind index after Jekyll and before uploading `_site`, using the versions in `requirements.txt` and the same selectors/language as `jekyll-site`. It checks the search entry files and a nonempty English index, runs the reader fixture/rendered tests and standalone permalink validator, and checks internal links and fragments with HTMLProofer. The internal check allows HTML5 named anchors without `href`; it does not perform network-dependent external-link checks. Browser checks remain a local validation step and now exercise a real search query, query-string preservation, and a reachable result in both appearances and widths. Generate the search index before running those browser checks.
+
 ### Optional retained article audio
 
 The local development build adds the dynamic proofreading player to every post automatically. Public narration is separate and opt-in. Once a generated MP3 has been reviewed, add either a simple path:
@@ -105,6 +143,11 @@ The blog list component (`_includes/blog_list.html`) provides a consistent way t
 - `limit`: Maximum number of posts to display (default: 5)
 - `category`: Filter posts by category (optional)
 - `tag`: Filter posts by tag (optional)
+- `series`: Restrict to one exact series name (optional).
+- `series_only`: Include any post with nonempty series front matter (optional).
+- `exclude_series`: Exclude series articles and companions (optional).
+
+The ordered section configuration is `html/_data/blog_sections.yml`. The blog hub's Series Recent list uses `series_only: true` across every series, while Hands-On includes both standalone tutorials and series companions. Technology remains standalone-only. A companion may intentionally appear in both Recent lists; the three-entry limit, publication exclusions, and shared update-aware sort remain unchanged. The featured-series callout is a separate editorial choice.
 
 ## Pagination
 
@@ -189,7 +232,7 @@ The source file must live below `html/assets/code/`. The build reads that same f
 
 This keeps one source of truth for the rendered and downloadable code. Do not paste a second copy of a complete file into the post. Continue using normal fenced blocks for the commands that demonstrate how to run it.
 
-All code presentation uses the shared post-skin rules in `html/_sass/minima/customizations/custom_code.scss`. Inline code, ordinary fenced blocks, and full-file disclosures should retain that common dark surface, spacing, scrollbar behavior, and accessible Rouge token palette. Do not add per-article background or token-color overrides; add a missing language token to the shared theme instead.
+All code presentation uses the shared post-skin rules in `html/_sass/minima/customizations/custom_code.scss`. Inline code, ordinary fenced blocks, and full-file disclosures should retain the coordinated light/dark surfaces, spacing, scrollbar behavior, and accessible Rouge token palettes. Do not add per-article background or token-color overrides; add a missing language token to the shared theme instead.
 
 ## Blog diagrams
 
@@ -217,7 +260,7 @@ free-standing and group text: #f9fafb
 edge-label backing: #040404
 ```
 
-Render Mermaid with `mmdc -b transparent`. Mermaid commonly emits `width="100%"` without an intrinsic height; the publication renderer replaces that percentage with explicit dimensions from the SVG `viewBox` so browsers preserve the diagram's aspect ratio inside the clickable figure. Before publication, inspect the SVG inside the actual article on the dark site rather than relying on an image previewer's default white background.
+Render Mermaid with `mmdc -b transparent`. Mermaid commonly emits `width="100%"` without an intrinsic height; the publication renderer replaces that percentage with explicit dimensions from the SVG `viewBox` so browsers preserve the diagram's aspect ratio inside the clickable figure. The shared diagram preview retains a dark canvas, matching the full-size viewer, so existing transparent diagrams remain readable in either page appearance without recoloring the artwork. Before publication, inspect the SVG inside the actual article under both browser appearance preferences rather than relying on an image previewer's default background.
 
 Diagrams must also be constrained by the article stylesheet instead of expanding automatically to the full content width. Compare related diagrams in the browser and normalize their Mermaid base font when different native view-box proportions would otherwise make one figure's boxes and labels substantially smaller than another's.
 

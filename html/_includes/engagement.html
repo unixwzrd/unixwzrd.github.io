@@ -1,6 +1,13 @@
+{% if page.comments != false %}
+  {% if site.giscus.enabled %}
+    {% include giscus_comments.html %}
+  {% elsif site.disqus.shortname and jekyll.environment == 'production' %}
+    {% if page.discussion_prompt %}{{ page.discussion_prompt | markdownify }}{% endif %}
+    {% include disqus_comments.html %}
+  {% endif %}
+{% endif %}
+{% include rss_feed_sub.html %}
+{% if page.show_support != false %}
+<hr class="post-engagement__divider">
 {% include support_block.html %}
-{%- if site.giscus.enabled -%}
-  {%- include giscus_comments.html -%}
-{%- elsif site.disqus.shortname -%}
-  {%- include disqus_comments.html -%}
-{%- endif -%}
+{% endif %}

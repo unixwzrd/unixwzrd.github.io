@@ -42,6 +42,6 @@ Use the [Topics index]({{ '/topics/' | relative_url }}) to explore tags and cros
   {% if blog_section.visible %}
 ## [Recent from {{ blog_section.title }}]({{ blog_section.url | relative_url }})
 
-{% include blog_list.html section=blog_section.section additional_category=blog_section.additional_category additional_category_primary_only=blog_section.additional_category_primary_only series=blog_section.series exclude_series=blog_section.exclude_series limit=3 hide_heading=true %}
+{% include blog_list.html section=blog_section.section additional_category=blog_section.additional_category additional_category_primary_only=blog_section.additional_category_primary_only series=blog_section.series series_only=blog_section.series_only exclude_series=blog_section.exclude_series limit=3 hide_heading=true %}
   {% endif %}
 {% endfor %}

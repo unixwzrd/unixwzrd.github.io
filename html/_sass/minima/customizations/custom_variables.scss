@@ -1,18 +1,18 @@
 // variables.scss
 
 // Color Variables
-$primary-color: #00fcbb;
-$secondary-color: #66d9ef;
-$text-color: #dadada;
-$background-color: #040404;
-$header-background: #040404;
+$primary-color: var(--site-primary-color);
+$secondary-color: var(--site-secondary-color);
+$text-color: var(--minima-text-color);
+$background-color: var(--minima-background-color);
+$header-background: var(--minima-background-color);
 $link-color: $link-base-color;
-$border-color: #cacaca;
+$border-color: var(--minima-border-color-01);
 
 // Table Colors
-$header-color: #000040;
-$odd-row-color: adjust-color($header-color, $lightness: -5%);
-$even-row-color: adjust-color($header-color, $lightness: 2%);
+$header-color: var(--minima-table-header-bg-color);
+$odd-row-color: var(--minima-background-color);
+$even-row-color: var(--minima-table-zebra-color);
 
 // Dimensions
 $brand-graphic-width: 55px;
@@ -29,13 +29,4 @@ $btn-font-size: 0.9rem;
 $project-details-h2-font-size: 1.6rem;
 
 // Other Variables
-$code-background: #000000;
-
-$lm-brand-color-light: adjust-color($lm-brand-color, $lightness: 40%) !important;
-$lm-brand-color-dark: adjust-color($lm-brand-color, $lightness: -25%) !important;
-$lm-link-visited-color: adjust-color($lm-link-base-color, $lightness: -15%) !important;
-$lm-border-color-02: adjust-color($lm-brand-color, $lightness: 35%) !important;
-$lm-table-text-color: adjust-color($lm-text-color, $lightness: 18%) !important;
-$lm-table-zebra-color: adjust-color($lm-brand-color, $lightness: 46%) !important;
-$lm-table-header-bg-color: adjust-color($lm-brand-color, $lightness: 43%) !important;
-$lm-table-header-border: adjust-color($lm-brand-color, $lightness: 37%) !important;
+$code-background: var(--minima-code-background-color);

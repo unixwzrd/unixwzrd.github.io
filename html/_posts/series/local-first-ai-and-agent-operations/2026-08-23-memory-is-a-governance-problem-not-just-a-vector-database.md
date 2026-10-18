@@ -2,6 +2,8 @@
 short_link_basis: "/_posts/2026-08-23-memory-is-a-governance-problem-not-just-a-vector-database.md"
 short_url: "https://unixwzrd.ai/s/857d25f9d2/"
 layout: post
+toc: true
+discussion_prompt: "How are you separating what an agent can retrieve from what it is authorized to use? I'm interested in the boundaries people have actually implemented, including where those boundaries have proved harder to enforce than expected."
 title: "Memory Is a Governance Problem, Not Just a Vector Database"
 date: 2026-08-23 08:00:00 -0500
 categories: [technology]

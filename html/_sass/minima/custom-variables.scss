@@ -1,8 +1,46 @@
-// Placeholder to allow overriding predefined variables smoothly.
+// Palette inputs and early bindings for Minima's base/layout imports.
+// Values stay CSS variables so browser preference changes affect every layer.
+$lm-brand-color: #57606a;
+$lm-text-color: #1f2328;
+$lm-background-color: #fdfdfd;
+$lm-code-background-color: #f6f8fa;
+$lm-link-base-color: #0550ae;
+$lm-link-visited-color: #6639ba;
+$lm-link-hover-color: #033d8b;
+$lm-border-color-01: #7d8590;
+$lm-border-color-02: #8c959f;
+$lm-border-color-03: #57606a;
+$lm-table-text-color: #1f2328;
+$lm-table-zebra-color: #f6f8fa;
+$lm-table-header-bg-color: #eaeef2;
+$lm-table-header-border: #7d8590;
+$dm-brand-color: #8b949e;
+$dm-text-color: #dadada;
+$dm-background-color: #040404;
+$dm-code-background-color: #0d1117;
+$dm-link-base-color: #79b8ff;
+$dm-border-color-01: #7d8590;
+$dm-border-color-02: #8b949e;
+$dm-border-color-03: #8b949e;
+$dm-table-text-color: #dadada;
+$dm-table-zebra-color: #111820;
+$dm-table-header-bg-color: #161b22;
+$dm-table-header-border: #7d8590;
 
-@use "sass:color";
-
-// Import custom variables
+$brand-color: var(--minima-brand-color);
+$brand-color-light: var(--minima-brand-color-light);
+$brand-color-dark: var(--minima-brand-color-dark);
+$site-title-color: var(--minima-text-color);
+$code-background-color: var(--minima-code-background-color);
+$link-base-color: var(--minima-link-base-color);
+$link-visited-color: var(--minima-link-visited-color);
+$link-hover-color: var(--minima-link-hover-color);
+$border-color-01: var(--minima-border-color-01);
+$border-color-02: var(--minima-border-color-02);
+$border-color-03: var(--minima-border-color-03);
+$table-text-color: var(--minima-table-text-color);
+$table-zebra-color: var(--minima-table-zebra-color);
+$table-header-bg-color: var(--minima-table-header-bg-color);
+$table-header-border: var(--minima-table-header-border);
+$table-border-color: var(--minima-table-border-color);
 @import "minima/customizations/custom_variables";
-
-// Syntax highlighting is finalized by custom_code.scss after the active skin.

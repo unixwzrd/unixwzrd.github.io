@@ -5,6 +5,7 @@ Parameters:
 - additional_category: (optional) Include a project category alongside a standard section.
 - additional_category_primary_only: (optional) Include only the sequence-zero introduction from the additional project category.
 - series: (optional) Only list posts from this named series.
+- series_only: (optional) Only list posts with nonempty series front matter.
 - exclude_series: (optional) Exclude series posts from this listing.
 - limit: (optional) Maximum number of posts to show.
 - posts_per_page: (optional) Number of posts per page without limiting the complete listing.
@@ -37,7 +38,7 @@ Parameters:
 {% endif %}
 
 <div class="blog-list-container">
-{% include filter_discovery_posts.html section=include.section category=include.category additional_category=include.additional_category additional_category_primary_only=include.additional_category_primary_only series=include.series exclude_series=include.exclude_series %}
+{% include filter_discovery_posts.html section=include.section category=include.category additional_category=include.additional_category additional_category_primary_only=include.additional_category_primary_only series=include.series series_only=include.series_only exclude_series=include.exclude_series %}
 {% assign posts_to_show = discovery_posts %}
 
     {% if posts_to_show.size > 0 %}

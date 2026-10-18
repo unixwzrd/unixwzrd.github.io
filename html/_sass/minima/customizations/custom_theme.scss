@@ -1,0 +1,72 @@
+// Complement Minima's paired palettes with shared component and code tokens.
+// Browser preference is the only selector; no JavaScript or saved override.
+:root {
+  color-scheme: light;
+  // Existing transparent diagram artwork is authored for the dark SVG viewer.
+  --site-diagram-canvas: #040404;
+  --site-primary-color: #116329;
+  --site-secondary-color: #075b61;
+  --site-surface: #f6f8fa;
+  --site-surface-raised: #eaeef2;
+  --site-quote-color: #075b61;
+  --site-code-surface: #f6f8fa;
+  --site-code-raised: #eaeef2;
+  --site-code-muted-surface: #ffffff;
+  --site-code-border: #7d8590;
+  --site-code-text: #1f2328;
+  --site-code-muted: #57606a;
+  --site-code-blue: #0550ae;
+  --site-code-cyan: #075b61;
+  --site-code-green: #116329;
+  --site-code-orange: #953800;
+  --site-code-pink: #a40e26;
+  --site-code-purple: #6639ba;
+  --site-code-string: #0a3069;
+  --site-code-error: #82071e;
+  --site-code-error-bg: #ffebe9;
+  --site-code-insert-bg: #dafbe1;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --site-primary-color: #00fcbb;
+    --site-secondary-color: #66d9ef;
+    --site-surface: #0d1117;
+    --site-surface-raised: #161b22;
+    --site-quote-color: #79c0ff;
+    --site-code-surface: #0d1117;
+    --site-code-raised: #111820;
+    --site-code-muted-surface: #090d12;
+    --site-code-border: #7d8590;
+    --site-code-text: #e6edf3;
+    --site-code-muted: #8b949e;
+    --site-code-blue: #79c0ff;
+    --site-code-cyan: #76e3ea;
+    --site-code-green: #7ee787;
+    --site-code-orange: #ffa657;
+    --site-code-pink: #ff7b72;
+    --site-code-purple: #d2a8ff;
+    --site-code-string: #a5d6ff;
+    --site-code-error: #ffa198;
+    --site-code-error-bg: #341a20;
+    --site-code-insert-bg: #0f291b;
+  }
+}
+
+// Shared native controls must follow the same palette as the page.
+input, select, textarea, button {
+  color: var(--minima-text-color);
+  background-color: var(--site-surface);
+  border-color: var(--minima-border-color-01);
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--minima-brand-color);
+  opacity: 1;
+}
+
+:focus-visible {
+  outline: 2px solid var(--minima-link-base-color);
+  outline-offset: 3px;
+}
