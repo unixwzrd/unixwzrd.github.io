@@ -38,6 +38,6 @@ excerpt: "Questions about local-first AI, secure automation, sensitive workflows
 
 - ### How can I get involved?
 
-    Use [Work With Me](/collaborate/) for consulting, collaboration, research, data contribution, or open-source project involvement.
+    Use [Work With Us](/collaborate/) for consulting, collaboration, research, data contribution, or open-source project involvement.
 
 {% include support_block.html %}

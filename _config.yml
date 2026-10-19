@@ -215,13 +215,43 @@ defaults:
 theme: jekyll-minima
 
 header_pages:
-  - about.md
-  - collaborate.md
+  - resources.md
   - projects.md
   - blog.md
-  - resources.md
-  - faq.md
+  - collaborate.md
+  - about.md
   - contact.md
+  - search.md
+
+# header_pages controls the visible order. Labels and dropdowns live here;
+# project/blog submenu entries still come from their existing catalogs.
+header_navigation:
+  resources.md:
+    label: Resources
+  projects.md:
+    label: Projects
+    dropdown: projects
+  blog.md:
+    label: Blog
+    dropdown: blogs
+  collaborate.md:
+    label: Work With Us
+    children:
+      - label: Professional Services
+        url: /collaborate/professionals/
+      - label: Community Collaboration
+        url: /collaborate/community/
+  about.md:
+    label: About
+  contact.md:
+    label: Contact
+  search.md:
+    label: Search
+  faq.md:
+    label: FAQ
+
+footer_pages:
+  - faq.md
 
 google_analytics: G-QZSHSBP292
 

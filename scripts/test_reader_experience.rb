@@ -79,6 +79,54 @@ class ReaderExperienceTest < Minitest::Test
     assert_nil SITE.frontmatter_defaults.find("projects/LogGPT.md", :pages, "toc")
   end
 
+  def test_homepage_selections_are_unique_public_projects_with_landing_pages
+    selections = YAML.safe_load(File.read(File.join(ROOT, "html/_data/homepage.yml")))
+    catalog = YAML.safe_load(File.read(File.join(ROOT, "html/_data/github_projects.yml"))).fetch("projects")
+    names = selections.values.flatten.map { |item| item.fetch("name") }
+    assert_equal names.uniq, names
+    names.each do |name|
+      project = catalog.find { |item| item["name"] == name }
+      refute_nil project, name
+      assert_equal "public", project["visibility"], name
+      assert_match %r{\A/projects/[^/]+/\z}, project["page_url"], name
+    end
+  end
+
+  def test_secrets_kit_catalog_status_matches_its_persistent_override
+    catalog = YAML.safe_load(File.read(File.join(ROOT, "html/_data/github_projects.yml"))).fetch("projects")
+    sources = YAML.safe_load(File.read(File.join(ROOT, "html/_data/repos.yml"))).fetch("repositories")
+    actual = catalog.find { |project| project["name"] == "Secrets-Kit" }.fetch("description")
+    override = sources.find { |project| project["name"] == "Secrets-Kit" }.fetch("overrides").fetch("description")
+    assert_equal override, actual
+    assert_includes actual, "Version 1 is available"
+    assert_includes actual, "version 2 is in limited-access beta"
+    refute_match(/public beta/i, actual)
+  end
+
+  def test_navigation_uses_configured_order_labels_and_existing_catalog_filters
+    paths = SITE.config.fetch("header_pages")
+    settings = SITE.config.fetch("header_navigation").transform_values(&:dup)
+    pages = paths.map { |path| { "path" => path, "url" => "/#{path.delete_suffix('.md')}/", "title" => "Default #{path}", "menu_item" => path.delete_suffix('.md') } }
+    data = {
+      "github_projects" => { "projects" => [{ "title" => "Visible", "page_url" => "/projects/Visible/", "visibility" => "public" }, { "title" => "Private", "page_url" => "/projects/Private/", "visibility" => "private" }, { "title" => "Hidden", "page_url" => "/projects/Hidden/", "visibility" => "none" }] },
+      "blog_sections" => { "sections" => [{ "title" => "Technology", "url" => "/blog/technology/", "visible" => true }, { "title" => "General", "url" => "/blog/general/", "visible" => false }] },
+    }
+    site = { "header_pages" => paths, "header_navigation" => settings, "pages" => pages, "data" => data }
+    links = ".trigger > a.page-link, .trigger > .nav-dropdown > .nav-dropdown-trigger-row > a"
+    doc = Nokogiri::HTML.fragment(render_include("navigation.html", site: site))
+    assert_equal paths.map { |path| settings.fetch(path).fetch("label") }, doc.css(links).map(&:text)
+    assert_equal ["All Projects", "Visible", "Private"], doc.css(".nav-dropdown-projects .nav-dropdown-item").map(&:text)
+    assert_equal ["Blog Home", "All Posts", "Technology", "Topics"], doc.css(".nav-dropdown-blogs .nav-dropdown-item").map(&:text)
+    assert_equal ["Professional Services", "Community Collaboration"], doc.css(".nav-dropdown-collaborate .nav-dropdown-item").map(&:text)
+    ids = doc.css("[id]").map { |node| node["id"] }
+    assert_equal ids.uniq, ids
+    settings.fetch(paths.last)["label"] = "Find & read"
+    reversed = Nokogiri::HTML.fragment(render_include("navigation.html", site: site.merge("header_pages" => paths.reverse)))
+    assert_equal "Find & read", reversed.css(links).first.text
+    assert_equal paths.reverse.map { |path| settings.fetch(path).fetch("label") }, reversed.css(links).map(&:text)
+    (paths + SITE.config.fetch("footer_pages")).each { |path| assert File.file?(File.join(SITE.source, path)), path }
+  end
+
   def test_toc_excludes_unanchored_headings_and_embedded_furniture
     html = '<h2>No ID</h2><details><h2 id="hidden">Hidden</h2></details><blockquote><h2 id="quote">Quote</h2></blockquote><h3 id="standalone">Standalone</h3>'
     doc = Nokogiri::HTML.fragment(Object.new.extend(Jekyll::ArticleTocFilter).article_toc(html))
@@ -269,6 +317,57 @@ if ENV["READER_SITE"]
         assert_operator order.index("project-intro"), :<, order.index("blog-list-container")
         assert_operator order.index("blog-list-container"), :<, order.index("project-description")
       end
+    end
+
+    def test_homepage_uses_editorial_order_without_beta_recruitment
+      doc = document("")
+      configuration = YAML.safe_load(File.read(File.join(ReaderExperienceTest::ROOT, "html/_data/homepage.yml")))
+      assert_equal configuration.fetch("featured_projects").map { |project| project.fetch("name") }, doc.css("[data-home-project]").map { |card| card["data-home-project"] }
+      assert_equal 1, doc.css("h1").length
+      assert_equal 1, doc.css(".site-header").length
+      assert_equal 1, doc.css(".site-footer").length
+      assert_equal "/assets/images/default-og-image.png", doc.at_css(".home-banner img")["src"]
+      assert_equal "1536", doc.at_css(".home-banner img")["width"]
+      assert_equal "512", doc.at_css(".home-banner img")["height"]
+      assert_equal "home-hero", doc.at_css(".home-banner").next_element["class"]
+      assert_empty doc.css(".home .content-footer")
+      assert_equal "https://unixwzrd.ai/", doc.at_css('link[rel="canonical"]')["href"]
+      assert_empty doc.css(".home-beta")
+      refute_match(/\bbeta\b|share testing feedback|help test secrets kit/i, doc.at_css(".home").text)
+      assert_empty doc.css('.home a[href*="#availability"]')
+      assert_equal "Explore Secrets Kit →", doc.at_css('[data-home-project="Secrets-Kit"] .home-card-action').text
+      assert_equal 4, doc.css("#home-writing + p + .post-list > li").length
+      %w[venvutil TorchDevice Case-Analytics PA-Awareness-1].each do |name|
+        refute_includes doc.css("[data-home-project]").map { |card| card["data-home-project"] }, name
+      end
+      assert doc.at_css('a[href="/projects/Case-Analytics/"]')
+      assert doc.at_css('a[href="/projects/PA-Awareness-1/"]')
+    end
+
+    def test_rendered_navigation_and_secondary_faq_routes
+      config = ReaderExperienceTest::SITE.config
+      expected = config.fetch("header_pages").map { |path| config.fetch("header_navigation").fetch(path).fetch("label") }
+      selector = ".site-nav .trigger > a.page-link, .site-nav .trigger > .nav-dropdown > .nav-dropdown-trigger-row > a"
+      Dir.glob("#{ROOT}/**/*.html").each do |path|
+        doc = Nokogiri::HTML(File.read(path))
+        next unless doc.at_css(".site-header")
+
+        assert_equal expected, doc.css(selector).map(&:text), path
+        assert_equal ["/faq/"], doc.css(".footer-navigation a").map { |a| a["href"] }, path
+      end
+      %w[about collaborate/professionals].each do |path|
+        assert document(path).at_css('.post-content a[href="/faq/"], .page-content a[href="/faq/"]'), path
+      end
+    end
+
+    def test_secrets_kit_distinguishes_available_v1_and_restricted_v2
+      body = document("projects/Secrets-Kit").at_css(".project-description").text
+      assert_includes body, "Version 1 is available"
+      assert_includes body, "Version 2 is in limited-access beta"
+      assert_includes body, "access restricted to authorized testers"
+      assert_includes body, "Windows compatibility has not yet been tested"
+      refute_match(/public beta|no stable production release yet/i, body)
+      refute_match(/\bbeta\b/i, document("").at_css(".home").text)
     end
 
     def test_no_duplicate_support_and_discussion_precedes_support

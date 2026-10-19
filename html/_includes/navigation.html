@@ -1,4 +1,4 @@
-<nav class="site-nav">
+<nav class="site-nav" aria-label="Main navigation">
   <input type="checkbox" id="nav-trigger" class="nav-trigger" />
   <label for="nav-trigger">
     <span class="menu-icon">
@@ -9,51 +9,49 @@
   </label>
 
   <div class="trigger">
-    <a class="page-link" href="{{ '/about/' | relative_url }}">About</a>
-    <a class="page-link" href="{{ '/collaborate/' | relative_url }}">Work With Me</a>
-
-    <div class="nav-dropdown nav-dropdown-projects">
-      <input type="checkbox" id="nav-projects-trigger" class="nav-dropdown-trigger" />
-      <div class="nav-dropdown-trigger-row">
-        <a class="page-link nav-dropdown-link" href="{{ '/projects/' | relative_url }}">Projects</a>
-        <label class="nav-dropdown-toggle" for="nav-projects-trigger" aria-label="Toggle Projects menu">
-          <span>▾</span>
-        </label>
-      </div>
-      <div class="nav-dropdown-menu">
-        <a class="nav-dropdown-item" href="{{ '/projects/' | relative_url }}">All Projects</a>
-        {% for project in site.data.github_projects.projects %}
-          {% if project.visibility != 'none' %}
-            <a class="nav-dropdown-item" href="{{ project.page_url | relative_url }}">{{ project.title }}</a>
-          {% endif %}
-        {% endfor %}
-      </div>
-    </div>
-
-    <a class="page-link" href="{{ '/resources/' | relative_url }}">Resources</a>
-
-    <div class="nav-dropdown nav-dropdown-blogs">
-      <input type="checkbox" id="nav-blogs-trigger" class="nav-dropdown-trigger" />
-      <div class="nav-dropdown-trigger-row">
-        <a class="page-link nav-dropdown-link" href="{{ '/blog/' | relative_url }}">Blog</a>
-        <label class="nav-dropdown-toggle" for="nav-blogs-trigger" aria-label="Toggle Blog menu">
-          <span>▾</span>
-        </label>
-      </div>
-      <div class="nav-dropdown-menu">
-        <a class="nav-dropdown-item" href="{{ '/blog/' | relative_url }}">Blog Home</a>
-        <a class="nav-dropdown-item" href="{{ '/blog/all/' | relative_url }}">All Posts</a>
-        {% for blog_section in site.data.blog_sections.sections %}
-          {% if blog_section.visible %}
-            <a class="nav-dropdown-item" href="{{ blog_section.url | relative_url }}">{{ blog_section.title }}</a>
-          {% endif %}
-        {% endfor %}
-        <a class="nav-dropdown-item" href="{{ '/topics/' | relative_url }}">Topics</a>
-      </div>
-    </div>
-
-    <a class="page-link" href="{{ '/faq/' | relative_url }}">FAQ</a>
-    <a class="page-link" href="{{ '/contact/' | relative_url }}">Contact</a>
-    <a class="page-link page-link-search" href="{{ '/search/' | relative_url }}">Search</a>
+    {% assign navigation_paths = include.paths | default: site.header_pages %}
+    {% for path in navigation_paths %}
+      {% assign nav_page = site.pages | where: 'path', path | first %}
+      {% assign nav_settings = site.header_navigation[path] %}
+      {% assign nav_label = nav_settings.label | default: nav_page.title %}
+      {% if nav_page %}
+        {% if nav_settings.dropdown or nav_settings.children.size > 0 %}
+          {% assign menu_id = nav_settings.dropdown | default: nav_page.menu_item | default: nav_label | slugify %}
+          <div class="nav-dropdown nav-dropdown-{{ menu_id }}">
+            <input type="checkbox" id="nav-{{ menu_id }}-trigger" class="nav-dropdown-trigger" />
+            <div class="nav-dropdown-trigger-row">
+              <a class="page-link nav-dropdown-link" href="{{ nav_page.url | relative_url }}">{{ nav_label | escape }}</a>
+              <label class="nav-dropdown-toggle" for="nav-{{ menu_id }}-trigger" aria-label="Toggle {{ nav_label | escape }} menu"><span>▾</span></label>
+            </div>
+            <div class="nav-dropdown-menu">
+              {% case nav_settings.dropdown %}
+              {% when 'projects' %}
+                <a class="nav-dropdown-item" href="{{ nav_page.url | relative_url }}">All Projects</a>
+                {% for project in site.data.github_projects.projects %}
+                  {% if project.visibility != 'none' %}
+                    <a class="nav-dropdown-item" href="{{ project.page_url | relative_url }}">{{ project.title | escape }}</a>
+                  {% endif %}
+                {% endfor %}
+              {% when 'blogs' %}
+                <a class="nav-dropdown-item" href="{{ nav_page.url | relative_url }}">Blog Home</a>
+                <a class="nav-dropdown-item" href="{{ '/blog/all/' | relative_url }}">All Posts</a>
+                {% for blog_section in site.data.blog_sections.sections %}
+                  {% if blog_section.visible %}
+                    <a class="nav-dropdown-item" href="{{ blog_section.url | relative_url }}">{{ blog_section.title | escape }}</a>
+                  {% endif %}
+                {% endfor %}
+                <a class="nav-dropdown-item" href="{{ '/topics/' | relative_url }}">Topics</a>
+              {% else %}
+                {% for child in nav_settings.children %}
+                  <a class="nav-dropdown-item" href="{{ child.url | relative_url }}">{{ child.label | escape }}</a>
+                {% endfor %}
+              {% endcase %}
+            </div>
+          </div>
+        {% else %}
+          <a class="page-link{% if nav_page.url == '/search/' %} page-link-search{% endif %}" href="{{ nav_page.url | relative_url }}">{{ nav_label | escape }}</a>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
   </div>
 </nav>

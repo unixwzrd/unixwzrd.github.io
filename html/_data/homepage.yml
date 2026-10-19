@@ -1,0 +1,23 @@
+# Homepage selection and order are editorial, not repository visibility settings.
+# Names resolve against github_projects.yml; private/hidden projects are not featured.
+featured_projects:
+  - name: LogGPT
+    label: Safari extension
+    summary: Keep a local archive of your ChatGPT conversations. LogGPT Plus adds available uploaded and generated files in a portable ZIP, ready for backup or further processing.
+    action: Explore LogGPT
+  - name: UnicodeFix
+    label: Local audit and cleanup
+    summary: Find hidden Unicode and inspect provenance and configured watermark signals in text and images. Review the evidence, then choose what to clean up locally.
+    action: Explore UnicodeFix
+  - name: Secrets-Kit
+    label: Local secrets management
+    summary: Store credentials locally and pass selected secrets to the process that needs them, reducing the need to keep credentials in project files and startup scripts.
+    action: Explore Secrets Kit
+
+more_projects:
+  - name: extract-chat
+    summary: Turn conversation exports into readable Markdown or HTML.
+  - name: WebReader
+    summary: Listen to web articles through your own text-to-speech setup.
+  - name: LLM-Ops-Kit
+    summary: Operate and troubleshoot self-hosted AI services.

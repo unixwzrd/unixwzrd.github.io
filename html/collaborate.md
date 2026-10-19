@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Work With Me"
+title: "Work With Us"
 menu_item: Collaborate
 permalink: /collaborate/
 image: /assets/images/default-og-image.png

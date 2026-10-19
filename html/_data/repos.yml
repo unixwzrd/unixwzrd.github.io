@@ -27,7 +27,7 @@ repositories:
     owner: unixwzrd
     overrides:
       title: "Secrets Kit"
-      description: "Local-first secrets CLI for macOS and Linux, with Keychain or encrypted SQLite storage, selected environment injection, and peer synchronization. Public beta."
+      description: "Local-first secrets management. Version 1 is available; version 2 is in limited-access beta, with macOS/Linux support and peer-to-peer replication."
       image_url: "/assets/images/projects/Secrets-Kit-Banner.png"
       banner_image_url: "/assets/images/projects/Secrets-Kit-Banner.png"
   - name: LLM-Ops-Kit

@@ -36,3 +36,5 @@ Distributed Thinking Systems was founded by [Michael Sullivan](/about/resume/), 
 - **Family-law research:** case-analysis work, data contribution, and professional collaboration around parental alienation.
 
 [Get in touch](/contact/) or review the [professional services overview](/collaborate/professionals/) for the kinds of work that fit best.
+
+For questions about the company, confidentiality, and working together, see the [Frequently Asked Questions](/faq/).

@@ -4,14 +4,16 @@ title: "UnicodeFix"
 category: UnicodeFix
 permalink: /projects/UnicodeFix/
 image: /assets/images/projects/UnicodeFix-banner.png
-excerpt: "UnicodeFix v2.0.0 audits hidden Unicode, provenance carriers, configured watermark signals, authorship signals, typography, and formatting—then removes only what it can identify safely."
+excerpt: "UnicodeFix v2.0.2 audits and safely cleans text and supported image metadata, while keeping provenance removal explicit and all processing local."
 ---
 
 ## Find What Your Editor Does Not Show
 
-**UnicodeFix v2.0.0 — the Ghostmark Edition** is a local, evidence-based text audit and cleanup tool. It finds invisible characters, provenance wrappers, configured statistical-watermark signals, hard-wrapped Markdown, and hidden payloads in source comments, then shows where the evidence lives and removes only what it can identify safely.
+**UnicodeFix v2.0.2 — the Ghostmark Edition** is a local, evidence-based text and image audit and cleanup tool. It finds invisible characters, provenance wrappers, image metadata, configured statistical-watermark signals, hard-wrapped Markdown, and hidden payloads in source comments, then shows where the evidence lives and removes only what it can identify safely.
 
 Everything runs locally after installation. Your text is not uploaded to a detector, vendor, or model service.
+
+Since v2.0.2, `cleanup-text` recognizes image inputs and routes them to the existing image backend. For supported writable formats with ExifTool 12.70 or newer, the default writes a separate `.clean` image with non-rendering metadata removed. Recognized C2PA provenance still requires an explicit `--strip-provenance` choice.
 
 ## Evidence Before Attribution
 

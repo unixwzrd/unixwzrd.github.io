@@ -10,7 +10,7 @@
     <a class="site-title" rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
 
     {%- if titles_size > 0 -%}
-      {%- include navigation.html -%}
+      {%- include navigation.html paths=page_paths -%}
     {%- endif -%}
   </div>
 </header>

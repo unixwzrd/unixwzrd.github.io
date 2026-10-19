@@ -3,12 +3,12 @@ layout: default
 ---
 
 <div class="home">
-  {%- if page.title -%}
+  {%- if page.title and page.hide_home_title != true -%}
     <h1 class="post-title">{{ page.title }}</h1>
   {%- endif -%}
 
   {{ content }}
 
-  {% include content_footer.html %}
+  {% unless page.hide_content_footer %}{% include content_footer.html %}{% endunless %}
 
 </div>

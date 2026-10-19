@@ -28,6 +28,12 @@
       </div>
     </div>
 
+    {% if site.footer_pages.size > 0 %}
+    <nav class="footer-navigation" aria-label="Footer links">
+      <p>{% for path in site.footer_pages %}{% assign footer_page = site.pages | where: 'path', path | first %}{% if footer_page %}<a href="{{ footer_page.url | relative_url }}">{{ site.header_navigation[path].label | default: footer_page.title | escape }}</a>{% unless forloop.last %} · {% endunless %}{% endif %}{% endfor %}</p>
+    </nav>
+    {% endif %}
+
     <div class="social-links">
       {%- include social.html -%}
     </div>

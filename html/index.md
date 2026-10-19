@@ -5,74 +5,92 @@ menu_item: Home
 permalink: /
 excerpt: "Distributed Thinking Systems helps professionals and small teams run local AI, secure automation, and practical systems for sensitive work."
 image: "/assets/images/default-og-image.png"
+hide_home_title: true
+hide_content_footer: true
 ---
 
-![Distributed Thinking Systems](/assets/images/default-og-image.png)
+<div class="home-banner">
+  <img src="{{ page.image | relative_url }}" alt="Distributed Thinking Systems LLC — AI systems, developer tooling, and automation" width="1536" height="512" fetchpriority="high" decoding="async">
+</div>
 
-## Local AI for Private, Sensitive Work
+<section class="home-hero" aria-labelledby="home-heading">
+  <p class="home-kicker">Local-first software &amp; systems engineering</p>
+  <h1 id="home-heading">Practical tools.<br>Local control.</h1>
+  <p class="home-lead">Keep your AI conversations, credentials, and working files useful—and under your control.</p>
+  <p>Distributed Thinking Systems builds local-first software and automation for developers, independent professionals, and small teams. Explore the tools, follow the engineering, or get help making a sensitive workflow work on your own systems.</p>
+  <div class="home-actions">
+    <a class="home-button home-button--primary" href="#featured-tools">Explore the tools</a>
+    <a class="home-button" href="{{ '/blog/' | relative_url }}">Read the engineering</a>
+    <a class="home-text-link" href="{{ '/collaborate/professionals/' | relative_url }}">Work with us →</a>
+  </div>
+</section>
 
-Run AI and automation locally without leaking secrets into files, logs, or cloud services.
+<section class="home-section" aria-labelledby="featured-tools">
+  <div class="home-section-heading">
+    <h2 id="featured-tools">Tools worth a closer look</h2>
+    <p>Different jobs, a shared approach: local processing, portable files, and deliberate handling of sensitive information.</p>
+  </div>
+  <div class="home-project-grid">
+    {% for featured in site.data.homepage.featured_projects %}
+      {% assign project = site.data.github_projects.projects | where: 'name', featured.name | first %}
+      {% if project and project.visibility == 'public' %}
+      <article class="home-project-card" data-home-project="{{ project.name | escape }}">
+        <a class="home-project-image" href="{{ project.page_url | relative_url }}" tabindex="-1" aria-hidden="true">
+          <img src="{{ project.banner_image_url | default: project.image_url | relative_url }}" alt="" loading="lazy" width="640" height="360">
+        </a>
+        <div class="home-project-copy">
+          <p class="home-label">{{ featured.label | escape }}</p>
+          <h3><a href="{{ project.page_url | relative_url }}">{{ project.title | escape }}</a></h3>
+          <p>{{ featured.summary | escape }}</p>
+          <a class="home-card-action" href="{{ project.page_url | relative_url }}">{{ featured.action | escape }} →</a>
+        </div>
+      </article>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div class="home-more-tools">
+    <h3>More of the toolkit</h3>
+    <ul>
+      {% for featured in site.data.homepage.more_projects %}
+        {% assign project = site.data.github_projects.projects | where: 'name', featured.name | first %}
+        {% if project and project.visibility == 'public' %}
+        <li><a href="{{ project.page_url | relative_url }}">{{ project.title | escape }}</a> — {{ featured.summary | escape }}</li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+    <p><a href="{{ '/projects/' | relative_url }}">Browse all projects →</a></p>
+  </div>
+</section>
 
-Distributed Thinking Systems helps professionals and small teams build secure, local-first workflows for sensitive data, AI, automation, and developer tooling.
+<section class="home-section" aria-labelledby="home-services">
+  <h2 id="home-services">When the pieces need to work together</h2>
+  <p>A useful tool is only part of a working system. Distributed Thinking Systems also provides hands-on integration, automation, and troubleshooting for local AI and sensitive workflows.</p>
+  <div class="home-capabilities">
+    <div>
+      <h3>Local AI &amp; agents</h3>
+      <p>Model runtimes, agent workflows, and document processing fitted to your hardware and the data you need to handle.</p>
+    </div>
+    <div>
+      <h3>Secure automation</h3>
+      <p>Shell tools and service workflows that make credential handling explicit and reduce unnecessary copies of sensitive data.</p>
+    </div>
+    <div>
+      <h3>Systems engineering</h3>
+      <p>Unix, Linux, and macOS integration, diagnostics, and developer infrastructure—with attention to how it will be operated and maintained.</p>
+    </div>
+  </div>
+  <p><a href="{{ '/collaborate/professionals/' | relative_url }}">Explore professional services</a> or <a href="{{ '/contact/' | relative_url }}">bring a specific problem</a>.</p>
+</section>
 
-[Set Up Secure Local AI](/collaborate/) | [Explore Projects](/projects/) | [Get In Touch](/contact/)
+<section class="home-section" aria-labelledby="home-writing">
+  <h2 id="home-writing">Follow the engineering</h2>
+  <p>The writing covers implementation, experiments, failures, and the decisions behind the tools—not just release announcements. Read a <a href="{{ '/blog/series/' | relative_url }}">complete series</a>, try a <a href="{{ '/blog/hands-on/' | relative_url }}">Hands-On tutorial</a>, or start with a recent post.</p>
+  {% include discovery_post_list.html limit=4 %}
+  <p><a href="{{ '/blog/all/' | relative_url }}">Browse every post →</a></p>
+</section>
 
-## Services and Capabilities
-
-Best suited for legal and counseling professionals, developers running local AI, and teams handling sensitive or regulated data.
-
-- **Local AI setup:** private model runtimes, local-first agents, and machine-specific integration.
-
-- **Secrets management:** safer handling for `.env` files, shell history, command arguments, logs, and startup configuration.
-
-- **Unix/macOS/Linux systems engineering:** shell tooling, launch agents, automation, diagnostics, and reliable local infrastructure.
-
-- **Sensitive workflow automation:** legal, counseling, document review, communication analysis, and case organization.
-
-- **Developer tooling:** CLI tools, project scaffolding, local-first infrastructure, and practical automation.
-
-## Secrets Kit: Local Secrets Without .env Files
-
-[Secrets Kit](/projects/Secrets-Kit/) helps keep API keys, passwords, and tokens out of `.env` files, shell history, `argv`, and `launchd` plists by using local secure storage and exec-time injection.
-
-It is the secure runtime and secrets layer for local AI workflows, developer tools, scripts, web UIs, and agent runtimes that still need environment variables.
-
-## Overview
-
-At **Distributed Thinking Systems**, we build practical AI, automation, and systems tooling for work where privacy and local control matter.
-
-One major application area is legal, counseling, and family-law analysis involving sensitive communications and documents. Within that vertical, **parental alienation case analysis** is a specialized focus.
-
-**Parental alienation** can fracture families and cause long-term psychological and emotional damage. It is often difficult to identify in family-court materials because the patterns are subtle and spread across messages, documents, and testimony.
-
-Using **AI** and **data analytics**, we aim to identify early signs of alienation through patterns in communication and family dynamics. These tools offer new insights into custody decisions, ensuring they are made in the child's best interest.
-
-That work remains important, and it fits the broader mission: local, privacy-focused tools for sensitive workflows.
-
-## What We Do
-
-We specialize in:
-
-- **Artificial Intelligence and Machine Learning**: Local model workflows, document analysis, communication review, and pattern detection.
-- **Data Analytics**: Tools for legal documents, professional records, communications, logs, and other sensitive datasets.
-- **Secure Automation**: Agent and script workflows that are designed around secrets hygiene and local data control.
-- **Distributed Computing Systems**: Unix, Linux, and macOS systems work for AI, automation, and developer infrastructure.
-- **Digital Forensics and Data Recovery**: Recovery and analysis support, particularly where legal, family, or professional records are involved.
-
-## Current Projects
-
-The projects fit together as a local-first stack: **Secrets Kit** handles runtime secrets, **LLM Ops Kit** supports orchestration and operations, and **Case Analytics** applies AI to sensitive legal and family-law analysis.
-
-{% include projects_list.html visibility="private" %}
-
-## About Us
-
-We focus on local-first AI, secure automation, developer infrastructure, and Unix/macOS/Linux systems engineering for sensitive work.
-
-If you are interested in contributing **data from past cases**, partnering in research, or supporting us in any capacity, please [collaborate with us](/collaborate/).
-
-At the intersection of AI and family law, we are committed to protecting parents and children from the long-lasting damage caused by alienation. Across the rest of the work, the same rule applies: handle sensitive data deliberately, locally when possible, and with fewer places for secrets to leak.
-
-## Latest Updates
-
-{% include discovery_post_list.html limit=7 show_view_all=true %}
+<section class="home-section home-research" aria-labelledby="home-research">
+  <h2 id="home-research">Research with a human purpose</h2>
+  <p>Some of this work grew from the difficulty of organizing sensitive communications and family-law records. <a href="{{ '/projects/Case-Analytics/' | relative_url }}">Case Analytics</a> and <a href="{{ '/projects/PA-Awareness-1/' | relative_url }}">parental alienation research</a> remain part of that longer-term effort. The aim is to support careful review and preserve context, not to turn an AI output into a finding about a family.</p>
+  <p>For research participation or project contributions, see <a href="{{ '/collaborate/community/' | relative_url }}">community collaboration</a>. For background on the company and its work, visit <a href="{{ '/about/' | relative_url }}">About Us</a>.</p>
+</section>

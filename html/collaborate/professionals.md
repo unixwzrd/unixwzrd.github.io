@@ -41,3 +41,5 @@ Services include:
 Consulting rates depend on project scope, complexity, data sensitivity, and the amount of implementation work required.
 
 If you need help with local AI, secure automation, sensitive workflow analysis, or systems engineering, [contact us](/contact/) with a short description of what you are trying to build or fix.
+
+The [Frequently Asked Questions](/faq/) cover the company, services, and confidentiality considerations.

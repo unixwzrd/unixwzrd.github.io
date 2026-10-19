@@ -2,6 +2,13 @@
 
 This changelog records changes to site behavior, operational tooling, scripts, build validation, and shared templates. Routine articles, post corrections, publication dates, and social copy do not require entries. The entries below were backfilled on September 2 from repository history; their dates identify the recorded changes, not a verified deployment date.
 
+## 2026-10-19: Homepage discovery and curated tools
+
+- Reworked the homepage around local-first tools, professional services, recent engineering articles, and a shorter research introduction. Kept Secrets Kit's homepage description neutral, without beta recruitment or testing/feedback links. Replaced the private-repository selection with ordered editorial selections in `html/_data/homepage.yml`; repository visibility and project URLs are unchanged.
+- Added homepage-scoped responsive cards using the existing light/dark palette and project banners. The homepage opts out of the repeated body title and generic content footer while retaining the shared header, site footer, and social metadata.
+- Restored the original company banner above the new homepage introduction. Wired the custom header to `_config.yml`'s `header_pages` order and adjacent `header_navigation` labels/dropdowns, promoting Resources and adding Professional Services/Community Collaboration under Work With Us. Moved FAQ to configurable footer links and linked it from About and Services; existing destination URLs are unchanged.
+- Corrected Secrets Kit's project page and source/generated catalog descriptions to distinguish available version 1 from limited-access version 2 beta testing. Qualified Windows as untested, retained the neutral homepage description, and removed open-beta availability claims without changing release links or historical articles.
+
 ## 2026-10-18: Theme consistency, discovery, and discussion-first engagement
 
 - Added consistent browser-following light and dark palettes for page furniture, tables, code/Rouge tokens, source disclosures, forms, pagination, and shared components. Made the local stylesheet an actual Jekyll page and corrected import order so custom components are emitted once after the active skin rather than being superseded by the theme stylesheet. Kept existing transparent diagram artwork on its dark viewing canvas in either page appearance.

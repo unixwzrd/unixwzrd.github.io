@@ -41,7 +41,7 @@ projects:
     owner: unixwzrd
     title: Secrets Kit
     description: |-
-      Local-first secrets CLI for macOS and Linux, with Keychain or encrypted SQLite storage, selected environment injection, and peer synchronization. Public beta.
+      Local-first secrets management. Version 1 is available; version 2 is in limited-access beta, with macOS/Linux support and peer-to-peer replication.
     image_url: /assets/images/projects/Secrets-Kit-Banner.png
     banner_image_url: /assets/images/projects/Secrets-Kit-Banner.png
     page_url: /projects/Secrets-Kit/
@@ -99,23 +99,28 @@ projects:
   - name: venvutil
     owner: unixwzrd
     title: VenvUtil
-    description: 'Private repository: venvutil'
+    description: |-
+      Python virtual environment management functions and script to build and manage performance, compatibility, and regression test venv builds mostly for AI
     image_url: /assets/images/projects/venvutil.png
     banner_image_url: /assets/images/projects/venvutil.png
     page_url: /projects/venvutil/
-    visibility: private
+    visibility: public
+    repo_url: https://github.com/unixwzrd/venvutil
   - name: TorchDevice
     owner: unixwzrd
     title: TorchDevice
-    description: 'Private repository: TorchDevice'
+    description: |-
+      Module contains class TorchDevice abstracting CUDA/MPS/CPU, intercepting, and redirecting calls to the available device to assist in porting code from CUDA to MPS.
     image_url: /assets/images/projects/TorchDevice.png
     banner_image_url: /assets/images/projects/TorchDevice.png
     page_url: /projects/TorchDevice/
-    visibility: private
+    visibility: public
+    repo_url: https://github.com/unixwzrd/TorchDevice
   - name: oobabooga-macOS
     owner: unixwzrd
     title: Oobabooga macOS
-    description: 'Private repository: oobabooga-macOS'
+    description: |-
+      Information on optimizing python libraries specifically for oobabooga to take advantage of Apple Silicon and Accelerate Framework.
     image_url: /assets/images/projects/oobabooga-macOS.png
     banner_image_url: /assets/images/projects/oobabooga-macOS.png
     page_url: /projects/oobabooga-macOS/
@@ -123,7 +128,8 @@ projects:
   - name: text-generation-webui-macos
     owner: unixwzrd
     title: Text Generation WebUI macOS
-    description: 'Private repository: text-generation-webui-macos'
+    description: |-
+      A macOS version of the oobabooga gradio web UI for running Large Language Models like LLaMA, llama.cpp, GPT-J, Pythia, OPT, and GALACTICA.
     image_url: /assets/images/projects/text-generation-webui-macos.png
     banner_image_url: /assets/images/projects/text-generation-webui-macos.png
     page_url: /projects/text-generation-webui-macos/

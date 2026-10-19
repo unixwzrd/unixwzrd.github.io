@@ -1,5 +1,133 @@
 // components.scss
 
+// Homepage-only presentation; existing articles and project tables are unchanged.
+.home-banner {
+  margin-bottom: 1.5rem;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+}
+
+.home-hero {
+  padding: 1rem 0 2.75rem;
+  border-bottom: 1px solid $border-color;
+
+  h1 {
+    font-size: clamp(2.5rem, 6vw, 4.25rem);
+    line-height: 1.08;
+    letter-spacing: -0.045em;
+    margin: 0.75rem 0 1.25rem;
+  }
+
+  > p { max-width: 48rem; }
+}
+
+.home-kicker,
+.home-label {
+  color: $brand-color;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.home-lead { font-size: 1.3rem; }
+
+.home-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.9rem 1.25rem;
+  margin-top: 1.5rem;
+}
+
+a.home-button {
+  display: inline-block;
+  padding: 0.7rem 1rem;
+  border: 1px solid $link-base-color;
+  border-radius: 8px;
+  font-weight: 600;
+  color: $link-base-color;
+  text-decoration: none;
+
+  &:hover {
+    background: var(--site-surface-raised);
+    color: $link-hover-color;
+  }
+}
+
+a.home-button--primary {
+  color: $background-color;
+  background: $link-base-color;
+
+  &:hover {
+    color: $background-color;
+    background: $link-hover-color;
+  }
+}
+
+.home-section {
+  padding: 2.5rem 0;
+  border-bottom: 1px solid $border-color;
+
+  > h2, .home-section-heading h2 { margin-top: 0; }
+}
+
+.home-project-grid,
+.home-capabilities {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.1rem;
+  margin: 1.5rem 0;
+}
+
+.home-project-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: var(--site-surface);
+  border: 1px solid $border-color;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.home-project-image {
+  display: block;
+  background: var(--site-surface-raised);
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+  }
+}
+
+.home-project-copy {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 1.1rem;
+
+  .home-label { margin-bottom: 0.6rem; }
+  h3 { font-size: 1.3rem; line-height: 1.3; }
+}
+
+.home-card-action { margin-top: auto; font-weight: 600; }
+
+.home-more-tools { margin-top: 2rem; }
+.home-capabilities h3 { font-size: 1.15rem; }
+.home-research { border-bottom: 0; padding-bottom: 0.5rem; }
+
+@media screen and (max-width: $on-palm) {
+  .home-project-grid, .home-capabilities { grid-template-columns: 1fr; }
+  .home-hero { padding-top: 0.25rem; }
+  .home-section { padding: 2rem 0; }
+}
+
 // Blockquote Styling
 blockquote {
   color: var(--site-quote-color);
