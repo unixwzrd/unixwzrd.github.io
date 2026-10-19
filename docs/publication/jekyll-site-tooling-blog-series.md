@@ -2,7 +2,7 @@
 
 ## Project Status
 
-Updated October 16, 2026. The Publisher committed and pushed through Part 9 and Hands-On 9A. The Pages workflow for that series push succeeded, and a focused public request to Part 9 returned HTTP 200. Part 10 and Hands-On 10A are local review drafts dated October 16; they have not been committed or pushed. Source packets and visual assets are linked below.
+Updated October 19, 2026. The Publisher committed Part 10 and Hands-On 10A in `a15acb6`. Both public routes returned HTTP 200 in a focused check, and the live series landing page lists all ten main articles and eight Hands-On companions. The planned ten-part series is complete. Source packets and visual assets remain linked below; the optional reusable-package work is a separate proposal.
 
 - [Source inventory and evidence boundaries](jekyll-site-tooling-inventory.md)
 - [Review journal](jekyll-site-tooling-review.md)
@@ -51,7 +51,7 @@ Lean technical when a choice needs teeth, but keep the argument readable. Explai
 
 ## Publication Boundary
 
-The Publisher authorized moving the remaining series installments forward and has since committed and pushed through Part 9 and Hands-On 9A. The October 16 Part 10 pair is in the local Jekyll source for review. A date alone does not trigger the Pages workflow to rebuild, and local preview does not imply remote publication. Preserve the Publisher's review and push decision for this final pair.
+The Publisher moved the remaining installments forward and committed the final pair in `a15acb6`. On October 19, both Part 10 routes and the series landing page were served publicly. This is a focused publication observation, not a full link or monitoring audit. A date alone does not trigger the Pages workflow to rebuild, and local preview does not imply remote publication for future work.
 
 Keep research and review packets under `docs/publication/`. Parts 1 through 10, their current Hands-On companions, and the landing page are in the Jekyll source tree; their exact paths are in the linked packets. Do not restart the watched local Jekyll server merely to make a source edit visible. Do not create alternate build destinations inside the repository.
 
@@ -339,7 +339,7 @@ Keep technical approval, editorial approval, and publication authority separate.
 
 ## Next Assignment
 
-The [initial inventory](jekyll-site-tooling-inventory.md) records the source review and open evidence gaps. The Publisher committed and pushed through Part 9 and Hands-On 9A. Part 10 and Hands-On 10A are in the Jekyll post tree for local review, with a lifecycle diagram and reusable publication-record template. Review technical claims, voice, links, visuals, and the public contact/discussion explanation before the Publisher chooses whether to commit and push. For later maintenance or spin-off articles, continue to answer:
+The [initial inventory](jekyll-site-tooling-inventory.md) records the source review and evidence boundaries. All ten planned main articles and eight Hands-On companions are live. There is no remaining installment in this outline. The [reuse proposal](jekyll-site-tooling-reuse-packaging.md) describes optional extraction of selected tools, which would require a separate licensing and implementation decision. For maintenance or any later spin-off, continue to answer:
 
 - Which commands are current entry points and which are backups, compatibility paths, or historical utilities?
 - Which scripts have tests, and what do those tests actually prove?

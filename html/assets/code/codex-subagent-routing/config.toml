@@ -1,0 +1,27 @@
+# Example sections for ~/.codex/config.toml. Merge them into your existing file.
+# Model availability and supported reasoning levels depend on your account/client.
+
+model = "gpt-6.1-sol"
+model_reasoning_effort = "high"
+
+[agents]
+enabled = true
+default_subagent_model = "gpt-6-luna"
+default_subagent_reasoning_effort = "low"
+max_concurrent_threads_per_session = 5
+
+[agents.explorer]
+description = "Fast, read-only codebase exploration and file mapping."
+config_file = "agents/explorer.toml"
+
+[agents.implementer]
+description = "Bounded code changes and relevant tests."
+config_file = "agents/implementer.toml"
+
+[agents.reviewer]
+description = "Independent correctness and regression review."
+config_file = "agents/reviewer.toml"
+
+[agents.diagnostician]
+description = "Reproduce difficult failures and identify root causes."
+config_file = "agents/diagnostician.toml"

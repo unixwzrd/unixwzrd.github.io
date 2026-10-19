@@ -1,0 +1,4 @@
+# Role config layer referenced by [agents.implementer] in config.toml.
+model = "gpt-6.1-sol"
+model_reasoning_effort = "medium"
+model_verbosity = "medium"

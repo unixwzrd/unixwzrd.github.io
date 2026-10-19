@@ -1,0 +1,89 @@
+Tuning Codex Subagents for the Work They Actually Do - social drafts
+
+Article:
+https://unixwzrd.ai/technology/2026/10/19/tuning-codex-subagents-for-the-work-they-actually-do/
+
+Short URL:
+https://unixwzrd.ai/s/9d7fe8140e/
+
+Publishing note: These links are for use after the article is pushed and the public site and short redirect have been checked. The article is currently a local draft.
+
+Suggested hashtags:
+#Codex #AIAgents #DeveloperTools
+
+
+==================================================
+LINKEDIN
+==================================================
+
+I keep seeing people ask why Codex burns through their usage so quickly. Fair question. But spawning a pile of subagents is not a token-saving trick; each agent has its own work and context.
+
+What I can control is which agent gets which job. My explorer handles read-only file mapping with a lighter model and low reasoning effort. An implementer gets a bounded change. Review and stubborn failures get deeper reasoning when they earn it. The main thread keeps the architecture and final decision.
+
+I put the relevant config.toml, individual agent files, and the AGENTS.md rules I use into a new post. That includes my preference for Cursor Agent CLI on suitable coding handoffs when my subscription has room. Codex simply runs its command, gives it the task, then checks the diff and tests. Another command-line coding agent could take the same handoff; Cursor is simply the one I use. I also lay out how I would measure the result across the whole task. There is no magic savings percentage here; I have not run a controlled comparison yet.
+
+https://unixwzrd.ai/s/9d7fe8140e/
+
+#Codex #AIAgents #DeveloperTools
+
+
+==================================================
+X / TWITTER
+==================================================
+
+Codex subagents aren't a token discount. I use a light explorer for mapping and Cursor for bounded coding work because I already subscribe. Another callable agent could do that job. Config, caveats, and how I'd measure it:
+
+https://unixwzrd.ai/s/9d7fe8140e/
+
+#Codex #AIAgents
+
+
+==================================================
+BLUESKY
+==================================================
+
+Codex subagents aren't a token discount. I tune roles for the job and use Cursor for suitable coding because I already subscribe. Claude Code or another callable agent could fill that handoff. Here's my config and how I'd measure the result:
+
+https://unixwzrd.ai/s/9d7fe8140e/
+
+#Codex #AIAgents
+
+
+==================================================
+MASTODON
+==================================================
+
+There is no free lunch in spawning Codex subagents. They generally add to total token use, so I want each handoff to earn its keep.
+
+For my setup, a fast explorer maps files, an implementer takes a bounded change, and a reviewer or diagnostician gets the harder reasoning. The main thread still owns the architecture and final call. I also keep an AGENTS.md rule against spinning up a committee for something one search could settle.
+
+I wrote up the actual TOML, the role files, and the very ordinary Cursor handoff: run its CLI, then inspect and test the result. I also explain how I'd compare completed tasks instead of claiming an unmeasured savings percentage.
+
+https://unixwzrd.ai/s/9d7fe8140e/
+
+#Codex #AIAgents #DeveloperTools
+
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Tuning Codex Subagents for the Work They Actually Do
+
+Subtitle:
+My agent configuration, when I delegate, and why more agents do not automatically mean fewer tokens.
+
+Body:
+
+I keep seeing complaints about Codex usage. I understand them. A subagent is another model doing another piece of work, and launching several to answer a one-search question can make the problem worse.
+
+My setup gives different jobs different models and reasoning settings. A lightweight explorer handles file mapping; implementation, review, and difficult diagnosis have their own roles. The configuration helps, but the more important rule lives in `AGENTS.md`: delegate a clear piece of work only when the separation is useful.
+
+The post includes a trimmed `config.toml`, the individual agent files, the Cursor Agent CLI preference in my `AGENTS.md`, and the caveats that tend to get left out of quick token-saving advice. Codex invokes the external CLI and then checks the work; Cursor is the one I happen to use. I have no measured percentage to sell. I also sketch a repeatable comparison that records total reported usage, time, retries, and quality across the completed task.
+
+Full article:
+https://unixwzrd.ai/technology/2026/10/19/tuning-codex-subagents-for-the-work-they-actually-do/
+
+Tags:
+Codex, AI agents, developer workflow, agent engineering

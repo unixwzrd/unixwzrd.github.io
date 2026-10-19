@@ -1,6 +1,6 @@
 # Part 10: Closing the Publishing Loop Without Pretending It Is a CMS
 
-Status: local Part 10 and Hands-On 10A drafts, October 16, 2026. Part 9 and Hands-On 9A are committed in `3325443`; the Pages run for that commit succeeded, and a focused public request to Part 9 returned HTTP 200. The final pair remains uncommitted and unpublished pending Publisher review.
+Status: Part 10 and Hands-On 10A committed in `a15acb6` on October 17, 2026. Both public routes returned HTTP 200 on October 19, and the live series landing page lists the final pair. The October 16 validation below describes the local drafting turn, before that commit.
 
 ## Pre-draft source inventory
 
@@ -42,4 +42,4 @@ Public prose can name the public contact page and GitHub Discussions, but should
 
 The article and companion were added to the Jekyll post tree with October 16 dates, forward navigation from Part 9, a 2:1 generated banner, editable Graphviz source with SVG/PNG renders, and a downloadable Markdown publication record. The diagram render was inspected. The short-link front-matter check and taxonomy check passed; the latter accepted 92 published and scheduled posts. An isolated production build to a temporary directory passed, with existing Sass deprecation warnings. The two post routes, both short redirects, diagram source and image, banner, and template exist in that output. Generated short-link and project-permalink redirect verifiers passed against the isolated build. Part 9 and the series landing page link to Part 10 in rendered HTML. The watched local server returned HTTP 200 for both new posts, the SVG, the template, and the series landing page. Playwright rendered both post routes; the main page showed series context, banner, diagram viewer link, source disclosure, companion link, support/discussion, and contact footer. Giscus returned a discussion-not-found warning for the unpublished local route, which is expected and not evidence of a site failure. No message was sent, discussion created, deployment performed, or server restarted. `git diff --check` passed.
 
-Publisher review of voice, technical claims, visuals, links, and date is the next gate. No commit or push in this drafting turn.
+At the October 19 status check, the checkout was clean and both final public routes returned HTTP 200; the live landing page listed ten main articles and eight Hands-On companions. That check did not rerun the production build or audit every external link, diagram, redirect destination, or reader-response path. No further installment is planned in this ten-part outline.
