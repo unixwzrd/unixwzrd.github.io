@@ -6,6 +6,7 @@ This changelog records changes to site behavior, operational tooling, scripts, b
 
 - Added a plain review-document layout with crawler exclusion metadata, no outgoing referrer, no analytics or other scripts, and no public navigation or engagement blocks. Review copies can use existing search/sitemap exclusions without becoming blog posts or generating short-link map entries. These are unlisted public documents, not access-controlled pages.
 - Made the human-readable sitemap respect `list_exclude`, and added tests for review rendering, section links, tracking exclusion, and absence from generated discovery surfaces.
+- Reused the existing script-free, collapsible "On this page" contents widget above review documents, generated from their rendered H2/H3 anchors. Pages can opt out with `toc: false`; documents without eligible headings omit the widget automatically.
 
 ## 2026-10-20: Short-link campaign preservation and initial page views
 

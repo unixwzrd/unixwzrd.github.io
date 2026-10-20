@@ -50,9 +50,13 @@ class ReaderExperienceTest < Minitest::Test
 
   def test_review_layout_is_unindexed_and_has_no_tracking_or_public_page_furniture
     source = File.read(File.join(ROOT, "html/_layouts/review.html")).split(/^---\s*$\n?/, 3).last
+    assigns = {
+      "page" => { "title" => "Review <example>", "url" => "/hidden/example/", "review_date" => "2026-10-20", "review_note" => "Draft <not accepted>" },
+      "site" => { "url" => "https://unixwzrd.ai", "baseurl" => "" },
+      "content" => '<h1 id="example">Example</h1><h2 id="one">One</h2><h3 id="child">Child</h3>',
+    }
     html = Liquid::Template.parse(source).render!(
-      { "page" => { "title" => "Review <example>", "url" => "/hidden/example/", "review_date" => "2026-10-20", "review_note" => "Draft <not accepted>" },
-        "site" => { "url" => "https://unixwzrd.ai", "baseurl" => "" }, "content" => '<h1 id="example">Example</h1>' },
+      assigns,
       registers: { site: SITE }, strict_filters: true,
     )
     doc = Nokogiri::HTML(html)
@@ -62,7 +66,20 @@ class ReaderExperienceTest < Minitest::Test
     assert_equal "all", doc.at_css("[data-unlisted-review]")["data-pagefind-ignore"]
     assert_equal "Draft <not accepted>", doc.at_css("aside p:last-of-type").text
     assert_equal 1, doc.css("h1").length
-    assert_empty doc.css("script, nav, footer, [data-pagefind-body], .support-section, .post-comments")
+    assert_empty doc.css("script, footer, [data-pagefind-body], .support-section, .post-comments")
+    assert_equal 1, doc.css("nav").length
+    assert_equal %w[#one #child], doc.css(".post-toc a").map { |link| link["href"] }
+    assert_equal "On this page", doc.at_css(".post-toc summary").text
+    refute doc.at_css(".post-toc").key?("open")
+    assert_includes doc.at_css(".post-content").previous_element["class"], "post-toc"
+
+    assigns["page"]["toc"] = false
+    without_toc = Liquid::Template.parse(source).render!(assigns, registers: { site: SITE }, strict_filters: true)
+    assert_empty Nokogiri::HTML(without_toc).css(".post-toc")
+    assigns["page"].delete("toc")
+    assigns["content"] = "<p>No section headings.</p>"
+    without_headings = Liquid::Template.parse(source).render!(assigns, registers: { site: SITE }, strict_filters: true)
+    assert_empty Nokogiri::HTML(without_headings).css(".post-toc")
   end
 
   def test_toc_uses_existing_ids_and_nests_h3_without_mutating_content
@@ -293,6 +310,12 @@ if ENV["READER_SITE"]
         assert_includes doc.at_css('meta[name="robots"]')["content"], "noindex"
         assert_equal "no-referrer", doc.at_css('meta[name="referrer"]')["content"]
         assert_empty doc.css("script, [data-pagefind-body], .support-section, .post-comments")
+        headings = doc.css(".post-content h2[id], .post-content h3[id]")
+        if headings.any?
+          assert_equal 1, doc.css(".post-toc").length
+          assert_equal headings.map { |heading| "##{heading['id']}" }, doc.css(".post-toc a").map { |link| link["href"] }
+          assert_includes doc.at_css(".post-content").previous_element["class"], "post-toc"
+        end
         doc.css('a[href^="#"]').each do |link|
           fragment = link["href"].delete_prefix("#")
           assert doc.css("[id]").any? { |node| node["id"] == fragment }, link["href"]

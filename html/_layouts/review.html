@@ -20,6 +20,7 @@ layout: null
         <p>{{ page.review_note | escape }}</p>
         <hr>
       </aside>
+      {% unless page.toc == false %}{{ content | article_toc }}{% endunless %}
       <article class="post-content">
         {{ content }}
       </article>
