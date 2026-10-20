@@ -48,6 +48,14 @@ repositories:
       title: "WebReader for Safari"
       description: "A local-first Safari extension that reads selected text or complete articles aloud through your own text-to-speech system."
       banner_image_url: "/assets/images/projects/WebReader/webreader-banner.png"
+  - name: localops-ui-kit
+    owner: unixwzrd
+    overrides:
+      title: "LocalOps UI Kit"
+      description: "Python-first operator interfaces for local-first applications, with native browser components and Textual/Rich renderers. No Node or frontend build pipeline required."
+      image_url: "/assets/images/projects/localops-ui-kit/localops-ui-kit-banner.png"
+      banner_image_url: "/assets/images/projects/localops-ui-kit/localops-ui-kit-banner.png"
+      visibility: public
   - name: mlx-harmony
     owner: unixwzrd
     overrides:

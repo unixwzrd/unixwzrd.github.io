@@ -1,0 +1,29 @@
+---
+layout: null
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="referrer" content="no-referrer">
+  <title>{{ page.title | escape }} — Review copy</title>
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
+  <main class="page-content" aria-label="Review document" data-unlisted-review data-pagefind-ignore="all">
+    <div class="wrapper">
+      <aside aria-label="Review status">
+        <p><strong>Unlisted review copy · {{ page.review_date | escape }}</strong></p>
+        <p>{{ page.review_note | escape }}</p>
+        <hr>
+      </aside>
+      <article class="post-content">
+        {{ content }}
+      </article>
+    </div>
+  </main>
+</body>
+</html>

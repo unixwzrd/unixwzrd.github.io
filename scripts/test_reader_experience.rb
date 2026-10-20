@@ -9,6 +9,7 @@ require "minitest/autorun"
 require "tmpdir"
 require "nokogiri"
 require "open3"
+require "uri"
 require_relative "../html/_plugins/article_toc_filter"
 
 class ReaderExperienceTest < Minitest::Test
@@ -45,6 +46,23 @@ class ReaderExperienceTest < Minitest::Test
       { "site" => { "posts" => posts, "data" => { "github_projects" => { "projects" => projects } } } },
       registers: { site: SITE }, strict_filters: true,
     ).strip
+  end
+
+  def test_review_layout_is_unindexed_and_has_no_tracking_or_public_page_furniture
+    source = File.read(File.join(ROOT, "html/_layouts/review.html")).split(/^---\s*$\n?/, 3).last
+    html = Liquid::Template.parse(source).render!(
+      { "page" => { "title" => "Review <example>", "url" => "/hidden/example/", "review_date" => "2026-10-20", "review_note" => "Draft <not accepted>" },
+        "site" => { "url" => "https://unixwzrd.ai", "baseurl" => "" }, "content" => '<h1 id="example">Example</h1>' },
+      registers: { site: SITE }, strict_filters: true,
+    )
+    doc = Nokogiri::HTML(html)
+    assert_equal "Review <example> — Review copy", doc.at_css("title").text
+    assert_equal "noindex, nofollow, noarchive", doc.at_css('meta[name="robots"]')["content"]
+    assert_equal "no-referrer", doc.at_css('meta[name="referrer"]')["content"]
+    assert_equal "all", doc.at_css("[data-unlisted-review]")["data-pagefind-ignore"]
+    assert_equal "Draft <not accepted>", doc.at_css("aside p:last-of-type").text
+    assert_equal 1, doc.css("h1").length
+    assert_empty doc.css("script, nav, footer, [data-pagefind-body], .support-section, .post-comments")
   end
 
   def test_toc_uses_existing_ids_and_nests_h3_without_mutating_content
@@ -266,6 +284,28 @@ if ENV["READER_SITE"]
       Nokogiri::HTML(File.read(File.join(ROOT, path, "index.html")))
     end
 
+    def test_unlisted_reviews_have_no_inbound_listing_links_or_tracking
+      files = Dir.glob("#{ROOT}/**/*.html")
+      reviews = files.select { |path| File.read(path).include?("data-unlisted-review") }
+      reviews.each do |path|
+        doc = Nokogiri::HTML(File.read(path))
+        url = URI.parse(doc.at_css('link[rel="canonical"]')["href"]).path
+        assert_includes doc.at_css('meta[name="robots"]')["content"], "noindex"
+        assert_equal "no-referrer", doc.at_css('meta[name="referrer"]')["content"]
+        assert_empty doc.css("script, [data-pagefind-body], .support-section, .post-comments")
+        doc.css('a[href^="#"]').each do |link|
+          fragment = link["href"].delete_prefix("#")
+          assert doc.css("[id]").any? { |node| node["id"] == fragment }, link["href"]
+        end
+        files.reject { |other| other == path }.each do |other|
+          refute_includes File.read(other), url, "unlisted review linked from #{other}"
+        end
+        %w[sitemap.xml feed.xml redirects.json].each do |name|
+          refute_includes File.read(File.join(ROOT, name)), url, name
+        end
+      end
+    end
+
     def test_toc_pilots_and_existing_fragments
       PILOTS.each do |path|
         doc = document(path)
@@ -308,10 +348,10 @@ if ENV["READER_SITE"]
       assert_operator with_contents, :>, 10
     end
 
-    def test_project_intro_is_only_in_the_two_pilots_and_precedes_history
-      pilots = Dir.glob("#{ROOT}/projects/*/index.html").select { |path| File.read(path).include?('class="project-intro"') }
-      assert_equal %w[LogGPT extract-chat], pilots.map { |p| File.basename(File.dirname(p)) }.sort
-      pilots.each do |path|
+    def test_project_intro_is_only_in_opted_in_projects_and_precedes_history
+      projects = Dir.glob("#{ROOT}/projects/*/index.html").select { |path| File.read(path).include?('class="project-intro"') }
+      assert_equal %w[LogGPT extract-chat localops-ui-kit], projects.map { |p| File.basename(File.dirname(p)) }.sort
+      projects.each do |path|
         doc = Nokogiri::HTML(File.read(path))
         order = doc.at_css(".project-content").element_children.map { |node| node["class"] }
         assert_operator order.index("project-intro"), :<, order.index("blog-list-container")

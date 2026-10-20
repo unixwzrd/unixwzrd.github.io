@@ -2,6 +2,11 @@
 
 This changelog records changes to site behavior, operational tooling, scripts, build validation, and shared templates. Routine articles, post corrections, publication dates, and social copy do not require entries. The entries below were backfilled on September 2 from repository history; their dates identify the recorded changes, not a verified deployment date.
 
+## 2026-10-20: Unlisted document review layout
+
+- Added a plain review-document layout with crawler exclusion metadata, no outgoing referrer, no analytics or other scripts, and no public navigation or engagement blocks. Review copies can use existing search/sitemap exclusions without becoming blog posts or generating short-link map entries. These are unlisted public documents, not access-controlled pages.
+- Made the human-readable sitemap respect `list_exclude`, and added tests for review rendering, section links, tracking exclusion, and absence from generated discovery surfaces.
+
 ## 2026-10-20: Short-link campaign preservation and initial page views
 
 - Added a local override of the existing Jekyll redirect layout to preserve incoming raw query parameters and fragments during JavaScript navigation. Kept immutable short-link inputs, destination mappings, canonical tags, `noindex`, and the meta-refresh/link fallback unchanged; added no cookies, storage, tracking service, or redirect hop.

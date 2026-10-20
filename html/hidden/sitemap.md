@@ -10,7 +10,9 @@ excerpt: ""
 
 ### Pages
 {% for page in site.pages %}
+{% unless page.list_exclude %}
 - [{{ page.title }}]({{ page.url | relative_url }})
+{% endunless %}
 {% endfor %}
 
 ### Blog Posts

@@ -1,0 +1,129 @@
+LocalOps UI Kit introduction — social drafts
+
+Article:
+https://unixwzrd.ai/projects/localops-ui-kit/2026/10/20/localops-ui-kit-introduction/
+
+Article short URL:
+https://unixwzrd.ai/s/52fa7acb73/
+
+Project page:
+https://unixwzrd.ai/projects/localops-ui-kit/
+
+Project short URL:
+https://unixwzrd.ai/s/8ab660876d/
+
+Widget showcase:
+https://unixwzrd.ai/localops-ui-kit/
+
+Repository:
+https://github.com/unixwzrd/localops-ui-kit
+
+Banner:
+/assets/images/projects/localops-ui-kit/localops-ui-kit-banner.png
+
+Publication check: make the intended repository public and confirm that the article and both short URLs are live before sharing. The posts describe a pre-1.0 preview, not a production-readiness or consumer-qualification announcement. Nothing here has been posted automatically.
+
+
+==================================================
+LINKEDIN
+==================================================
+
+Every local tool seems to need another version of the same interface: tables, task progress, logs, dialogs, and somewhere to put the results. I wanted to stop rebuilding those pieces without turning the interface library into another application framework.
+
+LocalOps UI Kit is a Python-first toolkit with strict UI contracts, native browser components, and optional Textual/Rich renderers. The browser assets are ordinary JavaScript modules and CSS, served unchanged. No Node runtime, npm installation, transpiler, or bundler is required by the toolkit.
+
+Why another UI kit? I needed that combination across different projects without copying their backend assumptions along with the controls. It is a focused toolkit, not an attempt to replace every web framework, and it will evolve as those projects exercise it.
+
+The application still owns its backend, authorization, routes, filesystem policy, and operational decisions. The toolkit handles presentation and interaction. That boundary is deliberate, and so is documenting where the terminal renderers use fallbacks rather than claiming every control behaves identically everywhere.
+
+Version 0.2.0 is a pre-1.0 preview under the MIT license. There is a browser-only widget showcase with synthetic data if you want to look around before installing anything.
+
+Introduction: https://unixwzrd.ai/s/52fa7acb73/
+Showcase: https://unixwzrd.ai/localops-ui-kit/
+
+#Python #LocalFirst #DeveloperTools #OpenSource
+
+
+==================================================
+PERSONAL REPOST
+==================================================
+
+Another project that grew out of not wanting to write the same thing again. LocalOps UI Kit gives my local tools shared interface components without making a Python utility drag a frontend build pipeline along behind it.
+
+Python contracts, native browser modules, Textual/Rich renderers, and explicit limits on what the UI is allowed to own. It is a pre-1.0 preview, and there is a live showcase to poke around in.
+
+https://unixwzrd.ai/s/52fa7acb73/
+
+
+==================================================
+X / TWITTER
+==================================================
+
+LocalOps UI Kit: Python-first operator interfaces, native browser modules, and Textual/Rich renderers. No Node or frontend build pipeline. The application keeps its backend and authorization. MIT, pre-1.0 preview.
+
+https://unixwzrd.ai/s/52fa7acb73/
+
+
+==================================================
+BLUESKY
+==================================================
+
+I got tired of rebuilding tables, task monitors, and dialogs for local tools. LocalOps UI Kit shares Python UI contracts across native browser components and Textual/Rich renderers. No frontend build pipeline. MIT, pre-1.0 preview.
+
+https://unixwzrd.ai/s/52fa7acb73/
+
+
+==================================================
+MASTODON
+==================================================
+
+Why another UI kit? I needed shared controls across local Python projects without copying backend assumptions or adding a frontend build pipeline.
+
+LocalOps UI Kit combines Python contracts, native browser modules, and Textual/Rich renderers, with limits documented. The application keeps its authorization and operations. MIT, pre-1.0 preview.
+
+https://unixwzrd.ai/s/52fa7acb73/
+
+#Python #LocalFirst #OpenSource
+
+
+==================================================
+FACEBOOK
+==================================================
+
+I've put together an introduction to LocalOps UI Kit, a reusable interface toolkit that has been finding its way into several of my projects.
+
+It provides tables, task monitors, dialogs, navigation, and other controls for local-first applications. Python defines the shared UI contracts; the browser uses native JavaScript and CSS, with optional Textual and Rich terminal renderers. No separate frontend build pipeline is required.
+
+It is still a pre-1.0 preview. The article explains what it does, what stays with the application, and where to try the live widget showcase.
+
+https://unixwzrd.ai/s/52fa7acb73/
+
+
+==================================================
+REDDIT — SELF-POST
+==================================================
+
+Suggested title:
+I built a Python-first UI kit for local tools without a Node/frontend build pipeline
+
+Body:
+
+I've been building local operational tools, and the interface work kept repeating itself: tables, task monitors, logs, dialogs, navigation, and results panes. I pulled those pieces into LocalOps UI Kit rather than keep rebuilding them in each project.
+
+Why another UI kit? I wanted Python-owned contracts, browser components without a frontend build pipeline, and terminal renderers where they make sense, while keeping backend policy out of the shared controls. It is a specific fit for the projects I am working on, not an argument that everyone should replace their existing framework. It will evolve as those integrations exercise it.
+
+I'm the author. This is a pre-1.0 MIT-licensed preview, not a production-ready claim or a hosted service.
+
+The shared UI specifications and state contracts are strict Python/Pydantic models. The browser side is native JavaScript ES modules and CSS that a Python application can serve unchanged. Optional Textual and Rich renderers use the same semantic foundation, although they do not provide identical interactions. The capability matrix calls out fallbacks and unsupported components.
+
+The toolkit deliberately does not own backend routes, authorization, credentials, filesystem policy, or the meaning of an operation. Applications supply those through adapters and callbacks. There is also a separate Python/Playwright test kit for checking rendered overflow, clipping, occlusion, hit testing, and reachability.
+
+The browser-only showcase uses synthetic data and in-memory adapters. It does not execute shell commands or access your filesystem. Python 3.12+ and Git are needed for the documented GitHub installation; neither package is on PyPI.
+
+Showcase: https://unixwzrd.ai/localops-ui-kit/
+Source and setup: https://github.com/unixwzrd/localops-ui-kit
+Introduction and design boundaries: https://unixwzrd.ai/s/52fa7acb73/
+
+If you build local Python tools, which UI pieces keep turning into duplicated work for you? I'm particularly interested in where the browser/terminal capability boundary is useful and where it gets in the way.
+
+Posting note: check the community's self-promotion and project-showcase rules first. Use the self-post only where this kind of author introduction is welcome; no hashtags are needed.

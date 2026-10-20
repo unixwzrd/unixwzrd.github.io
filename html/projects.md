@@ -15,6 +15,7 @@ The projects are connected by a local-first approach to AI, automation, and deve
 - **Security / Runtime:** [Secrets Kit](/projects/Secrets-Kit/) keeps API keys, passwords, and tokens out of `.env` files, shell history, `argv`, and `launchd` plists.
 - **Operations / Infrastructure:** [LLM Ops Kit](/projects/LLM-Ops-Kit/) supports running, deploying, debugging, and maintaining self-hosted AI stacks.
 - **Developer Tooling:** [UnicodeFix](/projects/UnicodeFix/) cleans AI-generated text for code, docs, posts, and workflows that need plain ASCII.
+- **Operator Interfaces:** [LocalOps UI Kit](/projects/localops-ui-kit/) provides Python-first UI contracts, native browser components, and Textual/Rich renderers for local-first tools without a frontend build pipeline.
 - **Applied AI:** [Case Analytics](/projects/Case-Analytics/) applies AI and data analysis to sensitive legal and family-law documents.
 - **Model Engineering:** Current Apple Silicon model-conversion and inference-performance work is moving into MLX Forge, which remains private while it clears its initial milestones.
 

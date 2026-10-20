@@ -77,6 +77,16 @@ projects:
     page_url: /projects/WebReader/
     visibility: public
     repo_url: https://github.com/unixwzrd/WebReader
+  - name: localops-ui-kit
+    owner: unixwzrd
+    title: LocalOps UI Kit
+    description: |-
+      Python-first operator interfaces for local-first applications, with native browser components and Textual/Rich renderers. No Node or frontend build pipeline required.
+    image_url: /assets/images/projects/localops-ui-kit/localops-ui-kit-banner.png
+    banner_image_url: /assets/images/projects/localops-ui-kit/localops-ui-kit-banner.png
+    page_url: /projects/localops-ui-kit/
+    visibility: public
+    repo_url: https://github.com/unixwzrd/localops-ui-kit
   - name: mlx-harmony
     owner: unixwzrd
     title: MLX Harmony
