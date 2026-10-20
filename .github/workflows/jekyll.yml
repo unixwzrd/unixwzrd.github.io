@@ -52,6 +52,7 @@ jobs:
       - name: Verify reader experience and internal links
         run: |
           READER_SITE="$GITHUB_WORKSPACE/_site" bundle exec ruby scripts/test_reader_experience.rb
+          ATTRIBUTION_SITE="$GITHUB_WORKSPACE/_site" bundle exec ruby scripts/test_short_link_attribution.rb
           bundle exec ruby utils/bin/checks/check_permalinks.rb
           bundle exec htmlproofer ./_site --disable-external --allow-hash-href \
             --check-internal-hash --allow-missing-href

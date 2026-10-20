@@ -57,7 +57,13 @@
   gtag('js', new Date());
 
   gtag('config', '{{ site.google_analytics }}', {
-    page_title: '{{ page.title | default: site.title }}',
+    // These templates send the enriched page_view below; do not also send one automatically.
+    {% if page.layout == 'post' %}
+    send_page_view: false,
+    {% elsif page.layout == 'page' and page.url contains '/projects/' %}
+    send_page_view: false,
+    {% endif %}
+    page_title: {{ page.title | default: site.title | jsonify | replace: '<', '\u003c' }},
     page_location: dtsCurrentLocation,
     {% if page.category %}custom_map: {'custom_dimension1': 'category'},{% endif %}
     {% if page.tags %}custom_map: {'custom_dimension2': 'tags'},{% endif %}

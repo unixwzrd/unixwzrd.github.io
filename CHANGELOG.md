@@ -2,6 +2,13 @@
 
 This changelog records changes to site behavior, operational tooling, scripts, build validation, and shared templates. Routine articles, post corrections, publication dates, and social copy do not require entries. The entries below were backfilled on September 2 from repository history; their dates identify the recorded changes, not a verified deployment date.
 
+## 2026-10-20: Short-link campaign preservation and initial page views
+
+- Added a local override of the existing Jekyll redirect layout to preserve incoming raw query parameters and fragments during JavaScript navigation. Kept immutable short-link inputs, destination mappings, canonical tags, `noindex`, and the meta-refresh/link fallback unchanged; added no cookies, storage, tracking service, or redirect hop.
+- Disabled automatic initial GA4 page views only where the analytics include already sends an enriched manual page view, preventing duplicate initial views on those templates. Kept the measurement ID, other events, and existing production-only loading unchanged.
+- Serialized analytics page titles as JavaScript strings so apostrophes, quotes, newlines, and closing-script text cannot break the inline initialization.
+- Added offline template/JavaScript tests, generated mapping/analytics checks in CI, and a browser audit that intercepts all external requests. Documented the remaining native referrer replacement and JavaScript-disabled limitations, plus reporting recommendations without changing GA4 property settings.
+
 ## 2026-10-19: Homepage discovery and curated tools
 
 - Reworked the homepage around local-first tools, professional services, recent engineering articles, and a shorter research introduction. Kept Secrets Kit's homepage description neutral, without beta recruitment or testing/feedback links. Replaced the private-repository selection with ordered editorial selections in `html/_data/homepage.yml`; repository visibility and project URLs are unchanged.
