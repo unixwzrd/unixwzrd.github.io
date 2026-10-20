@@ -56,6 +56,14 @@ repositories:
       image_url: "/assets/images/projects/localops-ui-kit/localops-ui-kit-banner.png"
       banner_image_url: "/assets/images/projects/localops-ui-kit/localops-ui-kit-banner.png"
       visibility: public
+  - name: code-analytics
+    owner: unixwzrd
+    overrides:
+      title: "Code Analysis Suite"
+      description: "Local, evidence-backed architecture analysis for Python, JavaScript/JSX, and Ruby. Retain reports, inspect dependencies and change impact, and compare findings before refactoring. WebUI in beta."
+      image_url: "/assets/images/projects/code-analytics/code-analysis-banner.png"
+      banner_image_url: "/assets/images/projects/code-analytics/code-analysis-banner.png"
+      visibility: public
   - name: mlx-harmony
     owner: unixwzrd
     overrides:

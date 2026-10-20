@@ -373,7 +373,7 @@ if ENV["READER_SITE"]
 
     def test_project_intro_is_only_in_opted_in_projects_and_precedes_history
       projects = Dir.glob("#{ROOT}/projects/*/index.html").select { |path| File.read(path).include?('class="project-intro"') }
-      assert_equal %w[LogGPT extract-chat localops-ui-kit], projects.map { |p| File.basename(File.dirname(p)) }.sort
+      assert_equal %w[LogGPT code-analytics extract-chat localops-ui-kit], projects.map { |p| File.basename(File.dirname(p)) }.sort
       projects.each do |path|
         doc = Nokogiri::HTML(File.read(path))
         order = doc.at_css(".project-content").element_children.map { |node| node["class"] }

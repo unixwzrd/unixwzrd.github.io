@@ -16,6 +16,7 @@ The projects are connected by a local-first approach to AI, automation, and deve
 - **Operations / Infrastructure:** [LLM Ops Kit](/projects/LLM-Ops-Kit/) supports running, deploying, debugging, and maintaining self-hosted AI stacks.
 - **Developer Tooling:** [UnicodeFix](/projects/UnicodeFix/) cleans AI-generated text for code, docs, posts, and workflows that need plain ASCII.
 - **Operator Interfaces:** [LocalOps UI Kit](/projects/localops-ui-kit/) provides Python-first UI contracts, native browser components, and Textual/Rich renderers for local-first tools without a frontend build pipeline.
+- **Architecture and Refactoring Review:** [Code Analysis Suite](/projects/code-analytics/) turns source structure into retained evidence, dependency views, comparisons, and review artifacts, with a working CLI and beta WebUI.
 - **Applied AI:** [Case Analytics](/projects/Case-Analytics/) applies AI and data analysis to sensitive legal and family-law documents.
 - **Model Engineering:** Current Apple Silicon model-conversion and inference-performance work is moving into MLX Forge, which remains private while it clears its initial milestones.
 

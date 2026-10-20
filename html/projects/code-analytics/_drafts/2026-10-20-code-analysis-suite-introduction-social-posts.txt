@@ -1,0 +1,129 @@
+Code Analysis Suite — introduction and beta feedback social drafts
+
+Article:
+https://unixwzrd.ai/projects/code-analytics/2026/10/20/code-analysis-suite-introduction/
+
+Article short URL:
+https://unixwzrd.ai/s/7e7b007908/
+
+Project page:
+https://unixwzrd.ai/projects/code-analytics/
+
+Project short URL:
+https://unixwzrd.ai/s/bbabdc366a/
+
+Source and setup:
+https://github.com/unixwzrd/code-analytics
+
+Beta scope:
+https://github.com/unixwzrd/code-analytics/blob/main/docs/beta.md
+
+Banner:
+/assets/images/projects/code-analytics/code-analysis-banner.png
+
+Before sharing: confirm the repository is public and the site article/short URLs are live. The documented version is 0.2.0b1, a beta candidate, not a stable or PyPI-release announcement. CLI analysis and artifact generation are the established workflow; the WebUI is still being tested and refined. Nothing below has been posted automatically.
+
+
+==================================================
+LINKEDIN
+==================================================
+
+A long function is a reason to investigate, not permission to redesign the application. Before changing a codebase, I want evidence about ownership, dependencies, state, and the likely impact of the change.
+
+Code Analysis Suite turns source structure into saved evidence for that review: symbols, dependencies, complexity, contracts, duplication, and change/test relationships, with capability differences documented for Python, JavaScript/JSX, and Ruby.
+
+The retained JSON report can drive tables, diagrams, comparisons, and review artifacts without another source scan. The analysis is local, static scans do not execute the target application, and proposals do not rewrite source.
+
+The CLI analysis and artifact-generation workflows are working. The local WebUI, built with LocalOps UI Kit components, is still in beta and has rough edges I am testing and fixing. I would particularly welcome feedback on where it helps an investigation and where it gets in the way.
+
+There are also nine Fawlty Towers-inspired tutorial investigations with supplied evidence, so you can try it before pointing it at your own project.
+
+Introduction: https://unixwzrd.ai/s/7e7b007908/
+Source: https://github.com/unixwzrd/code-analytics
+
+#Python #StaticAnalysis #DeveloperTools #Refactoring #OpenSource
+
+
+==================================================
+PERSONAL REPOST
+==================================================
+
+I want to understand the architecture before rearranging it. Code Analysis Suite collects source-bound evidence and lets me keep working with the saved report through CLI exports, comparisons, and a local browser interface.
+
+The CLI and artifact generation are working. The WebUI is still rough in places, and that is where I would really appreciate fresh eyes. Beta means I am asking you to help find the gaps, not admire the release notes.
+
+https://unixwzrd.ai/s/7e7b007908/
+
+
+==================================================
+X / TWITTER
+==================================================
+
+Code Analysis Suite: inspect architecture, dependencies, complexity, and change impact before refactoring. Local analysis, saved evidence, working CLI exports. The WebUI is in beta; feedback welcome. No automatic source edits.
+
+https://unixwzrd.ai/s/7e7b007908/
+
+
+==================================================
+BLUESKY
+==================================================
+
+A long function is not permission to redesign an application. Code Analysis Suite collects evidence for architecture and refactoring review. The CLI and artifact generation work; the local WebUI is in beta, and I would welcome feedback.
+
+https://unixwzrd.ai/s/7e7b007908/
+
+
+==================================================
+MASTODON
+==================================================
+
+Code Analysis Suite turns source structure into evidence for architecture and refactoring review: dependencies, complexity, contracts, duplication, and change impact, with language-specific limits.
+
+Local analysis, retained JSON, and CLI reports/exports are working. The WebUI uses LocalOps UI Kit and is still in beta; feedback welcome. No automatic source edits.
+
+https://unixwzrd.ai/s/7e7b007908/
+
+#Python #StaticAnalysis #OpenSource
+
+
+==================================================
+FACEBOOK
+==================================================
+
+I've put together an introduction to Code Analysis Suite, a local tool for understanding a codebase before changing it.
+
+It collects evidence about structure, dependencies, complexity, contracts, duplication, and change impact. You can keep the report, generate diagrams and tables, and compare runs instead of repeatedly scanning the same source. It does not automatically rewrite your code.
+
+The command-line analysis and artifact generation are working. The browser interface is still in beta, and I am looking for feedback while I work through its rough edges. There are nine tutorial investigations with supplied evidence if you want to try it without starting on your own project.
+
+https://unixwzrd.ai/s/7e7b007908/
+
+
+==================================================
+REDDIT — SELF-POST
+==================================================
+
+Suggested title:
+I built a local code-analysis tool for architecture review; the CLI works, and I'd like feedback on the beta WebUI
+
+Body:
+
+I'm the author of Code Analysis Suite. It is an MIT-licensed beta candidate for understanding code structure and reviewing proposed changes, not an automatic refactoring tool.
+
+The analysis covers symbols, dependencies, complexity, duplication, state/effects, and change/test evidence. Python has the broadest coverage, including contracts and dictionary shapes. JavaScript/JSX and Ruby have optional parser frontends with narrower capabilities. TypeScript/TSX is not supported, and missing or partial evidence stays explicit.
+
+The core artifact is a validated JSON report with source locations/hashes, provider states, diagnostics, and stable evidence IDs. CLI queries, tables, diagrams, and comparisons work from retained evidence without another source scan. Static scans do not import or execute the target application, and the tool does not rewrite source. Profiling and coverage execution are separate, explicitly authorized workflows.
+
+The CLI and artifact generation are working. The loopback WebUI uses LocalOps UI Kit and is still rough in places; I am testing and fixing it now. I would appreciate feedback on whether you can follow a finding into the relevant evidence/source, understand provider limitations, and navigate without losing the thread.
+
+If you would rather start with sample code, the checkout has nine Fawlty Towers-inspired investigations across Python, JavaScript, and Ruby, with saved evidence, optional hints, and separate solutions. You do not have to run the sample applications to investigate their saved reports.
+
+Python 3.12+ is required. Install from the source repository; this is not a PyPI-release announcement. Reports can contain private source details, so please use a minimal synthetic reproduction rather than posting a proprietary workspace.
+
+Source and setup: https://github.com/unixwzrd/code-analytics
+Beta limitations: https://github.com/unixwzrd/code-analytics/blob/main/docs/beta.md
+Introduction: https://unixwzrd.ai/s/7e7b007908/
+
+What would you need to see in a tool like this before trusting it to inform a refactoring decision? If you try the interface, where does it help and where does it make the job harder?
+
+Posting note: check the community's project-showcase and self-promotion rules. Use the self-post where author feedback requests are welcome; no hashtags are needed.
