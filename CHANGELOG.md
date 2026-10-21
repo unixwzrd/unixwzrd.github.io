@@ -8,6 +8,7 @@ This changelog records changes to site behavior, operational tooling, scripts, b
 - Added regression coverage for packet backlinks and isolation from public listings. Review diagrams are rendered to local static SVGs rather than requiring client-side scripts or external diagram services. Unlisted documents remain publicly accessible by URL, not access-controlled.
 - Routed packet diagrams through the shared diagram component so both thumbnails and full-size links open the standard zoom/pan viewer. Added crawler/referrer exclusion metadata to the standalone, analytics-free viewer, preserving the existing same-origin SVG checks. Disabled native image dragging so browser drag-and-drop does not interrupt the viewer's pointer-based panning.
 - Corrected the local source-link gate to resolve Jekyll's actual permalink and legacy-redirect mappings after the post-directory reorganization. Query strings no longer masquerade as filenames; query-only pagination stays on the current page. Missing destinations remain failures, and rendered links and anchors are still checked separately.
+- Made local check selection accept names with or without `.sh`, honoring the pre-commit hook's existing metadata-refresh exclusion instead of needlessly repeating network refreshes during commits.
 
 ## 2026-10-20: Unlisted document review layout
 

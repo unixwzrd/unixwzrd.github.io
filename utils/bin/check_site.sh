@@ -72,20 +72,20 @@ done
 should_run_check() {
     local check=$1
     local i
-    
+
     # If specific checks are specified, only run those
     if [ ${#CHECKS_TO_RUN[@]} -gt 0 ]; then
         for i in "${CHECKS_TO_RUN[@]}"; do
-            if [[ "$i" == "$check" ]]; then
+            if [[ "${i%.sh}" == "$check" ]]; then
                 return 0
             fi
         done
         return 1
     fi
-    
+
     # If check is in skip list, don't run it
     for i in "${SKIP_CHECKS[@]}"; do
-        if [[ "$i" == "$check" ]]; then
+        if [[ "${i%.sh}" == "$check" ]]; then
             return 1
         fi
     done
@@ -109,4 +109,4 @@ for check in "$CHECKS_DIR"/*.sh; do
     fi
 done
 
-echo "✅ All checks passed successfully!" 
+echo "✅ All checks passed successfully!"
