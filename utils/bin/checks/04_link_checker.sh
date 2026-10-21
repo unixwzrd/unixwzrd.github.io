@@ -9,11 +9,32 @@ ALL_PAGES="$TEMP_DIR/all_pages.txt"
 ORPHAN_PAGES="$TEMP_DIR/orphan_pages.txt"
 BROKEN_LINKS="$TEMP_DIR/broken_links.txt"
 SLASHLESS_PAGE_LINKS="$TEMP_DIR/slashless_page_links.txt"
+PERMALINKS="$TEMP_DIR/permalinks.tsv"
 
 # Cleanup temporary files on exit
 trap 'rm -rf "$TEMP_DIR"' EXIT
 
 echo "🔍 Running comprehensive link checks..."
+
+# Ask Jekyll for source-to-URL mappings; source folders are not URL categories.
+# Include editorial previews because this check also scans drafts and future posts.
+if ! bundle exec ruby -rjekyll -rpathname -e '
+  site = Jekyll::Site.new(Jekyll.configuration({
+    "quiet" => true, "future" => true, "show_drafts" => true, "unpublished" => true
+  }))
+  site.reset
+  site.read
+  (site.pages + site.collections.values.flat_map(&:docs)).each do |document|
+    source = Pathname.new(File.expand_path(document.path, site.source)).relative_path_from(Pathname.pwd)
+    ([document.url] + Array(document.data["redirect_from"])).each do |url|
+      next unless url.is_a?(String) && url.start_with?("/")
+      puts [url.delete_prefix("/").delete_suffix("/"), source].join("\t")
+    end
+  end
+' > "$PERMALINKS"; then
+    echo "❌ Could not load Jekyll permalink mappings"
+    exit 1
+fi
 
 # Function to URL decode a string
 urldecode() {
@@ -131,6 +152,11 @@ resolve_target_path() {
     fi
 
     local resolved
+    if resolved=$(awk -F '\t' -v target="$target_no_slash" '$1 == target { print $2; found = 1; exit } END { if (!found) exit 1 }' "$PERMALINKS"); then
+        printf '%s' "$resolved"
+        return 0
+    fi
+
     if resolved=$(resolve_pretty_permalink "$target_no_slash"); then
         printf '%s' "$resolved"
         return 0
@@ -159,7 +185,7 @@ process_internal_link() {
             ;;
     esac
 
-    if [[ "$raw_target" == \#* ]]; then
+    if [[ "$raw_target" == \#* || "$raw_target" == \?* ]]; then
         return
     fi
 
@@ -173,7 +199,7 @@ process_internal_link() {
        [[ "$decoded_target" != */ ]] && \
        [[ "$decoded_target" != /assets/* ]] && \
        [[ ! "${decoded_target##*/}" =~ \.[A-Za-z0-9]+$ ]]; then
-        echo "⚠️ Slashless internal page link in $source_file: $raw_target" >> "$SLASHLESS_PAGE_LINKS"
+        echo "⚠ Slashless internal page link in $source_file: $raw_target" >> "$SLASHLESS_PAGE_LINKS"
     fi
 
     if [[ "$decoded_target" != /* ]]; then
@@ -199,6 +225,7 @@ PY
     fi
 
     local without_anchor="${decoded_target%%#*}"
+    without_anchor="${without_anchor%%\?*}"
     if [ -z "$without_anchor" ]; then
         without_anchor="$decoded_target"
     fi
@@ -211,7 +238,7 @@ PY
     if resolved_path=$(resolve_target_path "$without_anchor"); then
         record_linked_page "$resolved_path"
     else
-        echo "⚠️ Broken link in $source_file: $raw_target" >> "$BROKEN_LINKS"
+        echo "⚠ Broken link in $source_file: $raw_target" >> "$BROKEN_LINKS"
     fi
 }
 
@@ -237,7 +264,7 @@ while IFS= read -r file; do
     done
 
     grep -o '\[.*\](http[^)]*)' "$file" 2>/dev/null | while read -r link; do
-        echo "ℹ️ External link in $file: $link"
+        echo "ℹ External link in $file: $link"
     done
 done < "$ALL_PAGES"
 
@@ -255,7 +282,7 @@ if [ -s "$BROKEN_LINKS" ]; then
 fi
 
 if [ -s "$SLASHLESS_PAGE_LINKS" ]; then
-    echo "⚠️ Found internal page links without trailing slashes in source:"
+    echo "⚠ Found internal page links without trailing slashes in source:"
     sort -u "$SLASHLESS_PAGE_LINKS"
     echo "   Note: build output now normalizes these links automatically."
 fi
@@ -278,7 +305,7 @@ if [ -s "$ORPHAN_PAGES" ]; then
         # Exclude certain pages that are okay to be "orphaned"
         if [[ ! "$page" =~ (404|index|README|CHANGELOG).*(md|html)$ ]]; then
             if (( found_orphan == 0 )); then
-                echo "⚠️ Found potentially orphaned pages (not linked from any other page):"
+                echo "⚠ Found potentially orphaned pages (not linked from any other page):"
                 found_orphan=1
             fi
             echo "   $page"

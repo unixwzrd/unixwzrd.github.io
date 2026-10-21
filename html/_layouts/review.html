@@ -8,18 +8,23 @@ layout: null
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow, noarchive">
   <meta name="referrer" content="no-referrer">
-  <title>{{ page.title | escape }} — Review copy</title>
+  <title>{{ page.title | escape }} - Review copy</title>
   <link rel="canonical" href="{{ page.url | absolute_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 <body>
-  <main class="page-content" aria-label="Review document" data-unlisted-review data-pagefind-ignore="all">
+  <main class="page-content" aria-label="Review document" data-unlisted-review data-review-packet="{{ page.review_index | escape }}" data-pagefind-ignore="all">
     <div class="wrapper">
       <aside aria-label="Review status">
         <p><strong>Unlisted review copy · {{ page.review_date | escape }}</strong></p>
         <p>{{ page.review_note | escape }}</p>
         <hr>
       </aside>
+      {% if page.review_index and page.review_index != page.url %}
+      <nav aria-label="Review packet">
+        <p><a href="{{ page.review_index | relative_url }}">Review packet and reading order</a></p>
+      </nav>
+      {% endif %}
       {% unless page.toc == false %}{{ content | article_toc }}{% endunless %}
       <article class="post-content">
         {{ content }}

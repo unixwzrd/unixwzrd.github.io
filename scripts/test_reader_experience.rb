@@ -60,7 +60,7 @@ class ReaderExperienceTest < Minitest::Test
       registers: { site: SITE }, strict_filters: true,
     )
     doc = Nokogiri::HTML(html)
-    assert_equal "Review <example> — Review copy", doc.at_css("title").text
+    assert_equal "Review <example> - Review copy", doc.at_css("title").text
     assert_equal "noindex, nofollow, noarchive", doc.at_css('meta[name="robots"]')["content"]
     assert_equal "no-referrer", doc.at_css('meta[name="referrer"]')["content"]
     assert_equal "all", doc.at_css("[data-unlisted-review]")["data-pagefind-ignore"]
@@ -80,6 +80,30 @@ class ReaderExperienceTest < Minitest::Test
     assigns["content"] = "<p>No section headings.</p>"
     without_headings = Liquid::Template.parse(source).render!(assigns, registers: { site: SITE }, strict_filters: true)
     assert_empty Nokogiri::HTML(without_headings).css(".post-toc")
+    assigns["page"]["review_index"] = "/hidden/packet/"
+    with_packet = Nokogiri::HTML(Liquid::Template.parse(source).render!(assigns, registers: { site: SITE }, strict_filters: true))
+    assert_equal "/hidden/packet/", with_packet.at_css('[aria-label="Review packet"] a')["href"]
+    assert_equal "/hidden/packet/", with_packet.at_css("[data-unlisted-review]")["data-review-packet"]
+    assigns["page"]["url"] = "/hidden/packet/"
+    packet_index = Nokogiri::HTML(Liquid::Template.parse(source).render!(assigns, registers: { site: SITE }, strict_filters: true))
+    assert_empty packet_index.css('[aria-label="Review packet"]')
+  end
+
+  def test_review_diagrams_use_the_standard_viewer_without_inline_scripts
+    src = "/hidden/example/diagrams/policy.svg"
+    title = "Policy & authorization"
+    html = render_include("blog_diagram.html", parameters: "src=page.diagram alt=page.diagram_title", page: { "diagram" => src, "diagram_title" => title })
+    doc = Nokogiri::HTML.fragment(html)
+    assert_equal src, doc.at_css("img")["src"]
+    assert_equal title, doc.at_css("img")["alt"]
+    assert_equal 2, doc.css("a").length
+    doc.css("a").each do |link|
+      url = URI.parse(link["href"])
+      assert_equal "/diagram-viewer/", url.path
+      assert_equal({ "src" => src, "title" => title }, URI.decode_www_form(url.query).to_h)
+      assert_equal "_blank", link["target"]
+    end
+    assert_empty doc.css("script")
   end
 
   def test_toc_uses_existing_ids_and_nests_h3_without_mutating_content
@@ -304,12 +328,26 @@ if ENV["READER_SITE"]
     def test_unlisted_reviews_have_no_inbound_listing_links_or_tracking
       files = Dir.glob("#{ROOT}/**/*.html")
       reviews = files.select { |path| File.read(path).include?("data-unlisted-review") }
+      packets = reviews.to_h do |path|
+        doc = Nokogiri::HTML(File.read(path))
+        [path, doc.at_css("[data-unlisted-review]")["data-review-packet"].to_s]
+      end
       reviews.each do |path|
         doc = Nokogiri::HTML(File.read(path))
         url = URI.parse(doc.at_css('link[rel="canonical"]')["href"]).path
         assert_includes doc.at_css('meta[name="robots"]')["content"], "noindex"
         assert_equal "no-referrer", doc.at_css('meta[name="referrer"]')["content"]
         assert_empty doc.css("script, [data-pagefind-body], .support-section, .post-comments")
+        doc.css('img[src$=".svg"]').each do |image|
+          figure = image.ancestors("figure.blog-diagram").first
+          refute_nil figure, "review diagram bypasses standard component: #{image['src']}"
+          links = figure.css("a").map { |link| URI.parse(link["href"]) }
+          assert_equal 2, links.size
+          links.each do |link|
+            assert_equal "/diagram-viewer/", link.path
+            assert_equal image["src"], URI.decode_www_form(link.query).to_h["src"]
+          end
+        end
         headings = doc.css(".post-content h2[id], .post-content h3[id]")
         if headings.any?
           assert_equal 1, doc.css(".post-toc").length
@@ -320,13 +358,26 @@ if ENV["READER_SITE"]
           fragment = link["href"].delete_prefix("#")
           assert doc.css("[id]").any? { |node| node["id"] == fragment }, link["href"]
         end
-        files.reject { |other| other == path }.each do |other|
+        packet = packets.fetch(path)
+        if !packet.empty? && packet != url
+          assert_equal [packet], doc.css('[aria-label="Review packet"] a').map { |link| link["href"] }
+        end
+        files.reject { |other| other == path || (!packet.empty? && packets[other] == packet) }.each do |other|
           refute_includes File.read(other), url, "unlisted review linked from #{other}"
         end
         %w[sitemap.xml feed.xml redirects.json].each do |name|
           refute_includes File.read(File.join(ROOT, name)), url, name
         end
       end
+    end
+
+    def test_diagram_viewer_is_unindexed_and_does_not_load_tracking
+      doc = document("diagram-viewer")
+      assert_equal "false", doc.at_css("#diagram-image")["draggable"]
+      assert_includes doc.at_css('meta[name="robots"]')["content"], "noindex"
+      assert_equal "no-referrer", doc.at_css('meta[name="referrer"]')["content"]
+      assert_empty doc.css("script[src]")
+      refute_includes doc.to_html, "googletagmanager"
     end
 
     def test_toc_pilots_and_existing_fragments

@@ -2,6 +2,13 @@
 
 This changelog records changes to site behavior, operational tooling, scripts, build validation, and shared templates. Routine articles, post corrections, publication dates, and social copy do not require entries. The entries below were backfilled on September 2 from repository history; their dates identify the recorded changes, not a verified deployment date.
 
+## 2026-10-21: Unlisted peer-review document packets
+
+- Extended the existing review layout with optional packet navigation while retaining its script-free contents widget and search, crawler, and tracking exclusions. Documents can cross-link within their own unlisted packet without being added to public discovery listings or short-link maps.
+- Added regression coverage for packet backlinks and isolation from public listings. Review diagrams are rendered to local static SVGs rather than requiring client-side scripts or external diagram services. Unlisted documents remain publicly accessible by URL, not access-controlled.
+- Routed packet diagrams through the shared diagram component so both thumbnails and full-size links open the standard zoom/pan viewer. Added crawler/referrer exclusion metadata to the standalone, analytics-free viewer, preserving the existing same-origin SVG checks. Disabled native image dragging so browser drag-and-drop does not interrupt the viewer's pointer-based panning.
+- Corrected the local source-link gate to resolve Jekyll's actual permalink and legacy-redirect mappings after the post-directory reorganization. Query strings no longer masquerade as filenames; query-only pagination stays on the current page. Missing destinations remain failures, and rendered links and anchors are still checked separately.
+
 ## 2026-10-20: Unlisted document review layout
 
 - Added a plain review-document layout with crawler exclusion metadata, no outgoing referrer, no analytics or other scripts, and no public navigation or engagement blocks. Review copies can use existing search/sitemap exclusions without becoming blog posts or generating short-link map entries. These are unlisted public documents, not access-controlled pages.

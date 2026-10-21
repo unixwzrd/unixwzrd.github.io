@@ -9,6 +9,8 @@ sitemap: false
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <meta name="referrer" content="no-referrer">
     <title>Diagram viewer</title>
     <style>
       :root {
@@ -121,7 +123,7 @@ sitemap: false
       <button type="button" id="close-viewer" aria-label="Close diagram viewer">Close (Esc)</button>
     </header>
     <main class="diagram-viewport" id="diagram-viewport">
-      <img class="diagram-image" id="diagram-image" alt="" data-proofer-ignore>
+      <img class="diagram-image" id="diagram-image" alt="" draggable="false" data-proofer-ignore>
       <p class="diagram-error" id="diagram-error" hidden>The requested diagram could not be displayed.</p>
     </main>
     <script>
@@ -141,7 +143,7 @@ sitemap: false
         let fitScale = 1;
         let scale = 1;
 
-        document.title = `${title} — Diagram viewer`;
+        document.title = `${title} - Diagram viewer`;
         document.getElementById('diagram-title').textContent = title;
         image.alt = title;
 
