@@ -1,0 +1,63 @@
+Hands-On: Find the Limits of a Jekyll Metadata Check - social drafts
+
+Part: 3A of Beyond Static: Building a Publication System Around Jekyll
+Article: https://unixwzrd.ai/hands-on/2026/10/08/hands-on-find-the-limits-of-a-jekyll-metadata-check/
+Short URL: https://unixwzrd.ai/s/05935819b6/
+
+Publishing note: Check the public article and short redirect before posting this copy.
+
+==================================================
+LINKEDIN
+==================================================
+
+A green Jekyll build does not mean every metadata field is right. This lab runs the site's taxonomy plugin against invented posts and shows both the errors it catches and a missing series order that it lets through.
+
+That passing case matters. I want to know what a check proves before I use it as a publication gate.
+
+https://unixwzrd.ai/s/05935819b6/
+
+#Jekyll #WebPublishing
+
+==================================================
+X / TWITTER
+==================================================
+
+Hands-On 3A: run the site's metadata check on invented posts. Watch it reject some errors and pass a missing series order. A green check has a boundary:
+
+https://unixwzrd.ai/s/05935819b6/
+
+#Jekyll
+
+==================================================
+BLUESKY
+==================================================
+
+What does a successful Jekyll metadata check actually prove? Hands-On 3A uses invented posts to find the answer, including one deliberate mistake that passes:
+
+https://unixwzrd.ai/s/05935819b6/
+
+#Jekyll
+
+==================================================
+MASTODON
+==================================================
+
+I like checks, but I do not like pretending a check covers fields it never reads. This lab exercises the site's tag-taxonomy plugin against invented material and makes one important blind spot visible.
+
+https://unixwzrd.ai/s/05935819b6/
+
+#Jekyll #WebPublishing
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Hands-On: Find the Limits of a Jekyll Metadata Check
+
+Body:
+
+I like checks, but I do not like pretending a check covers fields it never reads. This lab exercises the site's tag-taxonomy plugin against invented material and makes one important blind spot visible.
+
+Full article:
+https://unixwzrd.ai/hands-on/2026/10/08/hands-on-find-the-limits-of-a-jekyll-metadata-check/

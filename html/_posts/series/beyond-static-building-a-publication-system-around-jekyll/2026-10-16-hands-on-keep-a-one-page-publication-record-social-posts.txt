@@ -1,0 +1,63 @@
+Hands-On: Keep a One-Page Publication Record - social drafts
+
+Part: 10A of Beyond Static: Building a Publication System Around Jekyll
+Article: https://unixwzrd.ai/hands-on/2026/10/16/hands-on-keep-a-one-page-publication-record/
+Short URL: https://unixwzrd.ai/s/7ce22fa4d1/
+
+Publishing note: Check the public article and short redirect before posting this copy.
+
+==================================================
+LINKEDIN
+==================================================
+
+The final lab keeps the evidence for one invented post on a single page. Copy the publication-record template, note what you actually reviewed locally, and then record what the public site served after deployment.
+
+It does not publish anything or send a message. It is a small way to keep the human decision visible beside the checks that inform it.
+
+https://unixwzrd.ai/s/7ce22fa4d1/
+
+#Jekyll #WebPublishing
+
+==================================================
+X / TWITTER
+==================================================
+
+Hands-On 10A: keep one publication record for an invented post, from local preview to public URL and reader-response routes. The template is plain Markdown:
+
+https://unixwzrd.ai/s/7ce22fa4d1/
+
+#Jekyll
+
+==================================================
+BLUESKY
+==================================================
+
+What did I actually check before the push, and what did the public site serve afterward? Hands-On 10A gives those answers one small Markdown record:
+
+https://unixwzrd.ai/s/7ce22fa4d1/
+
+#Jekyll
+
+==================================================
+MASTODON
+==================================================
+
+This is not another deployment tool. The final lab offers a one-page record for an invented post so the preview, diff, Pages run, public URL, and response paths can be checked without blurring them together.
+
+https://unixwzrd.ai/s/7ce22fa4d1/
+
+#Jekyll #WebPublishing
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Hands-On: Keep a One-Page Publication Record
+
+Body:
+
+This is not another deployment tool. The final lab offers a one-page record for an invented post so the preview, diff, Pages run, public URL, and response paths can be checked without blurring them together.
+
+Full article:
+https://unixwzrd.ai/hands-on/2026/10/16/hands-on-keep-a-one-page-publication-record/

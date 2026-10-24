@@ -5,10 +5,18 @@ menu_item: Contact
 permalink: /contact/
 show_support: false
 image: /assets/images/default-og-image.png
-excerpt: "Use the inquiry form for private outreach, project work, and collaboration, or jump into public discussion on GitHub."
+excerpt: "Join the community on Reddit, send a direct message, connect through social channels, or use the form for private outreach."
 ---
 
-Use this form for consulting, implementation work, collaboration, or private questions.
+### Join the Conversation
+
+For a public conversation about an article or project update, visit [r/unixwzrd](https://www.reddit.com/r/unixwzrd/). Short introductions there can point back to the full pieces on this website, and you can start your own discussion, ask a question, or share what you are working on. Individual articles have GitHub Discussions comments if you would rather respond right on the page.
+
+You can also reach out on [X/Twitter](https://twitter.com/unixwzrd), [Bluesky](https://bsky.app/profile/unixwzrd.bsky.social), or [LinkedIn](https://linkedin.com/in/unixwzrd/). The footer has links to the other places you can find me. Pick the one you use; there is no required platform for saying hello.
+
+### Need to Reach Us Privately?
+
+You can also visit [u/Unixwzrd on Reddit](https://www.reddit.com/user/Unixwzrd/) and use Chat to message me directly. For consulting, implementation work, collaboration, or a detailed private question, use the form below.
 
 Good-fit topics include local AI setup, secure automation, privacy-focused workflows, Unix/macOS/Linux systems engineering, developer infrastructure, [Secrets Kit](/projects/Secrets-Kit/), [LLM Ops Kit](/projects/LLM-Ops-Kit/), and sensitive document or case-analysis work.
 

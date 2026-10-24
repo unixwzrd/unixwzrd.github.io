@@ -1,0 +1,63 @@
+Jekyll, One Problem at a Time - social drafts
+
+Part: 1 of Beyond Static: Building a Publication System Around Jekyll
+Article: https://unixwzrd.ai/technology/2026/09/22/jekyll-one-problem-at-a-time/
+Short URL: https://unixwzrd.ai/s/16a984e171/
+
+Publishing note: Check the public article and short redirect before posting this copy.
+
+==================================================
+LINKEDIN
+==================================================
+
+Jekyll was driving me nuts. Writing Markdown was the easy bit; getting a new project into the catalog, menu, landing page, and its own update stream was where the work started. I kept fixing those problems one at a time, with Liquid, YAML, plugins, and a fair number of little utilities.
+
+This opening installment explains how those fixes turned a static site into a publishing workflow. It also points out which parts are still decisions I make myself.
+
+https://unixwzrd.ai/s/16a984e171/
+
+#Jekyll #StaticSites #WebPublishing
+
+==================================================
+X / TWITTER
+==================================================
+
+Jekyll was driving me nuts. A post was never just Markdown, and a project was never just one page. I kept fixing the rough edges until the site had a publishing workflow of its own. Part 1:
+
+https://unixwzrd.ai/s/16a984e171/
+
+#Jekyll
+
+==================================================
+BLUESKY
+==================================================
+
+A project needed a card, a page, a blog, and a menu entry. An article needed a stable link and a way to preview it. Jekyll did not put all that together for me, so I did it a problem at a time. Part 1:
+
+https://unixwzrd.ai/s/16a984e171/
+
+#Jekyll
+
+==================================================
+MASTODON
+==================================================
+
+I did not set out to replace Jekyll. I wanted it to stop making the same publishing chores irritating. Part 1 follows the catalog, reusable templates, links, and checks that grew out of those specific problems.
+
+https://unixwzrd.ai/s/16a984e171/
+
+#Jekyll #StaticSites #WebPublishing
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Jekyll, One Problem at a Time
+
+Body:
+
+I did not set out to replace Jekyll. I wanted it to stop making the same publishing chores irritating. Part 1 follows the catalog, reusable templates, links, and checks that grew out of those specific problems.
+
+Full article:
+https://unixwzrd.ai/technology/2026/09/22/jekyll-one-problem-at-a-time/

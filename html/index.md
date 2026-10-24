@@ -87,6 +87,7 @@ hide_content_footer: true
   <p>The writing covers implementation, experiments, failures, and the decisions behind the tools—not just release announcements. Read a <a href="{{ '/blog/series/' | relative_url }}">complete series</a>, try a <a href="{{ '/blog/hands-on/' | relative_url }}">Hands-On tutorial</a>, or start with a recent post.</p>
   {% include discovery_post_list.html limit=4 %}
   <p><a href="{{ '/blog/all/' | relative_url }}">Browse every post →</a></p>
+  <p>Want to talk through an article or share what you are building? <a href="https://www.reddit.com/r/unixwzrd/">Join the conversation at r/unixwzrd →</a></p>
 </section>
 
 <section class="home-section home-research" aria-labelledby="home-research">

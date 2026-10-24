@@ -1,0 +1,63 @@
+Building the Site from Shared Layouts, Includes, and Data - social drafts
+
+Part: 3 of Beyond Static: Building a Publication System Around Jekyll
+Article: https://unixwzrd.ai/technology/2026/10/08/building-the-site-from-shared-layouts-includes-and-data/
+Short URL: https://unixwzrd.ai/s/7f77b8afda/
+
+Publishing note: Check the public article and short redirect before posting this copy.
+
+==================================================
+LINKEDIN
+==================================================
+
+The same project information was showing up in several places on my site. Fixing the markup in one view and forgetting another was getting old. Jekyll's layout hierarchy, Liquid includes, and YAML data gave those repeated pieces one home.
+
+Part 3 follows a project page through that structure. It also explains why a successful build cannot certify every front-matter rule I care about. The companion lab makes that limit visible with invented posts.
+
+https://unixwzrd.ai/s/7f77b8afda/
+
+#Jekyll #StaticSites #WebPublishing
+
+==================================================
+X / TWITTER
+==================================================
+
+I got tired of fixing the same project presentation in several places. Part 3 follows a page through layouts, Liquid includes, YAML, and front matter so each repeated piece has one job:
+
+https://unixwzrd.ai/s/7f77b8afda/
+
+#Jekyll
+
+==================================================
+BLUESKY
+==================================================
+
+One project page, several views, and too many chances for the markup to drift. Part 3 is about the shared layouts, includes, and data that keep those views aligned:
+
+https://unixwzrd.ai/s/7f77b8afda/
+
+#Jekyll
+
+==================================================
+MASTODON
+==================================================
+
+Jekyll gets easier to extend once you know which layout owns the page, which include owns the repeated markup, and which data file owns the content. Part 3 walks through that structure on this site.
+
+https://unixwzrd.ai/s/7f77b8afda/
+
+#Jekyll #StaticSites #WebPublishing
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Building the Site from Shared Layouts, Includes, and Data
+
+Body:
+
+Jekyll gets easier to extend once you know which layout owns the page, which include owns the repeated markup, and which data file owns the content. Part 3 walks through that structure on this site.
+
+Full article:
+https://unixwzrd.ai/technology/2026/10/08/building-the-site-from-shared-layouts-includes-and-data/

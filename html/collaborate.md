@@ -17,6 +17,6 @@ Good-fit work includes local AI setup, secrets-safe automation, Unix/macOS/Linux
 
 - **For professional work:** If you need consulting, local AI integration, secure automation, data analysis, or systems engineering, start with [Professional Services](/collaborate/professionals/).
 
-- **For contributors and participants:** If you want to contribute data, collaborate on research, or help with open-source and applied AI projects, visit [Community Collaboration](/collaborate/community/).
+- **For community and contributors:** If you want to discuss an article, share what you are building, contribute to research, or help with an open-source project, visit [Community & Discussion](/collaborate/community/). That page also links to [r/unixwzrd](https://www.reddit.com/r/unixwzrd/), where short introductions can point back to the writing here and people can start conversations of their own.
 
 You can also go straight to [Contact](/contact/) if you already know what you want to discuss.

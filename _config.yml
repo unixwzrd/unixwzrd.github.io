@@ -239,7 +239,7 @@ header_navigation:
     children:
       - label: Professional Services
         url: /collaborate/professionals/
-      - label: Community Collaboration
+      - label: Community & Discussion
         url: /collaborate/community/
   about.md:
     label: About

@@ -1,0 +1,63 @@
+Hands-On: Follow a Project Through the Catalog - social drafts
+
+Part: 5A of Beyond Static: Building a Publication System Around Jekyll
+Article: https://unixwzrd.ai/hands-on/2026/10/11/hands-on-follow-a-project-through-the-catalog/
+Short URL: https://unixwzrd.ai/s/472134b8b4/
+
+Publishing note: Check the public article and short redirect before posting this copy.
+
+==================================================
+LINKEDIN
+==================================================
+
+Part 5 describes a project catalog; this lab lets you inspect what a refresh writes. It runs an offline copy of the generator on three invented repositories with local stand-ins for network requests and images.
+
+Watch order, overrides, visibility, and starter files. The Python run does not render the Projects page; Jekyll still has that job.
+
+https://unixwzrd.ai/s/472134b8b4/
+
+#Jekyll #WebPublishing
+
+==================================================
+X / TWITTER
+==================================================
+
+Hands-On 5A: run an offline project catalog with invented repositories. Inspect order, overrides, visibility, and starter files without touching the real site:
+
+https://unixwzrd.ai/s/472134b8b4/
+
+#Jekyll
+
+==================================================
+BLUESKY
+==================================================
+
+What does one project-catalog refresh produce? Hands-On 5A runs the generator against invented data with no GitHub call, then inspects the result:
+
+https://unixwzrd.ai/s/472134b8b4/
+
+#Jekyll
+
+==================================================
+MASTODON
+==================================================
+
+I find the catalog easier to understand when I can inspect its output. This lab uses three invented projects and local stand-ins to show what the generator writes, then stops before claiming it rendered a Jekyll page.
+
+https://unixwzrd.ai/s/472134b8b4/
+
+#Jekyll #WebPublishing
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Hands-On: Follow a Project Through the Catalog
+
+Body:
+
+I find the catalog easier to understand when I can inspect its output. This lab uses three invented projects and local stand-ins to show what the generator writes, then stops before claiming it rendered a Jekyll page.
+
+Full article:
+https://unixwzrd.ai/hands-on/2026/10/11/hands-on-follow-a-project-through-the-catalog/

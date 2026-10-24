@@ -1,0 +1,63 @@
+A Local Jekyll Server I Can Actually Operate - social drafts
+
+Part: 2 of Beyond Static: Building a Publication System Around Jekyll
+Article: https://unixwzrd.ai/technology/2026/10/01/a-local-jekyll-server-i-can-actually-operate/
+Short URL: https://unixwzrd.ai/s/571cb24d83/
+
+Publishing note: Check the public article and short redirect before posting this copy.
+
+==================================================
+LINKEDIN
+==================================================
+
+A future-dated post can be fine and still be invisible in the local browser. That is a lousy way to review an article. I also need a view of what the site should serve today, without work in progress mixed in.
+
+Part 2 shows the small server wrapper that lets me choose the question I am asking. The companion lab builds both views from an invented Jekyll site and checks the generated HTML, so the switch is more than a command-line promise.
+
+https://unixwzrd.ai/s/571cb24d83/
+
+#Jekyll #StaticSites #WebPublishing
+
+==================================================
+X / TWITTER
+==================================================
+
+Why can't I see the post I'm editing? Because the date is in the future. Part 2 makes the local Jekyll server offer a review view and a current-content view. The difference is deliberate:
+
+https://unixwzrd.ai/s/571cb24d83/
+
+#Jekyll
+
+==================================================
+BLUESKY
+==================================================
+
+One local Jekyll build for editorial review; another for what should be visible today. Part 2 shows the wrapper that makes that choice explicit, with a small companion lab to prove what each build includes:
+
+https://unixwzrd.ai/s/571cb24d83/
+
+#Jekyll
+
+==================================================
+MASTODON
+==================================================
+
+My local server needs to answer two questions: what am I editing, and what would a reader see today? A wrapper chooses the mode and handles the mechanics. Part 2 explains it; the Hands-On exercise tests both outputs on an invented site.
+
+https://unixwzrd.ai/s/571cb24d83/
+
+#Jekyll #StaticSites #WebPublishing
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+A Local Jekyll Server I Can Actually Operate
+
+Body:
+
+My local server needs to answer two questions: what am I editing, and what would a reader see today? A wrapper chooses the mode and handles the mechanics. Part 2 explains it; the Hands-On exercise tests both outputs on an invented site.
+
+Full article:
+https://unixwzrd.ai/technology/2026/10/01/a-local-jekyll-server-i-can-actually-operate/

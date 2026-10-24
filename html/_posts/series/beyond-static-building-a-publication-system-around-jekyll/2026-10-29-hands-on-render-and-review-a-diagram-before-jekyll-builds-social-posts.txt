@@ -1,0 +1,63 @@
+Hands-On: Render and Review a Diagram Before Jekyll Builds - social drafts
+
+Part: 6A of Beyond Static: Building a Publication System Around Jekyll
+Article: https://unixwzrd.ai/hands-on/2026/10/11/hands-on-render-and-review-a-diagram-before-jekyll-builds/
+Short URL: https://unixwzrd.ai/s/98d8e525e3/
+
+Publishing note: Check the public article and short redirect before posting this copy.
+
+==================================================
+LINKEDIN
+==================================================
+
+This lab starts with the actual DOT and Mermaid sources behind Part 6. Render them with `dot` and `mmdc`, change a label, render again, and inspect the difference before Jekyll builds anything.
+
+It assumes those executables are already on your path. The exercise demonstrates the site's current source-to-image workflow, not an automatic Markdown diagram substitution.
+
+https://unixwzrd.ai/s/98d8e525e3/
+
+#Jekyll #WebPublishing
+
+==================================================
+X / TWITTER
+==================================================
+
+Hands-On 6A: render the actual .dot and .mmd sources with dot and mmdc, change a label, and inspect the new images before Jekyll builds:
+
+https://unixwzrd.ai/s/98d8e525e3/
+
+#Jekyll
+
+==================================================
+BLUESKY
+==================================================
+
+The diagram starts as source; the site publishes a reviewed image. Hands-On 6A walks through that step with Graphviz and Mermaid:
+
+https://unixwzrd.ai/s/98d8e525e3/
+
+#Jekyll
+
+==================================================
+MASTODON
+==================================================
+
+If you want to see where Jekyll enters the diagram workflow, this lab makes the boundary visible. Edit the DOT and Mermaid source, render it, inspect the SVG and PNG, then let the site build use those assets.
+
+https://unixwzrd.ai/s/98d8e525e3/
+
+#Jekyll #WebPublishing
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Hands-On: Render and Review a Diagram Before Jekyll Builds
+
+Body:
+
+If you want to see where Jekyll enters the diagram workflow, this lab makes the boundary visible. Edit the DOT and Mermaid source, render it, inspect the SVG and PNG, then let the site build use those assets.
+
+Full article:
+https://unixwzrd.ai/hands-on/2026/10/11/hands-on-render-and-review-a-diagram-before-jekyll-builds/

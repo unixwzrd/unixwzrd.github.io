@@ -1,0 +1,63 @@
+Monitoring a Static Site After Deployment - social drafts
+
+Part: 9 of Beyond Static: Building a Publication System Around Jekyll
+Article: https://unixwzrd.ai/technology/2026/10/11/monitoring-a-static-site-after-deployment/
+Short URL: https://unixwzrd.ai/s/ffb5439ba2/
+
+Publishing note: Check the public article and short redirect before posting this copy.
+
+==================================================
+LINKEDIN
+==================================================
+
+The Pages job can finish cleanly while a reader still gets a missing image or an old link that lands on the wrong page. I want to check what the served site does, not infer it all from the source tree.
+
+Part 9 covers the public-side crawler and the broader monitor, and separates a script from a configured schedule. The companion lab serves an invented site on loopback so you can test the failure cases without poking production.
+
+https://unixwzrd.ai/s/ffb5439ba2/
+
+#Jekyll #StaticSites #WebPublishing
+
+==================================================
+X / TWITTER
+==================================================
+
+Pages says the build passed. Does an old URL still land on the right article? Does the image load? Part 9 checks the served site, not just the source tree:
+
+https://unixwzrd.ai/s/ffb5439ba2/
+
+#Jekyll
+
+==================================================
+BLUESKY
+==================================================
+
+A successful deployment is one piece of evidence. Part 9 asks what readers receive over HTTP: pages, images, and redirects, including where the site's monitoring tools stop:
+
+https://unixwzrd.ai/s/ffb5439ba2/
+
+#Jekyll
+
+==================================================
+MASTODON
+==================================================
+
+There may be no app process to keep alive, but a static site still has public routes, images, and redirects. Part 9 follows the checks I make against the served pages after deployment and explains what a monitor actually observes.
+
+https://unixwzrd.ai/s/ffb5439ba2/
+
+#Jekyll #StaticSites #WebPublishing
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Monitoring a Static Site After Deployment
+
+Body:
+
+There may be no app process to keep alive, but a static site still has public routes, images, and redirects. Part 9 follows the checks I make against the served pages after deployment and explains what a monitor actually observes.
+
+Full article:
+https://unixwzrd.ai/technology/2026/10/11/monitoring-a-static-site-after-deployment/

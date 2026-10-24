@@ -1,0 +1,110 @@
+Beyond Static: Building a Publication System Around Jekyll - series social drafts
+
+Series: https://unixwzrd.ai/blog/series/beyond-static-building-a-publication-system-around-jekyll/
+Short URL: https://unixwzrd.ai/s/9921c79b2b/
+
+Publishing note: Check the public landing page and short redirect before posting this copy.
+
+==================================================
+LINKEDIN
+==================================================
+
+Jekyll was driving me nuts. I could write a post, but getting a project into the right menu, page, and update stream took more work than the Markdown. Then there were future posts I could not preview, links I wanted to keep stable, diagrams, audio proofreading, and the checks before and after a push.
+
+I kept solving the next problem. This ten-part series follows what I added: Liquid layouts and includes, YAML catalogs, Python and Ruby utilities, short links under my own domain, local review, deployment checks, and ways for readers to respond. There are Hands-On companions if you want to try the smaller mechanisms yourself. It is still Jekyll; the workflow around it is what grew.
+
+https://unixwzrd.ai/s/9921c79b2b/
+
+#Jekyll #StaticSites #WebPublishing
+
+==================================================
+X / TWITTER
+==================================================
+
+Jekyll was driving me nuts, so I kept fixing the next publishing problem: preview, shared templates, project blogs, short links, diagrams, checks, and monitoring. The ten-part series, with Hands-On companions:
+
+https://unixwzrd.ai/s/9921c79b2b/
+
+#Jekyll
+
+==================================================
+BLUESKY
+==================================================
+
+Jekyll still builds my site, but publishing it takes more than Markdown. I wrote a ten-part series on the tools I added one problem at a time, from YAML project catalogs to public-side checks. Hands-On companions are included:
+
+https://unixwzrd.ai/s/9921c79b2b/
+
+#Jekyll
+
+==================================================
+MASTODON
+==================================================
+
+A new project on this site needs more than a page. An article needs a stable URL, a useful preview, and checks that reach past the successful build. I kept extending Jekyll as those problems came up. This series walks through the resulting workflow, including what is automated and what I still review myself.
+
+https://unixwzrd.ai/s/9921c79b2b/
+
+#Jekyll #StaticSites #WebPublishing
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Beyond Static: Building a Publication System Around Jekyll - series social drafts
+
+Series: https://unixwzrd.ai/blog/series/beyond-static-building-a-publication-system-around-jekyll/
+Short URL: https://unixwzrd.ai/s/9921c79b2b/
+
+Publishing note: Check the public landing page and short redirect before posting this copy.
+
+==================================================
+LINKEDIN
+==================================================
+
+Jekyll was driving me nuts. I could write a post, but getting a project into the right menu, page, and update stream took more work than the Markdown. Then there were future posts I could not preview, links I wanted to keep stable, diagrams, audio proofreading, and the checks before and after a push.
+
+I kept solving the next problem. This ten-part series follows what I added: Liquid layouts and includes, YAML catalogs, Python and Ruby utilities, short links under my own domain, local review, deployment checks, and ways for readers to respond. There are Hands-On companions if you want to try the smaller mechanisms yourself. It is still Jekyll; the workflow around it is what grew.
+
+https://unixwzrd.ai/s/9921c79b2b/
+
+#Jekyll #StaticSites #WebPublishing
+
+==================================================
+X / TWITTER
+==================================================
+
+Jekyll was driving me nuts, so I kept fixing the next publishing problem: preview, shared templates, project blogs, short links, diagrams, checks, and monitoring. The ten-part series, with Hands-On companions:
+
+https://unixwzrd.ai/s/9921c79b2b/
+
+#Jekyll
+
+==================================================
+BLUESKY
+==================================================
+
+Jekyll still builds my site, but publishing it takes more than Markdown. I wrote a ten-part series on the tools I added one problem at a time, from YAML project catalogs to public-side checks. Hands-On companions are included:
+
+https://unixwzrd.ai/s/9921c79b2b/
+
+#Jekyll
+
+==================================================
+MASTODON
+==================================================
+
+A new project on this site needs more than a page. An article needs a stable URL, a useful preview, and checks that reach past the successful build. I kept extending Jekyll as those problems came up. This series walks through the resulting workflow, including what is automated and what I still review myself.
+
+https://unixwzrd.ai/s/9921c79b2b/
+
+#Jekyll #StaticSites #WebPublishing
+
+
+Body:
+
+A new project on this site needs more than a page. An article needs a stable URL, a useful preview, and checks that reach past the successful build. I kept extending Jekyll as those problems came up. This series walks through the resulting workflow, including what is automated and what I still review myself.
+
+Full article:
+https://unixwzrd.ai/blog/series/beyond-static-building-a-publication-system-around-jekyll/

@@ -1,0 +1,63 @@
+Hands-On: Build a Jekyll Preview Switch - social drafts
+
+Part: 2A of Beyond Static: Building a Publication System Around Jekyll
+Article: https://unixwzrd.ai/hands-on/2026/10/01/hands-on-build-a-jekyll-preview-switch/
+Short URL: https://unixwzrd.ai/s/ae4932cc7d/
+
+Publishing note: Check the public article and short redirect before posting this copy.
+
+==================================================
+LINKEDIN
+==================================================
+
+A preview switch is useful only if you can tell what it actually includes. This Hands-On companion builds an invented four-post Jekyll site twice: once as the current site, once with work in progress included.
+
+It writes to separate output directories, so you can inspect the generated pages without touching your real server. The exercise is about proving the view, not memorizing another incantation.
+
+https://unixwzrd.ai/s/ae4932cc7d/
+
+#Jekyll #WebPublishing
+
+==================================================
+X / TWITTER
+==================================================
+
+Hands-On 2A: build an invented Jekyll site in current and review modes, then inspect which posts actually appear. No need to disturb your real site server:
+
+https://unixwzrd.ai/s/ae4932cc7d/
+
+#Jekyll
+
+==================================================
+BLUESKY
+==================================================
+
+A preview flag is not much use if you never inspect its output. Hands-On 2A builds both Jekyll views from an invented fixture and checks the generated pages:
+
+https://unixwzrd.ai/s/ae4932cc7d/
+
+#Jekyll
+
+==================================================
+MASTODON
+==================================================
+
+This lab takes the two-view idea from Part 2 and makes it observable. Four invented posts, two build modes, separate output directories, and a check of what Jekyll actually emitted.
+
+https://unixwzrd.ai/s/ae4932cc7d/
+
+#Jekyll #WebPublishing
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Hands-On: Build a Jekyll Preview Switch
+
+Body:
+
+This lab takes the two-view idea from Part 2 and makes it observable. Four invented posts, two build modes, separate output directories, and a check of what Jekyll actually emitted.
+
+Full article:
+https://unixwzrd.ai/hands-on/2026/10/01/hands-on-build-a-jekyll-preview-switch/

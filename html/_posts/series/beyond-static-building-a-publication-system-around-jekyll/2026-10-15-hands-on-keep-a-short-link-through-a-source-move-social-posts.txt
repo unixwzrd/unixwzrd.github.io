@@ -1,0 +1,63 @@
+Hands-On: Keep a Short Link Through a Source Move - social drafts
+
+Part: 4A of Beyond Static: Building a Publication System Around Jekyll
+Article: https://unixwzrd.ai/hands-on/2026/10/11/hands-on-keep-a-short-link-through-a-source-move/
+Short URL: https://unixwzrd.ai/s/d73dbf7bb9/
+
+Publishing note: Check the public article and short redirect before posting this copy.
+
+==================================================
+LINKEDIN
+==================================================
+
+A short URL that changes when you move the source file is not very useful. This Hands-On companion runs the site's actual short-link calculation against invented posts, then simulates a source move.
+
+You can see the difference between deriving a link from today's path and preserving a frozen basis for the link you have already shared.
+
+https://unixwzrd.ai/s/d73dbf7bb9/
+
+#Jekyll #WebPublishing
+
+==================================================
+X / TWITTER
+==================================================
+
+Hands-On 4A: move an invented post, keep its short-link basis fixed, and see which URL survives. It uses the site's calculation without rebuilding the whole site:
+
+https://unixwzrd.ai/s/d73dbf7bb9/
+
+#Jekyll
+
+==================================================
+BLUESKY
+==================================================
+
+A short link should survive a source move. Hands-On 4A runs the site's module on invented posts so you can see why the frozen basis matters:
+
+https://unixwzrd.ai/s/d73dbf7bb9/
+
+#Jekyll
+
+==================================================
+MASTODON
+==================================================
+
+The Part 4 claim is easy to test. This small exercise uses the site's real short-link module with invented content and checks whether a previously shared URL changes when the source moves.
+
+https://unixwzrd.ai/s/d73dbf7bb9/
+
+#Jekyll #WebPublishing
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Hands-On: Keep a Short Link Through a Source Move
+
+Body:
+
+The Part 4 claim is easy to test. This small exercise uses the site's real short-link module with invented content and checks whether a previously shared URL changes when the source moves.
+
+Full article:
+https://unixwzrd.ai/hands-on/2026/10/11/hands-on-keep-a-short-link-through-a-source-move/

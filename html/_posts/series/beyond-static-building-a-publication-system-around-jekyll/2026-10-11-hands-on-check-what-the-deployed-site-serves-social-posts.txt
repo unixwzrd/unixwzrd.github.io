@@ -1,0 +1,63 @@
+Hands-On: Check What the Deployed Site Serves - social drafts
+
+Part: 9A of Beyond Static: Building a Publication System Around Jekyll
+Article: https://unixwzrd.ai/hands-on/2026/10/11/hands-on-check-what-the-deployed-site-serves/
+Short URL: https://unixwzrd.ai/s/5181a6f713/
+
+Publishing note: Check the public article and short redirect before posting this copy.
+
+==================================================
+LINKEDIN
+==================================================
+
+A 200 response is reassuring until it is the wrong page. This lab serves an invented little site on loopback, then breaks an asset and creates a redirect that looks healthy by status code but lands in the wrong place.
+
+It is a way to test the public-side question from Part 9 without contacting my live host or running its monitoring tools.
+
+https://unixwzrd.ai/s/5181a6f713/
+
+#Jekyll #WebPublishing
+
+==================================================
+X / TWITTER
+==================================================
+
+Hands-On 9A: serve an invented site on loopback, break an image, then make an old URL return 200 at the wrong destination. Status alone is not the answer:
+
+https://unixwzrd.ai/s/5181a6f713/
+
+#Jekyll
+
+==================================================
+BLUESKY
+==================================================
+
+A redirect can finish with HTTP 200 and still send readers to the wrong page. Hands-On 9A makes that visible on a tiny local site:
+
+https://unixwzrd.ai/s/5181a6f713/
+
+#Jekyll
+
+==================================================
+MASTODON
+==================================================
+
+This lab makes the served-site checks from Part 9 concrete. It uses loopback only, tests a missing asset, and shows why a redirect needs its destination checked as well as its status.
+
+https://unixwzrd.ai/s/5181a6f713/
+
+#Jekyll #WebPublishing
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Hands-On: Check What the Deployed Site Serves
+
+Body:
+
+This lab makes the served-site checks from Part 9 concrete. It uses loopback only, tests a missing asset, and shows why a redirect needs its destination checked as well as its status.
+
+Full article:
+https://unixwzrd.ai/hands-on/2026/10/11/hands-on-check-what-the-deployed-site-serves/

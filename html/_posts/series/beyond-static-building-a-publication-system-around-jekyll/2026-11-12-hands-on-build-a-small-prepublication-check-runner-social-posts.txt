@@ -1,0 +1,63 @@
+Hands-On: Build a Small Prepublication Check Runner - social drafts
+
+Part: 8A of Beyond Static: Building a Publication System Around Jekyll
+Article: https://unixwzrd.ai/hands-on/2026/10/11/hands-on-build-a-small-prepublication-check-runner/
+Short URL: https://unixwzrd.ai/s/463aca228b/
+
+Publishing note: Check the public article and short redirect before posting this copy.
+
+==================================================
+LINKEDIN
+==================================================
+
+This lab builds a deliberately small prepublication runner for an invented article. It checks a required title, a local link, and an image path, then stops when one gate fails.
+
+Break one input at a time and watch what gets reported. It needs no project-data fetch and does not run against this site's real posts.
+
+https://unixwzrd.ai/s/463aca228b/
+
+#Jekyll #WebPublishing
+
+==================================================
+X / TWITTER
+==================================================
+
+Hands-On 8A: three tiny publication gates, one invented article, and one broken input at a time. See where the runner stops without touching the real Jekyll checkout:
+
+https://unixwzrd.ai/s/463aca228b/
+
+#Jekyll
+
+==================================================
+BLUESKY
+==================================================
+
+A prepublication gate should tell you what failed. Hands-On 8A uses an invented article to test title, local-link, and image-path checks one at a time:
+
+https://unixwzrd.ai/s/463aca228b/
+
+#Jekyll
+
+==================================================
+MASTODON
+==================================================
+
+Part 8 maps the real site's checks; this lab strips the idea down to something you can see. Run three gates on an invented page, break one input, and observe whether the runner catches it and stops.
+
+https://unixwzrd.ai/s/463aca228b/
+
+#Jekyll #WebPublishing
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Hands-On: Build a Small Prepublication Check Runner
+
+Body:
+
+Part 8 maps the real site's checks; this lab strips the idea down to something you can see. Run three gates on an invented page, break one input, and observe whether the runner catches it and stops.
+
+Full article:
+https://unixwzrd.ai/hands-on/2026/10/11/hands-on-build-a-small-prepublication-check-runner/

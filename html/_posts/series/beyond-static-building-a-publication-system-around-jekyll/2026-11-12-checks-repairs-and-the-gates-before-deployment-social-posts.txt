@@ -1,0 +1,63 @@
+Checks, Repairs, and the Gates Before Deployment - social drafts
+
+Part: 8 of Beyond Static: Building a Publication System Around Jekyll
+Article: https://unixwzrd.ai/technology/2026/10/11/checks-repairs-and-the-gates-before-deployment/
+Short URL: https://unixwzrd.ai/s/661f384344/
+
+Publishing note: Check the public article and short redirect before posting this copy.
+
+==================================================
+LINKEDIN
+==================================================
+
+A Jekyll build can pass while a short URL, image path, or generated project file is still wrong. So the site has accumulated local checks, repair steps, a pre-commit hook, and a Pages workflow. They do different jobs.
+
+Part 8 follows the real gates before deployment and says which checks can modify files, which only warn, and what Pages checks after a push. The point is to know which evidence I actually have, not to declare the pipeline magical.
+
+https://unixwzrd.ai/s/661f384344/
+
+#Jekyll #StaticSites #WebPublishing
+
+==================================================
+X / TWITTER
+==================================================
+
+A green Jekyll build is useful; it is not the whole publishing decision. Part 8 follows the local checks, repair steps, commit hook, and Pages job—and where each stops:
+
+https://unixwzrd.ai/s/661f384344/
+
+#Jekyll
+
+==================================================
+BLUESKY
+==================================================
+
+The site has checks before commit and a narrower Pages job after push. Part 8 separates warnings, repairs, and deployment gates so a passing build does not claim more than it proves:
+
+https://unixwzrd.ai/s/661f384344/
+
+#Jekyll
+
+==================================================
+MASTODON
+==================================================
+
+There are enough scripts in this site to tempt me into saying 'the pipeline checks everything.' It does not. Part 8 maps the actual local and deployment gates, including checks that repair files and checks that only report trouble.
+
+https://unixwzrd.ai/s/661f384344/
+
+#Jekyll #StaticSites #WebPublishing
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Checks, Repairs, and the Gates Before Deployment
+
+Body:
+
+There are enough scripts in this site to tempt me into saying 'the pipeline checks everything.' It does not. Part 8 maps the actual local and deployment gates, including checks that repair files and checks that only report trouble.
+
+Full article:
+https://unixwzrd.ai/technology/2026/10/11/checks-repairs-and-the-gates-before-deployment/

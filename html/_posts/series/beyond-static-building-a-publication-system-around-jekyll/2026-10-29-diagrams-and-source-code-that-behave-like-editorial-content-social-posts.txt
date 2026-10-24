@@ -1,0 +1,63 @@
+Diagrams and Source Code That Behave Like Editorial Content - social drafts
+
+Part: 6 of Beyond Static: Building a Publication System Around Jekyll
+Article: https://unixwzrd.ai/technology/2026/10/11/diagrams-and-source-code-that-behave-like-editorial-content/
+Short URL: https://unixwzrd.ai/s/8608a60e12/
+
+Publishing note: Check the public article and short redirect before posting this copy.
+
+==================================================
+LINKEDIN
+==================================================
+
+A diagram can be correct and still be unreadable on a phone. A complete code file can also bury an article under several screens of source. I wanted both to earn their place in the reading flow.
+
+Part 6 shows how I keep DOT and Mermaid source, render SVG and PNG before the Jekyll build, review the actual figure, and give larger diagrams and full scripts their own view. Rendering embedded diagram blocks automatically is an idea, not the workflow I claim to have today.
+
+https://unixwzrd.ai/s/8608a60e12/
+
+#Jekyll #StaticSites #WebPublishing
+
+==================================================
+X / TWITTER
+==================================================
+
+A correct diagram can still be miserable to read. Part 6 covers DOT and Mermaid sources, reviewed SVG/PNG output, and code that can be inspected without swallowing the article:
+
+https://unixwzrd.ai/s/8608a60e12/
+
+#Jekyll
+
+==================================================
+BLUESKY
+==================================================
+
+I keep .dot and .mmd sources, render images before Jekyll builds, and review what readers will actually see. Part 6 is about treating diagrams and source files as editorial material:
+
+https://unixwzrd.ai/s/8608a60e12/
+
+#Jekyll
+
+==================================================
+MASTODON
+==================================================
+
+The source diagram is not the published figure. Part 6 follows Graphviz and Mermaid source into reviewed image assets, then looks at size, contrast, and where complete code belongs. The embedded-diagram build idea remains an idea.
+
+https://unixwzrd.ai/s/8608a60e12/
+
+#Jekyll #StaticSites #WebPublishing
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Diagrams and Source Code That Behave Like Editorial Content
+
+Body:
+
+The source diagram is not the published figure. Part 6 follows Graphviz and Mermaid source into reviewed image assets, then looks at size, contrast, and where complete code belongs. The embedded-diagram build idea remains an idea.
+
+Full article:
+https://unixwzrd.ai/technology/2026/10/11/diagrams-and-source-code-that-behave-like-editorial-content/

@@ -1,0 +1,69 @@
+UnicodeFix v2.0.2: One Command for Text and Images - social drafts
+
+Article: https://unixwzrd.ai/projects/UnicodeFix/2026/10/19/unicodefix-v2-0-2-one-command-for-text-and-images/
+Short URL: https://unixwzrd.ai/s/bb7fbf577a/
+Repository: https://github.com/unixwzrd/UnicodeFix
+
+Publishing note: Check the public article and short redirect before posting this copy.
+
+==================================================
+LINKEDIN
+==================================================
+
+I added `cleanup-image` in UnicodeFix 2.0.1, but you still had to pick the image command before the tool even looked at the file. That seemed like a silly decision to make the user carry. UnicodeFix can recognize a file by its signature, so in v2.0.2 I let `cleanup-text` route recognized images to the existing local image backend. Text still takes the text path, and one command can audit a mixed set of files.
+
+The safeguards came along too: an image cleanup writes a separate file, `--dry-run` previews the work, and recognized C2PA provenance is not quietly stripped. You have to ask for that with `--strip-provenance`. `cleanup-image` remains available if you want the dedicated command.
+
+It is a small release, but the front door now matches what the tool already knows how to do. This is metadata cleanup, not a claim that a pixel watermark has disappeared or that an image's author has been identified.
+
+https://unixwzrd.ai/s/bb7fbf577a/
+
+#UnicodeFix #Python #DigitalProvenance #OpenSource
+
+==================================================
+X / TWITTER
+==================================================
+
+UnicodeFix v2.0.2 lets `cleanup-text` recognize image files and use the existing image backend. One command for mixed text and image inputs; separate output, dry-run, and explicit C2PA stripping still apply.
+
+https://unixwzrd.ai/s/bb7fbf577a/
+
+#UnicodeFix
+
+==================================================
+BLUESKY
+==================================================
+
+I got tired of choosing `cleanup-image` before UnicodeFix had even inspected the file. In v2.0.2, `cleanup-text` recognizes images and routes them to the existing local backend. Mixed text/image reports work too, with the provenance safeguards intact:
+
+https://unixwzrd.ai/s/bb7fbf577a/
+
+#UnicodeFix
+
+==================================================
+MASTODON
+==================================================
+
+UnicodeFix 2.0.2 removes a small but irritating choice at the command line. `cleanup-text` now recognizes supported image signatures and routes them through the existing local image backend; text files still use the text pipeline. You can audit a mixed set, preview cleanup, or write a separate cleaned image. Recognized C2PA provenance takes an explicit `--strip-provenance` request.
+
+The dedicated `cleanup-image` command is still there. This is about making the normal path simpler without quietly changing what cleanup means.
+
+https://unixwzrd.ai/s/bb7fbf577a/
+
+#UnicodeFix #Python #DigitalProvenance #OpenSource
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+UnicodeFix v2.0.2: One Command for Text and Images
+
+Body:
+
+UnicodeFix can recognize an image by its file signature, so I stopped making the user pick `cleanup-image` before the tool had even looked at the file. In v2.0.2, `cleanup-text` routes recognized images to the existing local image backend while text keeps its own path. One command can audit both in a mixed batch.
+
+The separate-file output, dry-run preview, and explicit choice to strip recognized C2PA provenance still apply. The dedicated image command remains available; this release simply makes the usual path less fussy.
+
+Full article:
+https://unixwzrd.ai/projects/UnicodeFix/2026/10/19/unicodefix-v2-0-2-one-command-for-text-and-images/

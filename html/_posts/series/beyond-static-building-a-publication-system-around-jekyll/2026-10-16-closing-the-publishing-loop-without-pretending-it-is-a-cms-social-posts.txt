@@ -1,0 +1,63 @@
+Closing the Publishing Loop Without Pretending It Is a CMS - social drafts
+
+Part: 10 of Beyond Static: Building a Publication System Around Jekyll
+Article: https://unixwzrd.ai/technology/2026/10/16/closing-the-publishing-loop-without-pretending-it-is-a-cms/
+Short URL: https://unixwzrd.ai/s/6d384b45b7/
+
+Publishing note: Check the public article and short redirect before posting this copy.
+
+==================================================
+LINKEDIN
+==================================================
+
+I used to think the hard part was getting Jekyll to render a page. Now I need to know where the page belongs, whether its link will last, what the build emitted, and what a reader receives after I push.
+
+Part 10 closes the series with the human publication decision and the reader-response paths. Discuss and a small mail-client form give people a way back without turning this static site into an account system. The helpers and checks support that loop; they do not write the article or decide when it is ready.
+
+https://unixwzrd.ai/s/6d384b45b7/
+
+#Jekyll #StaticSites #WebPublishing
+
+==================================================
+X / TWITTER
+==================================================
+
+Jekyll can render the page. I still have to decide if it is ready, verify the public result, and give readers a way back. Part 10 closes the series with Discuss and a mail-client form:
+
+https://unixwzrd.ai/s/6d384b45b7/
+
+#Jekyll
+
+==================================================
+BLUESKY
+==================================================
+
+The site now has routes from draft to public page and back through Discuss or a mail-client draft. Part 10 is about the publishing loop and the decisions I still make myself:
+
+https://unixwzrd.ai/s/6d384b45b7/
+
+#Jekyll
+
+==================================================
+MASTODON
+==================================================
+
+Part 10 follows the whole publishing loop: different content streams, local review, deployment evidence, public checks, and ways for readers to respond. Discuss and a mail-client form are deliberately simpler than building accounts and an inbox.
+
+https://unixwzrd.ai/s/6d384b45b7/
+
+#Jekyll #StaticSites #WebPublishing
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Closing the Publishing Loop Without Pretending It Is a CMS
+
+Body:
+
+Part 10 follows the whole publishing loop: different content streams, local review, deployment evidence, public checks, and ways for readers to respond. Discuss and a mail-client form are deliberately simpler than building accounts and an inbox.
+
+Full article:
+https://unixwzrd.ai/technology/2026/10/16/closing-the-publishing-loop-without-pretending-it-is-a-cms/

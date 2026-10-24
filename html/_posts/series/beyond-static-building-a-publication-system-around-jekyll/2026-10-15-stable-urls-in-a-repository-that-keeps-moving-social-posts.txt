@@ -1,0 +1,63 @@
+Stable URLs in a Repository That Keeps Moving - social drafts
+
+Part: 4 of Beyond Static: Building a Publication System Around Jekyll
+Article: https://unixwzrd.ai/technology/2026/10/11/stable-urls-in-a-repository-that-keeps-moving/
+Short URL: https://unixwzrd.ai/s/213165a2ee/
+
+Publishing note: Check the public article and short redirect before posting this copy.
+
+==================================================
+LINKEDIN
+==================================================
+
+I share links on X/Twitter and Bluesky, where a long URL eats the room I would rather use for the post itself. I wanted short links under my own domain, without handing the redirect to an external provider.
+
+Part 4 explains the separate identities of a project post, its old URLs, and its short URL. Moving Markdown in the repository should not break a link somebody already saved. That takes an explicit basis and a redirect check, not wishful thinking.
+
+https://unixwzrd.ai/s/213165a2ee/
+
+#Jekyll #StaticSites #WebPublishing
+
+==================================================
+X / TWITTER
+==================================================
+
+Short links were for X/Twitter, Bluesky, and other tight posts. I built them into my Jekyll site so I control the redirects when files or page names move. Part 4 explains the wiring:
+
+https://unixwzrd.ai/s/213165a2ee/
+
+#Jekyll
+
+==================================================
+BLUESKY
+==================================================
+
+I wanted compact links for social posts and control over where they redirect. Part 4 covers frozen URL identities, old-path redirects, and why moving a Markdown file must not break a shared link:
+
+https://unixwzrd.ai/s/213165a2ee/
+
+#Jekyll
+
+==================================================
+MASTODON
+==================================================
+
+Part 4 is about a simple promise: if I give someone a link, reorganizing my repository should not make it their problem. The site's own short links help with character-limited posts; the redirects stay under my control.
+
+https://unixwzrd.ai/s/213165a2ee/
+
+#Jekyll #StaticSites #WebPublishing
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Stable URLs in a Repository That Keeps Moving
+
+Body:
+
+Part 4 is about a simple promise: if I give someone a link, reorganizing my repository should not make it their problem. The site's own short links help with character-limited posts; the redirects stay under my control.
+
+Full article:
+https://unixwzrd.ai/technology/2026/10/11/stable-urls-in-a-repository-that-keeps-moving/

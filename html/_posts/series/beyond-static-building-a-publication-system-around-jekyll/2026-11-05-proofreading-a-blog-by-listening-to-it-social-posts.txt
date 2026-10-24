@@ -1,0 +1,63 @@
+Proofreading a Blog by Listening to It - social drafts
+
+Part: 7 of Beyond Static: Building a Publication System Around Jekyll
+Article: https://unixwzrd.ai/technology/2026/10/11/proofreading-a-blog-by-listening-to-it/
+Short URL: https://unixwzrd.ai/s/ac9e64bf66/
+
+Publishing note: Check the public article and short redirect before posting this copy.
+
+==================================================
+LINKEDIN
+==================================================
+
+I can read a draft three times and still miss the sentence that sounds wrong. Listening to the rendered page gives me another editing pass. It catches a repeated phrase or a clumsy turn that my eyes kindly ignored.
+
+Part 7 explains my local TTS proofreading path, including the helper that needs to be running, the LLM-Ops-Kit bridge, and my patched MLX-Audio voice setup. It also draws the line between listening to edit and publishing a finished narration.
+
+https://unixwzrd.ai/s/ac9e64bf66/
+
+#Jekyll #StaticSites #WebPublishing
+
+==================================================
+X / TWITTER
+==================================================
+
+I can proofread a post three times and still miss the awkward sentence. Hearing the rendered page helps. Part 7 covers the local TTS helper, LLM-Ops-Kit bridge, and editing loop:
+
+https://unixwzrd.ai/s/ac9e64bf66/
+
+#Jekyll
+
+==================================================
+BLUESKY
+==================================================
+
+The post looks fine until I hear it read aloud. Part 7 is about proofreading the rendered Jekyll page with local TTS, including the helper and the difference between review audio and published narration:
+
+https://unixwzrd.ai/s/ac9e64bf66/
+
+#Jekyll
+
+==================================================
+MASTODON
+==================================================
+
+Listening is another editorial tool for this site. Part 7 explains how I use the rendered page and a local TTS path to catch prose I would otherwise read straight past. It includes the background helper and the boundary between review and published audio.
+
+https://unixwzrd.ai/s/ac9e64bf66/
+
+#Jekyll #StaticSites #WebPublishing
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+Proofreading a Blog by Listening to It
+
+Body:
+
+Listening is another editorial tool for this site. Part 7 explains how I use the rendered page and a local TTS path to catch prose I would otherwise read straight past. It includes the background helper and the boundary between review and published audio.
+
+Full article:
+https://unixwzrd.ai/technology/2026/10/11/proofreading-a-blog-by-listening-to-it/

@@ -1,0 +1,63 @@
+From a YAML Project Catalog to a Project Publishing System - social drafts
+
+Part: 5 of Beyond Static: Building a Publication System Around Jekyll
+Article: https://unixwzrd.ai/technology/2026/10/11/from-a-yaml-project-catalog-to-a-project-publishing-system/
+Short URL: https://unixwzrd.ai/s/2d11ffe75d/
+
+Publishing note: Check the public article and short redirect before posting this copy.
+
+==================================================
+LINKEDIN
+==================================================
+
+Adding a project to this site used to mean remembering every place it needed to appear. A YAML catalog now feeds generated metadata; Liquid places projects into the menu and Projects page; scaffolding gives a new project a landing page and its own update blog.
+
+Part 5 follows that path, including the limits. Visibility fields change presentation, not access control, and a generator's starter article still needs an editor. I also explain how the Blog sections and front matter give technical posts, series, tutorials, and project updates different homes.
+
+https://unixwzrd.ai/s/2d11ffe75d/
+
+#Jekyll #StaticSites #WebPublishing
+
+==================================================
+X / TWITTER
+==================================================
+
+A project here is more than a card. One YAML catalog entry can lead to metadata, a landing page, a menu position, and a project blog. Part 5 follows that path and its limits:
+
+https://unixwzrd.ai/s/2d11ffe75d/
+
+#Jekyll
+
+==================================================
+BLUESKY
+==================================================
+
+I wanted a new project to land in the right places without hand-editing every menu and list. Part 5 follows the YAML catalog through generation, Liquid, front matter, and project updates:
+
+https://unixwzrd.ai/s/2d11ffe75d/
+
+#Jekyll
+
+==================================================
+MASTODON
+==================================================
+
+The site is static when you read it, but the build assembles a lot from data. Part 5 follows a project from an ordered YAML entry to its card, menu position, landing page, and update stream. It also makes clear what the generator does not decide for me.
+
+https://unixwzrd.ai/s/2d11ffe75d/
+
+#Jekyll #StaticSites #WebPublishing
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+From a YAML Project Catalog to a Project Publishing System
+
+Body:
+
+The site is static when you read it, but the build assembles a lot from data. Part 5 follows a project from an ordered YAML entry to its card, menu position, landing page, and update stream. It also makes clear what the generator does not decide for me.
+
+Full article:
+https://unixwzrd.ai/technology/2026/10/11/from-a-yaml-project-catalog-to-a-project-publishing-system/
