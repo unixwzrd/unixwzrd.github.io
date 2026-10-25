@@ -4,16 +4,18 @@ title: "UnicodeFix"
 category: UnicodeFix
 permalink: /projects/UnicodeFix/
 image: /assets/images/projects/UnicodeFix-banner.png
-excerpt: "UnicodeFix v2.0.2 audits and safely cleans text and supported image metadata, while keeping provenance removal explicit and all processing local."
+excerpt: "UnicodeFix v2.1.0 audits and safely cleans text and supported image metadata locally, with built-in PNG, JPEG, and WebP cleanup and no ExifTool dependency."
 ---
 
 ## Find What Your Editor Does Not Show
 
-**UnicodeFix v2.0.2 — the Ghostmark Edition** is a local, evidence-based text and image audit and cleanup tool. It finds invisible characters, provenance wrappers, image metadata, configured statistical-watermark signals, hard-wrapped Markdown, and hidden payloads in source comments, then shows where the evidence lives and removes only what it can identify safely.
+**UnicodeFix v2.1.0 — the Ghostmark Edition** is a local, evidence-based text and image audit and cleanup tool. It finds invisible characters, provenance wrappers, image metadata, configured statistical-watermark signals, hard-wrapped Markdown, and hidden payloads in source comments, then shows where the evidence lives and removes only what it can identify safely.
 
 Everything runs locally after installation. Your text is not uploaded to a detector, vendor, or model service.
 
-Since v2.0.2, `cleanup-text` recognizes image inputs and routes them to the existing image backend. For supported writable formats with ExifTool 12.70 or newer, the default writes a separate `.clean` image with non-rendering metadata removed. Recognized C2PA provenance still requires an explicit `--strip-provenance` choice.
+`cleanup-text` recognizes image inputs and routes them to the built-in image backend. PNG, JPEG, and WebP cleanup is included in the normal Python installation, without a separate ExifTool executable. The default writes a separate `.clean` image, removes supported non-rendering metadata, and verifies preservation of image coding data and rendering metadata before publication. Recognized C2PA provenance still requires an explicit `--strip-provenance` choice.
+
+TIFF, HEIF, AVIF, GIF, and BMP are audit-only in this release. HEIF/AVIF inventory depends on an available decoder and is explicitly marked incomplete when only the header is recognized. Image inputs are limited to 256 MiB per file; unsupported metadata variants can also prevent writing. See the [image guide](https://github.com/unixwzrd/UnicodeFix/blob/main/docs/cleanup-image.md) for the full format and preservation rules.
 
 ## Evidence Before Attribution
 
@@ -49,6 +51,8 @@ cleanup-text document.txt
 cleanup-text --unwrap-markdown README.md
 cleanup-text --strip-provenance document.md
 cleanup-text --source app.py
+cleanup-text photo.jpg
+cleanup-text --dry-run photo.jpg
 ```
 
 Category-aware thresholds can turn selected findings into useful CI gates without treating informational typography or wrapping as a security failure.
@@ -60,11 +64,11 @@ Category-aware thresholds can turn selected findings into useful CI gates withou
 - Source mode classifies comments, strings, identifiers, and syntax. It cleans only supported comment payloads and checks parsing before and after transformation.
 - Statistical watermark detection requires a named local profile and matching local artifacts. UnicodeFix does not guess at proprietary or unknown schemes.
 - Authorship probabilities require explicit calibration against a matched held-out corpus and remain report-only.
-- In-place writes use a synced same-directory atomic replacement, retain permissions, and never overwrite an existing preserved backup.
+- Text in-place writes use a synced same-directory atomic replacement, retain permissions, and never overwrite an existing preserved backup. Images always require a separate output file, and existing output requires an explicit `--force` to replace it.
 
 ## Installation
 
-UnicodeFix requires **Python 3.10 or newer** and is tested on macOS and Ubuntu through CI.
+UnicodeFix requires **Python 3.11 or newer** and **Pillow 13.x**, and is tested on macOS and Ubuntu through CI. The normal Python installation includes image audit and supported image cleanup; ExifTool and Perl are not required.
 
 ```bash
 git clone https://github.com/unixwzrd/UnicodeFix.git

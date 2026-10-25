@@ -1,0 +1,97 @@
+UnicodeFix v2.1.0: Image Cleanup Without ExifTool - social drafts
+
+Article: https://unixwzrd.ai/projects/UnicodeFix/2026/10/24/unicodefix-v2-1-0-image-cleanup-without-exiftool/
+Short URL: https://unixwzrd.ai/s/276c1fd905/
+Repository: https://github.com/unixwzrd/UnicodeFix
+
+Publishing note: Verify the public article and short redirect after deployment before sharing. These are drafts; nothing has been posted.
+
+==================================================
+LINKEDIN
+==================================================
+
+UnicodeFix v2.1.0 no longer needs ExifTool for image cleanup. I replaced the external backend with built-in PNG, JPEG, and WebP container handling, so the normal Python installation includes the cleanup runtime. One less executable to install and track down on PATH.
+
+The important part is what happens to the image. Cleanup preserves its coding data rather than recompressing it, retains rendering metadata and animation, and verifies protected data before publishing a separate output file. Recognized C2PA provenance still takes an explicit request to remove.
+
+The format boundary is narrower and explicit: TIFF, HEIF, AVIF, GIF, and BMP are audit-only in this release. This is supported metadata cleanup, not a claim that every hidden payload or pixel watermark has disappeared. Python 3.11+ and Pillow 13.x are the current baseline.
+
+https://unixwzrd.ai/s/276c1fd905/
+
+#UnicodeFix #Python #OpenSource #DigitalProvenance
+
+==================================================
+X / TWITTER
+==================================================
+
+UnicodeFix v2.1.0 drops ExifTool: built-in PNG/JPEG/WebP metadata cleanup, without re-encoding image data. Separate output and explicit C2PA stripping remain; other formats are audit-only.
+
+https://unixwzrd.ai/s/276c1fd905/
+
+#UnicodeFix
+
+==================================================
+BLUESKY
+==================================================
+
+One less executable to chase down: UnicodeFix v2.1.0 includes PNG/JPEG/WebP metadata cleanup in the Python package. No ExifTool, no image re-encoding. Other formats are audit-only; C2PA removal stays explicit.
+
+https://unixwzrd.ai/s/276c1fd905/
+
+#UnicodeFix
+
+==================================================
+MASTODON
+==================================================
+
+UnicodeFix v2.1.0 removes the ExifTool dependency. Built-in PNG/JPEG/WebP cleanup preserves image coding data, rendering metadata, and animation, then verifies protected data before writing a separate file.
+
+TIFF, HEIF, AVIF, GIF, and BMP are audit-only. C2PA removal stays explicit; this does not remove pixel watermarks. Python 3.11+ and Pillow 13.x required.
+
+https://unixwzrd.ai/s/276c1fd905/
+
+#UnicodeFix #Python #OpenSource
+
+==================================================
+REDDIT
+==================================================
+
+Suggested title:
+UnicodeFix 2.1: built-in PNG/JPEG/WebP metadata cleanup, no ExifTool required
+
+Body:
+
+I maintain UnicodeFix, a local text and image audit/cleanup tool. In v2.1.0 I replaced the ExifTool subprocess backend with built-in container writers for PNG, JPEG, and WebP. The normal Python installation now includes the image cleanup runtime.
+
+The writers retain image coding data instead of decoding and re-encoding the pixels. ICC profiles, orientation, supported color-space fields, and animation frames/timing are preserved, with protected-block hashes and rendering metadata checked before the separate output file is published.
+
+The usual commands still work:
+
+    cleanup-text --report --metrics photo.jpg
+    cleanup-text --dry-run photo.jpg
+    cleanup-text photo.jpg
+
+Those audit, preview, or write photo.clean.jpg respectively. The dedicated cleanup-image command remains audit-only unless a cleanup flag is supplied.
+
+There are deliberate limits: TIFF, HEIF, AVIF, GIF, and BMP are audit-only in this release, input files are capped at 256 MiB, and unsupported metadata variants can prevent writing even in a normally writable format. C2PA removal must be explicit. Unknown blocks are retained, signatures are not validated, and this is not a pixel-watermark remover.
+
+Python 3.11+ and Pillow 13.x are required. The article covers the changes and the image-report schema update; the repository has the implementation and format guide. Feedback on real-world container edge cases would be welcome.
+
+Article: https://unixwzrd.ai/projects/UnicodeFix/2026/10/24/unicodefix-v2-1-0-image-cleanup-without-exiftool/
+Repository: https://github.com/unixwzrd/UnicodeFix
+
+==================================================
+SUBSTACK
+==================================================
+
+Title:
+UnicodeFix v2.1.0: Image Cleanup Without ExifTool
+
+Body:
+
+UnicodeFix's image cleanup now comes with the Python package. In v2.1.0 I replaced the ExifTool backend with built-in PNG, JPEG, and WebP container writers, keeping the original image coding data rather than recompressing the pixels. Cleanup checks protected data and rendering metadata before publishing a separate output file.
+
+The installation is simpler, but the support boundary matters: TIFF, HEIF, AVIF, GIF, and BMP are audit-only in this release. Recognized C2PA provenance still requires an explicit removal request, unknown blocks are retained, and metadata cleanup is not pixel-watermark removal. The current baseline is Python 3.11+ and Pillow 13.x.
+
+Full article:
+https://unixwzrd.ai/s/276c1fd905/
