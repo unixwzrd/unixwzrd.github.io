@@ -176,7 +176,10 @@ class ReaderExperienceTest < Minitest::Test
     assert_equal paths.map { |path| settings.fetch(path).fetch("label") }, doc.css(links).map(&:text)
     assert_equal ["All Projects", "Visible", "Private"], doc.css(".nav-dropdown-projects .nav-dropdown-item").map(&:text)
     assert_equal ["Blog Home", "All Posts", "Technology", "Topics"], doc.css(".nav-dropdown-blogs .nav-dropdown-item").map(&:text)
-    assert_equal ["Professional Services", "Community Collaboration"], doc.css(".nav-dropdown-collaborate .nav-dropdown-item").map(&:text)
+    collaborate_children = settings.fetch("collaborate.md").fetch("children")
+    collaborate_links = doc.css(".nav-dropdown-collaborate .nav-dropdown-item")
+    assert_equal collaborate_children.map { |child| child.fetch("label") }, collaborate_links.map(&:text)
+    assert_equal collaborate_children.map { |child| child.fetch("url") }, collaborate_links.map { |link| link["href"] }
     ids = doc.css("[id]").map { |node| node["id"] }
     assert_equal ids.uniq, ids
     settings.fetch(paths.last)["label"] = "Find & read"
