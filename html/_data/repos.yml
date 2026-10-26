@@ -27,7 +27,7 @@ repositories:
     owner: unixwzrd
     overrides:
       title: "Secrets Kit"
-      description: "Local-first secrets management. Version 1 is available; version 2 is in limited-access beta, with macOS/Linux support and peer-to-peer replication."
+      description: "Secrets Kit 2.0.2 is coming soon: free, unlimited LAN peer-to-peer secrets management, with optional Remote Secrets Sync across networks. Final testing is underway."
       image_url: "/assets/images/projects/Secrets-Kit-Banner.png"
       banner_image_url: "/assets/images/projects/Secrets-Kit-Banner.png"
   - name: LLM-Ops-Kit

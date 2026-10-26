@@ -1,0 +1,23 @@
+{% include secrets-kit/release.html %}
+{% assign seckit_pages = site.pages | where: 'secrets_kit_product', true | sort: 'product_nav_order' %}
+{% assign seckit_start = seckit_pages | where: 'url', '/projects/Secrets-Kit/get-started/' | first %}
+<nav class="seckit-nav" aria-label="Secrets Kit product">
+  <a href="{{ '/projects/Secrets-Kit/' | relative_url }}"{% if page.url == '/projects/Secrets-Kit/' %} aria-current="page"{% endif %}>Secrets Kit overview</a>
+  {% for product_page in seckit_pages %}
+  <a href="{{ product_page.url | relative_url }}"{% if page.url == product_page.url %} aria-current="page"{% endif %}>{{ product_page.nav_title | escape }}</a>
+  {% endfor %}
+  {% if seckit_start %}<a href="{{ '/projects/Secrets-Kit/#updates' | relative_url }}">Blog & Updates</a>{% endif %}
+</nav>
+{% if seckit_start %}
+{% if seckit_release.production_release_ready != true %}
+<aside class="seckit-notice" aria-label="Product availability">
+  <strong>Secrets Kit {{ seckit_version | escape }} — coming soon</strong>
+  <p>Final testing is underway. The production installer and hosted subscription will open with the release. <a href="{{ seckit_release.discussions_url }}">Follow the project or ask a question</a>.</p>
+</aside>
+{% elsif seckit_start.published == false %}
+<aside class="seckit-notice" aria-label="Product availability">
+  <strong>Launch preview</strong>
+  <p>Reviewing the product pages for production release {{ seckit_release.release_tag | escape }}.</p>
+</aside>
+{% endif %}
+{% endif %}

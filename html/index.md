@@ -14,6 +14,12 @@ hide_content_footer: true
 </div>
 
 <section class="home-hero" aria-labelledby="home-heading">
+  {% if site.data.secrets_kit.production_release_ready == false %}
+  <aside class="seckit-notice" aria-label="Secrets Kit announcement">
+    <strong>Coming soon: Secrets Kit {{ site.data.secrets_kit.release_tag | remove_first: 'v' | escape }}</strong>
+    <p>Free peer-to-peer secrets management, unlimited connections on the same LAN segment, and optional remote sync. Final testing is underway. <a href="{{ '/projects/Secrets-Kit/' | relative_url }}">Meet Secrets Kit →</a></p>
+  </aside>
+  {% endif %}
   <p class="home-kicker">Local-first software &amp; systems engineering</p>
   <h1 id="home-heading">Practical tools.<br>Local control.</h1>
   <p class="home-lead">Keep your AI conversations, credentials, and working files useful—and under your control.</p>

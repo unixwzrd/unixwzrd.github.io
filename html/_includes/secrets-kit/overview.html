@@ -1,0 +1,66 @@
+{% include secrets-kit/navigation.html %}
+<section class="seckit-hero" aria-labelledby="seckit-promise">
+  <div class="seckit-hero-grid"><div>
+  <p class="home-kicker">Local secrets. Deliberate access. Your machines.</p>
+  <h2 id="seckit-promise">Your credentials, under your control.</h2>
+  <p class="home-lead">Keep API keys and passwords in a local store, give your applications the credentials they need, and synchronize them between authorized machines.</p>
+  <p>Secrets Kit is for the tools you already use: AI agents, database clients, shell scripts, and scheduled jobs. Start on one machine. Add another when you need it.</p>
+  <div class="home-actions">
+    {% if seckit_release.production_release_ready %}<a class="home-button home-button--primary" href="{{ seckit_start.url | relative_url }}">Get Started</a>{% else %}<a class="home-button home-button--primary" href="{{ seckit_release.discussions_url }}">Follow release updates</a><a class="home-button" href="{{ seckit_start.url | relative_url }}">Explore {{ seckit_version }}</a>{% endif %}
+    {% assign seckit_pricing = seckit_pages | where: 'url', '/projects/Secrets-Kit/pricing/' | first %}
+    {% if seckit_pricing %}<a class="home-button" href="{{ seckit_pricing.url | relative_url }}">See Pricing</a>{% endif %}
+    <a href="{{ seckit_repository_url }}">View on GitHub</a>
+  </div>
+  </div><img class="seckit-hero-art" src="{{ '/assets/images/projects/Secrets-Kit-Banner.png' | relative_url }}" alt="Secrets Kit local credentials and application access"></div>
+</section>
+
+<section class="seckit-section" aria-labelledby="seckit-use-cases">
+  <h2 id="seckit-use-cases">One store, several everyday uses</h2>
+  <div class="seckit-grid">
+    <article class="seckit-card">
+      <h3>Run your applications</h3>
+      <p>Pass selected credentials to a process with <code>seckit run</code>, reducing the need to copy them into project files, shell commands, and startup scripts.</p>
+    </article>
+    <article class="seckit-card">
+      <h3>Set up your agent</h3>
+      <p>Let an agent help with installation, then choose which credentials it may use. The Hermes integration has its own setup guide; other agents can start with the general installation handoff.</p>
+    </article>
+    <article class="seckit-card">
+      <h3>Connect your machines</h3>
+      <p>Connect unlimited authorized peers on the same local area network (LAN) segment for free. Optional Remote Secrets Sync adds cross-network forwarding with primary and secondary relays.</p>
+    </article>
+  </div>
+</section>
+
+<section class="seckit-section" aria-labelledby="seckit-how-it-works">
+  <h2 id="seckit-how-it-works">How it fits together</h2>
+  <ol class="seckit-steps">
+    <li><strong>Store locally.</strong> Keep credentials in your configured local backend: macOS Keychain or encrypted SQLite. The normal new-store setup uses encrypted SQLite.</li>
+    <li><strong>Choose what a process receives.</strong> Select the credentials for an application or integration. Model Context Protocol (MCP) access is optional and follows its own retrieval policy.</li>
+    <li><strong>Authorize your peers.</strong> Decide which Secrets Kit installations may synchronize. Discovery alone does not grant access.</li>
+    <li><strong>Add hosted connectivity if needed.</strong> Remote Secrets Sync forwards destination-encrypted updates when direct communication is unavailable. Primary/secondary relay failover provides another forwarding path when an endpoint is unavailable. Relays do not receive secret plaintext or local storage keys.</li>
+  </ol>
+</section>
+
+<section class="seckit-section" aria-labelledby="seckit-offer">
+  <h2 id="seckit-offer">Start free. Add remote connectivity when you need it.</h2>
+  <div class="seckit-grid seckit-grid--two">
+    <article class="seckit-card">
+      <h3>The free peer-to-peer client</h3>
+      <p class="seckit-price">$0</p>
+      <p><strong>Unlimited connections on the same LAN segment.</strong> Includes local storage, selected application injection, optional scoped agent interfaces, and encrypted peer-to-peer synchronization. No hosted subscription is required.</p>
+    </article>
+    <article class="seckit-card">
+      <h3>Remote Secrets Sync</h3>
+      <p class="seckit-price">$5 <span>per enrolled connection / month</span></p>
+      <p>{% if seckit_release.production_release_ready %}Minimum{% else %}Planned launch pricing: minimum{% endif %} two connections, $10/month. Includes primary/secondary relay forwarding. An enrolled connection belongs to a registered Secrets Kit identity for an operating-system user; it is not a separate charge for every agent.</p>
+    </article>
+  </div>
+</section>
+
+<section class="seckit-section" aria-labelledby="seckit-next">
+  <h2 id="seckit-next">Take the next step</h2>
+  <p>Use Get Started for {% if seckit_release.production_release_ready %}installation{% else %}release status{% endif %}, Guides for everyday tasks, Compare for alternatives, and Security &amp; Privacy for the trust boundaries. All are linked above.</p>
+  <p>Credentials passed into an application can still be exposed by that application or a compromised account. Secrets Kit helps you manage access deliberately; it does not make the receiving process trustworthy.</p>
+  <p>Need a hand with setup or migration? <a href="{{ '/collaborate/professionals/' | relative_url }}">Ask about setup assistance</a>.</p>
+</section>

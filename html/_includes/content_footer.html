@@ -1,4 +1,7 @@
 <div class="content-footer">
+    {% if page.secrets_kit_product or page.product_hub == 'secrets-kit' %}
+    {% include secrets-kit/support.html %}
+    {% else %}
     {% unless page.url contains '/community/' %}
     <div class="join-us-section">
         <hr>
@@ -14,4 +17,5 @@
     </div>
     {% endunless %}
     <br>
+    {% endif %}
 </div>

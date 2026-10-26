@@ -6,7 +6,15 @@ layout: page
     <div class="project-content">
         {% include project_lookup.html %}
         {% assign project = page_project %}
+        {% assign show_seckit_product = false %}
+        {% if page.product_hub == 'secrets-kit' and page.category == 'Secrets-Kit' %}
+            {% assign seckit_start = site.pages | where: 'url', '/projects/Secrets-Kit/get-started/' | first %}
+            {% if seckit_start.secrets_kit_product == true %}
+                {% assign show_seckit_product = true %}
+            {% endif %}
+        {% endif %}
 
+        {% unless show_seckit_product %}
         {% if project %}
         {% assign project_title = page.title | default: project.title %}
         {% assign project_display_image = project.image_url %}
@@ -53,12 +61,22 @@ layout: page
             {{ page.project_intro | markdownify }}
         </section>
         {% endif %}
+        {% endunless %}
 
+        {% if show_seckit_product %}
+        <div class="project-description seckit-product" data-seckit-product>
+            {% include secrets-kit/overview.html %}
+        </div>
+        <section id="updates" aria-label="Secrets Kit blog and updates">
+            {% include blog_list.html category=page.category heading='Blog & Updates' %}
+        </section>
+        {% else %}
         {% include blog_list.html category=page.category %}
 
         <div class="project-description">
             {{ content }}
         </div>
+        {% endif %}
 
         {% include engagement.html %}
 

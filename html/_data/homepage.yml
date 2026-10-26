@@ -11,7 +11,7 @@ featured_projects:
     action: Explore UnicodeFix
   - name: Secrets-Kit
     label: Local secrets management
-    summary: Store credentials locally and pass selected secrets to the process that needs them, reducing the need to keep credentials in project files and startup scripts.
+    summary: Keep credentials on your machines, give applications and agents selected access, and connect unlimited peers on the same LAN segment for free. Optional Remote Secrets Sync connects authorized peers across networks.
     action: Explore Secrets Kit
 
 more_projects:

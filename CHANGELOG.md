@@ -2,6 +2,14 @@
 
 This changelog records changes to site behavior, operational tooling, scripts, build validation, and shared templates. Routine articles, post corrections, publication dates, and social copy do not require entries. The entries below were backfilled on September 2 from repository history; their dates identify the recorded changes, not a verified deployment date.
 
+## 2026-10-26: Secrets Kit coming-soon product section
+
+- Extended the existing project URL into a product hub with the blog below the overview, free unlimited LAN peer-to-peer positioning, planned Remote Secrets Sync pricing, and primary/secondary relay failover. Reused the existing artwork in a compact hero and added scoped responsive styles.
+- Prepared seven public pages for setup, guides, remote sync, pricing, comparison, security, and support. The website targets version 2.0.2 with readiness false: it announces final testing while withholding future installer/documentation links and the installation copy control. A single release setting enables the production references after qualification; the agent handoff uses one repository URL.
+- Routed product bugs directly to GitHub Issues, community questions to project Discussions, and private information to Contact. Added a practical reporting checklist and preserved the existing site footer for other pages.
+- Added two product-column feature matrices and a searchable, script-optional catalog of 32 alternatives and adjacent tools with dated primary sources. Coverage distinguishes local storage, key custody, splitting/recovery, transfer, server dependence, outage behavior, pricing units, and product status. Competitor presentation observations are retained with the research data.
+- Added focused publication-state, shared-release, navigation, comparison-source, and rendered-output checks. Production build flags, historical post URLs, product code and infrastructure are unchanged; publishing the site, promoting the product, and activating billing remain separate actions.
+
 ## 2026-10-21: Unlisted peer-review document packets
 
 - Extended the existing review layout with optional packet navigation while retaining its script-free contents widget and search, crawler, and tracking exclusions. Documents can cross-link within their own unlisted packet without being added to public discovery listings or short-link maps.

@@ -1,0 +1,5 @@
+{%- if seckit_release.production_release_ready == true -%}
+{%- if include.kind == 'hermes' -%}<a href="{{ seckit_hermes_url }}">{{ include.label | escape }}</a>{%- else -%}<a href="{{ seckit_docs_url }}{{ include.file | escape }}">{{ include.label | escape }}</a>{%- endif -%}
+{%- else -%}
+<a href="{{ '/projects/Secrets-Kit/get-started/#release-status' | relative_url }}">{{ include.label | escape }}</a>
+{%- endif -%}

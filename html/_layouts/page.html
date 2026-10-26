@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-<article class="page" {% if page.search_exclude %}data-pagefind-ignore="all"{% else %}data-pagefind-body{% endif %}>
+<article class="page{% if page.secrets_kit_product or page.product_hub == 'secrets-kit' %} seckit-product-page{% endif %}" {% if page.search_exclude %}data-pagefind-ignore="all"{% else %}data-pagefind-body{% endif %}>
 
   {% include breadcrumbs.html %}
 

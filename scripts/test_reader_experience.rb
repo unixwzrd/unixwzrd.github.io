@@ -157,8 +157,8 @@ class ReaderExperienceTest < Minitest::Test
     actual = catalog.find { |project| project["name"] == "Secrets-Kit" }.fetch("description")
     override = sources.find { |project| project["name"] == "Secrets-Kit" }.fetch("overrides").fetch("description")
     assert_equal override, actual
-    assert_includes actual, "Version 1 is available"
-    assert_includes actual, "version 2 is in limited-access beta"
+    assert_includes actual, "Secrets Kit 2.0.2 is coming soon"
+    assert_includes actual, "Final testing is underway"
     refute_match(/public beta/i, actual)
   end
 
@@ -477,12 +477,12 @@ if ENV["READER_SITE"]
       end
     end
 
-    def test_secrets_kit_distinguishes_available_v1_and_restricted_v2
+    def test_secrets_kit_announces_upcoming_202_without_offering_an_installer
       body = document("projects/Secrets-Kit").at_css(".project-description").text
-      assert_includes body, "Version 1 is available"
-      assert_includes body, "Version 2 is in limited-access beta"
-      assert_includes body, "access restricted to authorized testers"
-      assert_includes body, "Windows compatibility has not yet been tested"
+      assert_includes body, "Secrets Kit 2.0.2"
+      assert_includes body, "coming soon"
+      assert_includes body, "Final testing is underway"
+      assert_empty document("projects/Secrets-Kit/get-started").css('a[href*="/releases/download/"]')
       refute_match(/public beta|no stable production release yet/i, body)
       refute_match(/\bbeta\b/i, document("").at_css(".home").text)
     end

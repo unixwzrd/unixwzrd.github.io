@@ -1,0 +1,36 @@
+{% assign landscape = site.data.secrets_kit_competitors %}
+<section class="seckit-landscape" aria-labelledby="seckit-landscape-heading">
+  <p class="home-kicker">The wider landscape</p>
+  <h2 id="seckit-landscape-heading">{{ landscape.products.size }} products and workflows, reviewed by architecture.</h2>
+  <p>Explore local tools, smaller services, enterprise platforms and cloud vaults. Each entry covers storage, custody, key splitting or recovery, transfer, server dependence, resilience, runtime access and pricing.</p>
+  <p class="seckit-comparison-footnote">Checked {{ landscape.checked_on | escape }}. {{ landscape.methodology | escape }} Historical offerings and early-access projects are identified separately.</p>
+  <div class="seckit-landscape-controls" data-landscape-controls hidden>
+    <label for="seckit-landscape-query">Find a product or feature<input type="search" id="seckit-landscape-query" placeholder="Try Shamir, failover, local, or a product name" autocomplete="off"></label>
+    <label for="seckit-landscape-category">Product category<select id="seckit-landscape-category"><option value="">All categories</option>{% for category in landscape.categories %}<option value="{{ category.id | escape }}">{{ category.title | escape }}</option>{% endfor %}</select></label>
+    <p id="seckit-landscape-count" role="status" aria-live="polite">{{ landscape.products.size }} entries</p>
+  </div>
+  {% for category in landscape.categories %}
+  <section class="seckit-landscape-group" data-landscape-group>
+    <h3>{{ category.title | escape }}</h3>
+    {% assign products = landscape.products | where: 'category', category.id %}
+    {% for product in products %}
+    <details class="seckit-competitor" id="competitor-{{ product.id | escape }}" data-competitor data-category="{{ category.id | escape }}">
+      <summary><span>{{ product.name | escape }}</span><small>{{ product.status | escape }}</small></summary>
+      <dl>
+        <dt>Storage</dt><dd>{{ product.storage | escape }}</dd>
+        <dt>Key custody</dt><dd>{{ product.custody | escape }}</dd>
+        <dt>Splitting &amp; recovery</dt><dd>{{ product.splitting | escape }}</dd>
+        <dt>Transfer</dt><dd>{{ product.transfer | escape }}</dd>
+        <dt>Server dependence</dt><dd>{{ product.dependency | escape }}</dd>
+        <dt>Outages &amp; failover</dt><dd>{{ product.resilience | escape }}</dd>
+        <dt>Applications &amp; agents</dt><dd>{{ product.runtime | escape }}</dd>
+        <dt>Pricing</dt><dd>{{ product.pricing | escape }}</dd>
+      </dl>
+      <p class="seckit-competitor-sources">Official sources: {% for source in product.sources %}<a href="{{ source.url | escape }}">{{ source.title | escape }}</a>{% unless forloop.last %} · {% endunless %}{% endfor %}</p>
+    </details>
+    {% endfor %}
+  </section>
+  {% endfor %}
+  <p data-landscape-empty hidden>No matching entries. Try a broader term or another category.</p>
+</section>
+<script src="{{ '/assets/js/secrets-kit-landscape.js' | relative_url }}" defer></script>

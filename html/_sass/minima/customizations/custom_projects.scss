@@ -118,3 +118,261 @@
   }
 }
 
+// Secrets Kit product pages; dormant while the section is unpublished.
+.seckit-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.2rem;
+  margin: 0 0 1.5rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid $border-color;
+
+  [aria-current="page"] { font-weight: 700; text-decoration: underline; }
+}
+
+.seckit-notice {
+  padding: 1rem 1.2rem;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid $link-base-color;
+  background: var(--site-surface-raised);
+
+  p { margin: 0.5rem 0 0; }
+}
+
+.seckit-hero {
+  padding: 1rem 0 2rem;
+
+  h2 { font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.15; }
+}
+
+.seckit-section { margin: 2rem 0; }
+.seckit-hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 1.5rem; align-items: center; }
+.seckit-hero-art { width: 100%; height: auto; border-radius: 12px; }
+.seckit-support { margin: 2.5rem 0; padding-top: 1.5rem; border-top: 1px solid $border-color; }
+.seckit-support .seckit-comparison-footnote { margin-top: 1rem; }
+.seckit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+.seckit-grid--two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.seckit-card {
+  min-width: 0;
+  padding: 1.2rem;
+  border: 1px solid $border-color;
+  border-radius: 10px;
+  background: var(--site-surface);
+
+  h3 { margin-top: 0; }
+  p:last-child { margin-bottom: 0; }
+}
+.seckit-price {
+  font-size: 1.8rem;
+  font-weight: 700;
+
+  span { display: block; font-size: 1rem; font-weight: 400; }
+}
+.seckit-steps li { margin-bottom: 0.8rem; }
+.seckit-prompt textarea {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0.75rem 0;
+  padding: 1rem;
+  color: $text-color;
+  background: var(--site-surface);
+  border: 1px solid $border-color;
+  border-radius: 6px;
+  font: inherit;
+  line-height: 1.5;
+  resize: vertical;
+}
+.seckit-copy {
+  padding: 0.6rem 0.9rem;
+  color: $text-color;
+  background: var(--site-surface-raised);
+  border: 1px solid $link-base-color;
+  border-radius: 6px;
+  font: inherit;
+  cursor: pointer;
+}
+.seckit-nav a:focus-visible,
+.seckit-copy:focus-visible,
+.seckit-prompt textarea:focus-visible,
+.seckit-table-scroll:focus-visible {
+  outline: 2px solid $link-base-color;
+  outline-offset: 3px;
+}
+.seckit-table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+
+  table { min-width: 46rem; }
+}
+
+// Feature comparison: keep plan qualifiers readable and row labels in view.
+.seckit-compare-intro { margin: 2rem 0; max-width: 46rem; }
+.seckit-matrix-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+
+  h2 { margin-bottom: 0.6rem; }
+}
+.seckit-comparison-date,
+.seckit-scroll-hint,
+.seckit-comparison-footnote { font-size: 0.875rem; color: var(--minima-brand-color); }
+.seckit-matrix-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 1.3rem;
+  font-size: 0.875rem;
+
+  > span { display: inline-flex; gap: 0.4rem; align-items: center; }
+}
+.seckit-check { color: var(--site-primary-color); font-size: 1.3rem; font-weight: 700; }
+.seckit-cross, .seckit-unlisted { color: var(--minima-brand-color); font-size: 1.3rem; }
+.seckit-matrix-frame {
+  margin: 1rem 0;
+  border: 1px solid $border-color;
+  border-radius: 12px;
+  background: $background-color;
+  scrollbar-color: var(--minima-brand-color) var(--site-surface);
+}
+.seckit-matrix-frame table.seckit-matrix {
+  display: table;
+  width: 100%;
+  min-width: 54rem;
+  margin: 0;
+  table-layout: fixed;
+  border: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.9rem;
+  overflow: visible;
+
+  .seckit-feature-column { width: 21%; }
+  th, td {
+    padding: 1rem 0.65rem;
+    border: 0;
+    border-bottom: 1px solid $border-color;
+    vertical-align: middle;
+    text-align: center;
+    background: $background-color;
+    overflow-wrap: break-word;
+  }
+  thead th {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    background: var(--site-surface);
+    font-size: 1rem;
+  }
+  th:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    text-align: left;
+    box-shadow: 1px 0 0 $border-color;
+  }
+  tbody th[scope="row"] { font-weight: 600; }
+  small {
+    display: block;
+    margin-top: 0.35rem;
+    font-size: 0.78rem;
+    line-height: 1.45;
+    font-weight: 400;
+    color: var(--minima-brand-color);
+  }
+  code { font-size: 0.78rem; white-space: normal; }
+  .seckit-featured {
+    background: var(--site-code-insert-bg);
+    border-left: 1px solid var(--site-primary-color);
+    border-right: 1px solid var(--site-primary-color);
+  }
+  thead .seckit-featured { border-top: 3px solid var(--site-primary-color); }
+  .seckit-matrix-group th {
+    position: static;
+    padding: 0.65rem 1rem;
+    background: var(--site-surface-raised);
+    color: $text-color;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    text-align: left;
+    box-shadow: none;
+
+    span { position: sticky; left: 1rem; }
+  }
+  tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+  caption {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+.seckit-product-badge {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 0.65rem;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid var(--site-primary-color);
+  border-radius: 999px;
+  color: var(--site-primary-color);
+  font-size: 0.68rem;
+  font-weight: 600;
+}
+.seckit-matrix-price { font-size: 1.7rem; line-height: 1.15; }
+.seckit-compare-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  border: 1px solid $border-color;
+  border-radius: 12px;
+  background: var(--site-surface);
+
+  h2 { margin: 0 0 0.5rem; }
+  p { margin-bottom: 0; }
+  .home-actions { margin-top: 0; }
+}
+.seckit-comparison-notes {
+  margin: 1.5rem 0 2.5rem;
+  padding: 1rem;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+
+  summary { cursor: pointer; font-weight: 600; }
+  &[open] summary { margin-bottom: 1rem; }
+}
+.seckit-landscape { margin: 3rem 0; }
+.seckit-landscape-controls:not([hidden]) { display: flex; flex-wrap: wrap; gap: 1rem; align-items: end; padding: 1rem; border-radius: 8px; background: var(--site-surface); }
+.seckit-landscape-controls label { flex: 1 1 14rem; font-weight: 600; }
+.seckit-landscape-controls input, .seckit-landscape-controls select { display: block; box-sizing: border-box; width: 100%; margin-top: 0.5rem; padding: 0.65rem; font: inherit; border: 1px solid $border-color; border-radius: 6px; }
+.seckit-landscape-group { margin: 1.5rem 0; }
+.seckit-competitor { margin: 0.65rem 0; padding: 1rem; border: 1px solid $border-color; border-radius: 8px; }
+.seckit-competitor summary { cursor: pointer; font-weight: 700; }
+.seckit-competitor summary small { display: block; margin: 0.4rem 0 0 1rem; color: var(--minima-brand-color); font-weight: 400; }
+.seckit-competitor dl { display: grid; grid-template-columns: 10rem minmax(0, 1fr); gap: 0.65rem 1rem; margin: 1.25rem 0; }
+.seckit-competitor dt { font-weight: 600; }
+.seckit-competitor dd { margin: 0; }
+.seckit-competitor-sources { font-size: 0.85rem; }
+
+@media screen and (max-width: $on-palm) {
+  .seckit-product-page { box-sizing: border-box; padding-inline: 1rem; }
+  .seckit-competitor dl { grid-template-columns: minmax(0, 1fr); gap: 0.4rem; }
+  .seckit-competitor dd { margin-bottom: 0.65rem; }
+  .seckit-hero-grid { grid-template-columns: minmax(0, 1fr); }
+  .seckit-grid, .seckit-grid--two { grid-template-columns: minmax(0, 1fr); }
+}
+

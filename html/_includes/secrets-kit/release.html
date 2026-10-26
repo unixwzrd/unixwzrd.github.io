@@ -1,0 +1,8 @@
+{% assign seckit_release = site.data.secrets_kit %}
+{% assign seckit_repository_url = seckit_release.repository_url %}
+{% assign seckit_version = seckit_release.release_tag | remove_first: 'v' %}
+{% assign seckit_ref = seckit_release.release_tag | default: seckit_release.production_branch %}
+{% assign seckit_docs_url = seckit_repository_url | append: '/blob/' | append: seckit_ref | append: '/docs/' %}
+{% assign seckit_readme_url = seckit_repository_url | append: '/blob/' | append: seckit_ref | append: '/README.md#user-installation' %}
+{% assign seckit_hermes_url = seckit_repository_url | append: '/tree/' | append: seckit_ref | append: '/integrations/hermes/install-secrets-kit-for-hermes' %}
+{% assign seckit_download_url = seckit_repository_url | append: '/releases/tag/' | append: seckit_release.release_tag %}

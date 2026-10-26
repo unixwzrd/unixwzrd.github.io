@@ -1,6 +1,6 @@
 {
   "card_style_version": 8,
-  "contributors_count": 2,
+  "contributors_count": 3,
   "description": "Operational toolkit for running, deploying, debugging, and maintaining self-hosted AI stacks across hosts.",
   "forks_count": 0,
   "language": "Python",
@@ -26,5 +26,5 @@
       "share": "2%"
     }
   ],
-  "updated_at": "2026-10-15T04:58:02Z"
+  "updated_at": "2026-10-25T23:45:03Z"
 }

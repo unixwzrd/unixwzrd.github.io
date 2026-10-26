@@ -1,0 +1,12 @@
+{% include secrets-kit/release.html %}
+{% assign seckit_support_page = site.pages | where: 'url', '/projects/Secrets-Kit/support/' | first %}
+<section class="seckit-support" aria-labelledby="seckit-support-heading">
+  <h2 id="seckit-support-heading">Questions, problems, or ideas?</h2>
+  <p>Use the project’s own channels so the right conversation is easy to find.</p>
+  <div class="seckit-grid">
+    <div class="seckit-card"><h3>Report a bug</h3><p>Check existing reports, then describe what happened and how to reproduce it.</p><a href="{{ seckit_release.issues_url }}">Project Issues →</a></div>
+    <div class="seckit-card"><h3>Ask the community</h3><p>Questions, feature requests, and release discussion belong in the project forum.</p><a href="{{ seckit_release.discussions_url }}">Project Discussions →</a></div>
+    <div class="seckit-card"><h3>Contact privately</h3><p>Use private contact for security concerns, account questions, or sensitive details.</p><a href="{{ '/contact/' | relative_url }}">Private contact →</a></div>
+  </div>
+  <p class="seckit-comparison-footnote">Keep credentials, private keys, recovery codes, and unredacted logs out of public reports. {% if seckit_support_page %}<a href="{{ seckit_support_page.url | relative_url }}">Reporting checklist and support options</a>.{% endif %}</p>
+</section>
