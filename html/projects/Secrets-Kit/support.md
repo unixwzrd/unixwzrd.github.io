@@ -37,3 +37,7 @@ Please [contact us privately]({{ '/contact/' | relative_url }}) before posting a
 ## Installation or migration assistance
 
 For hands-on configuration, migration, or deployment work, [ask about professional setup assistance]({{ '/collaborate/professionals/' | relative_url }}). This is separate from public bug reporting and the optional RSS subscription.
+
+## Support and billing expectations
+
+Project Issues and Discussions provide the public reporting routes; sensitive account, security and billing questions belong in private contact. No response-time or service-availability commitment has been approved. See the [staged RSS service terms]({{ '/projects/Secrets-Kit/policies/#service-terms' | relative_url }}) for cancellation, quantity changes, refunds and the decisions still awaiting approval. {% unless seckit_release.production_release_ready %}Installation and production subscriptions remain closed.{% endunless %}

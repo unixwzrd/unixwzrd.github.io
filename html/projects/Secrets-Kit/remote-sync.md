@@ -19,13 +19,15 @@ Your workstation, a home server, and a remote machine do not always share a netw
 
 The free peer-to-peer client supports **unlimited connections on the same local area network (LAN) segment**, without a hosted subscription. Consider RSS when you need hosted forwarding across networks. Paid connection limits apply to RSS-enrolled connections; they do not cap free peer-to-peer connections on your LAN segment. RSS does not authorize unknown peers, replace your local datastore, or make every application on a machine eligible to receive credentials.
 
-Remote Secrets Sync costs **$5 per enrolled connection per month, minimum two connections ($10/month)**. Read [Pricing]({{ '/projects/Secrets-Kit/pricing/' | relative_url }}) for the billing unit and lifecycle details.
+{% if seckit_release.production_release_ready %}Pricing is{% else %}Planned launch pricing is{% endif %} **$5 per enrolled connection per month, minimum two connections ($10/month)**. Read [Pricing]({{ '/projects/Secrets-Kit/pricing/' | relative_url }}) for the billing unit and lifecycle details.
 
 ## What travels through the relay
 
 Secrets Kit encrypts a synchronization envelope for its destination peer before sending it. The relay forwards that encrypted envelope. It does not receive the secret plaintext, customer private keys, or local datastore encryption keys. Each receiving peer stores accepted records under its own local storage protection.
 
 The service still processes the connection and account information needed to authenticate peers and operate forwarding. A statement about encrypted payloads is not a claim that every connection detail is hidden. See [Security & Privacy]({{ '/projects/Secrets-Kit/security/' | relative_url }}) for the boundaries.
+
+Read the scoped [RSS privacy and retention summary]({{ '/projects/Secrets-Kit/policies/#remote-secrets-sync-privacy' | relative_url }}) and [staged service terms]({{ '/projects/Secrets-Kit/policies/#service-terms' | relative_url }}). Provider disclosures, retention/deletion periods and some commercial terms remain awaiting approval.
 
 ## Primary and secondary relay failover
 
@@ -35,11 +37,12 @@ Your local store and local credential use remain available when hosted forwardin
 
 ## Enrollment follows installation
 
-{% if seckit_release.production_release_ready %}Install{% else %}When version {{ seckit_version }} and the hosted service are released, install{% endif %} the production client and verify the local workflow. Enrollment begins from the installed product:
+{% if seckit_release.production_release_ready %}Install{% else %}When version {{ seckit_version }} and the hosted service are released, install{% endif %} the production client and verify the local workflow. {% if seckit_release.production_release_ready %}Enrollment begins from the installed product:
 
 ```bash
 seckit rss checkout
 ```
+{% else %}Enrollment and subscriptions are not open. The client checkout instructions will appear with the approved release.{% endif %}
 
 Review the quantity and price shown by the returned checkout page. Completing checkout and enrolling a connection are separate steps; follow the {% include secrets-kit/doc-link.html file='RSS_CUSTOMER_GUIDE.md' label='customer guide' %} for enrollment, ownership claim, and offline recovery codes.
 

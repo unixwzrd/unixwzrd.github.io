@@ -6,3 +6,8 @@
 {% assign seckit_readme_url = seckit_repository_url | append: '/blob/' | append: seckit_ref | append: '/README.md#user-installation' %}
 {% assign seckit_hermes_url = seckit_repository_url | append: '/tree/' | append: seckit_ref | append: '/integrations/hermes/install-secrets-kit-for-hermes' %}
 {% assign seckit_download_url = seckit_repository_url | append: '/releases/tag/' | append: seckit_release.release_tag %}
+{% assign seckit_license_url = seckit_repository_url | append: '/blob/' | append: seckit_ref | append: '/LICENSE' %}
+{% assign seckit_updates_url = seckit_release.discussions_url %}
+{% if seckit_release.production_release_ready and seckit_release.release_announcement_url != empty %}
+{% assign seckit_updates_url = seckit_release.release_announcement_url | default: seckit_release.discussions_url %}
+{% endif %}

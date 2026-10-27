@@ -13,11 +13,11 @@ excerpt: "Use the client for free and add optional Remote Secrets Sync at $5 per
 
 {% include secrets-kit/navigation.html %}
 
-The Secrets Kit peer-to-peer client is free, with **unlimited connections on the same local area network (LAN) segment**. Pay for Remote Secrets Sync when you need hosted forwarding between authorized peers across networks.
+The Secrets Kit peer-to-peer client is free, with **unlimited connections on the same local area network (LAN) segment**. {% unless seckit_release.production_release_ready %}The planned{% else %}The{% endunless %} Remote Secrets Sync offer adds hosted forwarding between authorized peers across networks.
 
 ## Choose what you need
 
-{% if seckit_release.production_release_ready %}The free client and optional Remote Secrets Sync subscription are available for {{ seckit_version }}.{% else %}These are the planned prices for the {{ seckit_version }} launch. Subscriptions are not open yet; release availability will be announced in [project Discussions]({{ seckit_release.discussions_url }}).{% endif %}
+{% if seckit_release.production_release_ready %}The free client and optional Remote Secrets Sync subscription are available for {{ seckit_version }}.{% else %}These are the planned prices for the {{ seckit_version }} launch. Subscriptions are not open yet; follow [release updates]({{ seckit_updates_url }}) for availability.{% endif %}
 
 | | Free peer-to-peer client | Remote Secrets Sync |
 | --- | --- | --- |
@@ -47,21 +47,23 @@ These are base-price examples, not estimates of taxes or mid-cycle adjustments. 
 
 ## How to subscribe
 
-{% if seckit_release.production_release_ready %}Start{% else %}Once {{ seckit_version }} and the service are released, start{% endif %} with [Get Started]({{ '/projects/Secrets-Kit/get-started/' | relative_url }}) and verify the production client. The subscription workflow begins with:
+{% if seckit_release.production_release_ready %}Start{% else %}Once {{ seckit_version }} and the service are released, start{% endif %} with [Get Started]({{ '/projects/Secrets-Kit/get-started/' | relative_url }}) and verify the production client. {% if seckit_release.production_release_ready %}The subscription workflow begins with:
 
 ```bash
 seckit rss checkout
 ```
+{% else %}**Subscription enrollment is not open.** At release, the installed client will provide the checkout workflow; there is no active purchase link or subscription command to run from this page.{% endif %}
 
 The installed product supplies the checkout link. Review it before paying, then follow the enrollment and recovery steps in the {% include secrets-kit/doc-link.html file='RSS_CUSTOMER_GUIDE.md' label='customer guide' %}. There is no separate shopping cart on this website. A successful browser return does not itself establish paid capacity or an enrolled connection.
 
 ## Manage an existing subscription
 
-Open the existing subscription's billing portal from the client:
+{% if seckit_release.production_release_ready %}Open the existing subscription's billing portal from the client:
 
 ```bash
 seckit rss billing portal
 ```
+{% else %}The documented release workflow will open an existing subscription's Stripe-hosted billing portal from the installed client. Production subscriptions and their billing controls are not open yet.{% endif %}
 
 Use it to review the available billing controls and quantity changes. If you need more capacity, change the quantity on that subscription and wait for verified payment and provisioning before adding another connection.
 
@@ -71,7 +73,7 @@ Revoke the old connection using the {% include secrets-kit/doc-link.html file='R
 
 ### Cancelling
 
-Review the cancellation terms and effective date in the billing portal. When the entitlement becomes inactive through cancellation or payment failure, hosted forwarding stops according to the service lifecycle. Your local credentials and free client functionality remain available; direct synchronization still depends on authorized peers and a working direct route. Cancelling is separate from uninstalling the software or deleting local data.
+Cancellation uses the billing portal workflow. Once the entitlement becomes inactive through cancellation or payment failure, new hosted access is suspended and active forwarding terminates. The effective cancellation date (immediate or period-end), refund eligibility, and quantity-change proration/credit rules still need approval before subscriptions open. Read the [staged RSS service terms]({{ '/projects/Secrets-Kit/policies/#service-terms' | relative_url }}) for the confirmed behavior and open decisions. Your local credentials and free client functionality remain available; direct synchronization still depends on authorized peers and a working direct route. Cancelling is separate from uninstalling the software or deleting local data.
 
 ## Need help getting set up?
 

@@ -14,7 +14,7 @@ require "fileutils"
 class SecretsKitProductTest < Minitest::Test
   ROOT = File.expand_path("..", __dir__)
   PREFIX = "/projects/Secrets-Kit/"
-  SLUGS = %w[get-started guides remote-sync pricing compare security support].freeze
+  SLUGS = %w[get-started guides remote-sync pricing compare security support policies].freeze
   TEMP = Dir.mktmpdir("seckit-product-tests-")
   Minitest.after_run { FileUtils.remove_entry(TEMP) }
 
@@ -62,6 +62,11 @@ class SecretsKitProductTest < Minitest::Test
       release = PRODUCTION.data.fetch("secrets_kit")
       assert_match(/\Av\d+\.\d+\.\d+\z/, release["release_tag"].to_s)
       assert_includes [true, false], release["production_release_ready"]
+      if release["production_release_ready"]
+        assert_equal true, release.fetch("compatibility").fetch("approved_for_202"), "Approve the production support matrix first"
+        assert_equal true, release.fetch("service_policies_approved"), "Approve service policies before opening subscriptions"
+        refute_empty release.fetch("release_announcement_url"), "Choose the actual release announcement destination"
+      end
     end
     root = PRODUCTION.pages.find { |page| page.url == PREFIX }
     assert_equal "secrets-kit", root.data["product_hub"]
@@ -76,6 +81,9 @@ class SecretsKitProductTest < Minitest::Test
 
     partial = navigation(pages.reject { |page| page["url"] == "#{PREFIX}compare/" })
     assert_empty partial.css('a[href$="/compare/"]')
+    policy_index = File.read(File.join(ROOT, "html/Policies.md")).split(/^---\s*$\n?/, 3).last
+    refute_includes render(policy_index, pages: []), "#{PREFIX}policies/#client-privacy"
+    assert_includes render(policy_index, pages: pages), "#{PREFIX}policies/#client-privacy"
     absent = navigation([])
     assert_equal [PREFIX], absent.css("nav a").map { |link| link["href"] }
     assert_empty absent.css("aside")
@@ -108,6 +116,20 @@ class SecretsKitProductTest < Minitest::Test
     assert_empty pending.css("textarea, button[data-seckit-copy]")
     refute_includes pending.to_html, "/tree/main/integrations/hermes/"
     refute_includes pending.to_html, "/releases/tag/"
+  end
+
+  def test_forthcoming_documents_are_text_and_activate_only_at_the_shared_release
+    pages = PREVIEW.pages.select { |page| page.data["secrets_kit_product"] }.map(&:to_liquid)
+    template = "{% include secrets-kit/release.html %}{% include secrets-kit/doc-link.html file='SECURITY_MODEL.md' label='security model' %}{% include secrets-kit/doc-link.html file='RSS_CUSTOMER_GUIDE.md#add-another-device' label='device workflow' %}{% include secrets-kit/doc-link.html kind='hermes' label='Hermes integration' %}{% include secrets-kit/doc-link.html kind='license' label='client license' %}"
+    pending = Nokogiri::HTML.fragment(render(template, pages: pages))
+    assert_empty pending.css("a"), "An unavailable document must not look like a functional link"
+    assert_equal 4, pending.css('[data-seckit-unavailable="release-document"]').length
+    pending.css("span").each { |span| assert_includes span.text, "forthcoming with 2.0.2" }
+    ready = PRODUCTION.data.fetch("secrets_kit").merge("production_release_ready" => true, "release_tag" => "v9.8.7", "release_announcement_url" => "https://example.com/launch")
+    links = Nokogiri::HTML.fragment(render(template, pages: pages, release: ready)).css("a").map { |a| a["href"] }
+    assert_equal ["blob/v9.8.7/docs/SECURITY_MODEL.md", "blob/v9.8.7/docs/RSS_CUSTOMER_GUIDE.md#add-another-device", "tree/v9.8.7/integrations/hermes/install-secrets-kit-for-hermes", "blob/v9.8.7/LICENSE"].map { |path| "https://github.com/unixwzrd/Secrets-Kit/#{path}" }, links
+    updates = render("{% include secrets-kit/release.html %}{{ seckit_updates_url }}", pages: pages, release: ready)
+    assert_includes updates, "https://example.com/launch"
   end
 
   def test_product_hub_requires_opt_in_and_loaded_get_started_page
@@ -192,7 +214,7 @@ class SecretsKitProductTest < Minitest::Test
           assert_empty doc.css("textarea, button[data-seckit-copy]")
           SLUGS.each do |slug|
             page = document(directory, "#{PREFIX}#{slug}/")
-            assert_empty page.css('a[href*="github.com/unixwzrd/Secrets-Kit/releases/tag/"], a[href*="github.com/unixwzrd/Secrets-Kit/releases/download/"], a[href*="github.com/unixwzrd/Secrets-Kit/tree/v2.0.2"]'), slug
+            assert_empty page.css('a[href*="github.com/unixwzrd/Secrets-Kit/releases/tag/"], a[href*="github.com/unixwzrd/Secrets-Kit/releases/download/"], a[href*="github.com/unixwzrd/Secrets-Kit/tree/v2.0.2"], a[href*="github.com/unixwzrd/Secrets-Kit/blob/v2.0.2"]'), slug
           end
         end
         return
@@ -226,6 +248,11 @@ class SecretsKitProductTest < Minitest::Test
         assert doc.at_css(".seckit-nav a[href='#{PREFIX}']"), route
         assert overview.at_css(".seckit-nav a[href='#{route}']"), route
       end
+      policy = document(directory, "#{PREFIX}policies/")
+      %w[client-privacy remote-secrets-sync-privacy retention-and-deletion service-terms client-license].each { |anchor| assert policy.at_css("##{anchor}") }
+      assert_includes policy.text, "invitation mailbox"
+      assert_includes policy.text, "MIT License"
+      refute_empty document(directory, "#{PREFIX}security/").css('a[href$="/policies/#remote-secrets-sync-privacy"]')
       pricing = document(directory, "#{PREFIX}pricing/").at_css(".page-content").text
       ["$5", "$10", "$15", "$25", "does not lower the subscription quantity"].each { |text| assert_includes pricing, text }
       started = document(directory, "#{PREFIX}get-started/")
@@ -235,6 +262,12 @@ class SecretsKitProductTest < Minitest::Test
       else
         assert started.at_css("#release-status")
         assert_empty started.css("textarea, button[data-seckit-copy]")
+        assert_empty started.css('a[href$="#release-status"]')
+        assert started.at_css("#compatibility")
+        assert_includes started.text, "awaiting confirmation"
+        assert_includes started.text, "Hermes is optional"
+        assert_empty document(directory, "#{PREFIX}pricing/").css("pre code")
+        assert_empty document(directory, "#{PREFIX}remote-sync/").css("pre code")
       end
       if PREVIEW.data.fetch("secrets_kit")["production_release_ready"]
         assert started.at_css("#have-your-agent-help")

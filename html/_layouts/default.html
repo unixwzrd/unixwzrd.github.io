@@ -3,7 +3,7 @@
 
 {%- include head.html -%}
 
-<body>
+<body{% if page.secrets_kit_product or page.product_hub == 'secrets-kit' %} class="seckit-page"{% endif %}>
 
   {%- include header.html -%}
 

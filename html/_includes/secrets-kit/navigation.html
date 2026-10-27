@@ -12,7 +12,7 @@
 {% if seckit_release.production_release_ready != true %}
 <aside class="seckit-notice" aria-label="Product availability">
   <strong>Secrets Kit {{ seckit_version | escape }} — coming soon</strong>
-  <p>Final testing is underway. The production installer and hosted subscription will open with the release. <a href="{{ seckit_release.discussions_url }}">Follow the project or ask a question</a>.</p>
+  <p>{{ seckit_release.prelaunch_notice | escape }} <a href="{{ seckit_updates_url }}">Release updates</a>.</p>
 </aside>
 {% elsif seckit_start.published == false %}
 <aside class="seckit-notice" aria-label="Product availability">

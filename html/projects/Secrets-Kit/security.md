@@ -41,6 +41,8 @@ Remote Secrets Sync forwards destination-encrypted envelopes. It does not receiv
 
 Operating the service requires account, payment, connection, and authorization information. Encrypted payloads do not imply anonymous connections or zero metadata. This page does not claim that Secrets Kit is an independently audited zero-knowledge service, a hardware security module, or a compliance system. See the {% include secrets-kit/doc-link.html file='RSS_CUSTOMER_GUIDE.md' label='RSS customer guide' %} for enrollment and identity handling.
 
+The [Secrets Kit client privacy summary]({{ '/projects/Secrets-Kit/policies/#client-privacy' | relative_url }}) and [RSS privacy and retention summary]({{ '/projects/Secrets-Kit/policies/#remote-secrets-sync-privacy' | relative_url }}) are scoped to these products. The RSS summary separates secret-sync forwarding from encrypted onboarding-message storage and flags the retention and provider details still awaiting approval. The Safari extension's policy does not apply to Secrets Kit.
+
 ## Are keys escrowed or split between services?
 
 Each peer keeps its own local storage and identity keys. To synchronize a record, the sender protects it for the destination peer; the receiver stores it under its own local storage key. RSS relays do not receive those keys. This is per-peer encryption and destination wrapping, not a threshold split-key scheme or a hosted escrow of customer datastore keys.

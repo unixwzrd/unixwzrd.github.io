@@ -4,6 +4,9 @@ This changelog records changes to site behavior, operational tooling, scripts, b
 
 ## 2026-10-26: Secrets Kit coming-soon product section
 
+- Refined the staged 2.0.2 pages against the development workspace: forthcoming documents render as text, setup explains independent manual/agent routes, compatibility gaps are explicit, and the client MIT license is linked locally. Added scoped client/RSS privacy and service information without changing the Safari-extension policies; unresolved retention, provider and commercial decisions remain marked for approval.
+- Reduced product-page header, title, navigation and notice spacing, restored keyboard access to the mobile main-menu control on product pages, and added comparison jumps and an archive qualification for historical articles. Added a separate release-day checklist and activation checks for platform/policy approval and the announcement destination.
+
 - Extended the existing project URL into a product hub with the blog below the overview, free unlimited LAN peer-to-peer positioning, planned Remote Secrets Sync pricing, and primary/secondary relay failover. Reused the existing artwork in a compact hero and added scoped responsive styles.
 - Prepared seven public pages for setup, guides, remote sync, pricing, comparison, security, and support. The website targets version 2.0.2 with readiness false: it announces final testing while withholding future installer/documentation links and the installation copy control. A single release setting enables the production references after qualification; the agent handoff uses one repository URL.
 - Routed product bugs directly to GitHub Issues, community questions to project Discussions, and private information to Contact. Added a practical reporting checklist and preserved the existing site footer for other pages.

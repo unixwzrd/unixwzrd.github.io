@@ -68,6 +68,7 @@ layout: page
             {% include secrets-kit/overview.html %}
         </div>
         <section id="updates" aria-label="Secrets Kit blog and updates">
+            <p class="seckit-history-note">The archive includes historical 1.x articles and earlier development updates. Those posts describe their own versions; use the <a href="{{ '/projects/Secrets-Kit/guides/' | relative_url }}">{{ site.data.secrets_kit.release_tag | remove_first: 'v' }} user guides</a> for the upcoming release. Historical install links are not {{ site.data.secrets_kit.release_tag | remove_first: 'v' }} installation instructions.</p>
             {% include blog_list.html category=page.category heading='Blog & Updates' %}
         </section>
         {% else %}

@@ -9,4 +9,6 @@
     <div class="seckit-card"><h3>Contact privately</h3><p>Use private contact for security concerns, account questions, or sensitive details.</p><a href="{{ '/contact/' | relative_url }}">Private contact →</a></div>
   </div>
   <p class="seckit-comparison-footnote">Keep credentials, private keys, recovery codes, and unredacted logs out of public reports. {% if seckit_support_page %}<a href="{{ seckit_support_page.url | relative_url }}">Reporting checklist and support options</a>.{% endif %}</p>
+  {% assign seckit_policy_page = site.pages | where: 'url', '/projects/Secrets-Kit/policies/' | first %}
+  {% if seckit_policy_page %}<p class="seckit-comparison-footnote"><a href="{{ seckit_policy_page.url | relative_url }}#client-privacy">Client privacy</a> · <a href="{{ seckit_policy_page.url | relative_url }}#remote-secrets-sync-privacy">RSS privacy</a> · <a href="{{ seckit_policy_page.url | relative_url }}#service-terms">RSS service terms</a> · <a href="{{ seckit_policy_page.url | relative_url }}#client-license">MIT client license</a></p>{% endif %}
 </section>

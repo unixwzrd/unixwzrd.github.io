@@ -4,13 +4,13 @@
   <p class="home-kicker">Local secrets. Deliberate access. Your machines.</p>
   <h2 id="seckit-promise">Your credentials, under your control.</h2>
   <p class="home-lead">Keep API keys and passwords in a local store, give your applications the credentials they need, and synchronize them between authorized machines.</p>
-  <p>Secrets Kit is for the tools you already use: AI agents, database clients, shell scripts, and scheduled jobs. Start on one machine. Add another when you need it.</p>
   <div class="home-actions">
-    {% if seckit_release.production_release_ready %}<a class="home-button home-button--primary" href="{{ seckit_start.url | relative_url }}">Get Started</a>{% else %}<a class="home-button home-button--primary" href="{{ seckit_release.discussions_url }}">Follow release updates</a><a class="home-button" href="{{ seckit_start.url | relative_url }}">Explore {{ seckit_version }}</a>{% endif %}
+    {% if seckit_release.production_release_ready %}<a class="home-button home-button--primary" href="{{ seckit_start.url | relative_url }}">Get Started</a>{% else %}<a class="home-button home-button--primary" href="{{ seckit_start.url | relative_url }}">Explore {{ seckit_version }}</a><a href="{{ seckit_updates_url }}">Follow release updates</a>{% endif %}
     {% assign seckit_pricing = seckit_pages | where: 'url', '/projects/Secrets-Kit/pricing/' | first %}
     {% if seckit_pricing %}<a class="home-button" href="{{ seckit_pricing.url | relative_url }}">See Pricing</a>{% endif %}
     <a href="{{ seckit_repository_url }}">View on GitHub</a>
   </div>
+  <p>Secrets Kit is for the tools you already use: AI agents, database clients, shell scripts, and scheduled jobs. Start on one machine. Add another when you need it.</p>
   </div><img class="seckit-hero-art" src="{{ '/assets/images/projects/Secrets-Kit-Banner.png' | relative_url }}" alt="Secrets Kit local credentials and application access"></div>
 </section>
 

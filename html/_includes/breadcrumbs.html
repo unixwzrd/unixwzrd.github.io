@@ -61,6 +61,11 @@
       </li>
 
     {% comment %} Handle project pages {% endcomment %}
+    {% elsif page.secrets_kit_product %}
+      <li class="breadcrumb-item"><a href="{{ '/projects/' | relative_url }}" class="breadcrumb-link">Projects</a></li>
+      <li class="breadcrumb-item"><a href="{{ '/projects/Secrets-Kit/' | relative_url }}" class="breadcrumb-link">Secrets Kit</a></li>
+      <li class="breadcrumb-item breadcrumb-current" aria-current="page">{{ page.nav_title | default: page.title }}</li>
+
     {% elsif page.url contains '/projects/' and page.layout != 'post' %}
       <li class="breadcrumb-item">
         <a href="{{ '/projects/' | relative_url }}" class="breadcrumb-link">Projects</a>

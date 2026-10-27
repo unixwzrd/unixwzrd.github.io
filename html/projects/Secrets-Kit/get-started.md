@@ -13,31 +13,21 @@ excerpt: "Give your agent the GitHub installation URL, or follow the production 
 
 {% include secrets-kit/navigation.html %}
 
-{% if seckit_release.production_release_ready != true %}
-<section id="release-status" class="seckit-release-status" aria-labelledby="seckit-release-title">
-  <p class="home-kicker">The next release</p>
-  <h2 id="seckit-release-title">Secrets Kit {{ seckit_version }} is coming soon.</h2>
-  <p>Final testing is underway. The release brings free, unlimited peer-to-peer connections on the same LAN segment, selected credential access for applications and agents, and optional Remote Secrets Sync across networks.</p>
-  <p>The production installer and hosted subscription are not available yet. We’ll link the release here when it is ready.</p>
-  <div class="home-actions"><a class="home-button home-button--primary" href="{{ seckit_release.discussions_url }}">Follow release updates</a><a class="home-button" href="{{ '/projects/Secrets-Kit/compare/' | relative_url }}">Compare features</a></div>
-</section>
+Choose the manual route or let an agent help. **Hermes is optional**; the client also works with applications, scripts, and other agents.
 
-## One URL for your agent
+<nav class="seckit-jumps" aria-label="Setup sections"><a href="#have-your-agent-help">Agent-assisted setup</a><a href="#install-it-yourself">Manual setup</a><a href="#compatibility">Compatibility &amp; prerequisites</a><a href="#license">Client license</a></nav>
 
-When {{ seckit_version }} is released, give Hermes the GitHub integration URL and ask it to follow the instructions there. Installation, verification, and integration details will live with that release in the repository. You won’t need a long setup prompt or a separate development checkout.
-
-## Explore while we finish testing
-
-Read [how Remote Secrets Sync works]({{ '/projects/Secrets-Kit/remote-sync/' | relative_url }}), review the [planned launch pricing]({{ '/projects/Secrets-Kit/pricing/' | relative_url }}), or compare [storage, key custody, and server dependence]({{ '/projects/Secrets-Kit/compare/' | relative_url }}). [Security & Privacy]({{ '/projects/Secrets-Kit/security/' | relative_url }}) explains the trust boundaries.
-
-Existing testers should continue using their supplied test instructions. Report problems through [project Issues]({{ seckit_release.issues_url }}), ask questions in [project Discussions]({{ seckit_release.discussions_url }}), or use [Help & Support]({{ '/projects/Secrets-Kit/support/' | relative_url }}) to choose a private route.
-{% else %}
-
-The free peer-to-peer client supports unlimited connections on the same local area network (LAN) segment. Install it yourself, or let your agent follow the instructions on GitHub.
+{% unless seckit_release.production_release_ready %}
+<p id="release-status">These pages describe the upcoming {{ seckit_version }} release. Installation and subscriptions are not open. Existing testers should continue using their supplied test instructions.</p>
+{% endunless %}
 
 ## Have your agent help
 
-For Hermes, the [Secrets Kit integration on GitHub]({{ seckit_hermes_url }}) contains the installation and configuration instructions. Give your agent that URL and ask it to follow the instructions there.
+{% unless seckit_release.production_release_ready %}When the release is available, give{% else %}Give{% endunless %} your agent the official GitHub instructions and ask it to follow them. Hermes has an integration guide; another agent can use the general installation guide.
+
+{% if seckit_release.production_release_ready %}
+
+The [Hermes integration]({{ seckit_hermes_url }}) keeps installation, configuration, and verification together.
 
 <div class="seckit-prompt">
 <label for="seckit-setup-prompt"><strong>Give this to your agent</strong></label>
@@ -47,26 +37,59 @@ For Hermes, the [Secrets Kit integration on GitHub]({{ seckit_hermes_url }}) con
 </div>
 <script src="{{ '/assets/js/secrets-kit-setup.js' | relative_url }}" defer></script>
 
-For another agent, start with the [GitHub installation instructions]({{ seckit_readme_url }}). The Hermes-specific configuration belongs in the Hermes integration. Choose which credentials to make available during setup; installation and paid Remote Secrets Sync enrollment are separate choices.
+For another agent, use the [GitHub installation instructions]({{ seckit_readme_url }}).
+{% else %}
+
+The {% include secrets-kit/doc-link.html kind='hermes' label='Hermes integration' %} and {% include secrets-kit/doc-link.html file='INSTALL.md' label='general installation guide' %} are not public installation links yet. Their release destinations are prepared, but there is no installation request to copy while testing finishes.
+{% endif %}
+
+Preserve existing data, agent configuration, and `.env` files. Choose explicitly which credentials to import or make available. Installing the client, migrating credentials, allowing agent access, and enrolling in paid RSS are separate decisions. Model-visible retrieval through the optional Model Context Protocol interface needs its own permission.
 
 ## Install it yourself
 
-Open the [Secrets Kit production release {{ seckit_release.release_tag }} on GitHub]({{ seckit_download_url }}) and follow the [installation instructions]({{ seckit_docs_url }}INSTALL.md). The release installer includes its verification and provisions its own runtime.
+No agent is needed. The manual route uses the release's single-file `install.sh`: download it from the approved release page, review the installation guide, and run it as the operating-system user who will use Secrets Kit. A repository source archive is not the installer. The installer provisions its own runtime and verifies its embedded application assets; obtain it from the trusted release link.
 
-Use a supported macOS or Linux system and install as the operating-system user who will run your applications or agent. You do not need to set up Python, Git, or a development checkout first. Existing users should follow the guide's upgrade instructions to preserve their installation and data.
+{% if seckit_release.production_release_ready %}
 
-## Check your installation
-
-Open a new terminal after installation, then run:
+Open the [Secrets Kit {{ seckit_version }} release]({{ seckit_download_url }}) and follow the [installation guide]({{ seckit_docs_url }}INSTALL.md). After installation, open a new terminal and check:
 
 ```bash
 seckit --version
 seckit doctor --install-check
 ```
 
-The version should match the production release you selected, and the installation check should succeed. The GitHub guide covers troubleshooting and verification; there is no need to copy those instructions into an agent conversation.
+The version should match the selected release. Use a disposable credential to verify application access and peer synchronization without displaying its value. An installation check alone does not establish that an agent is reading Secrets Kit.
+{% else %}
+
+**The {{ seckit_version }} installer is forthcoming.** We are withholding download URLs and executable setup commands until the production artifact is approved. The {% include secrets-kit/doc-link.html file='INSTALL.md' label='manual installation guide' %} will become a versioned link at that point. You can [follow release updates]({{ seckit_updates_url }}) while testing continues.
+{% endif %}
+
+<h2 id="compatibility">Compatibility and prerequisites</h2>
+
+{% unless seckit_release.compatibility.approved_for_202 %}
+**The final {{ seckit_version }} production support matrix is awaiting confirmation.** The development install guide currently identifies the targets below as beta installation platforms. They are evidence of the intended installer coverage, not confirmation that each platform has completed {{ seckit_version }} release qualification. We have not filled in missing minimum versions by guessing.
+{% endunless %}
+
+| Operating system | Version documented in the development workspace | Architecture |
+| --- | --- | --- |
+{% for target in seckit_release.compatibility.targets %}| {{ target.system }} | {{ target.version }} | {{ target.architecture }} |
+{% endfor %}
+
+Windows is not a documented customer installation target in the reviewed workspace. Linux ARM is an internal infrastructure qualification platform, not a documented compiler-free customer installer target. A working source checkout does not establish supported production installation on either platform.
+
+The documented installer prerequisites are:
+
+- Bash, standard platform utilities, and `curl` or `wget`.
+- Network access for the first installation, including runtime and dependency downloads.
+- Installation under the intended operating-system user; the normal per-user route does not use `sudo`.
+- **No preinstalled Python, UV, Git, or development checkout is required.** The installer provisions Python 3.12. Custom development installation routes can have different requirements.
+
+For background synchronization on Linux, the documented service uses the user's service manager. Running while that user is logged out may require administrator-enabled user lingering. Confirm this for the target environment before relying on unattended operation.
+
+<h2 id="license">Client license</h2>
+
+The Secrets Kit client is licensed under the **MIT License**. Read the [applicable client license]({{ '/projects/Secrets-Kit/policies/#client-license' | relative_url }}), reproduced from the development workspace's `LICENSE`. The {% include secrets-kit/doc-link.html kind='license' label='versioned repository license' %} will accompany the release. The optional hosted RSS subscription has separate [service terms]({{ '/projects/Secrets-Kit/policies/#service-terms' | relative_url }}); the client license does not promise hosted service or support.
 
 ## Choose what comes next
 
-Use [Guides]({{ '/projects/Secrets-Kit/guides/' | relative_url }}) for everyday tasks and [Security & Privacy]({{ '/projects/Secrets-Kit/security/' | relative_url }}) for access choices. LAN peer-to-peer use is free. Read [Remote Sync]({{ '/projects/Secrets-Kit/remote-sync/' | relative_url }}) and [Pricing]({{ '/projects/Secrets-Kit/pricing/' | relative_url }}) if you need hosted connectivity across networks. For hands-on help, [ask about setup assistance]({{ '/collaborate/professionals/' | relative_url }}).
-{% endif %}
+Explore [Guides]({{ '/projects/Secrets-Kit/guides/' | relative_url }}), [Remote Sync]({{ '/projects/Secrets-Kit/remote-sync/' | relative_url }}), [planned pricing]({{ '/projects/Secrets-Kit/pricing/' | relative_url }}), and [Security & Privacy]({{ '/projects/Secrets-Kit/security/' | relative_url }}). Use [Help & Support]({{ '/projects/Secrets-Kit/support/' | relative_url }}) for questions and sanitized problem reports.

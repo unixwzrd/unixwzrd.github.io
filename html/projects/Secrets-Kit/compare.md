@@ -17,6 +17,8 @@ excerpt: "Compare local workflows, hosted connectivity, pricing units, and the t
   <p class="home-kicker">Find the right fit</p>
   <h2 id="seckit-compare-title">Your workflow. Your priorities.</h2>
   <p>Start with the features you need. Secrets Kit keeps credentials on your own machines, with unlimited peer-to-peer connections on the same LAN segment. Add hosted forwarding when you need it, or compare the team features of a centralized secrets manager.</p>
+  <p><strong>A good fit:</strong> Secrets Kit is aimed at local application and agent workflows, unlimited peers on one LAN segment, and optional hosted connectivity. If you need centralized organization administration, managed secret rotation, or cloud-native policy controls, compare those capabilities and their plan requirements carefully.</p>
+  <nav class="seckit-jumps" aria-label="Comparison sections"><a href="#seckit-matrix-title">Hosted services &amp; pricing</a><a href="#seckit-local-comparison">Local alternatives</a><a href="#seckit-custody-heading">Key custody &amp; outages</a><a href="#seckit-landscape-heading">Search all products</a><a href="#comparison-sources">Sources &amp; qualifications</a></nav>
 </section>
 
 <div class="seckit-matrix-heading">
@@ -192,7 +194,7 @@ excerpt: "Compare local workflows, hosted connectivity, pricing units, and the t
 
 {% include secrets-kit/landscape.html %}
 
-<details class="seckit-comparison-notes">
+<details class="seckit-comparison-notes" id="comparison-sources">
 <summary>Comparison notes &amp; official sources</summary>
 <div markdown="1">
 
