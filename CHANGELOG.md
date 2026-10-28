@@ -2,6 +2,11 @@
 
 This changelog records changes to site behavior, operational tooling, scripts, build validation, and shared templates. Routine articles, post corrections, publication dates, and social copy do not require entries. The entries below were backfilled on September 2 from repository history; their dates identify the recorded changes, not a verified deployment date.
 
+## 2026-10-28: Local TTS relay response-header validation
+
+- Centralized browser Origin validation before allowlist matching and CORS header emission. Rejects line breaks, whitespace/control characters, and duplicate Origin headers instead of reflecting malformed values into responses. Retains valid local Jekyll origins, Safari-extension origin matching, and private-network preflight handling; public site templates and URLs are unchanged.
+- Added direct validation and raw HTTP regression tests covering folded/malformed headers across health, preflight, and speech routes, plus normal local-origin and Safari-extension playback checks. Rejected requests never reach the speech backend.
+
 ## 2026-10-26: Secrets Kit coming-soon product section
 
 - Refined the staged 2.0.2 pages against the development workspace: forthcoming documents render as text, setup explains independent manual/agent routes, compatibility gaps are explicit, and the client MIT license is linked locally. Added scoped client/RSS privacy and service information without changing the Safari-extension policies; unresolved retention, provider and commercial decisions remain marked for approval.

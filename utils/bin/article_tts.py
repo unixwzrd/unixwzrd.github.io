@@ -295,15 +295,29 @@ def make_browser_relay_handler(config: BrowserRelayConfig) -> type[http.server.B
         def log_message(self, format_string: str, *args: object) -> None:
             sys.stderr.write("article-tts relay: " + format_string % args + "\n")
 
+        def _allowed_origin(self) -> str | None:
+            """Return one header-safe allowed origin, never a repaired value."""
+            origins = self.headers.get_all("Origin", [])
+            if len(origins) != 1:
+                return None
+            origin = origins[0]
+            if not origin or "\r" in origin or "\n" in origin:
+                return None
+            if any(ord(character) <= 32 or ord(character) == 127 for character in origin):
+                return None
+            if any(fnmatch.fnmatchcase(origin, pattern) for pattern in config.allowed_origins):
+                return origin
+            return None
+
         def _origin_allowed(self) -> bool:
-            origin = self.headers.get("Origin", "")
-            return any(fnmatch.fnmatchcase(origin, pattern) for pattern in config.allowed_origins)
+            return self._allowed_origin() is not None
 
         def _cors_headers(self) -> None:
-            origin = self.headers.get("Origin", "")
-            if any(fnmatch.fnmatchcase(origin, pattern) for pattern in config.allowed_origins):
-                self.send_header("Access-Control-Allow-Origin", origin)
-                self.send_header("Vary", "Origin")
+            origin = self._allowed_origin()
+            if origin is None:
+                return
+            self.send_header("Access-Control-Allow-Origin", origin)
+            self.send_header("Vary", "Origin")
             if self.headers.get("Access-Control-Request-Private-Network", "").lower() == "true":
                 self.send_header("Access-Control-Allow-Private-Network", "true")
 

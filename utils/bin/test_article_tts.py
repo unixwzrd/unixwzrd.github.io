@@ -7,11 +7,13 @@ import http.server
 import io
 import json
 import shutil
+import socket
 import tempfile
 import threading
 import unittest
 import wave
 from contextlib import redirect_stderr, redirect_stdout
+from email.message import Message
 from pathlib import Path
 from unittest import mock
 
@@ -199,6 +201,87 @@ class BrowserRelayTests(unittest.TestCase):
         self.assertIn("http://localhost:4000", DEFAULT_BROWSER_ORIGINS)
         self.assertIn("safari-web-extension://*", DEFAULT_BROWSER_ORIGINS)
 
+    def test_rejects_unsafe_origins_without_emitting_cors_headers(self) -> None:
+        config = BrowserRelayConfig(
+            endpoint="http://127.0.0.1:1/not-called",
+            voice=None,
+            model=None,
+            timeout=1,
+            allowed_origins=frozenset(DEFAULT_BROWSER_ORIGINS),
+        )
+        handler_class = make_browser_relay_handler(config)
+        cases = [
+            [],
+            [""],
+            ["null"],
+            ["https://example.invalid"],
+            ["safari-web-extension://review\r\n X-Canary: present"],
+            ["safari-web-extension://review\rX-Canary: present"],
+            ["safari-web-extension://review\nX-Canary: present"],
+            ["safari-web-extension://review\tinvalid"],
+            ["safari-web-extension://review\x00invalid"],
+            ["safari-web-extension://review\x7finvalid"],
+            ["safari-web-extension://review invalid"],
+            ["http://localhost:4000", "https://example.invalid"],
+            ["http://localhost:4000", "http://localhost:4000"],
+        ]
+        for origins in cases:
+            with self.subTest(origins=origins):
+                handler = handler_class.__new__(handler_class)
+                handler.headers = Message()
+                for origin in origins:
+                    handler.headers["Origin"] = origin
+                handler.headers["Access-Control-Request-Private-Network"] = "true"
+                handler.send_header = mock.Mock()
+
+                self.assertFalse(handler._origin_allowed())
+                handler._cors_headers()
+                handler.send_header.assert_not_called()
+
+    def test_raw_malformed_origin_requests_are_denied_before_relaying(self) -> None:
+        config = BrowserRelayConfig(
+            endpoint="http://127.0.0.1:1/not-called",
+            voice=None,
+            model=None,
+            timeout=1,
+            allowed_origins=frozenset(DEFAULT_BROWSER_ORIGINS),
+        )
+        handler_class = make_browser_relay_handler(config)
+        relay = BrowserRelayServer(("127.0.0.1", 0), handler_class)
+        relay_thread = threading.Thread(target=relay.serve_forever, daemon=True)
+        relay_thread.start()
+        origin_headers = (
+            b"Origin: safari-web-extension://review\r\n X-Canary: present",
+            b"Origin: safari-web-extension://review\n X-Canary: present",
+            b"Origin: safari-web-extension://review\r\n\tX-Canary: present",
+            b"Origin: safari-web-extension://review\x00invalid",
+            b"Origin: safari-web-extension://review\x7finvalid",
+            b"Origin: http://localhost:4000\r\nOrigin: https://example.invalid",
+        )
+        try:
+            with mock.patch.object(handler_class, "log_message"), mock.patch("utils.bin.article_tts.requests.post") as upstream:
+                for method, path in (("GET", "/health"), ("OPTIONS", "/v1/audio/speech"), ("POST", "/v1/audio/speech")):
+                    for origin in origin_headers:
+                        with self.subTest(method=method, origin=origin):
+                            request = (
+                                f"{method} {path} HTTP/1.1\r\nHost: localhost\r\n".encode("ascii")
+                                + origin
+                                + b"\r\nContent-Length: 0\r\nConnection: close\r\n\r\n"
+                            )
+                            with socket.create_connection(relay.server_address, timeout=3) as client:
+                                client.sendall(request)
+                                response = bytearray()
+                                while chunk := client.recv(8192):
+                                    response.extend(chunk)
+                            self.assertTrue(response.startswith(b"HTTP/1.0 403 "), repr(response))
+                            self.assertNotIn(b"Access-Control-Allow-Origin:", response)
+                            self.assertNotIn(b"X-Canary", response)
+                upstream.assert_not_called()
+        finally:
+            relay.shutdown()
+            relay.server_close()
+            relay_thread.join(timeout=3)
+
     def test_relays_allowed_browser_audio_without_exposing_bridge_configuration(self) -> None:
         received: list[dict[str, object]] = []
 
@@ -226,7 +309,7 @@ class BrowserRelayTests(unittest.TestCase):
             voice="review-voice",
             model=None,
             timeout=5.0,
-            allowed_origins=frozenset({"http://127.0.0.1:4000", "safari-web-extension://*"}),
+            allowed_origins=frozenset(DEFAULT_BROWSER_ORIGINS),
         )
         relay = BrowserRelayServer(("127.0.0.1", 0), make_browser_relay_handler(config))
         relay_thread = threading.Thread(target=relay.serve_forever, daemon=True)
@@ -240,6 +323,11 @@ class BrowserRelayTests(unittest.TestCase):
             self.assertNotIn(upstream_url, health.text)
             self.assertNotIn("review-voice", health.text)
 
+            for origin in DEFAULT_BROWSER_ORIGINS[:2]:
+                allowed_health = requests.get(f"{relay_url}/health", headers={"Origin": origin}, timeout=5)
+                self.assertEqual(allowed_health.status_code, 200)
+                self.assertEqual(allowed_health.headers["Access-Control-Allow-Origin"], origin)
+
             preflight = requests.options(
                 f"{relay_url}/v1/audio/speech",
                 headers={**allowed_headers, "Access-Control-Request-Private-Network": "true"},
@@ -247,6 +335,15 @@ class BrowserRelayTests(unittest.TestCase):
             )
             self.assertEqual(preflight.status_code, 204)
             self.assertEqual(preflight.headers["Access-Control-Allow-Private-Network"], "true")
+
+            extension_preflight = requests.options(
+                f"{relay_url}/v1/audio/speech",
+                headers={"Origin": "safari-web-extension://personal-webreader", "Access-Control-Request-Private-Network": "true"},
+                timeout=5,
+            )
+            self.assertEqual(extension_preflight.status_code, 204)
+            self.assertEqual(extension_preflight.headers["Access-Control-Allow-Origin"], "safari-web-extension://personal-webreader")
+            self.assertEqual(extension_preflight.headers["Access-Control-Allow-Private-Network"], "true")
 
             response = requests.post(
                 f"{relay_url}/v1/audio/speech",
