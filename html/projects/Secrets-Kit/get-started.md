@@ -40,14 +40,14 @@ The [Hermes integration]({{ seckit_hermes_url }}) keeps installation, configurat
 For another agent, use the [GitHub installation instructions]({{ seckit_readme_url }}).
 {% else %}
 
-The {% include secrets-kit/doc-link.html kind='hermes' label='Hermes integration' %} and {% include secrets-kit/doc-link.html file='INSTALL.md' label='general installation guide' %} are not public installation links yet. Their release destinations are prepared, but there is no installation request to copy while testing finishes.
+The {% include secrets-kit/doc-link.html kind='hermes' label='Hermes integration' %} and {% include secrets-kit/doc-link.html file='INSTALL.md' label='general installation guide' %} are not public installation links yet. Setup instructions will be available with the release.
 {% endif %}
 
 Preserve existing data, agent configuration, and `.env` files. Choose explicitly which credentials to import or make available. Installing the client, migrating credentials, allowing agent access, and enrolling in paid RSS are separate decisions. Model-visible retrieval through the optional Model Context Protocol interface needs its own permission.
 
 ## Install it yourself
 
-No agent is needed. The manual route uses the release's single-file `install.sh`: download it from the approved release page, review the installation guide, and run it as the operating-system user who will use Secrets Kit. A repository source archive is not the installer. The installer provisions its own runtime and verifies its embedded application assets; obtain it from the trusted release link.
+No agent is needed. The manual route uses the release's single-file `install.sh`: download it from the official release page, review the installation guide, and run it as the operating-system user who will use Secrets Kit. A repository source archive is not the installer. The installer provisions its own runtime and verifies its embedded application assets; obtain it from the trusted release link.
 
 {% if seckit_release.production_release_ready %}
 
@@ -61,34 +61,34 @@ seckit doctor --install-check
 The version should match the selected release. Use a disposable credential to verify application access and peer synchronization without displaying its value. An installation check alone does not establish that an agent is reading Secrets Kit.
 {% else %}
 
-**The {{ seckit_version }} installer is forthcoming.** We are withholding download URLs and executable setup commands until the production artifact is approved. The {% include secrets-kit/doc-link.html file='INSTALL.md' label='manual installation guide' %} will become a versioned link at that point. You can [follow release updates]({{ seckit_updates_url }}) while testing continues.
+**The {{ seckit_version }} installer is forthcoming.** The {% include secrets-kit/doc-link.html file='INSTALL.md' label='manual installation guide' %} will be available with the release. You can [follow release updates]({{ seckit_updates_url }}) while testing continues.
 {% endif %}
 
-<h2 id="compatibility">Compatibility and prerequisites</h2>
+<h2 id="compatibility">Planned platform support</h2>
 
 {% unless seckit_release.compatibility.approved_for_202 %}
-**The final {{ seckit_version }} production support matrix is awaiting confirmation.** The development install guide currently identifies the targets below as beta installation platforms. They are evidence of the intended installer coverage, not confirmation that each platform has completed {{ seckit_version }} release qualification. We have not filled in missing minimum versions by guessing.
+Final compatibility, including minimum versions, will be confirmed before the {{ seckit_version }} release.
 {% endunless %}
 
-| Operating system | Version documented in the development workspace | Architecture |
+| Operating system | Planned version support | Architecture |
 | --- | --- | --- |
 {% for target in seckit_release.compatibility.targets %}| {{ target.system }} | {{ target.version }} | {{ target.architecture }} |
 {% endfor %}
 
-Windows is not a documented customer installation target in the reviewed workspace. Linux ARM is an internal infrastructure qualification platform, not a documented compiler-free customer installer target. A working source checkout does not establish supported production installation on either platform.
+Windows and Linux ARM are not included in the planned customer installer support.
 
-The documented installer prerequisites are:
+Installer prerequisites:
 
 - Bash, standard platform utilities, and `curl` or `wget`.
 - Network access for the first installation, including runtime and dependency downloads.
 - Installation under the intended operating-system user; the normal per-user route does not use `sudo`.
 - **No preinstalled Python, UV, Git, or development checkout is required.** The installer provisions Python 3.12. Custom development installation routes can have different requirements.
 
-For background synchronization on Linux, the documented service uses the user's service manager. Running while that user is logged out may require administrator-enabled user lingering. Confirm this for the target environment before relying on unattended operation.
+Background synchronization on Linux uses the user's service manager. Running while that user is logged out may require administrator-enabled user lingering. Confirm this for the target environment before relying on unattended operation.
 
 <h2 id="license">Client license</h2>
 
-The Secrets Kit client is licensed under the **MIT License**. Read the [applicable client license]({{ '/projects/Secrets-Kit/policies/#client-license' | relative_url }}), reproduced from the development workspace's `LICENSE`. The {% include secrets-kit/doc-link.html kind='license' label='versioned repository license' %} will accompany the release. The optional hosted RSS subscription has separate [service terms]({{ '/projects/Secrets-Kit/policies/#service-terms' | relative_url }}); the client license does not promise hosted service or support.
+The Secrets Kit client is licensed under the **MIT License**. Read the [applicable client license]({{ '/projects/Secrets-Kit/policies/#client-license' | relative_url }}). The {% include secrets-kit/doc-link.html kind='license' label='versioned repository license' %} will accompany the release. The optional hosted RSS subscription has separate [service terms]({{ '/projects/Secrets-Kit/policies/#service-terms' | relative_url }}); the client license does not promise hosted service or support.
 
 ## Choose what comes next
 

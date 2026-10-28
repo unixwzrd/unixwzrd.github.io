@@ -23,7 +23,7 @@ The version {{ seckit_version }} user guides and agent integration will accompan
 | Keep credentials on your own machines | [Local storage and access boundaries]({{ '/projects/Secrets-Kit/security/' | relative_url }}) |
 | Connect workstations on one LAN segment | [The free peer-to-peer client]({{ '/projects/Secrets-Kit/' | relative_url }}) — unlimited connections on the same segment |
 | Connect authorized peers across networks | [Remote Secrets Sync and relay failover]({{ '/projects/Secrets-Kit/remote-sync/' | relative_url }}) |
-| Let Hermes help with installation | [Release status and the one-URL handoff]({{ '/projects/Secrets-Kit/get-started/' | relative_url }}) |
+| Let Hermes help with installation | [Agent-assisted setup preview]({{ '/projects/Secrets-Kit/get-started/' | relative_url }}) |
 | Compare custody, recovery, and service dependence | [The feature comparison and wider landscape]({{ '/projects/Secrets-Kit/compare/' | relative_url }}) |
 | Ask a question or report a tester problem | [Help & Support]({{ '/projects/Secrets-Kit/support/' | relative_url }}) |
 

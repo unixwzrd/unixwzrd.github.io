@@ -264,7 +264,7 @@ class SecretsKitProductTest < Minitest::Test
         assert_empty started.css("textarea, button[data-seckit-copy]")
         assert_empty started.css('a[href$="#release-status"]')
         assert started.at_css("#compatibility")
-        assert_includes started.text, "awaiting confirmation"
+        assert_includes started.text, "Final compatibility, including minimum versions, will be confirmed"
         assert_includes started.text, "Hermes is optional"
         assert_empty document(directory, "#{PREFIX}pricing/").css("pre code")
         assert_empty document(directory, "#{PREFIX}remote-sync/").css("pre code")

@@ -63,4 +63,4 @@ Hosted forwarding stops when the service entitlement becomes inactive. The free 
 
 Share the installed version, operating system, command, and sanitized error. Do not share secret values, raw environment dumps, credential files, private keys, recovery codes, or unredacted exports. Use disposable data when demonstrating a problem.
 
-Start with [Guides]({{ '/projects/Secrets-Kit/guides/' | relative_url }}) for troubleshooting references. A successful installation check verifies installation; assess access and recovery separately for your workload.
+Use [Help & Support]({{ '/projects/Secrets-Kit/support/' | relative_url }}) for troubleshooting references. A successful installation check verifies installation; assess access and recovery separately for your workload.
