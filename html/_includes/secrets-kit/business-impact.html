@@ -1,0 +1,48 @@
+{% assign impact = threat.business_impact %}
+{% assign bec_series = impact.bec.annual_series | sort: 'year' %}
+{% assign bec_latest = bec_series | last %}
+{% assign bec_previous_index = bec_series.size | minus: 2 %}
+{% assign bec_previous = bec_series[bec_previous_index] %}
+{% assign bec_increase = bec_latest.loss_usd | minus: bec_previous.loss_usd | times: 100.0 | divided_by: bec_previous.loss_usd | round: 1 %}
+<section class="seckit-business-impact" aria-labelledby="business-impact">
+  <h3 id="business-impact">An exposed credential can become a business expense.</h3>
+  <p>A leaked key can open a route to a paid cloud account, a customer system or a build pipeline. The response can mean investigating access, replacing credentials, reconfiguring applications and restoring interrupted work—before counting fraud or customer impact. Keeping fewer unnecessary copies and limiting which applications receive a credential helps reduce that exposure.</p>
+  <div class="seckit-grid seckit-grid--two">
+    <article class="seckit-card">
+      <h4>Recovering from a damaging identity breach</h4>
+      <p class="seckit-price">{{ impact.identity_breach.median_display | escape }}<span>median reported recovery cost</span><span>Mean: ${{ impact.identity_breach.mean_usd | divided_by: 1000000.0 | round: 2 }} million</span></p>
+      <p>Sophos’s {{ impact.identity_breach.report_year }} survey asked {{ impact.identity_breach.respondents }} respondents whose organizations could not stop their identity breach before damage occurred. It covers human and non-human identity attacks, not just leaked API keys. Surveyed organizations had 100–5,000 employees; this is not a forecast for every small business.</p>
+      <a href="{{ threat.sources.sophos_identity.url | escape }}">Sophos recovery-cost findings →</a>
+    </article>
+    <article class="seckit-card">
+      <h4>A broader breach-cost benchmark</h4>
+      <p class="seckit-price">${{ impact.all_breaches.mean_usd | divided_by: 1000000.0 | round: 2 }} million<span>global mean cost per breach</span></p>
+      <p>IBM’s {{ impact.all_breaches.report_year }} study includes detection, escalation and lost-business costs across breach types. It gives business context; it is not a price per exposed credential or a secrets-only loss estimate.</p>
+      <a href="{{ threat.sources.ibm_breach.url | escape }}">IBM’s {{ impact.all_breaches.report_year }} benchmark →</a>
+    </article>
+  </div>
+  <figure class="seckit-threat-trend" aria-labelledby="seckit-loss-trend-title">
+    <figcaption id="seckit-loss-trend-title"><strong>Reported business email compromise losses</strong><br>FBI IC3 complaint losses, billions of US dollars. This category includes companies and individuals; it is not limited to stolen credentials.</figcaption>
+    <ol class="seckit-threat-bars seckit-loss-bars" role="list">
+      {% for point in bec_series %}<li><span>{{ point.year }}</span><span class="seckit-threat-track" aria-hidden="true"><span style="width: {{ point.loss_usd | divided_by: 1000000000.0 | times: 100.0 | divided_by: impact.bec.chart_max_billions }}%"></span></span><strong>${{ point.loss_usd | divided_by: 1000000000.0 | round: 2 }}B</strong></li>{% endfor %}
+    </ol>
+    <p class="seckit-threat-scale" aria-hidden="true">Bar scale: $0–${{ impact.bec.chart_max_billions }} billion</p>
+    <p>${{ bec_latest.loss_usd | divided_by: 1000000000.0 | round: 2 }} billion reported in {{ bec_latest.year }}, about <strong>{{ bec_increase }}% above {{ bec_previous.year }}</strong>, following a decline the previous year. These are reported fraud losses, not the full cost of all cyber incidents. <a href="{{ threat.sources.fbi_ic3.url | escape }}">FBI’s three-year comparison</a>.</p>
+  </figure>
+  <p class="seckit-comparison-footnote">One leaked credential is not the same as one breach. These figures provide business-cost context, not a worldwide secrets-loss total or a prediction of savings from Secrets Kit.</p>
+
+  {% assign example = impact.staff_time_example %}
+  <details class="seckit-cost-planner">
+    <summary>Put your own team’s response time in dollars</summary>
+    <p>A smaller incident still takes people away from their work. Estimate the value of staff time with your own assumptions.</p>
+    <p data-seckit-cost-example>Illustrative example: {{ example.people }} people × {{ example.hours_per_person }} hours each × ${{ example.hourly_cost_usd }}/hour = <strong>{{ example.cost_display | escape }} in staff time alone</strong>.</p>
+    <div class="seckit-cost-inputs" data-seckit-cost-planner hidden>
+      <label for="seckit-cost-people">People involved<input id="seckit-cost-people" type="number" min="1" max="1000" step="1" value="{{ example.people }}" required></label>
+      <label for="seckit-cost-hours">Hours per person<input id="seckit-cost-hours" type="number" min="0" max="1000" step="0.5" value="{{ example.hours_per_person }}" required></label>
+      <label for="seckit-cost-rate">Hourly cost (USD)<input id="seckit-cost-rate" type="number" min="0" max="10000" step="0.01" value="{{ example.hourly_cost_usd }}" required></label>
+      <p class="seckit-cost-result">Estimated staff-time cost: <output for="seckit-cost-people seckit-cost-hours seckit-cost-rate" id="seckit-cost-result" aria-live="polite">{{ example.cost_display | escape }}</output></p>
+    </div>
+    <p class="seckit-comparison-footnote">People × hours per person × hourly cost. This is an illustrative planning calculation, not a measured incident, a probability estimate or a prediction of savings. It excludes outside help, interrupted sales, fraud, legal work and other recovery expenses.</p>
+  </details>
+</section>
+<script src="{{ '/assets/js/secrets-kit-cost.js' | relative_url }}" defer></script>

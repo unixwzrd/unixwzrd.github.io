@@ -15,6 +15,10 @@ excerpt: "Understand local storage, application access, encrypted synchronizatio
 
 Secrets Kit helps you keep credentials in a deliberate local workflow. Understanding where plaintext becomes available is more useful than a blanket promise that a key can never leak.
 
+<nav class="seckit-jumps" aria-label="Security sections"><a href="#credential-risk">The threat in numbers</a><a href="#business-impact">Business impact</a><a href="#recent-credential-reports">Monthly findings</a><a href="#agentic-credential-risk">Agentic attacks</a><a href="#where-are-my-credentials-stored">Storage &amp; application access</a><a href="#what-does-remote-secrets-sync-see">RSS visibility</a></nav>
+
+{% include secrets-kit/threat-context.html %}
+
 ## Where are my credentials stored?
 
 The configured local backend stores your credentials. Secrets Kit supports macOS Keychain and encrypted SQLite; the normal new-store setup uses encrypted SQLite. Storage keys and identity material live under the operating-system user's control. Peer synchronization is associated with the supported SQLite workflow; do not assume that selecting Keychain automatically makes Keychain items synchronized records.

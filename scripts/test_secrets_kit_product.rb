@@ -37,7 +37,7 @@ class SecretsKitProductTest < Minitest::Test
   def render(template, pages:, page: {}, content: "LEGACY_LANDING_CONTENT", release: PRODUCTION.data.fetch("secrets_kit"))
     site = {
       "url" => "https://unixwzrd.ai", "baseurl" => "", "pages" => pages,
-      "posts" => [], "data" => { "github_projects" => { "projects" => [] }, "secrets_kit" => release },
+      "posts" => [], "data" => { "github_projects" => { "projects" => [] }, "secrets_kit" => release, "secrets_kit_threats" => PRODUCTION.data.fetch("secrets_kit_threats") },
       "giscus" => { "enabled" => false },
     }
     Liquid::Template.parse(template).render!(
@@ -148,6 +148,16 @@ class SecretsKitProductTest < Minitest::Test
     preview = render(template, pages: pages, page: root)
     refute_includes preview, "LEGACY_LANDING_CONTENT"
     assert_operator preview.index("data-seckit-product"), :<, preview.index('id="updates"')
+    hub = Nokogiri::HTML.fragment(preview)
+    callout = hub.at_css('.seckit-risk-callout')
+    assert callout
+    assert_equal "#{PREFIX}security/#credential-risk", callout.at_css('a.home-button')['href']
+    research = PRODUCTION.data.fetch("secrets_kit_threats")
+    latest = research.fetch("stolen_material").fetch("months").select { |month| month["status"] == "published" }.max_by { |month| month.fetch("period") }
+    assert_includes callout.text, research.fetch("public_code").fetch("display")
+    assert_includes callout.text, latest.fetch("label")
+    assert_includes callout.text, research.fetch("business_impact").fetch("identity_breach").fetch("median_display")
+    refute Nokogiri::HTML.fragment(render(template, pages: pages.reject { |page| page["url"] == "#{PREFIX}security/" }, page: root)).at_css('.seckit-risk-callout'), "Only advertise an available security page"
     assert_equal "Blog & Updates", Nokogiri::HTML.fragment(preview).at_css("#updates h2").text
   end
 
@@ -189,6 +199,64 @@ class SecretsKitProductTest < Minitest::Test
     end
     assert products.find { |entry| entry["id"] == "envkey" }.fetch("status").include?("shutdown")
     assert products.find { |entry| entry["id"] == "envmanager-oss" }.fetch("status").include?("Experimental")
+  end
+
+  def test_threat_statistics_keep_sources_periods_and_calculations_explicit
+    research = PRODUCTION.data.fetch("secrets_kit_threats")
+    sources = research.fetch("sources")
+    sources.each_value { |source| assert_match(%r{\Ahttps://}, source.fetch("url")) }
+    code = research.fetch("public_code")
+    series = code.fetch("annual_series")
+    assert_equal series.map { |point| point.fetch("year") }.sort, series.map { |point| point.fetch("year") }
+    series.each { |point| assert_operator point.fetch("millions"), :<=, code.fetch("annual_series_max_millions") }
+    months = research.fetch("stolen_material").fetch("months")
+    assert_equal months.map { |month| month.fetch("period") }.sort, months.map { |month| month.fetch("period") }
+    assert_equal months.length, months.map { |month| month.fetch("period") }.uniq.length
+    months.each do |month|
+      assert sources.key?(month.fetch("source"))
+      if month.fetch("status") == "published"
+        assert_equal month.fetch("distinct_pairs"), month.fetch("pairs_display").delete(",").to_i
+        assert_equal month.fetch("machines"), month.fetch("machines_display").delete(",").to_i
+        assert_operator month.fetch("credential_records"), :>=, month.fetch("distinct_pairs")
+      else
+        assert_equal "unavailable", month.fetch("status")
+        assert_nil month.fetch("distinct_pairs"), "Missing months must not become zero observations"
+        assert_nil month.fetch("machines")
+      end
+    end
+    abuse = research.fetch("credential_abuse")
+    assert_includes 0..100, abuse.fetch("percent")
+    assert_equal abuse.fetch("cohort_size"), abuse.fetch("cohort_display").delete(",").to_i
+    doc = Nokogiri::HTML.fragment(render("{% include secrets-kit/threat-context.html %}", pages: []))
+    assert doc.at_css("#credential-risk")
+    assert_equal series.length, doc.at_css("#seckit-threat-trend-title").parent.css(".seckit-threat-bars li").length
+    monthly = format("%.1f", code.fetch("approximate_count").to_f / 12 / 1_000_000)
+    daily = (code.fetch("approximate_count").to_f / code.fetch("days_in_year")).round(-3).to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse
+    assert_includes doc.text, "#{monthly} million detections per month"
+    assert_includes doc.text, "#{daily} per day"
+    assert_includes doc.text, "not a trend in global theft"
+    assert_includes doc.text, "does not mean zero exposure"
+    monthly_chart = doc.at_css("#seckit-monthly-trend-title").parent
+    assert_equal months.length, monthly_chart.css("li").length
+    assert_equal months.count { |month| month["status"] == "published" }, monthly_chart.css(".seckit-threat-track").length
+    assert_equal months.count { |month| month["status"] == "unavailable" }, monthly_chart.css(".seckit-threat-unavailable").length
+    impact = research.fetch("business_impact")
+    cost = impact.fetch("identity_breach")
+    assert_equal cost.fetch("median_usd"), cost.fetch("median_display").delete("$, ").to_i
+    assert_operator cost.fetch("mean_usd"), :>, cost.fetch("median_usd")
+    losses = impact.fetch("bec").fetch("annual_series")
+    assert_equal losses.map { |row| row.fetch("year") }.sort, losses.map { |row| row.fetch("year") }
+    assert_equal losses.length, doc.at_css("#seckit-loss-trend-title").parent.css("li").length
+    yoy = (100.0 * (losses.last.fetch("loss_usd") - losses[-2].fetch("loss_usd")) / losses[-2].fetch("loss_usd")).round(1)
+    assert_includes doc.text, "#{yoy}% above #{losses[-2].fetch('year')}"
+    example = impact.fetch("staff_time_example")
+    assert_equal example.fetch("people") * example.fetch("hours_per_person") * example.fetch("hourly_cost_usd"), example.fetch("cost_display").delete("$, ").to_i
+    assert doc.at_css("[data-seckit-cost-planner][hidden]")
+    assert doc.at_css("[data-seckit-cost-example]")
+    assert_equal 3, doc.css(".seckit-agent-chain li").length
+    assert_includes doc.text, "not a reported criminal campaign"
+
+    sources.each_value { |source| assert doc.css("a").any? { |a| a["href"] == source.fetch("url") }, source.fetch("title") }
   end
 
   def document(directory, route = PREFIX)

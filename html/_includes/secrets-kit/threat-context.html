@@ -1,0 +1,93 @@
+{% assign threat = site.data.secrets_kit_threats %}
+{% assign code_source = threat.sources.gitguardian_report %}
+{% assign report_months = threat.stolen_material.months | sort: 'period' %}
+{% assign published_months = report_months | where: 'status', 'published' %}
+{% assign latest_month = published_months | last %}
+{% assign latest_source = threat.sources[latest_month.source] %}
+<section class="seckit-threat-context" aria-labelledby="credential-risk">
+  <p class="home-kicker">The threat in numbers · {{ threat.snapshot_label | escape }}</p>
+  <h2 id="credential-risk">A credential can become someone else’s access.</h2>
+  <p>API keys, access tokens and passwords turn up in public code, shared configuration and stolen browser data. Published research shows the scale—and why exposure, theft and confirmed abuse need different labels.</p>
+  <div class="seckit-grid">
+    <article class="seckit-card">
+      <h3>Exposed in public code</h3>
+      <p class="seckit-price">{{ threat.public_code.display | escape }}</p>
+      <p>New secrets detected on public GitHub in {{ threat.public_code.year }}. A detection is not proof that the credential was valid, stolen or used.</p>
+      <a href="{{ code_source.url | escape }}">GitGuardian’s 2026 report →</a>
+    </article>
+    <article class="seckit-card">
+      <h3>Stolen material found</h3>
+      <p class="seckit-price">{{ latest_month.distinct_pairs | divided_by: 1000000.0 | round: 1 }} million</p>
+      <p>Distinct username/password pairs in stealer logs Breachsense indexed in {{ latest_month.label }}. Indexing date does not establish when the theft happened or whether the credentials still work.</p>
+      <a href="{{ latest_source.url | escape }}">{{ latest_month.label }} report →</a>
+    </article>
+    <article class="seckit-card">
+      <h3>Used to enter a breach</h3>
+      <p class="seckit-price">{{ threat.credential_abuse.percent }}%</p>
+      <p>Credential abuse was the first known entry action in Verizon’s {{ threat.credential_abuse.cohort_display }}-breach initial-access analysis. The 2026 report covers November 2024–October 2025.</p>
+      <a href="{{ threat.sources.verizon_dbir.url | escape }}">Verizon DBIR, Figure 11 →</a>
+    </article>
+  </div>
+  <p class="seckit-comparison-footnote">These sources observe different populations. Do not add the figures together or read them as a worldwide count of people, passwords or successful attacks.</p>
+
+  <p class="seckit-growth-highlight"><strong>{{ threat.public_code.reported_yoy_growth_percent }}% more newly leaked secrets in 2025</strong>, according to GitGuardian’s year-over-year analysis. <a href="{{ threat.sources.gitguardian_announcement.url | escape }}">Reported growth and scope</a>.</p>
+
+  <h3>Daily and monthly scale</h3>
+  <p>The rounded {{ threat.public_code.year }} public-code count works out to about <strong>{{ threat.public_code.approximate_count | divided_by: 12.0 | divided_by: 1000000.0 | round: 1 }} million detections per month</strong>, or <strong>{{ threat.public_code.approximate_count | divided_by: threat.public_code.days_in_year | divided_by: 1000.0 | round }},000 per day</strong>. These are arithmetic averages of roughly 29 million detections—not observed daily theft or misuse rates. <a href="{{ threat.sources.gitguardian_announcement.url | escape }}">Source and annual count</a>.</p>
+
+  <figure class="seckit-threat-trend" aria-labelledby="seckit-threat-trend-title">
+    <figcaption id="seckit-threat-trend-title"><strong>New secrets detected on public GitHub, by year</strong><br>Rounded counts from the same GitGuardian 2026 report edition; millions of detected secrets.</figcaption>
+    <ol class="seckit-threat-bars" role="list">
+      {% for point in threat.public_code.annual_series %}
+      <li><span>{{ point.year }}</span><span class="seckit-threat-track" aria-hidden="true"><span style="width: {{ point.millions | times: 100.0 | divided_by: threat.public_code.annual_series_max_millions }}%"></span></span><strong>{{ point.millions }}M</strong></li>
+      {% endfor %}
+    </ol>
+    <p class="seckit-threat-scale" aria-hidden="true">Bar scale: 0–{{ threat.public_code.annual_series_max_millions }} million</p>
+    <p class="seckit-comparison-footnote">Counts are detections, not unique victims or confirmed compromises. Historical values can differ between report editions. The reported {{ threat.public_code.reported_yoy_growth_percent }}% growth uses the publisher’s analysis, rather than these rounded bar values. <a href="{{ code_source.url | escape }}">Read the original report</a>.</p>
+  </figure>
+
+  {% include secrets-kit/business-impact.html %}
+
+  <h3 id="recent-credential-reports">Recent monthly findings</h3>
+  <p>This view covers June–September 2026. Breachsense’s series starts in August; June and July have no published figures in this series. Collection sizes vary, so their difference is <strong>not a trend in global theft</strong>. Pairs are distinct within each report and may recur across months.</p>
+  <figure class="seckit-threat-trend" aria-labelledby="seckit-monthly-trend-title">
+    <figcaption id="seckit-monthly-trend-title"><strong>Distinct username/password pairs in indexed stealer logs</strong><br>2026 monthly collections, in millions. A missing report does not mean zero exposure.</figcaption>
+    <ol class="seckit-threat-bars seckit-month-bars" role="list">
+      {% for month in report_months %}
+      <li><span>{{ month.short_label | escape }}</span>{% if month.status == 'published' %}<span class="seckit-threat-track" aria-hidden="true"><span style="width: {{ month.distinct_pairs | divided_by: 1000000.0 | times: 100.0 | divided_by: threat.stolen_material.monthly_chart_max_millions }}%"></span></span><strong>{{ month.distinct_pairs | divided_by: 1000000.0 | round: 1 }}M</strong>{% else %}<span class="seckit-threat-unavailable">No report</span><strong aria-label="Not available">—</strong>{% endif %}</li>
+      {% endfor %}
+    </ol>
+    <p class="seckit-threat-scale" aria-hidden="true">Bar scale: 0–{{ threat.stolen_material.monthly_chart_max_millions }} million</p>
+    <p class="seckit-comparison-footnote">August’s collection is larger than September’s. This chart shows collection size, not a change in the worldwide theft rate. <a href="{{ threat.sources.breachsense_august.url | escape }}">Series start and method</a>.</p>
+  </figure>
+  <div class="seckit-table-scroll" role="region" aria-label="Monthly infostealer research snapshots" tabindex="0">
+    <table>
+      <caption>Stealer logs indexed by Breachsense; indexing month is not infection month.</caption>
+      <thead><tr><th scope="col">Indexed in</th><th scope="col">Distinct username/password pairs</th><th scope="col">Identified infected machines</th><th scope="col">Source</th></tr></thead>
+      <tbody>{% for month in report_months %}{% assign month_source = threat.sources[month.source] %}
+        <tr><th scope="row">{{ month.label | escape }}</th>{% if month.status == 'published' %}<td>{{ month.pairs_display | escape }}</td><td>{{ month.machines_display | escape }}</td><td><a href="{{ month_source.url | escape }}">Monthly report</a></td>{% else %}<td>Not published</td><td>Not published</td><td><a href="{{ month_source.url | escape }}">Series index</a></td>{% endif %}</tr>
+      {% endfor %}</tbody>
+    </table>
+  </div>
+
+  {% include secrets-kit/agentic-risk.html %}
+
+  <h3>Where do secrets turn up?</h3>
+  <ul class="seckit-exposure-paths">
+    <li><strong>Code and configuration:</strong> repositories, their history and integration files. GitGuardian found 24,008 unique secrets in the MCP configuration files it studied. <a href="{{ code_source.url | escape }}">Configuration findings</a>.</li>
+    <li><strong>Shared work:</strong> collaboration and productivity tools can expose credentials beyond the application that needs them. <a href="{{ threat.sources.gitguardian_announcement.url | escape }}">GitGuardian’s non-code findings</a>.</li>
+    <li><strong>Browsers and workstations:</strong> infostealer logs contain saved passwords and other stolen browser material. <a href="{{ latest_source.url | escape }}">Breachsense’s collection and method</a>.</li>
+    <li><strong>Build systems and container images:</strong> retained image layers and runtime environments can expose service credentials. <a href="{{ threat.sources.codecov.url | escape }}">Codecov’s incident postmortem</a>.</li>
+  </ul>
+  <details class="seckit-comparison-notes">
+    <summary>A documented example of an exposed key being used</summary>
+    <p>In the historical Codecov incident of 2021, an attacker extracted a cloud service-account key from a public container image layer and used it to alter the Bash Uploader. The altered uploader extracted customers’ environment variables. This establishes key misuse and downstream exfiltration—not that every exposed customer credential was subsequently used. <a href="{{ threat.sources.codecov.url | escape }}">Codecov’s account of the attack and recovery</a>.</p>
+  </details>
+
+  <p><strong>Where Secrets Kit helps:</strong> keep credentials out of routine project-file copies, select what an application receives, and authorize synchronization peers. It does not make a compromised application or user account safe, replace endpoint protection or breach monitoring, or revoke a leaked key at its issuer. A receiving process can still expose an injected credential. If a credential leaks, revoke or rotate it at the issuing service; deleting one copy is not enough.</p>
+  <details class="seckit-comparison-notes">
+    <summary>Source definitions and update notes</summary>
+    <p>The annual chart and averages use GitGuardian’s rounded public-code figures, not a count of valid or exploited credentials. Monthly rows describe Breachsense’s indexed collections; machine totals exclude records without a machine identifier, and the same pair or machine may appear in more than one collection. Verizon’s percentage uses non-Error, non-Misuse breaches with a known initial access vector, not every breach or security incident in its report.</p>
+    <p>This is a dated research snapshot, not a live counter. A missing monthly report does not mean zero exposure, and publishers may revise historical counts. <a href="{{ '/projects/Secrets-Kit/get-started/' | relative_url }}">Explore the upcoming client</a> or continue below for the access and storage boundaries.</p>
+  </details>
+</section>

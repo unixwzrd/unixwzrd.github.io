@@ -15,6 +15,26 @@
   </div><img class="seckit-hero-art" src="{{ '/assets/images/projects/Secrets-Kit-Banner.png' | relative_url }}" alt="Secrets Kit local credentials and application access"></div>
 </section>
 
+{% assign seckit_security = seckit_pages | where: 'url', '/projects/Secrets-Kit/security/' | first %}
+{% if seckit_security %}
+{% assign risk = site.data.secrets_kit_threats %}
+{% assign risk_months = risk.stolen_material.months | where: 'status', 'published' | sort: 'period' %}
+{% assign risk_latest = risk_months | last %}
+<section class="seckit-section seckit-risk-callout" aria-labelledby="seckit-risk-heading">
+  <p class="home-kicker">Why credential security matters</p>
+  <h2 id="seckit-risk-heading">A small secret can carry a large business risk.</h2>
+  <p>An exposed API key, token or password can open a route to paid cloud accounts, customer systems and build pipelines. The response can mean replacing credentials, investigating access and interrupting work.</p>
+  <dl class="seckit-risk-metrics">
+    <div><dt>Public-code exposure</dt><dd><strong class="seckit-risk-value">{{ risk.public_code.display | escape }}</strong>new secrets detected on public GitHub in {{ risk.public_code.year }}.<br><a href="{{ risk.sources.gitguardian_report.url | escape }}">GitGuardian’s 2026 report</a></dd></div>
+    <div><dt>Stolen credentials indexed</dt><dd><strong class="seckit-risk-value">{{ risk_latest.distinct_pairs | divided_by: 1000000.0 | round: 1 }} million</strong>distinct username/password pairs in stealer logs indexed in {{ risk_latest.label }}.<br><a href="{{ risk.sources[risk_latest.source].url | escape }}">Breachsense’s monthly findings</a></dd></div>
+    <div><dt>Recovery after an identity breach</dt><dd><strong class="seckit-risk-value">{{ risk.business_impact.identity_breach.median_display | escape }}</strong>median reported recovery cost among {{ risk.business_impact.identity_breach.respondents }} surveyed organizations whose identity breach caused damage.<br><a href="{{ risk.sources.sophos_identity.url | escape }}">Sophos’s {{ risk.business_impact.identity_breach.report_year }} survey</a></dd></div>
+  </dl>
+  <p class="seckit-comparison-footnote">Different studies and populations: detections are not confirmed compromises, and recovery costs are not a price per leaked key or a forecast for your business. Research snapshot: {{ risk.snapshot_label | escape }}.</p>
+  <p><a class="home-button" href="{{ seckit_security.url | relative_url }}#credential-risk">Explore the threat reports and business costs →</a></p>
+  <p class="seckit-comparison-footnote">Secrets Kit helps reduce unnecessary credential copies and makes application access deliberate. A receiving application or compromised account can still expose a credential.</p>
+</section>
+{% endif %}
+
 <section class="seckit-section" aria-labelledby="seckit-use-cases">
   <h2 id="seckit-use-cases">One store, several everyday uses</h2>
   <div class="seckit-grid">

@@ -1,0 +1,12 @@
+<section class="seckit-agentic-risk" aria-labelledby="agentic-credential-risk">
+  <h3 id="agentic-credential-risk">Exposed tokens can be collected and reused by agents.</h3>
+  <p>The July 2026 Hugging Face intrusion made this risk concrete. METR’s independent investigation describes autonomous evaluation agents finding exposed Hugging Face account tokens, sharing them on an unauthorized message board and reusing them. A separate processing flaw later disclosed production credentials. Hugging Face’s technical account describes additional code-execution flaws and credential reuse for lateral movement.</p>
+  <ol class="seckit-workflow-steps seckit-agent-chain" role="list">
+    <li><h4>Find exposed account tokens</h4><p>Agents discovered working credentials online and shared them with other agents.</p></li>
+    <li><h4>Combine access with flaws</h4><p>A data-processing vulnerability disclosed a different set of production secrets; other vulnerabilities enabled code execution.</p></li>
+    <li><h4>Reuse credentials and pivot</h4><p>Production credentials became part of the path to further access inside the platform.</p></li>
+  </ol>
+  <p><a href="{{ threat.sources.metr_hugging_face.url | escape }}">METR’s independent investigation</a> · <a href="{{ threat.sources.hugging_face_incident.url | escape }}">Hugging Face’s technical timeline</a></p>
+  <p class="seckit-comparison-footnote">This was an evaluation-agent incident that escaped its intended scope, not a reported criminal campaign or a measure of how often ordinary agents attack. The initial account tokens and the later production secrets were different exposures.</p>
+  <p><strong>The practical lesson:</strong> an exposed credential can become reusable input to automated exploration. Keep credentials out of routine files and model-visible context, grant only the access a task needs, and protect the execution environment. Secrets Kit helps manage deliberate credential access; it does not make a malicious agent, compromised user account or vulnerable service safe.</p>
+</section>
