@@ -71,12 +71,11 @@
 
 <section class="seckit-section" aria-labelledby="seckit-how-it-works">
   <h2 id="seckit-how-it-works">How it fits together</h2>
-  <ol class="seckit-steps">
-    <li><strong>Store locally.</strong> Keep credentials in your configured local backend: macOS Keychain or encrypted SQLite. The normal new-store setup uses encrypted SQLite.</li>
-    <li><strong>Choose what a process receives.</strong> Select the credentials for an application or integration. Model Context Protocol (MCP) access is optional and follows its own retrieval policy.</li>
-    <li><strong>Authorize your peers.</strong> Decide which Secrets Kit installations may synchronize. Discovery alone does not grant access.</li>
-    <li><strong>Add hosted connectivity if needed.</strong> Remote Secrets Sync forwards destination-encrypted updates when direct communication is unavailable. Primary/secondary relay failover provides another forwarding path when an endpoint is unavailable. Relays do not receive secret plaintext or local storage keys.</li>
-  </ol>
+  <ul class="seckit-steps">
+    <li><strong>Backend choice:</strong> new stores default to encrypted SQLite; macOS Keychain is also supported. Peer synchronization uses the encrypted SQLite workflow.</li>
+    <li><strong>Peer authorization:</strong> discovering a machine does not grant access. Authorize each peer and its synchronization scope separately from application or optional Model Context Protocol (MCP) access.</li>
+    <li><strong>Relay encryption:</strong> optional Remote Secrets Sync forwards destination-encrypted updates, with primary/secondary failover. Relays do not receive secret plaintext or local storage keys.</li>
+  </ul>
 </section>
 
 <section class="seckit-section" aria-labelledby="seckit-offer">
@@ -90,7 +89,7 @@
     <article class="seckit-card">
       <h3>Remote Secrets Sync</h3>
       <p class="seckit-price">Starts at $10/month <span>for two enrolled connections</span> <span>$5 per enrolled connection / month</span></p>
-      <p>{% unless seckit_release.production_release_ready %}Planned launch pricing. {% endunless %}Includes primary/secondary relay forwarding. An enrolled connection belongs to a registered Secrets Kit identity for an operating-system user; it is not a separate charge for every agent.</p>
+      <p>{% unless seckit_release.production_release_ready %}Launch pricing. {% endunless %}Includes primary/secondary relay forwarding. An enrolled connection belongs to a registered Secrets Kit identity for an operating-system user; it is not a separate charge for every agent.</p>
     </article>
   </div>
 </section>

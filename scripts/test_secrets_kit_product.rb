@@ -332,7 +332,11 @@ class SecretsKitProductTest < Minitest::Test
         assert_empty started.css("textarea, button[data-seckit-copy]")
         assert_empty started.css('a[href$="#release-status"]')
         assert started.at_css("#compatibility")
-        assert_includes started.text, "Final compatibility, including minimum versions, will be confirmed"
+        assert_includes started.at_css("#compatibility").text, "Supported platforms"
+        refute_includes started.text, "Planned platform support"
+        assert_includes started.text, "Linux (glibc)"
+        assert_includes started.text, "ARM64 (aarch64)"
+        refute_includes started.text, "Windows and Linux ARM are not supported"
         assert_includes started.text, "Hermes is optional"
         assert_empty document(directory, "#{PREFIX}pricing/").css("pre code")
         assert_empty document(directory, "#{PREFIX}remote-sync/").css("pre code")

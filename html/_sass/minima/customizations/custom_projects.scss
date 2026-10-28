@@ -245,6 +245,9 @@
 .seckit-check { color: var(--site-primary-color); font-size: 1.3rem; font-weight: 700; }
 .seckit-cross, .seckit-unlisted { color: var(--minima-brand-color); font-size: 1.3rem; }
 .seckit-matrix-frame {
+  max-height: min(75vh, 48rem);
+  overflow: auto;
+  isolation: isolate;
   margin: 1rem 0;
   border: 1px solid $border-color;
   border-radius: 12px;
@@ -274,6 +277,9 @@
     overflow-wrap: break-word;
   }
   thead th {
+    position: sticky;
+    top: 0;
+    z-index: 3;
     padding-top: 1.25rem;
     padding-bottom: 1.25rem;
     background: var(--site-surface);
@@ -286,6 +292,7 @@
     text-align: left;
     box-shadow: 1px 0 0 $border-color;
   }
+  thead th:first-child { z-index: 4; }
   tbody th[scope="row"] { font-weight: 600; }
   small {
     display: block;
@@ -326,6 +333,9 @@
     clip-path: inset(50%);
     white-space: nowrap;
   }
+}
+@media print {
+  .seckit-matrix-frame { max-height: none; overflow: visible; }
 }
 .seckit-product-badge {
   display: block;

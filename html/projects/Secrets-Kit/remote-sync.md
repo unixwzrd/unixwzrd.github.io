@@ -19,7 +19,7 @@ Your workstation, a home server, and a remote machine do not always share a netw
 
 The free peer-to-peer client supports **unlimited connections on the same local area network (LAN) segment**, without a hosted subscription. Consider RSS when you need hosted forwarding across networks. Paid connection limits apply to RSS-enrolled connections; they do not cap free peer-to-peer connections on your LAN segment. RSS does not authorize unknown peers, replace your local datastore, or make every application on a machine eligible to receive credentials.
 
-{% if seckit_release.production_release_ready %}Pricing is{% else %}Planned launch pricing is{% endif %} **$5 per enrolled connection per month, minimum two connections ($10/month)**. Read [Pricing]({{ '/projects/Secrets-Kit/pricing/' | relative_url }}) for the billing unit and lifecycle details.
+{% if seckit_release.production_release_ready %}Pricing is{% else %}Launch pricing is{% endif %} **$5 per enrolled connection per month, minimum two connections ($10/month)**. Read [Pricing]({{ '/projects/Secrets-Kit/pricing/' | relative_url }}) for the billing unit and lifecycle details.
 
 ## What travels through the relay
 

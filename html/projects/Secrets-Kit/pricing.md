@@ -13,11 +13,11 @@ excerpt: "Use the client for free and add optional Remote Secrets Sync at $5 per
 
 {% include secrets-kit/navigation.html %}
 
-The Secrets Kit peer-to-peer client is free, with **unlimited connections on the same local area network (LAN) segment**. {% unless seckit_release.production_release_ready %}The planned{% else %}The{% endunless %} Remote Secrets Sync offer adds hosted forwarding between authorized peers across networks.
+The Secrets Kit peer-to-peer client is free, with **unlimited connections on the same local area network (LAN) segment**. The Remote Secrets Sync offer adds hosted forwarding between authorized peers across networks.
 
 ## Choose what you need
 
-{% if seckit_release.production_release_ready %}The free client and optional Remote Secrets Sync subscription are available for {{ seckit_version }}.{% else %}These are the planned prices for the {{ seckit_version }} launch. Subscriptions are not open yet; follow [release updates]({{ seckit_updates_url }}) for availability.{% endif %}
+{% if seckit_release.production_release_ready %}The free client and optional Remote Secrets Sync subscription are available for {{ seckit_version }}.{% else %}These are the launch prices for the {{ seckit_version }} launch. Subscriptions are not open yet; follow [release updates]({{ seckit_updates_url }}) for availability.{% endif %}
 
 | | Free peer-to-peer client | Remote Secrets Sync |
 | --- | --- | --- |

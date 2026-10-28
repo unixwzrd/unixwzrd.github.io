@@ -64,18 +64,25 @@ The version should match the selected release. Use a disposable credential to ve
 **The {{ seckit_version }} installer is forthcoming.** The {% include secrets-kit/doc-link.html file='INSTALL.md' label='manual installation guide' %} will be available with the release. You can [follow release updates]({{ seckit_updates_url }}) while testing continues.
 {% endif %}
 
-<h2 id="compatibility">Planned platform support</h2>
+<h2 id="compatibility">Supported platforms for {{ seckit_version }}</h2>
 
-{% unless seckit_release.compatibility.approved_for_202 %}
-Final compatibility, including minimum versions, will be confirmed before the {{ seckit_version }} release.
-{% endunless %}
+Secrets Kit runs on macOS and 64-bit glibc-based Linux. GitHub Actions provides automated cross-platform testing, complemented by installation and runtime testing on virtual machines and virtual private servers (VPS).
 
-| Operating system | Planned version support | Architecture |
+| Operating system | Compatibility | Architecture |
 | --- | --- | --- |
-{% for target in seckit_release.compatibility.targets %}| {{ target.system }} | {{ target.version }} | {{ target.architecture }} |
-{% endfor %}
+{% for target in seckit_release.compatibility.targets %}| {{ target.system }} | {{ target.version }}{% if target.qualification_note %} <sup><a href="#linux-compatibility" aria-label="Linux compatibility, qualification note 1">1</a></sup>{% endif %} | {{ target.architecture }} |
+{% endfor -%}
+{: tabindex="0" aria-label="Secrets Kit platform compatibility" }
 
-Windows and Linux ARM are not included in the planned customer installer support.
+### Linux compatibility
+
+<p class="seckit-comparison-footnote"><sup>1</sup> The Linux kernel and glibc figures are qualification baselines from the <a href="https://doc.rust-lang.org/rustc/platform-support.html">upstream Rust targets</a> and <a href="https://docs.astral.sh/uv/reference/policies/platforms/">GNU UV binaries</a>. Validation of the complete Secrets Kit installer at these minimums is still in progress; they are not yet certified product minimums.</p>
+
+Linux compatibility depends on the processor architecture, kernel, C library and service environment, rather than a distribution brand. The x86_64 client and installer are implemented. The ARM64 (aarch64) installer also includes a prebuilt native dependency, without requiring the customer to compile it; final release qualification is in progress.
+
+The complete installer's minimum kernel and glibc versions are being validated. A newer kernel alone does not establish compatibility with the required user-space libraries. Distribution names used in testing are examples of coverage, not an exclusive list of compatible systems.
+
+Windows, 32-bit ARM and musl-based Linux are not covered by the current installer compatibility claim. ARM64 and 32-bit ARM are separate targets.
 
 Installer prerequisites:
 
@@ -84,7 +91,7 @@ Installer prerequisites:
 - Installation under the intended operating-system user; the normal per-user route does not use `sudo`.
 - **No preinstalled Python, UV, Git, or development checkout is required.** The installer provisions Python 3.12. Custom development installation routes can have different requirements.
 
-Background synchronization on Linux uses the user's service manager. Running while that user is logged out may require administrator-enabled user lingering. Confirm this for the target environment before relying on unattended operation.
+The managed background service on Linux uses systemd's user service manager. Running while that user is logged out may require administrator-enabled user lingering. Other supervisors need separate compatibility validation; kernel and glibc compatibility alone do not establish unattended service operation.
 
 <h2 id="license">Client license</h2>
 
@@ -92,4 +99,4 @@ The Secrets Kit client is licensed under the **MIT License**. Read the [applicab
 
 ## Choose what comes next
 
-Explore [Guides]({{ '/projects/Secrets-Kit/guides/' | relative_url }}), [Remote Sync]({{ '/projects/Secrets-Kit/remote-sync/' | relative_url }}), [planned pricing]({{ '/projects/Secrets-Kit/pricing/' | relative_url }}), and [Security & Privacy]({{ '/projects/Secrets-Kit/security/' | relative_url }}). Use [Help & Support]({{ '/projects/Secrets-Kit/support/' | relative_url }}) for questions and sanitized problem reports.
+Explore [Guides]({{ '/projects/Secrets-Kit/guides/' | relative_url }}), [Remote Sync]({{ '/projects/Secrets-Kit/remote-sync/' | relative_url }}), [launch pricing]({{ '/projects/Secrets-Kit/pricing/' | relative_url }}), and [Security & Privacy]({{ '/projects/Secrets-Kit/security/' | relative_url }}). Use [Help & Support]({{ '/projects/Secrets-Kit/support/' | relative_url }}) for questions and sanitized problem reports.

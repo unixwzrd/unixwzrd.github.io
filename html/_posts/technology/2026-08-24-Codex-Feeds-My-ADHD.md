@@ -1,4 +1,5 @@
 ---
+excerpt: "I have discovered a new occupational hazard of working with coding agents."
 short_link_basis: "/_posts/technology/2026-08-24-Codex-Feeds-My-ADHD.md"
 short_url: "https://unixwzrd.ai/s/7037a514e9/"
 image: /assets/images/scope-and-mission-creeps.png
@@ -8,6 +9,7 @@ date: 2026-08-25
 categories: [technology]
 tags: [codex, ai, ai-agents, developer-workflow]
 ---
+excerpt: "I have discovered a new occupational hazard of working with coding agents."
 
 I have discovered a new occupational hazard of working with coding agents.
 

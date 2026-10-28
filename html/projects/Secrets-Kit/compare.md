@@ -18,7 +18,7 @@ excerpt: "Compare local workflows, hosted connectivity, pricing units, and the t
   <h2 id="seckit-compare-title">Your workflow. Your priorities.</h2>
   <p>Start with the features you need. Secrets Kit keeps credentials on your own machines, with unlimited peer-to-peer connections on the same LAN segment. Add hosted forwarding when you need it, or compare the team features of a centralized secrets manager.</p>
   <p><strong>A good fit:</strong> Secrets Kit is aimed at local application and agent workflows, unlimited peers on one LAN segment, and optional hosted connectivity. If you need centralized organization administration, managed secret rotation, or cloud-native policy controls, compare those capabilities and their plan requirements carefully.</p>
-  <nav class="seckit-jumps" aria-label="Comparison sections"><a href="#seckit-matrix-title">Hosted services &amp; pricing</a><a href="#seckit-local-comparison">Local alternatives</a><a href="#seckit-custody-heading">Key custody &amp; outages</a><a href="#seckit-landscape-heading">Search all products</a><a href="#comparison-sources">Sources &amp; qualifications</a></nav>
+  <nav class="seckit-jumps" aria-label="Comparison sections"><a href="#seckit-matrix-title">Hosted services &amp; pricing</a><a href="#seckit-local-comparison">Local alternatives</a><a href="#seckit-workflow-fit">Which approach fits?</a><a href="#seckit-custody-heading">Key custody &amp; outages</a><a href="#seckit-landscape-heading">Search all products</a><a href="#comparison-sources">Sources &amp; qualifications</a></nav>
 </section>
 
 <div class="seckit-matrix-heading">
@@ -26,7 +26,9 @@ excerpt: "Compare local workflows, hosted connectivity, pricing units, and the t
   <p class="seckit-comparison-date">Checked October 26, 2026 · Prices in USD</p>
 </div>
 <p class="seckit-matrix-legend" id="seckit-matrix-legend"><span><span class="seckit-check" aria-hidden="true">✓</span> Included</span><span><span class="seckit-cross" aria-hidden="true">×</span> Not included</span><span><span class="seckit-unlisted" aria-hidden="true">—</span> Not listed in reviewed documentation</span></p>
-<p class="seckit-scroll-hint" id="seckit-matrix-help">Scroll sideways on smaller screens. Feature names stay visible as you compare.</p>
+<p class="seckit-scroll-hint" id="seckit-matrix-help">Scroll within each table to compare all features and products. Product headings and feature names stay visible. Keyboard: focus the table, then use the arrow keys.</p>
+
+<p id="seckit-pricing-units"><strong>Compare billing units, not just headline prices.</strong> Secrets Kit’s RSS pricing is per enrolled connection, associated with an operating-system user. Bitwarden and Doppler charge for user seats; Infisical counts human and machine identities; AWS charges for stored secrets and API requests. Two connections are not equivalent to two seats or two stored secrets. Check the billing period and plan allowances in each column.</p>
 
 <div class="seckit-table-scroll seckit-matrix-frame" role="region" aria-labelledby="seckit-matrix-title" aria-describedby="seckit-matrix-legend seckit-matrix-help" tabindex="0">
 <table class="seckit-matrix">
@@ -100,7 +102,7 @@ excerpt: "Compare local workflows, hosted connectivity, pricing units, and the t
     <tr class="seckit-matrix-group"><th colspan="6" scope="rowgroup"><span>Connectivity</span></th></tr>
     <tr>
       <th scope="row">Native LAN peer-to-peer sync</th>
-      <td class="seckit-featured"><span class="seckit-check" role="img" aria-label="Included">✓</span><small><strong>Unlimited connections</strong><br>Same LAN segment</small></td>
+      <td class="seckit-featured"><span class="seckit-check" role="img" aria-label="Included">✓</span><small><strong>Unlimited connections</strong><br>Same LAN segment<br>Encrypted SQLite workflow</small></td>
       <td><span class="seckit-unlisted" role="img" aria-label="Not listed in reviewed documentation">—</span></td>
       <td><span class="seckit-unlisted" role="img" aria-label="Not listed in reviewed documentation">—</span></td>
       <td><span class="seckit-unlisted" role="img" aria-label="Not listed in reviewed documentation">—</span></td>
@@ -163,13 +165,13 @@ excerpt: "Compare local workflows, hosted connectivity, pricing units, and the t
 <section aria-labelledby="seckit-local-comparison">
   <h2 id="seckit-local-comparison">Compare the local-first alternatives, too.</h2>
   <p>Native peer synchronization is not exclusive to Secrets Kit. These closer alternatives make the tradeoffs clearer: encrypted defaults, custody, private routes, hosted forwarding and release maturity.</p>
-  <div class="seckit-table-scroll seckit-matrix-frame" role="region" aria-labelledby="seckit-local-comparison" tabindex="0">
+  <div class="seckit-table-scroll seckit-matrix-frame" role="region" aria-labelledby="seckit-local-comparison" aria-describedby="seckit-matrix-help" tabindex="0">
   <table class="seckit-matrix">
     <caption>Local and file-based secrets workflows, including differences between available products and early-access designs.</caption>
     <colgroup><col class="seckit-feature-column"><col><col><col><col><col></colgroup>
     <thead><tr><th scope="col">Local workflow</th><th scope="col" class="seckit-featured">Secrets Kit</th><th scope="col"><a href="https://envsync.arnav.tech/">env-sync</a></th><th scope="col"><a href="https://www.envmesh.dev/">Envmesh</a></th><th scope="col"><a href="https://dotenvx.com/">dotenvx</a></th><th scope="col"><a href="https://getsops.io/">SOPS</a></th></tr></thead>
     <tbody>
-      <tr><th scope="row">Availability &amp; price</th><td class="seckit-featured">{{ seckit_version }}{% unless seckit_release.production_release_ready %} coming soon{% endunless %}<small>Free LAN · {% unless seckit_release.production_release_ready %}planned {% endunless %}$5/RSS connection</small></td><td>Available CLI<small>Free/open source</small></td><td>Early access<small>No public price established</small></td><td>Available CLI<small>Core free; optional services separate</small></td><td>Available CLI<small>Free; KMS usage can cost extra</small></td></tr>
+      <tr><th scope="row">Availability &amp; price</th><td class="seckit-featured">{{ seckit_version }}{% unless seckit_release.production_release_ready %} coming soon{% endunless %}<small>Free LAN · $5/RSS connection</small></td><td>Available CLI<small>Free/open source</small></td><td>Early access<small>No public price established</small></td><td>Available CLI<small>Core free; optional services separate</small></td><td>Available CLI<small>Free; KMS usage can cost extra</small></td></tr>
       <tr><th scope="row">Storage defaults</th><td class="seckit-featured">Encrypted SQLite<small>macOS Keychain also supported</small></td><td>SSH mode: plaintext unless AGE enabled<small>Secure-peer: AGE required</small></td><td>Described encrypted local store<small>Early-access architecture</small></td><td>Encrypted .env values<small>Variable names remain visible</small></td><td>Encrypted structured files</td></tr>
       <tr><th scope="row">Who holds keys?</th><td class="seckit-featured">Each peer independently</td><td>Local AGE identities<small>Mode-dependent</small></td><td>Device / Keychain design</td><td>Local private key by default<small>Optional Armor differs</small></td><td>age/PGP recipients or selected KMS</td></tr>
       <tr><th scope="row">How updates move</th><td class="seckit-featured">Direct encrypted peers + optional RSS</td><td>SSH/SCP or HTTPS + mTLS</td><td>Described direct device sync<small>Existing private route</small></td><td>Git / file distribution</td><td>Git / deployment tooling</td></tr>
@@ -181,6 +183,33 @@ excerpt: "Compare local workflows, hosted connectivity, pricing units, and the t
   </div>
   <p class="seckit-comparison-footnote">Sources and version/mode qualifications are in the product records below. These are different architectures, not equivalent security guarantees.</p>
 </section>
+
+<section class="seckit-section" aria-labelledby="seckit-workflow-fit" markdown="1">
+
+## Which approach fits your workflow? {#seckit-workflow-fit}
+
+**Secrets Kit:** a good fit when you want credentials stored locally, application injection from the command line, and free encrypted synchronization between unlimited authorized peers on the same LAN segment. Hosted forwarding across networks is optional and priced separately. Compare the administration, recovery, and support features you need; this offer does not include independent security certification, organization-wide access governance, or an enterprise service-level agreement.
+
+**Bitwarden Secrets Manager:** worth evaluating for a shared team secrets manager with human users and machine-account access. Its paid plans include team administration features; the Enterprise plan lists self-hosting. Those are meaningful capabilities when the team needs centralized management. See the [official feature comparison](https://bitwarden.com/products/secrets-manager/).
+
+**Doppler:** worth evaluating when your workflow benefits from centralized configuration and integrations. Its published Team plan includes access controls, SAML single sign-on, and secret rotation. Its free tier and lack of additional agent-seat fees matter when estimating the cost of an agent-heavy setup. See [Doppler's pricing and feature table](https://www.doppler.com/pricing).
+
+**Infisical:** worth evaluating when you need a broader secrets-management platform and centralized access features. Its Pro plan lists access controls, rotation, and SAML single sign-on; identity-based pricing means machines belong in the estimate too. Check the [current plan boundaries](https://infisical.com/pricing), especially when you need dynamic secrets or self-hosting.
+
+**AWS Secrets Manager:** worth evaluating for applications already operating inside AWS. Its secret-and-API pricing can suit a different usage pattern from connection or seat subscriptions. Include the AWS identity, permissions, application integration, and related operational work in your assessment. Use the [official pricing examples](https://aws.amazon.com/secrets-manager/pricing/) rather than treating an API price as the entire deployment cost.
+
+### What about keeping my .env files?
+
+A `.env` file can be a straightforward way to configure one trusted application. The difficulty grows when values are copied across repositories, backups, machines, and agent conversations. File permissions, exclusions from version control, and the application's behavior still need attention.
+
+Secrets Kit gives you a local store and selected process injection, reducing the need for those copies. It does not automatically rewrite applications that require a password file, remove old `.env` files, or stop a process from exposing values it receives. Migration should preserve the original configuration until you have verified the replacement source and approved the cutover.
+
+### Plan a small trial
+
+{% if seckit_release.production_release_ready %}Choose one application and disposable credentials. [Get Started]({{ '/projects/Secrets-Kit/get-started/' | relative_url }}) links to the installation instructions.{% else %}When {{ seckit_version }} is released, start with one application and disposable credentials. [Get Started]({{ '/projects/Secrets-Kit/get-started/' | relative_url }}) currently previews setup and release status; installation instructions will be available at release.{% endif %} Check the setup effort, actual access boundaries, recovery path, and cost for your own users and machines. [Security & Privacy]({{ '/projects/Secrets-Kit/security/' | relative_url }}) explains what Secrets Kit does and does not protect.
+
+</section>
+
 
 <section class="seckit-custody-primer" aria-labelledby="seckit-custody-heading">
   <h2 id="seckit-custody-heading">The questions behind the checkmarks</h2>
@@ -198,42 +227,13 @@ excerpt: "Compare local workflows, hosted connectivity, pricing units, and the t
 <summary>Comparison notes &amp; official sources</summary>
 <div markdown="1">
 
-The matrix compares the listed product families and named plans, not identical packages. Two RSS connections are different from two human seats, two machine accounts, or two stored secrets. Other providers' free tiers may fit your deployment.
+The matrix compares the listed product families and named plans, not identical packages. Other providers' free tiers may fit your deployment.
 
 - **Secrets Kit:** [Pricing]({{ '/projects/Secrets-Kit/pricing/' | relative_url }}), [Security & Privacy]({{ '/projects/Secrets-Kit/security/' | relative_url }}), and the {% include secrets-kit/doc-link.html file='README.md' label='production documentation' %}. LAN peer synchronization refers to the supported encrypted SQLite workflow. Organization audit logs are different from local transaction history.
 - **Bitwarden:** [Plans and machine-account allowances](https://bitwarden.com/products/secrets-manager/), [CLI application injection](https://bitwarden.com/help/secrets-manager-cli/), and [organization features and self-hosting](https://bitwarden.com/help/manage-your-secrets-org/). The free plan also limits projects; Enterprise is required for Secrets Manager self-hosting.
 - **Doppler:** [Plan features and prices](https://www.doppler.com/pricing), [CLI guide](https://docs.doppler.com/docs/cli), and [encrypted offline fallback files](https://docs.doppler.com/docs/automatic-fallbacks). Offline fallback does not turn a hosted service into native peer-to-peer synchronization.
 - **Infisical:** [Pricing, identities, and plan boundaries](https://infisical.com/pricing) and the [official CLI](https://github.com/Infisical/cli). Both humans and machines count as identities. Self-hosting has separate pricing terms.
 - **AWS:** [Pricing examples](https://aws.amazon.com/secrets-manager/pricing/), [application access and permissions](https://aws.amazon.com/secrets-manager/faqs/), [rotation](https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html), and [CloudTrail logging](https://docs.aws.amazon.com/secretsmanager/latest/userguide/monitoring-cloudtrail.html). Rotation and logging may involve additional services or configuration; check regional prices and eligible account credits.
-
-</div>
-</details>
-
-<details class="seckit-comparison-notes">
-<summary>Which approach fits your workflow?</summary>
-<div markdown="1">
-
-## Where each approach fits
-
-**Secrets Kit:** a good fit when you want credentials stored locally, application injection from the command line, and free encrypted synchronization between unlimited authorized peers on the same LAN segment. Hosted forwarding across networks is optional and priced separately. Compare the administration, recovery, and support features you need; this offer does not include independent security certification, organization-wide access governance, or an enterprise service-level agreement.
-
-**Bitwarden Secrets Manager:** worth evaluating for a shared team secrets manager with human users and machine-account access. Its paid plans include team administration features; the Enterprise plan lists self-hosting. Those are meaningful capabilities when the team needs centralized management. See the [official feature comparison](https://bitwarden.com/products/secrets-manager/).
-
-**Doppler:** worth evaluating when your workflow benefits from centralized configuration and integrations. Its published Team plan includes access controls, SAML single sign-on, and secret rotation. Its free tier and lack of additional agent-seat fees matter when estimating the cost of an agent-heavy setup. See [Doppler's pricing and feature table](https://www.doppler.com/pricing).
-
-**Infisical:** worth evaluating when you need a broader secrets-management platform and centralized access features. Its Pro plan lists access controls, rotation, and SAML single sign-on; identity-based pricing means machines belong in the estimate too. Check the [current plan boundaries](https://infisical.com/pricing), especially when you need dynamic secrets or self-hosting.
-
-**AWS Secrets Manager:** worth evaluating for applications already operating inside AWS. Its secret-and-API pricing can suit a different usage pattern from connection or seat subscriptions. Include the AWS identity, permissions, application integration, and related operational work in your assessment. Use the [official pricing examples](https://aws.amazon.com/secrets-manager/pricing/) rather than treating an API price as the entire deployment cost.
-
-## What about keeping my .env files?
-
-A `.env` file can be a straightforward way to configure one trusted application. The difficulty grows when values are copied across repositories, backups, machines, and agent conversations. File permissions, exclusions from version control, and the application's behavior still need attention.
-
-Secrets Kit gives you a local store and selected process injection, reducing the need for those copies. It does not automatically rewrite applications that require a password file, remove old `.env` files, or stop a process from exposing values it receives. Migration should preserve the original configuration until you have verified the replacement source and approved the cutover.
-
-## Decide with a small trial
-
-Choose one application and disposable credentials. Check the setup effort, actual access boundaries, recovery path, and cost for your own users and machines. [Get Started]({{ '/projects/Secrets-Kit/get-started/' | relative_url }}) links to the installation instructions. [Security & Privacy]({{ '/projects/Secrets-Kit/security/' | relative_url }}) explains what Secrets Kit does and does not protect.
 
 </div>
 </details>
