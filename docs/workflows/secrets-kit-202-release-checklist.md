@@ -41,6 +41,8 @@ Confirmed source references for the site copy:
 
 ## Link classification during staging
 
+- The landing page links to `/projects/Secrets-Kit/credential-risks/` for the full research. Security leads with product answers and preserves its old research anchors as onward links. Keep that separation and those links when activating the release.
+- Product navigation is Overview, Compare, Pricing, Guides, Security, GitHub and More, with a separate Get Started/Explore action. GitHub source precedes More, which contains Help, Remote Sync and Updates; Help and Policies remain in the footer. Verify the mobile "Secrets Kit pages" disclosure and the native no-JavaScript fallback when reviewing release-day changes.
 - **Available:** product navigation, product-policy anchors, comparison section jumps, historical posts, GitHub Issues/Discussions and private contact. These must resolve normally.
 - **Intentionally unavailable:** 2.0.2 installers, versioned repository documentation, Hermes setup and the versioned repository license. They render as labeled forthcoming text or are withheld. They must not masquerade as links to the release-status notice.
 - **Broken:** any available link or anchor that fails. An intentionally unavailable future destination does not excuse a broken product-navigation link.

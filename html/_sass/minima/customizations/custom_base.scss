@@ -3,6 +3,8 @@
 @import "breadcrumbs";
 
 html {
+  // Keep centered pages aligned when short content gains a vertical scrollbar.
+  scrollbar-gutter: stable;
   font-size: $base-font-size;
 }
 

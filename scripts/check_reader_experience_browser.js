@@ -8,7 +8,8 @@ async (page) => {
     ["ssh", "/technology/2025/04/08/Remote-Debugging-With-VSCode/"],
     ["memory", "/technology/2026/08/23/memory-is-a-governance-problem-not-just-a-vector-database/"],
     ["monitoring", "/technology/2026/10/11/monitoring-a-static-site-after-deployment/"],
-    ["blog", "/blog/"], ["archive", "/blog/all/"],
+    ["blog", "/blog/"], ["archive-next", "/blog/all/?page=2"], ["archive", "/blog/all/"],
+    ["seckit", "/projects/Secrets-Kit/"], ["seckit-pricing", "/projects/Secrets-Kit/pricing/"],
     ["loggpt", "/projects/LogGPT/"], ["extract-chat", "/projects/extract-chat/"],
     ["search", "/search/"], ["contact", "/contact/"],
     ["case-study", "/projects/LogGPT/2026/10/15/when-codex-turned-to-loggpt/"],
@@ -17,13 +18,29 @@ async (page) => {
   const failures = [];
   let searchChecks = 0;
   let navigationChecks = 0;
+  let headerChecks = 0;
   for (const scheme of ["light", "dark"]) {
     await page.emulateMedia({ colorScheme: scheme });
     for (const width of [1280, 390]) {
       await page.setViewportSize({ width, height: 900 });
+      let sharedHeader;
       for (const [name, path] of routes) {
         const response = await page.goto(base + path, { waitUntil: "load" });
         if (!response || response.status() !== 200) throw new Error(`HTTP failure: ${path}`);
+        await page.evaluate(() => document.fonts.ready);
+        await page.locator('.site-header .brand-graphic').evaluate(image => image.decode());
+        const header = await page.locator('.site-header').evaluate(header => {
+          const measure = element => {
+            const rect = element.getBoundingClientRect();
+            const style = getComputedStyle(element);
+            return { x: rect.x, y: rect.y, width: rect.width, height: rect.height, fontSize: style.fontSize, lineHeight: style.lineHeight };
+          };
+          return [header, ...header.querySelectorAll('.wrapper, .site-title, .brand-graphic, .site-nav, .trigger > .page-link, .nav-dropdown-link')].map(measure);
+        });
+        if (name === "home") sharedHeader = JSON.stringify(header);
+        else if (JSON.stringify(header) !== sharedHeader) throw new Error(`Shared header changed on ${path} at ${width}px (${scheme})`);
+        headerChecks++;
+
         if (name === "home") {
           for (const image of await page.locator(".home-banner img, .home-project-image img").all()) {
             await image.scrollIntoViewIfNeeded();
@@ -156,6 +173,35 @@ async (page) => {
       }
     }
   }
+  let searchLayoutChecks = 0;
+  for (const scheme of ["light", "dark"]) {
+    await page.emulateMedia({ colorScheme: scheme });
+    for (const width of [1280, 800, 390]) {
+      // A tall viewport makes the empty search page shorter than the viewport.
+      await page.setViewportSize({ width, height: 2000 });
+      await page.goto(base + "/");
+      await page.evaluate(() => document.fonts.ready);
+      // Exercise classic scrollbar space even on systems that prefer overlay scrollbars.
+      await page.addStyleTag({ content: "html::-webkit-scrollbar { width: 16px; }" });
+      const reference = await page.locator('.site-header .wrapper').boundingBox();
+      await page.goto(base + "/search/");
+      await page.addStyleTag({ content: "html::-webkit-scrollbar { width: 16px; }" });
+      const initial = await page.locator('.site-header .wrapper').boundingBox();
+      if (initial.x !== reference.x || initial.width !== reference.width) throw new Error("Search shifted from homepage");
+      const measure = () => page.locator('.site-header .wrapper').boundingBox();
+      const input = page.locator('[data-search-input]');
+      for (const query of ["LogGPT", '"zzznomatchseckitlayoutqvwxz"', ""]) {
+        await input.fill(query);
+        if (query === "LogGPT") await page.locator('[data-search-status]').filter({ hasText: /\d+ results? for/ }).waitFor();
+        else if (query) await page.locator('.search-empty').waitFor();
+        else await page.waitForFunction(() => document.querySelector('[data-search-results]').childElementCount === 0);
+        const current = await measure();
+        if (current.x !== initial.x || current.width !== initial.width) throw new Error(`Search shifted for ${query || "cleared query"}`);
+        if (await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)) throw new Error("Search overflow");
+        searchLayoutChecks++;
+      }
+    }
+  }
   let noJsChecks = 0;
   for (const colorScheme of ["light", "dark"]) {
     const context = await page.context().browser().newContext({ javaScriptEnabled: false, colorScheme, viewport: { width: 390, height: 844 } });
@@ -176,7 +222,7 @@ async (page) => {
       await context.close();
     }
   }
-  const summary = { scenarios: results.length, noJsChecks, searchChecks, navigationChecks, textChecks: results.reduce((sum, r) => sum + r.checked, 0), controlChecks: results.reduce((sum, r) => sum + r.controlsChecked, 0), failures, results };
+  const summary = { scenarios: results.length, noJsChecks, searchChecks, navigationChecks, headerChecks, searchLayoutChecks, textChecks: results.reduce((sum, r) => sum + r.checked, 0), controlChecks: results.reduce((sum, r) => sum + r.controlsChecked, 0), failures, results };
   if (failures.length) throw new Error(JSON.stringify(summary));
   return summary;
 }

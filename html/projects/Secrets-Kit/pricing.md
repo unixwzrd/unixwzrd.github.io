@@ -17,7 +17,9 @@ The Secrets Kit peer-to-peer client is free, with **unlimited connections on the
 
 ## Choose what you need
 
-{% if seckit_release.production_release_ready %}The free client and optional Remote Secrets Sync subscription are available for {{ seckit_version }}.{% else %}These are the launch prices for the {{ seckit_version }} launch. Subscriptions are not open yet; follow [release updates]({{ seckit_updates_url }}) for availability.{% endif %}
+{% if seckit_release.production_release_ready %}The free client and optional Remote Secrets Sync subscription are available for {{ seckit_version }}.{% else %}These are the launch prices for Secrets Kit {{ seckit_version }}. Subscriptions are not open yet; follow [release updates]({{ seckit_updates_url }}) for availability.{% endif %}
+
+{% include secrets-kit/offer-cards.html %}
 
 | | Free peer-to-peer client | Remote Secrets Sync |
 | --- | --- | --- |
@@ -47,12 +49,12 @@ These are base-price examples, not estimates of taxes or mid-cycle adjustments. 
 
 ## How to subscribe
 
-{% if seckit_release.production_release_ready %}Start{% else %}Once {{ seckit_version }} and the service are released, start{% endif %} with [Get Started]({{ '/projects/Secrets-Kit/get-started/' | relative_url }}) and verify the production client. {% if seckit_release.production_release_ready %}The subscription workflow begins with:
+Start with [Get Started]({{ '/projects/Secrets-Kit/get-started/' | relative_url }}) and verify the production client. {% if seckit_release.production_release_ready %}The subscription workflow begins with:
 
 ```bash
 seckit rss checkout
 ```
-{% else %}**Subscription enrollment is not open.** At release, the installed client will provide the checkout workflow; there is no active purchase link or subscription command to run from this page.{% endif %}
+{% else %}**Subscription enrollment is not open.** The installed client provides the checkout workflow; there is no active purchase link or subscription command to run from this page.{% endif %}
 
 The installed product supplies the checkout link. Review it before paying, then follow the enrollment and recovery steps in the {% include secrets-kit/doc-link.html file='RSS_CUSTOMER_GUIDE.md' label='customer guide' %}. There is no separate shopping cart on this website. A successful browser return does not itself establish paid capacity or an enrolled connection.
 
@@ -63,7 +65,7 @@ The installed product supplies the checkout link. Review it before paying, then 
 ```bash
 seckit rss billing portal
 ```
-{% else %}The documented release workflow will open an existing subscription's Stripe-hosted billing portal from the installed client. Production subscriptions and their billing controls are not open yet.{% endif %}
+{% else %}The installed client opens an existing subscription's Stripe-hosted billing portal. Production subscriptions and their billing controls are not open yet.{% endif %}
 
 Use it to review the available billing controls and quantity changes. If you need more capacity, change the quantity on that subscription and wait for verified payment and provisioning before adding another connection.
 

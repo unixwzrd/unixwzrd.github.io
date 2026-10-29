@@ -1,102 +1,51 @@
 {% include secrets-kit/navigation.html %}
 <section class="seckit-hero" aria-labelledby="seckit-promise">
-  <div class="seckit-hero-grid"><div>
-  <p class="home-kicker">Local secrets. Deliberate access. Your machines.</p>
-  <h2 id="seckit-promise">Your credentials, under your control.</h2>
-  <p class="home-lead">Keep API keys and passwords in a local store, give your applications the credentials they need, and synchronize them between authorized machines.</p>
-  <p class="seckit-free-offer"><strong>Free local storage and LAN synchronization.</strong> Optional paid remote connectivity.</p>
-  <div class="home-actions">
-    {% if seckit_release.production_release_ready %}<a class="home-button home-button--primary" href="{{ seckit_start.url | relative_url }}">Get Started</a>{% else %}<a class="home-button home-button--primary" href="{{ seckit_start.url | relative_url }}">Explore {{ seckit_version }}</a><a href="{{ seckit_updates_url }}">Follow release updates</a>{% endif %}
-    {% assign seckit_pricing = seckit_pages | where: 'url', '/projects/Secrets-Kit/pricing/' | first %}
-    {% if seckit_pricing %}<a class="home-button" href="{{ seckit_pricing.url | relative_url }}">See Pricing</a>{% endif %}
-    <a href="{{ seckit_repository_url }}">View on GitHub</a>
+  <div class="seckit-hero-grid">
+  <h2 class="seckit-hero-heading" id="seckit-promise">Your credentials, under your control.</h2>
+  <img class="seckit-hero-art" src="{{ '/assets/images/projects/Secrets-Kit-Banner.png' | relative_url }}" alt="Secrets Kit local credentials and application access">
+  <div class="seckit-hero-intro">
+  <p class="home-lead">Your API keys, tokens, and passwords stay on your devices.</p>
+  <p class="home-lead">Synchronize them between your devices on the same local network for free.</p>
+  <p class="home-lead">Add optional paid remote sync to connect across networks.</p>
   </div>
-  <p>Secrets Kit is for the tools you already use: AI agents, database clients, shell scripts, and scheduled jobs. Start on one machine. Add another when you need it.</p>
-  </div><img class="seckit-hero-art" src="{{ '/assets/images/projects/Secrets-Kit-Banner.png' | relative_url }}" alt="Secrets Kit local credentials and application access"></div>
+  </div>
 </section>
 
-{% assign seckit_security = seckit_pages | where: 'url', '/projects/Secrets-Kit/security/' | first %}
-{% if seckit_security %}
+{% assign seckit_research = seckit_pages | where: 'url', '/projects/Secrets-Kit/credential-risks/' | first %}
+{% if seckit_research %}
 {% assign risk = site.data.secrets_kit_threats %}
-{% assign risk_months = risk.stolen_material.months | where: 'status', 'published' | sort: 'period' %}
-{% assign risk_latest = risk_months | last %}
+{% assign september = risk.stolen_material.months | where: 'period', '2026-09' | first %}
 <section class="seckit-section seckit-risk-callout" aria-labelledby="seckit-risk-heading">
-  <p class="home-kicker">Why credential security matters</p>
   <h2 id="seckit-risk-heading">A small secret can carry a large business risk.</h2>
   <p>An exposed API key, token or password can open a route to paid cloud accounts, customer systems and build pipelines. The response can mean replacing credentials, investigating access and interrupting work.</p>
   <dl class="seckit-risk-metrics">
-    <div><dt>Public-code exposure</dt><dd><strong class="seckit-risk-value">{{ risk.public_code.display | escape }}</strong>new secrets detected on public GitHub in {{ risk.public_code.year }}.<br><a href="{{ risk.sources.gitguardian_report.url | escape }}">GitGuardian’s 2026 report</a></dd></div>
-    <div><dt>Stolen credentials indexed</dt><dd><strong class="seckit-risk-value">{{ risk_latest.distinct_pairs | divided_by: 1000000.0 | round: 1 }} million</strong>distinct username/password pairs in stealer logs indexed in {{ risk_latest.label }}.<br><a href="{{ risk.sources[risk_latest.source].url | escape }}">Breachsense’s monthly findings</a></dd></div>
-    <div><dt>Recovery after an identity breach</dt><dd><strong class="seckit-risk-value">{{ risk.business_impact.identity_breach.median_display | escape }}</strong>median reported recovery cost among {{ risk.business_impact.identity_breach.respondents }} surveyed organizations whose identity breach caused damage.<br><a href="{{ risk.sources.sophos_identity.url | escape }}">Sophos’s {{ risk.business_impact.identity_breach.report_year }} survey</a></dd></div>
+    <div><dt><strong class="seckit-risk-value">{{ risk.public_code.display | escape }}</strong></dt><dd>New secrets detected on public GitHub in {{ risk.public_code.year }}.</dd></div>
+    <div><dt><strong class="seckit-risk-value">{{ september.distinct_pairs | divided_by: 1000000.0 | round: 1 }} million</strong></dt><dd>Distinct username/password pairs indexed in {{ september.label | escape }} stealer logs.</dd></div>
+    <div><dt><strong class="seckit-risk-value">{{ risk.business_impact.identity_breach.median_display | escape }}</strong></dt><dd>Median recovery cost among surveyed organizations whose identity breach caused damage.</dd></div>
   </dl>
-  <p class="seckit-comparison-footnote">Different studies and populations: detections are not confirmed compromises, and recovery costs are not a price per leaked key or a forecast for your business. Research snapshot: {{ risk.snapshot_label | escape }}.</p>
-  <p><a class="home-button" href="{{ seckit_security.url | relative_url }}#credential-risk">Explore the threat reports and business costs →</a></p>
-  <p class="seckit-comparison-footnote">Secrets Kit helps reduce unnecessary credential copies and makes application access deliberate. A receiving application or compromised account can still expose a credential.</p>
+  <p><a class="home-button" href="{{ seckit_research.url | relative_url }}#credential-risk">Read the research →</a></p>
 </section>
 {% endif %}
 
 <section class="seckit-section" aria-labelledby="seckit-use-cases">
-  <h2 id="seckit-use-cases">One store, several everyday uses</h2>
-  <div class="seckit-grid">
-    <article class="seckit-card">
-      <h3>Run your applications</h3>
-      <p>Pass selected credentials to a process with <code>seckit run</code>, reducing the need to copy them into project files, shell commands, and startup scripts.</p>
-      <a href="{{ '/projects/Secrets-Kit/guides/' | relative_url }}" aria-label="Learn more about running applications">Learn more →</a>
-    </article>
-    <article class="seckit-card">
-      <h3>Set up your agent</h3>
-      <p>Let an agent help with installation, then choose which credentials it may use. Hermes has a dedicated integration; other agents can use the general installation route.</p>
-      <a href="{{ '/projects/Secrets-Kit/get-started/#have-your-agent-help' | relative_url }}" aria-label="Learn more about agent-assisted setup">Learn more →</a>
-    </article>
-    <article class="seckit-card">
-      <h3>Connect your machines</h3>
-      <p>Connect unlimited authorized peers on the same local area network (LAN) segment for free. Optional Remote Secrets Sync adds cross-network forwarding with primary and secondary relays.</p>
-      <a href="{{ '/projects/Secrets-Kit/remote-sync/' | relative_url }}" aria-label="Learn more about connecting machines">Learn more →</a>
-    </article>
-  </div>
-</section>
-
-<section class="seckit-section" aria-labelledby="seckit-workflow-heading">
-  <h2 id="seckit-workflow-heading">One credential, from storage to application</h2>
-  <figure class="seckit-workflow" aria-labelledby="seckit-workflow-caption">
-    <figcaption id="seckit-workflow-caption">Workflow preview · fictional credential and application. This is an illustration, not setup instructions.</figcaption>
-    <ol class="seckit-workflow-steps" role="list">
-      <li><h3>Store a credential</h3><p>Keep <code>DEMO_API_TOKEN</code> with the dummy value <code>not-a-real-secret</code> in your local store.</p></li>
-      <li><h3>Choose the application</h3><p>Select that credential for an application called <strong>Demo Reports</strong>.</p></li>
-      <li><h3>Run the application</h3><p>Demo Reports receives the selected value when it runs. The receiving process can access its plaintext.</p></li>
-      <li><h3>Optionally synchronize</h3><p>Authorize a peer and the credential scope it may receive. Synchronize over your LAN, or use optional paid remote connectivity.</p></li>
+  <h2 id="seckit-use-cases">What you can do with Secrets Kit</h2>
+  <div class="seckit-workflow">
+    <ol class="seckit-workflow-steps seckit-workflow-steps--three" role="list">
+      <li><h3>Save your credentials</h3><p>Store API keys, access tokens and passwords in your local secret store.</p><a href="{{ '/projects/Secrets-Kit/guides/' | relative_url }}">Store and use credentials →</a></li>
+      <li><h3>Choose what uses it</h3><p>Select credentials for an application, script or agent such as Hermes.</p><a href="{{ '/projects/Secrets-Kit/get-started/#have-your-agent-help' | relative_url }}">Explore agent setup →</a></li>
+      <li><h3>Use it on your machines</h3><p>Run with the selected credentials. Optionally synchronize with another authorized machine.</p><a href="{{ '/projects/Secrets-Kit/remote-sync/' | relative_url }}">Connect your machines →</a></li>
     </ol>
-  </figure>
-</section>
-
-<section class="seckit-section" aria-labelledby="seckit-how-it-works">
-  <h2 id="seckit-how-it-works">How it fits together</h2>
-  <ul class="seckit-steps">
-    <li><strong>Backend choice:</strong> new stores default to encrypted SQLite; macOS Keychain is also supported. Peer synchronization uses the encrypted SQLite workflow.</li>
-    <li><strong>Peer authorization:</strong> discovering a machine does not grant access. Authorize each peer and its synchronization scope separately from application or optional Model Context Protocol (MCP) access.</li>
-    <li><strong>Relay encryption:</strong> optional Remote Secrets Sync forwards destination-encrypted updates, with primary/secondary failover. Relays do not receive secret plaintext or local storage keys.</li>
-  </ul>
+  </div>
 </section>
 
 <section class="seckit-section" aria-labelledby="seckit-offer">
   <h2 id="seckit-offer">Start free. Add remote connectivity when you need it.</h2>
-  <div class="seckit-grid seckit-grid--two">
-    <article class="seckit-card">
-      <h3>The free peer-to-peer client</h3>
-      <p class="seckit-price">$0</p>
-      <p><strong>Unlimited connections on the same LAN segment.</strong> Includes local storage, selected application injection, optional scoped agent interfaces, and encrypted peer-to-peer synchronization. No hosted subscription is required.</p>
-    </article>
-    <article class="seckit-card">
-      <h3>Remote Secrets Sync</h3>
-      <p class="seckit-price">Starts at $10/month <span>for two enrolled connections</span> <span>$5 per enrolled connection / month</span></p>
-      <p>{% unless seckit_release.production_release_ready %}Launch pricing. {% endunless %}Includes primary/secondary relay forwarding. An enrolled connection belongs to a registered Secrets Kit identity for an operating-system user; it is not a separate charge for every agent.</p>
-    </article>
-  </div>
+  {% include secrets-kit/offer-cards.html %}
 </section>
 
 <section class="seckit-section" aria-labelledby="seckit-next">
   <h2 id="seckit-next">Take the next step</h2>
   <p>Use <a href="{{ '/projects/Secrets-Kit/get-started/' | relative_url }}">Get Started</a> for {% if seckit_release.production_release_ready %}installation{% else %}setup previews and release status{% endif %}, <a href="{{ '/projects/Secrets-Kit/guides/' | relative_url }}">Guides</a> for everyday tasks, <a href="{{ '/projects/Secrets-Kit/compare/' | relative_url }}">Compare</a> for alternatives, and <a href="{{ '/projects/Secrets-Kit/security/' | relative_url }}">Security &amp; Privacy</a> for the trust boundaries.</p>
-  <p>Credentials passed into an application can still be exposed by that application or a compromised account. Secrets Kit helps you manage access deliberately; it does not make the receiving process trustworthy.</p>
+  <p><strong>Keep in mind:</strong> an application receiving a credential can still expose it. Read the <a href="{{ '/projects/Secrets-Kit/security/' | relative_url }}">security and access boundaries</a>.</p>
   <p>Need a hand with setup or migration? <a href="{{ '/collaborate/professionals/' | relative_url }}">Ask about setup assistance</a>.</p>
 </section>

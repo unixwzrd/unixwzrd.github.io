@@ -118,16 +118,34 @@
   }
 }
 
-// Secrets Kit product pages; dormant while the section is unpublished.
+// Secrets Kit product pages.
 .seckit-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem 1.2rem;
-  margin: 0 0 1.5rem;
-  padding: 1rem 0;
-  border-bottom: 1px solid $border-color;
+  margin: 0 0 0.75rem;
+  padding: 0.3rem;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  background: var(--site-surface);
+  font-size: max(17px, 1.0625rem);
 
-  [aria-current="page"] { font-weight: 700; text-decoration: underline; }
+  summary { cursor: pointer; padding: 0.6rem 0.8rem; min-height: 44px; box-sizing: border-box; list-style-position: inside; }
+  a { display: flex; align-items: center; padding: 0.6rem 0.8rem; min-height: 44px; box-sizing: border-box; border-radius: 5px; }
+  a:hover, summary:hover { background: var(--site-surface-raised); }
+  [aria-current] { font-weight: 700; text-decoration: underline; background: var(--site-surface-raised); }
+  a:focus-visible, summary:focus-visible { outline: 2px solid $link-base-color; outline-offset: 2px; }
+}
+.seckit-nav-pages > summary { font-weight: 600; }
+.seckit-nav-links { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem; }
+.seckit-nav--wide .seckit-nav-pages > summary { display: none; }
+.seckit-nav-more { position: relative; }
+.seckit-nav .seckit-nav-action { margin-left: auto; background: $link-base-color; color: $background-color; font-weight: 600; }
+.seckit-nav .seckit-nav-action:hover, .seckit-nav .seckit-nav-action[aria-current] { background: $link-hover-color; color: $background-color; }
+.seckit-nav-more:has([aria-current]) > summary { font-weight: 700; background: var(--site-surface-raised); border-radius: 5px; }
+.seckit-nav-menu { position: absolute; right: 0; top: calc(100% + 0.3rem); min-width: 12rem; padding: 0.3rem; z-index: 20; border: 1px solid $border-color; border-radius: 8px; background: $background-color; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); }
+@media screen and (max-width: 49.999rem) {
+  .seckit-nav-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); padding-top: 0.25rem; }
+  .seckit-nav-more { grid-column: 1 / -1; }
+  .seckit-nav .seckit-nav-action { grid-column: 1 / -1; margin-left: 0; justify-content: center; }
+  .seckit-nav-menu { position: static; min-width: 0; box-shadow: none; }
 }
 
 .seckit-notice {
@@ -140,23 +158,32 @@
 }
 
 .seckit-hero {
-  padding: 1rem 0 2rem;
+  padding: 1rem 0;
 
   h2 { font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.15; }
 }
 
 .seckit-section { margin: 2rem 0; }
-.seckit-risk-callout { padding: 1.25rem; border: 1px solid $border-color; border-left: 4px solid $link-base-color; border-radius: 8px; background: var(--site-surface); }
-.seckit-risk-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; margin: 1.25rem 0; }
+.seckit-risk-callout { padding: 1rem; margin-top: 1rem; border: 1px solid $border-color; border-left: 4px solid $link-base-color; border-radius: 8px; background: var(--site-surface); }
+.seckit-risk-callout h2 { margin: 0 0 0.75rem; font-size: 2rem; line-height: 1.2; }
+.seckit-risk-callout > p:last-child { margin-bottom: 0; }
+.seckit-risk-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin: 0.75rem 0; }
 .seckit-risk-metrics dt { font-weight: 600; }
-.seckit-risk-metrics dd { margin: 0.35rem 0 0; font-size: 0.9rem; }
-.seckit-risk-value { display: block; font-size: 1.8rem; line-height: 1.2; margin-bottom: 0.5rem; }
-@media screen and (max-width: 600px) {
-  .seckit-risk-metrics { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
-  .seckit-risk-callout { padding: 1rem; }
+.seckit-risk-metrics dd { margin: 0.35rem 0 0; font-size: 0.875rem; line-height: 1.4; }
+.seckit-risk-value { display: block; font-size: clamp(1.25rem, 5vw, 1.75rem); line-height: 1.2; }
+@media screen and (max-width: 40rem) {
+  .seckit-risk-metrics { grid-template-columns: minmax(0, 1fr); gap: 0.75rem; }
+  .seckit-risk-metrics dd { margin-top: 0.2rem; }
+  .seckit-risk-value { font-size: 1.25rem; }
 }
-.seckit-hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 1.5rem; align-items: center; }
-.seckit-hero-art { width: 100%; height: auto; border-radius: 12px; }
+.seckit-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "heading" "artwork" "intro"; gap: 1rem; justify-items: center; text-align: center; }
+.seckit-hero-heading { grid-area: heading; }
+.seckit-hero-intro { grid-area: intro; min-width: 0; width: 100%; }
+.seckit-hero-art { grid-area: artwork; }
+.seckit-source { font-size: 0.95rem; }
+// Crop the unused lower edge while preserving the artwork at its full width.
+.seckit-hero-art { width: 100%; max-width: 100%; height: auto; aspect-ratio: 7 / 4; object-fit: cover; object-position: center top; border-radius: 12px; }
+.seckit-offer-cards + table { margin-top: 1.5rem; }
 .seckit-support { margin: 2.5rem 0; padding-top: 1.5rem; border-top: 1px solid $border-color; }
 .seckit-support .seckit-comparison-footnote { margin-top: 1rem; }
 .seckit-grid {
@@ -391,28 +418,24 @@
   .seckit-product-page { box-sizing: border-box; padding-inline: 1rem; }
   .seckit-competitor dl { grid-template-columns: minmax(0, 1fr); gap: 0.4rem; }
   .seckit-competitor dd { margin-bottom: 0.65rem; }
-  .seckit-hero-grid { grid-template-columns: minmax(0, 1fr); }
   .seckit-grid, .seckit-grid--two { grid-template-columns: minmax(0, 1fr); }
 }
 
 
-// Compact only the Secrets Kit product shell; preserve the rest of the site.
-.seckit-page {
-  .site-title { font-size: 1.65rem; line-height: 2.4rem; }
-  .brand-graphic { width: 2.25rem; }
-  > main.page-content { padding-top: 0.5rem; }
-}
+// Compact the product content only; the shared site header keeps its site-wide styles.
+.seckit-page > main.page-content { padding-top: 0.5rem; }
 .seckit-product-page {
   .breadcrumbs { margin-bottom: 0.4rem; padding-block: 0.25rem; }
   .page-header { margin-bottom: 0.5rem; }
   .page-title { margin: 0.35rem 0 0.5rem; line-height: 1.2; }
-  .seckit-nav { gap: 0.3rem 0.9rem; padding: 0.35rem 0; margin-bottom: 0.65rem; font-size: 0.9rem; }
+  .seckit-nav { margin-bottom: 0.65rem; }
   .seckit-notice { padding: 0.5rem 0.75rem; margin-bottom: 0.8rem; font-size: 0.9rem; }
   .seckit-notice p { margin-top: 0.2rem; }
   .seckit-hero { padding-top: 0.35rem; }
   .seckit-hero h2 { margin: 0.2rem 0 0.65rem; }
-  .seckit-hero .home-lead { font-size: 1.15rem; }
-  .seckit-hero .home-actions { margin: 0.85rem 0 1rem; }
+  .seckit-hero .home-lead { max-width: 100%; margin: 0.6rem auto 0.5rem; font-size: 1.15rem; }
+  .seckit-hero-intro > .home-lead:first-child { margin-top: 0; }
+  .seckit-hero .home-actions { margin: 0.25rem 0 0.5rem; justify-content: center; }
   .seckit-compare-intro { margin-top: 0.8rem; }
   .seckit-compare-intro h2 { margin-top: 0.35rem; }
   .seckit-jumps { display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; margin: 0.75rem 0 1rem; font-size: 0.9rem; }
@@ -423,20 +446,12 @@
 .seckit-forthcoming { color: var(--minima-brand-color); font-style: italic; }
 .seckit-history-note { padding: 0.75rem; border-left: 3px solid $border-color; font-size: 0.9rem; }
 @media screen and (max-width: $on-palm) {
-  .seckit-page .site-header { min-height: 3rem; }
-  .seckit-page .site-nav .nav-trigger { display: block; position: absolute; width: 1px; height: 1px; opacity: 0; }
-  .seckit-page .site-nav .nav-trigger:focus-visible + label { outline: 2px solid $link-base-color; outline-offset: 3px; }
-  .seckit-page .site-title { font-size: 1.1rem; line-height: 1.3; margin-block: 0.3rem; }
-  .seckit-page .site-title:nth-of-type(2) { max-width: calc(100% - 110px); }
-  .seckit-page .brand-graphic { width: 2rem; }
-  .seckit-product-page .seckit-nav { font-size: 0.85rem; gap: 0.25rem 0.8rem; }
   .seckit-product-page .seckit-hero .home-actions { gap: 0.6rem; }
   .seckit-product-page .seckit-hero h2 { font-size: 1.85rem; }
 }
 
 .seckit-free-offer { margin: 0.75rem 0; }
 .seckit-workflow { margin: 0; }
-.seckit-workflow figcaption { font-size: 0.9rem; color: var(--minima-brand-color); }
 .seckit-workflow-steps {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -452,6 +467,7 @@
   code { overflow-wrap: anywhere; }
   p { margin: 0.65rem 0 0; font-size: 0.9rem; }
 }
+.seckit-workflow-steps--three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .seckit-product-page .seckit-workflow-steps h3 { margin: 0; font-size: 1.05rem; line-height: 1.3; }
 .seckit-support--compact { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin: 1.5rem 0; padding-top: 1rem; font-size: 0.9rem; }
 @media screen and (max-width: $on-palm) {
@@ -459,8 +475,8 @@
   .seckit-workflow-steps li:not(:last-child)::after { content: "↓"; right: auto; left: calc(50% - 0.4rem); top: auto; bottom: -1.45rem; }
 }
 
-.seckit-product-page section[aria-labelledby="seckit-use-cases"] .seckit-card { display: flex; flex-direction: column; }
-.seckit-product-page section[aria-labelledby="seckit-use-cases"] .seckit-card > a { margin-top: auto; }
+.seckit-product-page section[aria-labelledby="seckit-use-cases"] li { display: flex; flex-direction: column; }
+.seckit-product-page section[aria-labelledby="seckit-use-cases"] li > a { margin-top: auto; padding-top: 0.75rem; font-size: 0.9rem; }
 
 .seckit-threat-context { margin: 1.5rem 0 2.5rem; padding-bottom: 1rem; border-bottom: 1px solid $border-color; }
 .seckit-threat-context .seckit-card { display: flex; flex-direction: column; }

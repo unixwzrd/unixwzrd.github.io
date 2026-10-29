@@ -1,0 +1,13 @@
+<div class="seckit-grid seckit-grid--two seckit-offer-cards">
+    <article class="seckit-card">
+      <h3>The free peer-to-peer client</h3>
+      <p class="seckit-source">Free, open-source client. <a href="{{ seckit_repository_url }}">View the source on GitHub</a>.</p>
+      <p class="seckit-price">$0</p>
+      <p><strong>Unlimited connections on the same LAN segment.</strong> Store credentials locally, use them with applications and agents, and synchronize between your machines. No hosted subscription is required.</p>
+    </article>
+    <article class="seckit-card">
+      <h3>Remote Secrets Sync</h3>
+      <p class="seckit-price">Starts at $10/month <span>for two enrolled connections</span> <span>$5 per enrolled connection / month</span></p>
+      <p>{% unless seckit_release.production_release_ready %}Launch pricing. {% endunless %}Connect your authorized machines across networks when they cannot communicate directly. <a href="{{ '/projects/Secrets-Kit/pricing/#what-is-an-enrolled-connection' | relative_url }}">See pricing and what counts as a connection</a>.</p>
+    </article>
+  </div>

@@ -2,12 +2,43 @@
 {% assign seckit_pages = site.pages | where: 'secrets_kit_product', true | sort: 'product_nav_order' %}
 {% assign seckit_start = seckit_pages | where: 'url', '/projects/Secrets-Kit/get-started/' | first %}
 <nav class="seckit-nav" aria-label="Secrets Kit product">
-  <a href="{{ '/projects/Secrets-Kit/' | relative_url }}"{% if page.url == '/projects/Secrets-Kit/' %} aria-current="page"{% endif %}>Secrets Kit overview</a>
-  {% for product_page in seckit_pages %}
-  <a href="{{ product_page.url | relative_url }}"{% if page.url == product_page.url %} aria-current="page"{% endif %}>{{ product_page.nav_title | escape }}</a>
-  {% endfor %}
-  {% if seckit_start %}<a href="{{ '/projects/Secrets-Kit/#updates' | relative_url }}">Blog & Updates</a>{% endif %}
+  <details class="seckit-nav-pages">
+    <summary>Secrets Kit pages</summary>
+    <div class="seckit-nav-links">
+      <a href="{{ '/projects/Secrets-Kit/' | relative_url }}"{% if page.url == '/projects/Secrets-Kit/' %} aria-current="page"{% endif %}>Overview</a>
+      {% assign seckit_primary = 'compare,pricing,guides,security' | split: ',' %}
+      {% for slug in seckit_primary %}
+        {% assign destination = '/projects/Secrets-Kit/' | append: slug | append: '/' %}
+        {% assign product_page = seckit_pages | where: 'url', destination | first %}
+        {% if product_page %}
+          {% assign nav_label = product_page.nav_title %}
+          {% if slug == 'security' %}{% assign nav_label = 'Security' %}{% endif %}
+          {% if slug == 'support' %}{% assign nav_label = 'Help' %}{% endif %}
+          <a href="{{ product_page.url | relative_url }}"{% if page.url == product_page.url %} aria-current="page"{% elsif slug == 'security' and page.url == '/projects/Secrets-Kit/credential-risks/' %} aria-current="location"{% endif %}>{{ nav_label | escape }}</a>
+        {% endif %}
+      {% endfor %}
+      {% if seckit_start %}<a href="{{ seckit_repository_url }}">GitHub</a>{% endif %}
+      {% assign seckit_more = 'support,remote-sync' | split: ',' %}
+      {% capture seckit_more_links %}
+        {% for slug in seckit_more %}
+          {% assign destination = '/projects/Secrets-Kit/' | append: slug | append: '/' %}
+          {% assign product_page = seckit_pages | where: 'url', destination | first %}
+          {% if product_page %}<a href="{{ product_page.url | relative_url }}"{% if page.url == product_page.url %} aria-current="page"{% endif %}>{% if slug == 'support' %}Help{% else %}{{ product_page.nav_title | escape }}{% endif %}</a>{% endif %}
+        {% endfor %}
+        {% if seckit_start %}<a href="{{ '/projects/Secrets-Kit/#updates' | relative_url }}">Updates</a>{% endif %}
+      {% endcapture %}
+      {% assign seckit_more_links = seckit_more_links | strip %}
+      {% unless seckit_more_links == empty %}
+      <details class="seckit-nav-more">
+        <summary>More</summary>
+        <div class="seckit-nav-menu">{{ seckit_more_links }}</div>
+      </details>
+      {% endunless %}
+      {% if seckit_start %}<a class="home-button home-button--primary seckit-nav-action" href="{{ seckit_start.url | relative_url }}"{% if page.url == seckit_start.url %} aria-current="page"{% endif %}>{% if seckit_release.production_release_ready %}Get Started{% else %}Explore {{ seckit_version | escape }}{% endif %}</a>{% endif %}
+    </div>
+  </details>
 </nav>
+<script src="{{ '/assets/js/secrets-kit-navigation.js' | relative_url }}" defer></script>
 {% if seckit_start %}
 {% if seckit_release.production_release_ready != true %}
 <aside class="seckit-notice" aria-label="Product availability">

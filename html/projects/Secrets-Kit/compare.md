@@ -17,8 +17,16 @@ excerpt: "Compare local workflows, hosted connectivity, pricing units, and the t
   <p class="home-kicker">Find the right fit</p>
   <h2 id="seckit-compare-title">Your workflow. Your priorities.</h2>
   <p>Start with the features you need. Secrets Kit keeps credentials on your own machines, with unlimited peer-to-peer connections on the same LAN segment. Add hosted forwarding when you need it, or compare the team features of a centralized secrets manager.</p>
-  <p><strong>A good fit:</strong> Secrets Kit is aimed at local application and agent workflows, unlimited peers on one LAN segment, and optional hosted connectivity. If you need centralized organization administration, managed secret rotation, or cloud-native policy controls, compare those capabilities and their plan requirements carefully.</p>
-  <nav class="seckit-jumps" aria-label="Comparison sections"><a href="#seckit-matrix-title">Hosted services &amp; pricing</a><a href="#seckit-local-comparison">Local alternatives</a><a href="#seckit-workflow-fit">Which approach fits?</a><a href="#seckit-custody-heading">Key custody &amp; outages</a><a href="#seckit-landscape-heading">Search all products</a><a href="#comparison-sources">Sources &amp; qualifications</a></nav>
+  <nav class="seckit-jumps" aria-label="Comparison sections"><a href="#seckit-quick-fit">Quick fit</a><a href="#seckit-matrix-title">Hosted services &amp; pricing</a><a href="#seckit-local-comparison">Local alternatives</a><a href="#seckit-workflow-fit">Which approach fits?</a><a href="#seckit-custody-heading">Key custody &amp; outages</a><a href="#seckit-landscape-heading">Search all products</a><a href="#comparison-sources">Sources &amp; qualifications</a></nav>
+</section>
+
+<section class="seckit-section" aria-labelledby="seckit-quick-fit">
+  <h2 id="seckit-quick-fit">Which option fits?</h2>
+  <div class="seckit-grid">
+    <div class="seckit-card"><h3>Local applications and agents</h3><p>Start with Secrets Kit when you want credentials on your own machines and free LAN synchronization. Add remote connectivity if you need it.</p><a href="{{ '/projects/Secrets-Kit/get-started/' | relative_url }}">Explore Secrets Kit →</a></div>
+    <div class="seckit-card"><h3>Shared team administration</h3><p>Compare Bitwarden, Doppler and Infisical when centralized access controls and team workflows drive your decision. Features and allowances depend on the plan.</p><a href="#seckit-matrix-title">Compare hosted services →</a></div>
+    <div class="seckit-card"><h3>Applications already in AWS</h3><p>Include AWS Secrets Manager when AWS identity and service integration fit your deployment. Estimate stored-secret and API usage costs together.</p><a href="#seckit-workflow-fit">Read the workflow guidance →</a></div>
+  </div>
 </section>
 
 <div class="seckit-matrix-heading">
@@ -129,7 +137,7 @@ excerpt: "Compare local workflows, hosted connectivity, pricing units, and the t
     <tr class="seckit-matrix-group"><th colspan="6" scope="rowgroup"><span>Team features &amp; automation</span></th></tr>
     <tr>
       <th scope="row">Organization administration</th>
-      <td class="seckit-featured"><span class="seckit-cross" role="img" aria-label="Not included">×</span><small>Local peer &amp; agent policies</small></td>
+      <td class="seckit-featured"><span class="seckit-cross" role="img" aria-label="Not included">×</span><sup><a href="#seckit-future-enhancements" aria-label="Future enhancement, not included in Secrets Kit {{ seckit_version }}">1</a></sup><small>Local peer &amp; agent policies</small></td>
       <td><span class="seckit-check" role="img" aria-label="Included on Teams and Enterprise">✓</span><small>Teams / Enterprise</small></td>
       <td><span class="seckit-check" role="img" aria-label="Included on Team">✓</span><small>Team access controls</small></td>
       <td><span class="seckit-check" role="img" aria-label="Included on Pro">✓</span><small>Pro access controls</small></td>
@@ -137,7 +145,7 @@ excerpt: "Compare local workflows, hosted connectivity, pricing units, and the t
     </tr>
     <tr>
       <th scope="row">Organization audit logs</th>
-      <td class="seckit-featured"><span class="seckit-cross" role="img" aria-label="Not included">×</span><small>Local transaction history is separate</small></td>
+      <td class="seckit-featured"><span class="seckit-cross" role="img" aria-label="Not included">×</span><sup><a href="#seckit-future-enhancements" aria-label="Future enhancement, not included in Secrets Kit {{ seckit_version }}">1</a></sup><small>Local transaction history is separate</small></td>
       <td><span class="seckit-check" role="img" aria-label="Included on Teams and Enterprise">✓</span><small>Teams / Enterprise</small></td>
       <td><span class="seckit-check" role="img" aria-label="Included">✓</span><small>3 days Developer<br>90 days Team</small></td>
       <td><span class="seckit-check" role="img" aria-label="Included on Pro">✓</span><small>30 days on Pro</small></td>
@@ -145,7 +153,7 @@ excerpt: "Compare local workflows, hosted connectivity, pricing units, and the t
     </tr>
     <tr>
       <th scope="row">Automatic secret rotation</th>
-      <td class="seckit-featured"><span class="seckit-cross" role="img" aria-label="Not included">×</span></td>
+      <td class="seckit-featured"><span class="seckit-cross" role="img" aria-label="Not included">×</span><sup><a href="#seckit-future-enhancements" aria-label="Future enhancement, not included in Secrets Kit {{ seckit_version }}">1</a></sup></td>
       <td><span class="seckit-unlisted" role="img" aria-label="Not listed in reviewed documentation">—</span></td>
       <td><span class="seckit-check" role="img" aria-label="Included on Team">✓</span><small>Team</small></td>
       <td><span class="seckit-check" role="img" aria-label="Included on Pro">✓</span><small>Pro</small></td>
@@ -154,6 +162,8 @@ excerpt: "Compare local workflows, hosted connectivity, pricing units, and the t
   </tbody>
 </table>
 </div>
+
+<p class="seckit-comparison-footnote" id="seckit-future-enhancements"><sup>1</sup> Organization administration, organization audit logs and automatic secret rotation: <strong>Planned enhancements, not included in Secrets Kit {{ seckit_version }}.</strong> Scope and release timing may change.</p>
 
 <p class="seckit-comparison-footnote">Plan names qualify the checkmarks. A dash means the feature was not listed in the documentation reviewed, not that it is impossible to build. Hosted access, local caches, and native peer synchronization are different capabilities. Plan limits and annual billing requirements apply; taxes and related service charges may be additional.</p>
 

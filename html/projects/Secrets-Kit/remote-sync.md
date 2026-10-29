@@ -37,7 +37,7 @@ Your local store and local credential use remain available when hosted forwardin
 
 ## Enrollment follows installation
 
-{% if seckit_release.production_release_ready %}Install{% else %}When version {{ seckit_version }} and the hosted service are released, install{% endif %} the production client and verify the local workflow. {% if seckit_release.production_release_ready %}Enrollment begins from the installed product:
+The subscription workflow starts with an installed production client and a verified local workflow. {% if seckit_release.production_release_ready %}Enrollment begins from the installed product:
 
 ```bash
 seckit rss checkout

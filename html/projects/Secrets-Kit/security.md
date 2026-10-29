@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Secrets Kit security and privacy"
+title: "How Secrets Kit protects your credentials"
 permalink: /projects/Secrets-Kit/security/
 published: true
 secrets_kit_product: true
@@ -13,11 +13,9 @@ excerpt: "Understand local storage, application access, encrypted synchronizatio
 
 {% include secrets-kit/navigation.html %}
 
-Secrets Kit helps you keep credentials in a deliberate local workflow. Understanding where plaintext becomes available is more useful than a blanket promise that a key can never leak.
+See how Secrets Kit stores credentials, controls application and peer access, encrypts synchronization, and supports recovery. The protection has limits: an application receiving a credential can expose it, and a compromised user account remains a risk.
 
-<nav class="seckit-jumps" aria-label="Security sections"><a href="#credential-risk">The threat in numbers</a><a href="#business-impact">Business impact</a><a href="#recent-credential-reports">Monthly findings</a><a href="#agentic-credential-risk">Agentic attacks</a><a href="#where-are-my-credentials-stored">Storage &amp; application access</a><a href="#what-does-remote-secrets-sync-see">RSS visibility</a></nav>
-
-{% include secrets-kit/threat-context.html %}
+<nav class="seckit-jumps" aria-label="Security sections"><a href="#where-are-my-credentials-stored">Storage</a><a href="#can-an-application-or-agent-see-a-secret">Applications &amp; agents</a><a href="#what-can-another-machine-receive">Peer access</a><a href="#what-does-remote-secrets-sync-see">Remote sync</a><a href="#what-do-i-need-to-preserve-for-recovery">Recovery</a><a href="{{ '/projects/Secrets-Kit/credential-risks/' | relative_url }}">Credential risks &amp; research</a></nav>
 
 ## Where are my credentials stored?
 
@@ -68,3 +66,11 @@ Hosted forwarding stops when the service entitlement becomes inactive. The free 
 Share the installed version, operating system, command, and sanitized error. Do not share secret values, raw environment dumps, credential files, private keys, recovery codes, or unredacted exports. Use disposable data when demonstrating a problem.
 
 Use [Help & Support]({{ '/projects/Secrets-Kit/support/' | relative_url }}) for troubleshooting references. A successful installation check verifies installation; assess access and recovery separately for your workload.
+
+## Credential risks and research
+
+<p id="credential-risk">For the evidence behind credential security, read <a href="{{ '/projects/Secrets-Kit/credential-risks/#credential-risk' | relative_url }}">Credential risks and research</a>. It brings together exposure figures, growth charts, documented attacks and the scope of each source.</p>
+
+- <span id="business-impact">[Business costs and recovery benchmarks]({{ '/projects/Secrets-Kit/credential-risks/#business-impact' | relative_url }})</span>
+- <span id="recent-credential-reports">[Monthly credential findings]({{ '/projects/Secrets-Kit/credential-risks/#recent-credential-reports' | relative_url }})</span>
+- <span id="agentic-credential-risk">[The documented agentic attack case]({{ '/projects/Secrets-Kit/credential-risks/#agentic-credential-risk' | relative_url }})</span>

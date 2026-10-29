@@ -14,7 +14,8 @@ require "fileutils"
 class SecretsKitProductTest < Minitest::Test
   ROOT = File.expand_path("..", __dir__)
   PREFIX = "/projects/Secrets-Kit/"
-  SLUGS = %w[get-started guides remote-sync pricing compare security support policies].freeze
+  SLUGS = %w[get-started guides remote-sync pricing compare security credential-risks support policies].freeze
+  NAV_SLUGS = %w[compare pricing guides security support remote-sync get-started].freeze
   TEMP = Dir.mktmpdir("seckit-product-tests-")
   Minitest.after_run { FileUtils.remove_entry(TEMP) }
 
@@ -75,9 +76,16 @@ class SecretsKitProductTest < Minitest::Test
   def test_navigation_only_links_loaded_destinations_in_editorial_order
     pages = PREVIEW.pages.select { |page| page.data["secrets_kit_product"] }.map { |page| page.to_liquid.to_h.merge("published" => false) }
     doc = navigation(pages, { "url" => "#{PREFIX}pricing/" })
-    assert_equal [PREFIX] + SLUGS.map { |slug| "#{PREFIX}#{slug}/" } + ["#{PREFIX}#updates"], doc.css("nav a").map { |link| link["href"] }
+    assert_equal [PREFIX] + %w[compare pricing guides security].map { |slug| "#{PREFIX}#{slug}/" } + [PRODUCTION.data.fetch("secrets_kit").fetch("repository_url")] + %w[support remote-sync].map { |slug| "#{PREFIX}#{slug}/" } + ["#{PREFIX}#updates", "#{PREFIX}get-started/"], doc.css("nav a").map { |link| link["href"] }
     assert_equal ["Pricing"], doc.css('[aria-current="page"]').map(&:text)
+    assert_equal ["Overview", "Compare", "Pricing", "Guides", "Security", "GitHub", "Explore 2.0.2"], doc.css('.seckit-nav-links > a').map(&:text)
+    assert_equal ["Help", "Remote Sync", "Updates"], doc.css('.seckit-nav-menu a').map(&:text)
+    assert_equal "Secrets Kit pages", doc.at_css('.seckit-nav-pages > summary').text
+    assert_nil doc.at_css('.seckit-nav-pages')["open"], "Native disclosure remains usable before JavaScript"
+    assert_equal ["Security"], navigation(pages, { "url" => "#{PREFIX}credential-risks/" }).css('[aria-current="location"]').map(&:text)
+    assert_empty doc.css('a[href$="/policies/"]'), "Policies belong in the footer"
     assert_includes doc.text, "coming soon"
+    assert_equal "#{PREFIX}#updates", doc.at_css('.seckit-notice a')["href"]
 
     partial = navigation(pages.reject { |page| page["url"] == "#{PREFIX}compare/" })
     assert_empty partial.css('a[href$="/compare/"]')
@@ -100,7 +108,7 @@ class SecretsKitProductTest < Minitest::Test
       source = File.read(File.join(ROOT, "html/projects/Secrets-Kit/#{slug}.md")).split(/^---\s*$\n?/, 3).last
       html = render(source, pages: pages, release: release)
       links = html.scan(%r{https://github\.com/unixwzrd/Secrets-Kit/(?:blob|tree|releases/tag)/[^\s<>"\)]+})
-      assert_operator links.length, :>, 0, slug unless %w[compare support].include?(slug)
+      assert_operator links.length, :>, 0, slug unless %w[compare support credential-risks].include?(slug)
       links.each { |url| assert_includes url, "/v9.8.7", "#{slug}: #{url}" }
       refute_match(/v2\.0\.1b\d+|releases\/latest/, html, slug)
     end
@@ -151,13 +159,32 @@ class SecretsKitProductTest < Minitest::Test
     hub = Nokogiri::HTML.fragment(preview)
     callout = hub.at_css('.seckit-risk-callout')
     assert callout
-    assert_equal "#{PREFIX}security/#credential-risk", callout.at_css('a.home-button')['href']
+    assert_equal "#{PREFIX}credential-risks/#credential-risk", callout.at_css('a')['href']
     research = PRODUCTION.data.fetch("secrets_kit_threats")
-    latest = research.fetch("stolen_material").fetch("months").select { |month| month["status"] == "published" }.max_by { |month| month.fetch("period") }
     assert_includes callout.text, research.fetch("public_code").fetch("display")
-    assert_includes callout.text, latest.fetch("label")
+    assert_includes callout.text, research.fetch("public_code").fetch("year").to_s
     assert_includes callout.text, research.fetch("business_impact").fetch("identity_breach").fetch("median_display")
-    refute Nokogiri::HTML.fragment(render(template, pages: pages.reject { |page| page["url"] == "#{PREFIX}security/" }, page: root)).at_css('.seckit-risk-callout'), "Only advertise an available security page"
+    september = research.fetch("stolen_material").fetch("months").find { |month| month.fetch("period") == "2026-09" }
+    assert_includes callout.text, "#{(september.fetch('distinct_pairs') / 1_000_000.0).round(1)} million"
+    assert_includes callout.text, "Distinct username/password pairs indexed in #{september.fetch('label')} stealer logs."
+    assert_equal "A small secret can carry a large business risk.", callout.at_css('h2').text
+    assert_equal 3, callout.css('dt').length
+    assert_equal ["Read the research →"], callout.css('a').map(&:text)
+    assert callout.at_css('a.home-button'), "Research is a button styled link"
+    assert_empty callout.css('.seckit-comparison-footnote')
+
+    refute Nokogiri::HTML.fragment(render(template, pages: pages.reject { |page| page["url"] == "#{PREFIX}credential-risks/" }, page: root)).at_css('.seckit-risk-callout'), "Only advertise an available research page"
+    assert_equal %w[seckit-promise seckit-risk-heading seckit-use-cases seckit-offer seckit-next], hub.css('.seckit-product > section').map { |section| section["aria-labelledby"] }
+    hero = hub.at_css('.seckit-hero')
+    assert_empty hero.css('a, button'), "Explore belongs in the navigation, not the hero"
+    assert_empty hero.css('.seckit-source')
+    source = hub.at_css('.seckit-offer-cards .seckit-card:first-child .seckit-source')
+    assert_includes source.text, "Free, open-source client."
+    assert_equal PRODUCTION.data.fetch("secrets_kit").fetch("repository_url"), source.at_css('a')["href"]
+    assert_equal %w[seckit-hero-heading seckit-hero-art seckit-hero-intro], hero.at_css('.seckit-hero-grid').element_children.map { |node| node["class"] }
+    assert_equal 3, hub.css('.seckit-workflow-steps li').length
+    assert_empty hub.css('.seckit-workflow figcaption, .seckit-workflow code')
+    assert_empty hub.css('#seckit-how-it-works')
     assert_equal "Blog & Updates", Nokogiri::HTML.fragment(preview).at_css("#updates h2").text
   end
 
@@ -178,6 +205,11 @@ class SecretsKitProductTest < Minitest::Test
         assert row.at_css("td:first-of-type.seckit-featured")
       end
     end
+    future = matrix.css('td a[href="#seckit-future-enhancements"]')
+    assert_equal ["Organization administration", "Organization audit logs", "Automatic secret rotation"], future.map { |link| link.ancestors("tr").first.at_css('th[scope="row"]').text }
+    future.each { |link| assert link.ancestors("td").first.at_css('.seckit-cross[aria-label="Not included"]') }
+    assert_includes doc.at_css('#seckit-future-enhancements').text, "Planned enhancements, not included in Secrets Kit 2.0.2."
+    assert_includes doc.at_css('#seckit-future-enhancements').text, "Scope and release timing may change."
     assert matrix.at_css("caption")
     assert doc.at_css('.seckit-matrix-frame[tabindex="0"][aria-describedby]')
     matrix.css('[role="img"]').each { |mark| refute_empty mark["aria-label"] }
@@ -279,6 +311,7 @@ class SecretsKitProductTest < Minitest::Test
         unless PRODUCTION.data.fetch("secrets_kit")["production_release_ready"]
           doc = document(directory, "#{PREFIX}get-started/")
           assert_includes doc.text, "coming soon"
+    assert_equal "#{PREFIX}#updates", doc.at_css('.seckit-notice a')["href"]
           assert_empty doc.css("textarea, button[data-seckit-copy]")
           SLUGS.each do |slug|
             page = document(directory, "#{PREFIX}#{slug}/")
@@ -311,11 +344,21 @@ class SecretsKitProductTest < Minitest::Test
         route = "#{PREFIX}#{slug}/"
         doc = document(directory, route)
         assert_equal 1, doc.css("h1").length, route
-        assert_equal SLUGS.length + 2, doc.css(".seckit-nav a").length, route
-        assert_equal 1, doc.css('.seckit-nav [aria-current="page"]').length, route
+        assert_equal NAV_SLUGS.length + 3, doc.css(".seckit-nav a").length, route
+        expected_current = slug == "policies" ? 0 : 1
+        assert_equal expected_current, doc.css('.seckit-nav [aria-current]').length, route
         assert doc.at_css(".seckit-nav a[href='#{PREFIX}']"), route
-        assert overview.at_css(".seckit-nav a[href='#{route}']"), route
+        assert overview.at_css("a[href='#{route}'], a[href^='#{route}#']"), route
       end
+      security = document(directory, "#{PREFIX}security/")
+      research = document(directory, "#{PREFIX}credential-risks/")
+      assert_empty security.css('.seckit-threat-context'), "Practical security answers must lead"
+      assert research.at_css('.seckit-threat-context')
+      %w[credential-risk business-impact recent-credential-reports agentic-credential-risk].each do |anchor|
+        assert security.at_css("##{anchor} a[href='#{PREFIX}credential-risks/##{anchor}']"), anchor
+        assert research.at_css("##{anchor}"), anchor
+      end
+      assert overview.at_css('.seckit-support--compact')
       policy = document(directory, "#{PREFIX}policies/")
       %w[client-privacy remote-secrets-sync-privacy retention-and-deletion service-terms client-license].each { |anchor| assert policy.at_css("##{anchor}") }
       assert_includes policy.text, "invitation mailbox"
