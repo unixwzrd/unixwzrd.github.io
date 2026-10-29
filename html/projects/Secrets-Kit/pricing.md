@@ -75,10 +75,12 @@ Revoke the old connection using the {% include secrets-kit/doc-link.html file='R
 
 ### Cancelling
 
-Cancellation uses the billing portal workflow. Once the entitlement becomes inactive through cancellation or payment failure, new hosted access is suspended and active forwarding terminates. The effective cancellation date (immediate or period-end), refund eligibility, and quantity-change proration/credit rules still need approval before subscriptions open. Read the [staged RSS service terms]({{ '/projects/Secrets-Kit/policies/#service-terms' | relative_url }}) for the confirmed behavior and open decisions. Your local credentials and free client functionality remain available; direct synchronization still depends on authorized peers and a working direct route. Cancelling is separate from uninstalling the software or deleting local data.
+Cancellation uses the billing portal workflow. Once the entitlement becomes inactive through cancellation or payment failure, new hosted access is suspended and active forwarding terminates. The effective cancellation date (immediate or period-end), refund eligibility, and quantity-change proration/credit rules still need approval before subscriptions open. Read the [RSS service terms]({{ '/projects/Secrets-Kit/policies/#service-terms' | relative_url }}) for the confirmed behavior and open decisions. Your local credentials and free client functionality remain available; direct synchronization still depends on authorized peers and a working direct route. Cancelling is separate from uninstalling the software or deleting local data.
 
-## Need help getting set up?
+## Setup and support contracts
 
-[Ask about setup or migration assistance]({{ '/collaborate/professionals/' | relative_url }}). We can discuss the work your environment needs before agreeing a price. This is separate from the connection subscription and does not imply an enterprise support contract or an availability guarantee.
+Your RSS subscription includes help with problems in the hosted service. Priority assistance, setup, migration, agent integration and ongoing operational support can be arranged separately through a paid support contract. Choose a defined project or discuss an ongoing agreement; scope, pricing, coverage and response targets are agreed in writing.
+
+[Explore support options]({{ '/projects/Secrets-Kit/support/#support-options' | relative_url }}) or [ask about a support contract]({{ '/collaborate/professionals/' | relative_url }}). Contract fees are separate from the per-connection subscription.
 
 Want to see the alternatives first? Read [Compare]({{ '/projects/Secrets-Kit/compare/' | relative_url }}), or check [Security & Privacy]({{ '/projects/Secrets-Kit/security/' | relative_url }}) before deciding where to keep your credentials.

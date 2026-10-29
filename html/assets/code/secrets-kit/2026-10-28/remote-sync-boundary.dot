@@ -1,0 +1,14 @@
+digraph RemoteSync {
+  graph [bgcolor="#111923", pad="0.35", rankdir=TB, nodesep="0.45", ranksep="0.55", fontname="Helvetica", fontcolor="#edf2f5", label="Remote Secrets Sync: connected peers, local key custody", labelloc=t, fontsize=19];
+  node [shape=box, style="rounded,filled", color="#587080", fillcolor="#20303d", fontcolor="#f4f5f6", fontname="Helvetica", fontsize=15, margin="0.22,0.16"];
+  edge [color="#9db1bc", fontcolor="#c4d2dc", fontname="Helvetica", fontsize=13, arrowsize=0.7, penwidth=1.5];
+  sender [label="Sending peer\nLocal encrypted store", fillcolor="#234243", color="#73b8b5"];
+  envelope [label="Encrypt payload for the destination\nOnly the authorized receiver can decrypt", color="#80a6d7", fillcolor="#263958"];
+  rss [label="Remote Secrets Sync (RSS)\nPrimary / secondary service endpoints\nEncrypted messages transiently in memory\nNo customer private encryption keys\nNo secret-payload decryption", fillcolor="#513d28", color="#d4a660"];
+  receiver [label="Receiving peer\nDecrypt and accept the record\nStore under its own local storage key", fillcolor="#234243", color="#73b8b5"];
+  sender -> envelope;
+  envelope -> rss [label="Encrypted transport"];
+  rss -> receiver [label="Encrypted transport\nPayload encryption remains intact"];
+  note [shape=note, label="Queue is not a durable secret archive.\nAccount metadata and optional encrypted\ninvitation storage have separate rules.", fillcolor="#1a2631", fontsize=12];
+  receiver -> note [style=invis];
+}

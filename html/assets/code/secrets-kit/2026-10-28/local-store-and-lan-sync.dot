@@ -1,0 +1,30 @@
+digraph LocalSecrets {
+  graph [bgcolor="#111923", pad="0.30", rankdir=TB, newrank=true, nodesep="0.55", ranksep="0.60", fontname="Helvetica", fontcolor="#edf2f5", label="Secrets stay local. Authorized peers synchronize.", labelloc=t, fontsize=19];
+  node [shape=box, style="rounded,filled", color="#587080", fillcolor="#20303d", fontcolor="#f4f5f6", fontname="Helvetica", fontsize=15, margin="0.20,0.15"];
+  edge [color="#9db1bc", fontcolor="#c4d2dc", fontname="Helvetica", fontsize=12, arrowsize=0.7, penwidth=1.5];
+
+  subgraph cluster_a {
+    label="Workstation / Peer A";
+    color="#587080";
+    style=rounded;
+    margin=18;
+    store_a [label="Encrypted SQLite store\nPeer A's local storage key", fillcolor="#234243", color="#73b8b5"];
+    run_a [label="seckit run\nSelected credentials"];
+    app_a [label="Application or agent\nPlaintext in its process", fillcolor="#513d28", color="#d4a660"];
+    store_a -> run_a -> app_a;
+  }
+  subgraph cluster_b {
+    label="Home / lab server / Peer B";
+    color="#587080";
+    style=rounded;
+    margin=18;
+    store_b [label="Encrypted SQLite store\nPeer B's local storage key", fillcolor="#234243", color="#73b8b5"];
+    run_b [label="seckit run\nSelected credentials"];
+    app_b [label="Application or agent\nPlaintext in its process", fillcolor="#513d28", color="#d4a660"];
+    store_b -> run_b -> app_b;
+  }
+  { rank=same; store_a; store_b; }
+  { rank=same; run_a; run_b; }
+  { rank=same; app_a; app_b; }
+  store_a -> store_b [dir=both, constraint=false, label="Authorized, encrypted sync\nSame LAN segment\nNo hosted subscription", color="#80a6d7", fontcolor="#b0cff6"];
+}

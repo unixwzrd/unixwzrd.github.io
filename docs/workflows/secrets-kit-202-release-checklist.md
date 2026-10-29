@@ -17,6 +17,8 @@ Confirmed source references for the site copy:
 - Client `docs/CLI_REFERENCE.md`, non-SSH peer invitations, and `protocol/peer_invitation_mailbox.py`: short-lived encrypted onboarding-message exchange; expiry is separate from a provider-wide deletion commitment.
 - Client `docs/RSS_CUSTOMER_GUIDE.md`, device and lifecycle sections: existing-subscription quantity increase, payment verification, slot enforcement, revocation distinct from purchased quantity, inactive-entitlement suspension and forwarding termination. It does not settle cancellation effective dates or refund eligibility.
 
+The website scopes the in-memory, non-durable delivery statement to RSS message payloads and explicitly allows for operating-system swap/paging. The optional encrypted peer-invitation exchange uses separate persistent storage in the current operator implementation; do not apply the delivery queue statement to invitations, account records or operational metadata. Reconfirm this distinction against the production configuration before approving the final privacy terms.
+
 ## Decisions required before availability
 
 - [ ] Verify the Linux kernel/libc/CPU baseline and service prerequisites against final-artifact receipts on x86_64 and ARM64, including clean installs and upgrades without a native compiler. Resolve the stale ARM-only-internal/native-wheel policy text through the authoritative master documents and synchronize approved derivatives. Do not derive a certified kernel minimum solely from a wheel tag or Rust target. Only after artifact signoff set `compatibility.approved_for_202: true` in `html/_data/secrets_kit.yml`.
@@ -25,8 +27,8 @@ Confirmed source references for the site copy:
 - [ ] Approve the complete production provider list and processing locations for payments, hosting/networking, support/email and monitoring. Stripe and GitHub appear in the documented workflow; that is not a complete provider disclosure.
 - [ ] Decide whether cancellation is immediate or period-end, and confirm payment-failure handling. Implementation support for either timing does not choose the customer policy.
 - [ ] Decide refund eligibility, deadlines and credit/proration behavior for cancellation and quantity changes, including reductions below currently enrolled quantity. Preserve the two-connection offer minimum and the separation between revocation and purchased quantity.
-- [ ] Confirm support coverage and channels. Do not add a response-time, uptime or recovery-time promise without approval.
-- [ ] Replace the prelaunch/undecided sections in the scoped policy page with approved terms and an approved effective date. Preserve the existing Safari-extension policies. Then set `service_policies_approved: true`.
+- [ ] Confirm support coverage and channels. The site distinguishes community help, included RSS service support and optional paid contracts for project assistance or ongoing support. Define contract scope, prices, coverage hours, response targets, contacts and exclusions before accepting an agreement; do not invent standard tiers, a response-time guarantee, uptime or recovery commitments.
+- [ ] Resolve the undecided items in the scoped policy page with approved terms and an approved effective date. Preserve the existing Safari-extension policies. Then set `service_policies_approved: true`.
 
 ## Prepared release-day change — do not execute yet
 

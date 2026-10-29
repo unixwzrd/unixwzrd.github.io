@@ -316,7 +316,8 @@ def make_browser_relay_handler(config: BrowserRelayConfig) -> type[http.server.B
             origin = self._allowed_origin()
             if origin is None:
                 return
-            self.send_header("Access-Control-Allow-Origin", origin)
+            # Defense in depth at the header boundary; malformed requests remain rejected above.
+            self.send_header("Access-Control-Allow-Origin", origin.replace("\r", "").replace("\n", ""))
             self.send_header("Vary", "Origin")
             if self.headers.get("Access-Control-Request-Private-Network", "").lower() == "true":
                 self.send_header("Access-Control-Allow-Private-Network", "true")

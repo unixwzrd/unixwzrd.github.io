@@ -27,7 +27,7 @@ The version {{ seckit_version }} user guides and agent integration will accompan
 | Compare custody, recovery, and service dependence | [The feature comparison and wider landscape]({{ '/projects/Secrets-Kit/compare/' | relative_url }}) |
 | Ask a question or report a tester problem | [Help & Support]({{ '/projects/Secrets-Kit/support/' | relative_url }}) |
 
-Follow [project Discussions]({{ seckit_release.discussions_url }}) for release updates. Detailed installation and command references will become active here when the production release is available.
+Follow [Blog & Updates]({{ seckit_updates_url }}) for release updates. Detailed installation and command references will become active here when the production release is available.
 {% else %}
 
 

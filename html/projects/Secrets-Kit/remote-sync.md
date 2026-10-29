@@ -27,7 +27,7 @@ Secrets Kit encrypts a synchronization envelope for its destination peer before 
 
 The service still processes the connection and account information needed to authenticate peers and operate forwarding. A statement about encrypted payloads is not a claim that every connection detail is hidden. See [Security & Privacy]({{ '/projects/Secrets-Kit/security/' | relative_url }}) for the boundaries.
 
-Read the scoped [RSS privacy and retention summary]({{ '/projects/Secrets-Kit/policies/#remote-secrets-sync-privacy' | relative_url }}) and [staged service terms]({{ '/projects/Secrets-Kit/policies/#service-terms' | relative_url }}). Provider disclosures, retention/deletion periods and some commercial terms remain awaiting approval.
+Read the scoped [RSS privacy and retention summary]({{ '/projects/Secrets-Kit/policies/#remote-secrets-sync-privacy' | relative_url }}) and [service terms]({{ '/projects/Secrets-Kit/policies/#service-terms' | relative_url }}). Provider disclosures, retention/deletion periods and some commercial terms remain awaiting approval.
 
 ## Primary and secondary relay failover
 

@@ -6,6 +6,7 @@ This changelog records changes to site behavior, operational tooling, scripts, b
 
 - Centralized browser Origin validation before allowlist matching and CORS header emission. Rejects line breaks, whitespace/control characters, and duplicate Origin headers instead of reflecting malformed values into responses. Retains valid local Jekyll origins, Safari-extension origin matching, and private-network preflight handling; public site templates and URLs are unchanged.
 - Added direct validation and raw HTTP regression tests covering folded/malformed headers across health, preflight, and speech routes, plus normal local-origin and Safari-extension playback checks. Rejected requests never reach the speech backend.
+- Added defensive CR/LF removal at the final CORS header write, using the sanitizer pattern recognized by CodeQL while retaining strict rejection of malformed requests. A separate boundary regression test verifies safe serialization independently of the validation helper; valid origins are unchanged.
 
 ## 2026-10-26: Secrets Kit coming-soon product section
 

@@ -41,9 +41,11 @@ Decide which peers you trust before joining them. Synchronization is not a subst
 
 Remote Secrets Sync forwards destination-encrypted envelopes. It does not receive secret plaintext, customer private keys, or local datastore encryption keys. It is a transport service rather than the authority for the contents of your local store.
 
+During delivery, encrypted messages are temporarily held in an in-memory queue, not intentionally persisted to disk. Operating-system swap or paging can still write memory contents to disk; this is not a guarantee that ciphertext can never reach disk. The queue is not a durable delivery archive or recovery service.
+
 Operating the service requires account, payment, connection, and authorization information. Encrypted payloads do not imply anonymous connections or zero metadata. This page does not claim that Secrets Kit is an independently audited zero-knowledge service, a hardware security module, or a compliance system. See the {% include secrets-kit/doc-link.html file='RSS_CUSTOMER_GUIDE.md' label='RSS customer guide' %} for enrollment and identity handling.
 
-The [Secrets Kit client privacy summary]({{ '/projects/Secrets-Kit/policies/#client-privacy' | relative_url }}) and [RSS privacy and retention summary]({{ '/projects/Secrets-Kit/policies/#remote-secrets-sync-privacy' | relative_url }}) are scoped to these products. The RSS summary separates secret-sync forwarding from encrypted onboarding-message storage and flags the retention and provider details still awaiting approval. The Safari extension's policy does not apply to Secrets Kit.
+The [Secrets Kit client privacy summary]({{ '/projects/Secrets-Kit/policies/#client-privacy' | relative_url }}) and [RSS privacy and retention summary]({{ '/projects/Secrets-Kit/policies/#remote-secrets-sync-privacy' | relative_url }}) are scoped to these products. The RSS summary distinguishes the in-memory delivery queue from the separate encrypted peer-invitation exchange and from account and operational metadata. The optional invitation exchange uses persistent encrypted-message storage; its retention terms and the remaining provider details still require approval. The Safari extension's policy does not apply to Secrets Kit.
 
 ## Are keys escrowed or split between services?
 

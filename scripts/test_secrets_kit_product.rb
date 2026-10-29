@@ -361,7 +361,9 @@ class SecretsKitProductTest < Minitest::Test
       assert overview.at_css('.seckit-support--compact')
       policy = document(directory, "#{PREFIX}policies/")
       %w[client-privacy remote-secrets-sync-privacy retention-and-deletion service-terms client-license].each { |anchor| assert policy.at_css("##{anchor}") }
-      assert_includes policy.text, "invitation mailbox"
+      assert_includes policy.text, "in-memory queue"
+      assert_includes policy.text, "separate persistent storage"
+      assert_includes policy.text, "swap or paging"
       assert_includes policy.text, "MIT License"
       refute_empty document(directory, "#{PREFIX}security/").css('a[href$="/policies/#remote-secrets-sync-privacy"]')
       pricing = document(directory, "#{PREFIX}pricing/").at_css(".page-content").text

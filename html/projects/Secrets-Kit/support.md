@@ -28,16 +28,31 @@ Do not include secret values, private keys, recovery codes, credential files, ra
 
 ## Questions and feature ideas
 
-Use [Secrets Kit Discussions]({{ seckit_release.discussions_url }}) for setup questions, feature requests, release updates, and ideas. Public discussion helps other users find the answer later. You can also watch the project on GitHub for release announcements.
+Use [Secrets Kit Discussions]({{ seckit_release.discussions_url }}) for setup questions, feature requests and ideas. Public discussion helps other users find the answer later. Follow [Blog & Updates]({{ seckit_updates_url }}) for release updates.
 
 ## Security concerns or sensitive account details
 
 Please [contact us privately]({{ '/contact/' | relative_url }}) before posting a suspected vulnerability, account information, or material that could expose someone’s credentials. Mention Secrets Kit in your message and describe the issue without sending secret values. We can agree on an appropriate way to share further details.
 
-## Installation or migration assistance
+## Support options
 
-For hands-on configuration, migration, or deployment work, [ask about professional setup assistance]({{ '/collaborate/professionals/' | relative_url }}). This is separate from public bug reporting and the optional RSS subscription.
+### Community help
+
+Public bug reports and questions are welcome for the free client. Use the Issues and Discussions routes above, and share only sanitized information. Community help has no contracted response time.
+
+### Included RSS service support
+
+An RSS subscription includes help with connection enrollment, hosted forwarding, subscription access and other problems in the hosted service. We investigate reported service problems and work to resolve them. Use [private contact]({{ '/contact/' | relative_url }}) for account or billing details; reproducible software bugs can be reported in Issues.
+
+### Contracted support
+
+If you need priority assistance or work on your particular environment, [ask about a paid support contract]({{ '/collaborate/professionals/' | relative_url }}). Two arrangements are available to discuss:
+
+- **Project assistance:** a defined setup, migration, agent integration or troubleshooting engagement, with an agreed scope and price.
+- **Ongoing support:** a continuing support agreement with an agreed scope, fees, coverage hours, contacts and response targets.
+
+The written agreement sets the support level and any service commitments. The RSS connection subscription is separate from these contracts and does not itself include priority support or a service-level agreement.
 
 ## Support and billing expectations
 
-Project Issues and Discussions provide the public reporting routes; sensitive account, security and billing questions belong in private contact. Support response times and service-availability commitments are not yet set. See the [staged RSS service terms]({{ '/projects/Secrets-Kit/policies/#service-terms' | relative_url }}) for cancellation, quantity changes, refunds and the terms still to be confirmed. {% unless seckit_release.production_release_ready %}Installation and production subscriptions remain closed.{% endunless %}
+See the [RSS service terms]({{ '/projects/Secrets-Kit/policies/#service-terms' | relative_url }}) for cancellation, quantity changes, refunds and the terms still to be confirmed. {% unless seckit_release.production_release_ready %}Installation and production subscriptions remain closed.{% endunless %}

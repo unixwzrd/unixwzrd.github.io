@@ -238,6 +238,28 @@ class BrowserRelayTests(unittest.TestCase):
                 handler._cors_headers()
                 handler.send_header.assert_not_called()
 
+    def test_cors_header_boundary_removes_line_breaks_defensively(self) -> None:
+        config = BrowserRelayConfig(
+            endpoint="http://127.0.0.1:1/not-called",
+            voice=None,
+            model=None,
+            timeout=1,
+            allowed_origins=frozenset(DEFAULT_BROWSER_ORIGINS),
+        )
+        handler_class = make_browser_relay_handler(config)
+        for suffix in ("", "\r", "\n", "\r\n", "\n\r"):
+            with self.subTest(suffix=suffix):
+                handler = handler_class.__new__(handler_class)
+                handler.headers = Message()
+                handler.send_header = mock.Mock()
+                # Exercise the final boundary independently of request validation.
+                with mock.patch.object(handler, "_allowed_origin", return_value="safari-web-extension://review" + suffix):
+                    handler._cors_headers()
+                handler.send_header.assert_any_call("Access-Control-Allow-Origin", "safari-web-extension://review")
+                for call in handler.send_header.call_args_list:
+                    self.assertNotIn("\r", call.args[1])
+                    self.assertNotIn("\n", call.args[1])
+
     def test_raw_malformed_origin_requests_are_denied_before_relaying(self) -> None:
         config = BrowserRelayConfig(
             endpoint="http://127.0.0.1:1/not-called",

@@ -7,14 +7,14 @@ secrets_kit_product: true
 hide_banner_image: true
 product_nav_order: 80
 nav_title: Policies
-excerpt: "Prelaunch privacy and service information scoped to Secrets Kit and Remote Secrets Sync, with unresolved terms clearly identified."
+excerpt: "Privacy, licensing, RSS service terms and optional support contracts for Secrets Kit."
 ---
 
 {% include secrets-kit/navigation.html %}
 
 This page applies to the **Secrets Kit client and optional Remote Secrets Sync (RSS)**. The Safari extension's [General Privacy Policy]({{ '/Policies/General_Privacy/' | relative_url }}) describes that extension, not Secrets Kit. It does not establish the data practices of this website or the hosted RSS service.
 
-**Prelaunch policies:** installation and subscriptions are not open. Final privacy and service terms will be confirmed before RSS subscriptions open. Retention periods, the full provider list and the unsettled billing terms below are still to be confirmed.
+Retention periods, the full service-provider list and the billing details marked below will be confirmed before RSS subscriptions open. Separately agreed support contracts define the scope and terms of any additional paid assistance.
 
 <nav class="seckit-jumps" aria-label="Policy sections"><a href="#client-privacy">Client privacy</a><a href="#remote-secrets-sync-privacy">RSS privacy</a><a href="#retention-and-deletion">Retention &amp; deletion</a><a href="#service-terms">Service terms</a><a href="#client-license">MIT client license</a></nav>
 
@@ -28,13 +28,15 @@ Local/LAN use does not require an RSS subscription. Installation and updates con
 
 | Data path | What it handles | Boundary |
 | --- | --- | --- |
-| Secret synchronization | Destination-encrypted envelopes and the connection/routing information needed to forward them | RSS forwarding does not receive secret plaintext, customer private keys, or local datastore keys. Authorized receiving peers can decrypt their records. |
+| Secret synchronization | Destination-encrypted messages temporarily held in an in-memory queue for delivery | RSS does not intentionally persist these messages to disk and cannot decrypt them. Authorized receiving peers can decrypt their records. This statement concerns message payloads, not account or operational metadata. |
 | Hosted access and billing | Account/subscription identifiers, billing contact/profile and invoice information, purchased quantity, entitlement and connection authorization | Service enrollment and billing-owner authority are separate from permission to receive another peer's secrets. |
 | Connectivity and operational safety | Network connection information, connection/session identifiers and operational status | Encryption does not hide all metadata. The exact metadata fields, logging limits and retention periods are still to be confirmed. |
-| Optional peer-invitation mailbox | Encrypted onboarding messages for a short-lived invitation | This is distinct from secret-sync forwarding. The mailbox cannot authorize a peer or decrypt the onboarding messages. Invitation expiry is not a promise that every stored copy, log or backup is erased at that instant. |
+| Optional peer invitations | Encrypted onboarding messages for a short-lived invitation, held in separate persistent storage | This exchange is separate from the in-memory delivery queue. It cannot authorize a peer or decrypt the onboarding messages. Invitation expiry does not establish when stored copies or backups are erased. |
 | Support | The information you choose to include in a report or private message | GitHub Issues and Discussions are public. Keep credentials, private keys, payment receipts and recovery material out of reports. |
 
-RSS secret-sync forwarding is not a durable secret archive, message queue, or recovery service. The separate invitation mailbox temporarily holds encrypted onboarding messages. Account, authorization and billing records are also distinct from synchronization payloads.
+Encrypted messages pass through an in-memory queue for RSS delivery; they are not intentionally persisted to disk. Operating-system swap or paging can still write memory contents to disk, so this does not mean ciphertext can never reach disk. The queue is not a durable delivery archive or recovery service.
+
+Account, authorization, billing and operational metadata follow their own retention rules. The separate optional peer-invitation exchange uses persistent storage for encrypted onboarding messages; the in-memory delivery statement does not apply to that exchange.
 
 ### Service providers
 
@@ -50,7 +52,7 @@ Local data, keys, replicas, exports and backups need their own lifecycle. Cancel
 
 For a privacy or deletion question, [contact us privately]({{ '/contact/' | relative_url }}) and identify Secrets Kit or RSS. Do not send secret values.
 
-<h2 id="service-terms">Remote Secrets Sync service terms — prelaunch</h2>
+<h2 id="service-terms">Remote Secrets Sync service terms</h2>
 
 The launch offer is **$5 per enrolled connection per month, minimum two connections ($10/month)**. The client remains free for local use and unlimited connections on the same LAN segment. An enrolled connection represents a registered client identity associated with an operating-system user; it is not a separate seat for each agent. [Pricing]({{ '/projects/Secrets-Kit/pricing/' | relative_url }}) explains the unit and examples.
 
@@ -64,7 +66,11 @@ Manage your connections and subscription separately:
 
 ### Support
 
-Use [project Issues]({{ seckit_release.issues_url }}) for bugs, [project Discussions]({{ seckit_release.discussions_url }}) for questions, and [private contact]({{ '/contact/' | relative_url }}) for sensitive account or security matters. See [Help & Support]({{ '/projects/Secrets-Kit/support/' | relative_url }}) for the reporting checklist. Support response times and any uptime or recovery-time commitments are not yet set. Hands-on setup assistance is separately scoped through the existing professional-services inquiry route.
+Public bug reports and community questions are welcome for the free client. An RSS subscription includes help with problems in the hosted service, including connection enrollment, hosted forwarding and subscription access. We investigate reported service problems and work to resolve them.
+
+Priority assistance, hands-on configuration, migration, agent integration and ongoing operational support can be arranged through a **separate paid support contract**. Contracts can cover a defined piece of work or ongoing support. Scope, fees, coverage hours, response targets, contacts and exclusions are agreed in writing before the contract begins. An RSS connection subscription does not itself include priority support or a service-level agreement.
+
+See [Help & Support]({{ '/projects/Secrets-Kit/support/#support-options' | relative_url }}) for the support options and reporting routes, or [ask about a support contract]({{ '/collaborate/professionals/' | relative_url }}). Sensitive account or security matters belong in [private contact]({{ '/contact/' | relative_url }}).
 
 The [website terms]({{ '/Policies/General_ToS/' | relative_url }}) govern the website. They are not a substitute for the final RSS subscription terms. The client license below does not include a hosted-service entitlement.
 
