@@ -28,30 +28,41 @@ My main Codex thread uses a stronger model at high reasoning effort. It keeps th
 The relevant part of my `~/.codex/config.toml` looks like this:
 
 ~~~toml
-model = "gpt-6.1-sol"
-model_reasoning_effort = "high"
-
+# Agent/sub-agent configuration.
 [agents]
 enabled = true
+
+# Fallback for spawn_agent calls that don't explicitly select model/effort.
 default_subagent_model = "gpt-6-luna"
 default_subagent_reasoning_effort = "low"
+
+# Primary thread is not counted here: allow up to five child agents.
 max_concurrent_threads_per_session = 5
 
 [agents.explorer]
-description = "Fast, read-only codebase exploration and file mapping."
+description = "Fast, read-only codebase exploration, dependency tracing, file mapping, and bounded upstream research."
 config_file = "agents/explorer.toml"
 
 [agents.implementer]
-description = "Bounded code changes and relevant tests."
+description = "Implement bounded code changes and tests from an approved plan."
 config_file = "agents/implementer.toml"
 
 [agents.reviewer]
-description = "Independent correctness and regression review."
+description = "Independent review for correctness, regressions, security vulnerabilities, and edge cases."
 config_file = "agents/reviewer.toml"
 
 [agents.diagnostician]
-description = "Reproduce difficult failures and identify root causes."
+description = "Investigate complex failures, reproduce defects, correlate evidence, and identify root causes before recommending changes."
 config_file = "agents/diagnostician.toml"
+
+[agents.documenter]
+description = "Maintain README files, API documentation, changelogs, and release notes. Document verified behavior without modifying implementation."
+config_file = "agents/documenter.toml"
+
+[agents.tester]
+description = "Develop focused regression tests, reproduce failures, identify coverage gaps, and report test results. Avoid unrelated production changes."
+config_file = "agents/tester.toml"
+
 ~~~
 
 The [downloadable config example]({{ '/assets/code/codex-subagent-routing/config.toml' | relative_url }}) contains just those agent settings. Merge the sections you want into your existing file; do not replace your whole configuration with somebody else's. In particular, my local approval policy, sandbox access, notification command, and feature switches are machine policy, not token-tuning advice.
@@ -71,14 +82,16 @@ model_reasoning_effort = "low"
 model_verbosity = "low"
 ~~~
 
-The other three follow the same pattern. Here are the [explorer]({{ '/assets/code/codex-subagent-routing/agents/explorer.toml' | relative_url }}), [implementer]({{ '/assets/code/codex-subagent-routing/agents/implementer.toml' | relative_url }}), [reviewer]({{ '/assets/code/codex-subagent-routing/agents/reviewer.toml' | relative_url }}), and [diagnostician]({{ '/assets/code/codex-subagent-routing/agents/diagnostician.toml' | relative_url }}) files to inspect or download.
+The other three follow the same pattern. Here are the [explorer]({{ '/assets/code/codex-subagent-routing/agents/explorer.toml' | relative_url }}), [implementer]({{ '/assets/code/codex-subagent-routing/agents/implementer.toml' | relative_url }}), [reviewer]({{ '/assets/code/codex-subagent-routing/agents/reviewer.toml' | relative_url }}), [diagnostician]({{ '/assets/code/codex-subagent-routing/agents/diagnostician.toml' | relative_url }}), [documenter]({{ '/assets/code/codex-subagent-routing/agents/documenter.toml' | relative_url }}), and [tester]({{ '/assets/code/codex-subagent-routing/agents/tester.toml' | relative_url }}) files to inspect or download.
 
-| Role | My setting | What I give it |
-| --- | --- | --- |
-| Explorer | GPT-6 Luna, low | Read-only file mapping, dependency tracing, and a concise evidence report |
-| Implementer | GPT-6.1 Sol, medium | A bounded change with named files and relevant tests |
-| Reviewer | GPT-6.1 Sol, high | An independent look for correctness, regressions, and edge cases |
-| Diagnostician | GPT-6.1 Sol, high | A difficult failure to reproduce and explain before anyone changes code |
+| Role          | My setting          | What I give it                                                                                          |
+| ------------- | ------------------- | ------------------------------------------------------------------------------------------------------- |
+| Explorer      | GPT-6 Luna, low     | Read-only file mapping, dependency tracing, and a concise evidence report                               |
+| Implementer   | GPT-6.1 Sol, medium | A bounded change with named files and relevant tests                                                    |
+| Reviewer      | GPT-6.1 Sol, high   | An independent look for correctness, regressions, and edge cases                                        |
+| Diagnostician | GPT-6.1 Sol, high   | A difficult failure to reproduce and explain before anyone changes code                                 |
+| Documenter    | GPT-6.1 Sol, medium | A README, API documentation, changelog, and release note for verified behavior                          |
+| Tester        | GPT-6.1 Sol, medium | A focused regression test, failure reproduction, coverage gap identification, and test result reporting |
 
 Those are my choices for my work, not universal model recommendations. Use models and effort levels your Codex client and account actually support. Higher effort can use more reasoning tokens and time; sometimes that buys a better answer on a hard problem. A lighter model is no bargain if it needs three attempts to finish work a stronger model gets right the first time. [OpenAI's subagent guide](https://learn.chatgpt.com/docs/agent-configuration/subagents) covers the inheritance and precedence rules, including that model and effort in a custom agent file take precedence for that role.
 

@@ -1,4 +1,4 @@
-# Role config layer referenced by [agents.reviewer] in config.toml.
+# ~/.codex/agents/reviewer.toml
 model = "gpt-6.1-sol"
 model_reasoning_effort = "high"
 model_verbosity = "medium"

@@ -1,4 +1,4 @@
-# Role config layer referenced by [agents.explorer] in config.toml.
+# ~/.codex/agents/explorer.toml
 model = "gpt-6-luna"
 model_reasoning_effort = "low"
 model_verbosity = "low"

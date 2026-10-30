@@ -1,0 +1,4 @@
+# ~/.codex/agents/documenter.toml
+model = "gpt-6-luna"
+model_reasoning_effort = "low"
+model_verbosity = "low"
