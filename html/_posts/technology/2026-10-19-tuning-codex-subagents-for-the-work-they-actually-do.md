@@ -142,10 +142,21 @@ I would be suspicious of a post claiming that this setup “saves 40% of your to
 
 There *is* a way to get past opinion here, even if I do not have a controlled result to publish yet. [Codex's `/status` command](https://learn.chatgpt.com/docs/developer-commands) shows usage for the current chat, while `/usage daily`, `/usage weekly`, and `/usage cumulative` show account token activity where that command is available. For a repeatable CLI run, `codex exec --json` emits newline-delimited events; the completed turn has a `usage` record. I can extract that record without saving the full event stream, which may contain prompts, file contents, and tool output.
 
+First, check what `codex` actually runs with `type -a codex`. On my Mac, a custom desktop launcher with that name came first on `PATH`; it opened the app and printed shell-startup messages instead of running the CLI. The example below uses the bundled CLI's explicit path to avoid that collision and `-C` to select the website's Git checkout, even if I run it from another directory such as `~/.codex`. Both paths are specific to my Mac; replace them with your actual CLI and repository paths.
+
 ~~~sh
-codex exec --json --sandbox read-only "Map the files that build the post contents index; make no edits." |
+set -o pipefail
+
+codex_cli="/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex"
+repo_dir="/Users/mps/projects/AI-PROJECTS/DTS-WebSite/unixwzrd.github.io"
+
+"$codex_cli" exec --json --sandbox read-only \
+  -C "$repo_dir" \
+  "Map the files that build the post contents index; make no edits." |
   jq -c 'select(.type == "turn.completed") | .usage'
 ~~~
+
+The filter discards intermediate events and prints only the usage object when the turn completes, not the file map itself. The terminal can therefore stay quiet for quite a while as Codex works; silence alone does not mean it has hung. `pipefail` makes the pipeline report a Codex failure rather than letting a successful `jq` exit hide it. To inspect the live event stream, temporarily omit the pipe to `jq`, keeping in mind that those events can contain sensitive content.
 
 That command is a **single-run measurement**, not a magic whole-workflow meter. A failed run may not have a completed-turn usage event. I would not assume the parent event covers every child agent without checking the accounting for that run. OpenAI's [Agents API traces](https://developers.openai.com/api/docs/guides/agents-api/observability) can break out root and subagent usage, but that is a different integration from my ordinary Codex desktop and CLI subscription workflow; its usage is best-effort and can arrive late. I would not mix those numbers with a desktop allowance as though they were the same billing record.
 
