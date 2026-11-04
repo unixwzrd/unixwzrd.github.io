@@ -1,0 +1,4 @@
+{% if jekyll.environment == 'development' and page.local_reader != false %}
+  {% assign local_reader_asset_version = site.time | date: "%s" %}
+  <script src="{{ '/assets/js/article-tts-player.js' | relative_url }}?v={{ local_reader_asset_version }}" defer></script>
+{% endif %}

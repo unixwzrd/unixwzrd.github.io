@@ -2,6 +2,12 @@
 
 This changelog records changes to site behavior, operational tooling, scripts, build validation, and shared templates. Routine articles, post corrections, publication dates, and social copy do not require entries. The entries below were backfilled on September 2 from repository history; their dates identify the recorded changes, not a verified deployment date.
 
+## 2026-11-04: Shared local editorial reader
+
+- Moved development-only reader loading into a shared Liquid include used by the default and standalone review layouts. Extended browser reading to regular pages, project/product content, and unlisted documents while preserving the narrower blog-post reading area and existing playback controls. Added a per-page `local_reader: false` opt-out; production pages still omit the player.
+- Excluded navigation, forms, embedded frames, update listings, and engagement/footer material from whole-page narration. Kept speech configuration, published narration, content URLs, and the CLI article extractor unchanged; documented isolated production builds to avoid overwriting local preview output.
+- Kept the fixed reader controls inside narrow viewports by including padding in the panel width and tightening mobile button spacing.
+
 ## 2026-10-28: Local TTS relay response-header validation
 
 - Centralized browser Origin validation before allowlist matching and CORS header emission. Rejects line breaks, whitespace/control characters, and duplicate Origin headers instead of reflecting malformed values into responses. Retains valid local Jekyll origins, Safari-extension origin matching, and private-network preflight handling; public site templates and URLs are unchanged.

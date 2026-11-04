@@ -280,6 +280,7 @@
 }
 
 .article-tts-player {
+  box-sizing: border-box;
   position: fixed;
   z-index: 1000;
   right: 50%;
@@ -339,6 +340,10 @@
 @media (max-width: 40rem) {
   .article-tts-player {
     flex-wrap: wrap;
+  }
+
+  .article-tts-player__button {
+    padding-inline: 0.5rem;
   }
 
   .article-tts-player__status {

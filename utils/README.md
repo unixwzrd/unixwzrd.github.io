@@ -130,13 +130,15 @@ TTS_BRIDGE_VOICE="narrator" \
 utils/bin/article-tts --browser-server
 ```
 
-Development-mode post pages display a small player at the bottom of the viewport. Select article text and press **Play** to hear only that selection. With no selection, click within the article and press **Play** to continue from that cursor position to the end. If no article cursor has been established, **Play** starts with the complete article. **Restart** always begins again at the article title, while **Pause**, **Resume**, and **Stop** act on the in-browser queue. Leaving the page stops playback.
+Development-mode content pages display a small player at the bottom of the viewport. Select text and press **Play** to hear only that selection. With no selection, click within the content and press **Play** to continue from that cursor position to the end. If no content cursor has been established, **Play** starts with the complete page. **Restart** always begins again at the page title, while **Pause**, **Resume**, and **Stop** act on the in-browser queue. Leaving the page stops playback.
 
 The browser sends sentence-aware chunks to the relay on `127.0.0.1:11441`. The relay accepts the local Jekyll origins and the locally installed WebReader for Safari extension by default, keeps the configured bridge endpoint and voice out of page JavaScript, and never writes browser-playback audio to disk. Ordinary external webpage origins remain rejected. Each short WAV response is decoded in browser memory and the next chunk is prepared while the current one plays. This is buffered chunk playback rather than byte-level streaming because the current TTS Bridge completes each WAV response before returning it.
 
 The player is excluded from production Jekyll builds. If the local site or relay uses a different port, repeat `--allow-origin` when starting the relay and set `articleTtsRelayUrl` in browser local storage to the new loopback relay URL.
 
-The shared `post` layout injects this development player into every local blog post. It does not depend on `audio` front matter and it never appears in a production build.
+The shared `local_reader.html` include is loaded by the `default` and standalone `review` layouts, covering regular pages, the homepage, project/product pages, blog posts, and unlisted review documents. It is emitted only in Jekyll's `development` environment; add `local_reader: false` to a page's front matter to opt out. Blog posts retain their narrow `.post-content.e-content` reading area; other pages use `[data-local-reader-content]`. Navigation, forms, embedded frames, update listings, comments, and support/footer blocks are omitted. This browser support does not change the Python CLI's default article selector or require `audio` front matter. Redirect and standalone tool pages do not load the player.
+
+If the local player disappears everywhere while its helper is healthy, check whether a production build has overwritten the running server's shared `_site` output. The next development regeneration restores it; use an isolated `--destination` for production validation builds while the preview server is running.
 
 ### Generate retained MP3 narration
 

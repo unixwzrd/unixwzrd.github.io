@@ -7,13 +7,14 @@
 
   {%- include header.html -%}
 
-  <main class="page-content" aria-label="Content">
+  <main class="page-content" aria-label="Content" data-local-reader-content>
     <div class="wrapper">
       {{ content }}
     </div>
   </main>
 
   {%- include footer.html -%}
+  {%- include local_reader.html -%}
   {%- if page.search_page -%}
   <script type="module" src="{{ '/assets/js/site-search.js' | relative_url }}"></script>
   {%- endif -%}

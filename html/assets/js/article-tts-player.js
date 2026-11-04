@@ -1,8 +1,9 @@
 (() => {
   "use strict";
 
-  const article = document.querySelector(".post-content.e-content");
-  if (!article || !("AudioContext" in window || "webkitAudioContext" in window)) {
+  const article = document.querySelector(".post-content.e-content")
+    || document.querySelector("[data-local-reader-content]");
+  if (!article || document.querySelector(".article-tts-player") || !("AudioContext" in window || "webkitAudioContext" in window)) {
     return;
   }
 
@@ -22,6 +23,15 @@
     "video",
     "button",
     "form",
+    "input",
+    "textarea",
+    "select",
+    "iframe",
+    ".page-header",
+    ".post-header",
+    ".blog-list-container",
+    ".giscus",
+    ".feed-subscribe",
     ".series-context",
     ".series-navigation",
     ".post-engagement",
@@ -41,7 +51,7 @@
     <button type="button" class="article-tts-player__button" data-action="play">Play</button>
     <button type="button" class="article-tts-player__button" data-action="pause" disabled>Pause</button>
     <button type="button" class="article-tts-player__button" data-action="stop" disabled>Stop</button>
-    <span class="article-tts-player__status" role="status" aria-live="polite">Select text, place the cursor, or play the whole post.</span>
+    <span class="article-tts-player__status" role="status" aria-live="polite">Select text, place the cursor, or play the whole page.</span>
   `;
   document.body.append(player);
   document.body.classList.add("article-tts-enabled");
@@ -169,7 +179,8 @@
 
     const blocks = [];
     if (includeTitle) {
-      const title = cleanText(document.querySelector(".post-title")?.textContent || "");
+      const title = cleanText(article.querySelector(".post-title, .page-title, h1")?.textContent
+        || document.querySelector(".post-title, .page-title")?.textContent || "");
       if (title) {
         blocks.push(/[.!?]$/.test(title) ? title : `${title}.`);
       }
@@ -487,7 +498,7 @@
     }
     setControls();
     if (showStatus) {
-      setStatus("Stopped. Select text, place the cursor, or play the whole post.");
+      setStatus("Stopped. Select text, place the cursor, or play the whole page.");
     }
   }
 

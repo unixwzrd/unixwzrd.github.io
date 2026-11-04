@@ -26,10 +26,11 @@ layout: null
       </nav>
       {% endif %}
       {% unless page.toc == false %}{{ content | article_toc }}{% endunless %}
-      <article class="post-content">
+      <article class="post-content" data-local-reader-content>
         {{ content }}
       </article>
     </div>
   </main>
+  {% include local_reader.html %}
 </body>
 </html>

@@ -40,6 +40,21 @@ class ReaderExperienceTest < Minitest::Test
     { "title" => title, "path" => "_posts/#{title}.md", "url" => "/#{title}/", "categories" => ["technology"] }.merge(extra)
   end
 
+  def test_local_reader_include_is_development_only_and_supports_page_opt_out
+    development = Nokogiri::HTML.fragment(render_include("local_reader.html", environment: "development"))
+    assert_equal 1, development.css('script[src^="/assets/js/article-tts-player.js?v="][defer]').length
+    %w[production test].each do |environment|
+      assert_empty Nokogiri::HTML.fragment(render_include("local_reader.html", environment: environment)).css("script")
+    end
+    assert_empty Nokogiri::HTML.fragment(render_include("local_reader.html", environment: "development", page: { "local_reader" => false })).css("script")
+    %w[default review].each do |layout|
+      source = File.read(File.join(ROOT, "html/_layouts/#{layout}.html"))
+      assert_equal 1, source.scan("include local_reader.html").length
+      assert_includes source, "data-local-reader-content"
+    end
+    refute_includes File.read(File.join(ROOT, "html/_layouts/post.html")), "article-tts-player.js"
+  end
+
   def filtered_titles(parameters, posts, projects = [])
     template = "{% include filter_discovery_posts.html #{parameters} %}{{ discovery_posts | map: 'title' | join: '|' }}"
     Liquid::Template.parse(template).render!(
