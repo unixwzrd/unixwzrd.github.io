@@ -171,6 +171,7 @@ defaults:
     values:
       layout: page
       show_support: true
+      local_reader: true
   - scope:
       path: ""
       type: "project_posts"

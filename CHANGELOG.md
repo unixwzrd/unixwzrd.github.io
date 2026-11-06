@@ -2,6 +2,11 @@
 
 This changelog records changes to site behavior, operational tooling, scripts, build validation, and shared templates. Routine articles, post corrections, publication dates, and social copy do not require entries. The entries below were backfilled on September 2 from repository history; their dates identify the recorded changes, not a verified deployment date.
 
+## 2026-11-05: Local reader survives production validation builds
+
+- Enabled the local reader explicitly in site-wide defaults, including project posts and series articles. Replaced build-environment gating with an exact-loopback hostname bootstrap so local commit checks cannot remove the reader by rebuilding the preview's shared output in production mode.
+- Public hostnames never load the reader or contact its speech helper; added a second hostname check in the player and regression coverage for all supported loopback names, lookalike public domains, opt-outs, and duplicate initialization. Unlisted review pages retain their tracking exclusions and load the reader only on loopback hosts.
+
 ## 2026-11-04: Shared local editorial reader
 
 - Moved development-only reader loading into a shared Liquid include used by the default and standalone review layouts. Extended browser reading to regular pages, project/product content, and unlisted documents while preserving the narrower blog-post reading area and existing playback controls. Added a per-page `local_reader: false` opt-out; production pages still omit the player.

@@ -1,4 +1,4 @@
-// Run with a development preview open in a named Playwright CLI session:
+// Run with a local preview open in a named Playwright CLI session:
 // playwright-cli run-code --filename scripts/check_local_reader_browser.js
 // Speech and audio output are mocked: no speech backend is contacted.
 async (page) => {
@@ -6,7 +6,7 @@ async (page) => {
   const requests = [];
   await page.route("**/*", async route => {
     const url = new URL(route.request().url());
-    if (url.origin === base) return route.continue();
+    if (url.origin === base) return route.fallback();
     if (url.pathname === "/v1/audio/speech") {
       requests.push(route.request().postDataJSON().input);
       return route.fulfill({ status: 200, contentType: "audio/wav", body: Buffer.from([0]) });
@@ -35,6 +35,8 @@ async (page) => {
   const routes = [
     "/",
     "/technology/2026/10/19/tuning-codex-subagents-for-the-work-they-actually-do/",
+    "/technology/2026/08/17/when-a-local-ai-stack-becomes-an-operations-system/",
+    "/projects/UnicodeFix/2026/10/24/unicodefix-v2-1-0-image-cleanup-without-exiftool/",
     "/projects/Secrets-Kit/",
     "/projects/Secrets-Kit/security/",
     "/projects/Secrets-Kit/pricing/",

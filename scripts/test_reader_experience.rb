@@ -40,13 +40,34 @@ class ReaderExperienceTest < Minitest::Test
     { "title" => title, "path" => "_posts/#{title}.md", "url" => "/#{title}/", "categories" => ["technology"] }.merge(extra)
   end
 
-  def test_local_reader_include_is_development_only_and_supports_page_opt_out
-    development = Nokogiri::HTML.fragment(render_include("local_reader.html", environment: "development"))
-    assert_equal 1, development.css('script[src^="/assets/js/article-tts-player.js?v="][defer]').length
-    %w[production test].each do |environment|
-      assert_empty Nokogiri::HTML.fragment(render_include("local_reader.html", environment: environment)).css("script")
+  def test_local_reader_include_is_localhost_only_in_every_build_and_supports_page_opt_out
+    assert_equal true, SITE.config.fetch("defaults").first.fetch("values").fetch("local_reader")
+    %w[development production test].each do |environment|
+      doc = Nokogiri::HTML.fragment(render_include("local_reader.html", environment: environment))
+      assert_equal 1, doc.css("script[data-local-reader-loader]").length
+      assert_empty doc.css("script[src]")
+      assert_empty Nokogiri::HTML.fragment(render_include("local_reader.html", environment: environment, page: { "local_reader" => false })).css("script")
+      loader = doc.at_css("script").text
+      harness = <<~JS
+        const vm = require('node:vm');
+        const source = #{loader.to_json};
+        for (const hostname of ['localhost', '127.0.0.1', '[::1]', 'unixwzrd.ai', 'www.unixwzrd.ai', 'localhost.example.com', '127.0.0.1.example.com', 'example.com', '']) {
+          const scripts = [];
+          const context = { window: { location: { hostname } }, document: {
+            querySelector: () => scripts.length ? scripts[0] : null,
+            createElement: () => ({ dataset: {} }),
+            body: { append: script => scripts.push(script) },
+          }};
+          vm.runInNewContext(source, context);
+          vm.runInNewContext(source, context);
+          const local = ['localhost', '127.0.0.1', '[::1]'].includes(hostname);
+          if (scripts.length !== (local ? 1 : 0)) throw Error(`Incorrect loader count: ${hostname}`);
+          if (local && (!scripts[0].src.startsWith('/assets/js/article-tts-player.js?v=') || !scripts[0].defer)) throw Error('Incorrect player asset');
+        }
+      JS
+      output, status = Open3.capture2e("node", "-e", harness)
+      assert status.success?, output
     end
-    assert_empty Nokogiri::HTML.fragment(render_include("local_reader.html", environment: "development", page: { "local_reader" => false })).css("script")
     %w[default review].each do |layout|
       source = File.read(File.join(ROOT, "html/_layouts/#{layout}.html"))
       assert_equal 1, source.scan("include local_reader.html").length
@@ -61,6 +82,22 @@ class ReaderExperienceTest < Minitest::Test
       { "site" => { "posts" => posts, "data" => { "github_projects" => { "projects" => projects } } } },
       registers: { site: SITE }, strict_filters: true,
     ).strip
+  end
+
+  def test_local_reader_player_returns_before_reading_browser_state_on_public_hosts
+    source = File.read(File.join(ROOT, "html/assets/js/article-tts-player.js"))
+    harness = <<~JS
+      const vm = require('node:vm');
+      for (const hostname of ['unixwzrd.ai', 'www.unixwzrd.ai', 'localhost.example.com', '127.0.0.1.example.com']) {
+        const window = { location: { hostname } };
+        Object.defineProperty(window, 'localStorage', { get() { throw Error('Public page accessed local storage'); } });
+        const context = { window };
+        Object.defineProperty(context, 'document', { get() { throw Error('Public page initialized the player'); } });
+        vm.runInNewContext(#{source.to_json}, context);
+      }
+    JS
+    output, status = Open3.capture2e("node", "-e", harness)
+    assert status.success?, output
   end
 
   def test_review_layout_is_unindexed_and_has_no_tracking_or_public_page_furniture
@@ -81,7 +118,8 @@ class ReaderExperienceTest < Minitest::Test
     assert_equal "all", doc.at_css("[data-unlisted-review]")["data-pagefind-ignore"]
     assert_equal "Draft <not accepted>", doc.at_css("aside p:last-of-type").text
     assert_equal 1, doc.css("h1").length
-    assert_empty doc.css("script, footer, [data-pagefind-body], .support-section, .post-comments")
+    assert_empty doc.css("script:not([data-local-reader-loader]), footer, [data-pagefind-body], .support-section, .post-comments")
+    assert_equal 1, doc.css("script[data-local-reader-loader]").length
     assert_equal 1, doc.css("nav").length
     assert_equal %w[#one #child], doc.css(".post-toc a").map { |link| link["href"] }
     assert_equal "On this page", doc.at_css(".post-toc summary").text
@@ -355,7 +393,8 @@ if ENV["READER_SITE"]
         url = URI.parse(doc.at_css('link[rel="canonical"]')["href"]).path
         assert_includes doc.at_css('meta[name="robots"]')["content"], "noindex"
         assert_equal "no-referrer", doc.at_css('meta[name="referrer"]')["content"]
-        assert_empty doc.css("script, [data-pagefind-body], .support-section, .post-comments")
+        assert_empty doc.css("script:not([data-local-reader-loader]), [data-pagefind-body], .support-section, .post-comments")
+        assert_equal 1, doc.css("script[data-local-reader-loader]").length
         doc.css('img[src$=".svg"]').each do |image|
           figure = image.ancestors("figure.blog-diagram").first
           refute_nil figure, "review diagram bypasses standard component: #{image['src']}"

@@ -1,4 +1,16 @@
-{% if jekyll.environment == 'development' and page.local_reader != false %}
+{% unless page.local_reader == false %}
   {% assign local_reader_asset_version = site.time | date: "%s" %}
-  <script src="{{ '/assets/js/article-tts-player.js' | relative_url }}?v={{ local_reader_asset_version }}" defer></script>
-{% endif %}
+  {% assign local_reader_asset = '/assets/js/article-tts-player.js' | relative_url | append: '?v=' | append: local_reader_asset_version %}
+  <script data-local-reader-loader>
+    (() => {
+      "use strict";
+      if (!["localhost", "127.0.0.1", "[::1]"].includes(window.location.hostname)) return;
+      if (document.querySelector("script[data-local-reader-player]")) return;
+      const script = document.createElement("script");
+      script.src = {{ local_reader_asset | jsonify }};
+      script.defer = true;
+      script.dataset.localReaderPlayer = "";
+      document.body.append(script);
+    })();
+  </script>
+{% endunless %}

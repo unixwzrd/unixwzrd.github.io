@@ -1,6 +1,10 @@
 (() => {
   "use strict";
 
+  if (!["localhost", "127.0.0.1", "[::1]"].includes(window.location.hostname)) {
+    return;
+  }
+
   const article = document.querySelector(".post-content.e-content")
     || document.querySelector("[data-local-reader-content]");
   if (!article || document.querySelector(".article-tts-player") || !("AudioContext" in window || "webkitAudioContext" in window)) {
