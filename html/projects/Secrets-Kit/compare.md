@@ -11,13 +11,11 @@ hide_banner_image: true
 excerpt: "Compare local workflows, hosted connectivity, pricing units, and the tradeoffs of other secrets managers."
 ---
 
-{% include secrets-kit/navigation.html %}
+{% include secrets-kit/release.html %}
 
 <section class="seckit-compare-intro" aria-labelledby="seckit-compare-title">
-  <p class="home-kicker">Find the right fit</p>
   <h2 id="seckit-compare-title">Your workflow. Your priorities.</h2>
   <p>Start with the features you need. Secrets Kit keeps credentials on your own machines, with unlimited peer-to-peer connections on the same LAN segment. Add hosted forwarding when you need it, or compare the team features of a centralized secrets manager.</p>
-  <nav class="seckit-jumps" aria-label="Comparison sections"><a href="#seckit-quick-fit">Quick fit</a><a href="#seckit-matrix-title">Hosted services &amp; pricing</a><a href="#seckit-local-comparison">Local alternatives</a><a href="#seckit-workflow-fit">Which approach fits?</a><a href="#seckit-custody-heading">Key custody &amp; outages</a><a href="#seckit-landscape-heading">Search all products</a><a href="#comparison-sources">Sources &amp; qualifications</a></nav>
 </section>
 
 <section class="seckit-section" aria-labelledby="seckit-quick-fit">
@@ -34,7 +32,7 @@ excerpt: "Compare local workflows, hosted connectivity, pricing units, and the t
   <p class="seckit-comparison-date">Checked October 26, 2026 · Prices in USD</p>
 </div>
 <p class="seckit-matrix-legend" id="seckit-matrix-legend"><span><span class="seckit-check" aria-hidden="true">✓</span> Included</span><span><span class="seckit-cross" aria-hidden="true">×</span> Not included</span><span><span class="seckit-unlisted" aria-hidden="true">—</span> Not listed in reviewed documentation</span></p>
-<p class="seckit-scroll-hint" id="seckit-matrix-help">Scroll within each table to compare all features and products. Product headings and feature names stay visible. Keyboard: focus the table, then use the arrow keys.</p>
+<p class="seckit-scroll-hint" id="seckit-matrix-help">Scroll within each table to compare products. Feature labels stay visible; wider screens also keep the Secrets Kit column in view. Product headings stay visible as you scroll down. Keyboard: focus the table, then use the arrow keys.</p>
 
 <p id="seckit-pricing-units"><strong>Compare billing units, not just headline prices.</strong> Secrets Kit’s RSS pricing is per enrolled connection, associated with an operating-system user. Bitwarden and Doppler charge for user seats; Infisical counts human and machine identities; AWS charges for stored secrets and API requests. Two connections are not equivalent to two seats or two stored secrets. Check the billing period and plan allowances in each column.</p>
 
@@ -167,18 +165,13 @@ excerpt: "Compare local workflows, hosted connectivity, pricing units, and the t
 
 <p class="seckit-comparison-footnote">Plan names qualify the checkmarks. A dash means the feature was not listed in the documentation reviewed, not that it is impossible to build. Hosted access, local caches, and native peer synchronization are different capabilities. Plan limits and annual billing requirements apply; taxes and related service charges may be additional.</p>
 
-<div class="seckit-compare-actions">
-  <div><h2>Start free on your LAN.</h2><p>Keep credentials on your machines. Add remote forwarding when you need it.</p></div>
-  <div class="home-actions"><a class="home-button home-button--primary" href="{{ '/projects/Secrets-Kit/get-started/' | relative_url }}">{% if seckit_release.production_release_ready %}Get Started{% else %}Explore {{ seckit_version }}{% endif %}</a><a class="home-button" href="{{ '/projects/Secrets-Kit/pricing/' | relative_url }}">See Pricing</a></div>
-</div>
-
 <section aria-labelledby="seckit-local-comparison">
   <h2 id="seckit-local-comparison">Compare the local-first alternatives, too.</h2>
   <p>Native peer synchronization is not exclusive to Secrets Kit. These closer alternatives make the tradeoffs clearer: encrypted defaults, custody, private routes, hosted forwarding and release maturity.</p>
   <div class="seckit-table-scroll seckit-matrix-frame" role="region" aria-labelledby="seckit-local-comparison" aria-describedby="seckit-matrix-help" tabindex="0">
   <table class="seckit-matrix">
     <caption>Local and file-based secrets workflows, including differences between available products and early-access designs.</caption>
-    <colgroup><col class="seckit-feature-column"><col><col><col><col><col></colgroup>
+    <colgroup><col class="seckit-feature-column"><col class="seckit-featured-column"><col><col><col><col></colgroup>
     <thead><tr><th scope="col">Local workflow</th><th scope="col" class="seckit-featured">Secrets Kit</th><th scope="col"><a href="https://envsync.arnav.tech/">env-sync</a></th><th scope="col"><a href="https://www.envmesh.dev/">Envmesh</a></th><th scope="col"><a href="https://dotenvx.com/">dotenvx</a></th><th scope="col"><a href="https://getsops.io/">SOPS</a></th></tr></thead>
     <tbody>
       <tr><th scope="row">Availability &amp; price</th><td class="seckit-featured">{{ seckit_version }}{% unless seckit_release.production_release_ready %} coming soon{% endunless %}<small>Free LAN · $5/RSS connection</small></td><td>Available CLI<small>Free/open source</small></td><td>Early access<small>No public price established</small></td><td>Available CLI<small>Core free; optional services separate</small></td><td>Available CLI<small>Free; KMS usage can cost extra</small></td></tr>
@@ -194,6 +187,15 @@ excerpt: "Compare local workflows, hosted connectivity, pricing units, and the t
   <p class="seckit-comparison-footnote">Sources and version/mode qualifications are in the product records below. These are different architectures, not equivalent security guarantees.</p>
 </section>
 
+<div class="seckit-compare-actions">
+  <div><h2>Start free on your LAN.</h2><p>Keep credentials on your machines. Add Remote Secrets Sync when you need to connect across networks.</p></div>
+  <div class="home-actions"><a class="home-button home-button--primary" href="{{ '/projects/Secrets-Kit/get-started/' | relative_url }}">{% if seckit_release.production_release_ready %}Get Started{% else %}Explore {{ seckit_version }}{% endif %}</a><a class="home-button" href="{{ '/projects/Secrets-Kit/pricing/' | relative_url }}">See Pricing</a></div>
+</div>
+
+<p>The tables cover eight alternatives across hosted and local workflows. For a closer look, open the guidance, architecture notes, or full research catalog below. Comparison dates and official sources are retained; these are documented tradeoffs, not a ranking or an independent security audit.</p>
+
+<details class="seckit-comparison-notes" id="seckit-workflow-notes">
+<summary>Which approach fits? Workflow guidance and a small trial</summary>
 <section class="seckit-section" aria-labelledby="seckit-workflow-fit" markdown="1">
 
 ## Which approach fits your workflow? {#seckit-workflow-fit}
@@ -219,8 +221,10 @@ Secrets Kit gives you a local store and selected process injection, reducing the
 {% if seckit_release.production_release_ready %}Choose one application and disposable credentials. [Get Started]({{ '/projects/Secrets-Kit/get-started/' | relative_url }}) links to the installation instructions.{% else %}When {{ seckit_version }} is released, start with one application and disposable credentials. [Get Started]({{ '/projects/Secrets-Kit/get-started/' | relative_url }}) currently previews setup and release status; installation instructions will be available at release.{% endif %} Check the setup effort, actual access boundaries, recovery path, and cost for your own users and machines. [Security & Privacy]({{ '/projects/Secrets-Kit/security/' | relative_url }}) explains what Secrets Kit does and does not protect.
 
 </section>
+</details>
 
-
+<details class="seckit-comparison-notes" id="seckit-architecture-notes">
+<summary>Understand key custody, recovery, and outages</summary>
 <section class="seckit-custody-primer" aria-labelledby="seckit-custody-heading">
   <h2 id="seckit-custody-heading">The questions behind the checkmarks</h2>
   <div class="seckit-grid seckit-grid--two">
@@ -230,8 +234,12 @@ Secrets Kit gives you a local store and selected process injection, reducing the
     <div class="seckit-card"><h3>What do you need to operate?</h3><p>Include identity services, private network routes, KMS, gateways, backups and key recovery—not just a subscription price.</p></div>
   </div>
 </section>
+</details>
 
+<details class="seckit-comparison-notes" id="seckit-product-catalog">
+<summary>Explore all {{ site.data.secrets_kit_competitors.products.size }} products and workflows</summary>
 {% include secrets-kit/landscape.html %}
+</details>
 
 <details class="seckit-comparison-notes" id="comparison-sources">
 <summary>Comparison notes &amp; official sources</summary>

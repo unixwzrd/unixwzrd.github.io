@@ -14,16 +14,11 @@ hide_content_footer: true
 </div>
 
 <section class="home-hero" aria-labelledby="home-heading">
-  {% if site.data.secrets_kit.production_release_ready == false %}
-  <aside class="seckit-notice" aria-label="Secrets Kit announcement">
-    <strong>Coming soon: Secrets Kit {{ site.data.secrets_kit.release_tag | remove_first: 'v' | escape }}</strong>
-    <p>Free peer-to-peer secrets management, unlimited connections on the same LAN segment, and optional remote sync. Final testing is underway. <a href="{{ '/projects/Secrets-Kit/' | relative_url }}">Meet Secrets Kit →</a></p>
-  </aside>
-  {% endif %}
   <p class="home-kicker">Local-first software &amp; systems engineering</p>
   <h1 id="home-heading">Practical tools.<br>Local control.</h1>
   <p class="home-lead">Keep your AI conversations, credentials, and working files useful—and under your control.</p>
   <p>Distributed Thinking Systems builds local-first software and automation for developers, independent professionals, and small teams. Explore the tools, follow the engineering, or get help making a sensitive workflow work on your own systems.</p>
+  <p class="home-release-announcement"><strong>Secrets-Kit 2.0.2 is released.</strong> Free local credentials and LAN sync, with optional Remote Secrets Sync. <a href="{{ '/projects/Secrets-Kit/' | relative_url }}">Explore Secrets Kit</a> · <a href="https://github.com/unixwzrd/Secrets-Kit/releases/tag/v2.0.2">Stable release</a>.</p>
   <div class="home-actions">
     <a class="home-button home-button--primary" href="#featured-tools">Explore the tools</a>
     <a class="home-button" href="{{ '/blog/' | relative_url }}">Read the engineering</a>

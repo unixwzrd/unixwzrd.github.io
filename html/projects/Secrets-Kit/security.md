@@ -11,11 +11,16 @@ image: /assets/images/projects/Secrets-Kit-Banner.png
 excerpt: "Understand local storage, application access, encrypted synchronization, relay visibility, and recovery responsibilities."
 ---
 
-{% include secrets-kit/navigation.html %}
+{% include secrets-kit/release.html %}
 
 See how Secrets Kit stores credentials, controls application and peer access, encrypts synchronization, and supports recovery. The protection has limits: an application receiving a credential can expose it, and a compromised user account remains a risk.
 
-<nav class="seckit-jumps" aria-label="Security sections"><a href="#where-are-my-credentials-stored">Storage</a><a href="#can-an-application-or-agent-see-a-secret">Applications &amp; agents</a><a href="#what-can-another-machine-receive">Peer access</a><a href="#what-does-remote-secrets-sync-see">Remote sync</a><a href="#what-do-i-need-to-preserve-for-recovery">Recovery</a><a href="{{ '/projects/Secrets-Kit/credential-risks/' | relative_url }}">Credential risks &amp; research</a></nav>
+{% assign seckit_research_sources = site.data.secrets_kit_threats.sources %}
+<section class="seckit-risk-callout" aria-labelledby="agent-workflow-credential-risk">
+  <h2 id="agent-workflow-credential-risk">Why exposed credentials matter in agent workflows</h2>
+  <p>An exposed token can become reusable input to an agent’s tool calls. Limiting credential exposure and choosing which processes receive values remain separate from trusting the agent or its execution environment.</p>
+  <p>The July 2026 Hugging Face case involved evaluation agents, exposed account tokens, and a later, distinct production-credential disclosure. Read the <a href="{{ '/projects/Secrets-Kit/credential-risks/#agentic-credential-risk' | relative_url }}">research case and three-stage illustration</a>, <a href="{{ seckit_research_sources.metr_hugging_face.url | escape }}">METR’s independent investigation</a>, and <a href="{{ seckit_research_sources.hugging_face_incident.url | escape }}">Hugging Face’s technical timeline</a>.</p>
+</section>
 
 ## Where are my credentials stored?
 

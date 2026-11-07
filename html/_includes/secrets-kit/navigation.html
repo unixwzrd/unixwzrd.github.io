@@ -6,15 +6,16 @@
     <summary>Secrets Kit pages</summary>
     <div class="seckit-nav-links">
       <a href="{{ '/projects/Secrets-Kit/' | relative_url }}"{% if page.url == '/projects/Secrets-Kit/' %} aria-current="page"{% endif %}>Overview</a>
-      {% assign seckit_primary = 'compare,pricing,guides,security' | split: ',' %}
+      {% assign seckit_primary = 'compare,pricing,credential-risks,guides,security' | split: ',' %}
       {% for slug in seckit_primary %}
         {% assign destination = '/projects/Secrets-Kit/' | append: slug | append: '/' %}
         {% assign product_page = seckit_pages | where: 'url', destination | first %}
         {% if product_page %}
           {% assign nav_label = product_page.nav_title %}
           {% if slug == 'security' %}{% assign nav_label = 'Security' %}{% endif %}
+          {% if slug == 'credential-risks' %}{% assign nav_label = 'Research' %}{% endif %}
           {% if slug == 'support' %}{% assign nav_label = 'Help' %}{% endif %}
-          <a href="{{ product_page.url | relative_url }}"{% if page.url == product_page.url %} aria-current="page"{% elsif slug == 'security' and page.url == '/projects/Secrets-Kit/credential-risks/' %} aria-current="location"{% endif %}>{{ nav_label | escape }}</a>
+          <a href="{{ product_page.url | relative_url }}"{% if page.url == product_page.url %} aria-current="page"{% endif %}>{{ nav_label | escape }}</a>
         {% endif %}
       {% endfor %}
       {% if seckit_start %}<a href="{{ seckit_repository_url }}">GitHub</a>{% endif %}

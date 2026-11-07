@@ -24,7 +24,7 @@ layout: default
     {% endif %}
     {% assign show_banner = true %}
 
-    {% if page.hide_banner_image or page.hide_banner_image == true or page.hide_banner_image == 'true' %}
+    {% if page.secrets_kit_product or page.hide_banner_image or page.hide_banner_image == true or page.hide_banner_image == 'true' %}
       {% assign show_banner = false %}
     {% endif %}
 
@@ -52,6 +52,10 @@ layout: default
       </div>
     {% endif %}
   </header>
+
+  {% if page.secrets_kit_product %}
+    {% include secrets-kit/subpage-header.html %}
+  {% endif %}
 
   <div class="page-content">
     {{ content }}

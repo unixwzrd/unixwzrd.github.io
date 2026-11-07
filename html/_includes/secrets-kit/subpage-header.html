@@ -1,0 +1,9 @@
+<div class="seckit-subpage-header">
+  {% include secrets-kit/navigation.html %}
+  <div class="seckit-subpage-hero">
+    <img class="seckit-hero-art" src="{{ '/assets/images/projects/Secrets-Kit-Banner.png' | relative_url }}"
+         alt="Secrets Kit local credentials and application access"
+         width="1536" height="1024" decoding="async">
+  </div>
+  {% unless page.toc == false %}{{ content | article_toc }}{% endunless %}
+</div>

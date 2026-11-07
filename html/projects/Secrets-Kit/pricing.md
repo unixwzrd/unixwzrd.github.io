@@ -11,7 +11,7 @@ image: /assets/images/projects/Secrets-Kit-Banner.png
 excerpt: "Use the client for free and add optional Remote Secrets Sync at $5 per enrolled connection per month, minimum two."
 ---
 
-{% include secrets-kit/navigation.html %}
+{% include secrets-kit/release.html %}
 
 The Secrets Kit peer-to-peer client is free, with **unlimited connections on the same local area network (LAN) segment**. The Remote Secrets Sync offer adds hosted forwarding between authorized peers across networks.
 

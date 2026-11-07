@@ -135,7 +135,7 @@ async (page) => {
         results.push({ scheme, width, name, checked: result.checked, controlsChecked: result.controlsChecked, background: result.background });
         if (result.totalBad || result.overflow) failures.push({ scheme, width, name, ...result });
         const toc = page.locator(".post-toc");
-        if (["ssh", "memory", "monitoring", "case-study"].includes(name)) {
+        if (["ssh", "memory", "monitoring", "case-study", "seckit-pricing"].includes(name)) {
           if (await toc.count() !== 1 || await toc.getAttribute("open") !== null) throw new Error(`TOC initial state: ${name}`);
           await toc.locator("summary").focus();
           await page.keyboard.press("Enter");

@@ -119,13 +119,18 @@
 }
 
 // Secrets Kit product pages.
+.seckit-subpage-header { margin-bottom: $spacing-unit * 0.5; }
+.seckit-subpage-hero { margin: 0 auto; }
+.seckit-subpage-header > .post-toc { margin: $spacing-unit * 0.5 0 0; }
+.seckit-subpage-header + .page-content { padding-block: 0; }
+.seckit-subpage-header + .page-content > :first-child { margin-top: 0; }
+
 .seckit-nav {
   margin: 0 0 0.75rem;
   padding: 0.3rem;
   border: 1px solid $border-color;
   border-radius: 8px;
   background: var(--site-surface);
-  font-size: max(17px, 1.0625rem);
 
   summary { cursor: pointer; padding: 0.6rem 0.8rem; min-height: 44px; box-sizing: border-box; list-style-position: inside; }
   a { display: flex; align-items: center; padding: 0.6rem 0.8rem; min-height: 44px; box-sizing: border-box; border-radius: 5px; }
@@ -159,17 +164,14 @@
 
 .seckit-hero {
   padding: 1rem 0;
-
-  h2 { font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.15; }
 }
 
 .seckit-section { margin: 2rem 0; }
 .seckit-risk-callout { padding: 1rem; margin-top: 1rem; border: 1px solid $border-color; border-left: 4px solid $link-base-color; border-radius: 8px; background: var(--site-surface); }
-.seckit-risk-callout h2 { margin: 0 0 0.75rem; font-size: 2rem; line-height: 1.2; }
 .seckit-risk-callout > p:last-child { margin-bottom: 0; }
 .seckit-risk-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin: 0.75rem 0; }
 .seckit-risk-metrics dt { font-weight: 600; }
-.seckit-risk-metrics dd { margin: 0.35rem 0 0; font-size: 0.875rem; line-height: 1.4; }
+.seckit-risk-metrics dd { margin: 0.35rem 0 0; }
 .seckit-risk-value { display: block; font-size: clamp(1.25rem, 5vw, 1.75rem); line-height: 1.2; }
 @media screen and (max-width: 40rem) {
   .seckit-risk-metrics { grid-template-columns: minmax(0, 1fr); gap: 0.75rem; }
@@ -178,9 +180,10 @@
 }
 .seckit-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "heading" "artwork" "intro"; gap: 1rem; justify-items: center; text-align: center; }
 .seckit-hero-heading { grid-area: heading; }
-.seckit-hero-intro { grid-area: intro; min-width: 0; width: 100%; }
+.seckit-hero .seckit-hero-heading { margin: 0; font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 1.2; }
+.seckit-hero-intro { grid-area: intro; min-width: 0; width: 100%; display: grid; gap: 0.5rem; }
+.seckit-hero-intro > .home-lead { margin: 0; }
 .seckit-hero-art { grid-area: artwork; }
-.seckit-source { font-size: 0.95rem; }
 // Crop the unused lower edge while preserving the artwork at its full width.
 .seckit-hero-art { width: 100%; max-width: 100%; height: auto; aspect-ratio: 7 / 4; object-fit: cover; object-position: center top; border-radius: 12px; }
 .seckit-offer-cards + table { margin-top: 1.5rem; }
@@ -206,7 +209,7 @@
   font-size: 1.8rem;
   font-weight: 700;
 
-  span { display: block; font-size: 1rem; font-weight: 400; }
+  span { display: block; font-size: $base-font-size; font-weight: 400; }
 }
 .seckit-steps li { margin-bottom: 0.8rem; }
 .seckit-prompt textarea {
@@ -259,13 +262,12 @@
 }
 .seckit-comparison-date,
 .seckit-scroll-hint,
-.seckit-comparison-footnote { font-size: 0.875rem; color: var(--minima-brand-color); }
+.seckit-comparison-footnote { color: var(--minima-brand-color); }
 .seckit-matrix-legend {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.4rem 1.3rem;
-  font-size: 0.875rem;
 
   > span { display: inline-flex; gap: 0.4rem; align-items: center; }
 }
@@ -282,18 +284,20 @@
   scrollbar-color: var(--minima-brand-color) var(--site-surface);
 }
 .seckit-matrix-frame table.seckit-matrix {
+  --seckit-feature-width: 11rem;
+  --seckit-product-width: 10.5rem;
   display: table;
   width: 100%;
-  min-width: 54rem;
+  min-width: 64rem;
   margin: 0;
   table-layout: fixed;
   border: 0;
   border-collapse: separate;
   border-spacing: 0;
-  font-size: 0.9rem;
   overflow: visible;
 
-  .seckit-feature-column { width: 21%; }
+  .seckit-feature-column { width: var(--seckit-feature-width); }
+  .seckit-featured-column { width: var(--seckit-product-width); }
   th, td {
     padding: 1rem 0.65rem;
     border: 0;
@@ -310,7 +314,6 @@
     padding-top: 1.25rem;
     padding-bottom: 1.25rem;
     background: var(--site-surface);
-    font-size: 1rem;
   }
   th:first-child {
     position: sticky;
@@ -324,14 +327,13 @@
   small {
     display: block;
     margin-top: 0.35rem;
-    font-size: 0.78rem;
-    line-height: 1.45;
     font-weight: 400;
     color: var(--minima-brand-color);
   }
-  code { font-size: 0.78rem; white-space: normal; }
+  code { white-space: normal; }
   .seckit-featured {
-    background: var(--site-code-insert-bg);
+    // Keep scrolling competitors from showing through the translucent tint.
+    background: linear-gradient(var(--site-code-insert-bg), var(--site-code-insert-bg)), $background-color;
     border-left: 1px solid var(--site-primary-color);
     border-right: 1px solid var(--site-primary-color);
   }
@@ -341,9 +343,6 @@
     padding: 0.65rem 1rem;
     background: var(--site-surface-raised);
     color: $text-color;
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
     text-align: left;
     box-shadow: none;
 
@@ -361,6 +360,16 @@
     white-space: nowrap;
   }
 }
+@media screen and (min-width: 48rem) {
+  .seckit-matrix-frame table.seckit-matrix {
+    .seckit-featured { position: sticky; left: var(--seckit-feature-width); z-index: 2; }
+    thead .seckit-featured { z-index: 5; }
+    thead th:first-child { z-index: 6; }
+  }
+}
+@media screen and (max-width: 47.999rem) {
+  .seckit-matrix-frame table.seckit-matrix { --seckit-feature-width: 9rem; }
+}
 @media print {
   .seckit-matrix-frame { max-height: none; overflow: visible; }
 }
@@ -372,7 +381,6 @@
   border: 1px solid var(--site-primary-color);
   border-radius: 999px;
   color: var(--site-primary-color);
-  font-size: 0.68rem;
   font-weight: 600;
 }
 .seckit-matrix-price { font-size: 1.7rem; line-height: 1.15; }
@@ -399,7 +407,9 @@
   border-radius: 8px;
 
   summary { cursor: pointer; font-weight: 600; }
-  &[open] summary { margin-bottom: 1rem; }
+  &[open] > summary { margin-bottom: 1rem; }
+  > summary:focus-visible { outline: 2px solid $link-base-color; outline-offset: 3px; }
+  .seckit-landscape { margin: 1.5rem 0 0; }
 }
 .seckit-landscape { margin: 3rem 0; }
 .seckit-landscape-controls:not([hidden]) { display: flex; flex-wrap: wrap; gap: 1rem; align-items: end; padding: 1rem; border-radius: 8px; background: var(--site-surface); }
@@ -412,7 +422,6 @@
 .seckit-competitor dl { display: grid; grid-template-columns: 10rem minmax(0, 1fr); gap: 0.65rem 1rem; margin: 1.25rem 0; }
 .seckit-competitor dt { font-weight: 600; }
 .seckit-competitor dd { margin: 0; }
-.seckit-competitor-sources { font-size: 0.85rem; }
 
 @media screen and (max-width: $on-palm) {
   .seckit-product-page { box-sizing: border-box; padding-inline: 1rem; }
@@ -422,33 +431,14 @@
 }
 
 
-// Compact the product content only; the shared site header keeps its site-wide styles.
-.seckit-page > main.page-content { padding-top: 0.5rem; }
+// Product layouts retain the shared site title, heading, body, and TOC typography.
 .seckit-product-page {
-  .breadcrumbs { margin-bottom: 0.4rem; padding-block: 0.25rem; }
-  .page-header { margin-bottom: 0.5rem; }
-  .page-title { margin: 0.35rem 0 0.5rem; line-height: 1.2; }
-  .seckit-nav { margin-bottom: 0.65rem; }
-  .seckit-notice { padding: 0.5rem 0.75rem; margin-bottom: 0.8rem; font-size: 0.9rem; }
-  .seckit-notice p { margin-top: 0.2rem; }
-  .seckit-hero { padding-top: 0.35rem; }
-  .seckit-hero h2 { margin: 0.2rem 0 0.65rem; }
-  .seckit-hero .home-lead { max-width: 100%; margin: 0.6rem auto 0.5rem; font-size: 1.15rem; }
-  .seckit-hero-intro > .home-lead:first-child { margin-top: 0; }
-  .seckit-hero .home-actions { margin: 0.25rem 0 0.5rem; justify-content: center; }
-  .seckit-compare-intro { margin-top: 0.8rem; }
-  .seckit-compare-intro h2 { margin-top: 0.35rem; }
-  .seckit-jumps { display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; margin: 0.75rem 0 1rem; font-size: 0.9rem; }
-  .seckit-jumps a:focus-visible, .seckit-competitor summary:focus-visible,
+  .seckit-competitor summary:focus-visible,
   .seckit-landscape-controls :focus-visible { outline: 2px solid $link-base-color; outline-offset: 3px; }
   [id] { scroll-margin-top: 1rem; }
 }
 .seckit-forthcoming { color: var(--minima-brand-color); font-style: italic; }
-.seckit-history-note { padding: 0.75rem; border-left: 3px solid $border-color; font-size: 0.9rem; }
-@media screen and (max-width: $on-palm) {
-  .seckit-product-page .seckit-hero .home-actions { gap: 0.6rem; }
-  .seckit-product-page .seckit-hero h2 { font-size: 1.85rem; }
-}
+.seckit-history-note { padding: 0.75rem; border-left: 3px solid $border-color; }
 
 .seckit-free-offer { margin: 0.75rem 0; }
 .seckit-workflow { margin: 0; }
@@ -465,44 +455,37 @@
   li::before { content: counter(workflow-step); position: absolute; top: 0.75rem; left: 0.85rem; width: 1.6rem; line-height: 1.6rem; text-align: center; border-radius: 50%; background: var(--site-surface-raised); font-weight: 700; }
   li:not(:last-child)::after { content: "→"; position: absolute; right: -1.3rem; top: 45%; color: $link-base-color; }
   code { overflow-wrap: anywhere; }
-  p { margin: 0.65rem 0 0; font-size: 0.9rem; }
 }
 .seckit-workflow-steps--three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.seckit-product-page .seckit-workflow-steps h3 { margin: 0; font-size: 1.05rem; line-height: 1.3; }
-.seckit-support--compact { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin: 1.5rem 0; padding-top: 1rem; font-size: 0.9rem; }
+.seckit-support--compact { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; margin: 1.5rem 0; padding-top: 1rem; }
 @media screen and (max-width: $on-palm) {
   .seckit-workflow-steps { grid-template-columns: minmax(0, 1fr); }
   .seckit-workflow-steps li:not(:last-child)::after { content: "↓"; right: auto; left: calc(50% - 0.4rem); top: auto; bottom: -1.45rem; }
 }
 
 .seckit-product-page section[aria-labelledby="seckit-use-cases"] li { display: flex; flex-direction: column; }
-.seckit-product-page section[aria-labelledby="seckit-use-cases"] li > a { margin-top: auto; padding-top: 0.75rem; font-size: 0.9rem; }
+.seckit-product-page section[aria-labelledby="seckit-use-cases"] li > a { margin-top: auto; padding-top: 0.75rem; }
 
 .seckit-threat-context { margin: 1.5rem 0 2.5rem; padding-bottom: 1rem; border-bottom: 1px solid $border-color; }
 .seckit-threat-context .seckit-card { display: flex; flex-direction: column; }
 .seckit-threat-context .seckit-card > a { margin-top: auto; }
 .seckit-threat-trend { margin: 1.5rem 0; padding: 1rem; border: 1px solid $border-color; border-radius: 8px; }
-.seckit-threat-trend figcaption { font-size: 0.95rem; }
+.seckit-threat-trend figcaption > h3 { margin-bottom: $spacing-unit * 0.25; }
 .seckit-threat-bars { margin: 1rem 0 0.5rem; padding: 0; list-style: none; }
 .seckit-threat-bars li { display: grid; grid-template-columns: 3rem minmax(0, 1fr) 3rem; gap: 0.65rem; align-items: center; margin: 0.7rem 0; }
 .seckit-threat-track { display: block; height: 1.1rem; background: var(--site-surface-raised); border-radius: 3px; overflow: hidden; }
 .seckit-threat-track > span { display: block; height: 100%; background: $link-base-color; }
 .seckit-threat-bars strong { text-align: right; }
-.seckit-threat-scale { font-size: 0.8rem; color: var(--minima-brand-color); }
+.seckit-threat-scale { color: var(--minima-brand-color); }
 .seckit-exposure-paths li { margin-bottom: 0.7rem; }
 .seckit-threat-context > .seckit-comparison-footnote { margin-top: 0.75rem; }
-@media screen and (min-width: $on-palm) {
-  .seckit-threat-context .seckit-card h3 { min-height: 2.6em; line-height: 1.3; }
-}
 
 .seckit-growth-highlight { padding: 0.8rem 1rem; border-left: 3px solid $link-base-color; background: var(--site-surface-raised); }
 .seckit-business-impact, .seckit-agentic-risk { margin-block: 2rem; }
 .seckit-loss-bars li { grid-template-columns: 3rem minmax(0, 1fr) 4.5rem; }
 .seckit-month-bars li { grid-template-columns: 5.8rem minmax(0, 1fr) 4rem; }
-.seckit-threat-unavailable { padding: 0.15rem 0.3rem; border: 1px dashed $border-color; font-size: 0.75rem; text-align: center; color: var(--minima-brand-color); }
-.seckit-cost-planner { margin: 1.5rem 0; padding: 1rem; border: 1px solid $border-color; border-radius: 8px; }
-.seckit-cost-planner summary { cursor: pointer; font-weight: 600; }
-.seckit-cost-planner summary:focus-visible { outline: 2px solid $link-base-color; outline-offset: 3px; }
+.seckit-threat-unavailable { padding: 0.15rem 0.3rem; border: 1px dashed $border-color; text-align: center; color: var(--minima-brand-color); }
+.seckit-cost-planner { margin: 1.5rem 0; padding: 1rem; border: 1px solid $border-color; border-left: 4px solid $link-base-color; border-radius: 8px; background: var(--site-surface); }
 .seckit-cost-inputs:not([hidden]) { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
 .seckit-cost-inputs label { min-width: 0; font-weight: 600; }
 .seckit-cost-inputs input { display: block; box-sizing: border-box; width: 100%; padding: 0.5rem; margin-top: 0.4rem; border: 1px solid $border-color; border-radius: 5px; color: $text-color; background: var(--site-surface); font: inherit; }
@@ -510,8 +493,7 @@
 .seckit-cost-result { grid-column: 1 / -1; }
 .seckit-cost-result output { font-size: 1.5rem; font-weight: 700; }
 .seckit-agent-chain { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.seckit-product-page .seckit-agent-chain h4 { margin: 0; font-size: 1.05rem; line-height: 1.3; }
 @media screen and (max-width: $on-palm) {
   .seckit-cost-inputs:not([hidden]), .seckit-agent-chain { grid-template-columns: minmax(0, 1fr); }
-  .seckit-month-bars li { grid-template-columns: 4.8rem minmax(0, 1fr) 3.3rem; gap: 0.4rem; font-size: 0.9rem; }
+  .seckit-month-bars li { grid-template-columns: 4.8rem minmax(0, 1fr) 3.3rem; gap: 0.4rem; }
 }

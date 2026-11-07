@@ -11,7 +11,7 @@ image: /assets/images/projects/Secrets-Kit-Banner.png
 excerpt: "Find the next task: store a credential, run an application, configure an agent, connect a peer, or recover your setup."
 ---
 
-{% include secrets-kit/navigation.html %}
+{% include secrets-kit/release.html %}
 
 {% if seckit_release.production_release_ready != true %}
 ## Plan your first workflow

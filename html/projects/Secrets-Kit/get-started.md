@@ -11,11 +11,9 @@ image: /assets/images/projects/Secrets-Kit-Banner.png
 excerpt: "Give your agent the GitHub installation URL, or follow the production installation guide yourself."
 ---
 
-{% include secrets-kit/navigation.html %}
+{% include secrets-kit/release.html %}
 
 Choose the manual route or let an agent help. **Hermes is optional**; the client also works with applications, scripts, and other agents.
-
-<nav class="seckit-jumps" aria-label="Setup sections"><a href="#have-your-agent-help">Agent-assisted setup</a><a href="#install-it-yourself">Manual setup</a><a href="#compatibility">Compatibility &amp; prerequisites</a><a href="#license">Client license</a></nav>
 
 {% unless seckit_release.production_release_ready %}
 <p id="release-status">These pages describe the upcoming {{ seckit_version }} release. Installation and subscriptions are not open. Existing testers should continue using their supplied test instructions.</p>
@@ -78,11 +76,9 @@ Secrets Kit runs on macOS and 64-bit glibc-based Linux. GitHub Actions provides 
 
 <p class="seckit-comparison-footnote"><sup>1</sup> The Linux kernel and glibc figures are qualification baselines from the <a href="https://doc.rust-lang.org/rustc/platform-support.html">upstream Rust targets</a> and <a href="https://docs.astral.sh/uv/reference/policies/platforms/">GNU UV binaries</a>. Validation of the complete Secrets Kit installer at these minimums is still in progress; they are not yet certified product minimums.</p>
 
-Linux compatibility depends on processor architecture, kernel, C library and service environment, rather than a distribution brand. The x86_64 client and installer are supported for 2.0.2 GA. The release includes a prebuilt Linux ARM64 (aarch64) dependency, but the exact public 2.0.2 clean customer installer was not qualified on ARM64; Linux ARM64 is not a supported GA customer platform. The listed x86_64 minimum kernel and glibc versions are not certified product minimums.
+Secrets Kit 2.0.2 supports glibc-based Linux on x86_64 and ARM64 (aarch64). The managed installer includes the pinned ARM64 native dependency, so customers do not need to compile it. Support is not limited to the distributions used in qualification; if installation fails on your distribution, [contact support]({{ '/projects/Secrets-Kit/support/' | relative_url }}).
 
-The complete installer's minimum kernel and glibc versions are being validated. A newer kernel alone does not establish compatibility with the required user-space libraries. Distribution names used in testing are examples of coverage, not an exclusive list of compatible systems.
-
-Windows, Linux ARM64, 32-bit ARM and musl-based Linux are not covered by the 2.0.2 GA customer support claim. ARM64 and 32-bit ARM are separate targets.
+Windows, 32-bit ARM and musl-based Linux are not covered by the 2.0.2 GA customer support claim. ARM64 and 32-bit ARM are separate targets.
 
 Installer prerequisites:
 

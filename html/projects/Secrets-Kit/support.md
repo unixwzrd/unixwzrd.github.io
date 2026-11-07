@@ -10,7 +10,7 @@ hide_banner_image: true
 excerpt: "Report a Secrets Kit bug, ask a question in the project forum, or contact us privately."
 ---
 
-{% include secrets-kit/navigation.html %}
+{% include secrets-kit/release.html %}
 
 ## Report a problem
 

@@ -11,7 +11,7 @@ image: /assets/images/projects/Secrets-Kit-Banner.png
 excerpt: "Understand optional hosted forwarding for authorized Secrets Kit peers on separate networks."
 ---
 
-{% include secrets-kit/navigation.html %}
+{% include secrets-kit/release.html %}
 
 Your workstation, a home server, and a remote machine do not always share a network. **Remote Secrets Sync (RSS)** gives authorized Secrets Kit peers a forwarding path when they cannot communicate directly. Here, RSS means Remote Secrets Sync; the site's blog subscription feed is a separate feature.
 

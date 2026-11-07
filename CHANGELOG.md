@@ -2,6 +2,18 @@
 
 This changelog records changes to site behavior, operational tooling, scripts, build validation, and shared templates. Routine articles, post corrections, publication dates, and social copy do not require entries. The entries below were backfilled on September 2 from repository history; their dates identify the recorded changes, not a verified deployment date.
 
+## 2026-11-07: Secrets Kit post-GA presentation review
+
+- Added a shared subpage header using the existing artwork and the Overview's full-width hero styling, between product navigation and the collapsed contents widget. Removed nested content padding that created a large gap below the TOC; the Overview retains its original hero position.
+- Kept the Research statistics first and placed the METR/Hugging Face case beside the credential-exposure examples, with prominent primary references and the existing three-stage illustration. Added a short Security cross-reference, retained historical examples and evidence qualifications, and corrected stale released-client wording.
+- Made the instant staff-time response-cost calculator an always-open, clearly titled section with a contents link, retaining local-only arithmetic, input validation, and the distinction between estimated staff time and total incident cost.
+- Added a compact homepage release note between the introduction and existing calls to action. Enabled the separate November 7 GA announcement for publication and discovery without changing its permalink or short-link basis; retained the historical October 28 framing.
+- Removed duplicate product-page jump-link rows in favor of the shared, initially collapsed contents widget. Restored shared heading/body typography and title spacing, retaining layout rules for tables, charts, and numeric displays. Corrected research section heading levels while preserving their IDs.
+- Gave the Overview promise a scoped responsive headline and reused the site's lead-text style beneath the artwork, with compact, consistent gaps. Other product-page typography and shared hero image dimensions are unchanged.
+- Centralized product-page navigation in the existing page layout, promoted Research alongside Compare, Pricing, Guides, and Security, and retained GitHub/Get Started with Help, Remote Sync, and Updates under More. Reused the existing collapsible contents filter on long product pages, leaving the product landing page without a contents widget.
+- Kept the two primary comparison tables visible and moved detailed workflow guidance, architecture notes, and the sourced product catalog into closed native disclosures. Retained source dates, competitor records, and existing section anchors. Added responsive table pinning for feature labels and, where space permits, the Secrets Kit column.
+- Added focused coverage for navigation, contents links, collapsed reference sections, and the unpublished GA announcement. Release settings, services, billing, and release artifacts are outside this presentation pass.
+
 ## 2026-11-05: Local reader survives production validation builds
 
 - Enabled the local reader explicitly in site-wide defaults, including project posts and series articles. Replaced build-environment gating with an exact-loopback hostname bootstrap so local commit checks cannot remove the reader by rebuilding the preview's shared output in production mode.

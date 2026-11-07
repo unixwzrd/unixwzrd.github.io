@@ -10,13 +10,11 @@ nav_title: Policies
 excerpt: "Privacy, licensing, RSS service terms and optional support contracts for Secrets Kit."
 ---
 
-{% include secrets-kit/navigation.html %}
+{% include secrets-kit/release.html %}
 
 This page applies to the **Secrets Kit client and optional Remote Secrets Sync (RSS)**. The Safari extension's [General Privacy Policy]({{ '/Policies/General_Privacy/' | relative_url }}) describes that extension, not Secrets Kit. It does not establish the data practices of this website or the hosted RSS service.
 
 The retention rules and service providers for the hosted RSS service are described below. Separately agreed support contracts define the scope and terms of any additional paid assistance.
-
-<nav class="seckit-jumps" aria-label="Policy sections"><a href="#client-privacy">Client privacy</a><a href="#remote-secrets-sync-privacy">RSS privacy</a><a href="#retention-and-deletion">Retention &amp; deletion</a><a href="#service-terms">Service terms</a><a href="#client-license">MIT client license</a></nav>
 
 <h2 id="client-privacy">Secrets Kit client privacy</h2>
 

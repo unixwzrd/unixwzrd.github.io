@@ -39,6 +39,11 @@
 
 // Post and Blog Styling
 
+// Keep article action buttons clear of the following paragraph.
+.post-content > .home-actions {
+  margin-bottom: 1.5rem;
+}
+
 // Blog list spacing improvements
 .post-list {
   .blog-post-item {
