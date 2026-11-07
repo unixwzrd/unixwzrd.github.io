@@ -210,8 +210,8 @@ class ReaderExperienceTest < Minitest::Test
     actual = catalog.find { |project| project["name"] == "Secrets-Kit" }.fetch("description")
     override = sources.find { |project| project["name"] == "Secrets-Kit" }.fetch("overrides").fetch("description")
     assert_equal override, actual
-    assert_includes actual, "Secrets Kit 2.0.2 is coming soon"
-    assert_includes actual, "Final testing is underway"
+    assert_includes actual, "Secrets Kit 2.0.2 is available"
+    assert_includes actual, "optional paid Remote Secrets Sync"
     refute_match(/public beta/i, actual)
   end
 
@@ -531,12 +531,13 @@ if ENV["READER_SITE"]
       end
     end
 
-    def test_secrets_kit_announces_upcoming_202_without_offering_an_installer
+    def test_secrets_kit_offers_the_stable_release_after_ga
       body = document("projects/Secrets-Kit").at_css(".project-description").text
-      assert_includes body, "Secrets Kit 2.0.2"
-      assert_includes body, "coming soon"
-      assert_includes body, "Final testing is underway"
-      assert_empty document("projects/Secrets-Kit/get-started").css('a[href*="/releases/download/"]')
+      assert_includes body, "Get Started"
+      refute_includes body, "coming soon"
+      setup = document("projects/Secrets-Kit/get-started")
+      assert setup.at_css('a[href="https://github.com/unixwzrd/Secrets-Kit/releases/tag/v2.0.2"]')
+      assert_nil setup.at_css('#release-status')
       refute_match(/public beta|no stable production release yet/i, body)
       refute_match(/\bbeta\b/i, document("").at_css(".home").text)
     end

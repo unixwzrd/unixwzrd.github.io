@@ -41,7 +41,7 @@ projects:
     owner: unixwzrd
     title: Secrets Kit
     description: |-
-      Secrets Kit 2.0.2 is coming soon: free, unlimited LAN peer-to-peer secrets management, with optional Remote Secrets Sync across networks. Final testing is underway.
+      Secrets Kit 2.0.2 is available: free, unlimited LAN peer-to-peer secrets management, with optional paid Remote Secrets Sync across networks.
     image_url: /assets/images/projects/Secrets-Kit-Banner.png
     banner_image_url: /assets/images/projects/Secrets-Kit-Banner.png
     page_url: /projects/Secrets-Kit/
