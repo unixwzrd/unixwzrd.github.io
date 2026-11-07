@@ -73,7 +73,7 @@ Priority assistance, hands-on configuration, migration, agent integration and on
 
 See [Help & Support]({{ '/projects/Secrets-Kit/support/#support-options' | relative_url }}) for the support options and reporting routes, or [ask about a support contract]({{ '/collaborate/professionals/' | relative_url }}). Sensitive account or security matters belong in [private contact]({{ '/contact/' | relative_url }}).
 
-The [website terms]({{ '/Policies/General_ToS/' | relative_url }}) govern the website. They are not a substitute for the final RSS subscription terms. The client license below does not include a hosted-service entitlement.
+The [website terms]({{ '/Policies/General_ToS/' | relative_url }}) govern the website; the RSS service terms above describe the hosted subscription. The client license below does not include a hosted-service entitlement.
 
 <h2 id="client-license">Secrets Kit client license: MIT</h2>
 

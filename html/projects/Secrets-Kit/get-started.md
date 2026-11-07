@@ -78,11 +78,11 @@ Secrets Kit runs on macOS and 64-bit glibc-based Linux. GitHub Actions provides 
 
 <p class="seckit-comparison-footnote"><sup>1</sup> The Linux kernel and glibc figures are qualification baselines from the <a href="https://doc.rust-lang.org/rustc/platform-support.html">upstream Rust targets</a> and <a href="https://docs.astral.sh/uv/reference/policies/platforms/">GNU UV binaries</a>. Validation of the complete Secrets Kit installer at these minimums is still in progress; they are not yet certified product minimums.</p>
 
-Linux compatibility depends on the processor architecture, kernel, C library and service environment, rather than a distribution brand. The x86_64 client and installer are available. The ARM64 (aarch64) installer also includes a prebuilt native dependency, without requiring the customer to compile it; the minimum kernel and glibc versions above are not certified product minimums.
+Linux compatibility depends on processor architecture, kernel, C library and service environment, rather than a distribution brand. The x86_64 client and installer are supported for 2.0.2 GA. The release includes a prebuilt Linux ARM64 (aarch64) dependency, but the exact public 2.0.2 clean customer installer was not qualified on ARM64; Linux ARM64 is not a supported GA customer platform. The listed x86_64 minimum kernel and glibc versions are not certified product minimums.
 
 The complete installer's minimum kernel and glibc versions are being validated. A newer kernel alone does not establish compatibility with the required user-space libraries. Distribution names used in testing are examples of coverage, not an exclusive list of compatible systems.
 
-Windows, 32-bit ARM and musl-based Linux are not covered by the current installer compatibility claim. ARM64 and 32-bit ARM are separate targets.
+Windows, Linux ARM64, 32-bit ARM and musl-based Linux are not covered by the 2.0.2 GA customer support claim. ARM64 and 32-bit ARM are separate targets.
 
 Installer prerequisites:
 

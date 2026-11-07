@@ -27,7 +27,7 @@ Secrets Kit encrypts a synchronization envelope for its destination peer before 
 
 The service still processes the connection and account information needed to authenticate peers and operate forwarding. A statement about encrypted payloads is not a claim that every connection detail is hidden. See [Security & Privacy]({{ '/projects/Secrets-Kit/security/' | relative_url }}) for the boundaries.
 
-Read the scoped [RSS privacy and retention summary]({{ '/projects/Secrets-Kit/policies/#remote-secrets-sync-privacy' | relative_url }}) and [service terms]({{ '/projects/Secrets-Kit/policies/#service-terms' | relative_url }}). Provider disclosures, retention/deletion periods and some commercial terms remain awaiting approval.
+Read the published [RSS privacy and retention summary]({{ '/projects/Secrets-Kit/policies/#remote-secrets-sync-privacy' | relative_url }}) and [service terms]({{ '/projects/Secrets-Kit/policies/#service-terms' | relative_url }}) for provider disclosures, retention, billing and cancellation.
 
 ## Primary and secondary relay failover
 
@@ -50,9 +50,9 @@ A browser success page alone does not prove that a connection is enrolled or tha
 
 ## Add or replace a connection
 
-The customer guide explains adding a peer from the enrolled billing owner's machine using the normal SSH installation workflow. The target creates its own identity. You do not copy private identity keys between machines.
+The customer guide explains adding a peer from the enrolled billing owner's machine using the supported SSH installation and enrollment workflow. The target creates its own identity; you do not copy private identity keys between machines. The optional non-SSH peer-invitation mailbox is not enabled in production. Peer invitations are separate from the retired beta Checkout invitations, and ordinary paid Checkout needs no invitation.
 
-When purchased capacity is full, increase the quantity on the existing subscription through the billing portal and wait for verified capacity before retrying. Creating another checkout is not the normal way to add a machine. For a replacement, revoke the old connection and enroll the new identity into the freed slot; revocation does not automatically reduce your bill.
+When purchased capacity is full, contact support to adjust the existing subscription; self-service Portal quantity changes are disabled. Wait for verified payment, entitlement capacity and provisioning before enrolling another connection. Creating another Checkout is not the normal way to add a machine. For a replacement, revoke the old connection and enroll the new identity into the freed slot; revocation does not automatically reduce your bill.
 
 ## Check the stage that failed
 

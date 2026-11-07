@@ -45,7 +45,7 @@ During delivery, encrypted messages are temporarily held in an in-memory queue, 
 
 Operating the service requires account, payment, connection, and authorization information. Encrypted payloads do not imply anonymous connections or zero metadata. This page does not claim that Secrets Kit is an independently audited zero-knowledge service, a hardware security module, or a compliance system. See the {% include secrets-kit/doc-link.html file='RSS_CUSTOMER_GUIDE.md' label='RSS customer guide' %} for enrollment and identity handling.
 
-The [Secrets Kit client privacy summary]({{ '/projects/Secrets-Kit/policies/#client-privacy' | relative_url }}) and [RSS privacy and retention summary]({{ '/projects/Secrets-Kit/policies/#remote-secrets-sync-privacy' | relative_url }}) are scoped to these products. The RSS summary distinguishes the in-memory delivery queue from the separate encrypted peer-invitation exchange and from account and operational metadata. The optional invitation exchange uses persistent encrypted-message storage; its retention terms and the remaining provider details still require approval. The Safari extension's policy does not apply to Secrets Kit.
+The published [Secrets Kit client privacy summary]({{ '/projects/Secrets-Kit/policies/#client-privacy' | relative_url }}) and [RSS privacy and retention summary]({{ '/projects/Secrets-Kit/policies/#remote-secrets-sync-privacy' | relative_url }}) describe the applicable data paths, retention and service providers. The RSS summary distinguishes the in-memory delivery queue from account and operational metadata. The optional persistent peer-invitation mailbox is not enabled in production. The Safari extension's policy does not apply to Secrets Kit.
 
 ## Are keys escrowed or split between services?
 
