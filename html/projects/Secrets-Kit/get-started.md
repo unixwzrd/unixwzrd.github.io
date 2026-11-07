@@ -78,7 +78,7 @@ Secrets Kit runs on macOS and 64-bit glibc-based Linux. GitHub Actions provides 
 
 <p class="seckit-comparison-footnote"><sup>1</sup> The Linux kernel and glibc figures are qualification baselines from the <a href="https://doc.rust-lang.org/rustc/platform-support.html">upstream Rust targets</a> and <a href="https://docs.astral.sh/uv/reference/policies/platforms/">GNU UV binaries</a>. Validation of the complete Secrets Kit installer at these minimums is still in progress; they are not yet certified product minimums.</p>
 
-Linux compatibility depends on the processor architecture, kernel, C library and service environment, rather than a distribution brand. The x86_64 client and installer are implemented. The ARM64 (aarch64) installer also includes a prebuilt native dependency, without requiring the customer to compile it; final release qualification is in progress.
+Linux compatibility depends on the processor architecture, kernel, C library and service environment, rather than a distribution brand. The x86_64 client and installer are available. The ARM64 (aarch64) installer also includes a prebuilt native dependency, without requiring the customer to compile it; the minimum kernel and glibc versions above are not certified product minimums.
 
 The complete installer's minimum kernel and glibc versions are being validated. A newer kernel alone does not establish compatibility with the required user-space libraries. Distribution names used in testing are examples of coverage, not an exclusive list of compatible systems.
 
@@ -95,7 +95,7 @@ The managed background service on Linux uses systemd's user service manager. Run
 
 <h2 id="license">Client license</h2>
 
-The Secrets Kit client is licensed under the **MIT License**. Read the [applicable client license]({{ '/projects/Secrets-Kit/policies/#client-license' | relative_url }}). The {% include secrets-kit/doc-link.html kind='license' label='versioned repository license' %} will accompany the release. The optional hosted RSS subscription has separate [service terms]({{ '/projects/Secrets-Kit/policies/#service-terms' | relative_url }}); the client license does not promise hosted service or support.
+The Secrets Kit client is licensed under the **MIT License**. Read the [applicable client license]({{ '/projects/Secrets-Kit/policies/#client-license' | relative_url }}) and the {% include secrets-kit/doc-link.html kind='license' label='versioned repository license' %}. The optional hosted RSS subscription has separate [service terms]({{ '/projects/Secrets-Kit/policies/#service-terms' | relative_url }}); the client license does not promise hosted service or support.
 
 ## Choose what comes next
 

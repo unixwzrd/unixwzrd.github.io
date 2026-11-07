@@ -77,7 +77,7 @@ The [website terms]({{ '/Policies/General_ToS/' | relative_url }}) govern the we
 
 <h2 id="client-license">Secrets Kit client license: MIT</h2>
 
-The MIT License below covers the Secrets Kit client. It licenses the client software; it does not set subscription, refund, privacy or support terms. The {% include secrets-kit/doc-link.html kind='license' label='license in the versioned release repository' %} will be available with the release. Integration files and bundled dependencies can carry separate licenses.
+The MIT License below covers the Secrets Kit client. It licenses the client software; it does not set subscription, refund, privacy or support terms. See also the {% include secrets-kit/doc-link.html kind='license' label='license in the versioned release repository' %}. Integration files and bundled dependencies can carry separate licenses.
 
 > MIT License
 

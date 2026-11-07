@@ -55,4 +55,4 @@ The written agreement sets the support level and any service commitments. The RS
 
 ## Support and billing expectations
 
-See the [RSS service terms]({{ '/projects/Secrets-Kit/policies/#service-terms' | relative_url }}) for cancellation, quantity changes, refunds and the terms still to be confirmed. {% unless seckit_release.production_release_ready %}Installation and production subscriptions remain closed.{% endunless %}
+See the [RSS service terms]({{ '/projects/Secrets-Kit/policies/#service-terms' | relative_url }}) for cancellation, quantity changes, refunds and retention. {% unless seckit_release.production_release_ready %}Installation and production subscriptions remain closed.{% endunless %}

@@ -3,21 +3,21 @@ permalink_slug: "secrets-kit-2-0-2-local-secrets-peer-to-peer-sync"
 short_link_basis: "/projects/Secrets-Kit/_posts/2026-10-28-secrets-kit-2-0-2-local-secrets-peer-to-peer-sync.md"
 short_url: "https://unixwzrd.ai/s/48b996c9bb/"
 layout: post
-title: "Coming Soon: Secrets Kit 2.0.2 — Local Secrets, Encrypted Peer-to-Peer Sync"
+title: "Secrets Kit 2.0.2 — Local Secrets, Encrypted Peer-to-Peer Sync"
 date: 2026-10-28
 category: Secrets-Kit
 content_type: update
 tags: [secrets-management, local-first, security, developer-tools, ai-agents, open-source]
-excerpt: "Distributed Thinking Systems previews a substantial Secrets Kit re-architecture: encrypted local SQLite storage, free LAN peer-to-peer synchronization, selected application access, and optional Remote Secrets Sync across networks."
+excerpt: "Secrets Kit 2.0.2 is available with encrypted local SQLite storage, free LAN peer-to-peer synchronization, selected application access, and optional Remote Secrets Sync across networks."
 image: /assets/images/projects/Secrets-Kit-Banner.png
 published: true
 ---
 
-Distributed Thinking Systems is preparing **Secrets Kit 2.0.2**, a substantial re-architecture of our local-first credential management tool. The release combines encrypted SQLite storage, authorized peer-to-peer synchronization, and optional remote connectivity: keep credentials on your devices and provide selected values to the applications that need them.
+**Update November 7, 2026: Secrets Kit 2.0.2 is available.** The release combines encrypted SQLite storage, authorized peer-to-peer synchronization, and optional remote connectivity: keep credentials on your devices and provide selected values to the applications that need them.
 
 The free client supports unlimited peer-to-peer connections on the same local area network segment. There is no hosted vault to retrieve your credentials from, and local credential use does not depend on a cloud service. Optional **Remote Secrets Sync (RSS)** connects authorized peers across networks when direct connectivity is unavailable.
 
-**Final testing is underway; this is a pre-announcement, not general availability.** Version 2.0.2 installation and production RSS subscriptions are not open yet. Existing testers should continue using their supplied instructions.
+Download the [stable v2.0.2 release](https://github.com/unixwzrd/Secrets-Kit/releases/tag/v2.0.2) or follow [Get Started](/projects/Secrets-Kit/get-started/). Production RSS subscriptions use the same account and infrastructure for stable and opt-in beta clients; paying customers do not need invitations.
 
 <!--more-->
 
@@ -38,7 +38,7 @@ seckit run --service postgres --account development --names PGPASSWORD -- psql -
 seckit run --service redis --account development --names REDISCLI_AUTH -- redis-cli -h localhost PING
 ~~~
 
-These illustrate the upcoming workflow, not installation instructions. Programs requiring password files still need their documented file interface; Secrets Kit does not rewrite their configuration automatically.
+These illustrate the workflow, not installation instructions. Programs requiring password files still need their documented file interface; Secrets Kit does not rewrite their configuration automatically.
 
 Agents can use the same process-launch approach. Hermes integration and optional policy-scoped, read-only MCP access provide additional paths, but neither is required. Retrieving a value into model context remains a separate permission decision.
 
@@ -72,10 +72,10 @@ An ordered primary/secondary RSS endpoint set provides connection failover. Cros
 
 Launch pricing is **US$5 per RSS-enrolled connection per month**, with a two-connection minimum of **US$10/month**. Each additional enrolled connection adds US$5/month. Free LAN peer-to-peer connections remain unlimited.
 
-An enrolled connection is a registered Secrets Kit identity associated with an operating-system user—not each application or agent. A workstation and a server with one enrolled identity each use two connections; separate enrolled users on one machine can count separately. See [Pricing](/projects/Secrets-Kit/pricing/). Production subscriptions are not open yet.
+An enrolled connection is a registered Secrets Kit identity associated with an operating-system user—not each application or agent. A workstation and a server with one enrolled identity each use two connections; separate enrolled users on one machine can count separately. See [Pricing](/projects/Secrets-Kit/pricing/).
 
-## Preparing for General Availability
+## Get Started
 
-We are completing testing and release qualification for macOS and Linux, alongside the supporting documentation. Further integrations and capabilities are planned separately.
+The stable client and documentation are published for macOS and Linux. Further integrations and capabilities are planned separately.
 
-Explore the [product overview](/projects/Secrets-Kit/), [setup preview](/projects/Secrets-Kit/get-started/), and [feature comparison](/projects/Secrets-Kit/compare/). We will announce general availability through [project updates](/projects/Secrets-Kit/#updates) once the release is ready: local custody, explicit access, and optional remote connectivity without a cloud-hosted secret vault.
+Explore the [product overview](/projects/Secrets-Kit/), [setup instructions](/projects/Secrets-Kit/get-started/), and [feature comparison](/projects/Secrets-Kit/). The result is local custody, explicit access, and optional remote connectivity without a cloud-hosted secret vault.

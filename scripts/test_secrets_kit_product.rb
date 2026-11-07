@@ -78,14 +78,20 @@ class SecretsKitProductTest < Minitest::Test
     doc = navigation(pages, { "url" => "#{PREFIX}pricing/" })
     assert_equal [PREFIX] + %w[compare pricing guides security].map { |slug| "#{PREFIX}#{slug}/" } + [PRODUCTION.data.fetch("secrets_kit").fetch("repository_url")] + %w[support remote-sync].map { |slug| "#{PREFIX}#{slug}/" } + ["#{PREFIX}#updates", "#{PREFIX}get-started/"], doc.css("nav a").map { |link| link["href"] }
     assert_equal ["Pricing"], doc.css('[aria-current="page"]').map(&:text)
-    assert_equal ["Overview", "Compare", "Pricing", "Guides", "Security", "GitHub", "Explore 2.0.2"], doc.css('.seckit-nav-links > a').map(&:text)
+    action = PRODUCTION.data.fetch("secrets_kit")["production_release_ready"] ? "Get Started" : "Explore 2.0.2"
+    assert_equal ["Overview", "Compare", "Pricing", "Guides", "Security", "GitHub", action], doc.css('.seckit-nav-links > a').map(&:text)
     assert_equal ["Help", "Remote Sync", "Updates"], doc.css('.seckit-nav-menu a').map(&:text)
     assert_equal "Secrets Kit pages", doc.at_css('.seckit-nav-pages > summary').text
     assert_nil doc.at_css('.seckit-nav-pages')["open"], "Native disclosure remains usable before JavaScript"
     assert_equal ["Security"], navigation(pages, { "url" => "#{PREFIX}credential-risks/" }).css('[aria-current="location"]').map(&:text)
     assert_empty doc.css('a[href$="/policies/"]'), "Policies belong in the footer"
-    assert_includes doc.text, "coming soon"
-    assert_equal "#{PREFIX}#updates", doc.at_css('.seckit-notice a')["href"]
+    if PRODUCTION.data.fetch("secrets_kit")["production_release_ready"]
+      assert_equal "Launch preview", doc.at_css('.seckit-notice strong').text
+      assert_empty doc.css('.seckit-notice a')
+    else
+      assert_includes doc.text, "coming soon"
+      assert_equal "#{PREFIX}#updates", doc.at_css('.seckit-notice a')["href"]
+    end
 
     partial = navigation(pages.reject { |page| page["url"] == "#{PREFIX}compare/" })
     assert_empty partial.css('a[href$="/compare/"]')
@@ -103,7 +109,8 @@ class SecretsKitProductTest < Minitest::Test
 
   def test_one_release_setting_updates_all_product_documentation_links
     pages = PREVIEW.pages.select { |page| page.data["secrets_kit_product"] }.map(&:to_liquid)
-    release = PRODUCTION.data.fetch("secrets_kit").merge("release_tag" => "v9.8.7", "production_release_ready" => true)
+    release = PRODUCTION.data.fetch("secrets_kit").merge("release_tag" => "v9.8.7", "production_release_ready" => true,
+      "release_announcement_url" => "https://github.com/unixwzrd/Secrets-Kit/releases/tag/v9.8.7")
     SLUGS.each do |slug|
       source = File.read(File.join(ROOT, "html/projects/Secrets-Kit/#{slug}.md")).split(/^---\s*$\n?/, 3).last
       html = render(source, pages: pages, release: release)
@@ -129,7 +136,8 @@ class SecretsKitProductTest < Minitest::Test
   def test_forthcoming_documents_are_text_and_activate_only_at_the_shared_release
     pages = PREVIEW.pages.select { |page| page.data["secrets_kit_product"] }.map(&:to_liquid)
     template = "{% include secrets-kit/release.html %}{% include secrets-kit/doc-link.html file='SECURITY_MODEL.md' label='security model' %}{% include secrets-kit/doc-link.html file='RSS_CUSTOMER_GUIDE.md#add-another-device' label='device workflow' %}{% include secrets-kit/doc-link.html kind='hermes' label='Hermes integration' %}{% include secrets-kit/doc-link.html kind='license' label='client license' %}"
-    pending = Nokogiri::HTML.fragment(render(template, pages: pages))
+    pending_release = PRODUCTION.data.fetch("secrets_kit").merge("production_release_ready" => false)
+    pending = Nokogiri::HTML.fragment(render(template, pages: pages, release: pending_release))
     assert_empty pending.css("a"), "An unavailable document must not look like a functional link"
     assert_equal 4, pending.css('[data-seckit-unavailable="release-document"]').length
     pending.css("span").each { |span| assert_includes span.text, "forthcoming with 2.0.2" }
