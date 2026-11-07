@@ -32,6 +32,7 @@ The Secrets Kit peer-to-peer client is free, with **unlimited connections on the
 | Hosted forwarding across networks | Not included | Included for enrolled, authorized connections |
 
 The prices on this page are USD. Confirm the quantity, applicable taxes, and billing terms in checkout before subscribing.
+The stable client and opt-in public beta use the same production RSS subscription, entitlement and enrolled devices. Installing a beta client does not require an invitation or a second subscription. Hosted RSS access requires a verified paid subscription and authorized device.
 
 ## What is an enrolled connection?
 
@@ -67,15 +68,15 @@ seckit rss billing portal
 ```
 {% else %}The installed client opens an existing subscription's Stripe-hosted billing portal. Production subscriptions and their billing controls are not open yet.{% endif %}
 
-Use it to review the available billing controls and quantity changes. If you need more capacity, change the quantity on that subscription and wait for verified payment and provisioning before adding another connection.
+Use the portal to manage payment methods, view invoices and cancel at the end of the paid period. Self-service quantity changes are disabled for the initial GA offer. To add capacity, contact support for a change to the existing subscription; additions are prorated and invoiced. Wait for verified payment and provisioning before enrolling another connection.
 
 ### Replacing or removing a machine
 
-Revoke the old connection using the {% include secrets-kit/doc-link.html file='RSS_CUSTOMER_GUIDE.md#add-another-device' label='documented device workflow' %}. Revocation frees a slot once enforced, and a replacement enrolls with a new connection identity. **Revoking a connection does not lower the subscription quantity.** Reduce the purchased quantity separately in the billing portal if you want a lower recurring charge.
+Revoke the old connection using the {% include secrets-kit/doc-link.html file='RSS_CUSTOMER_GUIDE.md#add-another-device' label='documented device workflow' %}. Revocation frees a slot once enforced, and a replacement enrolls with a new connection identity. **Revoking a connection does not lower the subscription quantity.** Contact support to reduce purchased units; the two-connection minimum remains in force. A mid-cycle reduction may create a prorated account credit, not an automatic cash refund.
 
 ### Cancelling
 
-Cancellation uses the billing portal workflow. Once the entitlement becomes inactive through cancellation or payment failure, new hosted access is suspended and active forwarding terminates. The effective cancellation date (immediate or period-end), refund eligibility, and quantity-change proration/credit rules still need approval before subscriptions open. Read the [RSS service terms]({{ '/projects/Secrets-Kit/policies/#service-terms' | relative_url }}) for the confirmed behavior and open decisions. Your local credentials and free client functionality remain available; direct synchronization still depends on authorized peers and a working direct route. Cancelling is separate from uninstalling the software or deleting local data.
+Cancellation through the billing portal takes effect at the end of the paid period. Hosted access remains subject to the active entitlement until then; when the entitlement becomes inactive through cancellation or payment failure, new hosted access is suspended and active forwarding terminates. Refund requests are reviewed individually, subject to applicable law; no cash refund is automatic. Read the [RSS service terms]({{ '/projects/Secrets-Kit/policies/#service-terms' | relative_url }}) for details. Your local credentials and free client functionality remain available; direct synchronization still depends on authorized peers and a working direct route. Cancelling is separate from uninstalling the software or deleting local data.
 
 ## Setup and support contracts
 

@@ -14,7 +14,7 @@ excerpt: "Privacy, licensing, RSS service terms and optional support contracts f
 
 This page applies to the **Secrets Kit client and optional Remote Secrets Sync (RSS)**. The Safari extension's [General Privacy Policy]({{ '/Policies/General_Privacy/' | relative_url }}) describes that extension, not Secrets Kit. It does not establish the data practices of this website or the hosted RSS service.
 
-Retention periods, the full service-provider list and the billing details marked below will be confirmed before RSS subscriptions open. Separately agreed support contracts define the scope and terms of any additional paid assistance.
+Retention periods and the full service-provider list will be confirmed before RSS subscriptions open. Separately agreed support contracts define the scope and terms of any additional paid assistance.
 
 <nav class="seckit-jumps" aria-label="Policy sections"><a href="#client-privacy">Client privacy</a><a href="#remote-secrets-sync-privacy">RSS privacy</a><a href="#retention-and-deletion">Retention &amp; deletion</a><a href="#service-terms">Service terms</a><a href="#client-license">MIT client license</a></nav>
 
@@ -55,14 +55,15 @@ For a privacy or deletion question, [contact us privately]({{ '/contact/' | rela
 <h2 id="service-terms">Remote Secrets Sync service terms</h2>
 
 The launch offer is **$5 per enrolled connection per month, minimum two connections ($10/month)**. The client remains free for local use and unlimited connections on the same LAN segment. An enrolled connection represents a registered client identity associated with an operating-system user; it is not a separate seat for each agent. [Pricing]({{ '/projects/Secrets-Kit/pricing/' | relative_url }}) explains the unit and examples.
+The stable and opt-in public beta clients share one production RSS service and subscription. A paying customer may install either channel without a separate invitation, account, subscription or enrollment. Verified payment establishes the entitlement; only enrolled and authorized devices may use hosted forwarding. Applicable taxes are charged separately once collection obligations are confirmed; automatic Stripe Tax collection is not enabled for the initial offer.
 
 Manage your connections and subscription separately:
 
-- **Increase capacity:** use the existing subscription's billing portal, then wait for verified payment and provisioning before enrolling another connection.
+- **Increase capacity:** contact support to add units to the existing subscription. Additions are prorated and invoiced; wait for verified payment and provisioning before enrolling another connection. Self-service portal quantity changes are disabled.
 - **Revoke or replace a connection:** a revoked identity cannot be restored. Its slot becomes reusable after enforcement; a replacement gets a new identity. Revocation does not lower the purchased quantity.
-- **Reduce quantity:** change purchased quantity separately through the billing workflow. The final effective-date, proration/credit rules and treatment of already enrolled connections need confirmation; the two-connection minimum remains the stated offer.
-- **Cancel:** use the billing portal workflow. Once cancellation makes the entitlement inactive, new hosted access is suspended and active forwarding terminates. Local credentials and free client functionality remain available. Whether cancellation takes effect immediately or at period end is still to be confirmed before subscriptions open.
-- **Request a refund:** [contact privately]({{ '/contact/' | relative_url }}) for a billing question. Refund eligibility, time limits and any credit policy are still to be confirmed before subscriptions open.
+- **Reduce quantity:** contact support to change purchased capacity, subject to the two-connection minimum. A mid-cycle reduction may create a prorated account credit. There is no automatic cash refund; hosted access remains limited to paid capacity.
+- **Cancel:** use the billing portal workflow. Cancellation takes effect at the end of the paid period. Once the entitlement becomes inactive, new hosted access is suspended and active forwarding terminates. Local credentials and free client functionality remain available.
+- **Request a refund:** [contact privately]({{ '/contact/' | relative_url }}) with the billing details. Requests are reviewed individually, subject to applicable law; a refund is not automatic.
 
 ### Support
 
