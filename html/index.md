@@ -18,7 +18,7 @@ hide_content_footer: true
   <h1 id="home-heading">Practical tools.<br>Local control.</h1>
   <p class="home-lead">Keep your AI conversations, credentials, and working files useful—and under your control.</p>
   <p>Distributed Thinking Systems builds local-first software and automation for developers, independent professionals, and small teams. Explore the tools, follow the engineering, or get help making a sensitive workflow work on your own systems.</p>
-  <p class="home-release-announcement"><strong>Secrets-Kit 2.0.2 is released.</strong> Free local credentials and LAN sync, with optional Remote Secrets Sync. <a href="{{ '/projects/Secrets-Kit/' | relative_url }}">Explore Secrets Kit</a> · <a href="https://github.com/unixwzrd/Secrets-Kit/releases/tag/v2.0.2">Stable release</a>.</p>
+  <p class="home-release-announcement home-lead"><strong>Secrets-Kit 2.0.2 is released.</strong> Free local credentials and LAN sync, with optional Remote Secret Sync. <a href="{{ '/projects/Secrets-Kit/' | relative_url }}">Explore Secrets Kit</a> · <a href="https://github.com/unixwzrd/Secrets-Kit/releases/tag/v2.0.2">Stable release</a>.</p>
   <div class="home-actions">
     <a class="home-button home-button--primary" href="#featured-tools">Explore the tools</a>
     <a class="home-button" href="{{ '/blog/' | relative_url }}">Read the engineering</a>

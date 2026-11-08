@@ -12,7 +12,7 @@ excerpt: "Privacy, licensing, RSS service terms and optional support contracts f
 
 {% include secrets-kit/release.html %}
 
-This page applies to the **Secrets Kit client and optional Remote Secrets Sync (RSS)**. The Safari extension's [General Privacy Policy]({{ '/Policies/General_Privacy/' | relative_url }}) describes that extension, not Secrets Kit. It does not establish the data practices of this website or the hosted RSS service.
+This page applies to the **Secrets Kit client and optional Remote Secret Sync (RSS)**. The Safari extension's [General Privacy Policy]({{ '/Policies/General_Privacy/' | relative_url }}) describes that extension, not Secrets Kit. It does not establish the data practices of this website or the hosted RSS service.
 
 The retention rules and service providers for the hosted RSS service are described below. Separately agreed support contracts define the scope and terms of any additional paid assistance.
 
@@ -22,7 +22,7 @@ Your configured local backend holds credentials and their service/account metada
 
 Local/LAN use does not require an RSS subscription. Installation and updates contact distribution services for the selected software and runtime. Enabling hosted RSS, configuring an agent provider, or sending a support request introduces separate data paths; local storage is not a claim that every workflow stays entirely offline.
 
-<h2 id="remote-secrets-sync-privacy">Remote Secrets Sync privacy</h2>
+<h2 id="remote-secrets-sync-privacy">Remote Secret Sync privacy</h2>
 
 | Data path | What it handles | Boundary |
 | --- | --- | --- |
@@ -44,13 +44,13 @@ Account, authorization, billing and operational metadata follow their own retent
 
 Local data, keys, replicas, exports and backups need their own lifecycle. Cancelling hosted forwarding does not delete your local credentials. Synchronization can propagate changes and deletions, but it is not a guarantee of immediate erasure from backups or every authorized peer. Uninstalling software, revoking a connection, cancelling a subscription and requesting account-data deletion are separate actions.
 
-The local operator retains current and inactive customer accounts, subscription and invoice summaries, entitlement and device-authorization history, accounting aggregates and payload-free audit records **indefinitely until deliberate operator deletion**. Cancellation or device revocation changes access; neither automatically erases those records. The relay databases likewise retain authorization and accounting records until operator deletion. Aggregate RSS host-status samples in the operator database are removed once older than **397 days** when new samples are recorded. Destination-encrypted sync messages are held only in a transient in-memory relay queue for delivery, not a durable message archive; operating-system swap may still write memory to disk.
+The local operator retains current and inactive customer accounts, subscription and invoice summaries, entitlement and device-authorization history, accounting aggregates and payload-free audit records **indefinitely until deliberate operator deletion**. Cancellation or device revocation changes access; neither automatically erases those records. The RSS databases likewise retain authorization and accounting records until operator deletion. Aggregate RSS host-status samples in the operator database are removed once older than **397 days** when new samples are recorded. Destination-encrypted sync messages are held only in a transient in-memory RSS delivery queue, not a durable message archive; operating-system swap may still write memory to disk.
 
 The East RSS system journal is configured for a maximum of seven days, subject to earlier size-based rotation; West has no configured fixed journal retention period. Protected recovery backups and private support email have no Secrets Kit automatic deletion deadline and remain until operator or provider deletion. The production operator does not currently enable the optional persistent invitation mailbox. There is no automatic account-erasure deadline after cancellation. A deletion request requires individual review, including any records that must remain for billing, security or recovery; deletion from another authorized peer, a provider, or an existing backup is not immediate or guaranteed.
 
 For a privacy or deletion question, [contact us privately]({{ '/contact/' | relative_url }}) and identify Secrets Kit or RSS. Do not send secret values.
 
-<h2 id="service-terms">Remote Secrets Sync service terms</h2>
+<h2 id="service-terms">Remote Secret Sync service terms</h2>
 
 The launch offer is **$5 per enrolled connection per month, minimum two connections ($10/month)**. The client remains free for local use and unlimited connections on the same LAN segment. An enrolled connection represents a registered client identity associated with an operating-system user; it is not a separate seat for each agent. [Pricing]({{ '/projects/Secrets-Kit/pricing/' | relative_url }}) explains the unit and examples.
 The stable and opt-in public beta clients share one production RSS service and subscription. A paying customer may install either channel without a separate invitation, account, subscription or enrollment. Verified payment establishes the entitlement; only enrolled and authorized devices may use hosted forwarding. Applicable taxes are charged separately once collection obligations are confirmed; automatic Stripe Tax collection is not enabled for the initial offer.

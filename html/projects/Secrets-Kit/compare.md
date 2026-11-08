@@ -125,11 +125,11 @@ excerpt: "Compare local workflows, hosted connectivity, pricing units, and the t
   </tbody>
   <tbody>
     <tr class="seckit-matrix-group"><th colspan="6" scope="rowgroup"><span>Key custody &amp; continuity</span></th></tr>
-    <tr><th scope="row">Who can decrypt?</th><td class="seckit-featured">Authorized local peers<small>RSS relays cannot decrypt payloads</small></td><td>Authorized clients<small>End-to-end encrypted vault</small></td><td>Authorized service operations<small>Service-side crypto</small></td><td>Authorized server operations<small>Envelope-encryption hierarchy</small></td><td>Authorized service operations<small>AWS KMS-backed</small></td></tr>
+    <tr><th scope="row">Who can decrypt?</th><td class="seckit-featured">Authorized local peers<small>RSS cannot decrypt payloads</small></td><td>Authorized clients<small>End-to-end encrypted vault</small></td><td>Authorized service operations<small>Service-side crypto</small></td><td>Authorized server operations<small>Envelope-encryption hierarchy</small></td><td>Authorized service operations<small>AWS KMS-backed</small></td></tr>
     <tr><th scope="row">Key custody</th><td class="seckit-featured">Independent local peer keys<small>No datastore key copied to RSS</small></td><td>Client-side cryptographic access<small>Scoped machine credentials</small></td><td>KMS-protected workplace keys<small>Optional enterprise key layer</small></td><td>Server root / internal KMS keys<small>Configured HSM option</small></td><td>AWS or customer-managed KMS key</td></tr>
     <tr><th scope="row">Splitting &amp; recovery</th><td class="seckit-featured">Per-peer wrapping<small>Not threshold splitting; account recovery is separate</small></td><td>Wrapping / account recovery<small>Not a documented threshold delivery model</small></td><td>Layered encryption<small>No threshold sharing established</small></td><td>Envelope key hierarchy<small>No threshold sharing established</small></td><td>Envelope encryption<small>Not customer threshold delivery</small></td></tr>
     <tr><th scope="row">Server dependence</th><td class="seckit-featured">None for local/LAN use<small>RSS for hosted cross-network forwarding</small></td><td>Service for fresh retrieval</td><td>Service for fresh retrieval<small>Local fallback available</small></td><td>Platform for fresh retrieval<small>Deployment-dependent caches</small></td><td>Cloud API for fresh retrieval</td></tr>
-    <tr><th scope="row">Outage behavior</th><td class="seckit-featured"><span class="seckit-check" role="img" aria-label="Primary and secondary relay failover">✓</span><small>Local use + primary/secondary RSS failover</small></td><td>Service-dependent<small>Specific client failover not established here</small></td><td><span class="seckit-check" role="img" aria-label="Documented service failover and local fallback">✓</span><small>Service failover + encrypted fallback</small></td><td>HA depends on deployment<small>Review backend and client behavior</small></td><td>Managed service / regional options<small>Not local disconnected access</small></td></tr>
+    <tr><th scope="row">Outage behavior</th><td class="seckit-featured"><span class="seckit-check" role="img" aria-label="Primary and secondary RSS failover">✓</span><small>Local use + primary/secondary RSS failover</small></td><td>Service-dependent<small>Specific client failover not established here</small></td><td><span class="seckit-check" role="img" aria-label="Documented service failover and local fallback">✓</span><small>Service failover + encrypted fallback</small></td><td>HA depends on deployment<small>Review backend and client behavior</small></td><td>Managed service / regional options<small>Not local disconnected access</small></td></tr>
   </tbody>
   <tbody>
     <tr class="seckit-matrix-group"><th colspan="6" scope="rowgroup"><span>Team features &amp; automation</span></th></tr>
@@ -188,14 +188,13 @@ excerpt: "Compare local workflows, hosted connectivity, pricing units, and the t
 </section>
 
 <div class="seckit-compare-actions">
-  <div><h2>Start free on your LAN.</h2><p>Keep credentials on your machines. Add Remote Secrets Sync when you need to connect across networks.</p></div>
+  <div><h2>Start free on your LAN.</h2><p>Keep credentials on your machines. Add Remote Secret Sync when you need to connect across networks.</p></div>
   <div class="home-actions"><a class="home-button home-button--primary" href="{{ '/projects/Secrets-Kit/get-started/' | relative_url }}">{% if seckit_release.production_release_ready %}Get Started{% else %}Explore {{ seckit_version }}{% endif %}</a><a class="home-button" href="{{ '/projects/Secrets-Kit/pricing/' | relative_url }}">See Pricing</a></div>
 </div>
 
-<p>The tables cover eight alternatives across hosted and local workflows. For a closer look, open the guidance, architecture notes, or full research catalog below. Comparison dates and official sources are retained; these are documented tradeoffs, not a ranking or an independent security audit.</p>
+<p>The tables cover eight alternatives across hosted and local workflows. The guidance and architecture notes below explain the tradeoffs; expand the full research catalog or source notes for more detail. Comparison dates and official sources are retained; these are documented tradeoffs, not a ranking or an independent security audit.</p>
 
-<details class="seckit-comparison-notes" id="seckit-workflow-notes">
-<summary>Which approach fits? Workflow guidance and a small trial</summary>
+<div id="seckit-workflow-notes">
 <section class="seckit-section" aria-labelledby="seckit-workflow-fit" markdown="1">
 
 ## Which approach fits your workflow? {#seckit-workflow-fit}
@@ -221,20 +220,19 @@ Secrets Kit gives you a local store and selected process injection, reducing the
 {% if seckit_release.production_release_ready %}Choose one application and disposable credentials. [Get Started]({{ '/projects/Secrets-Kit/get-started/' | relative_url }}) links to the installation instructions.{% else %}When {{ seckit_version }} is released, start with one application and disposable credentials. [Get Started]({{ '/projects/Secrets-Kit/get-started/' | relative_url }}) currently previews setup and release status; installation instructions will be available at release.{% endif %} Check the setup effort, actual access boundaries, recovery path, and cost for your own users and machines. [Security & Privacy]({{ '/projects/Secrets-Kit/security/' | relative_url }}) explains what Secrets Kit does and does not protect.
 
 </section>
-</details>
+</div>
 
-<details class="seckit-comparison-notes" id="seckit-architecture-notes">
-<summary>Understand key custody, recovery, and outages</summary>
+<div id="seckit-architecture-notes">
 <section class="seckit-custody-primer" aria-labelledby="seckit-custody-heading">
   <h2 id="seckit-custody-heading">The questions behind the checkmarks</h2>
   <div class="seckit-grid seckit-grid--two">
     <div class="seckit-card"><h3>Encrypted where, and who can open it?</h3><p>Encryption at rest can still allow a service to decrypt authorized requests. Client-side encryption, customer-managed KMS keys, and local custody have different trust boundaries.</p></div>
     <div class="seckit-card"><h3>Shared, wrapped, split, or recoverable?</h3><p>Wrapping a key to several recipients is different from requiring several threshold shares. Account recovery or optional server-held key backup also differs from recovering local secret data. For escrow, ask whether a provider retains decryption-capable keys or can restore access; storing ciphertext alone does not answer that.</p></div>
-    <div class="seckit-card"><h3>What survives an outage?</h3><p>A local store, an encrypted cache, a replicated database, and automatic relay failover solve different failures. An SLA does not establish offline access.</p></div>
+    <div class="seckit-card"><h3>What survives an outage?</h3><p>A local store, an encrypted cache, a replicated database, and automatic endpoint failover solve different failures. An SLA does not establish offline access.</p></div>
     <div class="seckit-card"><h3>What do you need to operate?</h3><p>Include identity services, private network routes, KMS, gateways, backups and key recovery—not just a subscription price.</p></div>
   </div>
 </section>
-</details>
+</div>
 
 <details class="seckit-comparison-notes" id="seckit-product-catalog">
 <summary>Explore all {{ site.data.secrets_kit_competitors.products.size }} products and workflows</summary>

@@ -51,7 +51,7 @@ async (page) => {
         if (mismatches.length) throw Error(`Product typography diverged at ${path}: ${JSON.stringify(mismatches)}`);
         const labels = await nav.locator(".seckit-nav-links > a").allTextContents();
         if (labels.map(label => label.trim()).join("|") !== primary.join("|")) throw Error(`Navigation mismatch: ${path}`);
-        if ((await nav.locator(".seckit-nav-menu a").allTextContents()).join("|") !== "Help|Remote Sync|Updates") throw Error(`More mismatch: ${path}`);
+        if ((await nav.locator(".seckit-nav-menu a").allTextContents()).join("|") !== "Help|RSS|Updates") throw Error(`More mismatch: ${path}`);
         const pages = nav.locator(".seckit-nav-pages");
         if (width < 800) {
           if (await pages.evaluate(node => node.open)) throw Error("Mobile navigation should start collapsed");
@@ -141,7 +141,10 @@ async (page) => {
         if (await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1)) throw Error(`Page overflow: ${path} at ${width}px`);
         if (slug === "compare/") {
           const disclosures = page.locator("details.seckit-comparison-notes");
-          if (await disclosures.count() !== 4 || await disclosures.evaluateAll(nodes => nodes.some(node => node.open))) throw Error("Reference sections are not collapsed");
+          if (await disclosures.count() !== 2 || await disclosures.evaluateAll(nodes => nodes.some(node => node.open))) throw Error("Catalog and sources are not collapsed");
+          for (const id of ["seckit-workflow-notes", "seckit-architecture-notes"]) {
+            if (!(await page.locator(`#${id}`).evaluate(node => node.tagName !== "DETAILS" && !node.closest("details") && !node.querySelector("summary")))) throw Error(`Guidance is still collapsible: ${id}`);
+          }
           for (const frame of await page.locator(".seckit-matrix-frame").all()) {
             const columns = await frame.evaluate(node => {
               const cells = node.querySelectorAll("thead th");
@@ -180,6 +183,11 @@ async (page) => {
   await page.goto(base + "/");
   if (await page.locator(".home-project-card").count() !== 3) throw Error("Homepage cards changed");
   if (!(await page.locator(".home-release-announcement").evaluate(node => node.nextElementSibling.classList.contains("home-actions")))) throw Error("Homepage announcement placement changed");
+  const announcementType = await page.locator(".home-release-announcement").evaluate(node => {
+    const lead = node.parentElement.querySelector(".home-lead:not(.home-release-announcement)");
+    return { announcement: getComputedStyle(node).fontSize, lead: getComputedStyle(lead).fontSize };
+  });
+  if (announcementType.announcement !== announcementType.lead) throw Error("Homepage announcement does not match lead text size");
   await page.screenshot({ path: "output/playwright/seckit-ga-homepage.png", fullPage: true });
   if ((await page.goto(base + launch)).status() !== 200) throw Error("Launch article unavailable");
   await page.locator(".post-banner-image img").evaluate(image => image.decode());

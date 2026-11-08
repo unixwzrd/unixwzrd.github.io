@@ -8,20 +8,20 @@ hide_banner_image: true
 product_nav_order: 40
 nav_title: Pricing
 image: /assets/images/projects/Secrets-Kit-Banner.png
-excerpt: "Use the client for free and add optional Remote Secrets Sync at $5 per enrolled connection per month, minimum two."
+excerpt: "Use the client for free and add optional Remote Secret Sync at $5 per enrolled connection per month, minimum two."
 ---
 
 {% include secrets-kit/release.html %}
 
-The Secrets Kit peer-to-peer client is free, with **unlimited connections on the same local area network (LAN) segment**. The Remote Secrets Sync offer adds hosted forwarding between authorized peers across networks.
+The Secrets Kit peer-to-peer client is free, with **unlimited connections on the same local area network (LAN) segment**. The Remote Secret Sync offer adds hosted forwarding between authorized peers across networks.
 
 ## Choose what you need
 
-{% if seckit_release.production_release_ready %}The free client and optional Remote Secrets Sync subscription are available for {{ seckit_version }}.{% else %}These are the launch prices for Secrets Kit {{ seckit_version }}. Subscriptions are not open yet; follow [release updates]({{ seckit_updates_url }}) for availability.{% endif %}
+{% if seckit_release.production_release_ready %}The free client and optional Remote Secret Sync subscription are available for {{ seckit_version }}.{% else %}These are the launch prices for Secrets Kit {{ seckit_version }}. Subscriptions are not open yet; follow [release updates]({{ seckit_updates_url }}) for availability.{% endif %}
 
 {% include secrets-kit/offer-cards.html %}
 
-| | Free peer-to-peer client | Remote Secrets Sync |
+| | Free peer-to-peer client | Remote Secret Sync |
 | --- | --- | --- |
 | Price | **$0** | **$5 per enrolled connection / month** |
 | Minimum subscription | None | Two connections: **$10/month** |
@@ -36,7 +36,7 @@ The stable client and opt-in public beta use the same production RSS subscriptio
 
 ## What is an enrolled connection?
 
-For paid Remote Secrets Sync, an enrolled connection is a registered Secrets Kit identity associated with an operating-system user. Think of it as a participating Secrets Kit installation, rather than every application or agent that uses it. The purchased connection limit applies to RSS enrollment; free peer-to-peer connections on the same LAN segment are unlimited and do not require RSS enrollment.
+For paid Remote Secret Sync, an enrolled connection is a registered Secrets Kit identity associated with an operating-system user. Think of it as a participating Secrets Kit installation, rather than every application or agent that uses it. The purchased connection limit applies to RSS enrollment; free peer-to-peer connections on the same LAN segment are unlimited and do not require RSS enrollment.
 
 A workstation and a remote server, each enrolled in RSS with one user identity, use two paid connections. Several agents using that same local Secrets Kit identity do not each create another subscription unit. Separate RSS-enrolled user identities on one physical computer can count separately. Supported deployment and platform constraints still apply.
 
@@ -82,6 +82,6 @@ Cancellation through the billing portal takes effect at the end of the paid peri
 
 Your RSS subscription includes help with problems in the hosted service. Priority assistance, setup, migration, agent integration and ongoing operational support can be arranged separately through a paid support contract. Choose a defined project or discuss an ongoing agreement; scope, pricing, coverage and response targets are agreed in writing.
 
-[Explore support options]({{ '/projects/Secrets-Kit/support/#support-options' | relative_url }}) or [ask about a support contract]({{ '/collaborate/professionals/' | relative_url }}). Contract fees are separate from the per-connection subscription.
+[Explore support options]({{ '/projects/Secrets-Kit/support/#support-options' | relative_url }}) or [contact us about a maintenance contract or consulting assistance]({{ '/contact/' | relative_url }}). Contract fees are separate from the per-connection subscription.
 
 Want to see the alternatives first? Read [Compare]({{ '/projects/Secrets-Kit/compare/' | relative_url }}), or check [Security & Privacy]({{ '/projects/Secrets-Kit/security/' | relative_url }}) before deciding where to keep your credentials.

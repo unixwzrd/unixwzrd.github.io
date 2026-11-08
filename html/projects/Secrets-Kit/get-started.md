@@ -95,4 +95,4 @@ The Secrets Kit client is licensed under the **MIT License**. Read the [applicab
 
 ## Choose what comes next
 
-Explore [Guides]({{ '/projects/Secrets-Kit/guides/' | relative_url }}), [Remote Sync]({{ '/projects/Secrets-Kit/remote-sync/' | relative_url }}), [launch pricing]({{ '/projects/Secrets-Kit/pricing/' | relative_url }}), and [Security & Privacy]({{ '/projects/Secrets-Kit/security/' | relative_url }}). Use [Help & Support]({{ '/projects/Secrets-Kit/support/' | relative_url }}) for questions and sanitized problem reports.
+Explore [Guides]({{ '/projects/Secrets-Kit/guides/' | relative_url }}), [RSS]({{ '/projects/Secrets-Kit/remote-sync/' | relative_url }}), [launch pricing]({{ '/projects/Secrets-Kit/pricing/' | relative_url }}), and [Security & Privacy]({{ '/projects/Secrets-Kit/security/' | relative_url }}). Use [Help & Support]({{ '/projects/Secrets-Kit/support/' | relative_url }}) for questions and sanitized problem reports.

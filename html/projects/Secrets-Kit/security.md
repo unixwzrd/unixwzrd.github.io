@@ -8,7 +8,7 @@ hide_banner_image: true
 product_nav_order: 60
 nav_title: Security & Privacy
 image: /assets/images/projects/Secrets-Kit-Banner.png
-excerpt: "Understand local storage, application access, encrypted synchronization, relay visibility, and recovery responsibilities."
+excerpt: "Understand local storage, application access, encrypted synchronization, RSS visibility, and recovery responsibilities."
 ---
 
 {% include secrets-kit/release.html %}
@@ -42,9 +42,9 @@ Peers require explicit authorization. Finding a machine on a network does not ma
 
 Decide which peers you trust before joining them. Synchronization is not a substitute for backups: changes and deletions can propagate. Test backup and recovery separately using the documented workflow.
 
-## What does Remote Secrets Sync see?
+## What does Remote Secret Sync see? {#what-does-remote-secrets-sync-see}
 
-Remote Secrets Sync forwards destination-encrypted envelopes. It does not receive secret plaintext, customer private keys, or local datastore encryption keys. It is a transport service rather than the authority for the contents of your local store.
+Remote Secret Sync forwards destination-encrypted envelopes. It does not receive secret plaintext, customer private keys, or local datastore encryption keys. It is a transport service rather than the authority for the contents of your local store.
 
 During delivery, encrypted messages are temporarily held in an in-memory queue, not intentionally persisted to disk. Operating-system swap or paging can still write memory contents to disk; this is not a guarantee that ciphertext can never reach disk. The queue is not a durable delivery archive or recovery service.
 
@@ -54,7 +54,7 @@ The published [Secrets Kit client privacy summary]({{ '/projects/Secrets-Kit/pol
 
 ## Are keys escrowed or split between services?
 
-Each peer keeps its own local storage and identity keys. To synchronize a record, the sender protects it for the destination peer; the receiver stores it under its own local storage key. RSS relays do not receive those keys. This is per-peer encryption and destination wrapping, not a threshold split-key scheme or a hosted escrow of customer datastore keys.
+Each peer keeps its own local storage and identity keys. To synchronize a record, the sender protects it for the destination peer; the receiver stores it under its own local storage key. RSS does not receive those keys. This is per-peer encryption and destination wrapping, not a threshold split-key scheme or a hosted escrow of customer datastore keys.
 
 Hosted-account recovery codes restore billing-owner authority. They do not reconstruct your local secret store or replace lost datastore keys. Backups, local key recovery, and hosted account recovery need separate consideration.
 

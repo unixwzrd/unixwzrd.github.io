@@ -80,7 +80,7 @@ class SecretsKitProductTest < Minitest::Test
     assert_equal ["Pricing"], doc.css('[aria-current="page"]').map(&:text)
     action = PRODUCTION.data.fetch("secrets_kit")["production_release_ready"] ? "Get Started" : "Explore 2.0.2"
     assert_equal ["Overview", "Compare", "Pricing", "Research", "Guides", "Security", "GitHub", action], doc.css('.seckit-nav-links > a').map(&:text)
-    assert_equal ["Help", "Remote Sync", "Updates"], doc.css('.seckit-nav-menu a').map(&:text)
+    assert_equal ["Help", "RSS", "Updates"], doc.css('.seckit-nav-menu a').map(&:text)
     assert_equal "Secrets Kit pages", doc.at_css('.seckit-nav-pages > summary').text
     assert_nil doc.at_css('.seckit-nav-pages')["open"], "Native disclosure remains usable before JavaScript"
     research = navigation(pages, { "url" => "#{PREFIX}credential-risks/" })
@@ -252,7 +252,13 @@ class SecretsKitProductTest < Minitest::Test
       assert_empty table.ancestors("details")
       assert table.at_css("col.seckit-featured-column")
     end
-    %w[seckit-workflow-notes seckit-architecture-notes seckit-product-catalog comparison-sources].each do |id|
+    %w[seckit-workflow-notes seckit-architecture-notes].each do |id|
+      section = doc.at_css("div##{id}")
+      assert section, id
+      assert_empty section.ancestors("details")
+      assert_empty section.css("details, summary")
+    end
+    %w[seckit-product-catalog comparison-sources].each do |id|
       details = doc.at_css("details##{id}")
       assert details, id
       refute details.key?("open"), id
@@ -271,7 +277,7 @@ class SecretsKitProductTest < Minitest::Test
     refute announcement.data["list_exclude"]
     refute announcement.data["search_exclude"]
     refute_equal false, announcement.data["sitemap"]
-    assert_equal "Secrets-Kit 2.0.2 Released — Local Credentials, Free LAN Sync, Optional Remote Sync", announcement.data["title"]
+    assert_equal "Secrets-Kit 2.0.2 Released — Local Credentials, Free LAN Sync, Optional Remote Secret Sync", announcement.data["title"]
     assert_includes announcement.content, "US$5 per node per month"
     assert_includes announcement.content, "two-node minimum of US$10/month"
     assert_includes announcement.content, "/blob/v2.0.2/docs/INSTALL.md"
@@ -285,6 +291,28 @@ class SecretsKitProductTest < Minitest::Test
     assert prerelease
     assert_includes prerelease.data["title"], "Coming Soon"
     assert_includes prerelease.content, "this is a pre-announcement, not general availability"
+  end
+
+  def test_current_product_naming_support_routes_and_legacy_anchors
+    sources = Dir[File.join(ROOT, "html/_includes/secrets-kit/*.html")] + SLUGS.map { |slug| File.join(ROOT, "html/projects/Secrets-Kit/#{slug}.md") }
+    sources.each do |path|
+      text = File.read(path)
+      refute_match(/Remote Secrets Sync|Remote Sync/, text, path)
+      refute_match(/\brelays?\b/i, text.gsub(/\{#[^}]+\}/, ""), path)
+    end
+    remote = File.read(File.join(ROOT, "html/projects/Secrets-Kit/remote-sync.md"))
+    assert_includes remote, "nav_title: RSS"
+    assert_includes remote, "{#what-travels-through-the-relay}"
+    assert_includes remote, "{#primary-and-secondary-relay-failover}"
+    security = File.read(File.join(ROOT, "html/projects/Secrets-Kit/security.md"))
+    assert_includes security, "{#what-does-remote-secrets-sync-see}"
+    %w[overview support].each do |name|
+      text = File.read(File.join(ROOT, "html/_includes/secrets-kit/#{name}.html"))
+      assert_includes text, "maintenance contract"
+      assert_match(/consulting/i, text)
+      assert_includes text, "'/contact/' | relative_url"
+      assert_match(/separately.*RSS subscription|RSS subscription.*maintenance contract/, text)
+    end
   end
 
   def test_threat_statistics_keep_sources_periods_and_calculations_explicit
@@ -502,6 +530,7 @@ class SecretsKitProductTest < Minitest::Test
       assert_equal launch_url, home.at_css('[aria-labelledby="home-writing"] .post-link')["href"]
       note = home.at_css(".home-hero > .home-release-announcement")
       assert note
+      assert_includes note["class"].split, "home-lead"
       assert_equal "home-actions", note.next_element["class"]
       assert_equal [PREFIX, "https://github.com/unixwzrd/Secrets-Kit/releases/tag/v2.0.2"], note.css("a").map { |link| link["href"] }
       assert_equal 3, home.css(".home-project-card").length

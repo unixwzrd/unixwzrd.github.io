@@ -22,7 +22,7 @@ The version {{ seckit_version }} user guides and agent integration will accompan
 | --- | --- |
 | Keep credentials on your own machines | [Local storage and access boundaries]({{ '/projects/Secrets-Kit/security/' | relative_url }}) |
 | Connect workstations on one LAN segment | [The free peer-to-peer client]({{ '/projects/Secrets-Kit/' | relative_url }}) — unlimited connections on the same segment |
-| Connect authorized peers across networks | [Remote Secrets Sync and relay failover]({{ '/projects/Secrets-Kit/remote-sync/' | relative_url }}) |
+| Connect authorized peers across networks | [Remote Secret Sync (RSS) and endpoint failover]({{ '/projects/Secrets-Kit/remote-sync/' | relative_url }}) |
 | Let Hermes help with installation | [Agent-assisted setup preview]({{ '/projects/Secrets-Kit/get-started/' | relative_url }}) |
 | Compare custody, recovery, and service dependence | [The feature comparison and wider landscape]({{ '/projects/Secrets-Kit/compare/' | relative_url }}) |
 | Ask a question or report a tester problem | [Help & Support]({{ '/projects/Secrets-Kit/support/' | relative_url }}) |
@@ -52,7 +52,7 @@ For other applications and agents, read [Integrations]({{ seckit_docs_url }}INTE
 
 ## Connect another machine
 
-Authorize the peer before expecting synchronization. The free peer-to-peer client provides unlimited connections on the same local area network (LAN) segment, without a hosted subscription. For machines on separate networks, [Remote Sync]({{ '/projects/Secrets-Kit/remote-sync/' | relative_url }}) explains the optional hosted service and links to the [customer workflow]({{ seckit_docs_url }}RSS_CUSTOMER_GUIDE.md).
+Authorize the peer before expecting synchronization. The free peer-to-peer client provides unlimited connections on the same local area network (LAN) segment, without a hosted subscription. For machines on separate networks, [RSS]({{ '/projects/Secrets-Kit/remote-sync/' | relative_url }}) explains the optional hosted service and links to the [customer workflow]({{ seckit_docs_url }}RSS_CUSTOMER_GUIDE.md).
 
 The [installation guide]({{ seckit_docs_url }}INSTALL.md#remote-install) covers remote installation over SSH. Installation, authorization, and a working synchronization route are separate checks. First verify with a disposable value, and never send another machine your local datastore encryption key to make synchronization work.
 
@@ -68,7 +68,7 @@ The [installation guide]({{ seckit_docs_url }}INSTALL.md#remote-install) covers 
 
 ## When something fails
 
-Start with the [installation troubleshooting guide]({{ seckit_docs_url }}INSTALL.md#troubleshooting). A healthy local installation, a healthy daemon, peer authorization, relay authentication, and successful synchronization establish different things. Check the stage that failed before repeating setup or buying another connection.
+Start with the [installation troubleshooting guide]({{ seckit_docs_url }}INSTALL.md#troubleshooting). A healthy local installation, a healthy daemon, peer authorization, RSS authentication, and successful synchronization establish different things. Check the stage that failed before repeating setup or buying another connection.
 
 When asking for help, include the installed version, platform, command, and sanitized error. Leave out secret values, environment dumps, credential files, private keys, and recovery codes. For hands-on help, [ask about setup assistance]({{ '/collaborate/professionals/' | relative_url }}).
 

@@ -46,10 +46,10 @@ An RSS subscription includes help with connection enrollment, hosted forwarding,
 
 ### Contracted support
 
-If you need priority assistance or work on your particular environment, [ask about a paid support contract]({{ '/collaborate/professionals/' | relative_url }}). Two arrangements are available to discuss:
+For consulting assistance or an ongoing maintenance contract, [contact us about your requirements]({{ '/contact/' | relative_url }}). Our [professional services]({{ '/collaborate/professionals/' | relative_url }}) cover work on your particular environment. Two arrangements are available to discuss:
 
-- **Project assistance:** a defined setup, migration, agent integration or troubleshooting engagement, with an agreed scope and price.
-- **Ongoing support:** a continuing support agreement with an agreed scope, fees, coverage hours, contacts and response targets.
+- **Consulting assistance:** a defined setup, migration, agent integration or troubleshooting engagement, with an agreed scope and price.
+- **Maintenance contract:** ongoing operational support with an agreed scope, fees, coverage hours, contacts and response targets.
 
 The written agreement sets the support level and any service commitments. The RSS connection subscription is separate from these contracts and does not itself include priority support or a service-level agreement.
 

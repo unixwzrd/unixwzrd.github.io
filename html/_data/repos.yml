@@ -27,7 +27,7 @@ repositories:
     owner: unixwzrd
     overrides:
       title: "Secrets Kit"
-      description: "Secrets Kit 2.0.2 is available: free, unlimited LAN peer-to-peer secrets management, with optional paid Remote Secrets Sync across networks."
+      description: "Secrets Kit 2.0.2 is available: free, unlimited LAN peer-to-peer secrets management, with optional paid Remote Secret Sync across networks."
       image_url: "/assets/images/projects/Secrets-Kit-Banner.png"
       banner_image_url: "/assets/images/projects/Secrets-Kit-Banner.png"
   - name: LLM-Ops-Kit

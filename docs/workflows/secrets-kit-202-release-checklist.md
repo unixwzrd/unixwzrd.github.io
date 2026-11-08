@@ -13,7 +13,7 @@ Confirmed source references for the site copy:
 - Client `LICENSE`, `pyproject.toml` license metadata: MIT. The Hermes skill's own metadata is separate.
 - Client `docs/INSTALL.md`, prerequisites and installation sections: Bash/utilities/downloader/network bootstrap, managed Python 3.12, intended OS/architecture targets, per-user manual installation, and Linux service considerations. Read its architecture limits alongside the governance public-target matrix; its beta labeling does not make implemented platform support a planned feature.
 - Client `integrations/hermes/install-secrets-kit-for-hermes/README.md`: separate install/configuration/verification decisions, explicit credential choices, preserved existing configuration and optional model-visible retrieval.
-- Client `docs/SECURITY_MODEL.md` and `docs/REMOTE_SECRET_SYNC_ADR.md`: local keys, destination-encrypted payloads, non-authoritative forwarding and ordered relay failover.
+- Client `docs/SECURITY_MODEL.md` and `docs/REMOTE_SECRET_SYNC_ADR.md`: local keys, destination-encrypted payloads, non-authoritative forwarding and ordered RSS endpoint failover.
 - Client `docs/CLI_REFERENCE.md`, non-SSH peer invitations, and `protocol/peer_invitation_mailbox.py`: short-lived encrypted onboarding-message exchange; expiry is separate from a provider-wide deletion commitment.
 - Client `docs/RSS_CUSTOMER_GUIDE.md`, device and lifecycle sections: existing-subscription quantity increase, payment verification, slot enforcement, revocation distinct from purchased quantity, inactive-entitlement suspension and forwarding termination. It does not settle cancellation effective dates or refund eligibility.
 
@@ -44,7 +44,7 @@ The website scopes the in-memory, non-durable delivery statement to RSS message 
 ## Link classification during staging
 
 - The landing page links to `/projects/Secrets-Kit/credential-risks/` for the full research. Security leads with product answers and preserves its old research anchors as onward links. Keep that separation and those links when activating the release.
-- Product navigation is Overview, Compare, Pricing, Guides, Security, GitHub and More, with a separate Get Started/Explore action. GitHub source precedes More, which contains Help, Remote Sync and Updates; Help and Policies remain in the footer. Verify the mobile "Secrets Kit pages" disclosure and the native no-JavaScript fallback when reviewing release-day changes.
+- Product navigation is Overview, Compare, Pricing, Research, Guides, Security, GitHub and More, with a separate Get Started/Explore action. GitHub source precedes More, which contains Help, RSS (Remote Secret Sync) and Updates; Help and Policies remain in the footer. Verify the mobile "Secrets Kit pages" disclosure and the native no-JavaScript fallback when reviewing release-day changes.
 - **Available:** product navigation, product-policy anchors, comparison section jumps, historical posts, GitHub Issues/Discussions and private contact. These must resolve normally.
 - **Intentionally unavailable:** 2.0.2 installers, versioned repository documentation, Hermes setup and the versioned repository license. They render as labeled forthcoming text or are withheld. They must not masquerade as links to the release-status notice.
 - **Broken:** any available link or anchor that fails. An intentionally unavailable future destination does not excuse a broken product-navigation link.

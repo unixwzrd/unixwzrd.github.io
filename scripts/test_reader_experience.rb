@@ -211,7 +211,7 @@ class ReaderExperienceTest < Minitest::Test
     override = sources.find { |project| project["name"] == "Secrets-Kit" }.fetch("overrides").fetch("description")
     assert_equal override, actual
     assert_includes actual, "Secrets Kit 2.0.2 is available"
-    assert_includes actual, "optional paid Remote Secrets Sync"
+    assert_includes actual, "optional paid Remote Secret Sync"
     refute_match(/public beta/i, actual)
   end
 
