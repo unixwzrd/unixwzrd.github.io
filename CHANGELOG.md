@@ -4,7 +4,7 @@ This changelog records changes to site behavior, operational tooling, scripts, b
 
 ## 2026-11-09: Comparison-symbol CI correction
 
-- Corrected the Secrets Kit comparison test to expect the rendered em dash for undocumented features. Retained the exact symbol-set assertion, accessibility checks, and all deployment validation gates; no page or workflow behavior changed.
+- Corrected the Secrets Kit comparison test to expect the rendered em dash for undocumented features, using a Unicode escape so pre-commit text cleanup cannot turn the expectation back into a plain hyphen. Retained the exact symbol-set assertion, accessibility checks, and all deployment validation gates; no page or workflow behavior changed.
 
 ## 2026-11-09: Secrets Kit GA version target
 
@@ -668,5 +668,6 @@ This changelog records changes to site behavior, operational tooling, scripts, b
 - Set up pre-commit hooks
 - Update permalinks to meet new requirements
 - Add required front matter to all pages
+
 
 

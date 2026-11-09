@@ -223,7 +223,8 @@ class SecretsKitProductTest < Minitest::Test
     assert matrix.at_css("caption")
     assert doc.at_css('.seckit-matrix-frame[tabindex="0"][aria-describedby]')
     matrix.css('[role="img"]').each { |mark| refute_empty mark["aria-label"] }
-    assert_equal ["✓", "×", " - "].sort, matrix.css('[role="img"]').map(&:text).uniq.sort
+    # Keep the em dash escaped so pre-commit text cleanup cannot rewrite it.
+    assert_equal ["✓", "×", "\u2014"].sort, matrix.css('[role="img"]').map(&:text).uniq.sort
   end
 
   def test_competitor_landscape_has_primary_sources_and_architecture_coverage
@@ -561,6 +562,7 @@ class SecretsKitProductTest < Minitest::Test
     end
   end
 end
+
 
 
 
