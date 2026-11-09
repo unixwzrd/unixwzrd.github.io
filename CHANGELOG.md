@@ -2,6 +2,10 @@
 
 This changelog records changes to site behavior, operational tooling, scripts, build validation, and shared templates. Routine articles, post corrections, publication dates, and social copy do not require entries. The entries below were backfilled on September 2 from repository history; their dates identify the recorded changes, not a verified deployment date.
 
+## 2026-11-09: Comparison-symbol CI correction
+
+- Corrected the Secrets Kit comparison test to expect the rendered em dash for undocumented features. Retained the exact symbol-set assertion, accessibility checks, and all deployment validation gates; no page or workflow behavior changed.
+
 ## 2026-11-09: Secrets Kit GA version target
 
 - Updated the current Secrets Kit website release target, GA announcement, download/documentation links, homepage, catalog descriptions, and GA social copy from 2.0.2 to 2.0.3. Preserved article URLs, dates, immutable short-link inputs, and the historical preview body; its update notice now points to the revised GA release. This website update does not publish or qualify the upstream release.
@@ -664,4 +668,5 @@ This changelog records changes to site behavior, operational tooling, scripts, b
 - Set up pre-commit hooks
 - Update permalinks to meet new requirements
 - Add required front matter to all pages
+
 
