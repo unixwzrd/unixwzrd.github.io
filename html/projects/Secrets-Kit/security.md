@@ -18,8 +18,8 @@ See how Secrets Kit stores credentials, controls application and peer access, en
 {% assign seckit_research_sources = site.data.secrets_kit_threats.sources %}
 <section class="seckit-risk-callout" aria-labelledby="agent-workflow-credential-risk">
   <h2 id="agent-workflow-credential-risk">Why exposed credentials matter in agent workflows</h2>
-  <p>An exposed token can become reusable input to an agent’s tool calls. Limiting credential exposure and choosing which processes receive values remain separate from trusting the agent or its execution environment.</p>
-  <p>The July 2026 Hugging Face case involved evaluation agents, exposed account tokens, and a later, distinct production-credential disclosure. Read the <a href="{{ '/projects/Secrets-Kit/credential-risks/#agentic-credential-risk' | relative_url }}">research case and three-stage illustration</a>, <a href="{{ seckit_research_sources.metr_hugging_face.url | escape }}">METR’s independent investigation</a>, and <a href="{{ seckit_research_sources.hugging_face_incident.url | escape }}">Hugging Face’s technical timeline</a>.</p>
+  <p>An exposed token can become reusable input to an agent's tool calls. Limiting credential exposure and choosing which processes receive values remain separate from trusting the agent or its execution environment.</p>
+  <p>The July 2026 Hugging Face case involved evaluation agents, exposed account tokens, and a later, distinct production-credential disclosure. Read the <a href="{{ '/projects/Secrets-Kit/credential-risks/#agentic-credential-risk' | relative_url }}">research case and three-stage illustration</a>, <a href="{{ seckit_research_sources.metr_hugging_face.url | escape }}">METR's independent investigation</a>, and <a href="{{ seckit_research_sources.hugging_face_incident.url | escape }}">Hugging Face's technical timeline</a>.</p>
 </section>
 
 ## Where are my credentials stored?
@@ -66,7 +66,7 @@ For hosted-account ownership, save the account information and one-time recovery
 
 ## What happens if I cancel?
 
-Hosted forwarding stops when the service entitlement becomes inactive. The free peer-to-peer client and local credentials remain under your control, including unlimited connections on the same local area network (LAN) segment. Peers still require authorization and a working network route. Review [Pricing]({{ '/projects/Secrets-Kit/pricing/' | relative_url }}) for paid RSS quantity changes and replacement connections; uninstalling the client does not itself cancel a subscription.
+Scheduling cancellation stops renewal but keeps paid hosted access through the current billing-period end while the entitlement remains in good standing. The client shows that date before opening Stripe's billing portal. Hosted forwarding stops when the entitlement expires. The free peer-to-peer client and local credentials remain under your control, including unlimited connections on the same local area network (LAN) segment. Peers still require authorization and a working network route. Review [Pricing]({{ '/projects/Secrets-Kit/pricing/' | relative_url }}) for paid RSS quantity changes and replacement connections; uninstalling the client does not itself cancel a subscription.
 
 ## What should I share when asking for help?
 
@@ -81,3 +81,4 @@ Use [Help & Support]({{ '/projects/Secrets-Kit/support/' | relative_url }}) for 
 - <span id="business-impact">[Business costs and recovery benchmarks]({{ '/projects/Secrets-Kit/credential-risks/#business-impact' | relative_url }})</span>
 - <span id="recent-credential-reports">[Monthly credential findings]({{ '/projects/Secrets-Kit/credential-risks/#recent-credential-reports' | relative_url }})</span>
 - <span id="agentic-credential-risk">[The documented agentic attack case]({{ '/projects/Secrets-Kit/credential-risks/#agentic-credential-risk' | relative_url }})</span>
+

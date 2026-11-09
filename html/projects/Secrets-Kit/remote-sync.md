@@ -31,7 +31,7 @@ Read the published [RSS privacy and retention summary]({{ '/projects/Secrets-Kit
 
 ## Primary and secondary RSS failover {#primary-and-secondary-relay-failover}
 
-RSS provisions an ordered primary/secondary endpoint set. If an endpoint is unavailable, another authorized RSS endpoint can provide a forwarding path. A secondary must have the connection’s authorization before it can accept it; failover does not bypass peer approval or subscription capacity.
+RSS provisions an ordered primary/secondary endpoint set. If an endpoint is unavailable, another authorized RSS endpoint can provide a forwarding path. A secondary must have the connection's authorization before it can accept it; failover does not bypass peer approval or subscription capacity.
 
 Your local store and local credential use remain available when RSS is unavailable. RSS failover, cloud-region replication, and an offline cache are different features. Failover is not a promise of uninterrupted connections or a published recovery-time guarantee.
 
@@ -48,11 +48,22 @@ Review the quantity and price shown by the returned checkout page. Completing ch
 
 A browser success page alone does not prove that a connection is enrolled or that synchronization works. Secrets Kit grants capacity after payment verification and provisioning. Save recovery information privately, then verify RSS authentication and synchronization with disposable data.
 
-## Add or replace a connection
+## Add or replace a connection {#add-or-replace-a-connection}
 
-The customer guide explains adding a peer from the enrolled billing owner's machine using the supported SSH installation and enrollment workflow. The target creates its own identity; you do not copy private identity keys between machines. The optional non-SSH peer-invitation mailbox is not enabled in production. Peer invitations are separate from the retired beta Checkout invitations, and ordinary paid Checkout needs no invitation.
+From the enrolled billing owner's machine, check the registered connections and add a new host through the supported SSH workflow:
 
-When purchased capacity is full, contact support to adjust the existing subscription; self-service Portal quantity changes are disabled. Wait for verified payment, entitlement capacity and provisioning before enrolling another connection. Creating another Checkout is not the normal way to add a machine. For a replacement, revoke the old connection and enroll the new identity into the freed slot; revocation does not automatically reduce your bill.
+```bash
+seckit rss devices list
+seckit install user@host
+```
+
+The target creates its own RSS identity; do not copy private identity keys between machines. The optional non-SSH peer-invitation mailbox is not enabled in production. Peer invitations are separate from the retired beta Checkout invitations, and ordinary paid Checkout needs no invitation. The {% include secrets-kit/doc-link.html file='RSS_CUSTOMER_GUIDE.md#add-another-device' label='customer guide' %} covers enrollment and billing-owner recovery.
+
+When purchased capacity is full, the billing owner runs `seckit rss billing units N` on an enrolled machine, reviews Stripe's adjustment and new monthly total, and explicitly confirms. Portal quantity changes remain disabled. Wait for verified payment and the new entitlement capacity before enrolling another connection. Creating another Checkout is not the normal way to add a machine.
+
+To remove or replace a connection, choose its ID from `seckit rss devices list`, then run `seckit rss devices revoke CONNECTION_ID` on the billing owner's machine and confirm the prompt. Wait until both RSS endpoints enforce revocation; a `pending_enforcement` result does not release the slot yet. A different host with a new RSS identity can then enroll in the freed slot using `seckit install user@host`, without another payment. Revocation does not automatically reduce your bill; use `seckit rss billing units N` separately if you also want fewer paid connections.
+
+**Re-adding a previously revoked profile:** reinstalling on that same user profile preserves its revoked RSS identity and does not enroll it again. The current client has no supported self-service command to replace that profile's RSS identity while preserving its local data. Do not delete its credentials or local store to force enrollment; [contact support privately]({{ '/contact/' | relative_url }}) for help. A normal reinstall of an *unrevoked* profile preserves its existing enrollment.
 
 ## Check the stage that failed
 
@@ -62,3 +73,4 @@ When purchased capacity is full, contact support to adjust the existing subscrip
 - **Capacity or payment problem:** inspect the existing subscription in the billing portal. Do not post payment receipts, recovery codes, or credential files in a support request.
 
 Use [Guides]({{ '/projects/Secrets-Kit/guides/' | relative_url }}) for the reference links. For setup assistance across your own machines, [get in touch]({{ '/collaborate/professionals/' | relative_url }}).
+

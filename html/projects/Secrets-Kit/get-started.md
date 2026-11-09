@@ -49,7 +49,7 @@ No agent is needed. The manual route uses the release's single-file `install.sh`
 
 {% if seckit_release.production_release_ready %}
 
-Open the [Secrets Kit {{ seckit_version }} release]({{ seckit_download_url }}) and follow the [installation guide]({{ seckit_docs_url }}INSTALL.md). After installation, open a new terminal and check:
+Open the [current Secrets Kit maintenance installer]({{ seckit_download_url }}) and follow the [installation guide]({{ seckit_docs_url }}INSTALL.md). After installation, open a new terminal and check:
 
 ```bash
 seckit --version
@@ -76,9 +76,9 @@ Secrets Kit runs on macOS and 64-bit glibc-based Linux. GitHub Actions provides 
 
 <p class="seckit-comparison-footnote"><sup>1</sup> The Linux kernel and glibc figures are qualification baselines from the <a href="https://doc.rust-lang.org/rustc/platform-support.html">upstream Rust targets</a> and <a href="https://docs.astral.sh/uv/reference/policies/platforms/">GNU UV binaries</a>. Validation of the complete Secrets Kit installer at these minimums is still in progress; they are not yet certified product minimums.</p>
 
-Secrets Kit 2.0.2 supports glibc-based Linux on x86_64 and ARM64 (aarch64). The managed installer includes the pinned ARM64 native dependency, so customers do not need to compile it. Support is not limited to the distributions used in qualification; if installation fails on your distribution, [contact support]({{ '/projects/Secrets-Kit/support/' | relative_url }}).
+Secrets Kit 2.0.4 supports glibc-based Linux on x86_64 and ARM64 (aarch64). The managed installer includes the pinned ARM64 native dependency, so customers do not need to compile it. Support is not limited to the distributions used in qualification; if installation fails on your distribution, [contact support]({{ '/projects/Secrets-Kit/support/' | relative_url }}).
 
-Windows, 32-bit ARM and musl-based Linux are not covered by the 2.0.2 GA customer support claim. ARM64 and 32-bit ARM are separate targets.
+Windows, 32-bit ARM and musl-based Linux are not covered by the 2.0.4 customer support claim. ARM64 and 32-bit ARM are separate targets.
 
 Installer prerequisites:
 
@@ -96,3 +96,4 @@ The Secrets Kit client is licensed under the **MIT License**. Read the [applicab
 ## Choose what comes next
 
 Explore [Guides]({{ '/projects/Secrets-Kit/guides/' | relative_url }}), [RSS]({{ '/projects/Secrets-Kit/remote-sync/' | relative_url }}), [launch pricing]({{ '/projects/Secrets-Kit/pricing/' | relative_url }}), and [Security & Privacy]({{ '/projects/Secrets-Kit/security/' | relative_url }}). Use [Help & Support]({{ '/projects/Secrets-Kit/support/' | relative_url }}) for questions and sanitized problem reports.
+

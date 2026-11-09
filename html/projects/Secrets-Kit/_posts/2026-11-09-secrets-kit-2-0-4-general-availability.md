@@ -1,28 +1,31 @@
 ---
 layout: post
-title: "Secrets-Kit 2.0.2 Released — Local Credentials, Free LAN Sync, Optional Remote Secret Sync"
-date: 2026-11-07 13:27:24 -0600
+title: "Secrets-Kit 2.0.4 Released - Local Credentials, Free LAN Sync, Optional Remote Secret Sync"
+date: 2026-11-09 12:38:55 -0600
 category: Secrets-Kit
 content_type: update
-permalink_slug: "secrets-kit-2-0-2-general-availability"
-short_link_basis: "/projects/Secrets-Kit/_posts/2026-11-07-secrets-kit-2-0-2-general-availability.md"
-short_url: "https://unixwzrd.ai/s/24c32740c2/"
+permalink_slug: "secrets-kit-2-0-4-general-availability"
+short_link_basis: "/projects/Secrets-Kit/_posts/2026-11-09-secrets-kit-2-0-4-general-availability.md"
+short_url: "https://unixwzrd.ai/s/7fd920276e/"
+redirect_from:
+  - /projects/Secrets-Kit/2026/11/07/secrets-kit-2-0-2-general-availability/
+  - /s/24c32740c2/
 tags: [secrets-management, local-first, security, developer-tools, ai-agents, open-source]
 image: /assets/images/projects/Secrets-Kit-Banner.png
-excerpt: "Distributed Thinking Systems releases Secrets Kit 2.0.2: a free local-first secrets client, free encrypted LAN synchronization, and optional Remote Secret Sync at $5 per node per month."
+excerpt: "Distributed Thinking Systems releases Secrets Kit 2.0.4: a free local-first secrets client, free encrypted LAN synchronization, and optional Remote Secret Sync at $5 per node per month."
 published: true
 ---
 
-Distributed Thinking Systems is announcing the general availability of **Secrets Kit 2.0.2**. The [public stable release](https://github.com/unixwzrd/Secrets-Kit/releases/tag/v2.0.2) brings together local credential storage, selected application access, and encrypted peer-to-peer synchronization. The client is free and open source, and synchronization between authorized peers on the same local network is free too. Optional **Remote Secret Sync (RSS)** connects enrolled peers across networks when direct communication is unavailable.
+Distributed Thinking Systems is announcing the general availability of **Secrets Kit 2.0.4**. The [public stable release](https://github.com/unixwzrd/Secrets-Kit/releases/tag/v2.0.4) brings together local credential storage, selected application access, and encrypted peer-to-peer synchronization. The client is free and open source, and synchronization between authorized peers on the same local network is free too. Optional **Remote Secret Sync (RSS)** connects enrolled peers across networks when direct communication is unavailable.
 
 <div class="home-actions">
-  <a class="home-button home-button--primary" href="https://github.com/unixwzrd/Secrets-Kit/releases/download/v2.0.2/install.sh">Download Secrets-Kit 2.0.2</a>
+  <a class="home-button home-button--primary" href="https://github.com/unixwzrd/Secrets-Kit/releases/download/v2.0.4/install.sh">Download Secrets-Kit 2.0.4</a>
   <a class="home-button" href="/projects/Secrets-Kit/get-started/">Get Started</a>
 </div>
 
-The download is the free client’s `install.sh` installer. Get Started covers supported platforms and installation instructions.
+The download is the free client's `install.sh` installer. Get Started covers supported platforms and installation instructions.
 
-Version 2.0.2 is a substantial re-architecture of Secrets Kit, not simply an update to its earlier Keychain-based workflow. Encrypted SQLite provides the normal new-store and synchronization path, with independent local storage keys on each peer. macOS Keychain remains a supported backend; existing Keychain records do not automatically become synchronized SQLite records.
+The Secrets Kit 2.0 release series substantially rebuilt the earlier Keychain-based workflow. Encrypted SQLite provides the normal new-store and synchronization path, with independent local storage keys on each peer. macOS Keychain remains a supported backend; existing Keychain records do not automatically become synchronized SQLite records.
 
 <!--more-->
 
@@ -38,11 +41,11 @@ RSS is an optional paid service for authorized peers that cannot communicate dir
 
 Subscription enrollment is open and **does not require an invitation or access code**. Follow the installed client's documented checkout and enrollment workflow; purchasing capacity and authorizing a peer are separate steps.
 
-RSS costs **US$5 per node per month, with a two-node minimum of US$10/month**. Each additional enrolled node adds US$5/month. For billing, a node is an RSS-enrolled Secrets Kit identity associated with an operating-system user—not each application or agent using that identity. Separate enrolled user identities on one physical machine can count separately. The [pricing page](/projects/Secrets-Kit/pricing/) explains capacity, examples, and subscription management.
+RSS costs **US$5 per paid node slot per month, with a two-slot minimum of US$10/month**. Enrolling a device within purchased capacity does not add a charge. For billing, a node is an RSS-enrolled Secrets Kit identity associated with an operating-system user - not each application or agent using that identity. Separate enrolled user identities on one physical machine can count separately. The [pricing page](/projects/Secrets-Kit/pricing/) explains capacity, examples, and subscription management.
 
 Synchronization messages are handled transiently in memory, rather than retained as a cloud copy of your secret store. Account and operational metadata have separate retention rules. An optional encrypted peer-invitation mailbox is a different feature and is not currently configured in production. Our [Security & Privacy overview](/projects/Secrets-Kit/security/) and [service policies](/projects/Secrets-Kit/policies/#remote-secrets-sync-privacy) describe those distinctions and the operating-system limitations.
 
-## Protect the credential—and choose what receives it
+## Protect the credential - and choose what receives it
 
 Secrets Kit reduces the need for scattered credential copies; it does not make the receiving process trustworthy. An application supplied with a credential receives its plaintext value and can log, expose, or transmit it. Agents with sufficient system access can do the same. Optional policy-scoped MCP access also requires an explicit decision about whether a value may enter model context.
 
@@ -50,8 +53,9 @@ Synchronization is not a backup. Changes and deletions can propagate, so local k
 
 ## Install the public release
 
-Secrets Kit 2.0.2 is available for macOS and supported glibc-based Linux systems. Begin with [Get Started](/projects/Secrets-Kit/get-started/), follow the [versioned installation guide](https://github.com/unixwzrd/Secrets-Kit/blob/v2.0.2/docs/INSTALL.md), or download the installer from the [stable v2.0.2 release](https://github.com/unixwzrd/Secrets-Kit/releases/tag/v2.0.2). The release includes the managed installer; GitHub's source-code archives are not the customer installation path.
+The current stable release, Secrets Kit 2.0.4, is available for macOS and supported glibc-based Linux systems. Begin with [Get Started](/projects/Secrets-Kit/get-started/), follow the [versioned installation guide](https://github.com/unixwzrd/Secrets-Kit/blob/v2.0.4/docs/INSTALL.md), or download the installer from the [stable v2.0.4 release](https://github.com/unixwzrd/Secrets-Kit/releases/tag/v2.0.4). The release includes the managed installer; GitHub's source-code archives are not the customer installation path.
 
 The [product overview](/projects/Secrets-Kit/) explains the local-first workflow, [Guides](/projects/Secrets-Kit/guides/) cover everyday tasks, and [Pricing](/projects/Secrets-Kit/pricing/) explains when paid RSS is useful. You can begin with one local application and add LAN peers without subscribing to anything. Add RSS only when you need the cross-network connection.
 
 For help with deployment, migration, integrations, or ongoing maintenance, [contact Distributed Thinking Systems](/contact/) about a maintenance contract or consulting engagement. Scope and fees are agreed separately from an RSS subscription; the subscription does not itself include a maintenance contract or priority support.
+

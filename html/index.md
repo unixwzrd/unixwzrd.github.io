@@ -10,15 +10,15 @@ hide_content_footer: true
 ---
 
 <div class="home-banner">
-  <img src="{{ page.image | relative_url }}" alt="Distributed Thinking Systems LLC — AI systems, developer tooling, and automation" width="1536" height="512" fetchpriority="high" decoding="async">
+  <img src="{{ page.image | relative_url }}" alt="Distributed Thinking Systems LLC - AI systems, developer tooling, and automation" width="1536" height="512" fetchpriority="high" decoding="async">
 </div>
 
 <section class="home-hero" aria-labelledby="home-heading">
   <p class="home-kicker">Local-first software &amp; systems engineering</p>
   <h1 id="home-heading">Practical tools.<br>Local control.</h1>
-  <p class="home-lead">Keep your AI conversations, credentials, and working files useful—and under your control.</p>
+  <p class="home-lead">Keep your AI conversations, credentials, and working files useful - and under your control.</p>
   <p>Distributed Thinking Systems builds local-first software and automation for developers, independent professionals, and small teams. Explore the tools, follow the engineering, or get help making a sensitive workflow work on your own systems.</p>
-  <p class="home-release-announcement home-lead"><strong>Secrets-Kit 2.0.2 is released.</strong> Free local credentials and LAN sync, with optional Remote Secret Sync. <a href="{{ '/projects/Secrets-Kit/' | relative_url }}">Explore Secrets Kit</a> · <a href="https://github.com/unixwzrd/Secrets-Kit/releases/tag/v2.0.2">Stable release</a>.</p>
+  <p class="home-release-announcement home-lead"><strong>Secrets-Kit {{ site.data.secrets_kit.product_version }} is released.</strong> Free local credentials and LAN sync, with optional Remote Secret Sync. <a href="{{ '/projects/Secrets-Kit/' | relative_url }}">Explore Secrets Kit</a> · <a href="https://github.com/unixwzrd/Secrets-Kit/releases/tag/{{ site.data.secrets_kit.release_tag }}">Stable release</a>.</p>
   <div class="home-actions">
     <a class="home-button home-button--primary" href="#featured-tools">Explore the tools</a>
     <a class="home-button" href="{{ '/blog/' | relative_url }}">Read the engineering</a>
@@ -55,7 +55,7 @@ hide_content_footer: true
       {% for featured in site.data.homepage.more_projects %}
         {% assign project = site.data.github_projects.projects | where: 'name', featured.name | first %}
         {% if project and project.visibility == 'public' %}
-        <li><a href="{{ project.page_url | relative_url }}">{{ project.title | escape }}</a> — {{ featured.summary | escape }}</li>
+        <li><a href="{{ project.page_url | relative_url }}">{{ project.title | escape }}</a> - {{ featured.summary | escape }}</li>
         {% endif %}
       {% endfor %}
     </ul>
@@ -77,7 +77,7 @@ hide_content_footer: true
     </div>
     <div>
       <h3>Systems engineering</h3>
-      <p>Unix, Linux, and macOS integration, diagnostics, and developer infrastructure—with attention to how it will be operated and maintained.</p>
+      <p>Unix, Linux, and macOS integration, diagnostics, and developer infrastructure - with attention to how it will be operated and maintained.</p>
     </div>
   </div>
   <p><a href="{{ '/collaborate/professionals/' | relative_url }}">Explore professional services</a> or <a href="{{ '/contact/' | relative_url }}">bring a specific problem</a>.</p>
@@ -85,7 +85,7 @@ hide_content_footer: true
 
 <section class="home-section" aria-labelledby="home-writing">
   <h2 id="home-writing">Follow the engineering</h2>
-  <p>The writing covers implementation, experiments, failures, and the decisions behind the tools—not just release announcements. Read a <a href="{{ '/blog/series/' | relative_url }}">complete series</a>, try a <a href="{{ '/blog/hands-on/' | relative_url }}">Hands-On tutorial</a>, or start with a recent post.</p>
+  <p>The writing covers implementation, experiments, failures, and the decisions behind the tools - not just release announcements. Read a <a href="{{ '/blog/series/' | relative_url }}">complete series</a>, try a <a href="{{ '/blog/hands-on/' | relative_url }}">Hands-On tutorial</a>, or start with a recent post.</p>
   {% include discovery_post_list.html limit=4 %}
   <p><a href="{{ '/blog/all/' | relative_url }}">Browse every post →</a></p>
   <p>Want to talk through an article or share what you are building? <a href="https://www.reddit.com/r/unixwzrd/">Join the conversation at r/unixwzrd →</a></p>
@@ -96,3 +96,4 @@ hide_content_footer: true
   <p>Some of this work grew from the difficulty of organizing sensitive communications and family-law records. <a href="{{ '/projects/Case-Analytics/' | relative_url }}">Case Analytics</a> and <a href="{{ '/projects/PA-Awareness-1/' | relative_url }}">parental alienation research</a> remain part of that longer-term effort. The aim is to support careful review and preserve context, not to turn an AI output into a finding about a family.</p>
   <p>For research participation or project contributions, see <a href="{{ '/collaborate/community/' | relative_url }}">community collaboration</a>. For background on the company and its work, visit <a href="{{ '/about/' | relative_url }}">About Us</a>.</p>
 </section>
+

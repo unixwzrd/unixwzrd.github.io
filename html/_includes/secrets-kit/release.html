@@ -1,6 +1,6 @@
 {% assign seckit_release = site.data.secrets_kit %}
 {% assign seckit_repository_url = seckit_release.repository_url %}
-{% assign seckit_version = seckit_release.release_tag | remove_first: 'v' %}
+{% assign seckit_version = seckit_release.product_version | default: seckit_release.release_tag | remove_first: 'v' %}
 {% assign seckit_ref = seckit_release.release_tag | default: seckit_release.production_branch %}
 {% assign seckit_docs_url = seckit_repository_url | append: '/blob/' | append: seckit_ref | append: '/docs/' %}
 {% assign seckit_readme_url = seckit_repository_url | append: '/blob/' | append: seckit_ref | append: '/README.md#user-installation' %}
@@ -11,3 +11,4 @@
 {% if seckit_release.production_release_ready and seckit_release.release_announcement_url != empty %}
 {% assign seckit_updates_url = seckit_release.release_announcement_url | default: seckit_updates_url %}
 {% endif %}
+

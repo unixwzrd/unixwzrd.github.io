@@ -8,11 +8,12 @@ image: /assets/images/projects/Secrets-Kit-Banner.png
 hide_banner_image: true
 comments: false
 show_support: false
-excerpt: "Secrets Kit 2.0.2 is available: a free local-first secrets client with unlimited LAN peer connections and optional paid Remote Secret Sync."
+excerpt: "Secrets Kit 2.0.4 is available: a free local-first secrets client with unlimited LAN peer connections and optional paid Remote Secret Sync."
 ---
 
-Secrets Kit 2.0.2 is available. Install the free peer-to-peer client from the [stable release](https://github.com/unixwzrd/Secrets-Kit/releases/tag/v2.0.2); optional paid Remote Secret Sync serves authorized connections across networks.
+Secrets Kit 2.0.4 is available. Install the free peer-to-peer client from the [current stable maintenance release](https://github.com/unixwzrd/Secrets-Kit/releases/tag/v2.0.4); optional paid Remote Secret Sync serves authorized connections across networks.
 
 Keep credentials locally, use unlimited connections on the same LAN segment, and pass selected credentials to your applications and agents.
 
 Follow [project Discussions](https://github.com/unixwzrd/Secrets-Kit/discussions) for release updates, report tester problems through [project Issues](https://github.com/unixwzrd/Secrets-Kit/issues), or [contact us privately](/contact/) for sensitive concerns.
+

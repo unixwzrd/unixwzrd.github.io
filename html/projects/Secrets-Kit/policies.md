@@ -27,7 +27,7 @@ Local/LAN use does not require an RSS subscription. Installation and updates con
 | Data path | What it handles | Boundary |
 | --- | --- | --- |
 | Secret synchronization | Destination-encrypted messages temporarily held in an in-memory queue for delivery | RSS does not intentionally persist these messages to disk and cannot decrypt them. Authorized receiving peers can decrypt their records. This statement concerns message payloads, not account or operational metadata. |
-| Hosted access and billing | Account/subscription identifiers, billing contact/profile and invoice information, purchased quantity, entitlement and connection authorization | Service enrollment and billing-owner authority are separate from permission to receive another peer's secrets. |
+| Hosted access and billing | Account/subscription identifiers, billing name and email, contact/profile and invoice information, purchased quantity, entitlement and connection authorization | Checkout collects your full name and email for billing and support. Service enrollment and billing-owner authority are separate from permission to receive another peer's secrets. Existing accounts without a recorded name remain supported. |
 | Connectivity and operational safety | Opaque account and entitlement identifiers, public-key fingerprints, authorization state, connection limits, session/byte counters and aggregate host status | Encryption does not hide all metadata. RSS receives no customer billing contact or Stripe state. Aggregate host samples older than 397 days are pruned when new samples are recorded. |
 | Optional peer invitations | Encrypted onboarding messages when that separate feature is configured | The production operator does not currently configure this persistent mailbox. Ordinary paid Checkout and enrollment do not require an invitation. |
 | Support | The information you choose to include in a report or private message | GitHub Issues and Discussions are public. Keep credentials, private keys, payment receipts and recovery material out of reports. |
@@ -57,10 +57,10 @@ The stable and opt-in public beta clients share one production RSS service and s
 
 Manage your connections and subscription separately:
 
-- **Increase capacity:** contact support to add units to the existing subscription. Additions are prorated and invoiced; wait for verified payment and provisioning before enrolling another connection. Self-service portal quantity changes are disabled.
-- **Revoke or replace a connection:** a revoked identity cannot be restored. Its slot becomes reusable after enforcement; a replacement gets a new identity. Revocation does not lower the purchased quantity.
-- **Reduce quantity:** contact support to change purchased capacity, subject to the two-connection minimum. A mid-cycle reduction may create a prorated account credit. There is no automatic cash refund; hosted access remains limited to paid capacity.
-- **Cancel:** use the billing portal workflow. Cancellation takes effect at the end of the paid period. Once the entitlement becomes inactive, new hosted access is suspended and active forwarding terminates. Local credentials and free client functionality remain available.
+- **Increase capacity:** on the billing owner's machine, run `seckit rss billing units N` with the new total. Review Stripe's prorated amount due now and the new monthly total, then explicitly confirm. Additional capacity is available only after payment is verified and reconciled. Portal quantity changes remain disabled.
+- **Revoke or replace a connection:** a revoked identity cannot be restored. Its slot becomes reusable after both RSS endpoints enforce revocation; a replacement gets a new identity. Revocation does not lower the purchased quantity. See [how to add, remove or replace a connection]({{ '/projects/Secrets-Kit/remote-sync/#add-or-replace-a-connection' | relative_url }}) for the customer steps and the limitation on re-adding a revoked profile.
+- **Reduce quantity:** after revoking enough connections, run `seckit rss billing units N`. The two-connection minimum applies, and enrolled devices cannot exceed the requested quantity. Stripe may create a prorated account credit rather than an immediate card refund.
+- **Cancel:** run `seckit rss billing portal` on the billing owner's machine. The client displays the current paid-through date and returns a Stripe-hosted billing-portal URL. Open that link in a browser, review the cancellation terms, and confirm there. Cancellation stops renewal, while paid RSS access continues through that date if the entitlement remains in good standing. Once the period expires, hosted access ends. Local credentials and free client functionality remain available. Unused Stripe account credit stays on the billing account for future invoices after cancellation; it is not automatically refunded to the card.
 - **Request a refund:** [contact privately]({{ '/contact/' | relative_url }}) with the billing details. Requests are reviewed individually, subject to applicable law; a refund is not automatic.
 
 ### Support
@@ -86,3 +86,4 @@ The MIT License below covers the Secrets Kit client. It licenses the client soft
 > The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 > THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+

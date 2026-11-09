@@ -175,7 +175,7 @@ async (page) => {
       }
     }
   }
-  const launch = "/projects/Secrets-Kit/2026/11/07/secrets-kit-2-0-2-general-availability/";
+  const launch = "/projects/Secrets-Kit/2026/11/09/secrets-kit-2-0-4-general-availability/";
   for (const [path, selector] of [["/", '[aria-labelledby="home-writing"] .post-link'], ["/projects/Secrets-Kit/", "#updates .post-link"]]) {
     await page.goto(base + path);
     if (await page.locator(selector).first().getAttribute("href") !== launch) throw Error(`GA announcement is not first on ${path}`);
@@ -197,3 +197,4 @@ async (page) => {
   await page.screenshot({ path: "output/playwright/seckit-ga-announcement-preview.png", fullPage: true });
   return { checks: results, typography: "shared site styles", launch, firstInRecentLists: true, externalRequests: "blocked" };
 }
+

@@ -68,15 +68,15 @@ seckit rss billing portal
 ```
 {% else %}The installed client opens an existing subscription's Stripe-hosted billing portal. Production subscriptions and their billing controls are not open yet.{% endif %}
 
-Use the portal to manage payment methods, view invoices and cancel at the end of the paid period. Self-service quantity changes are disabled for the initial GA offer. To add capacity, contact support for a change to the existing subscription; additions are prorated and invoiced. Wait for verified payment and provisioning before enrolling another connection.
+Use the portal to manage payment methods, view invoices and cancel at the end of the paid period. To change paid capacity, run `seckit rss billing units N` on the billing owner's machine. Review Stripe's prorated adjustment and new monthly total before confirming. An increase becomes available only after payment verification and reconciliation. Portal quantity changes remain disabled.
 
 ### Replacing or removing a machine
 
-Revoke the old connection using the {% include secrets-kit/doc-link.html file='RSS_CUSTOMER_GUIDE.md#add-another-device' label='documented device workflow' %}. Revocation frees a slot once enforced, and a replacement enrolls with a new connection identity. **Revoking a connection does not lower the subscription quantity.** Contact support to reduce purchased units; the two-connection minimum remains in force. A mid-cycle reduction may create a prorated account credit, not an automatic cash refund.
+Revoke the old connection using the {% include secrets-kit/doc-link.html file='RSS_CUSTOMER_GUIDE.md#add-another-device' label='documented device workflow' %}. Revocation frees a slot once hosted authorization enforces it, and a replacement enrolls with a new connection identity. **Revoking a connection does not lower the subscription quantity.** After revoking enough devices, use `seckit rss billing units N` to reduce purchased units. The two-connection minimum remains in force. A mid-cycle reduction may create a prorated account credit, not an automatic cash refund.
 
 ### Cancelling
 
-Cancellation through the billing portal takes effect at the end of the paid period. Hosted access remains subject to the active entitlement until then; when the entitlement becomes inactive through cancellation or payment failure, new hosted access is suspended and active forwarding terminates. Refund requests are reviewed individually, subject to applicable law; no cash refund is automatic. Read the [RSS service terms]({{ '/projects/Secrets-Kit/policies/#service-terms' | relative_url }}) for details. Your local credentials and free client functionality remain available; direct synchronization still depends on authorized peers and a working direct route. Cancelling is separate from uninstalling the software or deleting local data.
+Run `seckit rss billing portal` to see the current paid-through date before opening Stripe. Confirming cancellation in the portal stops renewal; paid RSS access continues through the displayed period end while the entitlement remains in good standing. At expiration, hosted access ends. Unused Stripe account credit remains on the billing account for future invoices after cancellation; a card refund requires a separate approved request under the [RSS service terms]({{ '/projects/Secrets-Kit/policies/#service-terms' | relative_url }}). Your local credentials and free client functionality remain available; direct synchronization still depends on authorized peers and a working direct route. Cancelling is separate from uninstalling the software or deleting local data.
 
 ## Setup and support contracts
 
@@ -85,3 +85,4 @@ Your RSS subscription includes help with problems in the hosted service. Priorit
 [Explore support options]({{ '/projects/Secrets-Kit/support/#support-options' | relative_url }}) or [contact us about a maintenance contract or consulting assistance]({{ '/contact/' | relative_url }}). Contract fees are separate from the per-connection subscription.
 
 Want to see the alternatives first? Read [Compare]({{ '/projects/Secrets-Kit/compare/' | relative_url }}), or check [Security & Privacy]({{ '/projects/Secrets-Kit/security/' | relative_url }}) before deciding where to keep your credentials.
+
