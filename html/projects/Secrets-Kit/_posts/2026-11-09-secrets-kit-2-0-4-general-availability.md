@@ -19,8 +19,9 @@ published: true
 Distributed Thinking Systems is announcing the general availability of **Secrets Kit 2.0.4**. The [public stable release](https://github.com/unixwzrd/Secrets-Kit/releases/tag/v2.0.4) brings together local credential storage, selected application access, and encrypted peer-to-peer synchronization. The client is free and open source, and synchronization between authorized peers on the same local network is free too. Optional **Remote Secret Sync (RSS)** connects enrolled peers across networks when direct communication is unavailable.
 
 <div class="home-actions">
-  <a class="home-button home-button--primary" href="https://github.com/unixwzrd/Secrets-Kit/releases/download/v2.0.4/install.sh">Download Secrets-Kit 2.0.4</a>
+  <a class="home-button home-button--primary" href="/projects/Secrets-Kit/">Product Overview</a>
   <a class="home-button" href="/projects/Secrets-Kit/get-started/">Get Started</a>
+  <a class="home-button" href="https://github.com/unixwzrd/Secrets-Kit/releases/download/v2.0.4/install.sh">Download Installer Script</a>
 </div>
 
 The download is the free client's `install.sh` installer. Get Started covers supported platforms and installation instructions.
@@ -58,4 +59,5 @@ The current stable release, Secrets Kit 2.0.4, is available for macOS and suppor
 The [product overview](/projects/Secrets-Kit/) explains the local-first workflow, [Guides](/projects/Secrets-Kit/guides/) cover everyday tasks, and [Pricing](/projects/Secrets-Kit/pricing/) explains when paid RSS is useful. You can begin with one local application and add LAN peers without subscribing to anything. Add RSS only when you need the cross-network connection.
 
 For help with deployment, migration, integrations, or ongoing maintenance, [contact Distributed Thinking Systems](/contact/) about a maintenance contract or consulting engagement. Scope and fees are agreed separately from an RSS subscription; the subscription does not itself include a maintenance contract or priority support.
+
 

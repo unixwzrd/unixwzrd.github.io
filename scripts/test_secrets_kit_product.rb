@@ -293,14 +293,20 @@ class SecretsKitProductTest < Minitest::Test
     assert_includes announcement.content, "/blob/v2.0.4/docs/INSTALL.md"
     assert_includes announcement.content, "does not require an invitation or access code"
     opening = Nokogiri::HTML.fragment(announcement.content.split("<!--more-->").first)
-    download = opening.at_css(".home-actions a.home-button--primary")
-    assert_equal "Download Secrets-Kit 2.0.4", download.text
+    actions = opening.css(".home-actions a")
+    assert_equal ["Product Overview", "Get Started", "Download Installer Script"], actions.map(&:text)
+    assert_equal ["/projects/Secrets-Kit/"], opening.css(".home-actions a.home-button--primary").map { |link| link["href"] }
+    download = actions.last
     assert_equal "https://github.com/unixwzrd/Secrets-Kit/releases/download/v2.0.4/install.sh", download["href"]
     assert opening.at_css('.home-actions a[href="/projects/Secrets-Kit/get-started/"]')
+    overview = opening.at_css('.home-actions a[href="/projects/Secrets-Kit/"]')
+    assert overview
+    assert_equal "Product Overview", overview.text
     prerelease = PRODUCTION.posts.docs.find { |post| File.basename(post.path) == "2026-10-28-secrets-kit-2-0-2-local-secrets-peer-to-peer-sync.md" }
     assert prerelease
     assert_includes prerelease.data["title"], "Coming Soon"
     assert_includes prerelease.content, "this is a pre-announcement, not general availability"
+    assert_includes prerelease.data["update_notice"], "[Secrets Kit product page](/projects/Secrets-Kit/)"
   end
 
   def test_current_product_naming_support_routes_and_legacy_anchors
@@ -555,4 +561,5 @@ class SecretsKitProductTest < Minitest::Test
     end
   end
 end
+
 

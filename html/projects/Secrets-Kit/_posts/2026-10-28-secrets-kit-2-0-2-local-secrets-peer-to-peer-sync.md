@@ -12,7 +12,7 @@ excerpt: "Distributed Thinking Systems previews a substantial Secrets Kit re-arc
 image: /assets/images/projects/Secrets-Kit-Banner.png
 published: true
 update_notice_title: "Historical pre-release announcement"
-update_notice: "This article preserves the October 28 preview. Secrets Kit 2.0.4 is now available; see the [GA announcement](/projects/Secrets-Kit/2026/11/09/secrets-kit-2-0-4-general-availability/), [stable release](https://github.com/unixwzrd/Secrets-Kit/releases/tag/v2.0.4), and [current installation instructions](/projects/Secrets-Kit/get-started/)."
+update_notice: "This article preserves the October 28 preview. For the complete, current overview, visit the [Secrets Kit product page](/projects/Secrets-Kit/). Secrets Kit 2.0.4 is now available; see the [GA announcement](/projects/Secrets-Kit/2026/11/09/secrets-kit-2-0-4-general-availability/), [stable release](https://github.com/unixwzrd/Secrets-Kit/releases/tag/v2.0.4), and [current installation instructions](/projects/Secrets-Kit/get-started/)."
 ---
 
 Distributed Thinking Systems is preparing **Secrets Kit 2.0.2**, a substantial re-architecture of our local-first credential management tool. The release combines encrypted SQLite storage, authorized peer-to-peer synchronization, and optional remote connectivity: keep credentials on your devices and provide selected values to the applications that need them.
@@ -83,4 +83,5 @@ An enrolled connection is a registered Secrets Kit identity associated with an o
 We are completing testing and release qualification for macOS and Linux, alongside the supporting documentation. Further integrations and capabilities are planned separately.
 
 Explore the [product overview](/projects/Secrets-Kit/), [setup preview](/projects/Secrets-Kit/get-started/), and [feature comparison](/projects/Secrets-Kit/compare/). We will announce general availability through [project updates](/projects/Secrets-Kit/#updates) once the release is ready: local custody, explicit access, and optional remote connectivity without a cloud-hosted secret vault.
+
 
