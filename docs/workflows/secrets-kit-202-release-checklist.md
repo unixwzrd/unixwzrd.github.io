@@ -1,6 +1,6 @@
-# Secrets Kit 2.0.3: release-day checklist
+# Historical Secrets Kit 2.0.3 prelaunch checklist
 
-This is preparation, not authorization to release. Keep `production_release_ready: false` while development and qualification continue. Do not merge, tag, push, deploy, announce, open Checkout or activate live billing as part of the website review. The site target is `v2.0.3`; it is not proof of an approved production artifact. No release date has been promised.
+**Superseded by the announced 2.0.4 release.** This page records the prelaunch questions and proposed steps from the 2.0.3 planning period. Its unchecked items and `production_release_ready: false` instruction are historical, not a description of the current site or open release gates. The current release target and readiness state are in [`html/_data/secrets_kit.yml`](../../html/_data/secrets_kit.yml); the [2.0.4 announcement](../../html/projects/Secrets-Kit/_posts/2026-11-09-secrets-kit-2-0-4-general-availability.md) describes what was published.
 
 ## Evidence boundary
 
@@ -19,7 +19,7 @@ Confirmed source references for the site copy:
 
 The website scopes the in-memory, non-durable delivery statement to RSS message payloads and explicitly allows for operating-system swap/paging. The optional encrypted peer-invitation exchange uses separate persistent storage in the current operator implementation; do not apply the delivery queue statement to invitations, account records or operational metadata. Reconfirm this distinction against the production configuration before approving the final privacy terms.
 
-## Decisions required before availability
+## Historical decisions considered before availability
 
 - [ ] Verify the Linux kernel/libc/CPU baseline and service prerequisites against final-artifact receipts on x86_64 and ARM64, including clean installs and upgrades without a native compiler. Resolve the stale ARM-only-internal/native-wheel policy text through the authoritative master documents and synchronize approved derivatives. Do not derive a certified kernel minimum solely from a wheel tag or Rust target. Only after artifact signoff set `compatibility.approved_for_202: true` in `html/_data/secrets_kit.yml`.
 - [ ] Approve an RSS metadata inventory covering account/payment and authorization records, network/connection information, operational logs and metrics, support submissions, and encrypted invitation messages. Reconcile the summary with the actual production configuration.
@@ -30,7 +30,7 @@ The website scopes the in-memory, non-durable delivery statement to RSS message 
 - [ ] Confirm support coverage and channels. The site distinguishes community help, included RSS service support and optional paid contracts for project assistance or ongoing support. Define contract scope, prices, coverage hours, response targets, contacts and exclusions before accepting an agreement; do not invent standard tiers, a response-time guarantee, uptime or recovery commitments.
 - [ ] Resolve the undecided items in the scoped policy page with approved terms and an approved effective date. Preserve the existing Safari-extension policies. Then set `service_policies_approved: true`.
 
-## Prepared release-day change - do not execute yet
+## Historical release-day plan - do not execute
 
 - [ ] Verify the immutable `v2.0.3` release and its `install.sh`, install documentation, complete Hermes integration, security model, RSS customer/device guide anchors and client license. Verify installation on each approved platform. Do not substitute GitHub main, old stable or a beta download.
 - [ ] Choose the actual release-announcement post or discussion destination and put it in `release_announcement_url`. A draft announcement or planned URL is not evidence of publication; announcement publication is a separate action.
@@ -41,7 +41,7 @@ The website scopes the in-memory, non-durable delivery statement to RSS message 
 - [ ] Validate production and preview into isolated destinations. Run focused product and reader-experience checks, internal links and anchors, permalink/redirect checks, and a search build. Inspect desktop/narrow-screen layouts, light/dark contrast, keyboard navigation/table scrolling, every directory expansion/filter and empty results, and the ready-state installation handoff.
 - [ ] Review the diff and obtain any required release/publishing approval. Commit, push, deployment, product promotion, public announcement and billing activation remain distinct actions.
 
-## Link classification during staging
+## Historical link classification during staging
 
 - The landing page links to `/projects/Secrets-Kit/credential-risks/` for the full research. Security leads with product answers and preserves its old research anchors as onward links. Keep that separation and those links when activating the release.
 - Product navigation is Overview, Compare, Pricing, Research, Guides, Security, GitHub and More, with a separate Get Started/Explore action. GitHub source precedes More, which contains Help, RSS (Remote Secret Sync) and Updates; Help and Policies remain in the footer. Verify the mobile "Secrets Kit pages" disclosure and the native no-JavaScript fallback when reviewing release-day changes.
