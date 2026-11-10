@@ -1,0 +1,11 @@
+digraph RSSBetweenNetworks {
+  graph [bgcolor="#111923", pad="0.30", rankdir=LR, nodesep="0.35", ranksep="0.55", fontname="Helvetica", fontcolor="#edf2f5", label="Across networks: add RSS only when needed", labelloc=t, fontsize=20];
+  node [shape=box, style="rounded,filled", color="#73b8b5", fillcolor="#234243", fontcolor="#f4f5f6", fontname="Helvetica", fontsize=18, margin="0.22,0.20"];
+  edge [dir=both, color="#80a6d7", arrowsize=0.8, penwidth=1.8];
+
+  workstation [label="Your workstation\nEncrypted local store\nYour private keys"];
+  rss [label="Remote Secret Sync (RSS)\nOptional paid connectivity\nCannot decrypt secret payloads", fillcolor="#513d28", color="#d4a660"];
+  server [label="Your remote server\nEncrypted local store\nIts own private keys"];
+
+  workstation -> rss -> server;
+}

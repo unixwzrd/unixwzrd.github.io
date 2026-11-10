@@ -36,9 +36,21 @@ Secrets Kit keeps API keys, tokens, and passwords on your machines. Applications
 
 Authorized peers on the same LAN segment can synchronize through the free peer-to-peer client, with unlimited LAN connections and no hosted subscription. Local credential access does not depend on a hosted vault. Each peer retains its own storage protection, and discovering another machine does not grant it permission to receive secrets.
 
+{% include blog_diagram.html
+   src="/assets/images/blog/secrets-kit/2026-10-28/local-store-and-lan-sync.svg"
+   alt="Two authorized LAN peers synchronize encrypted records, retain separate local storage keys, and supply selected credentials to their applications"
+   caption="Free LAN synchronization keeps storage on your devices. Applications receive selected credentials as plaintext in their own processes, so their behavior still matters."
+%}
+
 ## Remote Secret Sync when your machines are on different networks {#remote-secrets-sync-when-your-machines-are-on-different-networks}
 
 RSS is an optional paid service for authorized peers that cannot communicate directly across network boundaries. It carries synchronization payloads encrypted for their destination. **Your private encryption keys stay with you. We do not receive them, and RSS cannot decrypt your synchronized secret payloads.** Local access and authorized LAN synchronization remain available independently of RSS.
+
+{% include blog_diagram.html
+   src="/assets/images/blog/secrets-kit/2026-11-09/rss-between-networks.svg"
+   alt="A workstation and remote server synchronize destination-encrypted messages through optional Remote Secret Sync without giving the service their private keys"
+   caption="RSS carries destination-encrypted messages between authorized peers on separate networks. Private keys remain with the peers; account and operational metadata have separate retention rules."
+%}
 
 Subscription enrollment is open and **does not require an invitation or access code**. Follow the installed client's documented checkout and enrollment workflow; purchasing capacity and authorizing a peer are separate steps.
 
@@ -47,6 +59,14 @@ RSS costs **US$5 per paid node slot per month, with a two-slot minimum of US$10/
 Synchronization messages are handled transiently in memory, rather than retained as a cloud copy of your secret store. Account and operational metadata have separate retention rules. An optional encrypted peer-invitation mailbox is a different feature and is not currently configured in production. Our [Security & Privacy overview](/projects/Secrets-Kit/security/) and [service policies](/projects/Secrets-Kit/policies/#remote-secrets-sync-privacy) describe those distinctions and the operating-system limitations.
 
 ## Protect the credential - and choose what receives it
+
+Optional MCP access is local, not a network-facing secrets API. An agent's MCP host talks to `seckit-mcp` over standard input/output (stdio), and `seckit-mcp` uses a Unix domain socket (UDS) to reach the same-user daemon. The MCP interface is read-only and policy-scoped; secret-value retrieval requires an explicit allowlist. The [versioned MCP integration guide](https://github.com/unixwzrd/Secrets-Kit/blob/v2.0.4/docs/INTEGRATIONS.md#hermes-mcp-access) explains the configuration and access boundaries.
+
+{% include blog_diagram.html
+   src="/assets/images/blog/secrets-kit/2026-11-09/local-mcp-access.svg"
+   alt="Within one machine and Unix account, an agent host connects to seckit-mcp over stdio, and seckit-mcp accesses the local daemon through a Unix domain socket"
+   caption="No listening MCP network port. Synchronizing records between authorized peers does not expose either host's local MCP interface to agents on the other machine. This is not isolation between agents sharing one Unix account."
+%}
 
 Secrets Kit reduces the need for scattered credential copies; it does not make the receiving process trustworthy. An application supplied with a credential receives its plaintext value and can log, expose, or transmit it. Agents with sufficient system access can do the same. Optional policy-scoped MCP access also requires an explicit decision about whether a value may enter model context.
 
@@ -59,5 +79,6 @@ The current stable release, Secrets Kit 2.0.4, is available for macOS and suppor
 The [product overview](/projects/Secrets-Kit/) explains the local-first workflow, [Guides](/projects/Secrets-Kit/guides/) cover everyday tasks, and [Pricing](/projects/Secrets-Kit/pricing/) explains when paid RSS is useful. You can begin with one local application and add LAN peers without subscribing to anything. Add RSS only when you need the cross-network connection.
 
 For help with deployment, migration, integrations, or ongoing maintenance, [contact Distributed Thinking Systems](/contact/) about a maintenance contract or consulting engagement. Scope and fees are agreed separately from an RSS subscription; the subscription does not itself include a maintenance contract or priority support.
+
 
 

@@ -303,6 +303,18 @@ class SecretsKitProductTest < Minitest::Test
     overview = opening.at_css('.home-actions a[href="/projects/Secrets-Kit/"]')
     assert overview
     assert_equal "Product Overview", overview.text
+    diagrams = Nokogiri::HTML.fragment(render(announcement.content, pages: [])).css("figure.blog-diagram")
+    assert_equal 3, diagrams.length
+    assert_equal ["/assets/images/blog/secrets-kit/2026-10-28/local-store-and-lan-sync.svg", "/assets/images/blog/secrets-kit/2026-11-09/rss-between-networks.svg", "/assets/images/blog/secrets-kit/2026-11-09/local-mcp-access.svg"], diagrams.css("img").map { |image| image["src"] }
+    diagrams.each do |diagram|
+      image = diagram.at_css("img")
+      refute_empty image["alt"]
+      assert File.file?(File.join(ROOT, "html", image["src"])), image["src"]
+      assert_match(%r{\A/diagram-viewer/\?src=}, diagram.at_css("a")["href"])
+    end
+    assert_includes announcement.content, "standard input/output (stdio)"
+    assert_includes announcement.content, "Unix domain socket (UDS)"
+    assert_includes announcement.content, "not isolation between agents sharing one Unix account"
     prerelease = PRODUCTION.posts.docs.find { |post| File.basename(post.path) == "2026-10-28-secrets-kit-2-0-2-local-secrets-peer-to-peer-sync.md" }
     assert prerelease
     assert_includes prerelease.data["title"], "Coming Soon"
@@ -562,6 +574,7 @@ class SecretsKitProductTest < Minitest::Test
     end
   end
 end
+
 
 
 

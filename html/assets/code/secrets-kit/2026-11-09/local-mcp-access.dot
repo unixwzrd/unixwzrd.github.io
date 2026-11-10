@@ -1,0 +1,22 @@
+digraph LocalMCPAccess {
+  graph [bgcolor="#111923", pad="0.30", rankdir=LR, fontname="Helvetica", fontcolor="#edf2f5", label="MCP access stays local", labelloc=t, fontsize=20, ranksep="0.45"];
+  node [shape=box, style="rounded,filled", color="#73b8b5", fillcolor="#234243", fontcolor="#f4f5f6", fontname="Helvetica", fontsize=17, margin="0.20,0.18"];
+  edge [dir=both, color="#80a6d7", fontcolor="#b0cff6", fontname="Helvetica", fontsize=14, arrowsize=0.7, penwidth=1.5];
+
+  subgraph cluster_local {
+    label="Same machine / same Unix account";
+    fontname="Helvetica";
+    fontcolor="#edf2f5";
+    fontsize=17;
+    color="#587080";
+    style=rounded;
+    margin=18;
+
+    agent [label="Agent / MCP host"];
+    mcp [label="seckit-mcp\nRead-only, policy-scoped", fillcolor="#20303d", color="#587080"];
+    daemon [label="Secrets Kit daemon\nLocal runtime access"];
+
+    agent -> mcp [label="stdio\n(MCP)"];
+    mcp -> daemon [label="Unix domain socket\n(UDS)"];
+  }
+}
