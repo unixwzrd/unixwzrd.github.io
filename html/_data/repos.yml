@@ -16,7 +16,6 @@ repositories:
     overrides:
       title: "LogGPT and LogGPT Plus"
       description: "Safari extension for exporting ChatGPT conversations as JSON, with an optional Plus upgrade that preserves generated and uploaded artifacts in a ZIP archive."
-      image_url: "/assets/images/projects/LogGPT/LogGPT-Plus.png"
       banner_image_url: "/assets/images/projects/LogGPT-banner.png"
   - name: UnicodeFix
     owner: unixwzrd
@@ -89,4 +88,5 @@ repositories:
     owner: unixwzrd
     overrides:
       visibility: none
+
 

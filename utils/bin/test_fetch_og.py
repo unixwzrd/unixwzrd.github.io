@@ -16,6 +16,55 @@ class FetchOgFallbackTests(unittest.TestCase):
     def tearDown(self):
         fetch_og.REFRESH_EXISTING_IMAGES = False
 
+    def test_metadata_errors_are_not_treated_as_private_repositories(self):
+        for status in (403, 429, 500):
+            with self.subTest(status=status):
+                response = mock.Mock(status_code=status)
+                response.raise_for_status.side_effect = requests.HTTPError(response=response)
+                with mock.patch.object(fetch_og.requests, "get", return_value=response):
+                    with self.assertRaises(requests.HTTPError):
+                        fetch_og.fetch_github_data("example", "project")
+        with mock.patch.object(fetch_og.requests, "get", side_effect=requests.Timeout):
+            with self.assertRaises(requests.Timeout):
+                fetch_og.fetch_github_data("example", "project")
+
+    def test_not_found_keeps_private_repository_fallback(self):
+        response = mock.Mock(status_code=404)
+        with mock.patch.object(fetch_og.requests, "get", return_value=response):
+            self.assertIsNone(fetch_og.fetch_github_data("example", "private-project"))
+        response.raise_for_status.assert_not_called()
+
+    def test_metadata_failure_aborts_without_writing_partial_catalog(self):
+        repositories = [{"owner": "example", "name": name} for name in ("First", "Second")]
+        with tempfile.TemporaryDirectory() as tmpdir:
+            with mock.patch.object(fetch_og, "setup_environment", return_value=Path(tmpdir)), mock.patch.object(
+                fetch_og, "load_repository_config", return_value=repositories
+            ), mock.patch.object(
+                fetch_og, "fetch_github_data", side_effect=[{"visibility": "public"}, requests.Timeout()]
+            ), mock.patch.object(
+                fetch_og, "create_project_entry", return_value={"name": "First"}
+            ), mock.patch.object(fetch_og, "generate_project_files"), mock.patch.object(
+                fetch_og, "write_projects_data"
+            ) as write_projects_data:
+                with self.assertRaises(SystemExit) as error:
+                    fetch_og.main()
+                self.assertEqual(error.exception.code, 1)
+                write_projects_data.assert_not_called()
+
+    def test_refresh_preserves_configured_project_order(self):
+        names = ["Third", "First", "Second"]
+        repositories = [{"owner": "example", "name": name} for name in names]
+        with tempfile.TemporaryDirectory() as tmpdir:
+            with mock.patch.object(fetch_og, "setup_environment", return_value=Path(tmpdir)), mock.patch.object(
+                fetch_og, "load_repository_config", return_value=repositories
+            ), mock.patch.object(fetch_og, "fetch_github_data", return_value={"visibility": "public"}), mock.patch.object(
+                fetch_og, "create_project_entry", side_effect=lambda **kwargs: {"name": kwargs["name"]}
+            ), mock.patch.object(fetch_og, "generate_project_files"), mock.patch.object(
+                fetch_og, "write_projects_data", return_value=True
+            ) as write_projects_data:
+                fetch_og.main()
+                self.assertEqual([entry["name"] for entry in write_projects_data.call_args.args[0]], names)
+
     def test_format_title_preserves_llm_acronym(self):
         self.assertEqual(fetch_og.format_title("LLM-Ops-Kit"), "LLM Ops Kit")
 
@@ -119,6 +168,29 @@ class FetchOgFallbackTests(unittest.TestCase):
                 entry["banner_image_url"],
                 "/assets/images/projects/LogGPT/LogGPT-banner.png",
             )
+
+    def test_loggpt_config_uses_stats_card_and_preserves_banner(self):
+        base_dir = Path(__file__).resolve().parents[2]
+        repo_config = next(
+            repo for repo in fetch_og.load_repository_config(base_dir)
+            if repo["name"] == "LogGPT"
+        )
+        self.assertNotIn("image_url", repo_config["overrides"])
+        with mock.patch.object(
+            fetch_og, "generate_project_card", return_value="/assets/images/projects/LogGPT.png"
+        ) as generate_project_card, mock.patch.object(fetch_og, "cache_image") as cache_image:
+            entry = fetch_og.create_project_entry(
+                data={"visibility": "public", "description": "Export ChatGPT conversations."},
+                owner="unixwzrd", name="LogGPT", base_dir=base_dir, repo_config=repo_config,
+            )
+        self.assertEqual(entry["image_url"], "/assets/images/projects/LogGPT.png")
+        self.assertEqual(entry["banner_image_url"], "/assets/images/projects/LogGPT-banner.png")
+        generate_project_card.assert_called_once()
+        cache_image.assert_not_called()
+        catalog = yaml.safe_load((base_dir / "html/_data/github_projects.yml").read_text())
+        project = next(project for project in catalog["projects"] if project["name"] == "LogGPT")
+        self.assertEqual(project["image_url"], entry["image_url"])
+        self.assertEqual(project["banner_image_url"], entry["banner_image_url"])
 
     def test_create_project_entry_prefers_generated_local_card_for_public_repo(self):
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -370,3 +442,4 @@ class FetchOgFallbackTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+

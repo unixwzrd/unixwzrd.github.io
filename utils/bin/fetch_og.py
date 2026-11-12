@@ -490,7 +490,11 @@ def fetch_url_data(url: str, parse_html: bool = False) -> Optional[Dict]:
 
 
 def fetch_github_data(owner: str, repo: str) -> Optional[Dict]:
-    """Fetch repository data from GitHub API."""
+    """Fetch repository metadata; only 404 selects the private/not-found fallback.
+
+    Other request errors propagate so a failed refresh cannot reclassify a
+    public project or replace the existing catalog with partial results.
+    """
     url = f"https://api.github.com/repos/{owner}/{repo}"
     try:
         response = requests.get(url, headers=DEFAULT_HEADERS, timeout=10)
@@ -506,7 +510,7 @@ def fetch_github_data(owner: str, repo: str) -> Optional[Dict]:
         return data
     except requests.RequestException as e:
         logger.error("Error fetching GitHub data for %s/%s: %s", owner, repo, e)
-        return None
+        raise
 
 
 def fetch_contributors_count(owner: str, repo: str) -> Optional[int]:
@@ -1029,6 +1033,9 @@ def main():
 
             processed_projects.append(project_data)
 
+        except requests.RequestException as e:
+            logger.error("Project metadata refresh aborted; existing catalog left unchanged: %s", e)
+            raise SystemExit(1) from e
         except Exception as e:
             logger.error("Failed to process repository %s: %s", name, e)
             continue
@@ -1038,3 +1045,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

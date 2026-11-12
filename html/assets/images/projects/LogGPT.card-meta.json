@@ -1,30 +1,31 @@
 {
   "card_style_version": 8,
   "contributors_count": 2,
-  "description": "LogGPT - Safari ChatGPT Chat Log Export Extension, a lightweight method of exporting entire ChatGPT conversations in JSON format.",
+  "description": "Safari extension for exporting ChatGPT conversations as JSON, with an optional Plus upgrade that preserves generated and uploaded artifacts in a ZIP archive.",
   "forks_count": 0,
-  "language": "Swift",
+  "language": "JavaScript",
   "name": "LogGPT",
   "open_issues_count": 0,
   "owner": "unixwzrd",
-  "stargazers_count": 5,
-  "title": "LogGPT Chatlog Export",
+  "stargazers_count": 6,
+  "title": "LogGPT and LogGPT Plus",
   "top_languages": [
-    {
-      "color": "#ff9f43",
-      "name": "Swift",
-      "share": "54%"
-    },
     {
       "color": "#f7df1e",
       "name": "JavaScript",
-      "share": "34%"
+      "share": "74%"
     },
     {
-      "color": "#563d7c",
-      "name": "CSS",
-      "share": "6%"
+      "color": "#ff9f43",
+      "name": "Swift",
+      "share": "19%"
+    },
+    {
+      "color": "#e34c26",
+      "name": "HTML",
+      "share": "4%"
     }
   ],
-  "updated_at": "2026-06-10T11:38:53Z"
+  "updated_at": "2026-10-03T18:53:03Z"
 }
+

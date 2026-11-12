@@ -2,6 +2,11 @@
 
 This changelog records changes to site behavior, operational tooling, scripts, build validation, and shared templates. Routine articles, post corrections, publication dates, and social copy do not require entries. The entries below were backfilled on September 2 from repository history; their dates identify the recorded changes, not a verified deployment date.
 
+## 2026-11-12: Project metadata and LogGPT thumbnail
+
+- Removed the LogGPT icon override so the normal project refresh generates and selects its GitHub statistics card. Preserved the separate banner and article artwork, with regression coverage for thumbnail selection and banner retention.
+- Stop project metadata refreshes on request errors instead of treating them as private repositories or writing a partial catalog. Keep the existing 404 fallback and configured project order; restored the GitHub-confirmed public status of WebReader, VenvUtil, and TorchDevice. Added failure-path and ordering regressions.
+
 ## 2026-11-09: Comparison-symbol CI correction
 
 - Corrected the Secrets Kit comparison test to expect the rendered em dash for undocumented features, using a Unicode escape so pre-commit text cleanup cannot turn the expectation back into a plain hyphen. Retained the exact symbol-set assertion, accessibility checks, and all deployment validation gates; no page or workflow behavior changed.
@@ -668,6 +673,7 @@ This changelog records changes to site behavior, operational tooling, scripts, b
 - Set up pre-commit hooks
 - Update permalinks to meet new requirements
 - Add required front matter to all pages
+
 
 
 
