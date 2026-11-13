@@ -2,6 +2,13 @@
 <section class="seckit-hero" aria-labelledby="seckit-promise">
   <div class="seckit-hero-grid">
   <h2 class="seckit-hero-heading" id="seckit-promise">Your credentials, under your control.</h2>
+  <div class="seckit-platforms" role="group" aria-label="Runs on macOS and Linux">
+    <span class="seckit-platforms-label">Runs on</span>
+    <ul class="seckit-platform-list" role="list">
+      <li class="seckit-platform">{% include icons/platform-apple.svg %}<span><strong>macOS</strong><span>Apple silicon &amp; Intel</span></span></li>
+      <li class="seckit-platform">{% include icons/platform-linux.svg %}<span><strong>Linux</strong><span>x86_64 &amp; ARM64 (glibc)</span></span></li>
+    </ul>
+  </div>
   <img class="seckit-hero-art" src="{{ '/assets/images/projects/Secrets-Kit-Banner.png' | relative_url }}" alt="Secrets Kit local credentials and application access">
   <div class="seckit-hero-intro">
   <p class="home-lead">Your API keys, tokens, and passwords stay on your devices.</p>
@@ -49,3 +56,4 @@
   <p><strong>Keep in mind:</strong> an application receiving a credential can still expose it. Read the <a href="{{ '/projects/Secrets-Kit/security/' | relative_url }}">security and access boundaries</a>.</p>
   <p>Need help with setup, migration, integrations, or ongoing maintenance? <a href="{{ '/contact/' | relative_url }}">Contact us about a maintenance contract or consulting assistance</a>. Scope and fees are agreed separately from an RSS subscription.</p>
 </section>
+

@@ -2,6 +2,10 @@
 
 This changelog records changes to site behavior, operational tooling, scripts, build validation, and shared templates. Routine articles, post corrections, publication dates, and social copy do not require entries. The entries below were backfilled on September 2 from repository history; their dates identify the recorded changes, not a verified deployment date.
 
+## 2026-11-13: Secrets Kit platform badges
+
+- Highlighted macOS and glibc-based Linux support beneath the product headline, with supported architectures and locally included Apple/Linux SVG logos. Reused the shared product styling and preserved existing artwork, navigation, and compatibility details. Added template and responsive-spacing regression checks.
+
 ## 2026-11-12: Project metadata and LogGPT thumbnail
 
 - Removed the LogGPT icon override so the normal project refresh generates and selects its GitHub statistics card. Preserved the separate banner and article artwork, with regression coverage for thumbnail selection and banner retention.
@@ -673,6 +677,7 @@ This changelog records changes to site behavior, operational tooling, scripts, b
 - Set up pre-commit hooks
 - Update permalinks to meet new requirements
 - Add required front matter to all pages
+
 
 
 

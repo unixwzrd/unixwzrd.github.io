@@ -191,7 +191,14 @@ class SecretsKitProductTest < Minitest::Test
     source = hub.at_css('.seckit-offer-cards .seckit-card:first-child .seckit-source')
     assert_includes source.text, "Free, open-source client."
     assert_equal PRODUCTION.data.fetch("secrets_kit").fetch("repository_url"), source.at_css('a')["href"]
-    assert_equal %w[seckit-hero-heading seckit-hero-art seckit-hero-intro], hero.at_css('.seckit-hero-grid').element_children.map { |node| node["class"] }
+    assert_equal %w[seckit-hero-heading seckit-platforms seckit-hero-art seckit-hero-intro], hero.at_css('.seckit-hero-grid').element_children.map { |node| node["class"] }
+    platforms = hero.at_css('.seckit-platforms[role="group"]')
+    assert_equal "Runs on macOS and Linux", platforms["aria-label"]
+    assert_equal ["macOS", "Linux"], platforms.css('strong').map(&:text)
+    assert_includes platforms.text, "Apple silicon & Intel"
+    assert_includes platforms.text, "x86_64 & ARM64 (glibc)"
+    assert_equal 2, platforms.css('svg[aria-hidden="true"][focusable="false"] path').length
+    assert_empty platforms.css('img, script, use'), "Platform logos are inline; no external requests or icon font"
     assert_equal 3, hub.css('.seckit-workflow-steps li').length
     assert_empty hub.css('.seckit-workflow figcaption, .seckit-workflow code')
     assert_empty hub.css('#seckit-how-it-works')
@@ -574,6 +581,7 @@ class SecretsKitProductTest < Minitest::Test
     end
   end
 end
+
 
 
 

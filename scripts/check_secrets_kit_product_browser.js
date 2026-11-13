@@ -96,18 +96,23 @@ async (page) => {
           if (await page.locator(".seckit-hero-art").count() !== 1) throw Error("Overview hero changed");
           const lead = await page.locator(".seckit-hero").evaluate(node => {
             const heading = node.querySelector(".seckit-hero-heading");
+            const platforms = node.querySelector(".seckit-platforms");
             const image = node.querySelector(".seckit-hero-art");
             const intro = node.querySelector(".seckit-hero-intro");
             return {
               headingSize: parseFloat(getComputedStyle(heading).fontSize),
+              platformNames: [...platforms.querySelectorAll("strong")].map(label => label.textContent),
+              platformLogos: platforms.querySelectorAll('svg[aria-hidden="true"]').length,
               textSizes: [...intro.querySelectorAll("p")].map(p => parseFloat(getComputedStyle(p).fontSize)),
               paragraphMargins: [...intro.querySelectorAll("p")].map(p => getComputedStyle(p).margin),
-              imageGap: image.getBoundingClientRect().top - heading.getBoundingClientRect().bottom,
+              platformGap: platforms.getBoundingClientRect().top - heading.getBoundingClientRect().bottom,
+              imageGap: image.getBoundingClientRect().top - platforms.getBoundingClientRect().bottom,
               introGap: intro.getBoundingClientRect().top - image.getBoundingClientRect().bottom,
             };
           });
           if (lead.headingSize < parseFloat(typography.h2[1]) || lead.textSizes.some(size => size <= parseFloat(typography.p[1]))) throw Error("Overview lead text is undersized");
-          if (lead.imageGap > 24 || lead.introGap > 24 || lead.paragraphMargins.some(margin => margin !== "0px")) throw Error("Overview lead spacing is inconsistent");
+          if (lead.platformNames.join("|") !== "macOS|Linux" || lead.platformLogos !== 2) throw Error("Overview platform badges are missing");
+          if (lead.platformGap < 0 || lead.platformGap > 24 || lead.imageGap < 0 || lead.imageGap > 24 || lead.introGap > 24 || lead.paragraphMargins.some(margin => margin !== "0px")) throw Error("Overview lead spacing is inconsistent");
           await page.locator(".seckit-hero-heading").evaluate(node => window.scrollTo(0, scrollY + node.getBoundingClientRect().top - 24));
           await page.screenshot({ path: `output/playwright/seckit-overview-lead-${scheme}-${width}.png` });
         }
@@ -193,8 +198,9 @@ async (page) => {
   await page.locator(".post-banner-image img").evaluate(image => image.decode());
   const actionGap = await page.locator(".post-content > .home-actions").evaluate(node => node.nextElementSibling.getBoundingClientRect().top - node.getBoundingClientRect().bottom);
   if (actionGap < 20 || actionGap > 32) throw Error(`Article action spacing regressed: ${actionGap}px`);
-  if (!(await page.locator(".post-content").innerText()).includes("US$5 per node per month")) throw Error("Launch pricing missing");
+  if (!(await page.locator(".post-content").innerText()).includes("US$5 per paid node slot per month")) throw Error("Launch pricing missing");
   await page.screenshot({ path: "output/playwright/seckit-ga-announcement-preview.png", fullPage: true });
   return { checks: results, typography: "shared site styles", launch, firstInRecentLists: true, externalRequests: "blocked" };
 }
+
 

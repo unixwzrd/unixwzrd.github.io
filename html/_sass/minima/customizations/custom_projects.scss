@@ -178,9 +178,16 @@
   .seckit-risk-metrics dd { margin-top: 0.2rem; }
   .seckit-risk-value { font-size: 1.25rem; }
 }
-.seckit-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "heading" "artwork" "intro"; gap: 1rem; justify-items: center; text-align: center; }
+.seckit-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-areas: "heading" "platforms" "artwork" "intro"; gap: 1rem; justify-items: center; text-align: center; }
 .seckit-hero-heading { grid-area: heading; }
 .seckit-hero .seckit-hero-heading { margin: 0; font-size: clamp(1.75rem, 4vw, 2.5rem); line-height: 1.2; }
+.seckit-platforms { grid-area: platforms; width: 100%; min-width: 0; }
+.seckit-platforms-label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
+.seckit-platform-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; list-style: none; margin: 0; padding: 0; }
+.seckit-platform { display: flex; align-items: center; gap: 0.75rem; padding: 0.65rem 1rem; margin: 0; border: 1px solid $border-color; border-radius: 10px; background: var(--site-surface); text-align: left; }
+.seckit-platform strong { display: block; font-size: 1.25rem; }
+.seckit-platform > span > span { display: block; }
+.seckit-platform-icon { display: block; flex: 0 0 auto; width: 2.25rem; height: 2.25rem; color: $link-base-color; }
 .seckit-hero-intro { grid-area: intro; min-width: 0; width: 100%; display: grid; gap: 0.5rem; }
 .seckit-hero-intro > .home-lead { margin: 0; }
 .seckit-hero-art { grid-area: artwork; }
@@ -497,3 +504,4 @@
   .seckit-cost-inputs:not([hidden]), .seckit-agent-chain { grid-template-columns: minmax(0, 1fr); }
   .seckit-month-bars li { grid-template-columns: 4.8rem minmax(0, 1fr) 3.3rem; gap: 0.4rem; }
 }
+
