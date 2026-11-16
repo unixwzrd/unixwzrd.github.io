@@ -1,0 +1,85 @@
+LogGPT 1.3.3 social drafts
+
+Release article: https://unixwzrd.ai/s/4cc849090f/
+Project overview: https://unixwzrd.ai/projects/LogGPT/
+Mac App Store: https://apps.apple.com/us/app/loggpt/id6743342693?mt=12
+
+Status: In App Store review. Do not say "available now" until Apple releases 1.3.3. This is a checkbox-visibility compatibility fix, not the introduction of ChatGPT Work support.
+
+
+==================================================
+LINKEDIN
+==================================================
+
+ChatGPT changed its page styles again, and some of LogGPT's checkboxes disappeared. Download options are rather less useful when you cannot see what you are selecting.
+
+LogGPT 1.3.3 fixes the missing checkboxes in the LogGPT Plus export dialog and Basic upgrade notice. It improves compatibility with ChatGPT's page styles so the download options remain visible and usable.
+
+The update is currently in Apple's App Store review. Existing owners will receive it at no additional charge once Apple approves and releases it.
+
+Read the update: https://unixwzrd.ai/s/4cc849090f/
+
+#LogGPT #ChatGPT #SafariExtension #macOS
+
+
+==================================================
+PERSONAL REPOST
+==================================================
+
+Another ChatGPT UI change, another small compatibility fix. I've submitted LogGPT 1.3.3 to Apple to restore missing checkboxes in the Plus export dialog and Basic upgrade notice. It is in review now; existing owners get the update at no additional charge when released.
+
+https://unixwzrd.ai/s/4cc849090f/
+
+
+==================================================
+X / TWITTER
+==================================================
+
+LogGPT 1.3.3 fixes missing checkboxes in the Plus export dialog and Basic upgrade notice after ChatGPT page-style changes. In App Store review; existing owners get the update at no extra charge when released.
+
+https://unixwzrd.ai/s/4cc849090f/
+
+
+==================================================
+BLUESKY
+==================================================
+
+ChatGPT changed its page styles, and some LogGPT checkboxes disappeared. Version 1.3.3 fixes the Plus export dialog and Basic upgrade notice. In App Store review; existing owners get the update at no extra charge when released.
+
+https://unixwzrd.ai/s/4cc849090f/
+
+
+==================================================
+MASTODON
+==================================================
+
+LogGPT 1.3.3 is in App Store review. It fixes missing checkboxes in the Plus export dialog and Basic upgrade notice after changes to ChatGPT's page styles, keeping download options visible and usable.
+
+Existing owners will receive the update at no additional charge once Apple approves and releases it.
+
+https://unixwzrd.ai/s/4cc849090f/
+
+#LogGPT #ChatGPT #SafariExtension #macOS
+
+
+==================================================
+REDDIT
+==================================================
+
+Title:
+LogGPT 1.3.3 fixes missing export checkboxes after ChatGPT style changes - submitted to Apple
+
+Body:
+Disclosure: I develop LogGPT, a Safari extension for exporting ChatGPT conversations.
+
+ChatGPT's page styles changed, and some of those styles were interfering with LogGPT's interface. Version 1.3.3 fixes missing checkboxes in the LogGPT Plus export dialog and Basic upgrade notice so the download options remain visible and usable.
+
+For context, LogGPT exports conversation JSON. The optional Plus upgrade adds available generated and uploaded files in a ZIP with the conversation and an artifact manifest.
+
+The update is in Apple's App Store review, not available yet. Existing owners will receive it at no additional charge once Apple approves and releases it.
+
+Release notes: https://unixwzrd.ai/s/4cc849090f/
+Project overview: https://unixwzrd.ai/projects/LogGPT/
+
+If you've run into the missing-checkbox issue, this is the update addressing it.
+
