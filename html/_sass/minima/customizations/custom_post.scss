@@ -39,6 +39,29 @@
 
 // Post and Blog Styling
 
+// Keep chronology dates aligned and unbroken without changing other tables.
+.post-content .post-date-table > thead > tr > th:first-child,
+.post-content .post-date-table > tbody > tr > td:first-child {
+  box-sizing: border-box;
+  width: 9rem;
+  min-width: 9rem;
+  max-width: 9rem;
+  white-space: nowrap;
+  text-align: left;
+  vertical-align: top;
+}
+
+// Detailed incident tables retain readable columns inside the shared mobile scroller.
+.post-content .post-incident-table {
+  th:nth-child(2), td:nth-child(2) {
+    min-width: 12rem;
+  }
+
+  th:nth-child(3), td:nth-child(3) {
+    min-width: 18rem;
+  }
+}
+
 // Keep article action buttons clear of the following paragraph.
 .post-content > .home-actions {
   margin-bottom: 1.5rem;
@@ -379,3 +402,4 @@
 }
 
 .post-toc nav { margin-top: 0.75rem; }
+

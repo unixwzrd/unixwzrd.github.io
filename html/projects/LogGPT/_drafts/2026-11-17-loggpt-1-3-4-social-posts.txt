@@ -1,0 +1,94 @@
+LogGPT 1.3.4 social drafts
+
+Release article: https://unixwzrd.ai/s/13f5ab2484/
+Project overview: https://unixwzrd.ai/projects/LogGPT/
+Mac App Store: https://apps.apple.com/us/app/loggpt/id6743342693?mt=12
+
+Status: Publication-ready release copy, prepared on the assumption that 1.3.4 will be available when the website and announcements are published.
+Scope: Dots main timeline and directly attached available files only. Linked task histories and nested reply histories are not included.
+Purchases: The 1.3.4 app update is included at no additional charge for existing Basic and Plus owners. Plus artifact archiving is an optional one-time IAP for Basic owners; existing Plus purchases remain valid, with no additional purchase required.
+Filenames: Recognized sources get -chat, -work, or -dot. Otherwise, keep the chat name with its start and end dates, without a source postfix.
+
+
+==================================================
+LINKEDIN
+==================================================
+
+LogGPT is adding another conversation source: Dots, alongside ChatGPT and ChatGPT Work.
+
+Version 1.3.4 exports the main Dots timeline as JSON. The download button sits beside the Dots conversation actions menu, and longer histories show collection progress with cancellation available.
+
+Want the files as well as the conversation? The optional LogGPT Plus upgrade keeps supported attachments with the conversation in one portable ZIP. It's a one-time in-app purchase for Basic owners who want artifact archiving. Existing Plus owners are already covered, including the new Dots attachments.
+
+The scope is specific: main timeline and direct available attachments. Linked task histories and nested reply histories are not included.
+
+Recognized sources also get clearer filename postfixes: -chat, -work, or -dot. If the source cannot be determined, the filename keeps the chat name and start/end dates without a source postfix. A small change, but useful when your Downloads folder has become a conversation archive.
+
+LogGPT 1.3.4 is available on the Mac App Store. The app update is included at no additional charge for all existing LogGPT owners, Basic and Plus alike.
+
+https://unixwzrd.ai/s/13f5ab2484/
+
+#LogGPT #ChatGPT #SafariExtension #DataPortability
+
+
+==================================================
+PERSONAL REPOST
+==================================================
+
+LogGPT 1.3.4 is now on the Mac App Store: Dots timeline downloads alongside ChatGPT and ChatGPT Work, with direct available attachments through Plus. Linked task and nested reply histories are excluded. The app update is included for existing Basic and Plus owners. If you want the files alongside your conversations, Plus is a one-time in-app upgrade; existing Plus owners don't need to buy it again.
+
+https://unixwzrd.ai/s/13f5ab2484/
+
+
+==================================================
+X / TWITTER
+==================================================
+
+LogGPT 1.3.4 adds Dots timeline JSON; Plus adds direct available files. No linked task/nested reply histories. Now on the Mac App Store. Free app update for existing owners; Plus is an optional one-time IAP.
+
+https://unixwzrd.ai/s/13f5ab2484/
+
+
+==================================================
+BLUESKY
+==================================================
+
+Dots joins ChatGPT and ChatGPT Work in LogGPT 1.3.4: main-timeline JSON, direct available files with Plus. No linked task/nested reply histories. Now on the Mac App Store. Free app update for existing owners; Plus is an optional one-time IAP.
+
+https://unixwzrd.ai/s/13f5ab2484/
+
+
+==================================================
+MASTODON
+==================================================
+
+LogGPT 1.3.4 is now on the Mac App Store. It adds Dots timeline JSON, with direct available attachments through Plus. Linked task/nested reply histories are excluded.
+
+Want the files as well as the conversation? Plus packs them together in a ZIP. The app update is included for existing Basic and Plus owners. Plus is an optional one-time IAP; existing Plus owners don't pay again.
+
+https://unixwzrd.ai/s/13f5ab2484/
+
+#LogGPT #SafariExtension #DataPortability
+
+
+==================================================
+REDDIT
+==================================================
+
+Title:
+LogGPT 1.3.4 adds Dots timeline exports and source-labeled filenames - now on the Mac App Store
+
+Body:
+Disclosure: I develop LogGPT, a Safari extension for exporting conversations and available attachments.
+
+Version 1.3.4 is now on the Mac App Store. It adds Dots as an export source alongside ChatGPT and ChatGPT Work. The LogGPT button appears beside the Dots conversation actions menu. Basic exports the main timeline as JSON; Plus can package it with directly attached available files in a ZIP. Longer histories show message collection progress, and retrieval can be cancelled.
+
+The important limit: this covers the main timeline and its direct available attachments, not linked task histories or nested reply histories. It is not a recursive export of everything reachable from a Dots conversation.
+
+When the source is recognized, filenames also get -chat, -work, or -dot postfixes. Otherwise, the filename keeps the chat name with its start and end dates, without a source postfix. Version 1.3.4 retains the checkbox visibility fixes from 1.3.3.
+
+All existing LogGPT owners, Basic or Plus, get the app update at no additional charge. If you want the supporting files alongside your conversations, Plus is an optional one-time in-app purchase. Existing Plus owners don't need to buy it again for Dots archiving.
+
+Release details: https://unixwzrd.ai/s/13f5ab2484/
+Project overview: https://unixwzrd.ai/projects/LogGPT/
+

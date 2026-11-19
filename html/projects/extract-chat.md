@@ -24,3 +24,13 @@ If your ChatGPT sessions are more than disposable chat, if they contain research
 For code, usage, and installation details, see the project repository:
 
 [View extract-chat on GitHub](https://github.com/unixwzrd/extract-chat)
+
+{% assign extract_chat_privacy = site.pages | where: 'url', '/Policies/Privacy_Extract_Chat/' | first %}
+{% assign extract_chat_terms = site.pages | where: 'url', '/Policies/Terms_Extract_Chat/' | first %}
+{% if extract_chat_privacy and extract_chat_terms %}
+## Privacy and terms
+
+[Privacy Policy](/Policies/Privacy_Extract_Chat/) · [Terms of Use](/Policies/Terms_Extract_Chat/) · [MIT License](https://github.com/unixwzrd/extract-chat/blob/main/LICENSE)
+
+{% endif %}
+

@@ -6,6 +6,8 @@ category: LogGPT
 project_intro: |
   LogGPT for Safari exports ChatGPT conversations as structured JSON for local archiving and processing. The LogGPT Plus upgrade adds available generated and uploaded artifacts, packaged with the conversation and an artifact manifest in a portable ZIP.
 
+  **Now available:** [LogGPT 1.3.4 adds Dots main-timeline exports](/projects/LogGPT/2026/11/17/loggpt-1-3-4-dots-conversation-exports/), with directly attached available files through Plus. Linked task histories and nested reply histories are not included.
+
   [Get LogGPT from the Mac App Store](https://apps.apple.com/us/app/loggpt/id6743342693?mt=12), then use the download button beside Share in a ChatGPT conversation. For installation and usage details, see the [project documentation](https://github.com/unixwzrd/LogGPT).
 permalink: /projects/LogGPT/
 image: /assets/images/projects/LogGPT/LogGPT-Plus.png
@@ -28,6 +30,7 @@ LogGPT fits the broader Distributed Thinking Systems stack as the capture layer 
 
 - **Capture complete ChatGPT sessions** as structured JSON with a single click
 - **Support ChatGPT Work artifacts**, including generated images, workspace-linked files, and uploaded attachments
+- **Dots exports in version 1.3.4:** main-timeline JSON and directly attached available files with Plus; linked task and nested reply histories are excluded
 - **Choose generated content, uploaded content, or both** with LogGPT Plus
 - **Download one portable ZIP archive** containing the JSON, selected artifacts, and an artifact manifest
 - **See artifact counts and file-by-file progress** while LogGPT Plus prepares large archives
@@ -44,3 +47,4 @@ LogGPT is available for **Safari on macOS** through its [App Store listing](http
 For details on **installation, usage, and technical documentation**, refer to the project's **[README](https://github.com/unixwzrd/LogGPT)**.
 
 If you need help building local archive, conversion, or AI analysis workflows around exported chat history, [get in touch](/contact/).
+
