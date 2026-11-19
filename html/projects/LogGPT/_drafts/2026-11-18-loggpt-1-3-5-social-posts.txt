@@ -1,0 +1,96 @@
+LogGPT 1.3.5 social drafts
+
+Release article: https://unixwzrd.ai/s/37a9f8ca8e/
+Project overview: https://unixwzrd.ai/projects/LogGPT/
+Mac App Store: https://apps.apple.com/us/app/loggpt/id6743342693?mt=12
+
+Status: Release copy describes version 1.3.5 without an "available now" claim. The public App Store listing checked on November 18 still showed 1.3.4; the project changelog describes 1.3.5 for submission. Publish announcements when the intended release is ready.
+Purchases: The app update is included for existing Basic and Plus owners. Artifact archiving is an optional one-time Plus IAP; existing Plus owners do not pay again.
+Archive compatibility: Plus artifact bundles use .lgpt, a standard ZIP container. Contents and archive layout are unchanged. Standalone JSON stays .json. Existing .zip exports remain usable; an older ZIP-only tool may require a copy of a new .lgpt file renamed to .zip.
+Extract Chat: The native macOS app is upcoming and still in development, not a shipped release. Do not imply that the current public CLI release already supports every upcoming app workflow.
+Dots scope: Main timeline and directly attached available files only; linked task and nested reply histories remain excluded.
+
+
+==================================================
+LINKEDIN
+==================================================
+
+OpenAI changed the Dots conversation header again. LogGPT 1.3.5 restores the download button and adds a useful fallback: Download current conversation from LogGPT's Safari toolbar popup.
+
+The toolbar option works for Basic and Plus, using the same export choices, progress, and cancellation. If the page button is missing, you have another way to start the export.
+
+We're also preparing for the upcoming native Extract Chat app for macOS. Plus artifact bundles now use .lgpt, a recognizable document extension for that workflow. They're still standard ZIP files: the conversation JSON, available selected artifacts, manifest, and archive layout are unchanged. JSON-only exports stay .json, and existing ZIP archives remain usable.
+
+The app update is included for existing LogGPT owners. Want to keep the files as well as the conversation? Plus adds artifact archiving through a one-time in-app purchase. Existing Plus owners are already covered.
+
+https://unixwzrd.ai/s/37a9f8ca8e/
+
+#LogGPT #SafariExtension #DataPortability #macOS
+
+
+==================================================
+PERSONAL REPOST
+==================================================
+
+Another day, another OpenAI interface change. LogGPT 1.3.5 puts the Dots download button back where it belongs and adds Download current conversation to the Safari toolbar popup, so a missing page button doesn't have to stop an export.
+
+Plus bundles also get a .lgpt extension ahead of the native Extract Chat app I'm working on for macOS. It's still a ZIP underneath, with the same files and manifest. JSON downloads haven't changed. Existing LogGPT owners get the app update at no extra charge; existing Plus purchases still cover the archives.
+
+https://unixwzrd.ai/s/37a9f8ca8e/
+
+
+==================================================
+X / TWITTER
+==================================================
+
+LogGPT 1.3.5 restores the Dots button and adds Safari toolbar downloads. Plus archives get .lgpt: still ZIP-compatible, with unchanged contents. JSON stays .json. App update included for existing owners.
+
+https://unixwzrd.ai/s/37a9f8ca8e/
+
+
+==================================================
+BLUESKY
+==================================================
+
+LogGPT 1.3.5: restored Dots button, Safari toolbar downloads, and .lgpt Plus archives. Still ZIP-compatible; JSON stays .json. Preparing for the upcoming Extract Chat macOS app. App update included for existing owners.
+
+https://unixwzrd.ai/s/37a9f8ca8e/
+
+
+==================================================
+MASTODON
+==================================================
+
+OpenAI changed the Dots header again. LogGPT 1.3.5 restores its download button and adds Download current conversation to the Safari toolbar popup for Basic and Plus.
+
+Plus bundles now use .lgpt: standard ZIP archives with unchanged contents, preparing for the upcoming Extract Chat macOS app. JSON stays .json.
+
+App update included for existing owners. Plus remains a one-time IAP; existing Plus owners don't pay again.
+
+https://unixwzrd.ai/s/37a9f8ca8e/
+
+#LogGPT #macOS
+
+
+==================================================
+REDDIT
+==================================================
+
+Title:
+LogGPT 1.3.5: Dots button repair, Safari toolbar downloads, and ZIP-compatible .lgpt archives
+
+Body:
+Disclosure: I develop LogGPT, a Safari extension for exporting ChatGPT, ChatGPT Work, and Dots conversations.
+
+OpenAI changed the Dots conversation header again, so version 1.3.5 updates the download button's placement and recovery. It also adds Download current conversation to LogGPT's Safari toolbar popup. That works for Basic and Plus and uses the existing export options, progress, and cancellation without needing the in-page button to be visible. The extension still needs to be enabled and allowed on the conversation page; reload an old tab after updating if its script needs refreshing.
+
+The other change is the file extension for Plus artifact bundles: .lgpt instead of .zip. This is still a standard ZIP container, not a new proprietary archive format or encryption scheme. The conversation JSON, available selected files, manifest, and archive layout haven't changed. JSON-only exports stay .json, and old ZIP exports don't need converting. If an older archive utility only accepts .zip, rename a copy of the .lgpt file to .zip.
+
+The extension prepares a recognizable Finder document type for the native Extract Chat app I'm developing for macOS. That app is upcoming, not shipped yet. The aim is to make converting exported conversations into readable Markdown or HTML with local file references easier without requiring a command-line workflow.
+
+The Dots scope hasn't expanded: main timeline and direct available attachments, not linked task or nested reply histories.
+
+Existing Basic and Plus owners receive the app update at no additional charge. Plus is an optional one-time IAP for artifact archiving; existing Plus purchases remain valid.
+
+Details: https://unixwzrd.ai/s/37a9f8ca8e/
+

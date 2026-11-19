@@ -11,6 +11,8 @@ tags: [chatgpt, safari-extension, app-store, macos, data-portability]
 image: /assets/images/projects/LogGPT/LogGPT-Plus.png
 excerpt: "LogGPT 1.3.4 adds Dots main-timeline exports, available direct attachments with Plus, and source-labeled filenames. Available on the Mac App Store."
 published: true
+update_notice_title: "Version 1.3.5 update - November 18, 2026"
+update_notice: "LogGPT 1.3.5 restores the Dots download control after another header change and adds downloads from the Safari toolbar popup. Plus bundles now use the ZIP-compatible `.lgpt` extension. [Read the 1.3.5 announcement](/projects/LogGPT/2026/11/18/loggpt-1-3-5-toolbar-downloads-and-lgpt-archives/). The original 1.3.4 announcement is preserved below."
 ---
 
 **LogGPT 1.3.4 is available on the Mac App Store.** We've added Dots conversation exports alongside the existing ChatGPT and ChatGPT Work support, giving you another way to keep a local copy of your work. Downloads are easier to identify, too, with source labels added to filenames when LogGPT recognizes where the conversation came from. All existing LogGPT owners, whether Basic or Plus, receive this app update at no additional charge.
@@ -49,4 +51,5 @@ LogGPT Basic gives you a structured JSON copy of the conversation, including the
 We built Plus for that next step, so you can keep the conversation and its available files together rather than download and organize them separately. It's an optional, one-time in-app purchase, not a subscription. Basic owners can upgrade from within LogGPT whenever they want artifact archiving; existing Plus owners are already covered and do not need to purchase it again for Dots support.
 
 [Get LogGPT on the Mac App Store](https://apps.apple.com/us/app/loggpt/id6743342693?mt=12), then add Plus from within the app if you'd like to keep the files alongside your conversations.
+
 
