@@ -4,10 +4,10 @@ layout: page
 permalink: /Policies/Terms_Extract_Chat/
 image: /assets/images/default-og-image.png
 excerpt: "Terms for Extract Chat, including the MIT license, conversion limitations, original archives, and support."
-published: false
+published: true
 ---
 
-Draft for review - not yet published. An effective date will be added before release.
+Effective Date: November 20, 2026
 
 ## What the app does
 
@@ -40,4 +40,5 @@ The MIT license and applicable third-party licenses describe the software's warr
 [Extract Chat](/projects/extract-chat/) · [Privacy Policy](/Policies/Privacy_Extract_Chat/)
 
 Copyright 2026 Distributed Thinking Systems LLC. - MIT License.
+
 

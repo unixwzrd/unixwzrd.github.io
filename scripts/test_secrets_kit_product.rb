@@ -110,6 +110,37 @@ class SecretsKitProductTest < Minitest::Test
     assert_empty navigation(published, {}, release: ready).css("aside")
   end
 
+  def test_policy_index_uses_current_product_names_and_separates_application_policies
+    index = PRODUCTION.pages.find { |page| page.url == "/Policies/" }
+    pages = PRODUCTION.pages.map(&:to_liquid)
+    html = Jekyll::Converters::Markdown.new(PRODUCTION.config).convert(render(index.content, pages: pages))
+    doc = Nokogiri::HTML.fragment(html)
+    assert_equal "LogGPT Privacy Policy", doc.at_css('a[href="/Policies/Privacy_LogGPT_for_Safari/"]').text
+    assert_equal "LogGPT original privacy policy (legacy)", doc.at_css('a[href="/Policies/General_Privacy/"]').text
+    refute_includes doc.text, "ChatGPT Chat History Download"
+    refute_includes doc.text, "Remote Secrets Sync"
+    if PRODUCTION.data.fetch("secrets_kit").fetch("production_release_ready")
+      refute_match(/pre[ -]?launch|awaiting final approval/i, doc.text)
+      assert_equal "RSS service terms, cancellation and refunds", doc.at_css("a[href='#{PREFIX}policies/#service-terms']").text
+    end
+
+    privacy = PRODUCTION.pages.find { |page| page.url == "/Policies/Privacy_LogGPT_for_Safari/" }
+    assert_equal "LogGPT Privacy Policy", privacy.data.fetch("title")
+    legacy = PRODUCTION.pages.find { |page| page.url == "/Policies/General_Privacy/" }
+    assert_equal "LogGPT Privacy Policy (Original)", legacy.data.fetch("title")
+    refute_includes legacy.content, "ChatGPT Chat History Download"
+
+    %w[Privacy_Extract_Chat Terms_Extract_Chat].each do |name|
+      path = "/Policies/#{name}/"
+      if PRODUCTION.pages.any? { |page| page.url == path }
+        assert doc.at_css("a[href='#{path}']"), "The separate Extract Chat policy must be discoverable"
+        assert_includes doc.text, "Extract Chat is a separate application"
+      else
+        assert_nil doc.at_css("a[href='#{path}']"), "Do not link an unpublished policy"
+      end
+    end
+  end
+
   def test_one_release_setting_updates_all_product_documentation_links
     pages = PREVIEW.pages.select { |page| page.data["secrets_kit_product"] }.map(&:to_liquid)
     release = PRODUCTION.data.fetch("secrets_kit").merge("release_tag" => "v9.8.7", "production_release_ready" => true,
@@ -490,6 +521,14 @@ class SecretsKitProductTest < Minitest::Test
       if PRODUCTION.pages.any? { |page| page.data["secrets_kit_product"] }
         routes.each { |route| assert File.file?(File.join(directory, route, "index.html")), route }
         assert document(directory).at_css("[data-seckit-product]")
+        if PRODUCTION.data.fetch("secrets_kit")["production_release_ready"]
+          ([PREFIX] + routes).each do |route|
+            page = document(directory, route)
+            assert_empty page.css(".seckit-notice, #release-status"), "No prerelease notices on released product pages: #{route}"
+          end
+          policy_index = document(directory, "/Policies/")
+          refute_match(/pre[ -]?launch|awaiting final approval/i, policy_index.at_css("article.page .page-content").text)
+        end
         unless PRODUCTION.data.fetch("secrets_kit")["production_release_ready"]
           doc = document(directory, "#{PREFIX}get-started/")
           assert_includes doc.text, "coming soon"
@@ -636,6 +675,7 @@ class SecretsKitProductTest < Minitest::Test
     end
   end
 end
+
 
 
 

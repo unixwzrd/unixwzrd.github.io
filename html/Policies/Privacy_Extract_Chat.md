@@ -4,10 +4,10 @@ layout: page
 permalink: /Policies/Privacy_Extract_Chat/
 image: /assets/images/default-og-image.png
 excerpt: "How the Extract Chat macOS application handles local conversation archives, settings, diagnostics, and support requests."
-published: false
+published: true
 ---
 
-Draft for review - not yet published. An effective date will be added before release.
+Effective Date: November 20, 2026
 
 ## Your conversations stay under your control
 
@@ -37,11 +37,12 @@ Opening a support link or a link in an exported document uses your chosen browse
 
 ## Changes and contact
 
-We will update this policy if the app's data handling changes. The published policy will show its effective date.
+We will update this policy if the app's data handling changes and revise the effective date shown above.
 
 For privacy questions or requests, contact Distributed Thinking Systems LLC through our [contact page](/contact/) or email [info@unixwzrd.ai](mailto:info@unixwzrd.ai).
 
 [Extract Chat](/projects/extract-chat/) · [Terms of Use](/Policies/Terms_Extract_Chat/)
 
 Copyright 2026 Distributed Thinking Systems LLC.
+
 

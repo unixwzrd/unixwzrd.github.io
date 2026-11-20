@@ -10,17 +10,17 @@ excerpt: ""
 ## Distributed Thinking Systems LLC Policies
 
 ### Privacy Policies
-- [ChatGPT Chat History Download Safari Extension - original General Privacy Policy](/Policies/General_Privacy/)
-- [LogGPT: Export ChatGPT conversation JSON logs for Safari](/Policies/Privacy_LogGPT_for_Safari/)
-  - Covers both the OpenSource version in the [GitHub Repository](https://github.com/unixwzrd/chatgpt-chatlog-export) and the Apple App Store version.
+
+- [LogGPT Privacy Policy](/Policies/Privacy_LogGPT_for_Safari/)
+- [LogGPT original privacy policy (legacy)](/Policies/General_Privacy/)
 
 {% assign seckit_policy_page = site.pages | where: 'url', '/projects/Secrets-Kit/policies/' | first %}
 {% if seckit_policy_page %}
-### Secrets Kit and Remote Secrets Sync - prelaunch
+### Secrets Kit and Remote Secret Sync (RSS)
 
 - [Secrets Kit client privacy](/projects/Secrets-Kit/policies/#client-privacy)
-- [Remote Secrets Sync privacy, metadata and retention](/projects/Secrets-Kit/policies/#remote-secrets-sync-privacy)
-- [RSS service terms, cancellation and refunds - awaiting final approval](/projects/Secrets-Kit/policies/#service-terms)
+- [Remote Secret Sync privacy, metadata and retention](/projects/Secrets-Kit/policies/#remote-secrets-sync-privacy)
+- [RSS service terms, cancellation and refunds](/projects/Secrets-Kit/policies/#service-terms)
 - [Secrets Kit client MIT License](/projects/Secrets-Kit/policies/#client-license)
 
 {% endif %}
@@ -33,9 +33,12 @@ excerpt: ""
 {% if extract_chat_privacy and extract_chat_terms %}
 ### Extract Chat
 
+Extract Chat is a separate application for converting local conversation exports. Its privacy policy and terms are separate from LogGPT's.
+
 - [Extract Chat Privacy Policy](/Policies/Privacy_Extract_Chat/)
 - [Extract Chat Terms of Use and MIT License](/Policies/Terms_Extract_Chat/)
 
 {% endif %}
+
 
 

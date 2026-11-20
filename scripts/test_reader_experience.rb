@@ -382,6 +382,25 @@ if ENV["READER_SITE"]
       Nokogiri::HTML(File.read(File.join(ROOT, path, "index.html")))
     end
 
+    def test_extract_chat_policies_are_public_and_linked_from_the_index_and_product
+      index = document("Policies")
+      product = document("projects/extract-chat")
+      policies = {
+        "Privacy_Extract_Chat" => ["Extract Chat Privacy Policy", "Terms_Extract_Chat"],
+        "Terms_Extract_Chat" => ["Extract Chat Terms of Use", "Privacy_Extract_Chat"],
+      }
+      policies.each do |name, (title, counterpart)|
+        page = document("Policies/#{name}")
+        assert_equal title, page.at_css("h1").text.strip
+        content = page.at_css("article.page .page-content")
+        assert_includes content.text, "Effective Date: November 20, 2026"
+        refute_match(/Draft for review|not yet published|effective date will be added/i, content.text)
+        assert content.at_css("a[href='/Policies/#{counterpart}/']")
+        assert_equal "https://unixwzrd.ai/Policies/#{name}/", page.at_css('link[rel="canonical"]')["href"]
+        [index, product].each { |source| assert source.at_css("a[href='/Policies/#{name}/']"), name }
+      end
+    end
+
     def test_unlisted_reviews_have_no_inbound_listing_links_or_tracking
       files = Dir.glob("#{ROOT}/**/*.html")
       reviews = files.select { |path| File.read(path).include?("data-unlisted-review") }
@@ -617,5 +636,6 @@ if ENV["READER_SITE"]
     end
   end
 end
+
 
 

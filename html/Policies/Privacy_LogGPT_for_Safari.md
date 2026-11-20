@@ -1,5 +1,5 @@
 ---
-title: "LogGPT: Export ChatGPT conversation JSON logs for Safari Privacy Policy"
+title: "LogGPT Privacy Policy"
 layout: page
 permalink: /Policies/Privacy_LogGPT_for_Safari/
 image: /assets/images/default-og-image.png
@@ -53,3 +53,4 @@ If this privacy policy is updated, changes will be reflected in the App Store li
 
 ## 10. Contact Information
 For privacy-related inquiries, please visit our [Contact Page](/contact/).
+

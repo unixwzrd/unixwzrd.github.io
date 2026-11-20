@@ -1,5 +1,5 @@
 ---
-title: "General Privacy Policy"
+title: "LogGPT Privacy Policy (Original)"
 layout: page
 permalink: /Policies/General_Privacy/
 image: /assets/images/default-og-image.png
@@ -10,7 +10,7 @@ Effective Date: 2025-02-01
 
 ### 1. Introduction
 
-This Privacy Policy applies to the ChatGPT Chat History Download Safari Extension. We take privacy seriously, and this extension is designed with that in mind.
+This Privacy Policy applies to LogGPT, the Safari extension. We take privacy seriously, and this extension is designed with that in mind.
 
 ### 2. Data Collection & Usage
 
@@ -54,3 +54,4 @@ If this Privacy Policy is updated, changes will be reflected in future versions 
 ### 8. Contact Information
 
 For any privacy-related inquiries, contact: [Contact Us](/contact/)
+

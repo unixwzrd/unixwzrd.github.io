@@ -12,7 +12,7 @@ excerpt: "Privacy, licensing, RSS service terms and optional support contracts f
 
 {% include secrets-kit/release.html %}
 
-This page applies to the **Secrets Kit client and optional Remote Secret Sync (RSS)**. The Safari extension's [General Privacy Policy]({{ '/Policies/General_Privacy/' | relative_url }}) describes that extension, not Secrets Kit. It does not establish the data practices of this website or the hosted RSS service.
+This page applies to the **Secrets Kit client and optional Remote Secret Sync (RSS)**. The [LogGPT Privacy Policy]({{ '/Policies/Privacy_LogGPT_for_Safari/' | relative_url }}) describes that separate Safari extension, not Secrets Kit. It does not establish the data practices of this website or the hosted RSS service.
 
 The retention rules and service providers for the hosted RSS service are described below. Separately agreed support contracts define the scope and terms of any additional paid assistance.
 
@@ -86,4 +86,5 @@ The MIT License below covers the Secrets Kit client. It licenses the client soft
 > The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 > THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
 
