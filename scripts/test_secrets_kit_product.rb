@@ -78,7 +78,8 @@ class SecretsKitProductTest < Minitest::Test
     doc = navigation(pages, { "url" => "#{PREFIX}pricing/" })
     assert_equal [PREFIX] + %w[compare pricing credential-risks guides security].map { |slug| "#{PREFIX}#{slug}/" } + [PRODUCTION.data.fetch("secrets_kit").fetch("repository_url")] + %w[support remote-sync].map { |slug| "#{PREFIX}#{slug}/" } + ["#{PREFIX}#updates", "#{PREFIX}get-started/"], doc.css("nav a").map { |link| link["href"] }
     assert_equal ["Pricing"], doc.css('[aria-current="page"]').map(&:text)
-    action = PRODUCTION.data.fetch("secrets_kit")["production_release_ready"] ? "Get Started" : "Explore 2.0.4"
+    release = PRODUCTION.data.fetch("secrets_kit")
+    action = release["production_release_ready"] ? "Get Started" : "Explore #{release.fetch('product_version')}"
     assert_equal ["Overview", "Compare", "Pricing", "Research", "Guides", "Security", "GitHub", action], doc.css('.seckit-nav-links > a').map(&:text)
     assert_equal ["Help", "RSS", "Updates"], doc.css('.seckit-nav-menu a').map(&:text)
     assert_equal "Secrets Kit pages", doc.at_css('.seckit-nav-pages > summary').text
@@ -142,7 +143,7 @@ class SecretsKitProductTest < Minitest::Test
     pending = Nokogiri::HTML.fragment(render(template, pages: pages, release: pending_release))
     assert_empty pending.css("a"), "An unavailable document must not look like a functional link"
     assert_equal 4, pending.css('[data-seckit-unavailable="release-document"]').length
-    pending.css("span").each { |span| assert_includes span.text, "forthcoming with 2.0.4" }
+    pending.css("span").each { |span| assert_includes span.text, "forthcoming with #{pending_release.fetch('product_version')}" }
     ready = PRODUCTION.data.fetch("secrets_kit").merge("production_release_ready" => true, "release_tag" => "v9.8.7", "release_announcement_url" => "https://example.com/launch")
     links = Nokogiri::HTML.fragment(render(template, pages: pages, release: ready)).css("a").map { |a| a["href"] }
     assert_equal ["blob/v9.8.7/docs/SECURITY_MODEL.md", "blob/v9.8.7/docs/RSS_CUSTOMER_GUIDE.md#add-another-device", "tree/v9.8.7/integrations/hermes/install-secrets-kit-for-hermes", "blob/v9.8.7/LICENSE"].map { |path| "https://github.com/unixwzrd/Secrets-Kit/#{path}" }, links
@@ -225,7 +226,7 @@ class SecretsKitProductTest < Minitest::Test
     future = matrix.css('td a[href="#seckit-future-enhancements"]')
     assert_equal ["Organization administration", "Organization audit logs", "Automatic secret rotation"], future.map { |link| link.ancestors("tr").first.at_css('th[scope="row"]').text }
     future.each { |link| assert link.ancestors("td").first.at_css('.seckit-cross[aria-label="Not included"]') }
-    assert_includes doc.at_css('#seckit-future-enhancements').text, "Planned enhancements, not included in Secrets Kit 2.0.4."
+    assert_includes doc.at_css('#seckit-future-enhancements').text, "Planned enhancements, not included in Secrets Kit #{PRODUCTION.data.fetch('secrets_kit').fetch('product_version')}."
     assert_includes doc.at_css('#seckit-future-enhancements').text, "Scope and release timing may change."
     assert matrix.at_css("caption")
     assert doc.at_css('.seckit-matrix-frame[tabindex="0"][aria-describedby]')
@@ -277,12 +278,10 @@ class SecretsKitProductTest < Minitest::Test
     assert doc.at_css('#comparison-sources a[href="https://www.doppler.com/pricing"]')
   end
 
-  def test_ga_announcement_is_publishable_and_separate_from_the_prerelease_article
+  def test_original_ga_announcement_remains_publishable_and_separate_from_the_prerelease_article
     basename = "2026-11-09-secrets-kit-2-0-4-general-availability.md"
     announcement = PRODUCTION.posts.docs.find { |post| File.basename(post.path) == basename }
     assert announcement
-    assert_equal "2.0.4", PRODUCTION.data.fetch("secrets_kit").fetch("product_version")
-    assert_equal "v2.0.4", PRODUCTION.data.fetch("secrets_kit").fetch("release_tag")
     assert_equal "secrets-kit-2-0-4-general-availability", announcement.data["permalink_slug"]
     assert_equal "/projects/Secrets-Kit/_posts/#{basename}", announcement.data["short_link_basis"]
     assert_equal "https://unixwzrd.ai/s/7fd920276e/", announcement.data["short_url"]
@@ -327,6 +326,61 @@ class SecretsKitProductTest < Minitest::Test
     assert_includes prerelease.data["title"], "Coming Soon"
     assert_includes prerelease.content, "this is a pre-announcement, not general availability"
     assert_includes prerelease.data["update_notice"], "[Secrets Kit product page](/projects/Secrets-Kit/)"
+  end
+
+  def test_current_maintenance_announcement_matches_the_release_and_preserves_security_boundaries
+    release = PRODUCTION.data.fetch("secrets_kit")
+    assert_equal "2.0.5", release.fetch("product_version")
+    assert_equal "v2.0.5", release.fetch("release_tag")
+    basename = "2026-11-18-secrets-kit-2-0-5-scoped-mcp-writes-and-sync-fixes.md"
+    announcement = PRODUCTION.posts.docs.find { |post| File.basename(post.path) == basename }
+    assert announcement
+    assert_equal "https://unixwzrd.ai#{PREFIX}2026/11/18/secrets-kit-2-0-5-scoped-mcp-writes-and-sync-fixes/", release.fetch("release_announcement_url")
+    assert_equal "secrets-kit-2-0-5-scoped-mcp-writes-and-sync-fixes", announcement.data["permalink_slug"]
+    assert_equal "/projects/Secrets-Kit/_posts/#{basename}", announcement.data["short_link_basis"]
+    assert_equal "https://unixwzrd.ai/s/d756241670/", announcement.data["short_url"]
+    assert_equal "2026-11-18", announcement.date.strftime("%Y-%m-%d")
+    assert_equal true, announcement.data["published"]
+    refute announcement.data["list_exclude"]
+    refute announcement.data["search_exclude"]
+    refute_equal false, announcement.data["sitemap"]
+    %w[INSTALL.md CHANGELOG.md].each do |file|
+      assert_includes announcement.content, "#{release.fetch('repository_url')}/blob/#{release.fetch('release_tag')}/#{file == 'INSTALL.md' ? 'docs/' : ''}#{file}"
+    end
+    assert_includes announcement.content, "/releases/download/v2.0.5/install.sh"
+    assert_includes announcement.content, "seckit upgrade --check"
+    assert_includes announcement.content, "read-only by default"
+    assert_includes announcement.content, "exact credential names within one owner-approved service and account"
+    assert_includes announcement.content, "revision-checked"
+    assert_includes announcement.content, "may be visible to its agent or model"
+    assert_includes announcement.content, "not a sandbox for other processes running under the same Unix account"
+    assert_includes announcement.content, "A dotenv export contains plaintext credentials."
+    assert_includes announcement.content, "does not cancel an RSS subscription or revoke enrolled devices"
+    assert_includes announcement.content, "US$5 per paid node slot per month"
+    assert_includes announcement.content, "two-slot minimum of US$10/month"
+    refute_match(/Remote Secrets Sync|Remote Sync|\brelays?\b/, announcement.content)
+
+    figures = Nokogiri::HTML.fragment(render(announcement.content, pages: [])).css("figure.blog-diagram")
+    assert_equal 1, figures.length
+    image = figures.at_css("img")
+    assert_equal "/assets/images/blog/secrets-kit/2026-11-18/scoped-mcp-writes.svg", image["src"]
+    refute_empty image["alt"]
+    assert_match(%r{\A/diagram-viewer/\?src=}, figures.at_css("a")["href"])
+    assert File.file?(File.join(ROOT, "html/assets/code/secrets-kit/2026-11-18/scoped-mcp-writes.dot"))
+    svg = Nokogiri::XML(File.read(File.join(ROOT, "html", image["src"])))
+    assert_empty svg.errors
+    labels = svg.css("text").map(&:text).join(" ")
+    ["Default: read-only", "Optional version 2 writes", "Exact-name grants only", "Enforces policy here", "Not a sandbox for other processes", "may reach the model"].each do |label|
+      assert_includes labels, label
+    end
+
+    %w[guides security].each do |slug|
+      page = PRODUCTION.pages.find { |item| item.url == "#{PREFIX}#{slug}/" }
+      assert page
+      assert_match(/read-only.*?by default/, page.content)
+      assert_includes page.content, "version 2 policy"
+      refute_includes page.content, "it does not provide write operations"
+    end
   end
 
   def test_current_product_naming_support_routes_and_legacy_anchors
@@ -443,7 +497,7 @@ class SecretsKitProductTest < Minitest::Test
           assert_empty doc.css("textarea, button[data-seckit-copy]")
           SLUGS.each do |slug|
             page = document(directory, "#{PREFIX}#{slug}/")
-            assert_empty page.css('a[href*="github.com/unixwzrd/Secrets-Kit/releases/tag/"], a[href*="github.com/unixwzrd/Secrets-Kit/releases/download/"], a[href*="github.com/unixwzrd/Secrets-Kit/tree/v2.0.4"], a[href*="github.com/unixwzrd/Secrets-Kit/blob/v2.0.4"]'), slug
+            assert_empty page.css('a[href*="github.com/unixwzrd/Secrets-Kit/releases/tag/"], a[href*="github.com/unixwzrd/Secrets-Kit/releases/download/"], a[href*="github.com/unixwzrd/Secrets-Kit/tree/"], a[href*="github.com/unixwzrd/Secrets-Kit/blob/"]'), slug
           end
         end
         return
@@ -560,7 +614,8 @@ class SecretsKitProductTest < Minitest::Test
       end
       comparison = document(directory, "#{PREFIX}compare/")
       assert_equal PREVIEW.data.fetch("secrets_kit_competitors").fetch("products").length, comparison.css("[data-competitor]").length
-      launch_url = "#{PREFIX}2026/11/09/secrets-kit-2-0-4-general-availability/"
+      release = PRODUCTION.data.fetch("secrets_kit")
+      launch_url = release.fetch("release_announcement_url").delete_prefix("https://unixwzrd.ai")
       assert_equal launch_url, overview.at_css("#updates .post-link")["href"]
       home = document(directory, "/")
       assert_equal launch_url, home.at_css('[aria-labelledby="home-writing"] .post-link')["href"]
@@ -568,7 +623,7 @@ class SecretsKitProductTest < Minitest::Test
       assert note
       assert_includes note["class"].split, "home-lead"
       assert_equal "home-actions", note.next_element["class"]
-      assert_equal [PREFIX, "https://github.com/unixwzrd/Secrets-Kit/releases/tag/v2.0.4"], note.css("a").map { |link| link["href"] }
+      assert_equal [PREFIX, "#{release.fetch('repository_url')}/releases/tag/#{release.fetch('release_tag')}"], note.css("a").map { |link| link["href"] }
       assert_equal 3, home.css(".home-project-card").length
     end
   end
@@ -581,6 +636,7 @@ class SecretsKitProductTest < Minitest::Test
     end
   end
 end
+
 
 
 

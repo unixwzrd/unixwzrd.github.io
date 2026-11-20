@@ -210,7 +210,8 @@ class ReaderExperienceTest < Minitest::Test
     actual = catalog.find { |project| project["name"] == "Secrets-Kit" }.fetch("description")
     override = sources.find { |project| project["name"] == "Secrets-Kit" }.fetch("overrides").fetch("description")
     assert_equal override, actual
-    assert_includes actual, "Secrets Kit 2.0.4 is available"
+    release = YAML.safe_load(File.read(File.join(ROOT, "html/_data/secrets_kit.yml")))
+    assert_includes actual, "Secrets Kit #{release.fetch('product_version')} is available"
     assert_includes actual, "optional paid Remote Secret Sync"
     refute_match(/public beta/i, actual)
   end
@@ -536,7 +537,8 @@ if ENV["READER_SITE"]
       assert_includes body, "Get Started"
       refute_includes body, "coming soon"
       setup = document("projects/Secrets-Kit/get-started")
-      assert setup.at_css('a[href="https://github.com/unixwzrd/Secrets-Kit/releases/tag/v2.0.4"]')
+      release = YAML.safe_load(File.read(File.expand_path("../html/_data/secrets_kit.yml", __dir__)))
+      assert setup.at_css("a[href='#{release.fetch('repository_url')}/releases/tag/#{release.fetch('release_tag')}']")
       assert_nil setup.at_css('#release-status')
       refute_match(/public beta|no stable production release yet/i, body)
       refute_match(/\bbeta\b/i, document("").at_css(".home").text)
@@ -615,4 +617,5 @@ if ENV["READER_SITE"]
     end
   end
 end
+
 

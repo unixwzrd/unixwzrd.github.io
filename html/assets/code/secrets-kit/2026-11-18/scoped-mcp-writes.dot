@@ -1,0 +1,37 @@
+digraph ScopedMCPWrites {
+  graph [bgcolor="#111923", pad="0.25", rankdir=TB, fontname="Helvetica", fontcolor="#edf2f5", label="MCP writes are explicit, not the default", labelloc=t, fontsize=22, ranksep="0.42", nodesep="0.32", splines=polyline];
+  node [shape=box, style="rounded,filled", color="#587080", fillcolor="#20303d", fontcolor="#f4f5f6", fontname="Helvetica", fontsize=16, margin="0.18,0.16"];
+  edge [color="#80a6d7", fontcolor="#b0cff6", fontname="Helvetica", fontsize=13, arrowsize=0.7, penwidth=1.5];
+
+  owner [label="Owner-controlled MCP policy\nOne fixed service + account", fontsize=17];
+  defaults [label=<<B>Default: read-only</B><BR/>Metadata: allowed names only<BR/>Values: explicit retrieval grant<BR/>Credential writes denied>, fillcolor="#234243", color="#73b8b5"];
+  writes [label=<<B>Optional version 2 writes</B><BR/>Exact-name grants only<BR/>Create named credentials<BR/>Revision checks on update / delete>, fillcolor="#3e3423", color="#d3ab68"];
+
+  { rank=same; defaults; writes; }
+  owner -> defaults [label="default", style=dashed];
+  owner -> writes [label="explicit owner opt-in", style=dashed, color="#d3ab68", fontcolor="#e6c68e"];
+
+  subgraph cluster_local {
+    label="Local process path - same machine / Unix account";
+    labelloc=b;
+    fontname="Helvetica";
+    fontcolor="#edf2f5";
+    fontsize=15;
+    color="#587080";
+    style=rounded;
+    margin=16;
+
+    agent [label="Agent / MCP host"];
+    mcp [label=<<B>seckit-mcp</B><BR/>Enforces policy here>, fillcolor="#234243", color="#73b8b5"];
+    daemon [label="Local daemon\nSQLite transaction path"];
+    { rank=same; agent; mcp; daemon; }
+    agent -> mcp [label="stdio", dir=both];
+    mcp -> daemon [label="local UDS", dir=both];
+  }
+
+  defaults -> mcp [label="policy configuration", style=dashed];
+  writes -> mcp [style=dashed, color="#d3ab68"];
+
+  limits [shape=plain, style="", fontcolor="#e6c68e", fontsize=15, label="Write values are visible to the MCP host and may reach the model.\nNot a sandbox for other processes using the same Unix account."];
+  mcp -> limits [style=invis];
+}

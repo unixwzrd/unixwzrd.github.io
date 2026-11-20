@@ -21,7 +21,7 @@ The version {{ seckit_version }} user guides and agent integration will accompan
 | Your goal | What to explore now |
 | --- | --- |
 | Keep credentials on your own machines | [Local storage and access boundaries]({{ '/projects/Secrets-Kit/security/' | relative_url }}) |
-| Connect workstations on one LAN segment | [The free peer-to-peer client]({{ '/projects/Secrets-Kit/' | relative_url }}) — unlimited connections on the same segment |
+| Connect workstations on one LAN segment | [The free peer-to-peer client]({{ '/projects/Secrets-Kit/' | relative_url }}) - unlimited connections on the same segment |
 | Connect authorized peers across networks | [Remote Secret Sync (RSS) and endpoint failover]({{ '/projects/Secrets-Kit/remote-sync/' | relative_url }}) |
 | Let Hermes help with installation | [Agent-assisted setup preview]({{ '/projects/Secrets-Kit/get-started/' | relative_url }}) |
 | Compare custody, recovery, and service dependence | [The feature comparison and wider landscape]({{ '/projects/Secrets-Kit/compare/' | relative_url }}) |
@@ -35,7 +35,7 @@ Pick the task you need. The links below follow the production release selected f
 
 ## Store and use credentials
 
-| I want to… | Start here | What to check |
+| I want to... | Start here | What to check |
 | --- | --- | --- |
 | Add a credential | [Usage]({{ seckit_docs_url }}USAGE.md) | Choose a service, account, and name. Supply values through the documented input path, without pasting real values into an agent transcript. |
 | Give an application selected credentials | [Application examples]({{ seckit_docs_url }}EXAMPLES.md) | Use `seckit run` with the intended scope and names. Confirm the application uses that source without printing values. |
@@ -48,7 +48,7 @@ A service and account let you keep the same name, such as `API_TOKEN`, in separa
 
 For Hermes, give your agent the [integration URL]({{ seckit_hermes_url }}) and ask it to follow the instructions there. [Get Started]({{ '/projects/Secrets-Kit/get-started/#have-your-agent-help' | relative_url }}) provides the short handoff. Preserve the existing agent configuration and `.env` file until you explicitly approve a cutover. A successful request using an old environment fallback does not establish that the integration is reading Secrets Kit.
 
-For other applications and agents, read [Integrations]({{ seckit_docs_url }}INTEGRATIONS.md). General command-line compatibility is different from a verified agent-specific integration. Optional MCP access is read-only and policy-scoped; permission to retrieve a value into model context requires its own decision.
+For other applications and agents, read [Integrations]({{ seckit_docs_url }}INTEGRATIONS.md). General command-line compatibility is different from a verified agent-specific integration. Optional MCP access is policy-scoped and read-only by default. An owner-approved version 2 policy can grant writes to exact credential names within one fixed service and account. Retrieval into model context remains a separate decision, and write arguments can expose values to the MCP host or model.
 
 ## Connect another machine
 
@@ -73,3 +73,4 @@ Start with the [installation troubleshooting guide]({{ seckit_docs_url }}INSTALL
 When asking for help, include the installed version, platform, command, and sanitized error. Leave out secret values, environment dumps, credential files, private keys, and recovery codes. For hands-on help, [ask about setup assistance]({{ '/collaborate/professionals/' | relative_url }}).
 
 {% endif %}
+

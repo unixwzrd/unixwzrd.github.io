@@ -34,7 +34,9 @@ Local storage protection is separate from transport encryption. A destination-en
 
 That does not require pasting values into a conversation. An agent can help configure a process without receiving its credentials as chat text. But do not assume that an agent with arbitrary command execution is technically prevented from inspecting its environment.
 
-The optional **Model Context Protocol (MCP)** interface is read-only and policy-scoped. Read-only means it does not provide write operations; approved retrieval can still disclose a value to a model. Keep retrieval denied unless you intentionally authorize exact names. The {% include secrets-kit/doc-link.html kind='hermes' label='Hermes integration' %} distinguishes process access from model-visible retrieval.
+The optional **Model Context Protocol (MCP)** interface is policy-scoped and **read-only by default**. An owner-controlled version 2 policy can grant creation, revision-checked updates, and revision-checked deletion for exact credential names within one fixed service and account. Metadata listing stays within that scope. These grants are not a sandbox for other processes using the same Unix account.
+
+Approved retrieval can disclose a value to a model, and values supplied as create or update tool arguments are visible to the MCP host and may be visible to its agent or model. Keep retrieval denied unless you intentionally authorize exact names, and approve write grants separately. The {% include secrets-kit/doc-link.html kind='hermes' label='Hermes integration' %} distinguishes process access from model-visible retrieval and writes.
 
 ## What can another machine receive?
 
@@ -81,4 +83,5 @@ Use [Help & Support]({{ '/projects/Secrets-Kit/support/' | relative_url }}) for 
 - <span id="business-impact">[Business costs and recovery benchmarks]({{ '/projects/Secrets-Kit/credential-risks/#business-impact' | relative_url }})</span>
 - <span id="recent-credential-reports">[Monthly credential findings]({{ '/projects/Secrets-Kit/credential-risks/#recent-credential-reports' | relative_url }})</span>
 - <span id="agentic-credential-risk">[The documented agentic attack case]({{ '/projects/Secrets-Kit/credential-risks/#agentic-credential-risk' | relative_url }})</span>
+
 

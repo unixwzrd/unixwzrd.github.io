@@ -14,6 +14,8 @@ tags: [secrets-management, local-first, security, developer-tools, ai-agents, op
 image: /assets/images/projects/Secrets-Kit-Banner.png
 excerpt: "Distributed Thinking Systems releases Secrets Kit 2.0.4: a free local-first secrets client, free encrypted LAN synchronization, and optional Remote Secret Sync at $5 per node per month."
 published: true
+update_notice_title: "Secrets Kit 2.0.5 update - November 18, 2026"
+update_notice: "Secrets Kit 2.0.5 is now available with peer-sync fixes, opt-in scoped MCP writes, runtime hardening, and selected credential export. [Read the 2.0.5 announcement](/projects/Secrets-Kit/2026/11/18/secrets-kit-2-0-5-scoped-mcp-writes-and-sync-fixes/). The original 2.0.4 announcement, links, and publication date are preserved below."
 ---
 
 Distributed Thinking Systems is announcing the general availability of **Secrets Kit 2.0.4**. The [public stable release](https://github.com/unixwzrd/Secrets-Kit/releases/tag/v2.0.4) brings together local credential storage, selected application access, and encrypted peer-to-peer synchronization. The client is free and open source, and synchronization between authorized peers on the same local network is free too. Optional **Remote Secret Sync (RSS)** connects enrolled peers across networks when direct communication is unavailable.
@@ -79,6 +81,7 @@ The current stable release, Secrets Kit 2.0.4, is available for macOS and suppor
 The [product overview](/projects/Secrets-Kit/) explains the local-first workflow, [Guides](/projects/Secrets-Kit/guides/) cover everyday tasks, and [Pricing](/projects/Secrets-Kit/pricing/) explains when paid RSS is useful. You can begin with one local application and add LAN peers without subscribing to anything. Add RSS only when you need the cross-network connection.
 
 For help with deployment, migration, integrations, or ongoing maintenance, [contact Distributed Thinking Systems](/contact/) about a maintenance contract or consulting engagement. Scope and fees are agreed separately from an RSS subscription; the subscription does not itself include a maintenance contract or priority support.
+
 
 
 
