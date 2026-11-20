@@ -1,9 +1,9 @@
 ---
-title: "LogGPT Privacy Policy (Original)"
+title: "General Privacy Policy"
 layout: page
 permalink: /Policies/General_Privacy/
 image: /assets/images/default-og-image.png
-excerpt: "Privacy policy for the LogGPT Safari extension, including its local handling of chat exports and user data."
+excerpt: "Effective Date: 2025-02-01"
 ---
 
 Effective Date: 2025-02-01
@@ -54,4 +54,5 @@ If this Privacy Policy is updated, changes will be reflected in future versions 
 ### 8. Contact Information
 
 For any privacy-related inquiries, contact: [Contact Us](/contact/)
+
 

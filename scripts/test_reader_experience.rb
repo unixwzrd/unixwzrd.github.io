@@ -382,6 +382,55 @@ if ENV["READER_SITE"]
       Nokogiri::HTML(File.read(File.join(ROOT, path, "index.html")))
     end
 
+    def test_extract_chat_100_announcement_preserves_availability_scope_and_short_link
+      path = "projects/extract-chat/2026/11/20/extract-chat-1-0-0-native-macos-app"
+      page = document(path)
+      content = page.at_css(".post-content")
+      assert_equal ["Extract Chat 1.0.0 Brings Conversation Archives to the Mac"], page.css("h1").map { |heading| heading.text.strip }
+      ["available soon on the Mac App Store", "Apple silicon", "macOS 14", ".lgpt", "Hermes Desktop", "View CSS", "Save As", "Choose CSS", "Install CLI", "Original input archive"].each do |text|
+        assert_includes content.text.downcase, text.downcase
+      end
+      assert content.at_css("a[href='/projects/extract-chat/macos/']")
+      assert content.at_css("a[href='https://github.com/unixwzrd/extract-chat/tree/v1.0.0']")
+      assert_equal 2, content.css("figure.project-screenshot img").length
+      refute_match(/available now on the (?:Mac )?App Store|approved by Apple/i, content.text)
+      destination = "https://unixwzrd.ai/#{path}/"
+      assert_equal destination, page.at_css('link[rel="canonical"]')["href"]
+      redirect = document("s/43ec12ca50")
+      assert_equal destination, redirect.at_css('link[rel="canonical"]')["href"]
+      assert_equal "/#{path}/", document("projects/extract-chat").at_css(".post-link")["href"]
+      refute File.exist?(File.join(ROOT, "projects/extract-chat/_drafts/2026-11-20-extract-chat-1-0-0-social-posts.txt"))
+    end
+
+    def test_extract_chat_macos_walkthrough_has_linked_screenshots_and_accurate_scope
+      overview = document("projects/extract-chat")
+      assert overview.at_css(".project-intro a[href='/projects/extract-chat/macos/']"), "Keep the walkthrough discoverable before project updates"
+      page = document("projects/extract-chat/macos")
+      assert_equal ["Extract Chat for macOS"], page.css("h1").map { |heading| heading.text.strip }
+      assert_equal "https://unixwzrd.ai/projects/extract-chat/macos/", page.at_css('link[rel="canonical"]')["href"]
+      content = page.at_css("article.page .page-content")
+      assert content.at_css("a[href='/projects/extract-chat/']")
+      %w[conversion artifacts transcript hermes batch].each do |name|
+        src = "/assets/images/projects/extract-chat/macos-#{name}.webp"
+        image = content.at_css("figure.project-screenshot img[src='#{src}']")
+        refute_nil image, name
+        refute_empty image["alt"]
+        assert_equal "lazy", image["loading"]
+        assert_equal ["2560", "1600"], [image["width"], image["height"]]
+        assert File.file?(File.join(ROOT, src)), src
+        link = image.parent
+        assert_equal src, link["href"]
+        assert_equal "_blank", link["target"]
+        assert_includes link["rel"].split, "noopener"
+        assert_includes link["rel"].split, "noreferrer"
+      end
+      assert_equal 5, content.css("figure.project-screenshot").length
+      ["Apple silicon", "macOS 14", "App Store review", "View CSS", "Save As", "Choose CSS", "not Markdown", "Original input files are not modified"].each do |text|
+        assert_includes content.text, text
+      end
+      assert_empty content.css("script, iframe, button")
+    end
+
     def test_extract_chat_policies_are_public_and_linked_from_the_index_and_product
       index = document("Policies")
       product = document("projects/extract-chat")
@@ -636,6 +685,7 @@ if ENV["READER_SITE"]
     end
   end
 end
+
 
 
 

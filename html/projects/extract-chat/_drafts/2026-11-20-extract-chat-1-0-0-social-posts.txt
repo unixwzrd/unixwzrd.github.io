@@ -1,0 +1,109 @@
+Extract Chat 1.0.0 - social media drafts
+
+Article:
+https://unixwzrd.ai/projects/extract-chat/2026/11/20/extract-chat-1-0-0-native-macos-app/
+
+Short URL:
+https://unixwzrd.ai/s/43ec12ca50/
+
+Screenshot walkthrough:
+https://unixwzrd.ai/projects/extract-chat/macos/
+
+Source and documentation:
+https://github.com/unixwzrd/extract-chat/tree/v1.0.0
+
+Publish after the site article and short URL are live. These drafts say the Mac app is available soon; they do not claim App Store approval or include an unverified store link. Initial native requirements: Apple silicon and macOS 14 or later. No price or purchase terms are assumed.
+
+==================================================
+LINKEDIN
+==================================================
+
+A conversation export should be useful after you download it.
+
+Extract Chat 1.0.0 brings our conversation-conversion tools to a native Mac app, available soon on the Mac App Store. Drag in supported JSON, ZIP, or LogGPT .lgpt files, choose Markdown, HTML, or both, and convert locally without setting up Python.
+
+The app handles supported ChatGPT, ChatGPT Work, Dots, and Hermes Desktop exports. Available artifacts stay with the readable record, original input archives remain unchanged, and completed results retain the source conversation JSON. Expandable activity sections let you inspect exported tool calls without burying the dialogue.
+
+Batch conversion, progress and cancellation, optional continuity chunks, and custom HTML CSS make the same archive useful for reading, research, or continued work in another conversation. Prefer a repeatable command? The app can install a launcher for its bundled engine.
+
+The initial native app supports Apple silicon Macs running macOS 14 or later. Screenshots and the feature rundown:
+https://unixwzrd.ai/s/43ec12ca50/
+
+#ExtractChat #macOS #DataPortability #ChatGPT
+
+==================================================
+X / TWITTER
+==================================================
+
+Extract Chat 1.0.0 is coming soon to the Mac App Store. Turn supported conversation exports into Markdown or HTML, keep available artifacts, batch conversions, and customize the CSS. Local processing; no separate Python setup.
+
+https://unixwzrd.ai/s/43ec12ca50/
+
+==================================================
+BLUESKY
+==================================================
+
+Extract Chat 1.0.0 brings conversation conversion to a native Mac app, coming soon to the App Store. Drag in JSON, ZIP, or .lgpt archives; get Markdown or HTML with available artifacts. Batch processing and custom CSS included.
+
+https://unixwzrd.ai/s/43ec12ca50/
+
+==================================================
+MASTODON
+==================================================
+
+Extract Chat 1.0.0 is coming soon to the Mac App Store. Convert supported ChatGPT, ChatGPT Work, Dots, and Hermes Desktop exports into Markdown or HTML, locally on your Mac.
+
+Drag in JSON, ZIP, or .lgpt files. Keep available artifacts with the transcript, inspect exported tool activity, batch conversions, and save/edit the HTML CSS. Original inputs stay untouched.
+
+Apple silicon, macOS 14+. Screenshots and details:
+https://unixwzrd.ai/s/43ec12ca50/
+
+#ExtractChat #macOS
+
+==================================================
+REDDIT
+==================================================
+
+Suggested title:
+We're bringing Extract Chat to macOS: local Markdown/HTML conversion for ChatGPT, Dots, and Hermes Desktop exports
+
+Suggested body:
+
+We're the developers of Extract Chat, a local conversation-conversion tool. Version 1.0.0 adds a native Mac app, which is coming soon to the Mac App Store. The source and command-line tool are available on GitHub.
+
+The idea is to make downloaded conversation archives useful without asking everyone to set up Python. Drag in supported JSON, ZIP, or LogGPT .lgpt files, choose Markdown or HTML, and convert them locally. The app includes its conversion engine.
+
+Available uploaded/generated artifacts remain with the transcript, with local references in the output. Completed results also keep the original conversation JSON. Exported tool activity can be inspected in expandable sections; recorded commands are never executed. Missing files are reported as not captured, not fetched or invented.
+
+There is batch processing with progress and cancellation, optional continuity chunks, and customizable HTML CSS. You can view the default stylesheet, save a copy, edit it in your preferred editor, and choose it for later conversions. A command-line launcher for the app's bundled engine is included as an option too.
+
+The initial native app is for Apple silicon Macs on macOS 14 or later. Dots support covers the exported main timeline and available direct attachments, not linked tasks or nested reply histories. Hermes support is for the Desktop export format.
+
+Screenshots and announcement:
+https://unixwzrd.ai/s/43ec12ca50/
+
+Source and docs:
+https://github.com/unixwzrd/extract-chat/tree/v1.0.0
+
+Feedback on the workflow and the converted output is welcome. Please do not post private conversations or credentials in a public issue; a small synthetic example is much more useful.
+
+Posting note: check each community's self-promotion and product-announcement rules before posting.
+
+==================================================
+SUBSTACK / NEWSLETTER
+==================================================
+
+Title:
+Extract Chat 1.0.0 is coming to the Mac
+
+Body:
+
+Downloaded conversations tend to end up as JSON files that are technically complete but awkward to read or reuse. Extract Chat turns supported exports into Markdown and HTML, keeping available artifacts with the conversation.
+
+Version 1.0.0 brings that workflow to a native Mac app, available soon on the Mac App Store. Drag in supported files, choose the output, and convert locally without installing Python separately. The initial native release supports Apple silicon and macOS 14 or later.
+
+The app supports ChatGPT, ChatGPT Work, Dots, and Hermes Desktop exports, with source-specific limits described in the announcement. It adds batch progress and cancellation, optional continuity chunks, inspectable exported activity, and a way to save and customize the HTML stylesheet. The command-line workflow remains available too.
+
+See the screenshots and full announcement:
+https://unixwzrd.ai/s/43ec12ca50/
+

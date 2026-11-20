@@ -11,8 +11,8 @@ excerpt: ""
 
 ### Privacy Policies
 
+- [Website Privacy Policy](/Policies/General_Privacy/)
 - [LogGPT Privacy Policy](/Policies/Privacy_LogGPT_for_Safari/)
-- [LogGPT original privacy policy (legacy)](/Policies/General_Privacy/)
 
 {% assign seckit_policy_page = site.pages | where: 'url', '/projects/Secrets-Kit/policies/' | first %}
 {% if seckit_policy_page %}
@@ -27,6 +27,7 @@ excerpt: ""
 
 ### Terms of Service
 - [Website Terms of Service](/Policies/General_ToS/)
+- [LogGPT MIT License](https://github.com/unixwzrd/LogGPT/blob/main/LICENSE)
 
 {% assign extract_chat_privacy = site.pages | where: 'url', '/Policies/Privacy_Extract_Chat/' | first %}
 {% assign extract_chat_terms = site.pages | where: 'url', '/Policies/Terms_Extract_Chat/' | first %}
@@ -39,6 +40,7 @@ Extract Chat is a separate application for converting local conversation exports
 - [Extract Chat Terms of Use and MIT License](/Policies/Terms_Extract_Chat/)
 
 {% endif %}
+
 
 
 

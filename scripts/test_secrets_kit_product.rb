@@ -116,7 +116,9 @@ class SecretsKitProductTest < Minitest::Test
     html = Jekyll::Converters::Markdown.new(PRODUCTION.config).convert(render(index.content, pages: pages))
     doc = Nokogiri::HTML.fragment(html)
     assert_equal "LogGPT Privacy Policy", doc.at_css('a[href="/Policies/Privacy_LogGPT_for_Safari/"]').text
-    assert_equal "LogGPT original privacy policy (legacy)", doc.at_css('a[href="/Policies/General_Privacy/"]').text
+    assert_equal "Website Privacy Policy", doc.at_css('a[href="/Policies/General_Privacy/"]').text
+    refute_match(/legacy|original privacy policy/i, doc.text)
+    assert_equal "LogGPT MIT License", doc.at_css('a[href="https://github.com/unixwzrd/LogGPT/blob/main/LICENSE"]').text
     refute_includes doc.text, "ChatGPT Chat History Download"
     refute_includes doc.text, "Remote Secrets Sync"
     if PRODUCTION.data.fetch("secrets_kit").fetch("production_release_ready")
@@ -126,9 +128,13 @@ class SecretsKitProductTest < Minitest::Test
 
     privacy = PRODUCTION.pages.find { |page| page.url == "/Policies/Privacy_LogGPT_for_Safari/" }
     assert_equal "LogGPT Privacy Policy", privacy.data.fetch("title")
-    legacy = PRODUCTION.pages.find { |page| page.url == "/Policies/General_Privacy/" }
-    assert_equal "LogGPT Privacy Policy (Original)", legacy.data.fetch("title")
-    refute_includes legacy.content, "ChatGPT Chat History Download"
+    refute_includes Array(privacy.data["redirect_from"]), "/Policies/General_Privacy/"
+    general = PRODUCTION.pages.find { |page| page.url == "/Policies/General_Privacy/" }
+    assert_equal "General Privacy Policy", general.data.fetch("title")
+    assert_nil general.data["redirect_to"]
+    refute_empty general.content
+    product = PRODUCTION.pages.find { |page| page.url == "/projects/LogGPT/" }
+    assert_includes product.content, "[MIT License](https://github.com/unixwzrd/LogGPT/blob/main/LICENSE)"
 
     %w[Privacy_Extract_Chat Terms_Extract_Chat].each do |name|
       path = "/Policies/#{name}/"
@@ -675,6 +681,7 @@ class SecretsKitProductTest < Minitest::Test
     end
   end
 end
+
 
 
 

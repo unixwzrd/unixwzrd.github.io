@@ -45,8 +45,11 @@ LogGPT fits the broader Distributed Thinking Systems stack as the capture layer 
 
 LogGPT is available for **Safari on macOS** through its [App Store listing](https://apps.apple.com/us/app/loggpt/id6743342693?mt=12). Basic JSON export remains available without the upgrade; LogGPT Plus is a permanent in-app purchase. App Store updates arrive when Apple approves them, and LogGPT supports Family Sharing. The project is also available on [GitHub](https://github.com/unixwzrd/LogGPT).
 
+LogGPT is open-source software distributed under the [MIT License](https://github.com/unixwzrd/LogGPT/blob/main/LICENSE). Third-party components retain their respective licenses.
+
 For details on **installation, usage, and technical documentation**, refer to the project's **[README](https://github.com/unixwzrd/LogGPT)**.
 
 If you need help building local archive, conversion, or AI analysis workflows around exported chat history, [get in touch](/contact/).
+
 
 
