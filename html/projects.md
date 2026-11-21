@@ -6,6 +6,12 @@ permalink: /projects/
 excerpt: "Projects across local-first AI, secure runtime secrets, developer tooling, AI operations, and sensitive document workflows."
 ---
 
+## Get the tools
+
+- **LogGPT and LogGPT Plus:** Save ChatGPT conversations from Safari on your Mac. LogGPT exports JSON; the optional Plus upgrade also keeps available generated and uploaded files in one archive. [Get LogGPT on the Mac App Store](https://apps.apple.com/us/app/loggpt/id6743342693?mt=12) · [See how LogGPT works](/projects/LogGPT/)
+- **Extract Chat:** Turn a supported conversation export into readable Markdown or HTML on your Mac. The Mac App Store release is pending. [See the macOS walkthrough](/projects/extract-chat/macos/) · [Explore the command-line tool](/projects/extract-chat/)
+- **Secrets Kit:** Keep API keys on machines you control. Use the free client locally or add paid sync between authorized machines on different networks. [Install the free client](/projects/Secrets-Kit/get-started/) · [See remote sync pricing](/projects/Secrets-Kit/pricing/)
+
 ## Overview
 
 The projects are connected by a local-first approach to AI, automation, and developer infrastructure. Some are public tools, some are applied AI work, and some support sensitive legal and family-law workflows.
@@ -22,17 +28,17 @@ The projects are connected by a local-first approach to AI, automation, and deve
 
 Together, these form a practical ecosystem: secure runtime handling, local operations, developer utilities, and applied analysis for sensitive data.
 
-### Internal Projects
-
-Internal projects focus on applied AI for sensitive documents, including legal case materials, interpersonal communications, and family-law analysis. Parental alienation detection remains an important specialized vertical.
-
-{% include projects_list.html visibility="private" %}
-
 ### Open Source Projects
 
 Open-source projects support the broader local-first stack: secrets hygiene, AI operations, text cleanup, model runtimes, environment management, and developer automation.
 
 {% include projects_list.html visibility="public" %}
+
+### Internal Projects
+
+Internal projects focus on applied AI for sensitive documents, including legal case materials, interpersonal communications, and family-law analysis. Parental alienation detection remains an important specialized vertical.
+
+{% include projects_list.html visibility="private" %}
 
 ### More to come
 
@@ -40,3 +46,4 @@ Open-source projects support the broader local-first stack: secrets hygiene, AI 
 
 More demos and how-to material are planned for local AI setup, secure automation, speech-to-text processing, and communication analysis. The goal is to show both what I can build and what you can run locally yourself.
 </div>
+

@@ -4,7 +4,9 @@ title: "LogGPT and LogGPT Plus for Safari"
 appstore_link: https://apps.apple.com/us/app/loggpt/id6743342693?mt=12
 category: LogGPT
 project_intro: |
-  LogGPT for Safari exports ChatGPT conversations as structured JSON for local archiving and processing. The LogGPT Plus upgrade adds available generated and uploaded artifacts, packaged with the conversation and an artifact manifest in a portable ZIP-based `.lgpt` archive.
+  Save the ChatGPT conversation you'll want to come back to. LogGPT exports it from Safari on your Mac as structured JSON.
+
+  **LogGPT:** Keep the conversation itself. **LogGPT Plus:** A one-time in-app upgrade that also saves available generated and uploaded files, with the conversation and an artifact manifest, in one ZIP-compatible `.lgpt` archive.
 
   **Version 1.3.5:** [Restored Dots controls, Safari toolbar downloads, and ZIP-compatible `.lgpt` archives](/projects/LogGPT/2026/11/18/loggpt-1-3-5-toolbar-downloads-and-lgpt-archives/), preparing for the upcoming native Extract Chat app for macOS. Dots exports cover the main timeline and directly attached available files; linked task histories and nested reply histories are not included.
 
@@ -16,7 +18,7 @@ excerpt: "LogGPT for Safari exports ChatGPT conversations as structured JSON; th
 
 ## Local Archives for ChatGPT Conversations and Artifacts
 
-ChatGPT conversations often contain research, troubleshooting history, writing drafts, decisions, and project context that are easy to lose inside a hosted chat interface. **LogGPT for Safari** exports complete ChatGPT conversations as structured JSON so you can keep your own archive and decide what to do with it next.
+ChatGPT conversations often contain research, troubleshooting history, writing drafts, decisions, and project context that are easy to lose inside a hosted chat interface. **LogGPT for Safari** exports supported ChatGPT conversations as structured JSON so you can keep your own archive and decide what to do with it next.
 
 The permanent **LogGPT Plus** upgrade adds artifact preservation. It can collect generated content, uploaded content, or both and package those files with the conversation JSON and an artifact manifest in one ZIP-based `.lgpt` archive. Standalone JSON downloads remain `.json`; existing ZIP exports remain usable. The extension runs in Safari on macOS and is available through Apple's App Store.
 
@@ -28,7 +30,7 @@ LogGPT fits the broader Distributed Thinking Systems stack as the capture layer 
 
 ## Key Features
 
-- **Capture complete ChatGPT sessions** as structured JSON with a single click
+- **Export supported ChatGPT conversations** as structured JSON with a single click
 - **Support ChatGPT Work artifacts**, including generated images, workspace-linked files, and uploaded attachments
 - **Dots exports in version 1.3.4:** main-timeline JSON and directly attached available files with Plus; linked task and nested reply histories are excluded
 - **Choose generated content, uploaded content, or both** with LogGPT Plus
@@ -50,6 +52,7 @@ LogGPT is open-source software distributed under the [MIT License](https://githu
 For details on **installation, usage, and technical documentation**, refer to the project's **[README](https://github.com/unixwzrd/LogGPT)**.
 
 If you need help building local archive, conversion, or AI analysis workflows around exported chat history, [get in touch](/contact/).
+
 
 
 
