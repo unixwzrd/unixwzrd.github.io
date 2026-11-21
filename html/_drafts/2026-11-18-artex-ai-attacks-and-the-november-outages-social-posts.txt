@@ -1,0 +1,134 @@
+ARTEX and the November Outages - social media packet
+
+Article:
+ARTEX and the November Outages: A Real Threat Is Not the Same as Attribution
+https://unixwzrd.ai/technology/2026/11/18/artex-ai-attacks-and-the-november-outages/
+
+Short URL:
+https://unixwzrd.ai/s/33594dffe3/
+
+Banner:
+/assets/images/blog/artex-november-outage-cluster-banner.png
+
+Editorial note:
+These drafts summarize the article's public-record review through the evening of November 18, 2026, U.S. Central time. They are not a new incident update. The article distinguishes acknowledged disruptions, customer reports, operator explanations, documented downstream dependencies, and evidence of intrusion. It does not establish a common attacker or rule out later findings. The banner is an AI-generated editorial illustration, not a map of verified dependencies or attack paths.
+
+Suggested hashtags:
+#Cybersecurity #AIAgents #IncidentResponse #AgentOperations
+
+==================================================
+LINKEDIN
+==================================================
+
+A real cyber threat and a bad week for the Internet are not, by themselves, evidence of the same incident.
+
+The FBI's November 13 ARTEX advisory describes malicious use of an AI-assisted penetration-testing framework. The service disruptions reported around the same period stretched across banking, cloud infrastructure, workplace software, aviation, Apple services, and government systems. It is reasonable to ask whether any of them were connected. It is not reasonable to treat the calendar as the answer.
+
+I went through the advisory, published investigations, operator status records, and attributed company statements. Some dependencies are documented: the Microsoft 365 disruption affected Claude's Microsoft 365 connector. Other incidents had different scopes and reported explanations. Six banks appearing in customer complaints does not automatically establish six independent infrastructure failures.
+
+The agent-assisted intrusion problem deserves attention without borrowing conclusions from unrelated outage headlines. I would look for corroborating authentication records, compromised application identities, supplier relationships, unauthorized changes, and an incident sequence that actually explains the disruption.
+
+The article separates those questions and looks at the practical implications for credentials, application permissions, revocation, and response time:
+https://unixwzrd.ai/s/33594dffe3/
+
+#Cybersecurity #AIAgents #IncidentResponse #AgentOperations
+
+---- Short personal repost ----
+
+When banking, cloud services, airlines, and Apple all have a rough week, I understand the instinct to look for a common cause. I have the same questions. What I don't have is permission to fill the gaps with whichever explanation makes the best headline.
+
+I wrote about the ARTEX warning, the November outages, and the evidence I would want before connecting them.
+
+https://unixwzrd.ai/s/33594dffe3/
+
+==================================================
+X / TWITTER
+==================================================
+
+A cyber threat advisory and a cluster of outages are not proof of the same attack. I looked at the ARTEX warning, operator records, and what would actually establish a connection. The calendar is a lead, not attribution.
+
+https://unixwzrd.ai/s/33594dffe3/
+
+---- Alternate ----
+
+The ARTEX threat is serious enough without attributing every outage to it. Banking, cloud, aviation, Apple, government: which failures were connected, and what does the public record actually establish?
+
+https://unixwzrd.ai/s/33594dffe3/
+
+==================================================
+BLUESKY
+==================================================
+
+The FBI's ARTEX warning and the November outages deserve scrutiny. Putting them next to each other doesn't establish a common cause. I separated the documented disruptions, reported explanations, and evidence needed for attribution.
+
+https://unixwzrd.ai/s/33594dffe3/
+
+==================================================
+MASTODON
+==================================================
+
+The ARTEX threat is real. That doesn't make every November outage an ARTEX incident.
+
+I reviewed the advisory, investigations, and operator records: what failed, which dependencies are documented, and what remains unknown. A crowded calendar is a reason to investigate, not a substitute for attribution.
+
+The practical questions are credentials, application permissions, revocation, and response time.
+
+https://unixwzrd.ai/s/33594dffe3/
+
+#Cybersecurity #AIAgents
+
+==================================================
+SUBSTACK / NEWSLETTER
+==================================================
+
+Title:
+ARTEX and the November Outages: A Real Threat Is Not the Same as Attribution
+
+Subtitle:
+An AI-assisted intrusion warning and a cluster of infrastructure failures deserve scrutiny, not an invented common cause.
+
+Body:
+
+The FBI issued its ARTEX warning on November 13. By November 18, the disruption reports stretched across banking, cloud infrastructure, workplace software, aviation, Apple services, and government systems. Asking whether those events were connected was perfectly reasonable. Answering that question requires more than putting the dates next to each other.
+
+I reviewed the advisory, published investigations, operator status histories, and attributed company statements. The article distinguishes the scope of each disruption, reported explanations, and documented downstream effects. It also separates attempted sign-ins from successful access, and shared tooling from evidence of a shared operator.
+
+What concerns me about agent-assisted intrusions is the reduced friction between finding a useful opening and acting on it across multiple targets. That is a practical security problem whether or not any particular outage is eventually connected to ARTEX. Defenders need to understand application identities, credential scope, permission changes, and revocation rather than assume that protecting a human login covers every route into a system.
+
+The article also explains what would persuade me that the outages shared a cause: corroborating incident timelines, compromised suppliers or identities, authentication evidence, and unauthorized changes that explain the failures. A common dependency can matter without there being an attacker at all.
+
+Read the article:
+https://unixwzrd.ai/s/33594dffe3/
+
+Tags:
+Cybersecurity, AI Agents, Incident Response, Agent Operations, Credentials, Infrastructure
+
+==================================================
+REDDIT
+==================================================
+
+Suggested title:
+ARTEX and the November outages: what the public record establishes, and what it doesn't
+
+Suggested body:
+
+I wrote a technical article about the FBI's November 13 ARTEX advisory and the cluster of service disruptions reported around the same period. The question that interested me wasn't whether a cyberattack is possible. It was what evidence would actually connect these particular incidents.
+
+The article separates the advisory's account of earlier malicious activity from the outage records. It covers banking, cloud and workplace services, aviation, Apple, and government systems, preserving the scope of individual incidents rather than treating every customer complaint as a separate infrastructure failure.
+
+There are documented downstream effects, such as Claude's Microsoft 365 connector being affected by the Microsoft 365 incident. That is a useful dependency to establish. It doesn't, by itself, establish an intrusion. Similarly, shared tooling doesn't prove that two operators share an objective, and attempted sign-ins are not the same measurement as confirmed breaches.
+
+My conclusion is deliberately narrower than "everything was attacked" or "nothing was attacked." The agent-assisted intrusion threat deserves attention on its own merits. Connecting particular outages requires corroborating evidence: identities, supplier relationships, authentication records, unauthorized changes, and timelines that explain the observed failures.
+
+Article and linked sources:
+https://unixwzrd.ai/s/33594dffe3/
+
+What evidence would you prioritize to distinguish a shared infrastructure failure from a coordinated intrusion campaign? Please keep examples sanitized; no credentials or private incident material.
+
+Disclosure: this is my article. It also links to Secrets Kit, which I develop, while explicitly explaining why a credential store is not a cure for compromised software or a process that exposes a secret it receives.
+
+Posting notes:
+- Check the community's self-promotion and incident-discussion rules before posting.
+- The article's research cutoff is November 18, 2026, U.S. Central time. Do not present it as a complete November 19 or November 20 incident survey.
+- If using the banner, retain its illustration context rather than describing the drawn connections as established evidence.
+
