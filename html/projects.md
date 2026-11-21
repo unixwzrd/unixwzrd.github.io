@@ -9,8 +9,8 @@ excerpt: "Projects across local-first AI, secure runtime secrets, developer tool
 ## Get the tools
 
 - **LogGPT and LogGPT Plus:** Save ChatGPT conversations from Safari on your Mac. LogGPT exports JSON; the optional Plus upgrade also keeps available generated and uploaded files in one archive. [Get LogGPT on the Mac App Store](https://apps.apple.com/us/app/loggpt/id6743342693?mt=12) · [See how LogGPT works](/projects/LogGPT/)
-- **Extract Chat:** Turn a supported conversation export into readable Markdown or HTML on your Mac. The Mac App Store release is pending. [See the macOS walkthrough](/projects/extract-chat/macos/) · [Explore the command-line tool](/projects/extract-chat/)
-- **Secrets Kit:** Keep API keys on machines you control. Use the free client locally or add paid sync between authorized machines on different networks. [Install the free client](/projects/Secrets-Kit/get-started/) · [See remote sync pricing](/projects/Secrets-Kit/pricing/)
+- **Extract Chat:** Turn a supported conversation export into readable Markdown or HTML on your Mac. The Mac App Store release is pending. [See the macOS walkthrough](/projects/extract-chat/macos/) · [Explore Extract Chat](/projects/extract-chat/)
+- **Secrets Kit:** A credential manager for macOS and Linux. Keep credentials on machines you control, with free local use and optional paid sync across networks. [Install the free client](/projects/Secrets-Kit/get-started/) · [See remote sync pricing](/projects/Secrets-Kit/pricing/)
 
 ## Overview
 
@@ -18,7 +18,7 @@ The projects are connected by a local-first approach to AI, automation, and deve
 
 ## Capability Areas
 
-- **Security / Runtime:** [Secrets Kit](/projects/Secrets-Kit/) keeps API keys, passwords, and tokens out of `.env` files, shell history, `argv`, and `launchd` plists.
+- **Security / Runtime:** [Secrets Kit](/projects/Secrets-Kit/) manages credentials locally for applications, scripts, and agents.
 - **Operations / Infrastructure:** [LLM Ops Kit](/projects/LLM-Ops-Kit/) supports running, deploying, debugging, and maintaining self-hosted AI stacks.
 - **Developer Tooling:** [UnicodeFix](/projects/UnicodeFix/) cleans AI-generated text for code, docs, posts, and workflows that need plain ASCII.
 - **Operator Interfaces:** [LocalOps UI Kit](/projects/localops-ui-kit/) provides Python-first UI contracts, native browser components, and Textual/Rich renderers for local-first tools without a frontend build pipeline.
@@ -46,4 +46,5 @@ Internal projects focus on applied AI for sensitive documents, including legal c
 
 More demos and how-to material are planned for local AI setup, secure automation, speech-to-text processing, and communication analysis. The goal is to show both what I can build and what you can run locally yourself.
 </div>
+
 
