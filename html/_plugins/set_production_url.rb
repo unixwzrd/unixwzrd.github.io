@@ -3,6 +3,11 @@ module DtsSiteUrl
 
   Jekyll::Hooks.register :site, :after_init do |site|
     env = ENV["JEKYLL_ENV"].to_s
+    if env == "development"
+      preview_url = ENV["JEKYLL_PREVIEW_URL"].to_s
+      site.config["url"] = preview_url unless preview_url.empty?
+      next
+    end
     next unless env == "production"
 
     current = site.config["url"].to_s
@@ -18,4 +23,5 @@ module DtsSiteUrl
     end
   end
 end
+
 

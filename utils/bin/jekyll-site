@@ -113,6 +113,7 @@ start_service() {
     local skip_refresh=$1
     local run_link_check=${2:-false}
     local current_site=${3:-false}
+    local lan_host=${4:-}
     if check_running; then
         echo "Jekyll is already running. Restarting..." >&2
         stop_service
@@ -122,12 +123,20 @@ start_service() {
     fi
     site_build "$skip_refresh" "$run_link_check"
 
-    local serve_flags=(--future --drafts --unpublished --host localhost --port 4000 --trace)
-    if [ "$current_site" = "true" ]; then
-        serve_flags=(--host localhost --port 4000 --trace)
+    local bind_host=localhost
+    local preview_url=""
+    if [ -n "$lan_host" ]; then
+        bind_host=0.0.0.0
+        preview_url="http://${lan_host}:4000"
+        echo "LAN preview: ${preview_url}/ (no authentication; trusted networks only)"
     fi
 
-    cd "${BASE_DIR}" && JEKYLL_ENV=development bundle exec jekyll serve "${serve_flags[@]}" &
+    local serve_flags=(--future --drafts --unpublished --host "$bind_host" --port 4000 --trace)
+    if [ "$current_site" = "true" ]; then
+        serve_flags=(--host "$bind_host" --port 4000 --trace)
+    fi
+
+    cd "${BASE_DIR}" && JEKYLL_ENV=development JEKYLL_PREVIEW_URL="$preview_url" bundle exec jekyll serve "${serve_flags[@]}" &
     echo $! > "$pid_file"
     echo "Jekyll server started (PID: $(cat "$pid_file"))"
     echo "Serve flags: ${serve_flags[*]}"
@@ -170,6 +179,7 @@ OPTIONS:
     -r, --refresh     Force OpenGraph data refresh (slower builds)
     -c, --check-links Run HTMLProofer on _site after build
     --current          Serve only posts visible as of today; omit future posts and drafts
+    --lan HOST         Allow LAN access; use HOST (IP or hostname) in preview links
 
 IMPORTANT: -n and -r are incompatible flags. If both are specified, -n takes
 precedence and the operation continues with a warning.
@@ -180,11 +190,13 @@ EXAMPLES:
     jekyll-site start --current    # Preview only the currently visible site
     jekyll-site restart            # Restart without OG refresh (fast mode)
     jekyll-site restart -r         # Restart with OG refresh (complete mode)
+    jekyll-site restart --lan 10.0.0.67  # Share drafts on the trusted LAN
     jekyll-site build -n           # Build without OG refresh
     jekyll-site stop               # Stop the server
 
 DEFAULT BEHAVIOR:
     - serve: Include future-dated, draft, and published-false posts for editorial preview
+    - localhost-only unless --lan HOST is supplied; LAN previews have no login
     - start: Refresh OG data (complete mode)
     - restart: Skip OG data refresh (fast mode)
     - build: Refresh OG data (complete mode)
@@ -196,6 +208,7 @@ skip_refresh=false
 force_refresh=false
 run_link_check=false
 current_site=false
+lan_host=""
 command=""
 
 while [[ $# -gt 0 ]]; do
@@ -215,6 +228,14 @@ while [[ $# -gt 0 ]]; do
         --current)
             current_site=true
             shift
+            ;;
+        --lan)
+            if [ $# -lt 2 ] || ! [[ "$2" =~ ^[[:alnum:]][[:alnum:].-]*$ ]]; then
+                echo "--lan requires an IP address or hostname, without a scheme or port." >&2
+                exit 1
+            fi
+            lan_host="$2"
+            shift 2
             ;;
         build|start|stop|restart|-h|--help)
             command="$1"
@@ -257,14 +278,14 @@ case "$command" in
         site_build "$skip_refresh" "$run_link_check"
         ;;
     start)
-        start_service "$skip_refresh" "$run_link_check" "$current_site"
+        start_service "$skip_refresh" "$run_link_check" "$current_site" "$lan_host"
         ;;
     stop)
         stop_service
         ;;
     restart)
         stop_service
-        start_service "$skip_refresh" "$run_link_check" "$current_site"
+        start_service "$skip_refresh" "$run_link_check" "$current_site" "$lan_host"
         ;;
     *)
         show_help

@@ -58,6 +58,18 @@ source .env/project.env
 - **Development**: `http://localhost:4000`
 - **Production**: `https://unixwzrd.ai`
 
+### LAN draft preview
+
+Use the Jekyll wrapper to share the editorial preview with another machine on a trusted network. Supply this Mac's current LAN IP address or a hostname the other machine can resolve:
+
+```bash
+./utils/bin/jekyll-site restart --lan 10.0.0.67
+```
+
+Open `http://10.0.0.67:4000/` from the other machine. This serves future posts, drafts, and unpublished content; add `--current` to omit those. Use HTTP, not HTTPS. Local access at `http://localhost:4000/` continues to work. Absolute preview links and short-link redirects use the supplied LAN host instead of the wildcard listening address. The localhost-only read-aloud integration remains localhost-only.
+
+The preview has no login and listens on all IPv4 interfaces in LAN mode. Do not port-forward it or expose it on an untrusted network. No firewall, router, or production-site settings are changed by this option. Restart without `--lan` to return to localhost-only access. The wrapper retains its normal build and search-index steps; `restart` skips the OpenGraph refresh unless `-r` is supplied.
+
 ## Jekyll Template Dependency Graph
 
 Run the generator after changing layout inheritance or Liquid includes:
@@ -303,4 +315,5 @@ This integration ensures that:
 3. **Low Priority**: Set up advanced tracking and conversion goals
 
 See TODO.md and site-improvement-checklist.md for detailed task breakdown.
+
 
