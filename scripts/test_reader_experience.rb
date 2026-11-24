@@ -382,6 +382,35 @@ if ENV["READER_SITE"]
       Nokogiri::HTML(File.read(File.join(ROOT, path, "index.html")))
     end
 
+    def test_artex_repository_update_preserves_original_dates_urls_and_attribution_limits
+      path = "technology/2026/11/18/artex-ai-attacks-and-the-november-outages"
+      page = document(path)
+      notice = page.at_css(".post-update-notice")
+      refute_nil notice
+      assert notice.at_css("a[href='https://github.com/BaaRai/ARTEX']")
+      assert notice.at_css("a[href='https://blog.talosintelligence.com/artex-and-beyond/']")
+      ["English-language translation and continuation", "July 2026", "not run or audited", "not evidence connecting the November outages"].each do |text|
+        assert_includes notice.text, text
+      end
+      assert page.at_css(".dt-published")["datetime"].start_with?("2026-11-18")
+      assert page.at_css(".dt-modified")["datetime"].start_with?("2026-11-23")
+      assert_includes page.at_css(".post-content").text, "outage inventory retains its November 18 research cutoff"
+      content = page.at_css(".post-content")
+      %w[a-working-framework-is-not-the-same-as-a-vetted-fork the-testing-tool-can-itself-be-the-supply-chain-compromise].each do |id|
+        assert content.at_css("h2[id='#{id}']"), id
+      end
+      %w[https://badbyte.io/artex-backdoor-docker-image/ https://asec.ahnlab.com/en/95845/ https://github.com/BaaRai/ARTEX/pull/128].each do |url|
+        assert content.at_css("a[href='#{url}']"), url
+      end
+      ["Pulls are not unique installations", "inside the container", "not evidence that BaaRai", "not an independent audit"].each do |text|
+        assert_includes content.text, text
+      end
+      assert_equal "#a-working-framework-is-not-the-same-as-a-vetted-fork", notice.at_css('a[href^="#"]')["href"]
+      destination = "https://unixwzrd.ai/#{path}/"
+      assert_equal destination, page.at_css('link[rel="canonical"]')["href"]
+      assert_equal destination, document("s/33594dffe3").at_css('link[rel="canonical"]')["href"]
+    end
+
     def test_extract_chat_100_announcement_preserves_availability_scope_and_short_link
       path = "projects/extract-chat/2026/11/20/extract-chat-1-0-0-native-macos-app"
       page = document(path)
@@ -685,6 +714,7 @@ if ENV["READER_SITE"]
     end
   end
 end
+
 
 
 

@@ -8,6 +8,21 @@ document.addEventListener("DOMContentLoaded", function () {
     var recipient = form.dataset.contactEmail || "";
     var subjectPrefix = form.dataset.subjectPrefix || "Inquiry";
 
+    var submit = form.querySelector(".contact-submit");
+    var fields = {
+        name: form.querySelector("#contact-name"),
+        email: form.querySelector("#contact-email"),
+        organization: form.querySelector("#contact-organization"),
+        topic: form.querySelector("#contact-topic"),
+        message: form.querySelector("#contact-message"),
+    };
+
+    if (!recipient || !submit || Object.keys(fields).some(function (key) {
+        return !fields[key];
+    })) {
+        return;
+    }
+
     function setStatus(message) {
         if (!status) {
             return;
@@ -23,12 +38,11 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        var formData = new FormData(form);
-        var name = (formData.get("name") || "").toString().trim();
-        var email = (formData.get("email") || "").toString().trim();
-        var organization = (formData.get("organization") || "").toString().trim();
-        var topic = (formData.get("topic") || "").toString().trim();
-        var message = (formData.get("message") || "").toString().trim();
+        var name = fields.name.value.trim();
+        var email = fields.email.value.trim();
+        var organization = fields.organization.value.trim();
+        var topic = fields.topic.value.trim();
+        var message = fields.message.value.trim();
         var referrer = document.referrer || "Direct visit";
         var pageUrl = window.location.href;
         var timestamp = new Date().toISOString();
@@ -71,4 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         window.location.href = mailtoUrl;
     });
+
+    submit.disabled = false;
 });
+

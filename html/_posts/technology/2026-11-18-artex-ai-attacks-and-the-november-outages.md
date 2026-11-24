@@ -2,6 +2,12 @@
 layout: post
 title: "ARTEX and the November Outages: A Real Threat Is Not the Same as Attribution"
 date: 2026-11-18
+last_modified_at: 2026-11-23
+update_notice_title: "Repository update - November 23, 2026"
+update_notice: |
+  I was pointed to [BaaRai/ARTEX on GitHub](https://github.com/BaaRai/ARTEX), whose maintainers describe it as an English-language translation and continuation of Autumn-27's ARTEX. They say the original upstream repository is no longer public. This is not the framework's first appearance: [Talos dates its original GitHub publication to July 2026](https://blog.talosintelligence.com/artex-and-beyond/). The fork's README describes planner and worker agents, shared asset and exploration graphs, recorded HTTP evidence, and approval controls. It gives readers an implementation to inspect, although I have not run or audited this fork.
+
+  I have also added [independent testing and supply-chain findings](#a-working-framework-is-not-the-same-as-a-vetted-fork) below. These are useful additions to the technical record, not evidence connecting the November outages. A public fork does not establish which revision or configuration an attacker used, and its documented controls do not prove that a particular deployment used them. The incident reports and attribution evidence still have to do that work.
 categories: [technology]
 tags: [ai-agents, security, secrets-management, governance, agent-operations]
 short_link_basis: "/_posts/technology/2026-11-18-artex-ai-attacks-and-the-november-outages.md"
@@ -111,6 +117,24 @@ Attempts, successful authentication, privileged persistence, and confirmed data 
 
 What worries me is not that scanners or stolen credentials suddenly exist. It is the reduced friction between finding something interesting and acting on it, repeatedly, across multiple targets. My reading of this research is that defenders need to shorten their own decision paths, not merely collect more alerts and hope someone eventually works through the queue.
 
+## A working framework is not the same as a vetted fork
+
+A reader pointed me to a useful [Reddit source roundup about ARTEX forks and installation safety](https://www.reddit.com/r/pwnhub/comments/1xxfy9b/which_version_of_artex_agentic_pentesting_is_safe/). Following its references leads to more substantial evidence than screenshots or claims in a README. [AhnLab's controlled tests](https://asec.ahnlab.com/en/95845/) supplied targets, objectives, and permitted scope without detailed exploitation instructions. The researchers report command execution in a web-server test and remote command execution on four internal hosts in a separate ActiveMQ test environment. Those are demonstrations under stated conditions, not a benchmark for every fork carrying the ARTEX name.
+
+[Google Threat Intelligence and Mandiant's incident-response observations](https://cloud.google.com/blog/topics/threat-intelligence/artex-and-friends-enter-agentic-offensive-frameworks) provide a different kind of evidence: ARTEX activity in real intrusions. Their account includes rapid execution, but also noisy trial-and-error, errors, and apparent interference between sub-agents. Capability and reliability are separate questions. An agent can be dangerous without being consistently competent, and neither report establishes the safety or performance of the current BaaRai build.
+
+There is evidence of actual maintenance in that fork, too. In [the Ollama integration pull request](https://github.com/BaaRai/ARTEX/pull/128), BaaRai documented testing and a correction to prevent an inherited OpenAI API key from being forwarded to an Ollama endpoint. That is a concrete review decision worth examining. It is not an independent audit of the whole project, and a list of contributors or a large star count cannot turn it into one. I would assess a particular revision and its distributed artifacts, not pronounce the project safe by reputation.
+
+## The testing tool can itself be the supply-chain compromise
+
+[BadByte's firsthand investigation](https://badbyte.io/artex-backdoor-docker-image/) makes that distinction particularly uncomfortable. The researcher describes a fork whose Compose configuration selected a prebuilt ARTEX image containing a backdoor that was absent from the public application source. The affected images were `tomicdd/artex` and the byte-identical `congdonglinux/artex` copy. The reported backdoor allowed unauthenticated command execution as root **inside the container**; access to the host would depend on the deployment. Reviewing the visible application source would not, on its own, reveal what that downloaded binary contained.
+
+The report records **7,946 combined image pulls by November 3** and **62 internet-facing consoles serving the backdoored build between November 2 and 4**. Pulls are not unique installations, and exposure to the backdoor is not proof that someone used it against every operator. BadByte reports that Docker removed both images on November 5, while already-downloaded and mirrored copies remained a concern. This is a finding about named artifacts, not evidence that BaaRai's fork is distributing those backdoored images.
+
+The [BaaRai Compose file I checked](https://github.com/BaaRai/ARTEX/blob/main/docker-compose.yml) selects a checkout build for the ARTEX application, not either of those image names. That describes the selected build path; it does not certify the source, dependencies, build process, or resulting executable. [CSA's supply-chain analysis](https://labs.cloudsecurityalliance.org/research/csa-research-note-trojanized-offensive-ai-tooling-20261106-c/) recommends treating these consoles as privileged infrastructure, verifying artifact provenance, limiting exposure, and reviewing the credentials an affected installation could reach. A checksum identifies bytes, and a build attestation can establish a build's provenance. Neither is a certificate that the software is benign.
+
+There is a fairly unpleasant irony in compromising the people who installed an offensive-security tool, but legitimate testers can be caught in the same distribution channels. The practical point is that the console may hold API keys, captured sessions, client findings, and access to the networks it assesses. The question is not just whether the agent can attack a target. It is also what someone gains by compromising the agent's own infrastructure. None of that establishes a connection to the outage tables above.
+
 ## What would persuade me that the outages were connected?
 
 I would look for correlated intrusion evidence: a shared compromised supplier, matching application identities or stolen credentials, related infrastructure, and a sequence of unauthorized changes that explains the disruption. A common provider could also explain several outages without an attacker being involved. The dependency is a lead; the failure mechanism still needs investigating.
@@ -131,5 +155,6 @@ I would also rehearse revocation rather than assume changing one password ends t
 
 The FBI warning deserves attention on its own merits. Whether any of the November outages eventually turns out to share a cause is a separate investigation. We already have enough documented evidence to take agent-assisted intrusions seriously; we do not need to turn a bad week for the Internet into an attribution claim before the facts get there.
 
-*Research checked on the evening of November 18, 2026, U.S. Central time. Some provider records already carry November 19 UTC timestamps; that does not make this a completed November 19 incident survey. Sources include the original advisory, operator status records, researcher reports, and attributed company statements in contemporary reporting. This is an assessment of that public record, not a forensic investigation of the affected organizations. Status histories may be revised as investigations continue.*
+*Research checked on the evening of November 18, 2026, U.S. Central time. Some provider records already carry November 19 UTC timestamps; that does not make this a completed November 19 incident survey. Sources include the original advisory, operator status records, researcher reports, and attributed company statements in contemporary reporting. This is an assessment of that public record, not a forensic investigation of the affected organizations. Status histories may be revised as investigations continue. The repository, independent-testing, and supply-chain additions were checked on November 23; the outage inventory retains its November 18 research cutoff.*
+
 
