@@ -24,6 +24,12 @@ if ! command_exists bundle; then
     exit 1
 fi
 
+echo "💎 Checking Ruby bundle: $(command -v bundle)"
+if ! bundle check; then
+    echo "❌ Locked Ruby gems are missing. Activate the project Ruby gemset and run bundle install explicitly." >&2
+    exit 1
+fi
+
 if ! command_exists python && ! command_exists python3; then
     echo "❌ Python 3 not found. Please install Python 3."
     exit 1
@@ -36,10 +42,43 @@ if [ -f requirements.txt ]; then
         echo "❌ No usable Python interpreter found."
         exit 1
     }
-    "${python_cmd}" -c "import pkg_resources; pkg_resources.require(open('requirements.txt').readlines())" 2>/dev/null || {
-        echo "❌ Missing Python dependencies. Running: pip install -r requirements.txt"
-        "${python_cmd}" -m pip install -r requirements.txt
-    }
+    echo "🐍 Python: ${python_cmd}"
+    if ! "${python_cmd}" - <<'PY'
+from importlib.metadata import PackageNotFoundError, version
+from pathlib import Path
+import sys
+
+try:
+    from packaging.requirements import Requirement
+except ImportError:
+    sys.exit("Missing packaging: activate the project's Conda environment before checking requirements.")
+
+errors = []
+for line in Path("requirements.txt").read_text().splitlines():
+    requirement = line.split("#", 1)[0].strip()
+    if not requirement:
+        continue
+    try:
+        req = Requirement(requirement)
+        if req.marker and not req.marker.evaluate():
+            continue
+        installed = version(req.name)
+        if not req.specifier.contains(installed):
+            errors.append(f"{req}: installed {installed}")
+    except PackageNotFoundError:
+        errors.append(f"{requirement}: not installed")
+    except ValueError as exc:
+        errors.append(f"{requirement}: {exc}")
+if errors:
+    sys.exit("Unsatisfied Python requirements:\n  " + "\n  ".join(errors))
+print("Python requirements satisfied.")
+PY
+    then
+        echo "❌ Python dependency check failed. Activate python-website-dev and resolve its requirements explicitly; no packages were installed." >&2
+        exit 1
+    fi
 fi
 
 exit 0
+
+

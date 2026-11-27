@@ -29,6 +29,12 @@ Use **[templates/blog-templates.md](../templates/blog-templates.md)** for full b
 - Required Python packages (see requirements.txt)
 - Bundled Ruby gems installed via `bundle install`
 
+For local Git clients (including GUI commits), the runner loads the existing `ext-ruby-3.3.4@unixwzrd.github.io` RVM environment and activates the existing `python-website-dev` Conda environment under `~/miniconda3` or `~/anaconda3`, when present. It does not change RVM defaults or the parent shell. On hosts without these local environments, it uses the caller's environment, as in CI.
+
+The environment check reports the selected executables, checks the locked Ruby bundle and validates installed Python package versions against `requirements.txt`. It never installs packages. Missing dependencies fail the check immediately; repair the intended project environment explicitly rather than modifying a uv-managed or system Python or using `--break-system-packages`.
+
+Run the environment-selection and failure-path regression tests with `ruby scripts/test_check_site_environment.rb`.
+
 ## Available Checks
 
 ### 1. Environment Check (01_environment.sh)
@@ -235,3 +241,5 @@ exit 0
 - Implement parallel check execution
 - Add more detailed reporting
 - Create check dependencies system
+
+
