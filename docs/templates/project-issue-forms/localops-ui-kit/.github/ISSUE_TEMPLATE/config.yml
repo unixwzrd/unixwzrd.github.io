@@ -1,0 +1,9 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Product overview and user guides
+    url: https://unixwzrd.ai/projects/localops-ui-kit/
+    about: Read setup and usage information for localops-ui-kit.
+  - name: Private help, billing, or security concerns
+    url: https://unixwzrd.ai/contact/#private-inquiries
+    about: Contact us privately. Do not post secrets or private documents in public issues.
+

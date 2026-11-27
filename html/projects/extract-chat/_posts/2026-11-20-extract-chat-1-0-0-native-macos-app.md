@@ -4,6 +4,8 @@ title: "Extract Chat 1.0.0 Brings Conversation Archives to the Mac"
 date: 2026-11-20
 category: extract-chat
 content_type: release
+release_version: "1.0.0"
+release_status: preview
 permalink_slug: "extract-chat-1-0-0-native-macos-app"
 short_link_basis: "/projects/extract-chat/_posts/2026-11-20-extract-chat-1-0-0-native-macos-app.md"
 short_url: "https://unixwzrd.ai/s/43ec12ca50/"
@@ -70,4 +72,5 @@ Optional continuity chunks prepare longer conversations for continued work elsew
 The initial native release supports **Apple silicon Macs running macOS 14 or later** and is coming soon to the Mac App Store. Conversion runs locally: you do not need an Extract Chat account or a hosted conversion service. [LogGPT](/projects/LogGPT/) is a separate app for downloading supported conversations and their available artifacts; Extract Chat handles the local conversion afterward.
 
 Explore the [screenshot walkthrough](/projects/extract-chat/macos/) for a closer look at the workflow. The [version 1.0.0 source and documentation](https://github.com/unixwzrd/extract-chat/tree/v1.0.0) are available on GitHub, including the [macOS guide](https://github.com/unixwzrd/extract-chat/blob/v1.0.0/macos/README.md) and [release changelog](https://github.com/unixwzrd/extract-chat/blob/v1.0.0/CHANGELOG.md). For questions or help, visit the [project overview](/projects/extract-chat/) or [contact us](/contact/).
+
 

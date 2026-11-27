@@ -4,6 +4,8 @@ title: "LogGPT 1.3.5: Toolbar Downloads and ZIP-Compatible .lgpt Archives"
 date: 2026-11-18
 category: LogGPT
 content_type: update
+release_version: "1.3.5"
+release_status: released
 permalink_slug: "loggpt-1-3-5-toolbar-downloads-and-lgpt-archives"
 short_link_basis: "/projects/LogGPT/_posts/2026-11-18-loggpt-1-3-5-toolbar-downloads-and-lgpt-archives.md"
 short_url: "https://unixwzrd.ai/s/37a9f8ca8e/"
@@ -62,4 +64,5 @@ Dots export scope is unchanged: the main timeline and directly attached availabl
 **The app update is included at no additional charge for existing Basic and Plus owners.** Basic keeps your conversation as JSON. Plus is the optional, one-time in-app purchase that keeps available generated and uploaded files alongside the conversation in one archive. If your chats contain research, documents, images, or code, those supporting files are often what makes the record useful when you return to the work later.
 
 Existing Plus purchases continue to cover artifact archiving, including `.lgpt` bundles; there is nothing to buy again. New users can [get LogGPT on the Mac App Store](https://apps.apple.com/us/app/loggpt/id6743342693?mt=12) and add Plus from within the app when they want to preserve the files as well as the discussion.
+
 

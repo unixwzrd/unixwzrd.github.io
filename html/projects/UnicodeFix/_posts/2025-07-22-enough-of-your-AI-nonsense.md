@@ -3,6 +3,7 @@ permalink_slug: "enough-of-your-ai-nonsense"
 legacy_project_permalink: "/projects/UnicodeFix/2025/07/22/unicodefix-enough-of-your-ai-nonsense-2025-major-release/"
 short_url: "https://unixwzrd.ai/s/76f3cf618f/"
 layout: post
+release_notice: true
 title: "UnicodeFix: Enough of Your AI Nonsense (2025 Major Release)"
 image: /assets/images/projects/UnicodeFix/controlling-unicode.png
 date: 2025-07-22
@@ -188,3 +189,4 @@ Or just spread the word - the Unicode war isn't over, but at least we have some 
 **Enough of your AI nonsense. Time to clean up.**
 
 [Grab it here.](https://github.com/unixwzrd/UnicodeFix)
+

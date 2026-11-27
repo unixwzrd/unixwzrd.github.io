@@ -4,10 +4,11 @@ title: "Extract Chat for macOS"
 permalink: /projects/extract-chat/macos/
 image: /assets/images/projects/extract-chat-banner.png
 hide_banner_image: true
+support_project: extract-chat
 excerpt: "See Extract Chat for macOS in action: convert local conversation exports, retain available artifacts, process batches, and customize HTML styling."
 ---
 
-[Extract Chat overview](/projects/extract-chat/) · [Source and usage documentation](https://github.com/unixwzrd/extract-chat#readme) · [Get help](/contact/)
+[Extract Chat overview](/projects/extract-chat/) · [Source and usage documentation](https://github.com/unixwzrd/extract-chat#readme) · [Get help](#project-help)
 
 Extract Chat turns downloaded conversations into a local record you can read, search, and reuse. The native macOS app puts file selection, conversion options, progress, and results in one window, without requiring a separate Python installation. It accepts supported ChatGPT, ChatGPT Work, Dots, and Hermes Desktop exports as JSON or supported archives, including LogGPT's ZIP-compatible `.lgpt` files.
 
@@ -81,4 +82,5 @@ The app shows equivalent commands for the selected conversion, which you can cop
 See the [macOS usage guide](https://github.com/unixwzrd/extract-chat/blob/main/macos/README.md) for file permissions and command-line setup, or return to the [Extract Chat overview and project updates](/projects/extract-chat/).
 
 [Privacy Policy](/Policies/Privacy_Extract_Chat/) · [Terms of Use](/Policies/Terms_Extract_Chat/) · [Report an issue](https://github.com/unixwzrd/extract-chat/issues)
+
 

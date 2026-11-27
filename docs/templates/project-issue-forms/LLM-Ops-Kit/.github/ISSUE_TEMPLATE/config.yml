@@ -1,0 +1,9 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Product overview and user guides
+    url: https://unixwzrd.ai/projects/LLM-Ops-Kit/
+    about: Read setup and usage information for LLM-Ops-Kit.
+  - name: Private help, billing, or security concerns
+    url: https://unixwzrd.ai/contact/#private-inquiries
+    about: Contact us privately. Do not post secrets or private documents in public issues.
+

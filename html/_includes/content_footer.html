@@ -2,6 +2,9 @@
     {% if page.secrets_kit_product or page.product_hub == 'secrets-kit' %}
     {% include secrets-kit/support.html %}
     {% else %}
+    {% capture project_help_markup %}{% include project_help.html %}{% endcapture %}
+    {% assign project_help_markup = project_help_markup | strip %}
+    {{ project_help_markup }}
     {% unless page.url contains '/community/' %}
     <div class="join-us-section">
         <hr>
@@ -10,12 +13,15 @@
     </div>
     {% endunless %}
     {% unless page.url contains '/contact/' %}
+    {% if project_help_markup == '' %}
     <div class="get-in-touch-section">
         <hr>
         {% capture get_in_touch_content %}{% include getintouch.html %}{% endcapture %}
         {{ get_in_touch_content | markdownify }}
     </div>
+    {% endif %}
     {% endunless %}
     <br>
     {% endif %}
 </div>
+

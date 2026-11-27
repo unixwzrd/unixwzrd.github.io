@@ -7,6 +7,7 @@ layout: default
 
   <header class="page-header">
     <h1 class="page-title" data-pagefind-meta="title">{{ page.title | escape }}</h1>
+    {% include project_help.html position='header' %}
     {% if page.appstore_link %}
       <p class="page-store-link">
         <a href="{{ page.appstore_link }}" target="_blank" rel="noopener noreferrer">Get it now on the App Store</a>
@@ -58,9 +59,11 @@ layout: default
   {% endif %}
 
   <div class="page-content">
+    {% if page.toc == true and page.secrets_kit_product != true %}{{ content | article_toc }}{% endif %}
     {{ content }}
   </div>
 
   {% include content_footer.html %}
 
 </article>
+

@@ -1,0 +1,9 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Product guides and project support
+    url: https://unixwzrd.ai/contact/#product-help
+    about: Find the guide or issue tracker for the product you are using.
+  - name: Private help, billing, or security concerns
+    url: https://unixwzrd.ai/contact/#private-inquiries
+    about: Contact us privately. Do not include secrets or personal documents in a public issue.
+

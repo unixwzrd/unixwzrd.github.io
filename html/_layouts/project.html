@@ -49,6 +49,7 @@ layout: page
                         {% if project.visibility == 'public' and project_repo_url != '' %}
                         <a class="github-link" href="{{ project.repo_url }}" target="_blank"
                             rel="noopener noreferrer">View on GitHub</a>
+                        {% if site.data.project_help[page.category] %}<a href="#project-help">Help &amp; support</a>{% endif %}
                         {% endif %}
                     </div>
                 </td>
@@ -83,4 +84,5 @@ layout: page
 
     </div>
 </article>
+
 

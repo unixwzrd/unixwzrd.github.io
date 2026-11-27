@@ -1,0 +1,32 @@
+<section id="product-help" class="contact-card" data-project-help-picker aria-labelledby="product-help-heading">
+  <h2 id="product-help-heading">Need help with a product?</h2>
+  <p>GitHub is our product support tracking system. Report problems and request features in the product's own repository. Search existing issues first so related reports and answers stay together.</p>
+  <label class="contact-field" data-project-help-filter hidden>
+    <span>Choose a product</span>
+    <select id="project-help-select">
+      <option value="">All products</option>
+      {% for project in site.data.github_projects.projects %}
+        {% assign settings = site.data.project_help[project.name] %}
+        {% if settings and project.visibility == 'public' and project.repo_url != '' and project.repo_url %}
+        <option value="{{ project.name | escape }}">{{ project.title | default: project.name | escape }}</option>
+        {% endif %}
+      {% endfor %}
+    </select>
+  </label>
+  <ul class="project-help-projects">
+    {% for project in site.data.github_projects.projects %}
+      {% assign settings = site.data.project_help[project.name] %}
+      {% if settings and project.visibility == 'public' and project.repo_url != '' and project.repo_url %}
+      <li data-project-name="{{ project.name | escape }}">
+        <h3>{{ project.title | default: project.name | escape }}</h3>
+        {% if settings.guide_url %}<p><a href="{{ settings.guide_url | relative_url }}">{{ settings.guide_label | escape }}</a></p>{% endif %}
+        <p><a href="{{ project.repo_url | escape }}/issues">Existing issues</a> · <a href="{{ project.repo_url | escape }}/issues/new/choose">{% if settings.track_questions %}Open a support issue or feature request{% else %}Report a bug or request a feature{% endif %}</a></p>
+      </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+  <p>Posting requires a GitHub account. Do not post credentials, conversation exports, private documents, billing details, or unredacted logs. Use <a href="#private-inquiries">Private Inquiries</a> for billing, account details, or security concerns. Email is also available if you cannot access GitHub, but ordinary product support still needs a GitHub issue to be tracked.</p>
+  <p>For a problem with this website, use the <a href="https://github.com/unixwzrd/unixwzrd.github.io/issues/new/choose">website issue tracker</a>.</p>
+</section>
+<script src="{{ '/assets/js/project-help.js' | relative_url }}" defer></script>
+

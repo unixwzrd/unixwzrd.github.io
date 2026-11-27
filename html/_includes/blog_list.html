@@ -42,7 +42,7 @@ Parameters:
 {% assign posts_to_show = discovery_posts %}
 
     {% if posts_to_show.size > 0 %}
-        <!-- Discovery lists: list_sort_key ascending = newest first (keys are negative). -->
+        <!-- Discovery lists: inverted publication-date keys sort newest first. -->
         {% assign sorted_posts = posts_to_show | sort: 'list_sort_key' %}
         {% assign posts_to_show = sorted_posts %}
 
@@ -198,3 +198,4 @@ Parameters:
     {% endif %}
 </div>
 {% endunless %}
+

@@ -1,0 +1,45 @@
+name: Feature request
+description: Describe a problem or workflow that this project could support better.
+title: "[Feature]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Search existing issues first. Describe the workflow and desired result without including private documents, credentials, conversation exports, or customer information.
+        For private requirements or consulting, use https://unixwzrd.ai/contact/#private-inquiries instead.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: Explain who needs this and what is difficult with the current workflow.
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired result
+      description: Describe how you would use the feature and what a useful result would look like.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives or workarounds
+      description: Optional. What have you tried, and where does it fall short?
+    validations:
+      required: false
+  - type: input
+    id: environment
+    attributes:
+      label: Relevant version or platform
+      description: Optional. Include an app version, device, OS, browser, or integration if the request is specific to one.
+    validations:
+      required: false
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Public request check
+      options:
+        - label: I have removed credentials and private information from this request and any attachments.
+          required: true
+

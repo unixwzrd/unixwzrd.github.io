@@ -15,12 +15,14 @@
       <span>Hands-On companion to Part {{ include.post.series_companion_of }}</span>
     {%- endif -%}
   {%- endif -%}
-  {%- if include.post.update_notice -%}
+  {%- assign modified_date = include.post.last_modified_at | default: include.post.modified_date -%}
+  {%- if include.post.update_notice and modified_date -%}
     <span class="post-updated-badge">
       · Updated
-      <time datetime="{{ include.post.last_modified_at | default: include.post.list_date | date_to_xmlschema }}">
-        {{ include.post.last_modified_at | default: include.post.list_date | date: meta_format }}
+      <time datetime="{{ modified_date | date_to_xmlschema }}">
+        {{ modified_date | date: meta_format }}
       </time>
     </span>
   {%- endif -%}
 </span>
+

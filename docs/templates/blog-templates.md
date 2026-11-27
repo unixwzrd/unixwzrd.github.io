@@ -117,7 +117,8 @@ See **[workflows/post-updates-and-ordering.md](../workflows/post-updates-and-ord
 |---|---|---|
 | Silent fix | (none) | No change |
 | Technical correction | `corrected_at`, `correction_note` | No promotion |
-| Major update | `update_notice`, `last_modified_at` | Promoted via `list_sort_key` |
+| Major update | `update_notice`, `last_modified_at` | Updated badge; no promotion |
+| New product release | `release_version`, `release_status: released` | Automatic pointers on older announcements; no promotion |
 
 Series index pages sort by **`series_order`** (e.g. `10`, `20`, `25` for part `2A`), not publish date. Navigation uses `series_previous_url` / `series_next_url`.
 
@@ -151,7 +152,7 @@ The blog list component (`_includes/blog_list.html`) provides a consistent way t
 - `series_only`: Include any post with nonempty series front matter (optional).
 - `exclude_series`: Exclude series articles and companions (optional).
 
-The ordered section configuration is `html/_data/blog_sections.yml`. The blog hub's Series Recent list uses `series_only: true` across every series, while Hands-On includes both standalone tutorials and series companions. Technology remains standalone-only. A companion may intentionally appear in both Recent lists; the three-entry limit, publication exclusions, and shared update-aware sort remain unchanged. The featured-series callout is a separate editorial choice.
+The ordered section configuration is `html/_data/blog_sections.yml`. The blog hub's Series Recent list uses `series_only: true` across every series, while Hands-On includes both standalone tutorials and series companions. Technology remains standalone-only. A companion may intentionally appear in both Recent lists; the three-entry limit and publication exclusions remain unchanged. All discovery lists sort by original publication date, not edit or release-notice dates. The featured-series callout is a separate editorial choice.
 
 ## Pagination
 
@@ -328,3 +329,4 @@ bundle exec ruby scripts/backfill_short_url_front_matter.rb --check --staged
 **Verify:** `bundle exec jekyll build` (should succeed); optional `ls _site/s/` for redirect folders; open one `_site/s/<code>/index.html` and confirm canonical target URL.
 
 **Updated:** 2026-08-18
+

@@ -66,6 +66,12 @@
       <li class="breadcrumb-item"><a href="{{ '/projects/Secrets-Kit/' | relative_url }}" class="breadcrumb-link">Secrets Kit</a></li>
       <li class="breadcrumb-item breadcrumb-current" aria-current="page">{{ page.nav_title | default: page.title }}</li>
 
+    {% elsif page.support_project and page.url contains '/projects/' %}
+      {% assign parent_project = site.data.github_projects.projects | where: 'name', page.support_project | first %}
+      <li class="breadcrumb-item"><a href="{{ '/projects/' | relative_url }}" class="breadcrumb-link">Projects</a></li>
+      <li class="breadcrumb-item"><a href="{{ '/projects/' | append: page.support_project | append: '/' | relative_url }}" class="breadcrumb-link">{{ parent_project.title | default: page.support_project | escape }}</a></li>
+      <li class="breadcrumb-item breadcrumb-current" aria-current="page">{{ page.title | escape }}</li>
+
     {% elsif page.url contains '/projects/' and page.layout != 'post' %}
       <li class="breadcrumb-item">
         <a href="{{ '/projects/' | relative_url }}" class="breadcrumb-link">Projects</a>
@@ -101,3 +107,4 @@
   </ol>
 </nav>
 {% endif %}
+

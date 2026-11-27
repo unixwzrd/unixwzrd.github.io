@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 # Sets `list_date` and `list_sort_key` on each post for discovery-list sorting.
-# Posts with `update_notice` promote to `last_modified_at` when it is later than
-# publish `date`. Series indexes, tag pages, and permalinks are unaffected.
+# Discovery lists always use the original publication date, never an edit or
+# release-notice date. Series indexes, tag pages, and permalinks are unaffected.
 #
 # list_sort_key is a zero-padded inverted epoch string so Liquid's `sort` filter
 # (lexicographic) yields newest-first when sorted ascending.
@@ -24,20 +24,7 @@ module PostListMetadata
   end
 
   def list_date_for(doc)
-    publish = coerce_time(doc.data["date"] || doc.date)
-    return publish unless promote_in_lists?(doc)
-
-    modified = coerce_time(doc.data["last_modified_at"] || doc.data["modified_date"])
-    if modified && publish && modified > publish
-      modified
-    else
-      publish
-    end
-  end
-
-  def promote_in_lists?(doc)
-    notice = doc.data["update_notice"]
-    !(notice.nil? || notice.to_s.strip.empty?)
+    coerce_time(doc.data["date"] || doc.date)
   end
 
   def list_sort_key_for(doc, list_date)
@@ -72,3 +59,4 @@ module Jekyll
     end
   end
 end
+

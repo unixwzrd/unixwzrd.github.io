@@ -7,6 +7,8 @@ title: "UnicodeFix v2.1.0: Image Cleanup Without ExifTool"
 date: 2026-10-24
 category: UnicodeFix
 content_type: update
+release_version: "2.1.0"
+release_status: released
 tags: [unicode, image-metadata, provenance, developer-tools, python, open-source]
 excerpt: "UnicodeFix v2.1.0 brings PNG, JPEG, and WebP metadata cleanup into the Python package, removes the ExifTool dependency, and makes the supported formats and safety boundaries explicit."
 image: /assets/images/projects/UnicodeFix-banner.png
@@ -55,3 +57,4 @@ Inputs are limited to 256 MiB per file. Images with unsupported rendering-sensit
 The current baseline is **Python 3.11 or newer with Pillow 13.x**, following the patched-Pillow update in v2.0.3. ExifTool and Perl are not required by UnicodeFix's image pipeline anymore. If your scripts parse image reports, note that image schema **2.1** replaces the old ExifTool installation/version object with a backend-neutral status object; the old `--exiftool` option and `exiftool=` API parameter have been removed rather than retained as compatibility aliases.
 
 The [UnicodeFix repository](https://github.com/unixwzrd/UnicodeFix) has the installation instructions, and the [changelog](https://github.com/unixwzrd/UnicodeFix/blob/main/CHANGELOG.md) covers both releases. The practical result is a simpler installation with the same local-processing approach, a writer that checks what it preserves, and fewer things to go hunting for when you just wanted to clean a file.
+

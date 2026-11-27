@@ -362,7 +362,8 @@ class SecretsKitProductTest < Minitest::Test
     assert prerelease
     assert_includes prerelease.data["title"], "Coming Soon"
     assert_includes prerelease.content, "this is a pre-announcement, not general availability"
-    assert_includes prerelease.data["update_notice"], "[Secrets Kit product page](/projects/Secrets-Kit/)"
+    assert_equal "preview", prerelease.data["release_status"]
+    assert_nil prerelease.data["update_notice"], "The shared release notice must replace the stale manual version pointer"
   end
 
   def test_current_maintenance_announcement_matches_the_release_and_preserves_security_boundaries
@@ -372,6 +373,8 @@ class SecretsKitProductTest < Minitest::Test
     basename = "2026-11-18-secrets-kit-2-0-5-scoped-mcp-writes-and-sync-fixes.md"
     announcement = PRODUCTION.posts.docs.find { |post| File.basename(post.path) == basename }
     assert announcement
+    assert_equal release.fetch("product_version"), announcement.data.fetch("release_version")
+    assert_equal "released", announcement.data.fetch("release_status")
     assert_equal "https://unixwzrd.ai#{PREFIX}2026/11/18/secrets-kit-2-0-5-scoped-mcp-writes-and-sync-fixes/", release.fetch("release_announcement_url")
     assert_equal "secrets-kit-2-0-5-scoped-mcp-writes-and-sync-fixes", announcement.data["permalink_slug"]
     assert_equal "/projects/Secrets-Kit/_posts/#{basename}", announcement.data["short_link_basis"]
@@ -681,6 +684,7 @@ class SecretsKitProductTest < Minitest::Test
     end
   end
 end
+
 
 
 

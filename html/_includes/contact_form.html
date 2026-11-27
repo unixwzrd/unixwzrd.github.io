@@ -1,10 +1,11 @@
-<section class="contact-card">
+<section id="private-inquiries" class="contact-card">
   <h2>Private Inquiries</h2>
   <p>
-    Use this form for project work, consulting, collaboration, speaking, or a straightforward "tell me more."
-    Nothing is stored on this site yet. Submitting opens your mail client with a structured draft to
+    Use this form for consulting, project work, collaboration, billing, account details, or security concerns.
+    If you cannot access GitHub, you can email us for assistance, but GitHub remains our product support tracking system. Your inquiry is not submitted to or stored by this website; the form opens your mail client with a structured draft to
     <strong>{{ site.engagement.contact_email }}</strong>.
   </p>
+  <p>For ordinary product problems and feature requests, use the <a href="{{ '/contact/#product-help' | relative_url }}">product's issue tracker</a>. Email is not a separate product support queue.</p>
 
   <form
     id="contact-form"
@@ -36,7 +37,7 @@
           <option value="Project Inquiry">Project Inquiry</option>
           <option value="Consulting">Consulting</option>
           <option value="Collaboration">Collaboration</option>
-          <option value="Support or Questions">Support or Questions</option>
+          <option value="Account, Billing, or Security">Account, Billing, or Security</option>
           <option value="Speaking or Media">Speaking or Media</option>
           <option value="Other">Other</option>
         </select>
@@ -81,4 +82,5 @@
 
 {%- assign asset_version = site.github.build_revision | default: site.time | date: "%s" -%}
 <script src="{{ '/assets/js/contact-form.js' | relative_url }}?v={{ asset_version }}" defer></script>
+
 

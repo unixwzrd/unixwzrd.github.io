@@ -1,0 +1,60 @@
+name: Bug report
+description: Report a reproducible problem with this project.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This is a public issue. Do not include credentials, conversation exports, private documents, payment details, or unredacted logs. For security concerns or private help, use https://unixwzrd.ai/contact/#private-inquiries instead.
+        Search existing issues first. A small, sanitized example is usually more useful than a full diagnostic archive.
+  - type: input
+    id: version
+    attributes:
+      label: Version and build
+      description: Include the app or package version and build number if available. For this website, give the affected page URL. Write Unknown if you cannot find the version.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Device and operating system
+      description: Include the OS version, browser version where relevant, and app, extension, or command-line interface used.
+      placeholder: "For example: iPad, iPadOS version, Safari; or Mac, macOS version, command-line tool"
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Describe the smallest sequence that shows the problem. Remove private values from commands and filenames.
+      placeholder: "1. Open...\n2. Choose...\n3. Observe..."
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual result
+      description: Include the exact error text if it can be shared safely.
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Sanitized diagnostics or screenshots
+      description: Optional. Review screenshots for names, addresses, conversation content, tokens, and other private information before attaching them. Do not upload a complete conversation or secrets archive.
+    validations:
+      required: false
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Public report check
+      options:
+        - label: I have removed credentials and private information from this report and any attachments.
+          required: true
+

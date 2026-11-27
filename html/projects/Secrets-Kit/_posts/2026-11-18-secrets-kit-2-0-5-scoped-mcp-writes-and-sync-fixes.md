@@ -4,6 +4,8 @@ title: "Secrets-Kit 2.0.5 Released - Scoped MCP Writes, Sync Fixes, and Credenti
 date: 2026-11-18 14:33:00 -0600
 category: Secrets-Kit
 content_type: update
+release_version: "2.0.5"
+release_status: released
 permalink_slug: "secrets-kit-2-0-5-scoped-mcp-writes-and-sync-fixes"
 short_link_basis: "/projects/Secrets-Kit/_posts/2026-11-18-secrets-kit-2-0-5-scoped-mcp-writes-and-sync-fixes.md"
 short_url: "https://unixwzrd.ai/s/d756241670/"
@@ -73,4 +75,5 @@ seckit upgrade
 For a new installation, use [Get Started](/projects/Secrets-Kit/get-started/) or the installer attached to the [public v2.0.5 release](https://github.com/unixwzrd/Secrets-Kit/releases/tag/v2.0.5). GitHub's source-code archives are not the customer installer. The [versioned installation guide](https://github.com/unixwzrd/Secrets-Kit/blob/v2.0.5/docs/INSTALL.md) and [changelog](https://github.com/unixwzrd/Secrets-Kit/blob/v2.0.5/CHANGELOG.md) provide the detailed instructions and release record.
 
 If you encounter a problem, [contact us](/contact/) or [open a project issue](https://github.com/unixwzrd/Secrets-Kit/issues), keeping credentials and recovery material out of public reports. For deployment, migration, integrations, or ongoing maintenance, Distributed Thinking Systems also offers consulting and maintenance engagements under a separately agreed scope.
+
 

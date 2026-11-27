@@ -1,0 +1,20 @@
+# Public repositories checked for enabled GitHub Issues on 2026-11-26.
+# Repository URLs and display names come from github_projects.yml.
+LogGPT:
+  track_questions: true
+  guide_url: /projects/LogGPT/ios-guide/
+  guide_label: User guide for iPhone and iPad
+  guide_description: Illustrated instructions for Safari setup, Basic and Plus exports, and saving to Files.
+  prominent_guide: true
+UnicodeFix: {}
+Secrets-Kit:
+  guide_url: /projects/Secrets-Kit/guides/
+  guide_label: User guides
+LLM-Ops-Kit: {}
+extract-chat:
+  guide_url: /projects/extract-chat/macos/
+  guide_label: Extract Chat for macOS walkthrough
+WebReader: {}
+localops-ui-kit: {}
+code-analytics: {}
+

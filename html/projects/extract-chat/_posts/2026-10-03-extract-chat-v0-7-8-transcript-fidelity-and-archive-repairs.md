@@ -8,6 +8,8 @@ date: 2026-10-03
 category: extract-chat
 tags: [chatgpt, loggpt, data-portability, artifacts, python]
 content_type: release
+release_version: "0.7.8"
+release_status: released
 excerpt: "extract-chat v0.7.8 preserves authored Sources and References sections, handles mixed timestamp formats, and carries forward repairs for older LogGPT archives and artifact links."
 image:
   path: /assets/images/projects/extract-chat-banner.png
@@ -42,3 +44,4 @@ pip install "git+https://github.com/unixwzrd/extract-chat.git@v0.7.8"
 ```
 
 [See the extract-chat repository for more usage and installation details](https://github.com/unixwzrd/extract-chat).
+

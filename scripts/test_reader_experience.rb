@@ -10,6 +10,7 @@ require "tmpdir"
 require "nokogiri"
 require "open3"
 require "uri"
+require "yaml"
 require_relative "../html/_plugins/article_toc_filter"
 
 class ReaderExperienceTest < Minitest::Test
@@ -38,6 +39,187 @@ class ReaderExperienceTest < Minitest::Test
 
   def post(title, extra = {})
     { "title" => title, "path" => "_posts/#{title}.md", "url" => "/#{title}/", "categories" => ["technology"] }.merge(extra)
+  end
+
+  def test_project_help_only_routes_configured_public_projects_and_respects_ancillary_page_context
+    projects = [
+      { "name" => "Example", "title" => "Example Tool", "repo_url" => "https://github.com/owner/example", "visibility" => "public" },
+      { "name" => "Private", "repo_url" => "https://github.com/owner/private", "visibility" => "private" },
+      { "name" => "Hidden", "repo_url" => "https://github.com/owner/hidden", "visibility" => "none" },
+      { "name" => "Unconfigured", "repo_url" => "https://github.com/owner/unconfigured", "visibility" => "public" },
+    ]
+    site = { "data" => { "github_projects" => { "projects" => projects }, "project_help" => { "Example" => { "guide_url" => "/guide/", "guide_label" => "Read the guide", "prominent_guide" => true }, "Private" => {}, "Hidden" => {} } } }
+    page = { "support_project" => "Example", "url" => "/guide/", "layout" => "page" }
+    doc = Nokogiri::HTML.fragment(render_include("project_help.html", page: page, site: site))
+    assert_equal 1, doc.css("#project-help").length
+    assert doc.at_css('a[href="https://github.com/owner/example/issues"]')
+    assert doc.at_css('a[href="https://github.com/owner/example/issues/new/choose"]')
+    assert doc.at_css('a[href="/contact/#private-inquiries"]')
+    assert_empty doc.css('a[href="/guide/"]'), "Do not link a guide to itself"
+    %w[Private Hidden Unconfigured Missing].each do |name|
+      assert_empty render_include("project_help.html", page: { "category" => name }, site: site).strip
+    end
+    header = Nokogiri::HTML.fragment(render_include("project_help.html", parameters: "position='header'", page: { "category" => "Example", "layout" => "project" }, site: site))
+    assert header.at_css('.project-help--prominent h2 a[href="/guide/"]')
+    picker = Nokogiri::HTML.fragment(render_include("project_help_picker.html", site: site))
+    assert_equal ["Example"], picker.css("li[data-project-name]").map { |item| item["data-project-name"] }
+    assert picker.at_css("[data-project-help-filter]").key?("hidden")
+    assert picker.at_css('a[href="https://github.com/owner/example/issues/new/choose"]'), "The unenhanced page must retain usable links"
+    assert_empty picker.css("form"), "The selector must not submit inquiry information"
+  end
+
+  def test_project_picker_only_filters_existing_links_and_does_not_collect_contact_data
+    source = File.read(File.join(ROOT, "html/assets/js/project-help.js"))
+    harness = <<~JS
+      const vm = require('node:vm');
+      const rows = ['LogGPT', 'UnicodeFix'].map(name => ({dataset:{projectName:name},hidden:false}));
+      const filter = {hidden:true};
+      const select = {value:'',addEventListener(type, handler){if(type!=='change')throw Error(type);this.change=handler;}};
+      const picker = {
+        querySelector(selector){if(selector==='[data-project-help-filter]')return filter;if(selector==='#project-help-select')return select;throw Error('Unexpected field access: '+selector);},
+        querySelectorAll(selector){if(selector!=='[data-project-name]')throw Error(selector);return rows;}
+      };
+      for(const present of [false,true]){
+        const document={addEventListener(type,handler){if(type!=='DOMContentLoaded')throw Error(type);handler();},querySelector(selector){if(selector!=='[data-project-help-picker]')throw Error(selector);return present?picker:null;}};
+        const context={document};
+        for(const key of ['fetch','localStorage','location'])Object.defineProperty(context,key,{get(){throw Error('Unexpected side effect: '+key);}});
+        vm.runInNewContext(#{source.to_json},context);
+      }
+      if(filter.hidden||rows.some(row=>row.hidden))throw Error('Initial links missing');
+      select.value='LogGPT';select.change();
+      if(rows[0].hidden||!rows[1].hidden)throw Error('Wrong project selected');
+      select.value='';select.change();
+      if(rows.some(row=>row.hidden))throw Error('Could not restore all projects');
+    JS
+    output, status = Open3.capture2e("node", "-e", harness)
+    assert status.success?, output
+  end
+
+  def test_shared_github_issue_forms_and_review_packages_have_valid_required_fields_and_private_routes
+    files = Dir.glob(File.join(ROOT, ".github/ISSUE_TEMPLATE/*.yml")) + Dir.glob(File.join(ROOT, "docs/templates/project-issue-forms/**/*.yml"), File::FNM_DOTMATCH)
+    assert_equal 11, files.length
+    files.each do |path|
+      form = YAML.safe_load(File.read(path))
+      if File.basename(path) == "config.yml"
+        assert_equal true, form.fetch("blank_issues_enabled")
+        assert form.fetch("contact_links").any? { |link| link["url"] == "https://unixwzrd.ai/contact/#private-inquiries" }
+        form.fetch("contact_links").each { |link| assert_equal "https://unixwzrd.ai", URI.parse(link.fetch("url")).then { |url| "#{url.scheme}://#{url.host}" } }
+        next
+      end
+      refute_empty form.fetch("name")
+      refute_empty form.fetch("description")
+      fields = form.fetch("body")
+      ids = fields.filter_map { |field| field["id"] }
+      assert_equal ids.uniq, ids
+      fields.each do |field|
+        assert_includes %w[markdown input textarea dropdown checkboxes], field.fetch("type")
+        next if field["type"] == "markdown"
+        assert_match(/\A[a-z][a-z0-9-]*\z/, field.fetch("id"))
+        refute_empty field.fetch("attributes").fetch("label")
+      end
+      assert fields.any? { |field| field["type"] == "checkboxes" && field.fetch("attributes").fetch("options").any? { |option| option["required"] == true } }
+      assert_includes fields.select { |field| field["type"] == "markdown" }.map { |field| field.dig("attributes", "value") }.join, "https://unixwzrd.ai/contact/#private-inquiries"
+      refute form.key?("assignees")
+      refute form.key?("labels"), "Do not depend on labels that may not exist in another repository"
+    end
+    assert File.file?(File.join(ROOT, "docs/templates/project-issue-forms/code-analytics/.github/ISSUE_TEMPLATE/feature_request.yml"))
+    refute File.exist?(File.join(ROOT, "docs/templates/project-issue-forms/code-analytics/.github/ISSUE_TEMPLATE/bug_report.yml")), "Preserve the existing Code Analysis bug form"
+  end
+
+  ReleasePost = Struct.new(:data, :date, :relative_path, :url)
+  ReleaseSite = Struct.new(:posts, :pages, :data, :time)
+
+  def release_post(name, date: "2026-11-18", project: "Example", **data)
+    ReleasePost.new(
+      { "title" => name, "content_type" => "update" }.merge(data.transform_keys(&:to_s)),
+      Time.parse(date), "projects/#{project}/_posts/#{name}.md", "/projects/#{project}/#{name}/",
+    )
+  end
+
+  def release_site(posts)
+    ReleaseSite.new(
+      Struct.new(:docs).new(posts),
+      %w[Example Other].map { |name| Struct.new(:url).new("/projects/#{name}/") },
+      {}, Time.parse("2026-11-26"),
+    )
+  end
+
+  def test_discovery_order_uses_publication_dates_even_with_later_edits_and_notices
+    old = release_post("old", date: "2026-08-19", last_modified_at: "2026-11-25", update_notice: "Substantial revision")
+    latest = release_post("latest", date: "2026-11-18")
+    [old, latest].each { |doc| PostListMetadata.apply_to_post!(doc) }
+    assert_equal old.date, old.data["list_date"]
+    assert_equal [latest, old], [old, latest].sort_by { |doc| doc.data.fetch("list_sort_key") }
+    first = release_post("first", sequence: 1)
+    second = release_post("second", sequence: 2)
+    [first, second].each { |doc| PostListMetadata.apply_to_post!(doc) }
+    assert_equal [first, second], [second, first].sort_by { |doc| doc.data.fetch("list_sort_key") }
+  end
+
+  def test_updated_badges_require_real_editorial_notice_and_modified_date
+    no_date = post("old", "date" => "2026-08-19", "update_notice" => "Editorial note")
+    assert_empty Nokogiri::HTML.fragment(render_include("post_list_meta.html", parameters: "post=page", page: no_date)).css(".post-updated-badge")
+    edited = no_date.merge("modified_date" => "2026-11-25")
+    badge = Nokogiri::HTML.fragment(render_include("post_list_meta.html", parameters: "post=page", page: edited)).at_css(".post-updated-badge time")
+    assert badge["datetime"].start_with?("2026-11-25")
+    automatic = edited.reject { |key, _| key == "update_notice" }.merge("newer_release" => { "version" => "2.0" })
+    assert_empty Nokogiri::HTML.fragment(render_include("post_list_meta.html", parameters: "post=page", page: automatic)).css(".post-updated-badge")
+  end
+
+  def test_release_notices_use_only_explicit_public_releases_and_stay_within_the_product
+    old = release_post("old", date: "2026-08-19", update_notice: "A real editorial correction", release_version: "1.0")
+    current = release_post("current", release_version: "2.0", release_status: "released", excerpt: "A useful maintenance release.")
+    rejected = [
+      release_post("preview", date: "2026-11-20", release_version: "3.0", release_status: "preview"),
+      release_post("unpublished", date: "2026-11-21", release_version: "4.0", release_status: "released", published: false),
+      release_post("future", date: "2027-01-01", release_version: "5.0", release_status: "released"),
+      release_post("_drafts/draft", date: "2026-11-22", release_version: "6.0", release_status: "released"),
+      release_post("draft-flag", date: "2026-11-22", release_version: "6.1", release_status: "released", draft: true),
+      release_post("social-posts", date: "2026-11-23", release_version: "7.0", release_status: "released"),
+      release_post("excluded", date: "2026-11-24", release_version: "8.0", release_status: "released", list_exclude: true),
+      release_post("case-study", date: "2026-11-25", content_type: "case-study"),
+      release_post("unqualified", date: "2026-11-25", release_version: "9.0"),
+    ]
+    other = release_post("other-release", project: "Other", release_version: "99.0", release_status: "released")
+    opted_out = release_post("opt-out", date: "2026-08-18", release_notice: false)
+    story = release_post("story", date: "2026-08-18", content_type: nil)
+    same_version = release_post("same-version", date: "2026-08-18", release_version: "2.0")
+    site = release_site([old, current, other, opted_out, story, same_version, *rejected])
+    ProductReleaseNotices.apply!(site)
+    notice = old.data.fetch("newer_release")
+    assert_equal "2.0", notice["version"]
+    assert_equal current.url, notice["url"]
+    assert_equal "/projects/Example/", notice["overview_url"]
+    assert_equal current.date, notice["date"]
+    assert_equal "A real editorial correction", old.data["update_notice"]
+    [current, other, opted_out, story, same_version, *rejected].each { |doc| refute doc.data.key?("newer_release"), doc.relative_path }
+    rendered = Nokogiri::HTML.fragment(render_include("product_release_notice.html", page: old.data))
+    assert_equal 1, rendered.css("aside.post-update-notice[role='note']").length
+    assert_equal ["/projects/Example/", current.url], rendered.css("a").map { |link| link["href"] }
+
+    # A subsequent release updates old notices without editing any older post.
+    next_release = release_post("next", date: "2026-11-25", release_version: "2.1", release_status: "released")
+    site.posts.docs << next_release
+    ProductReleaseNotices.apply!(site)
+    assert_equal "2.1", old.data.fetch("newer_release")["version"]
+    assert_equal "2.1", current.data.fetch("newer_release")["version"]
+    refute next_release.data.key?("newer_release")
+    site.posts.docs.each { |doc| doc.data.delete("release_status") }
+    ProductReleaseNotices.apply!(site)
+    assert site.posts.docs.none? { |doc| doc.data.key?("newer_release") }, "Withdrawn releases must not leave stale notices"
+  end
+
+  def test_release_notices_skip_hidden_products_and_missing_overviews
+    old = release_post("old", date: "2026-08-19")
+    current = release_post("current", release_version: "2.0", release_status: "released")
+    site = release_site([old, current])
+    site.pages.clear
+    ProductReleaseNotices.apply!(site)
+    refute old.data.key?("newer_release")
+    site.pages << Struct.new(:url).new("/projects/Example/")
+    site.data["github_projects"] = { "projects" => [{ "name" => "Example", "visibility" => "none" }] }
+    ProductReleaseNotices.apply!(site)
+    refute old.data.key?("newer_release")
   end
 
   def test_local_reader_include_is_localhost_only_in_every_build_and_supports_page_opt_out
@@ -373,6 +555,9 @@ end
 if ENV["READER_SITE"]
   class RenderedReaderExperienceTest < Minitest::Test
     ROOT = File.expand_path(ENV.fetch("READER_SITE"))
+    RELEASE_SOURCE = Jekyll::Site.new(ReaderExperienceTest::SITE.config.merge(
+      "destination" => File.join(ReaderExperienceTest::TEMP, "release-source"),
+    )).tap(&:read)
     PILOTS = %w[
       technology/2025/04/08/Remote-Debugging-With-VSCode
       technology/2026/08/23/memory-is-a-governance-problem-not-just-a-vector-database
@@ -380,6 +565,84 @@ if ENV["READER_SITE"]
 
     def document(path)
       Nokogiri::HTML(File.read(File.join(ROOT, path, "index.html")))
+    end
+
+    # Read expected targets from published source metadata, not the generated
+    # notice. Adding a release must not require updating hardcoded test versions.
+    def latest_release_for(project)
+      RELEASE_SOURCE.posts.docs.select do |post|
+        post.relative_path.start_with?("projects/#{project}/_posts/") &&
+          post.data["release_status"] == "released" && post.data["release_version"] &&
+          post.data["published"] != false && !post.data["list_exclude"] &&
+          !post.draft? && post.date <= RELEASE_SOURCE.time
+      end.max_by(&:date)
+    end
+
+    def release_url(post)
+      ProjectPostPermalink.permalink_for_project_post(post)
+    end
+
+    def test_loggpt_120_points_readers_to_current_information_without_changing_legacy_urls
+      path = "projects/LogGPT/2026/08/19/loggpt-1-2-0-and-loggpt-plus"
+      page = document(path)
+      notice = page.at_css(".post-update-notice")
+      refute_nil notice
+      release = latest_release_for("LogGPT")
+      version = release.data.fetch("release_version")
+      assert_equal "Version #{version} update · #{release.date.strftime('%B %-d, %Y')}", notice.at_css(".post-update-notice__title").text
+      assert_equal [
+        "/projects/LogGPT/",
+        release_url(release),
+      ], notice.css("a").to_a.last(2).map { |link| link["href"] }
+      assert_includes notice.text, "Read the #{version} release announcement"
+      assert_includes notice.text, "original announcement and its publication date are preserved"
+      assert page.at_css(".dt-published")["datetime"].start_with?("2026-08-19")
+      assert_nil page.at_css(".dt-modified"), "An automatic release pointer is not an editorial revision"
+      assert_includes page.at_css("h1").text, "LogGPT 1.2.0 and LogGPT Plus"
+      assert_includes page.at_css(".post-content").text, "I am pleased to announce LogGPT 1.2.0"
+      assert_operator page.to_html.index('class="post-update-notice"'), :<, page.to_html.index('class="post-banner-image"')
+      destination = "https://unixwzrd.ai/#{path}/"
+      assert_equal destination, page.at_css('link[rel="canonical"]')["href"]
+      ["s/39e7b3ae47", "#{path}-preserve-conversations-and-artifacts"].each do |redirect|
+        assert_equal destination, document(redirect).at_css('link[rel="canonical"]')["href"]
+      end
+    end
+
+    def test_project_posts_sort_by_publication_and_share_automatic_release_notices
+      overview = document("projects/LogGPT")
+      dates = overview.css(".post-list > li .post-meta > time:first-child").map { |time| Time.parse(time["datetime"]) }
+      refute_empty dates
+      assert_equal dates.sort.reverse, dates
+      %w[2026/11/16/loggpt-1-3-3-checkbox-visibility-fix 2026/11/17/loggpt-1-3-4-dots-conversation-exports].each do |path|
+        notices = document("projects/LogGPT/#{path}").css(".post-update-notice")
+        assert_equal 1, notices.length
+        assert_includes notices.first.css("a").map { |link| link["href"] }, release_url(latest_release_for("LogGPT"))
+      end
+      assert_empty document(release_url(latest_release_for("LogGPT")).delete_prefix("/")).css("aside[aria-label='Newer product release']")
+      secrets = document("projects/Secrets-Kit/2026/10/28/secrets-kit-2-0-2-local-secrets-peer-to-peer-sync")
+      assert_equal 1, secrets.css(".post-update-notice").length
+      assert secrets.at_css('.post-update-notice a[href="/projects/Secrets-Kit/"]')
+      assert_includes secrets.css(".post-update-notice a").map { |link| link["href"] }, release_url(latest_release_for("Secrets-Kit"))
+      assert_includes secrets.at_css("h1").text, "Coming Soon"
+      assert_includes secrets.at_css(".post-content").text, "pre-announcement, not general availability"
+      unicode = document("projects/UnicodeFix/2026/10/19/unicodefix-v2-0-2-one-command-for-text-and-images")
+      assert_includes unicode.css(".post-update-notice a").map { |link| link["href"] }, release_url(latest_release_for("UnicodeFix"))
+      assert_empty document("projects/LogGPT/2026/10/15/when-codex-turned-to-loggpt").css("aside[aria-label='Newer product release']")
+      {
+        "projects/extract-chat/2026/08/24/extract-chat-v0-6-0-loggpt-plus-archive-support" => "extract-chat",
+        "projects/TorchDevice/2025/03/05/new-0-0-05-torchdevice-release" => "TorchDevice",
+      }.each do |old_path, project|
+        notice = document(old_path).at_css("aside[aria-label='Newer product release']")
+        refute_nil notice, old_path
+        assert_includes notice.css("a").map { |link| link["href"] }, release_url(latest_release_for(project))
+      end
+      preview = document("projects/extract-chat/2026/11/20/extract-chat-1-0-0-native-macos-app")
+      preview_date = Time.parse(preview.at_css(".dt-published")["datetime"])
+      if latest_release_for("extract-chat").date <= preview_date
+        assert_empty preview.css("aside[aria-label='Newer product release']"), "The newer Mac App Store preview must not point backwards or supersede a shipped release"
+      else
+        assert_includes preview.css(".post-update-notice a").map { |link| link["href"] }, release_url(latest_release_for("extract-chat"))
+      end
     end
 
     def test_artex_repository_update_preserves_original_dates_urls_and_attribution_limits
@@ -429,6 +692,94 @@ if ENV["READER_SITE"]
       assert_equal destination, redirect.at_css('link[rel="canonical"]')["href"]
       assert_equal "/#{path}/", document("projects/extract-chat").at_css(".post-link")["href"]
       refute File.exist?(File.join(ROOT, "projects/extract-chat/_drafts/2026-11-20-extract-chat-1-0-0-social-posts.txt"))
+    end
+
+    def test_loggpt_mobile_guide_is_discoverable_and_uses_shared_navigation_and_screenshot_styles
+      path = "projects/LogGPT/ios-guide"
+      guide = document(path)
+      assert_equal ["LogGPT User Guide for iPhone and iPad"], guide.css("h1").map { |heading| heading.text.strip }
+      assert_equal "https://unixwzrd.ai/#{path}/", guide.at_css('link[rel="canonical"]')["href"]
+      breadcrumbs = guide.at_css('nav[aria-label="Breadcrumb navigation"]')
+      assert_equal ["/", "/projects/", "/projects/LogGPT/"], breadcrumbs.css("a").map { |link| link["href"] }
+      assert_equal "LogGPT User Guide for iPhone and iPad", breadcrumbs.at_css('[aria-current="page"]').text.strip
+      assert_empty document("projects").css(".projects-list a[href='/#{path}/']"), "The manual is not a peer project"
+      assert_empty guide.css(".nav-dropdown-projects a[href='/#{path}/']"), "Keep the manual out of the top-level project catalog"
+      assert_empty document("projects/LogGPT").css(".post-list .post-link[href='/#{path}/']"), "The manual is not a blog post"
+      overview = document("projects/LogGPT")
+      callout = overview.at_css(".page-header .project-help--prominent")
+      assert callout.at_css("h2 a[href='/#{path}/']"), "The guide must be prominent directly below the project title"
+      assert callout.at_css('a[href="https://github.com/unixwzrd/LogGPT/issues/new/choose"]'), "Ordinary support must go directly to the GitHub chooser"
+      assert_operator overview.to_html.index('class="contact-card project-help project-help--prominent"'), :<, overview.to_html.index('class="page-banner-image"')
+      content = guide.at_css("article.page > .page-content")
+      assert content.at_css("a[href='/projects/LogGPT/']"), "Keep a route back to the product overview"
+      toc = content.css("details.post-toc")
+      assert_equal 1, toc.length
+      refute toc.first.key?("open"), "The shared On this page index must start collapsed"
+      sections = content.css("h2[id]").map { |heading| "##{heading['id']}" }
+      assert_equal 8, sections.length
+      assert_equal sections, toc.first.css("nav a").map { |link| link["href"] }
+      images = content.css("figure.project-screenshot img")
+      assert_equal 35, images.length
+      stylesheet = File.read(File.join(ROOT, "assets/css/style.css"))
+      screenshot_styles = stylesheet[/\.loggpt-guide-screenshots img\s*\{([^}]+)\}/, 1]
+      refute_nil screenshot_styles, "Keep the border scoped to the manual's screenshots"
+      assert_match(/border:\s*1px\s+solid\s+#fff(?:fff)?\s*;/, screenshot_styles)
+      assert_match(/box-sizing:\s*border-box/, screenshot_styles)
+      images.each do |image|
+        assert image["src"].start_with?("/assets/images/projects/LogGPT/ios-guide/")
+        assert File.file?(File.join(ROOT, image["src"])), image["src"]
+        assert_equal image["src"], image.parent["href"], "Each screenshot must open its full-resolution source"
+        refute_empty image["alt"]
+        assert_operator image["width"].to_i, :>, 0
+        assert_operator image["height"].to_i, :>, 0
+        assert_equal "lazy", image["loading"]
+        assert_equal "async", image["decoding"]
+        refute_empty image.ancestors("figure").first.at_css("figcaption").text.strip
+      end
+      phone_examples = content.css("details:not(.post-toc)")
+      assert_equal 6, phone_examples.length
+      phone_examples.each do |example|
+        assert_includes example.at_css("summary").text, "iPhone"
+        refute_nil example.at_css('img[src*="/ios-guide/iphone/"]'), "Retain the expandable iPhone instructions"
+        refute example.key?("open")
+      end
+      assert_equal 17, images.count { |image| image["src"].include?("/iphone/") }
+      ["Basic", "one-time upgrade", "Generated Content", "Uploaded Content", "Set Default Folder", "Discard Export", "Restore purchases"].each do |text|
+        assert_includes content.text, text
+      end
+      assert_empty content.css("script, iframe")
+      assert_empty guide.css(".page-store-link"), "Do not add a mobile install claim before availability is confirmed"
+    end
+
+    def test_product_help_routes_to_each_products_own_repository_and_preserves_private_contact
+      contact = document("contact")
+      picker = contact.at_css("#product-help")
+      refute_nil picker
+      assert contact.at_css("#private-inquiries #contact-form")
+      assert_operator contact.to_html.index('id="product-help"'), :<, contact.to_html.index('id="contact-form"')
+      names = YAML.safe_load(File.read(File.join(ReaderExperienceTest::ROOT, "html/_data/project_help.yml"))).keys
+      assert_equal names.sort, picker.css("[data-project-name]").map { |row| row["data-project-name"] }.sort
+      catalog = YAML.safe_load(File.read(File.join(ReaderExperienceTest::ROOT, "html/_data/github_projects.yml"))).fetch("projects")
+      names.each do |name|
+        repo = catalog.find { |project| project["name"] == name }.fetch("repo_url")
+        row = picker.at_css("[data-project-name='#{name}']")
+        assert row.at_css("a[href='#{repo}/issues']"), name
+        assert row.at_css("a[href='#{repo}/issues/new/choose']"), name
+        product = document("projects/#{name}")
+        assert product.at_css(".content-footer a[href='#{repo}/issues']"), name
+      end
+      guide = document("projects/LogGPT/ios-guide")
+      assert_equal 1, guide.css("#project-help").length
+      assert guide.at_css('#project-help a[href="https://github.com/unixwzrd/LogGPT/issues/new/choose"]')
+      assert guide.at_css('#project-help a[href="/contact/#private-inquiries"]')
+      assert_includes guide.at_css("#project-help").text, "GitHub is our product support tracking system"
+      assert_includes guide.at_css("#project-help").text, "setup and usage questions"
+      assert_includes guide.at_css("#project-help").text, "ordinary product support is tracked through GitHub issues"
+      assert_includes contact.at_css("#private-inquiries").text, "Email is not a separate product support queue"
+      assert_empty guide.css(".get-in-touch-section"), "Project help must replace the generic email-first footer"
+      article = document("projects/LogGPT/2026/11/18/loggpt-1-3-5-toolbar-downloads-and-lgpt-archives")
+      assert article.at_css('#project-help a[href="https://github.com/unixwzrd/LogGPT/issues/new/choose"]')
+      assert_empty document("projects/TorchDevice").css("#project-help"), "Do not advertise support for unconfigured legacy projects"
     end
 
     def test_extract_chat_macos_walkthrough_has_linked_screenshots_and_accurate_scope
@@ -714,6 +1065,7 @@ if ENV["READER_SITE"]
     end
   end
 end
+
 
 
 

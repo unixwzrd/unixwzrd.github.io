@@ -3,6 +3,7 @@ permalink_slug: "unicodefix-minor-updates"
 legacy_project_permalink: "/projects/UnicodeFix/2025/11/15/unicodefix-levels-up-metrics-forensics-and-bracket-discipline/"
 short_url: "https://unixwzrd.ai/s/3f1301a9a0/"
 layout: post
+release_notice: true
 title: "UnicodeFix Levels Up: Metrics, Forensics, and Bracket Discipline"
 image: /assets/images/projects/UnicodeFix/LevelsUp.png
 date: 2025-11-15
@@ -216,3 +217,4 @@ If you're new:
 
 The Unicode arms race isn't slowing down.
 At least your side has better metrics now.
+

@@ -54,6 +54,8 @@ layout: default
     </aside>
   {% endif %}
 
+  {% include product_release_notice.html %}
+
   {% assign fallback_image = "/assets/images/default-og-image.png" %}
   {% assign hero_image = page.banner_image | default: page.image %}
   {% assign hero_image_alt = page.title | escape %}
@@ -111,3 +113,4 @@ layout: default
 
   <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
 </article>
+

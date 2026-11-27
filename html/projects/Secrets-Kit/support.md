@@ -28,11 +28,11 @@ Do not include secret values, private keys, recovery codes, credential files, ra
 
 ## Questions and feature ideas
 
-Use [Secrets Kit Discussions]({{ seckit_release.discussions_url }}) for setup questions, feature requests and ideas. Public discussion helps other users find the answer later. Follow [Blog & Updates]({{ seckit_updates_url }}) for release updates.
+Use [Secrets Kit Issues]({{ seckit_release.issues_url }}) for feature requests so they can be tracked alongside bug reports. Use [Secrets Kit Discussions]({{ seckit_release.discussions_url }}) for setup questions and release discussion. Public answers help other users find the solution later. Follow [Blog & Updates]({{ seckit_updates_url }}) for release updates.
 
 ## Security concerns or sensitive account details
 
-Please [contact us privately]({{ '/contact/' | relative_url }}) before posting a suspected vulnerability, account information, or material that could expose someone’s credentials. Mention Secrets Kit in your message and describe the issue without sending secret values. We can agree on an appropriate way to share further details.
+Please [contact us privately]({{ '/contact/' | relative_url }}) before posting a suspected vulnerability, account information, or material that could expose someone's credentials. Mention Secrets Kit in your message and describe the issue without sending secret values. We can agree on an appropriate way to share further details.
 
 ## Support options
 
@@ -56,3 +56,4 @@ The written agreement sets the support level and any service commitments. The RS
 ## Support and billing expectations
 
 See the [RSS service terms]({{ '/projects/Secrets-Kit/policies/#service-terms' | relative_url }}) for cancellation, quantity changes, refunds and retention. {% unless seckit_release.production_release_ready %}Installation and production subscriptions remain closed.{% endunless %}
+

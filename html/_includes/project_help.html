@@ -1,0 +1,25 @@
+{%- assign help_name = page.support_project | default: page.category -%}
+{%- assign help_settings = site.data.project_help[help_name] -%}
+{%- assign help_project = site.data.github_projects.projects | where: 'name', help_name | first -%}
+{%- assign help_repository = help_project.repo_url | default: '' | strip -%}
+{% if help_settings and help_project.visibility == 'public' and help_repository != '' %}
+  {% if include.position == 'header' %}
+    {% if page.layout == 'project' and help_settings.prominent_guide and help_settings.guide_url %}
+    <section class="contact-card project-help project-help--prominent" aria-labelledby="project-guide-heading">
+      <h2 id="project-guide-heading"><a href="{{ help_settings.guide_url | relative_url }}">{{ help_settings.guide_label | escape }}</a></h2>
+      <p>{{ help_settings.guide_description | escape }}</p>
+      <p>{% if help_settings.track_questions %}<a href="{{ help_repository | escape }}/issues/new/choose">Get support on GitHub</a>{% else %}<a href="#project-help">Report a problem or get help</a>{% endif %}</p>
+    </section>
+    {% endif %}
+  {% else %}
+    <section id="project-help" class="contact-card project-help" aria-labelledby="project-help-heading">
+      <h2 id="project-help-heading">Help with {{ help_project.title | default: help_name | escape }}</h2>
+      {% if help_settings.guide_url and page.url != help_settings.guide_url %}
+      <p><a href="{{ help_settings.guide_url | relative_url }}"><strong>{{ help_settings.guide_label | escape }}</strong></a></p>
+      {% endif %}
+      <p>GitHub is our product support tracking system. Use the project's issues for bugs{% if help_settings.track_questions %}, setup and usage questions,{% endif %} and feature requests. <a href="{{ help_repository | escape }}/issues">Check existing issues</a>, then <a href="{{ help_repository | escape }}/issues/new/choose">open a support issue or feature request</a> so we can track it.</p>
+      <p>A GitHub account is required to post. Use <a href="{{ '/contact/#private-inquiries' | relative_url }}">private contact</a> for billing, account details, or security concerns. If you cannot access GitHub, you can email us for assistance, but ordinary product support is tracked through GitHub issues. Keep credentials, conversation exports, private documents, and unredacted logs out of public issues.</p>
+    </section>
+  {% endif %}
+{% endif %}
+

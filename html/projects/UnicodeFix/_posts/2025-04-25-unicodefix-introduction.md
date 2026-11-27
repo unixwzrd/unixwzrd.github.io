@@ -3,6 +3,7 @@ permalink_slug: "unicodefix-introduction"
 legacy_project_permalink: "/projects/UnicodeFix/2025/04/25/unicodefix-the-day-invisible-characters-broke-everything/"
 short_url: "https://unixwzrd.ai/s/e46cbed77a/"
 layout: post
+release_notice: true
 title: "UnicodeFix: The Day Invisible Characters Broke Everything"
 image: /assets/images/projects/UnicodeFix/hidden-unicode.png
 date: 2025-04-25
@@ -218,3 +219,4 @@ This will filter all the Unicode/UTF-8 and replace it with the closest ASCII cha
 Get it on my GitHub: [https://github.com/unixwzrd/UnicodeFix](https://github.com/unixwzrd/UnicodeFix)
 
 Let us know what features you might like to see in the future.
+

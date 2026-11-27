@@ -13,10 +13,10 @@
 {% else %}
 <section class="seckit-support" aria-labelledby="seckit-support-heading">
   <h2 id="seckit-support-heading">Questions, problems, or ideas?</h2>
-  <p>Use the project’s own channels so the right conversation is easy to find.</p>
+  <p>Use the project's own channels so the right conversation is easy to find.</p>
   <div class="seckit-grid">
-    <div class="seckit-card"><h3>Report a bug</h3><p>Check existing reports, then describe what happened and how to reproduce it.</p><a href="{{ seckit_release.issues_url }}">Project Issues →</a></div>
-    <div class="seckit-card"><h3>Ask the community</h3><p>Questions, feature requests, and release discussion belong in the project forum.</p><a href="{{ seckit_release.discussions_url }}">Project Discussions →</a></div>
+    <div class="seckit-card"><h3>Bugs and feature requests</h3><p>Check existing reports, then describe the problem or the workflow you would like to improve.</p><a href="{{ seckit_release.issues_url }}">Project Issues →</a></div>
+    <div class="seckit-card"><h3>Ask the community</h3><p>Setup questions and release discussion belong in the project forum.</p><a href="{{ seckit_release.discussions_url }}">Project Discussions →</a></div>
     <div class="seckit-card"><h3>Contact privately</h3><p>Use private contact for security concerns, account questions, or sensitive details.</p><a href="{{ '/contact/' | relative_url }}">Private contact →</a></div>
   </div>
   <p>For consulting assistance with setup, migration, or integration, or an ongoing maintenance contract, <a href="{{ '/contact/' | relative_url }}">contact us to discuss your requirements</a>. Scope, fees, coverage, and any response targets are agreed separately in writing; an RSS subscription does not include a maintenance contract.</p>
@@ -24,3 +24,4 @@
   {% if seckit_policy_page %}<p class="seckit-comparison-footnote"><a href="{{ seckit_policy_page.url | relative_url }}#client-privacy">Client privacy</a> · <a href="{{ seckit_policy_page.url | relative_url }}#remote-secrets-sync-privacy">RSS privacy</a> · <a href="{{ seckit_policy_page.url | relative_url }}#service-terms">RSS service terms</a> · <a href="{{ seckit_policy_page.url | relative_url }}#client-license">MIT client license</a></p>{% endif %}
 </section>
 {% endif %}
+
