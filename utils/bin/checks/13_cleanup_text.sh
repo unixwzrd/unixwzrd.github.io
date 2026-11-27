@@ -52,6 +52,13 @@ for file in $text_files; do
 
         # Create a temporary file
         temp_file=$(mktemp)
+        # The replacement must retain the original mode, especially executable
+        # scripts. A bare mktemp file is 0600 and mv would strip their +x bits.
+        if ! cp -p "$file" "$temp_file"; then
+            rm -f "$temp_file"
+            echo "❌ Could not preserve file permissions for $file" >&2
+            exit 1
+        fi
 
         # Use cleanup-text as a filter
         if cat "$file" | cleanup-text > "$temp_file" 2>/dev/null; then
@@ -67,14 +74,16 @@ for file in $text_files; do
                     echo " 📝 Re-staged: $file"
                 fi
             else
-                echo " ℹ️ No changes needed: $file"
+                echo " ℹ No changes needed: $file"
                 rm "$temp_file"
             fi
         else
-            echo " ⚠️ Warning: Could not process $file (may be binary or corrupted)"
+            echo " ⚠ Warning: Could not process $file (may be binary or corrupted)"
             rm "$temp_file"
         fi
     fi
 done
 
 echo "✅ Text cleanup completed"
+
+
