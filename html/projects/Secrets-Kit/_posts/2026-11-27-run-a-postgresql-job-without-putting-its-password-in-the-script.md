@@ -5,6 +5,8 @@ date: 2026-11-27 20:30:00 -0600
 category: Secrets-Kit
 categories: [technology]
 permalink_slug: run-a-postgresql-job-without-putting-its-password-in-the-script
+short_link_basis: "/projects/Secrets-Kit/_posts/2026-11-27-run-a-postgresql-job-without-putting-its-password-in-the-script.md"
+short_url: "https://unixwzrd.ai/s/ffe88ae18e/"
 tags: [secrets-management, local-first, developer-tools]
 excerpt: "Use the free Secrets Kit client to pass a single PostgreSQL credential to psql at launch, then prove the query fails without it and succeeds with it."
 image:
@@ -65,5 +67,6 @@ The result should be `1`, followed by a return to the shell. The rest of the job
 The password isn't in the script or `psql` arguments. It **is** in the child process environment, and Secrets Kit passes through the parent environment too. Keep it out of traces, environment dumps, and application logs. [PostgreSQL warns](https://www.postgresql.org/docs/current/libpq-envars.html) that process environments are inspectable on some systems. If your setup requires PostgreSQL's password-file interface, see the [versioned application examples](https://github.com/unixwzrd/Secrets-Kit/blob/v2.0.5/docs/EXAMPLES.md#postgresql-redis-and-batch-applications): selecting a file path is a different workflow and does not encrypt the file itself.
 
 When you're done, close the demo shell and retire the disposable database role and the matching Secrets Kit entry. For more examples, see the [Secrets Kit guides]({{ '/projects/Secrets-Kit/guides/' | relative_url }}). If your next job needs authorized peers across networks, read about [optional Remote Secret Sync]({{ '/projects/Secrets-Kit/remote-sync/' | relative_url }}).
+
 
 
