@@ -36,6 +36,7 @@ Commit the consolidation as one coherent change: canonical implementation files,
 | --- | --- |
 | [`bin/checks/01_environment.sh`](bin/checks/01_environment.sh) | Checks selected Ruby/Python executables, locked bundle availability, and installed Python requirements. Does not install packages. |
 | [`bin/checks/02_permalinks.sh`](bin/checks/02_permalinks.sh) | Validates permalink definitions and collision constraints. |
+| [`bin/checks/02_short_link_metadata.sh`](bin/checks/02_short_link_metadata.sh) | Verifies the working-tree short-link metadata with the same check as GitHub CI; does not edit or stage posts. |
 | [`bin/checks/03_jekyll_doctor.sh`](bin/checks/03_jekyll_doctor.sh) | Runs Jekyll doctor; case-only URL warnings on a case-insensitive macOS volume are reported, with strict behavior controlled by the script. |
 | [`bin/checks/04_link_checker.sh`](bin/checks/04_link_checker.sh) | Checks source-level internal references and reports relevant link issues. |
 | [`bin/checks/05_site_link_checker.sh`](bin/checks/05_site_link_checker.sh) | Builds production output through `utils/bin/jekyll-site build -n`, replacing the shared `_site/`, then runs HTMLProofer and nested-slash link checks. Avoid during another shared preview; use an isolated build plus `check-site test --site PATH` for non-disruptive rendered checks. |
@@ -170,4 +171,5 @@ The only automatically reportable browser-output locations are `output/playwrigh
 - [Deployment](../docs/guides/deployment.md)
 - [Environment setup](../docs/guides/environment-setup.md)
 - [Maintenance](../docs/guides/maintenance.md)
+
 

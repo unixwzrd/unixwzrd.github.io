@@ -1,6 +1,6 @@
 # Local checks and pre-commit
 
-The installed repository hook invokes the portable repository wrapper at utils/bin/pre-commit. The wrapper selects the existing local project environments where available and invokes utils/bin/check-site checks while explicitly skipping 05_update_project_data.sh, which makes network requests and stages generated files. The check-site CLI delegates the local suite to utils/bin/check_site.sh.
+The native Git hook runs the ordered checks in `utils/bin/check_site.sh`, either directly or through the portable `utils/bin/pre-commit` wrapper. Both routes select the existing project environments and skip `05_update_project_data.sh`, which makes network requests and stages generated files.
 
 The installed .git/hooks/pre-commit file is local Git configuration and is not replaced by the repository documentation or by the wrapper. Keep the hook enabled. If a check fails, diagnose and fix the underlying environment or test failure instead of bypassing the hook.
 
@@ -36,9 +36,11 @@ Run the same suite plus checks against an existing rendered output:
 
 The latter expects an existing index.html and does not build or overwrite it. It adds permalink, taxonomy, redirect, short-link front-matter, and offline HTMLProofer checks.
 
-## Optional staged-content hook
+## Short-link metadata
 
-The separate .pre-commit-config.yaml hook can check/backfill short-link metadata for staged site content. It is not the installed shell hook and is not required to run the full site checks. See [blog templates](../templates/blog-templates.md) for read-only --check and scoped backfill behavior.
+The native shell hook runs `02_short_link_metadata` early, using the same read-only source check as GitHub CI. Jekyll can generate a redirect during rendering even when the post lacks a persisted `short_url`; the check catches that before push. It checks the working-tree source and does not rewrite or stage posts. If it reports a mismatch, run the scoped backfill on that file, review the diff, and stage the corrected file before retrying. With a partially staged post, make sure the metadata is included in the staged diff too.
+
+The separate `.pre-commit-config.yaml` hook can backfill metadata for staged paths if you use the `pre-commit` framework. It is not the native shell hook. See [blog templates](../templates/blog-templates.md) for the scoped backfill commands.
 
 ## If the hook fails
 
@@ -49,4 +51,5 @@ The separate .pre-commit-config.yaml hook can check/backfill short-link metadata
 5. Review the working-tree diff, especially after checks that may update files.
 
 The canonical file list and each check's effects are in [utils/README.md](../../utils/README.md).
+
 

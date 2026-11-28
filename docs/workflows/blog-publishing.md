@@ -55,7 +55,7 @@ The ordered blog landing-page cards, recent-post sections, and Blog navigation e
    mv _drafts/title.md _posts/YYYY-MM-DD-short-descriptive-title.md
    ```
 2. Set the immutable **`permalink_slug:`** for every project post. It controls the canonical URL independently of the title and filename and must not change after publication. See [templates/blog-templates.md](../templates/blog-templates.md).
-3. Optional but recommended: add **`short_url`** after the first build or run:
+3. Persist the post's **`short_url`** before committing. Jekyll generates the redirect at build time, but the local and GitHub checks require the source metadata. Backfill it with:
    ```bash
    bundle exec ruby utils/bin/backfill_short_url_front_matter.rb html/projects/ProjectName/_posts/YYYY-MM-DD-....md
    ```
@@ -190,5 +190,6 @@ Date-only values (`2026-08-15`) are fine; time and timezone are optional.
 3. Keep drafts organized
 4. Use meaningful file names
 5. Follow naming conventions
+
 
 
