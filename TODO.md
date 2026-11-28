@@ -104,7 +104,7 @@
 ### Email & Automation Implementation (NEXT PHASE)
 - [ ] **Email Alert System**
   - [ ] Configure email credentials in `utils/etc/site_monitor_config.json`
-  - [ ] Test email functionality with `utils/bin/test_email.py`
+  - [ ] Test email functionality with `utils/bin/diagnostics/test_email.py`
   - [ ] Implement email notifications for site monitoring alerts
   - [ ] Create email templates for different alert types
   - [ ] Add email rate limiting to prevent spam
@@ -398,3 +398,4 @@
 - 🔄 Robots.txt bypass strategies (TODO)
 - 🔄 Exclude list feature (TODO)
 - 🔄 Enhanced threshold management (TODO)
+

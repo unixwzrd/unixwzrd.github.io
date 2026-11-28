@@ -32,7 +32,7 @@ When working with the post layout, remember that all frontmatter variables are a
 {{ page.content_type }}
 ```
 
-The canonical tag vocabulary lives in `html/_data/tag_taxonomy.yml`. List it from the repository root with `bundle exec ruby scripts/list_tags.rb`. Use `content_type` for introductions, releases, updates, and reference posts rather than adding those values to `tags`.
+The canonical tag vocabulary lives in `html/_data/tag_taxonomy.yml`. List it from the repository root with `bundle exec ruby utils/bin/list_tags.rb`. Use `content_type` for introductions, releases, updates, and reference posts rather than adding those values to `tags`.
 
 ### Contents navigation and optional discussion prompts
 
@@ -72,7 +72,7 @@ The main navigation order is `_config.yml`'s `header_pages` list, now consumed b
 
 The site follows the browser's light/dark preference using paired CSS custom properties, with no JavaScript preference or theme switch. `html/assets/css/style.scss` must retain its empty YAML front matter so Jekyll compiles it in place of the theme's stylesheet. It imports Minima initialization and the active skin before emitting custom components exactly once. The auto-loaded `custom-styles.scss` hook is intentionally non-emitting. Palette inputs and early variable bindings live in `custom-variables.scss`; additional component/code tokens live in `custom_theme.scss`.
 
-Run focused fixture tests with `bundle exec ruby scripts/test_reader_experience.rb`. Set `READER_SITE=/absolute/path/to/built/site` to add rendered integration checks; optional `READER_BASELINE=/absolute/path/to/prior/build` also compares original heading anchors and canonical links. Against an already served isolated build, open its SSH article with Playwright CLI and run `playwright-cli run-code --filename scripts/check_reader_experience_browser.js`. The browser check uses the current page's origin, exercises both appearances at desktop and mobile widths, checks rendered text/control contrast, source disclosures, and contents keyboard/fragment navigation with and without JavaScript, and saves ignored screenshots under `output/playwright/`. It never submits forms or comments. This is targeted regression coverage, not a full accessibility certification.
+Run focused fixture tests with `bundle exec ruby utils/tests/ruby/test_reader_experience.rb`. Set `READER_SITE=/absolute/path/to/built/site` to add rendered integration checks; optional `READER_BASELINE=/absolute/path/to/prior/build` also compares original heading anchors and canonical links. Against an already served isolated build, open its SSH article with Playwright CLI and run `playwright-cli run-code --filename utils/tests/browser/check_reader_experience_browser.js`. The browser check uses the current page's origin, exercises both appearances at desktop and mobile widths, checks rendered text/control contrast, source disclosures, and contents keyboard/fragment navigation with and without JavaScript, and saves ignored screenshots under `output/playwright/`. It never submits forms or comments. This is targeted regression coverage, not a full accessibility certification.
 
 The Pages workflow builds the Pagefind index after Jekyll and before uploading `_site`, using the versions in `requirements.txt` and the same selectors/language as `jekyll-site`. It checks the search entry files and a nonempty English index, runs the reader fixture/rendered tests and standalone permalink validator, and checks internal links and fragments with HTMLProofer. The internal check allows HTML5 named anchors without `href`; it does not perform network-dependent external-link checks. Browser checks remain a local validation step and now exercise a real search query, query-string preservation, and a reachable result in both appearances and widths. Generate the search index before running those browser checks.
 
@@ -304,22 +304,22 @@ Posts, plus pages that opt in with `short_link: true`, get a deterministic short
 **Backfill** front matter when creating eligible content or before moving older content that does not yet have `short_link_basis`:
 
 ```bash
-bundle exec ruby scripts/backfill_short_url_front_matter.rb --dry-run
-bundle exec ruby scripts/backfill_short_url_front_matter.rb
+bundle exec ruby utils/bin/backfill_short_url_front_matter.rb --dry-run
+bundle exec ruby utils/bin/backfill_short_url_front_matter.rb
 ```
 
 **Staged eligible content only** (fast; use from pre-commit or by hand):
 
 ```bash
-bundle exec ruby scripts/backfill_short_url_front_matter.rb html/projects/MyProject/_posts/2026-01-01-example.md
-bundle exec ruby scripts/backfill_short_url_front_matter.rb --staged   # git index: cached paths only
+bundle exec ruby utils/bin/backfill_short_url_front_matter.rb html/projects/MyProject/_posts/2026-01-01-example.md
+bundle exec ruby utils/bin/backfill_short_url_front_matter.rb --staged   # git index: cached paths only
 ```
 
 **Check without writing** (CI or sanity check):
 
 ```bash
-bundle exec ruby scripts/backfill_short_url_front_matter.rb --check
-bundle exec ruby scripts/backfill_short_url_front_matter.rb --check --staged
+bundle exec ruby utils/bin/backfill_short_url_front_matter.rb --check
+bundle exec ruby utils/bin/backfill_short_url_front_matter.rb --check --staged
 ```
 
 **Pre-commit:** optional [`.pre-commit-config.yaml`](../../.pre-commit-config.yaml) runs the script with `pass_filenames: true`. It updates staged posts and pages opted in with `short_link: true`; unrelated pages are ignored. Jekyll still loads the full site once for collision checks.
@@ -329,4 +329,5 @@ bundle exec ruby scripts/backfill_short_url_front_matter.rb --check --staged
 **Verify:** `bundle exec jekyll build` (should succeed); optional `ls _site/s/` for redirect folders; open one `_site/s/<code>/index.html` and confirm canonical target URL.
 
 **Updated:** 2026-08-18
+
 

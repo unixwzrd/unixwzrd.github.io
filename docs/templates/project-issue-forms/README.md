@@ -18,11 +18,11 @@ Copies are staged, uncommitted, in the existing LogGPT, UnicodeFix, Extract Chat
 
 LogGPT now has specialized bug, feature, and support-question forms. The bug form separately requests the app version/build, device model, operating-system version, optional Safari version, Basic/Plus edition, and conversation type. Its chooser disables blank issues to make the structured forms the normal route. Run `ruby scripts/check-issue-forms.rb` in the LogGPT repository to validate those forms. Do not overwrite them with the generic copies here. Ordinary support belongs in GitHub; email is a fallback for people unable to access GitHub and remains available for private billing, account, or security matters.
 
-This directory contains review packages for public repositories without a matching working checkout selected for this task:
+This directory also contains the reusable review packages for the remaining supported public projects. Copies are staged in their public working checkouts:
 
 - `LLM-Ops-Kit/.github/ISSUE_TEMPLATE/`: bug report, feature request, and chooser configuration.
-- `localops-ui-kit/.github/ISSUE_TEMPLATE/`: bug report, feature request, and chooser configuration. Do not copy into the private development repository by mistake.
-- `code-analytics/.github/ISSUE_TEMPLATE/`: feature request and chooser configuration only. Preserve the existing public Code Analysis bug report form; it already requests appropriate diagnostics and warns about private source and reports.
+- `localops-ui-kit/.github/ISSUE_TEMPLATE/`: bug report, feature request, and chooser configuration in the public toolkit checkout.
+- `code-analytics/.github/ISSUE_TEMPLATE/`: feature request and chooser configuration alongside the existing bug report form in the public Code Analysis checkout.
 
 Review each destination's current templates before copying or merging these files. Forms become available only after they reach that repository's default branch. Publish the repository templates before, or alongside, the website routing. Until then, the website's `/issues/new/choose` links still use GitHub's existing issue-creation flow rather than depending on unpublished template filenames. Nothing has been committed, pushed, deployed, or filed as an issue by this work.
 
@@ -34,5 +34,6 @@ GitHub also supports [default community files](https://docs.github.com/en/commun
 
 ## Validation
 
-The website's `scripts/test_reader_experience.rb` checks the shared forms and these review packages as YAML, validates required form fields and unique IDs, and checks project filtering, private fallbacks, prominent guide placement, and rendered repository links. Use the normal local Jekyll build and internal-link checks before publication. GitHub's live issue chooser can only be accepted after the templates have been pushed; local validation is not a claim that the forms are already active on GitHub.
+The website's `utils/tests/ruby/test_reader_experience.rb` checks the shared forms and these review packages as YAML, validates required form fields and unique IDs, and checks project filtering, private fallbacks, prominent guide placement, and rendered repository links. Use the normal local Jekyll build and internal-link checks before publication. GitHub's live issue chooser can only be accepted after the templates have been pushed; local validation is not a claim that the forms are already active on GitHub.
+
 

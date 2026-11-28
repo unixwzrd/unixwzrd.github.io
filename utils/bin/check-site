@@ -6,6 +6,9 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SITE_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 cd "$SITE_ROOT"
 
+source "$SITE_ROOT/utils/lib/site-environment.sh"
+site_environment
+
 run_crawl() {
     local base_url="$1"
     shift
@@ -20,6 +23,8 @@ Usage:
   utils/bin/check-site remote [--verbose]
   utils/bin/check-site all [--verbose]
   utils/bin/check-site checks [check_site.sh options]
+  utils/bin/check-site test [--site PATH]
+  utils/bin/check-site artifacts [cleanup options]
   utils/bin/check-site help
 
 Commands:
@@ -27,6 +32,8 @@ Commands:
   remote    Crawl the production site from its sitemap.
   all       Run local, then remote.
   checks    Run the full local check suite via utils/bin/check_site.sh.
+  test      Run deterministic Ruby/Python regressions; --site adds build checks.
+  artifacts Report old browser artifacts; never deletes without --apply MANIFEST.
   help      Show this help text.
 
 Examples:
@@ -55,6 +62,12 @@ case "$command" in
         ;;
     checks)
         exec "$SCRIPT_DIR/check_site.sh" "$@"
+        ;;
+    test)
+        exec python "$SITE_ROOT/utils/lib/run_tests.py" "$@"
+        ;;
+    artifacts)
+        exec python "$SITE_ROOT/utils/lib/artifacts.py" "$@"
         ;;
     help|--help|-h)
         usage

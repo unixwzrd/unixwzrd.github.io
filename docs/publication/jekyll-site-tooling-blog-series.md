@@ -96,11 +96,11 @@ Start with these source groups. Narrow the list for each post rather than readin
 
 ### Metadata, taxonomy, and URL integrity
 
-- `scripts/backfill_short_url_front_matter.rb`
-- `scripts/check_tag_taxonomy.rb`
-- `scripts/list_tags.rb`
-- `scripts/verify_short_url_redirects.rb`
-- `scripts/verify_project_permalink_redirects.rb`
+- `utils/bin/backfill_short_url_front_matter.rb`
+- `utils/bin/checks/check_tag_taxonomy.rb`
+- `utils/bin/list_tags.rb`
+- `utils/bin/checks/verify_short_url_redirects.rb`
+- `utils/bin/checks/verify_project_permalink_redirects.rb`
 - `html/_plugins/00_project_post_permalink.rb`
 - `html/_plugins/01_short_link_injector.rb`
 - `html/_plugins/02_post_list_metadata.rb`
@@ -111,7 +111,7 @@ Start with these source groups. Narrow the list for each post rather than readin
 
 ### Project publishing and search
 
-- `utils/bin/fetch_og.py` and `utils/bin/test_fetch_og.py`
+- `utils/bin/fetch_og.py` and `utils/tests/python/test_fetch_og.py`
 - `html/_data/repos.yml`, reviewed for private entries before quoting
 - `html/_data/github_projects.yml`, generated project metadata
 - Project layouts, listings, and scaffolded pages under `html/`
@@ -136,8 +136,8 @@ Start with these source groups. Narrow the list for each post rather than readin
 - `utils/bin/article-audio`
 - `utils/bin/article_audio.py`
 - `utils/etc/article-audio.defaults.json`
-- `utils/bin/test_article_tts.py`
-- `utils/bin/test_article_audio.py`
+- `utils/tests/python/test_article_tts.py`
+- `utils/tests/python/test_article_audio.py`
 - `html/_includes/post_audio.html`
 - The development-only proofreader integration in the applicable post layout and assets
 
@@ -363,3 +363,4 @@ Write in a natural first-person engineering voice, with prose carrying the story
 
 Keep evidence packets and review material under `docs/publication/`. The Publisher has authorized local browser drafts under the Jekyll post tree; use a provisional future date until the publication date is settled. Do not commit, push, deploy, or remote-publish without Publisher direction. Do not rebuild or restart the watched Jekyll server merely to make an ordinary source edit visible.
 ```
+

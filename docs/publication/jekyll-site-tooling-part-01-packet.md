@@ -23,7 +23,7 @@ Tracked source: `8c8846a9d1b98d967f9eee5c6da28db2bad035a7`. Updated, uncommitted
 | `html/_plugins/00_project_post_permalink.rb`, `01_short_link_injector.rb`, `02_post_list_metadata.rb` | Separate URL identity, short links, and discovery order |
 | `utils/bin/jekyll-site`; `.pre-commit-config.yaml`; `utils/bin/check_site.sh`; `.github/workflows/jekyll.yml` | Preview, configured checks, and deployment responsibilities |
 | `html/_includes/blog_diagram.html`, `source_code.html`; `html/_plugins/source_code_filter.rb`; `html/_layouts/post.html`; `utils/bin/article_audio.py` | Shared artifact presentation and optional audio workflows |
-| `utils/bin/test_fetch_og.py`, `test_article_tts.py`, `test_article_audio.py`, `test_site_reliability_monitor.py` | Test inventory only, not passing-test evidence; no numerical or reliability claims in Part 1 |
+| `utils/tests/python/test_fetch_og.py`, `test_article_tts.py`, `test_article_audio.py`, `test_site_reliability_monitor.py` | Test inventory only, not passing-test evidence; no numerical or reliability claims in Part 1 |
 | `html/_includes/engagement.html`, `giscus_comments.html`, `contact_form.html`, `getintouch.html`; `html/assets/js/contact-form.js`; `html/contact.md` | Configured discussion route and a client-side form that opens a prepared mail draft; Publisher reports no observed discussion use |
 
 ## Claim table
@@ -57,7 +57,7 @@ These are selected CHANGELOG entries for the introduction, not a claim that each
 | `2026-08-16`, `2026-08-18`, and `2026-08-21` | Update-aware discovery, source reorganization, stable short links, frozen project URLs, and compatibility redirects addressed different kinds of identity drift | Source and URL contracts must be described separately |
 | `2026-08-25` through `2026-09-22` | Taxonomy, listening, retained narration, diagram presentation, focused listings, and a complete archive expanded editorial and reader workflows | The 2026-09-22 archive sorts by effective discovery date, including promoted updates |
 
-The Publisher's “problem, let's solve it” account is the narrative thread. The table supports a cumulative argument; it does not prove a single linear design plan, a time-saving metric, or uninterrupted use of every historical component.
+The Publisher's "problem, let's solve it" account is the narrative thread. The table supports a cumulative argument; it does not prove a single linear design plan, a time-saving metric, or uninterrupted use of every historical component.
 
 ## Conflict dispositions and exclusions
 
@@ -125,3 +125,4 @@ The draft should use the project lifecycle as its organizing example, distinguis
 ## Review-draft handoff fields
 
 At the Publisher's request, the article now lives at `html/_posts/series/beyond-static-building-a-publication-system-around-jekyll/2026-09-22-jekyll-one-problem-at-a-time.md`, and the landing page lives at `html/blog/series/beyond-static-building-a-publication-system-around-jekyll.md`. The review copies in this folder are superseded. Local browser preview uses the September 22 source date, default image, permalink, short-link identities, and series navigation metadata. Those values should be reviewed before any commit or remote publication. The post is included in the landing page's Main Series list and has not been technically or editorially approved.
+

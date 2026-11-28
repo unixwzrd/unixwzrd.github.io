@@ -57,7 +57,7 @@ The ordered blog landing-page cards, recent-post sections, and Blog navigation e
 2. Set the immutable **`permalink_slug:`** for every project post. It controls the canonical URL independently of the title and filename and must not change after publication. See [templates/blog-templates.md](../templates/blog-templates.md).
 3. Optional but recommended: add **`short_url`** after the first build or run:
    ```bash
-   bundle exec ruby scripts/backfill_short_url_front_matter.rb html/projects/ProjectName/_posts/YYYY-MM-DD-....md
+   bundle exec ruby utils/bin/backfill_short_url_front_matter.rb html/projects/ProjectName/_posts/YYYY-MM-DD-....md
    ```
    The backfill freezes `short_link_basis` and derives `short_url` from it. Normal edits and later directory moves do not invalidate the code. Do not change the basis after publishing.
 
@@ -105,7 +105,7 @@ The ordered blog landing-page cards, recent-post sections, and Blog navigation e
 - `series` identifies an ordered article series.
 - `content_type` describes what the post is: `introduction`, `release`, `update`, or `reference`. Omit it for an ordinary article.
 - Choose approximately 2-6 topical tags from `html/_data/tag_taxonomy.yml`; do not invent an alias in post front matter.
-- Run `bundle exec ruby scripts/list_tags.rb` to see the valid tags without opening the website.
+- Run `bundle exec ruby utils/bin/list_tags.rb` to see the valid tags without opening the website.
 - A Jekyll build fails when a published or scheduled post uses an unknown, retired, or aliased tag.
 
 ## Secrets Kit product section
@@ -126,7 +126,7 @@ The comparison has two feature matrices and a searchable catalog of 32 alternati
 
 To withdraw the product section, unpublish all eight supporting pages together. Removing Get Started from loaded pages restores the landing-page fallback and previous blog placement. Git commits, pushes, announcements, product promotion, and live billing activation remain separate actions.
 
-Validate an isolated production build without replacing the running local server's output. Run `SECKIT_PRODUCTION_SITE=/path/to/production bundle exec ruby scripts/test_secrets_kit_product.rb`, the reader-experience suite, and the existing permalink, redirect, taxonomy, and internal-link checks. Verify that production includes the current installer and documentation links and the GA article. Inspect desktop/mobile layouts, keyboard access, support routes, search/category filtering, empty states, and the catalog without JavaScript. `bundle exec ruby scripts/test_secrets_kit_product.rb` runs source and fixture checks without a build.
+Validate an isolated production build without replacing the running local server's output. Run `SECKIT_PRODUCTION_SITE=/path/to/production bundle exec ruby utils/tests/ruby/test_secrets_kit_product.rb`, the reader-experience suite, and the existing permalink, redirect, taxonomy, and internal-link checks. Verify that production includes the current installer and documentation links and the GA article. Inspect desktop/mobile layouts, keyboard access, support routes, search/category filtering, empty states, and the catalog without JavaScript. `bundle exec ruby utils/tests/ruby/test_secrets_kit_product.rb` runs source and fixture checks without a build.
 
 ## Publishing Process
 
@@ -134,6 +134,7 @@ Validate an isolated production build without replacing the running local server
    - Write post in _drafts
    - Preview locally
    - Get feedback if needed
+   - To review a dated `_posts` entry in the blog lists without publishing it, set `published: false` and `preview_list: true`. It only appears in listings in a development build run with `--unpublished`.
 
 2. **Pre-publish Checks**
    - Run spell check
@@ -181,7 +182,7 @@ Date-only values (`2026-08-15`) are fine; time and timezone are optional.
 - Date in future (use `jekyll build --future` locally if needed)
 - Duplicate permalinks
 - Invalid front matter
-- **`short_url` mismatch** - run `scripts/backfill_short_url_front_matter.rb` (see [templates/blog-templates.md](../templates/blog-templates.md))
+- **`short_url` mismatch** - run `utils/bin/backfill_short_url_front_matter.rb` (see [templates/blog-templates.md](../templates/blog-templates.md))
 
 ## Tips and Tricks
 1. Use templates for consistency
@@ -189,4 +190,5 @@ Date-only values (`2026-08-15`) are fine; time and timezone are optional.
 3. Keep drafts organized
 4. Use meaningful file names
 5. Follow naming conventions
+
 

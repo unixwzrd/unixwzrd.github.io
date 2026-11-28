@@ -1,172 +1,40 @@
-# Deployment
+# Build and deployment
 
-[← Back to Site Operations Guide](site-operations.md)
+Treat local preview, CI validation, and public deployment as separate stages. A local build or passing check does not publish the site. The source workflow is [.github/workflows/jekyll.yml](../../.github/workflows/jekyll.yml).
 
-- [Deployment](#deployment)
-  - [Development Workflow](#development-workflow)
-    - [Daily Development](#daily-development)
-    - [Content Updates](#content-updates)
-    - [Production Deployment](#production-deployment)
-  - [Environment Variables and Configuration](#environment-variables-and-configuration)
-    - [Project Environment (.env/project.env)](#project-environment-envprojectenv)
-    - [Jekyll Configuration (\_config.yml)](#jekyll-configuration-_configyml)
-  - [GitHub Pages Deployment Branches](#github-pages-deployment-branches)
-    - [What is the `gh-pages` Branch?](#what-is-the-gh-pages-branch)
-    - [Why is it Parallel to `main`?](#why-is-it-parallel-to-main)
-    - [How is it Created and Updated?](#how-is-it-created-and-updated)
-    - [Best Practices](#best-practices)
-    - [Why This Approach?](#why-this-approach)
-  - [Production Deployment](#production-deployment-1)
-  - [Best Practices](#best-practices-1)
+## Local review
 
-This section covers steps and best practices for deploying the site to production, including GitHub Actions and manual deployment.
+Start the site's configured local service with utils/bin/site-service or use the Jekyll wrapper:
 
-## Development Workflow
+    utils/bin/jekyll-site build
+    utils/bin/jekyll-site serve
 
-### Daily Development
+For draft-inclusive preview on a trusted LAN, pass the explicit bind address/hostname supported by the wrapper. LAN mode has no authentication and exposes local draft content; keep it on a private trusted network. The default remains local-only. Do not point a browser audit at the public site.
 
-```bash
-# 1. Activate Python environment
-conda activate python-website-dev
-# OR using VenvUtil
-cact python-website-dev
+To build into a separate destination and run rendered checks without overwriting a shared preview:
 
-# 2. Start development server (fast mode)
-./utils/bin/site-service start -n
+    JEKYLL_ENV=production bundle exec jekyll build --destination /tmp/unixwzrd-site-review
+    utils/bin/check-site test --site /tmp/unixwzrd-site-review
 
-# 3. Make changes to content/templates
+The site test command requires an existing rendered index.html. It does not build, install dependencies, start services, or deploy.
 
-# 4. Server auto-reloads (or restart if needed)
-./utils/bin/site-service restart
+## GitHub Pages deployment
 
-# 5. Run pre-commit checks before committing
-./utils/bin/check_site.sh
-```
+The workflow runs on pushes to main and can be manually dispatched. It checks out the repository, installs the locked Ruby bundle and Python requirements in GitHub-hosted runners, removes only the workflow runner's generated _site and Jekyll cache, builds with production settings, generates and verifies the Pagefind index, then runs rendered tests and offline link validation. It reports browser artifact retention without deleting local or repository data, uploads _site with the Pages artifact action, and deploys that artifact with the Pages deployment action.
 
-### Content Updates
+Deployment is artifact-based; it is not configured as a branch publishing workflow from gh-pages. The production build/search checks and local developer checks are related but not identical. In particular, search-index generation is a distinct CI step and external-link checking is not part of the rendered offline suite.
 
-```bash
-# For content-only changes (fast mode, no OG refresh)
-./utils/bin/site-service start -n
+## Before a reviewed push
 
-# For project updates (complete mode, with OG refresh)
-./utils/bin/site-service start -r
+1. Inspect the complete working-tree diff.
+2. Run the repository pre-commit/site checks in the intended local Conda/RVM environment.
+3. Build and inspect the changed pages locally, including responsive layouts when presentation changed.
+4. Run the appropriate rendered checks; use a separate destination if another preview shares _site.
+5. Push only after local review. GitHub Actions performs the actual Pages deployment.
 
-# Quick restart for content changes
-./utils/bin/site-service restart
-```
+## Rollback and diagnosis
 
-### Production Deployment
+If Actions fails, use the failing workflow step and [troubleshooting](troubleshooting.md) to classify the failure before changing content or dependencies. A successful build does not prove the deployment completed; verify the Actions deployment result and then inspect the public URL. Restore content or workflow changes through a reviewed Git change rather than editing generated output.
 
-```bash
-# 1. Run full validation
-./utils/bin/check_site.sh
+See [GitHub Actions](github-actions.md), [testing](testing.md), and [pre-commit checks](../tools/pre-commit-checks.md).
 
-# 2. Build for production (complete mode + link verification)
-./utils/bin/jekyll-site build -c
-
-# 3. Deploy (GitHub Pages or other hosting)
-```
-
-## Environment Variables and Configuration
-
-### Project Environment ([.env/project.env](../../.env/project.env))
-
-```bash
-# RVM Configuration
-export PATH="$HOME/.rvm/bin:$PATH"
-source "$HOME/.rvm/scripts/rvm"
-rvm use 3.3.4@unixwzrd.github.io --default
-
-# Project paths
-export BASE_DIR="/path/to/project"
-export HTML_DIR="$BASE_DIR/html"
-export SITE_DIR="$BASE_DIR/_site"
-
-# Development variables
-export JEKYLL_ENV=development
-export JEKYLL_SERVE_HOST=localhost
-export JEKYLL_SERVE_PORT=4000
-```
-
-### Jekyll Configuration ([_config.yml](../../_config.yml))
-
-Key settings for operations:
-
-- **Source**: [html/](../../html/) (site source directory)
-- **Destination**: [_site/](../../_site/) (build output)
-- **Short links**: `short_link_origin` in `_config.yml` must match the hashing used for `/s/<code>/` redirects (see [templates/blog-templates.md](../templates/blog-templates.md))
-- **Pagination**: Disabled (no blog posts on homepage)
-- **Collections**: Projects and project posts
-- **Plugins**: Email protection, feed, SEO, sitemap
-
-## GitHub Pages Deployment Branches
-
-### What is the `gh-pages` Branch?
-
-- The `gh-pages` branch is a special branch used by GitHub Pages to serve your static website.
-- When you use deployment actions (like `peaceiris/actions-gh-pages`), your built site (the contents of `_site/`) is pushed to the `gh-pages` branch.
-- GitHub then serves the content of that branch at your site's URL (e.g., `https://unixwzrd.github.io`).
-
-### Why is it Parallel to `main`?
-
-- Your `main` branch contains your source code, markdown, scripts, and configuration.
-- The `gh-pages` branch contains only the built static site (HTML, CSS, JS, etc.), not your source files.
-- They are intentionally separate: you never edit `gh-pages` directly; it's overwritten by the deploy action.
-
-### How is it Created and Updated?
-
-- The deployment workflow (like `peaceiris/actions-gh-pages`) builds your site and pushes the result to `gh-pages`.
-- If you switch your GitHub Pages settings to deploy from the `gh-pages` branch, GitHub will serve the site from there.
-- If you use the newer "GitHub Actions" deployment source, GitHub manages the deployment branch for you (sometimes as a hidden branch).
-
-### Best Practices
-
-- **Never edit `gh-pages` directly.** Let the deploy action handle it.
-- **Keep your source and content in `main`.**
-- **If you see files in `main` that look like built site artifacts (HTML, redirect files, etc.),** they probably leaked in from a bad merge or crash and should be removed.
-- **Never merge between `main` and `gh-pages`.**
-
-### Why This Approach?
-
-- This separation ensures your source code and your deployed site are isolated.
-- If anything goes wrong with the build or deployment, your source (`main`) is unaffected.
-- You can always rebuild and redeploy without risking your main branch.
-
-## Production Deployment
-
-```bash
-# 1. Run full validation
-./utils/bin/check_site.sh
-
-# 2. Build for production (complete mode + link verification)
-./utils/bin/jekyll-site build -c
-
-# 3. Deploy (GitHub Pages or other hosting)
-```
-
-### CI parity (`bundle exec jekyll`)
-
-The live workflow ([`.github/workflows/jekyll.yml`](../../.github/workflows/jekyll.yml)) uses:
-
-```bash
-JEKYLL_ENV=production bundle exec jekyll build --trace
-```
-
-Run this from the **repository root**. `_config.yml` sets `source: html` and `destination: _site`.
-
-### Short links (`short_url`)
-
-If eligible content defines `short_url`, it must match the deterministic `/s/<code>/` derived from `short_link_origin` and immutable `short_link_basis` (or the source-path compatibility fallback), or the build fails.
-
-- Check: `bundle exec ruby scripts/backfill_short_url_front_matter.rb --check`
-- Fix: [templates/blog-templates.md](../templates/blog-templates.md) (backfill new content or freeze a basis before a source move)
-
-## Best Practices
-
-- Always validate the site before deploying
-- Use complete mode for production builds
-- Keep dependencies up to date
-- Review and update documentation regularly
-
-*Updated when deployment procedures change.*

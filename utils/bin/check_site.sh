@@ -70,23 +70,8 @@ done
 
 # GUI Git clients do not necessarily inherit the interactive shell's environments.
 # Reuse the same local environments as jekyll-site; never install dependencies here.
-ruby_environment="${HOME}/.rvm/environments/ext-ruby-3.3.4@unixwzrd.github.io"
-if [ -f "$ruby_environment" ]; then
-    source "$ruby_environment"
-fi
-for conda_root in "${HOME}/miniconda3" "${HOME}/anaconda3"; do
-    conda_prefix="${conda_root}/envs/python-website-dev"
-    if [ -x "${conda_prefix}/bin/python" ]; then
-        if [ ! -f "${conda_root}/etc/profile.d/conda.sh" ]; then
-            echo "❌ Conda activation script missing for ${conda_prefix}" >&2
-            exit 1
-        fi
-        source "${conda_root}/etc/profile.d/conda.sh"
-        conda activate "$conda_prefix"
-        break
-    fi
-done
-hash -r
+source "$SITE_ROOT/utils/lib/site-environment.sh"
+site_environment
 
 # Function to should_run_check
 should_run_check() {
@@ -130,5 +115,6 @@ for check in "$CHECKS_DIR"/*.sh; do
 done
 
 echo "✅ All checks passed successfully!"
+
 
 

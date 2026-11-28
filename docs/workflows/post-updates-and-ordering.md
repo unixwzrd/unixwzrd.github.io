@@ -150,7 +150,7 @@ Use `release_status: preview` for coming-soon or review-stage announcements. A v
 
 Older posts with `content_type: release`, `update`, or `introduction` receive the notice automatically. For legacy posts without a content type, use `release_version` or `release_notice: true` to opt in. Use `release_notice: false` to suppress it on an individual article. Unclassified case studies and tutorials are left alone. The selected release, later previews, and articles covering the same version do not receive a misleading older-release notice.
 
-Keep genuine editorial `update_notice` and modification dates when the article itself changes; those remain independent of automatic release pointers. Automatic notices do not create an "Updated" badge, alter article bodies, or change publication dates, permalinks, or short links. Implementation: `html/_plugins/product_release_notices.rb`. Regression checks run through `scripts/test_reader_experience.rb`, including in GitHub CI.
+Keep genuine editorial `update_notice` and modification dates when the article itself changes; those remain independent of automatic release pointers. Automatic notices do not create an "Updated" badge, alter article bodies, or change publication dates, permalinks, or short links. Implementation: `html/_plugins/product_release_notices.rb`. Regression checks run through `utils/tests/ruby/test_reader_experience.rb`, including in GitHub CI.
 
 ## Series ordering
 
@@ -205,4 +205,5 @@ See [templates/blog-templates.md](../templates/blog-templates.md#social-short-ur
 ---
 
 **Updated:** 2026-11-26
+
 

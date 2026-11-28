@@ -13,7 +13,7 @@ Below you'll find an overview of each major area of site operations, with links 
    Scripts and workflows for starting, stopping, and monitoring Jekyll and related services.
 
 - **[Deployment](deployment.md)**
-   Deploy and build (GitHub Actions, local production build, GitHub Pages branches).
+   Local review builds and GitHub Pages artifact-based build/deployment.
 
 - **[Blog Listing & Pagination](blog-pagination.md)**
    How blog listings and pagination work, including configuration, customization, and client-side navigation.
@@ -40,7 +40,7 @@ Below you'll find an overview of each major area of site operations, with links 
    Monitoring strategy, check frequency guidelines, and optimization recommendations.
 
 - **[Testing](testing.md)**
-   Testing procedures, validation methods, and quality assurance processes.
+   Deterministic source tests, rendered-site validation, browser regressions, and the boundary with manual diagnostics.
 
 - **[Checklist](checklist.md)**
    Comprehensive checklist for site improvements, maintenance tasks, and project tracking.
@@ -52,3 +52,4 @@ Below you'll find an overview of each major area of site operations, with links 
    Major updates, technical corrections, series `series_order`, and discovery-list promotion without changing permalinks or short links.
 
 Each section contains detailed instructions and is maintained in smaller files for easier updates.
+

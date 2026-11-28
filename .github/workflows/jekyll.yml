@@ -51,22 +51,10 @@ jobs:
 
       - name: Verify reader experience and internal links
         run: |
-          bundle exec ruby scripts/test_jekyll_site.rb
-          READER_SITE="$GITHUB_WORKSPACE/_site" bundle exec ruby scripts/test_reader_experience.rb
-          SECKIT_PRODUCTION_SITE="$GITHUB_WORKSPACE/_site" bundle exec ruby scripts/test_secrets_kit_product.rb
-          ATTRIBUTION_SITE="$GITHUB_WORKSPACE/_site" bundle exec ruby scripts/test_short_link_attribution.rb
-          bundle exec ruby utils/bin/checks/check_permalinks.rb
-          bundle exec htmlproofer ./_site --disable-external --allow-hash-href \
-            --check-internal-hash --allow-missing-href
+          utils/bin/check-site test --site "$GITHUB_WORKSPACE/_site"
 
-      - name: Verify permalink redirects
-        run: |
-          bundle exec ruby scripts/backfill_short_url_front_matter.rb --check
-          bundle exec ruby scripts/verify_short_url_redirects.rb
-          bundle exec ruby scripts/verify_project_permalink_redirects.rb
-
-      - name: Verify tag taxonomy
-        run: bundle exec ruby scripts/check_tag_taxonomy.rb
+      - name: Report browser artifact retention (no deletion)
+        run: utils/bin/check-site artifacts
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -79,4 +67,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
 

@@ -95,6 +95,12 @@ The Secrets Kit client is licensed under the **MIT License**. Read the [applicab
 
 ## Choose what comes next
 
+{% assign postgres_walkthrough = site.posts | where: 'permalink_slug', 'run-a-postgresql-job-without-putting-its-password-in-the-script' | where: 'category', 'Secrets-Kit' | first %}
+{% if postgres_walkthrough %}
+Try it with a real application: [Run a PostgreSQL job without putting its password in the script]({{ postgres_walkthrough.url | relative_url }}). The walkthrough uses the free local client and a disposable database role.
+{% endif %}
+
 Explore [Guides]({{ '/projects/Secrets-Kit/guides/' | relative_url }}), [RSS]({{ '/projects/Secrets-Kit/remote-sync/' | relative_url }}), [launch pricing]({{ '/projects/Secrets-Kit/pricing/' | relative_url }}), and [Security & Privacy]({{ '/projects/Secrets-Kit/security/' | relative_url }}). Use [Help & Support]({{ '/projects/Secrets-Kit/support/' | relative_url }}) for questions and sanitized problem reports.
+
 
 

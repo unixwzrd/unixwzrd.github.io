@@ -1,9 +1,10 @@
 {% if page.newer_release %}
   {% assign current_release = page.newer_release %}
   <aside class="post-update-notice" role="note" aria-label="Newer product release">
-    <p class="post-update-notice__title">Version {{ current_release.version | escape }} update · {{ current_release.date | date: "%B %-d, %Y" }}</p>
+    <p class="post-update-notice__title"><a href="{{ current_release.url | relative_url }}">Version {{ current_release.version | escape }} update · {{ current_release.date | date: "%B %-d, %Y" }}</a></p>
     {% if current_release.summary %}{{ current_release.summary | markdownify }}{% endif %}
     <p>For the complete, current overview, visit the <a href="{{ current_release.overview_url | relative_url }}">product overview</a>. <a href="{{ current_release.url | relative_url }}">Read the {{ current_release.version | escape }} release announcement</a>. The original announcement and its publication date are preserved below.</p>
   </aside>
 {% endif %}
+
 

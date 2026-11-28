@@ -2,6 +2,10 @@
 
 Preserve entries and prepend new ones. Planning, technical review, editorial approval, and publication authority are separate decisions.
 
+## 2026-11-27: Canonical tooling paths
+
+The website tools now live exclusively under `utils/`, without compatibility symlinks. Active tutorial instructions and source inventories use the canonical paths in the [utilities catalog](../../utils/README.md). Older entries below retain their originally recorded commands as historical evidence, not current invocation instructions. For example, the current taxonomy command is `bundle exec ruby utils/bin/checks/check_tag_taxonomy.rb`; do not copy its retired path from an older validation receipt.
+
 ## 2026-10-19 07:19 CDT (America/Chicago, UTC-05:00)
 
 **Author:** Codex, primary series agent. **Role:** Series status reviewer. **Decision:** Mark the planned ten-part series complete in the handoff documents. The Publisher's `a15acb6` commit contains Part 10 and Hands-On 10A; the checkout was clean at the start of this status review.
@@ -88,7 +92,7 @@ Preserve entries and prepend new ones. Planning, technical review, editorial app
 
 **Author:** Codex, primary series agent. **Role:** Part 7 author and local reviewer. **Decision:** Draft Part 7 in the local Jekyll post tree, centered on the Publisher's documented proofreading-by-ear experience. Keep browser listening distinct from retained MP3 publication, and leave Hands-On 7A and narration companion 7B optional pending the Publisher's review.
 
-**Evidence reviewed:** The Publisher's “Scope Creep Has Never Been This Easy” post, current article player JavaScript, development-only post layout, rendered-HTML Python extractor and relay, retained audio command and include, utility documentation, focused tests, existing series navigation, and the live local preview. During this work the Publisher committed the Part 6 pair at `0f128b8`; `origin/main` currently matches that commit. Remote publication was not independently checked.
+**Evidence reviewed:** The Publisher's "Scope Creep Has Never Been This Easy" post, current article player JavaScript, development-only post layout, rendered-HTML Python extractor and relay, retained audio command and include, utility documentation, focused tests, existing series navigation, and the live local preview. During this work the Publisher committed the Part 6 pair at `0f128b8`; `origin/main` currently matches that commit. Remote publication was not independently checked.
 
 **Changes:** Added Part 7 at a provisional November 5 date, a 2:1 banner generated with the built-in imagegen tool, a public editable DOT figure source with SVG/PNG renders, a source disclosure, a Part 7 evidence packet, and forward links from Part 6 and Hands-On 6A. The prose opens from the Publisher's own account of the tool's scope creep, then follows rendered prose extraction, player controls, buffered relay playback, Safari handling, editorial review, and the separate narration decision. No TTS service, site player, release hook, or production audio was changed.
 
@@ -100,7 +104,7 @@ Preserve entries and prepend new ones. Planning, technical review, editorial app
 
 **Author:** Codex, primary series agent. **Role:** Hands-On 6A author and local validator. **Decision:** Add a small source-to-image companion using the two actual Part 6 diagram files and already installed renderers. Keep installation and Jekyll build automation outside the lab's claims.
 
-**Evidence reviewed:** Part 6's DOT/MMD sources and renderer, the existing 2A–5A companion structure, `series_navigation.html`, public source routes, current checkout RVM gemset, and the local browser preview.
+**Evidence reviewed:** Part 6's DOT/MMD sources and renderer, the existing 2A-5A companion structure, `series_navigation.html`, public source routes, current checkout RVM gemset, and the local browser preview.
 
 **Changes:** Added a future-dated 6A post in the Hands-On category with source downloads, DOT/Mermaid render commands, label-edit checks, a reviewed figure, and a bounded explanation of how the source and image enter this site. Linked Part 6 to it through companion metadata, updated the series outline and Part 6 packet, and left Part 7 as the next main installment. No package archive, installation workflow, Jekyll hook, commit, or deployment was added.
 
@@ -362,7 +366,7 @@ Preserve entries and prepend new ones. Planning, technical review, editorial app
 
 ## 2026-09-22 15:27 CDT (America/Chicago, UTC-05:00)
 
-**Author:** Codex, primary series agent. **Role:** Researcher and editorial planner. **Decision:** Retitle Part 1 **Jekyll, One Problem at a Time** to distinguish it from the existing “When...” installment, and ground its cumulative narrative in selected CHANGELOG entries and the Publisher's firsthand account. The overall series working title remains unchanged.
+**Author:** Codex, primary series agent. **Role:** Researcher and editorial planner. **Decision:** Retitle Part 1 **Jekyll, One Problem at a Time** to distinguish it from the existing "When..." installment, and ground its cumulative narrative in selected CHANGELOG entries and the Publisher's firsthand account. The overall series working title remains unchanged.
 
 **Evidence reviewed:** Publisher direction and account of repeated Jekyll frustration; CHANGELOG entries from `20240220_01-rel` through the September 2026 updates, with source limitations already recorded in the inventory. The older file contains out-of-order entries, superseded paths, and a reverted Sass attempt, so no continuous deployment timeline is inferred.
 
@@ -403,3 +407,4 @@ Preserve entries and prepend new ones. Planning, technical review, editorial app
 **Validation:** A focused Python 3 check passed for all three series files: local Markdown links resolve, code fences balance, and no trailing whitespace is present. It also confirmed ten ordered main installments and removal of the obsolete First Assignment reference. `git diff --check` passed; because these documents are untracked, the explicit file checks provide their formatting evidence. `git status --short` showed only the untracked `docs/publication/` directory. Runtime tests and site builds were not run.
 
 **Next gate:** Prepare Part 1's pre-draft packet and detailed narrative outline, then draft for technical and editorial review. Resolve only the evidence gaps needed for that installment. Transfer to the post tree and publication remain separate Publisher decisions.
+

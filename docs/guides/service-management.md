@@ -26,7 +26,7 @@ The project now uses a modular service management system with three main scripts
 
 #### 1. **Site Service (Orchestrator)**
 
-The [utils/bin/site-service](../utils/bin/site-service) script manages both Jekyll and file watcher services:
+The [utils/bin/site-service](../../utils/bin/site-service) script manages both Jekyll and file watcher services:
 
 ```bash
 # Start both services
@@ -58,7 +58,7 @@ The [utils/bin/site-service](../utils/bin/site-service) script manages both Jeky
 
 #### 2. **Jekyll Site (Standalone)**
 
-The [utils/bin/jekyll-site](../utils/bin/jekyll-site) script manages Jekyll independently:
+The [utils/bin/jekyll-site](../../utils/bin/jekyll-site) script manages Jekyll independently:
 
 ```bash
 # Start Jekyll server (complete mode)
@@ -79,19 +79,21 @@ The [utils/bin/jekyll-site](../utils/bin/jekyll-site) script manages Jekyll inde
 
 Local serving includes future-dated posts, Markdown drafts, and posts marked `published: false` by default so scheduled work can be reviewed. Pass `--current` to `start` or `restart` when you need the site exactly as it is visible today.
 
+For trusted-LAN editorial review, use `utils/bin/jekyll-site restart --lan HOST` with this Mac's reachable IP address or hostname. Open `http://HOST:4000/`, not HTTPS. This exposes drafts without authentication on all IPv4 interfaces; it does not change the firewall/router or the production site. Restart without `--lan` to return to localhost-only binding. Local read-aloud remains localhost-only. Starting or restarting services is an explicit operator action, not part of automated tests.
+
 #### 3. **File Watcher (Standalone)**
 
-The [utils/bin/file-watcher](../utils/bin/file-watcher) script manages the file watcher independently:
+The [utils/bin/file_watcher](../../utils/bin/file_watcher) script manages the file watcher independently:
 
 ```bash
 # Start file watcher
-./utils/bin/file-watcher start
+./utils/bin/file_watcher start
 
 # Restart file watcher
-./utils/bin/file-watcher restart
+./utils/bin/file_watcher restart
 
 # Stop file watcher
-./utils/bin/file-watcher stop
+./utils/bin/file_watcher stop
 ```
 
 ### Service Management Options
@@ -123,3 +125,4 @@ The [utils/bin/file-watcher](../utils/bin/file-watcher) script manages the file 
 ### Service Status and Monitoring
 
 - Use the service scripts to check status, restart, or stop services as needed.
+

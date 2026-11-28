@@ -10,7 +10,7 @@ Omitting the trailing slash produces GitHub Pages' ordinary HTTP 301 normalizati
 
 The baseline JavaScript navigated to a fixed URL and dropped incoming queries and fragments. All five representative tagged redirect scenarios lost their UTM tags. The local `html/_layouts/redirect.html` override now appends the raw incoming query, retaining repeated keys, empty values, original encoding, and click IDs. A configured destination query is retained first; an incoming fragment is copied only when the configured destination has no fragment. Canonicals and fallback destinations remain unchanged. No codes, mapping inputs, or destination paths were changed.
 
-GA4 loads once through `head.html`, only in production. The analytics include already supplied the actual browser URL as `page_location`, but blog posts and the explicit `layout: page` project branch also sent a manual `page_view` without disabling the default initial view. Google documents that this creates duplicate page views. Those two branches now set `send_page_view: false`; their existing enriched manual views remain. Other page types retain the default initial view. The all-output JavaScript test also reproduced an initialization syntax error from the apostrophe in “Pulling the Plug Isn't an AI Containment Strategy”; page titles are now JSON-serialized and escaped against closing-script markup. Existing custom events, measurement ID, and unrelated analytics settings were not changed. This addresses initial page loads, not GA4 property-level enhanced-measurement history events.
+GA4 loads once through `head.html`, only in production. The analytics include already supplied the actual browser URL as `page_location`, but blog posts and the explicit `layout: page` project branch also sent a manual `page_view` without disabling the default initial view. Google documents that this creates duplicate page views. Those two branches now set `send_page_view: false`; their existing enriched manual views remain. Other page types retain the default initial view. The all-output JavaScript test also reproduced an initialization syntax error from the apostrophe in "Pulling the Plug Isn't an AI Containment Strategy"; page titles are now JSON-serialized and escaped against closing-script markup. Existing custom events, measurement ID, and unrelated analytics settings were not changed. This addresses initial page loads, not GA4 property-level enhanced-measurement history events.
 
 ## Remaining attribution limits
 
@@ -20,7 +20,7 @@ With JavaScript disabled, the existing static meta refresh and fallback link sti
 
 No explicit consent-mode/CMP or referrer-policy override was found in this redirect/analytics path. That does not establish the GA4 property's consent, reporting, enhanced-measurement, or unwanted-referral settings. The audit did not read the property or transmit test events to Google. Offline event counts reflect queued commands plus Google's documented automatic initial-view behavior, not confirmed receipt in GA4 reports.
 
-## Reporting recommendations — not applied
+## Reporting recommendations - not applied
 
 `Session manual source` reflects manual campaign tagging, particularly `utm_source`; it is not the general-purpose referral dimension. Missing manual campaign parameters can legitimately produce `(not set)`. Use **Session source / medium** and **Session default channel group** in Traffic acquisition to assess overall session acquisition. Compare landing page/query string and page referrer when investigating a particular entry route. Do not interpret every manual-source `(not set)` as a failed referral.
 
@@ -30,16 +30,18 @@ For new externally shared campaign links where source attribution matters, suppl
 
 Validation of the corrected production output passed with 159 unchanged redirect mappings, including 96 short links; 138 tracked HTML outputs; six offline tests with 1,663 assertions; and twenty fully intercepted browser cases with no failures. The future/draft-inclusive build also passed its offline analytics and reader checks. Internal HTMLProofer, source/generated short-link checks, legacy project redirect checks, taxonomy validation, and `git diff --check` passed. Browser requests to analytics and other external services were blocked. No property settings, packages, content identities, or unrelated source files were changed.
 
-The repository's existing pre-commit hook can install dependencies, rewrite front matter, normalize changed source text, and delete/rebuild the active site's output. It was deliberately not run for this bounded task. The local commit uses a one-command `core.hooksPath` override after isolated validation; persistent hook settings remain unchanged.
+The repository's current pre-commit workflow validates the existing local environment without installing dependencies; individual source-maintenance checks may update selected content, so inspect their effects before running them. Artifact reporting is separate and report-only by default. For current hook behavior, see [pre-commit checks](../tools/pre-commit-checks.md). The validation details below are historical evidence for that audit run, not a claim that the old commands remain canonical.
+
+Historical receipt: the October 20 audit avoided the then-mutating hook, performed isolated validation, and used a one-command `core.hooksPath` override for its local commit; persistent hook settings were unchanged. That recorded exception is not a recommendation to bypass today's local checks.
 
 ```bash
-bundle exec ruby scripts/test_short_link_attribution.rb
-ATTRIBUTION_SITE=/tmp/current-build ATTRIBUTION_BASELINE=/tmp/before-build bundle exec ruby scripts/test_short_link_attribution.rb
+bundle exec ruby utils/tests/ruby/test_short_link_attribution.rb
+ATTRIBUTION_SITE=/tmp/current-build ATTRIBUTION_BASELINE=/tmp/before-build bundle exec ruby utils/tests/ruby/test_short_link_attribution.rb
 ```
 
 The generated-output check compares the complete redirect map when a baseline is supplied, exercises every generated redirect on disk, and checks the analytics initialization of every tracked HTML output. The JavaScript VM uses only local Node built-ins and never loads `gtag.js`.
 
-For the real-browser audit, serve the isolated build temporarily on loopback and open its `redirects.json`, not its production-instrumented homepage. Then run `playwright-cli run-code --filename scripts/check_short_link_attribution_browser.js`. A `?baseline=1` suffix reports known baseline failures rather than aborting. The harness fulfills site navigation from local files, blocks all other browser requests, tests ordinary/tagged/no-referrer/JavaScript-disabled entries for three short URLs and two compatibility redirects, and observes the final URL, native referrer, document hops, and queued analytics initialization. No additional preview service is needed after the audit.
+For a current real-browser audit, serve the isolated build on loopback and pass its local `redirects.json` URL to `utils/bin/check-browser short-link-attribution --url http://localhost:4000/redirects.json`. The runner opens and closes its owned session, blocks requests outside the local origin, rejects public/production hosts, and retains timestamped evidence. The older raw Playwright script remains available under `utils/tests/browser/` for focused low-level review.
 
 ## Primary references
 
@@ -47,3 +49,4 @@ For the real-browser audit, serve the isolated build temporarily on loopback and
 - [Google: traffic-source dimensions and manual tagging](https://support.google.com/analytics/answer/11242870?hl=en)
 - [Google: automatic and manual page-view measurement](https://developers.google.com/analytics/devguides/collection/ga4/views)
 - [Google: what `(not set)` means](https://support.google.com/analytics/answer/13504892?hl=en)
+

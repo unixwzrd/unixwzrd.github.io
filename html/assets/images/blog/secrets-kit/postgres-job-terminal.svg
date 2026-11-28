@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 286" width="720" height="286" role="img" aria-labelledby="title desc">
+  <title id="title">PostgreSQL password control and Secrets Kit launch</title>
+  <desc id="desc">Condensed output from a disposable PostgreSQL 17.12 test with Secrets Kit 2.0.5. Plain psql exits 2 with fe_sendauth: no password supplied. The same query through seckit run exits 0 and prints 1.</desc>
+  <rect x="1" y="1" width="718" height="284" rx="13" fill="#111820" stroke="#637689" stroke-width="2"/>
+  <path d="M2 45H718" stroke="#4b6075"/>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="22" fill="#eaf0f7">
+    <text x="25" y="31" font-size="18" fill="#bdcce0">Secrets Kit 2.0.5  /  PostgreSQL 17.12</text>
+    <text x="25" y="79" fill="#93caff">$ psql -w … -Atc 'SELECT 1;'</text>
+    <text x="25" y="112">fe_sendauth: no password supplied</text>
+    <text x="25" y="140" font-size="18" fill="#bdcce0">exit 2 · no inherited password or passfile entry</text>
+    <path d="M25 157H695" stroke="#4b6075"/>
+    <text x="25" y="191" fill="#93caff">$ seckit run … -- psql -w …</text>
+    <text x="25" y="224" fill="#a5e9b8">1</text>
+    <text x="25" y="254" font-size="18" fill="#bdcce0">exit 0 · same connection and query</text>
+  </g>
+</svg>

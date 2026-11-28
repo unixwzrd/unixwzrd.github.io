@@ -2,6 +2,7 @@
 requests>=2.31.0
 beautifulsoup4>=4.12.0
 PyYAML>=6.0.1
+packaging>=24.0  # Parse installed-version constraints in read-only environment checks
 djlint
 watchdog>=3.0.0  # For file watching and automatic image path fixing
 pagefind==1.5.0
@@ -9,3 +10,4 @@ pagefind-bin==1.5.0
 
 # Optional but recommended
 python-dotenv>=1.0.0  # For environment variable management
+

@@ -1,1 +1,5 @@
-/Users/mps/projects/AI-PROJECTS/DTS-WebSite/unixwzrd.github.io/.git/hooks/pre-commit
+#!/usr/bin/env bash
+# Portable native Git hook. Installation is explicit; never rewrites other hooks.
+set -e
+SITE_ROOT="$(git rev-parse --show-toplevel)"
+exec bash "$SITE_ROOT/utils/bin/check-site" checks --skip 05_update_project_data.sh

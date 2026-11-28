@@ -1,75 +1,39 @@
-# Environment Setup
+# Local development environment
 
-[← Back to Site Operations Guide](site-operations.md)
+Use the project's existing Ruby and Conda environments. Do not let a GUI Git client silently fall back to a system Python, uv-managed interpreter, or unrelated Ruby installation.
 
-- [Environment Setup](#environment-setup)
-  - [Prerequisites](#prerequisites)
-  - [Initial Environment Setup](#initial-environment-setup)
-    - [1. RVM and Ruby Setup](#1-rvm-and-ruby-setup)
-    - [2. Python Environment Setup](#2-python-environment-setup)
-    - [3. Project Dependencies](#3-project-dependencies)
-    - [4. Environment Variables](#4-environment-variables)
+## Expected local environments
 
-This section covers how to configure your local and production environments, including Ruby, Python, Node.js, and all project dependencies.
+- RVM: project gemset ext-ruby-3.3.4@unixwzrd.github.io.
+- Conda: python-website-dev.
+- Bundler: dependencies pinned by Gemfile.lock.
+- Python: package versions declared by requirements.txt.
 
-## Prerequisites
-- macOS (primary development environment)
-- Ruby 3.3.4 (managed via RVM)
-- Python 3.x with virtual environment support
-- Conda or VenvUtil for Python environment management
-- Node.js (for some build tools)
-- Git
+The shared helper at utils/lib/site-environment.sh selects the existing project RVM gemset and Conda environment for local Git clients when available. If not available, it preserves the caller's environment. It does not change RVM defaults, activate global shell state, create environments, or install packages.
 
-## Initial Environment Setup
+## GUI Git clients
 
-### 1. RVM and Ruby Setup
-```bash
-# Install RVM if not already installed
-curl -sSL https://get.rvm.io | bash -s stable
+When Cursor or another GUI client was launched during startup before the intended shell environment was ready, its Git hook may inherit the wrong PATH. Close and relaunch the client from a terminal where the expected Conda and RVM environments are active, or perform the commit from that terminal. The hook's read-only environment check prints the selected executables and fails if required dependencies are absent.
 
-# Restart shell or source RVM
-source ~/.rvm/scripts/rvm
+    conda activate python-website-dev
+    rvm use ext-ruby-3.3.4@unixwzrd.github.io
+    utils/bin/check-site test
 
-# Install Ruby 3.3.4
-rvm install 3.3.4
-rvm use 3.3.4 --default
+Do not use pip against an externally managed system/uv Python, do not use --break-system-packages, and do not allow the hook to install requirements. Repair the intended environment explicitly using its normal project workflow.
 
-# Create gemset for this project
-rvm gemset create unixwzrd.github.io
-rvm use 3.3.4@unixwzrd.github.io --default
-```
+## Validate installation
 
-### 2. Python Environment Setup
-```bash
-# Option A: Using Conda
-conda activate python-website-dev
+    ruby --version
+    python --version
+    bundle check
+    python -m pip check
+    utils/bin/check-site test
 
-# Option B: Using VenvUtil (recommended)
-cact python-website-dev
+The full environment check also validates installed requirement versions. When bundle check reports a missing locked gem, install the lockfile-defined bundle in the intended RVM environment with bundle install. Do not run bundle update as generic maintenance; dependency updates should be deliberate, reviewed, and reflected in the lockfile.
 
-# Verify Python environment
-python --version
-which python
-```
+## CI environment
 
-### 3. Project Dependencies
-```bash
-# Install Jekyll and dependencies
-bundle install
+GitHub Actions provisions its own Ruby and Python versions, installs the repository's declared dependencies in its runner, and builds/deploys from that isolated environment. Local environment-selection behavior is for developer machines and does not change CI.
 
-# Verify installation
-bundle exec jekyll --version
-```
+See [pre-commit checks](../tools/pre-commit-checks.md), [testing](testing.md), and the [utility catalog](../../utils/README.md).
 
-### 4. Environment Variables
-The project uses `.env` files for environment configuration:
-
-```bash
-# Source the project environment
-source .env/project.env
-
-# This sets up:
-# - RVM environment
-# - Project paths
-# - Development variables
-``` 

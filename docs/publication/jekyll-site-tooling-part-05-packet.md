@@ -6,7 +6,7 @@ Status: source-reviewed September 26, 2026, and previously committed. On October
 
 | Source | Supported claim | Boundary |
 | --- | --- | --- |
-| `utils/bin/fetch_og.py`, `utils/bin/test_fetch_og.py` | Ordered `repos.yml` input, GitHub metadata or fallback, manual overrides, local card generation/fallback, `github_projects.yml` output, first-page scaffolding | Generator runs separately from a normal Jekyll build; failed entries can be skipped; scaffolding is conditional on an absent landing page |
+| `utils/bin/fetch_og.py`, `utils/tests/python/test_fetch_og.py` | Ordered `repos.yml` input, GitHub metadata or fallback, manual overrides, local card generation/fallback, `github_projects.yml` output, first-page scaffolding | Generator runs separately from a normal Jekyll build; failed entries can be skipped; scaffolding is conditional on an absent landing page |
 | `html/_includes/navigation.html`, `html/projects.md`, `html/_includes/projects_list.html` | Projects menu follows generated order after fixed All Projects; page splits private/public groups; `none` filtered in these views | Visibility is presentation, not access control; catalog order is preserved only among successfully processed entries and within each page group |
 | `html/_data/blog_sections.yml`, `html/blog.md`, `html/blog/series.md` | Visible Blog sections follow YAML order after fixed links; hidden General is absent from menu/hub; series directory reads all landing pages | Blog hub's configured Series recent list is currently Local First AI only; hidden section's content is not deleted |
 | `html/_layouts/project.html`, `html/_includes/project_lookup.html`, shared blog/discovery includes | Project `category` connects landing page to generated data and its update list | Draft introduction needs editing; a generated page is not a reviewed article |
@@ -29,3 +29,4 @@ The existing watched server returned HTTP 200 for the series landing, both Part 
 Playwright showed the main article and companion with their series context, images, source viewer, and links. At 390px, the Blog dropdown opened and displayed the fixed links followed by the visible sections in YAML order; General was absent. The only browser console errors observed were Giscus 404s for discussions that do not yet exist for these preview routes. None of these checks asserts remote publication.
 
 On the Publisher's September 26 request for the hands-on, the companion gained two explicit variations. The baseline, `--reorder`, and `--show-hidden` runs passed; the lab ZIP and checksum were refreshed. The Publisher restarted the local server, and the revised page, ZIP, and runner source returned HTTP 200. Playwright showed the revised commands and explanation in the page.
+

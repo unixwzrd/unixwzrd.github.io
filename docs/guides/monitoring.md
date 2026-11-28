@@ -97,7 +97,7 @@ python3 utils/bin/site_reliability_monitor.py --mode periodic
 ✅ Site is accessible: 200
 🔍 Checking critical pages...
 ✅ 44 pages checked and passed.
-🖼️ Checking images on critical pages...
+🖼 Checking images on critical pages...
 ✅ 44 images checked and passed.
 🔗 Checking internal links...
 🎉 All health checks passed! Your site is healthy and ready for visitors.
@@ -112,7 +112,7 @@ python3 utils/bin/site_reliability_monitor.py --mode periodic
 ✅ http://localhost:4000/blog/: 0.00s
 ✅ http://localhost:4000/projects/: 0.00s
 ✅ 44 pages checked and passed.
-🖼️ Checking images on critical pages...
+🖼 Checking images on critical pages...
 ✅ http://localhost:4000/: images OK
 ✅ http://localhost:4000/blog/: images OK
 ✅ 44 images checked and passed.
@@ -129,10 +129,10 @@ python3 utils/bin/site_reliability_monitor.py --mode periodic
 ✅ 43 pages checked and passed.
 ❌ 1 page failed out of 44 checked:
   - http://localhost:4000/missing-page/ (HTTP error)
-🖼️ Checking images on critical pages...
+🖼 Checking images on critical pages...
 ✅ 44 images checked and passed.
 🔗 Checking internal links...
-⚠️ Health checks completed with 1 issues
+⚠ Health checks completed with 1 issues
 Please review and fix the issues listed above.
 ```
 
@@ -273,7 +273,7 @@ Log levels:
 
 ### Monitoring Not Running
 1. Verify script permissions: `chmod +x utils/bin/site_reliability_monitor.py`
-2. Check Python dependencies: `pip install requests`
+2. Check that the intended Conda environment is active, then run `utils/bin/check-site test` to identify missing declared dependencies. The environment check is read-only; install or repair packages only in the project Conda environment through its established workflow, not system or uv-managed Python.
 3. Verify config file exists and is valid JSON
 
 ## Integration with Existing Systems
@@ -332,4 +332,5 @@ Potential improvements:
 
 ---
 
-This monitoring system transforms your site maintenance from reactive to proactive, ensuring your website remains reliable and performant. 
+This monitoring system transforms your site maintenance from reactive to proactive, ensuring your website remains reliable and performant.
+

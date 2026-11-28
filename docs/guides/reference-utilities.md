@@ -1,319 +1,79 @@
-# Reference & Utilities
+# Utilities reference
 
-**Created:** 2025-07-10
-**Updated:** 2026-08-20
+The canonical tool inventory is maintained in [utils/README.md](../../utils/README.md). It lists each implementation by its current path relative to utils/, explains intended invocation and effects, separates automated tests from manual diagnostics, and documents artifact-retention boundaries.
 
-[← Back to Site Operations Guide](site-operations.md)
+## Common entry points
 
-**Script catalog (paths and short descriptions):** [/utils/README.md](/utils/README.md)
+    utils/bin/check-site help
+    utils/bin/check-site checks --list
+    utils/bin/check-site test
+    utils/bin/check-site artifacts
 
-<!-- TOC will be auto-generated here -->
+- Use check-site checks for the ordered local site workflow.
+- Use check-site test for deterministic source regressions.
+- Use check-site test --site PATH to validate an already-rendered site.
+- Use check-browser only for a local browser review and only with an existing Playwright CLI.
+- Use check-site artifacts for report-only artifact inventory. Deletion requires explicit manifest review and --apply.
 
-This guide contains essential reference material and utility documentation for maintaining and operating the Distributed Thinking Systems website.
+## Important distinctions
 
-## Quick Reference
+All maintained tools use their canonical utils/ paths directly. The former root scripts directory and compatibility aliases have been removed; current commands are listed in the catalog.
 
-### Essential Commands
-```bash
-# Activate Python environment
-conda activate python-website-dev
-# OR using VenvUtil
-cact python-website-dev
+The diagnostics directory contains manual probes that may use networks, send email, or interact with running services. They are not equivalent to the offline automated test suite.
 
-# Start development
-./utils/bin/site-service start
+Some ordered checks validate or normalize source files. Read the listed purpose before selecting a mutating check, and review the working-tree diff afterward.
 
-# Quick content update
-./utils/bin/site-service start -n
+See [testing](testing.md), [pre-commit checks](../tools/pre-commit-checks.md), and [maintenance](maintenance.md) for operating procedures.
 
-# Full validation
-./utils/bin/check_site.sh
+## Article listening and retained narration
 
-# Production-style Jekyll build (same as .github/workflows/jekyll.yml)
-JEKYLL_ENV=production bundle exec jekyll build --trace
+The shared CLI commands have distinct purposes. article-tts extracts rendered prose for inspection, local playback, or editorial listening. article-audio manages approved public MP3 narration and its identity manifest.
 
-# short_url in front matter vs hash of short_link_basis (no file writes)
-bundle exec ruby scripts/backfill_short_url_front_matter.rb --check
+### Inspect and listen with article-tts
 
-# Include future-dated posts in build (optional local check)
-bundle exec jekyll build --future
+By default, the extractor reads the rendered post-content region. It retains the title, headings, paragraphs, list items, blockquotes, visible link text, and inline-code words. It omits URLs, navigation, diagrams, captions, tables, code blocks, source disclosures, support material, forms, audio, video, and comments.
 
-# Environment setup
-source .env/project.env
-```
+Inspect exact extracted prose and chunk sizing without calling TTS:
 
-### File Locations
-- **Service Script**: [utils/bin/site-service](../utils/bin/site-service)
-- **Environment**: [.env/project.env](../../.env/project.env)
-- **PID File**: [utils/etc/jekyll.pid](../utils/etc/jekyll.pid)
-- **Site Source**: [html/](../../html/)
-- **Build Output**: [_site/](../../_site/)
-- **Project Source Data**: [html/_data/repos.yml](../../html/_data/repos.yml)
-- **Generated Project Data**: [html/_data/github_projects.yml](../../html/_data/github_projects.yml)
-- **Project Data Generator**: [utils/bin/fetch_og.py](../../utils/bin/fetch_og.py)
-- **Template Dependency Graph Generator**: [utils/bin/render-jekyll-template-graph](../../utils/bin/render-jekyll-template-graph)
-- **Template Dependency Graph**: [docs/diagrams/site-architecture/jekyll-template-dependencies.svg](../diagrams/site-architecture/jekyll-template-dependencies.svg)
+    utils/bin/article-tts http://127.0.0.1:4000/technology/2026/09/08/voice-cloning-across-hosts-making-tts-operational/ --dry-run
 
-### URLs
-- **Development**: `http://localhost:4000`
-- **Production**: `https://unixwzrd.ai`
+Generate and play a retained local copy:
 
-### LAN draft preview
+    TTS_BRIDGE_URL=http://127.0.0.1:11440/v1 TTS_BRIDGE_VOICE=narrator utils/bin/article-tts http://127.0.0.1:4000/technology/2026/09/08/voice-cloning-across-hosts-making-tts-operational/ --play
 
-Use the Jekyll wrapper to share the editorial preview with another machine on a trusted network. Supply this Mac's current LAN IP address or a hostname the other machine can resolve:
+Without --output-dir, article-tts creates a new system temporary directory and prints its location. An explicit directory retains the extracted article, chunk text, chunk WAVs, joined WAV, MP3, and manifest; reusing it can resume completed chunks.
 
-```bash
-./utils/bin/jekyll-site restart --lan 10.0.0.67
-```
+For local browser listening, start the development helper in a separate terminal:
 
-Open `http://10.0.0.67:4000/` from the other machine. This serves future posts, drafts, and unpublished content; add `--current` to omit those. Use HTTP, not HTTPS. Local access at `http://localhost:4000/` continues to work. Absolute preview links and short-link redirects use the supplied LAN host instead of the wildcard listening address. The localhost-only read-aloud integration remains localhost-only.
+    TTS_BRIDGE_URL=http://127.0.0.1:11440/v1 TTS_BRIDGE_VOICE=narrator utils/bin/article-tts --browser-server
 
-The preview has no login and listens on all IPv4 interfaces in LAN mode. Do not port-forward it or expose it on an untrusted network. No firewall, router, or production-site settings are changed by this option. Restart without `--lan` to return to localhost-only access. The wrapper retains its normal build and search-index steps; `restart` skips the OpenGraph refresh unless `-r` is supplied.
+The player appears only on exact loopback hostnames and is present on regular pages, product pages, posts, and review layouts according to site defaults. It never loads on a public hostname. The player omits navigation, forms, embedded frames, update listings, comments, and support/footer material. Blog extraction remains limited to the post reading area; other pages use the shared local-reader content marker.
 
-## Jekyll Template Dependency Graph
+Select text and press Play to hear that selection. With no selection, click within content to establish a cursor and Play continues from there; without a cursor, Play starts at the beginning. Restart begins at the page title. Pause, Resume, and Stop control the local playback queue; leaving the page stops playback.
 
-Run the generator after changing layout inheritance or Liquid includes:
+Browser playback uses sentence-aware chunks through the local relay at 127.0.0.1:11441. The relay allows configured local Jekyll origins and the local WebReader for Safari extension, keeps endpoint and voice settings out of page JavaScript, and rejects ordinary external webpage origins. Audio is decoded in browser memory and is not written to disk. The bridge returns each WAV chunk before it is played, so this is buffered chunk playback rather than byte-stream audio.
 
-```bash
-./utils/bin/render-jekyll-template-graph
-```
+If using a different port, configure the relay's allowed origin and the browser's articleTtsRelayUrl setting only for the loopback relay. Do not expose the helper to a public network.
 
-It scans `html/_layouts/` and `html/_includes/`, writes the Graphviz source to `docs/diagrams/site-architecture/jekyll-template-dependencies.dot`, and renders the reference SVG beside it. Only dependencies reachable from a layout are shown. Conditional Liquid branches appear together because this is a static dependency graph; they are not necessarily rendered simultaneously.
+### Check or generate public MP3 narration
 
-## Project Data Pipeline
+article-audio uses the same prose extractor but publishes only a joined MP3 and privacy-safe identity manifest. It compares the cleaned rendered article text hash, public narration profile name, chunk size, and MP3 hash; timestamps alone do not trigger regeneration.
 
-Project metadata is maintained in two layers:
+Check one source post without contacting TTS:
 
-- [html/_data/repos.yml](../../html/_data/repos.yml): editable source of truth
-- [html/_data/github_projects.yml](../../html/_data/github_projects.yml): generated output used by templates
+    utils/bin/article-audio --check html/_posts/technology/2025-04-08-Remote-Debugging-With-VSCode.md
 
-The generator script [utils/bin/fetch_og.py](../../utils/bin/fetch_og.py):
+Check all publishable posts the local site can render:
 
-- fetches GitHub and OpenGraph metadata
-- applies local `overrides` from `repos.yml`
-- writes the merged result to `github_projects.yml`
+    utils/bin/article-audio --check --all
 
-Do not hand-edit `github_projects.yml`. It will be overwritten the next time the generator runs.
+Generate or refresh one narration file while the local site and TTS engine are available:
 
-## Adding or Updating a Project
+    TTS_BRIDGE_URL=http://127.0.0.1:11440/v1 TTS_BRIDGE_VOICE=narrator utils/bin/article-audio --generate html/_posts/technology/2025-04-08-Remote-Debugging-With-VSCode.md
 
-Add the repository entry in [html/_data/repos.yml](../../html/_data/repos.yml):
+Use --generate --all only for an intentional batch. Existing current MP3s are reused; only missing or stale files call TTS. --force regenerates selected narration even when its manifest is current. A failed synthesis uses temporary output and preserves the last complete public MP3.
 
-```yaml
-repositories:
-  - name: LogGPT
-    owner: unixwzrd
-    overrides:
-      title: "LogGPT for Safari"
-      description: "Safari extension for exporting ChatGPT conversations."
-      image_url: "/assets/images/projects/LogGPT.png"
-      banner_image_url: "/assets/images/projects/LogGPT/LogGPT-banner.png"
-```
+The tracked public defaults are in utils/etc/article-audio.defaults.json. It contains no private bridge endpoint, model, or voice alias. Supply those through TTS_BRIDGE_URL, TTS_BRIDGE_VOICE, and optional TTS_BRIDGE_MODEL. Change the public profile value when the intended voice, model, or synthesis policy changes.
 
-Supported `overrides` keys:
-
-- `title`: replace the fetched or auto-formatted project title
-- `description`: replace the fetched repository description
-- `visibility`: force `public`, `private`, or `none`
-- `image_url`: set the standard project thumbnail image
-- `banner_image_url`: set the wide banner/hero image
-
-After editing `repos.yml`, regenerate the derived data:
-
-```bash
-python utils/bin/fetch_og.py
-```
-
-## Project Image Behavior
-
-The image fields have different roles:
-
-- `image_url`: standard project thumbnail
-- `banner_image_url`: wide project banner or hero image
-
-Current usage:
-
-- Projects list: prefers `banner_image_url`, falls back to `image_url`
-- Project landing page hero: prefers `banner_image_url`, falls back to `image_url`
-- Smaller project image on the project landing page above the blog entries: uses `image_url`
-
-If `banner_image_url` is omitted, the site automatically falls back to `image_url`.
-
-## Image Path Automation for Social Sharing
-
-*Last updated 2024-06-26: Now uses incremental checking with timestamp tracking for pre-commit speed.*
-
-To ensure all images (front matter and embedded Markdown) use absolute URLs for social sharing and local development, use the script:
-
-[utils/bin/fix_image_paths.py](../utils/bin/fix_image_paths.py)
-
-### Usage
-
-- **Local development:**
-  ```bash
-  python3 utils/bin/fix_image_paths.py --base-url http://localhost:4000
-  ```
-  This rewrites all image links to use localhost, so you can verify images render correctly before publishing.
-
-- **Pre-commit/production:**
-  ```bash
-  python3 utils/bin/fix_image_paths.py --base-url https://unixwzrd.ai
-  ```
-  This rewrites all image links to use the production domain for correct social previews.
-
-### Incremental Pre-commit Integration
-- The image path check now runs in **incremental mode** by default during pre-commit checks.
-- Only Markdown files modified since the last check are scanned, greatly improving speed.
-- The last check timestamp is stored in [utils/etc/.image_paths_last_check](../utils/etc/.image_paths_last_check).
-- To force a full scan (e.g., after a mass refactor), run:
-  ```bash
-  ./utils/bin/checks/12_image_paths.sh --full
-  ```
-
-### What It Does
-- Rewrites both front matter `image:` fields and Markdown-embedded images (`![alt](/path/to/image.png)`) to use the specified base URL.
-- Only rewrites links that start with `/` and not already with the base URL.
-
-### Why This Matters
-- Ensures local and production environments are consistent.
-- Prevents broken images and missing social previews on Twitter, LinkedIn, etc.
-- Catches issues before they go live.
-
-### Next Steps
-- Test the script on your next new post.
-- After validation, integrate with a file watcher and the Jekyll service script.
-- See TODO and site-improvement-checklist for tracking progress.
-
-## File Watcher System
-
-*Last updated 2024-06-26: General file watcher system for automatic script execution on file changes.*
-
-The file watcher system automatically runs scripts when files change during development, providing real-time feedback and automation.
-
-### Overview
-
-- **Main Watcher**: [utils/bin/file_watcher.py](../utils/bin/file_watcher.py)
-- **Watcher Scripts**: [utils/bin/watchers/](../utils/bin/watchers/)/*.py
-- **Target Directory**: [html/](../../html/) (configurable)
-
-### Usage
-
-```bash
-# Start the file watcher
-python utils/bin/file_watcher.py
-
-# List available watchers
-python utils/bin/file_watcher.py --list-watchers
-
-# Watch a different directory
-python utils/bin/file_watcher.py --target-dir some/other/dir
-```
-
-### Available Watchers
-
-- **image_path_fixer.py**: Automatically fixes image paths in Markdown files
-- Add more watchers by creating Python scripts in `utils/bin/watchers/`
-
-### Adding New Watchers
-
-1. Create a Python script in `utils/bin/watchers/`
-2. Script should accept: `file_path` and `event_type` arguments
-3. Script receives environment variables: `WATCHER_FILE`, `WATCHER_EVENT`, `WATCHER_NAME`
-4. Use `print()` for success messages
-5. Return 0 for success, non-zero for failure
-
-### Example Watcher
-
-```python
-#!/usr/bin/env python3
-import os
-import sys
-
-def main():
-    file_path = sys.argv[1]
-    event_type = sys.argv[2]
-
-    if not file_path.endswith('.md'):
-        return
-
-    print(f"Processing {file_path}")
-    # Your watcher logic here
-
-if __name__ == "__main__":
-    main()
-```
-
-### Integration with Development Workflow
-
-- Run the file watcher alongside your Jekyll development server
-- Watchers provide immediate feedback on file changes
-- Automatically catch and fix common issues during development
-- No need to manually run scripts after each file change
-
-### Jekyll Service Integration
-
-The file watcher is now integrated with the Jekyll service script for seamless management:
-
-```bash
-# Start both Jekyll server and file watcher (default)
-./utils/bin/site-service start
-
-# Start only Jekyll server
-./utils/bin/site-service start -j
-
-# Start only file watcher
-./utils/bin/site-service start -w
-
-# Stop both services
-./utils/bin/site-service stop
-
-# Stop only Jekyll server
-./utils/bin/site-service stop -j
-
-# Stop only file watcher
-./utils/bin/site-service stop -w
-
-# Restart both services
-./utils/bin/site-service restart
-```
-
-This integration ensures that:
-- File watcher starts automatically with Jekyll development server
-- Both services are properly managed with PID tracking
-- Clean shutdown of both services when stopping
-- Easy selective control of individual services
-- **Dynamic watcher reloading**: New watcher scripts are automatically detected and loaded without restarting the file watcher
-
-## Google Analytics & SEO Status
-
-### Current Setup
-- **Google Analytics ID**: `G-QZSHSBP292` (configured in `_config.yml`)
-- **SEO Plugin**: `jekyll-seo-tag` installed and active
-- **Sitemap**: `jekyll-sitemap` plugin generating `/sitemap.xml`
-- **Robots.txt**: Configured with sitemap reference
-- **Social Meta Tags**: Basic implementation in `social-meta.html`
-
-### Critical Issues Found
-1. **Missing Google Analytics Include File**: The `html/_includes/google-analytics.html` file is missing, so GA tracking is not working despite the ID being configured.
-2. **Basic SEO Implementation**: While the SEO plugin is installed, we're not using advanced features like structured data or enhanced meta descriptions.
-
-### What's Working
-- Basic SEO plugin functionality
-- Sitemap generation
-- Robots.txt configuration
-- Social media meta tags (Open Graph, Twitter Cards)
-
-### What Needs to be Done
-1. **Create Google Analytics Include File**: Add proper GA4 tracking code
-2. **Enhanced SEO**: Add structured data, optimize meta descriptions, implement breadcrumbs
-3. **Conversion Tracking**: Set up goals for contact form submissions, resource downloads
-4. **Google Search Console**: Integrate for monitoring and optimization
-
-### Priority Actions
-1. **High Priority**: Create the missing `google-analytics.html` file to enable tracking
-2. **Medium Priority**: Enhance SEO with structured data and better meta descriptions
-3. **Low Priority**: Set up advanced tracking and conversion goals
-
-See TODO.md and site-improvement-checklist.md for detailed task breakdown.
-
+Generated files use html/assets/audio/blog/<category>/YYYY-MM-DD-<slug>.mp3 and the adjacent .audio.json manifest. Generation does not edit post front matter. Listen to and approve an MP3 before adding its printed audio path to a post; the production player appears only after this opt-in.
 

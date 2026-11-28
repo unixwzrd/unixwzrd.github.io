@@ -545,6 +545,9 @@ zsdoc/data
 # Custom rules (everything below is preserved by the generator's Update option)
 
 # Browser automation and test artifacts
+# Maintained site-tooling support modules, not generic generated lib output.
+!/utils/lib/
+!/utils/lib/**
 /.playwright-cli/
 /output/playwright/
 /playwright-report/

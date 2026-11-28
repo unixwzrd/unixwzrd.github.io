@@ -48,10 +48,10 @@ Test names and selected source were reviewed; none were executed. These are cand
 
 | Test file | Candidate evidence for the article |
 | --- | --- |
-| `utils/bin/test_fetch_og.py` | Overrides, private-repository scaffolding, cached-image reuse, rate-limit fallback, card regeneration, YAML formatting |
-| `utils/bin/test_article_tts.py` | Prose extraction, chunking, endpoint handling, fixture synthesis, relay origins, dry-run reuse |
-| `utils/bin/test_article_audio.py` | Post discovery, current/stale/tampered audio, private synthesis values excluded from manifests |
-| `utils/bin/test_site_reliability_monitor.py` | Frozen project routes and legacy redirect discovery |
+| `utils/tests/python/test_fetch_og.py` | Overrides, private-repository scaffolding, cached-image reuse, rate-limit fallback, card regeneration, YAML formatting |
+| `utils/tests/python/test_article_tts.py` | Prose extraction, chunking, endpoint handling, fixture synthesis, relay origins, dry-run reuse |
+| `utils/tests/python/test_article_audio.py` | Post discovery, current/stale/tampered audio, private synthesis values excluded from manifests |
+| `utils/tests/python/test_site_reliability_monitor.py` | Frozen project routes and legacy redirect discovery |
 
 Watcher/service test files were discovered but their coverage is not established. FileWatcher is out of scope following the Publisher's correction. Ruby URL and taxonomy verifier scripts are configured checks; execution against identified source and generated output is needed before claiming they pass. Python fixture tests alone cannot establish Safari playback or deployed health.
 
@@ -133,4 +133,5 @@ The changelog explicitly distinguishes recorded changes from verified deployment
 
 ## Part 1 title and history follow-up: September 22, 2026
 
-The Publisher asked for a Part 1 title distinct from the existing series installment “When a Local AI Stack Becomes an Operations System” and supplied a candid account of repeated Jekyll frustrations leading to extensions. Part 1 is now **Jekyll, One Problem at a Time**. The [packet](jekyll-site-tooling-part-01-packet.md) records selected earlier CHANGELOG entries as a problem-and-response sequence, including the initial shared blog/project structure, layout corrections, future-post/link/image fixes, a reverted Sass attempt, redirects, stable URLs, and later editorial features. The history remains source-bounded: recorded dates are not verified deployment dates, old FileWatcher work is not current use, and motivations beyond the Publisher's account are not inferred.
+The Publisher asked for a Part 1 title distinct from the existing series installment "When a Local AI Stack Becomes an Operations System" and supplied a candid account of repeated Jekyll frustrations leading to extensions. Part 1 is now **Jekyll, One Problem at a Time**. The [packet](jekyll-site-tooling-part-01-packet.md) records selected earlier CHANGELOG entries as a problem-and-response sequence, including the initial shared blog/project structure, layout corrections, future-post/link/image fixes, a reverted Sass attempt, redirects, stable URLs, and later editorial features. The history remains source-bounded: recorded dates are not verified deployment dates, old FileWatcher work is not current use, and motivations beyond the Publisher's account are not inferred.
+

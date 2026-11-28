@@ -1,245 +1,52 @@
-# Pre-commit Check System
+# Local checks and pre-commit
 
-## Overview
+The installed repository hook invokes the portable repository wrapper at utils/bin/pre-commit. The wrapper selects the existing local project environments where available and invokes utils/bin/check-site checks while explicitly skipping 05_update_project_data.sh, which makes network requests and stages generated files. The check-site CLI delegates the local suite to utils/bin/check_site.sh.
 
-The pre-commit check system ensures code quality and consistency by running a series of validations before each commit. It's implemented through `utils/bin/check_site.sh` and its associated check scripts.
+The installed .git/hooks/pre-commit file is local Git configuration and is not replaced by the repository documentation or by the wrapper. Keep the hook enabled. If a check fails, diagnose and fix the underlying environment or test failure instead of bypassing the hook.
 
-**File listing:** [../../utils/README.md](../../utils/README.md) (validation and checks section).
+## Environment selection
 
-## Optional: `short_url` hook (pre-commit framework)
+For GUI Git clients, the shared environment helper can select the existing ext-ruby-3.3.4@unixwzrd.github.io RVM gemset and python-website-dev Conda environment when those environments are available. Otherwise the caller's environment is used. The helper does not change shell defaults or install dependencies.
 
-Separate from `utils/bin/check_site.sh`, the repo may include a **[`.pre-commit-config.yaml`](../../.pre-commit-config.yaml)** hook (the `pre-commit` Python tool) that runs:
+The environment check verifies Bundler's locked dependencies and Python package versions from requirements.txt. It never runs pip install. If packages are missing, activate the intended environment and install only through the project's established dependency workflow; do not modify a uv-managed or system Python and do not use --break-system-packages. On this checkout, addressable 2.9.1 is already installed in the bundle at the locked version; do not run bundle update merely to satisfy the hook.
 
-`bundle exec ruby scripts/backfill_short_url_front_matter.rb`
+Environment-selection regression coverage:
 
-with **`pass_filenames: true`** for staged Markdown and HTML under `html/`. It writes `short_link_basis` and `short_url` only for posts and pages opted in with `short_link: true` (still one Jekyll load for collision checks). Install: `pip install pre-commit && pre-commit install`.
+    bundle exec ruby utils/tests/ruby/test_check_site_environment.rb
 
-Use **[templates/blog-templates.md](../templates/blog-templates.md)** for full backfill, `--check`, and `--staged` semantics.
+## Running checks
 
-## Location (site check scripts)
+    utils/bin/check-site checks --list
+    utils/bin/check-site checks
+    utils/bin/check-site checks --run 01_environment,02_permalinks
 
-- Main script: `utils/bin/check_site.sh`
-- Check scripts: `utils/bin/checks/*.sh`
+The ordered checks include environment validation, permalink/source checks, Jekyll doctor, link checks, build checks, image/navigation/front-matter checks, and other repository validations. Some individual checks can modify source data or metadata; inspect the corresponding script and review git diff after running a mutating check. The full manual run includes 05_update_project_data.sh, which fetches project data and stages matching generated files. It also includes 05_site_link_checker.sh, which rebuilds the shared _site directory before HTMLProofer; avoid that check while another process depends on the shared preview. Use an isolated build followed by check-site test --site PATH for non-disruptive rendered validation.
 
-## Dependencies
+The pre-commit environment check is read-only with respect to package installation. External link validation is network-dependent and optional. Jekyll doctor can report case-only URL collisions on case-insensitive macOS filesystems; inspect the message and distinguish that warning from an actual build or link-test failure.
 
-- Bash shell
-- Ruby environment (for Jekyll)
-- Python 3.x
-- Required Python packages (see requirements.txt)
-- Bundled Ruby gems installed via `bundle install`
+## Regression suite and rendered site
 
-For local Git clients (including GUI commits), the runner loads the existing `ext-ruby-3.3.4@unixwzrd.github.io` RVM environment and activates the existing `python-website-dev` Conda environment under `~/miniconda3` or `~/anaconda3`, when present. It does not change RVM defaults or the parent shell. On hosts without these local environments, it uses the caller's environment, as in CI.
+Run deterministic source regressions:
 
-The environment check reports the selected executables, checks the locked Ruby bundle and validates installed Python package versions against `requirements.txt`. It never installs packages. Missing dependencies fail the check immediately; repair the intended project environment explicitly rather than modifying a uv-managed or system Python or using `--break-system-packages`.
+    utils/bin/check-site test
 
-Run the environment-selection and failure-path regression tests with `ruby scripts/test_check_site_environment.rb`.
+Run the same suite plus checks against an existing rendered output:
 
-## Available Checks
+    utils/bin/check-site test --site _site
 
-### 1. Environment Check (01_environment.sh)
+The latter expects an existing index.html and does not build or overwrite it. It adds permalink, taxonomy, redirect, short-link front-matter, and offline HTMLProofer checks.
 
-Validates the development environment:
+## Optional staged-content hook
 
-```bash
-# Run environment check only
-./utils/bin/check_site.sh --run 01_environment
-```
+The separate .pre-commit-config.yaml hook can check/backfill short-link metadata for staged site content. It is not the installed shell hook and is not required to run the full site checks. See [blog templates](../templates/blog-templates.md) for read-only --check and scoped backfill behavior.
 
-- Verifies Ruby/Jekyll installation
-- Checks Python dependencies
-- Validates environment variables
+## If the hook fails
 
-### 2. Permalink Validation (02_permalinks.sh)
+1. Keep the complete failure output and identify the failing check.
+2. Confirm the GUI client inherited the expected Conda and RVM context, or reproduce from a terminal started in that context.
+3. Verify the locked bundle and Python requirements without installing packages through the hook.
+4. Run the narrow failing test/check, fix the root cause, then run the required full hook/check again.
+5. Review the working-tree diff, especially after checks that may update files.
 
-Ensures consistent URL structure:
-
-```bash
-# Run permalink check only
-./utils/bin/check_site.sh --run 02_permalinks
-```
-
-- Validates permalink format
-- Checks for missing permalinks
-- Ensures unique URLs
-
-### 3. Jekyll doctor (03_jekyll_doctor.sh)
-
-```bash
-./utils/bin/check_site.sh --run 03_jekyll_doctor
-```
-
-Runs `bundle exec jekyll doctor`. **By default this check does not fail the suite** if doctor exits non-zero: on macOS, doctor often reports "URLs only differ by case" (APFS is usually case-insensitive) while `jekyll build` and GitHub Pages (Linux) still behave. Read the printed output.
-
-To **fail commits** when doctor is unhappy:
-
-```bash
-STRICT_JEKYLL_DOCTOR=1 ./utils/bin/check_site.sh --run 03_jekyll_doctor
-```
-
-### 4. Link Checker (04_link_checker.sh)
-
-Validates internal links and identifies orphaned pages:
-
-```bash
-# Run link check only
-./utils/bin/check_site.sh --run 04_link_checker
-```
-
-- Checks for broken internal links
-- Identifies orphaned pages
-- Handles URL-encoded characters (spaces, special chars)
-  - Automatically decodes %20 and other encoded characters
-  - Properly verifies paths with spaces and special characters
-- Reports external links for review
-
-### Implementation Details
-
-The link checker uses a URL decoding function:
-
-```bash
-urldecode() {
-    local url_encoded="${1//+/ }"
-    printf '%b' "${url_encoded//%/\\x}"
-}
-```
-
-This function is called before checking file paths:
-
-```bash
-# Decode URL-encoded characters
-decoded_target=$(urldecode "$target")
-
-# Remove trailing slash and add potential extensions
-base_target=${decoded_target%/}
-```
-
-[Additional checks documented similarly...]
-
-### 5. Built-Site Link Verification (05_site_link_checker.sh)
-
-Runs [HTMLProofer](https://github.com/gjtorikian/html-proofer) against the generated `_site/` output:
-
-```bash
-# Requires a prior `bundle exec jekyll build`
-./utils/bin/checks/05_site_link_checker.sh
-```
-
-- Detects real 404s and missing fragment IDs in the rendered site (e.g., forward/backward references)
-- Ignores external URLs to keep the check fast/offline
-- Also available via `./utils/bin/jekyll-site build -c`, which triggers the same check immediately after a build
-- Requires the project bundle to be current. If `htmlproofer` fails to boot due to a missing gem such as `debug`, run:
-
-```bash
-bundle install
-```
-
-### 6. External Link Verification (06_external_link_checker.sh)
-
-Runs [HTMLProofer](https://github.com/gjtorikian/html-proofer) against external links in the generated site:
-
-```bash
-# Run manually (opt-in, not run by default)
-./utils/bin/checks/06_external_link_checker.sh
-
-# Or enable via environment variable
-CHECK_EXTERNAL_LINKS=1 ./utils/bin/check_site.sh
-```
-
-- Checks external URLs for broken links (404s, timeouts, etc.)
-- Enforces HTTPS (flags HTTP links)
-- Uses caching to speed up repeated runs
-- **Opt-in by default** (skipped in pre-commit) due to:
-  - Network dependency (can fail due to temporary outages)
-  - Slower execution time (requires HTTP requests)
-  - Rate limiting from external sites
-
-## Usage
-
-### Basic Usage
-
-```bash
-# Run all checks
-./utils/bin/check_site.sh
-
-# Run specific checks
-./utils/bin/check_site.sh --run check1,check2
-
-# Skip specific checks
-./utils/bin/check_site.sh --skip check1,check2
-
-# List available checks
-./utils/bin/check_site.sh --list
-```
-
-### Integration with Git
-
-The checks are automatically run by the pre-commit hook:
-
-```bash
-.git/hooks/pre-commit
-```
-
-### Common Issues and Solutions
-
-1. **Jekyll Build Fails**
-   - Check Jekyll configuration
-   - Verify front matter format
-   - Look for Liquid syntax errors
-
-2. **HTMLProofer Fails Before Checking Links**
-   - Run `bundle install`
-   - Verify `bundle exec ruby -e 'require "debug"; puts "ok"'`
-   - Re-run `./utils/bin/checks/05_site_link_checker.sh`
-
-2. **Permalink Validation Fails**
-   - Ensure permalinks start and end with /
-   - Check for duplicate permalinks
-   - Verify permalink format
-
-3. **Link Validation Fails**
-   - Check for typos in link URLs
-   - Verify files exist at the linked paths
-   - For links with spaces or special characters, ensure proper URL encoding
-   - Check for case sensitivity issues in file paths
-   - If using special characters in filenames, test the link checker manually
-
-4. **Environment Check Fails**
-   - Update Ruby gems
-   - Install missing Python packages
-   - Check environment variables
-
-## Adding New Checks
-
-1. Create new check script in `utils/bin/checks/`
-2. Name format: `NN_descriptive_name.sh`
-3. Add description comment
-4. Implement check logic
-5. Return 0 for success, non-zero for failure
-
-Example:
-
-```bash
-#!/usr/bin/env bash
-# Description: Checks for required files
-
-set -e
-echo "Checking required files..."
-# Check logic here
-exit 0
-```
-
-## Configuration
-
-- Check order determined by filename prefix
-- Individual checks can be configured in their scripts
-- Global settings in check_site.sh
-
-## Future Enhancements
-
-- Add performance checks
-- Implement parallel check execution
-- Add more detailed reporting
-- Create check dependencies system
-
+The canonical file list and each check's effects are in [utils/README.md](../../utils/README.md).
 

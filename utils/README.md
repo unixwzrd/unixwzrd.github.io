@@ -1,190 +1,173 @@
-# Site maintenance utilities (`utils/`)
+# Website operations and tooling
 
-- [Site maintenance utilities (`utils/`)](#site-maintenance-utilities-utils)
-  - [Validation and pre-commit](#validation-and-pre-commit)
-  - [Builds and local services](#builds-and-local-services)
-  - [OpenGraph, thumbnails, and project data](#opengraph-thumbnails-and-project-data)
-  - [Monitoring and scheduled ops](#monitoring-and-scheduled-ops)
-  - [Fixes and one-off maintenance](#fixes-and-one-off-maintenance)
-  - [Misc / social / tests](#misc--social--tests)
-    - [Read a rendered article through the TTS Bridge](#read-a-rendered-article-through-the-tts-bridge)
-    - [Generate retained MP3 narration](#generate-retained-mp3-narration)
-  - [Repo root scripts (outside `utils/`)](#repo-root-scripts-outside-utils)
+This is the canonical catalog for maintained website commands and their support files. Paths in tool lists are relative to `utils/`. Use `utils/bin/check-site` for the supported entry point. Each implementation has one location; commands and tutorials use it directly without compatibility symlinks.
 
+## Tool layout and safety boundaries
 
-Scripts and configs used to **validate**, **build**, **refresh project metadata** (OpenGraph thumbnails, `github_projects.yml`), and **monitor** the Jekyll site. Paths below are relative to this folder unless noted.
+- `bin/` contains authoring and operator commands, services, monitoring, migration helpers, and the local quality-check runner.
+- `bin/checks/` contains ordered checks used by the local pre-commit/site-validation workflow. Some checks can update repository files; inspect their descriptions before running them individually.
+- `lib/` contains shared runtime helpers used by commands and tests.
+- `tests/ruby/` and `tests/python/` contain offline automated regressions. `tests/browser/` contains local rendered-site browser regressions.
+- `bin/diagnostics/` contains manual diagnostics, including network, email, service, and watcher probes. These are not part of the deterministic test suite and may contact external services or inspect running services.
+- `bin/watchers/` contains the runtime image-path watcher plugin and its fixture probe.
+- `bin/backup/` holds a retained one-off repair script, not a supported routine command.
 
-**Full operator reference:** [docs/guides/reference-utilities.md](../docs/guides/reference-utilities.md)
-**Pre-commit / check pipeline:** [docs/tools/pre-commit-checks.md](../docs/tools/pre-commit-checks.md)
-**Repo documentation index:** [docs/README.md](../docs/README.md)
+The former root scripts directory and moved test/diagnostic aliases have been removed. Use the canonical targets below. The Git hook installed at `.git/hooks/pre-commit` is user-local; `utils/bin/pre-commit` is its portable repository wrapper. Do not bypass hooks as a routine workaround.
 
----
+## Main command
 
-## Validation and pre-commit
+Commit the consolidation as one coherent change: canonical implementation files, removal of old paths, updated callers/tutorials/workflow, and their tests must travel together. A partial commit can leave a fresh checkout with missing tools. The migration does not install or replace a developer's active Git hooks automatically.
 
-| Resource                                                                       | Purpose                                                                                                                                                                                                                                         |
-| ------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [bin/check_site.sh](bin/check_site.sh)                                         | Run the numbered check suite (env, permalinks, links, Jekyll build, images, ...).                                                                                                                                                               |
-| [bin/check-site](bin/check-site)                                               | Convenience entry (if present) for the same flow.                                                                                                                                                                                               |
-| [bin/checks/](bin/checks/)                                                     | Individual checks: `01_environment.sh`, `02_permalinks.sh`, `04_link_checker.sh`, `05_site_link_checker.sh` (HTMLProofer on `_site/`), `07_jekyll_build.sh`, `12_image_paths.sh`, `06_external_link_checker.sh` (opt-in / network), and others. |
-| [bin/check_nested_slashless_links.py](bin/check_nested_slashless_links.py)     | Deep link sanity helper.                                                                                                                                                                                                                        |
-| [bin/validate_frontmatter.py](bin/validate_frontmatter.py)                     | Front matter checks.                                                                                                                                                                                                                            |
-| [bin/validate_permalink_consistency.py](bin/validate_permalink_consistency.py) | Permalink consistency.                                                                                                                                                                                                                          |
+| Path | Purpose, invocation, and effects |
+| --- | --- |
+| [`bin/check-site`](bin/check-site) | Main CLI: `local`, `remote`, `all`, `checks`, `test [--site PATH]`, `artifacts`, and `help`. Local/remote crawl the corresponding served site; `checks` runs the local shell suite; `test` runs deterministic Ruby/Python tests and adds rendered-site checks when given an existing site directory; `artifacts` reports aged browser output unless explicit reviewed-manifest deletion is requested. |
+| [`bin/check-browser`](bin/check-browser) | Runs one of the local browser suites (`local-reader`, `reader-experience`, `secrets-kit-product`, `short-link-attribution`) through an owned Playwright CLI session; blocks external requests, rejects production URLs, records screenshots in a timestamped output run, and pins failures. |
+| [`bin/check_site.sh`](bin/check_site.sh) | Local ordered check runner. Supports `--list`, `--run`, and `--skip`; several checks can write site metadata or repair content, so review a check before running it. |
+| [`bin/pre-commit`](bin/pre-commit) | Portable wrapper invoked by the repository hook. Delegates to local site checks; does not install dependencies. |
+| [`lib/site-environment.sh`](lib/site-environment.sh) | Selects an existing project RVM gemset and Conda `python-website-dev` environment for local GUI clients when available, otherwise uses the caller environment. Performs no package installation and does not alter shell defaults. |
+| [`lib/run_tests.py`](lib/run_tests.py) | Discovers and runs canonical Ruby and Python regression suites. `--site PATH` adds rendered-site validation, permalink/taxonomy/redirect checks, browser-reader and product checks as configured, plus offline HTMLProofer; it does not build the site or run network diagnostics. |
+| [`lib/artifacts.py`](lib/artifacts.py) | Reports browser artifacts older than 30 days under `output/playwright/` and `.playwright-cli/`. `--manifest PATH` writes an exclusive review manifest; `--apply MANIFEST` permanently removes only the reviewed, revalidated regular files. Tracked files, symlinks, path escapes, `.keep`, `.active`, and run metadata are protected. Never use this for broad generated-file cleanup. |
+| [`bin/cleanup-artifacts`](bin/cleanup-artifacts) | Shell entry point for the artifact report/manifest workflow. Default is report-only. |
+| [`bin/checks/14_artifact_report.sh`](bin/checks/14_artifact_report.sh) | Local check-suite artifact report; report-only and non-failing based on age. CI also reports but does not delete artifacts. |
 
----
+## Automated checks (`bin/checks/`)
 
-## Builds and local services
+| Path | Purpose and effect |
+| --- | --- |
+| [`bin/checks/01_environment.sh`](bin/checks/01_environment.sh) | Checks selected Ruby/Python executables, locked bundle availability, and installed Python requirements. Does not install packages. |
+| [`bin/checks/02_permalinks.sh`](bin/checks/02_permalinks.sh) | Validates permalink definitions and collision constraints. |
+| [`bin/checks/03_jekyll_doctor.sh`](bin/checks/03_jekyll_doctor.sh) | Runs Jekyll doctor; case-only URL warnings on a case-insensitive macOS volume are reported, with strict behavior controlled by the script. |
+| [`bin/checks/04_link_checker.sh`](bin/checks/04_link_checker.sh) | Checks source-level internal references and reports relevant link issues. |
+| [`bin/checks/05_site_link_checker.sh`](bin/checks/05_site_link_checker.sh) | Builds production output through `utils/bin/jekyll-site build -n`, replacing the shared `_site/`, then runs HTMLProofer and nested-slash link checks. Avoid during another shared preview; use an isolated build plus `check-site test --site PATH` for non-disruptive rendered checks. |
+| [`bin/checks/05_update_project_data.sh`](bin/checks/05_update_project_data.sh) | Fetches project/repository metadata and, when matching generated files changed, stages the metadata, project pages, and project images with `git add`. This is a networked, staging side effect; review staged and unstaged diffs before committing. |
+| [`bin/checks/06_external_link_checker.sh`](bin/checks/06_external_link_checker.sh) | Optional network-dependent external-link check; may be slow or affected by remote throttling. |
+| [`bin/checks/06_large_files.sh`](bin/checks/06_large_files.sh) | Reports large repository files for review. |
+| [`bin/checks/07_jekyll_build.sh`](bin/checks/07_jekyll_build.sh) | Runs a Jekyll build as part of local validation. |
+| [`bin/checks/08_required_files.sh`](bin/checks/08_required_files.sh) | Checks required repository/site files. |
+| [`bin/checks/09_liquid_syntax.sh`](bin/checks/09_liquid_syntax.sh) | Checks Liquid syntax and template errors. |
+| [`bin/checks/10_front_matter.sh`](bin/checks/10_front_matter.sh) | Validates and may normalize eligible front matter; inspect the diff after execution. |
+| [`bin/checks/11_navigation.sh`](bin/checks/11_navigation.sh) | Checks configured navigation references. |
+| [`bin/checks/12_image_paths.sh`](bin/checks/12_image_paths.sh) | Checks image path case and references; its documented full/incremental mode determines scan scope. |
+| [`bin/checks/13_cleanup_text.sh`](bin/checks/13_cleanup_text.sh) | Applies configured text cleanup to selected files and preserves file modes; inspect modifications before accepting them. |
+| [`bin/checks/check_permalinks.rb`](bin/checks/check_permalinks.rb) | Shared permalink validator used in local and rendered-site validation. |
+| [`bin/checks/check_tag_taxonomy.rb`](bin/checks/check_tag_taxonomy.rb) | Validates tag taxonomy and expected tag data. |
+| [`bin/checks/verify_project_permalink_redirects.rb`](bin/checks/verify_project_permalink_redirects.rb) | Verifies project permalink redirect coverage in rendered output. |
+| [`bin/checks/verify_short_url_redirects.rb`](bin/checks/verify_short_url_redirects.rb) | Verifies generated short-link redirect pages in rendered output. |
 
-| Resource                                                                          | Purpose                                                               |
-| --------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [bin/jekyll-site](bin/jekyll-site)                                                | Production-style Jekyll build wrapper (often with post-build checks). |
-| [bin/render-blog-diagram.py](bin/render-blog-diagram.py)                           | Explicitly render one `.dot` or `.mmd` source to an SVG/PNG pair; requires `dot` or `mmdc` on `PATH`. |
-| [bin/site-service](bin/site-service)                                              | Start/stop/restart local Jekyll (and related dev helpers).            |
-| [bin/file_watcher](bin/file_watcher) / [bin/file_watcher.py](bin/file_watcher.py) | File watching during development.                                     |
-| [bin/watch_image_paths.py](bin/watch_image_paths.py)                              | Watch / fix image path issues.                                        |
-| [bin/watchers/](bin/watchers/)                                                    | Watcher helpers ([watchers/README.md](bin/watchers/README.md)).       |
+## Authoring, rendering, and site data (`bin/`)
 
----
+| Path | Purpose, invocation, and effects |
+| --- | --- |
+| [`bin/article-audio`](bin/article-audio) | Generates or checks approved public MP3 narration for posts; generation calls the configured local TTS Bridge and writes public audio plus identity metadata. |
+| [`bin/article-tts`](bin/article-tts) | Extracts rendered article prose for dry-run, local playback, browser relay, or retained audio workflows; TTS actions contact the configured local bridge. |
+| [`bin/article_audio.py`](bin/article_audio.py) | Python implementation behind the `article-audio` command. |
+| [`bin/article_tts.py`](bin/article_tts.py) | Python implementation behind the `article-tts` command. |
+| [`bin/backfill_short_url_front_matter.rb`](bin/backfill_short_url_front_matter.rb) | Checks or backfills short-link metadata in opted-in posts/pages; use `--check` for read-only verification. |
+| [`bin/check_nested_slashless_links.py`](bin/check_nested_slashless_links.py) | Finds nested links that omit expected trailing slashes. |
+| [`bin/fetch_og.py`](bin/fetch_og.py) | Fetches project OpenGraph/repository metadata and updates generated project data; network access and source edits are expected. |
+| [`bin/fix_all_frontmatter.py`](bin/fix_all_frontmatter.py) | Bulk front-matter repair helper; mutates matching source files, so review scope and diff first. |
+| [`bin/fix_broken_links.py`](bin/fix_broken_links.py) | Applies configured broken-link corrections to site source; review before accepting changes. |
+| [`bin/fix_frontmatter.py`](bin/fix_frontmatter.py) | Front-matter repair helper for selected content. |
+| [`bin/fix_image_case_sensitivity.py`](bin/fix_image_case_sensitivity.py) | Finds/fixes image path casing against files on disk. |
+| [`bin/fix_image_paths.py`](bin/fix_image_paths.py) | Repairs image paths in eligible content; writes source changes. |
+| [`bin/fix_internal_links.py`](bin/fix_internal_links.py) | Repairs selected internal links in source; review its target selection and diff. |
+| [`bin/jekyll-site`](bin/jekyll-site) | Build/serve wrapper for Jekyll, including optional local rendered-site checks. Serving on a LAN requires an explicit bind address/hostname and exposes draft-inclusive preview content without authentication; keep it on a trusted network. |
+| [`bin/list_tags.rb`](bin/list_tags.rb) | Lists configured/published tag values for editorial inspection. |
+| [`bin/render-blog-diagram.py`](bin/render-blog-diagram.py) | Renders one Graphviz or Mermaid diagram source to image output; requires the corresponding renderer on `PATH`. |
+| [`bin/render-jekyll-template-graph`](bin/render-jekyll-template-graph) | Produces a graph of Jekyll template/include relationships for inspection. |
+| [`bin/validate_frontmatter.py`](bin/validate_frontmatter.py) | Validates front matter and reports errors without being a general content repair tool. |
+| [`bin/validate_permalink_consistency.py`](bin/validate_permalink_consistency.py) | Checks permalink consistency across source files. |
 
-## OpenGraph, thumbnails, and project data
+## Services, monitoring, and scheduled operations (`bin/`)
 
-| Resource                                                                     | Purpose                                                                                                                                                                                                              |
-| ---------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [bin/fetch_og.py](bin/fetch_og.py)                                           | Fetches OG metadata and images; merges with [html/_data/repos.yml](../html/_data/repos.yml); writes [html/_data/github_projects.yml](../html/_data/github_projects.yml). **Do not hand-edit** `github_projects.yml`. |
-| [bin/test_fetch_og.py](bin/test_fetch_og.py)                                 | Tests for the OG pipeline.                                                                                                                                                                                           |
-| [bin/checks/05_update_project_data.sh](bin/checks/05_update_project_data.sh) | Hook in the check suite for refreshing project data when appropriate.                                                                                                                                                |
+| Path | Purpose, invocation, and effects |
+| --- | --- |
+| [`bin/site-service`](bin/site-service) | Starts/stops/status-checks the configured local site service; service changes affect the user's local process state. |
+| [`bin/site_reliability_monitor.py`](bin/site_reliability_monitor.py) | Runs configured health, crawl, and post-deployment monitoring modes; network/email modes can contact external endpoints. |
+| [`bin/site_crawl_check.py`](bin/site_crawl_check.py) | Crawls a supplied base URL and reports reachable/missing site paths. |
+| [`bin/manage_monitoring_pages.py`](bin/manage_monitoring_pages.py) | Manages the monitor's known-page inventory and associated state. |
+| [`bin/periodic_monitor.sh`](bin/periodic_monitor.sh) | Shell entry point for scheduled monitoring. |
+| [`bin/post_commit_monitor.sh`](bin/post_commit_monitor.sh) | Runs configured post-commit/deployment monitoring and can generate notifications. |
+| [`bin/scheduled_tasks.py`](bin/scheduled_tasks.py) | Executes configured scheduled maintenance/monitoring tasks; review configuration before enabling schedules. |
+| [`bin/setup_crontab.sh`](bin/setup_crontab.sh) | Installs or updates local cron entries; changes user scheduling configuration. |
+| [`bin/setup_site_monitoring.sh`](bin/setup_site_monitoring.sh) | Configures local site monitoring and related notification setup; may write local configuration. |
+| [`bin/file_watcher`](bin/file_watcher) | Command wrapper for the local file watcher. |
+| [`bin/file_watcher.py`](bin/file_watcher.py) | Watches site source and dispatches configured local watcher plugins. |
+| [`bin/watch_image_paths.py`](bin/watch_image_paths.py) | Runs the image-path watcher workflow for local authoring. |
+| [`bin/watchers/README.md`](bin/watchers/README.md) | Documents watcher plugin contract and setup. |
+| [`bin/watchers/image_path_fixer.py`](bin/watchers/image_path_fixer.py) | Watcher plugin that repairs image paths for changed files. |
+| [`bin/watchers/test_watcher.py`](bin/watchers/test_watcher.py) | Example/fixture watcher for validating event dispatch; not the canonical automated test suite. |
 
----
+## Social publishing (`bin/`)
 
-## Monitoring and scheduled ops
+| Path | Purpose and effect |
+| --- | --- |
+| [`bin/push-social-media`](bin/push-social-media) | Publishes prepared social content through configured integrations; an external publication action. |
+| [`bin/push-twitter`](bin/push-twitter) | Legacy/specific social publishing command retained for its configured workflow; external publication action. |
 
-| Resource                                                           | Purpose                                                        |
-| ------------------------------------------------------------------ | -------------------------------------------------------------- |
-| [bin/site_reliability_monitor.py](bin/site_reliability_monitor.py) | Health checks, deployment verification hooks, optional alerts. |
-| [bin/manage_monitoring_pages.py](bin/manage_monitoring_pages.py)   | Manage tracked pages for monitoring.                           |
-| [bin/scheduled_tasks.py](bin/scheduled_tasks.py)                   | Periodic maintenance tasks.                                    |
-| [bin/setup_site_monitoring.sh](bin/setup_site_monitoring.sh)       | Initial monitoring setup.                                      |
-| [bin/setup_crontab.sh](bin/setup_crontab.sh)                       | Example crontab wiring.                                        |
-| [bin/post_commit_monitor.sh](bin/post_commit_monitor.sh)           | Post-push verification helper.                                 |
-| [bin/periodic_monitor.sh](bin/periodic_monitor.sh)                 | Periodic monitor entry.                                        |
-| [bin/test_external_links.py](bin/test_external_links.py)           | External link testing utility.                                 |
-| [etc/site_monitor_config.json](etc/site_monitor_config.json)       | Monitor configuration (JSON).                                  |
-| [etc/scheduled_tasks_config.json](etc/scheduled_tasks_config.json) | Scheduled task config.                                         |
+## Automated test suites (`tests/`)
 
----
+These suites are invoked through `utils/bin/check-site test`; do not use the manual diagnostics below as a substitute. Browser runs are local-only, block external requests, and reject production targets. Failed browser runs are pinned for inspection.
 
-## Fixes and one-off maintenance
+### Ruby (`tests/ruby/`)
 
-| Resource                                                                                                    | Purpose                                    |
-| ----------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
-| [bin/fix_image_case_sensitivity.py](bin/fix_image_case_sensitivity.py)                                      | Case-correct image paths (macOS vs Linux). |
-| [bin/fix_image_paths.py](bin/fix_image_paths.py)                                                            | Path repairs.                              |
-| [bin/fix_internal_links.py](bin/fix_internal_links.py) / [bin/fix_broken_links.py](bin/fix_broken_links.py) | Link repair helpers.                       |
-| [bin/fix_frontmatter.py](bin/fix_frontmatter.py) / [bin/fix_all_frontmatter.py](bin/fix_all_frontmatter.py) | Front matter cleanup.                      |
-| [bin/site_crawl_check.py](bin/site_crawl_check.py)                                                          | Crawl-oriented checks.                     |
+| Path | Coverage |
+| --- | --- |
+| [`tests/ruby/test_check_site_environment.rb`](tests/ruby/test_check_site_environment.rb) | Environment selection and missing-dependency behavior. |
+| [`tests/ruby/test_jekyll_site.rb`](tests/ruby/test_jekyll_site.rb) | Jekyll wrapper argument/build behavior. |
+| [`tests/ruby/test_reader_experience.rb`](tests/ruby/test_reader_experience.rb) | Rendered reader/player behavior and integration expectations. |
+| [`tests/ruby/test_secrets_kit_product.rb`](tests/ruby/test_secrets_kit_product.rb) | Secrets-Kit page structure, links, data tables, and product-page requirements. |
+| [`tests/ruby/test_short_link_attribution.rb`](tests/ruby/test_short_link_attribution.rb) | Short-link redirect and query/attribution behavior. |
 
----
+### Python (`tests/python/`)
 
-## Misc / social / tests
+| Path | Coverage |
+| --- | --- |
+| [`tests/python/test_article_audio.py`](tests/python/test_article_audio.py) | MP3 generation/check logic and manifests. |
+| [`tests/python/test_article_tts.py`](tests/python/test_article_tts.py) | Article extraction, chunking, and TTS helper behavior. |
+| [`tests/python/test_artifacts.py`](tests/python/test_artifacts.py) | Artifact reporting, manifest validation, and cleanup safety guards. |
+| [`tests/python/test_browser_run.py`](tests/python/test_browser_run.py) | Browser URL policy, owned-session lifecycle, and retained evidence behavior. |
+| [`tests/python/test_fetch_og.py`](tests/python/test_fetch_og.py) | OpenGraph/project metadata fetch behavior. |
+| [`tests/python/test_site_reliability_monitor.py`](tests/python/test_site_reliability_monitor.py) | Reliability monitoring logic. |
+| [`tests/python/test_tooling_layout.py`](tests/python/test_tooling_layout.py) | Canonical tool layout and catalog coverage. |
 
-| Resource                                                                                      | Purpose                                                                                                                                                                                                                                  |
-| --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [bin/article-tts](bin/article-tts)                                                            | Extract the prose from a rendered post, divide it into paragraph-aware chunks, and optionally send it to the configured TTS Bridge for playback and retained WAV/MP3 artifacts. Use `--dry-run` to inspect exactly what would be spoken. |
-| [bin/article-audio](bin/article-audio)                                                        | Check rendered posts for missing or stale public MP3 narration and generate only the files whose cleaned prose or public narration profile changed.                                                                                      |
-| [bin/push-twitter](bin/push-twitter) / [bin/push-social-media](bin/push-social-media)         | Social publish helpers (operator use).                                                                                                                                                                                                   |
-| [bin/test_services.sh](bin/test_services.sh)                                                  | Service smoke tests.                                                                                                                                                                                                                     |
-| [bin/test_email.py](bin/test_email.py)                                                        | Email / alert tests.                                                                                                                                                                                                                     |
-| [bin/quick_test.py](bin/quick_test.py) / [bin/test_file_watcher.py](bin/test_file_watcher.py) | Dev tests.                                                                                                                                                                                                                               |
-| [output/](output/)                                                                            | Generated reports (e.g. dependency graphs) when produced.                                                                                                                                                                                |
-| [log/](log/)                                                                                  | Local log output directory (gitignored where applicable).                                                                                                                                                                                |
+### Browser (`tests/browser/`)
 
-### Read a rendered article through the TTS Bridge
+| Path | Coverage |
+| --- | --- |
+| [`tests/browser/check_local_reader_browser.js`](tests/browser/check_local_reader_browser.js) | Local reader visibility and playback controls in the local site. |
+| [`tests/browser/check_reader_experience_browser.js`](tests/browser/check_reader_experience_browser.js) | Reader behavior across representative rendered pages. |
+| [`tests/browser/check_secrets_kit_product_browser.js`](tests/browser/check_secrets_kit_product_browser.js) | Secrets-Kit navigation, layout, and interactive product content. |
+| [`tests/browser/check_short_link_attribution_browser.js`](tests/browser/check_short_link_attribution_browser.js) | Local short-link redirect behavior in a browser. |
+| [`lib/browser_run.py`](lib/browser_run.py) | Shared browser session orchestration called by `bin/check-browser`; owns/closes its session, enforces local-only routing, and records run evidence. |
 
-The default extractor reads only `.post-content.e-content`. It keeps the title, headings, paragraphs, list items, blockquotes, visible link text, and inline code words. It omits URLs, HTML tags, series context and navigation, diagrams, captions, tables, code blocks, source disclosures, support material, forms, audio, video, and comments.
+## Manual diagnostics (`bin/diagnostics/`)
 
-Inspect the exact text and chunk sizes without calling TTS:
+These are intentionally not auto-discovered by `check-site test`; some contact networks, send email, or inspect/restart services. Run them only when that side effect is intended.
 
-```bash
-utils/bin/article-tts \
-  http://127.0.0.1:4000/technology/2026/09/08/voice-cloning-across-hosts-making-tts-operational/ \
-  --dry-run
-```
+| Path | Purpose and effects |
+| --- | --- |
+| [`bin/diagnostics/quick_test.py`](bin/diagnostics/quick_test.py) | Manual quick integration probe; may depend on configured local services. |
+| [`bin/diagnostics/test_email.py`](bin/diagnostics/test_email.py) | Sends or verifies configured email notifications. |
+| [`bin/diagnostics/test_external_links.py`](bin/diagnostics/test_external_links.py) | Contacts external websites to check links. |
+| [`bin/diagnostics/test_file_watcher.py`](bin/diagnostics/test_file_watcher.py) | Manually exercises the file watcher against local files/services. |
+| [`bin/diagnostics/test_services.sh`](bin/diagnostics/test_services.sh) | Manual local service smoke test; may interact with running services. |
 
-Generate, play, and retain the article audio:
+## Retained one-off repair
 
-```bash
-TTS_BRIDGE_URL="http://127.0.0.1:11440/v1" \
-TTS_BRIDGE_VOICE="narrator" \
-utils/bin/article-tts \
-  http://127.0.0.1:4000/technology/2026/09/08/voice-cloning-across-hosts-making-tts-operational/ \
-  --play
-```
+| Path | Purpose |
+| --- | --- |
+| [`bin/backup/fix_critical_links.py`](bin/backup/fix_critical_links.py) | Historical one-off link repair retained for audit/reference; not a routine maintenance command. |
 
-Without `--output-dir`, the tool creates a new system temporary directory and prints its location. Supply an explicit directory to retain the extracted article, chunk text, chunk WAV files, joined WAV, MP3, and manifest. Reusing a directory resumes completed WAV chunks whose files remain present.
+## Artifact retention
 
-For editorial listening in the browser, start the loopback relay in a separate terminal:
+The only automatically reportable browser-output locations are `output/playwright/` and `.playwright-cli/`. The local report check and CI report do not delete. To review aged candidates, run `utils/bin/check-site artifacts`; to prepare an exclusive manifest, supply `--manifest PATH`, inspect the manifest, then explicitly run `--apply PATH` only if deletion is intended. Mark active work with `.active`; pin useful or failed evidence with `.keep`. This does not cover published graphics, narration, `utils/etc/`, logs, or arbitrary `output/` content. No broad CI cleanup is configured.
 
-```bash
-TTS_BRIDGE_URL="http://127.0.0.1:11440/v1" \
-TTS_BRIDGE_VOICE="narrator" \
-utils/bin/article-tts --browser-server
-```
+## Related operator documentation
 
-Content pages viewed on localhost display a small player at the bottom of the viewport. Select text and press **Play** to hear only that selection. With no selection, click within the content and press **Play** to continue from that cursor position to the end. If no content cursor has been established, **Play** starts with the complete page. **Restart** always begins again at the page title, while **Pause**, **Resume**, and **Stop** act on the in-browser queue. Leaving the page stops playback.
+- [Pre-commit checks](../docs/tools/pre-commit-checks.md)
+- [Testing](../docs/guides/testing.md)
+- [Deployment](../docs/guides/deployment.md)
+- [Environment setup](../docs/guides/environment-setup.md)
+- [Maintenance](../docs/guides/maintenance.md)
 
-The browser sends sentence-aware chunks to the relay on `127.0.0.1:11441`. The relay accepts the local Jekyll origins and the locally installed WebReader for Safari extension by default, keeps the configured bridge endpoint and voice out of page JavaScript, and never writes browser-playback audio to disk. Ordinary external webpage origins remain rejected. Each short WAV response is decoded in browser memory and the next chunk is prepared while the current one plays. This is buffered chunk playback rather than byte-level streaming because the current TTS Bridge completes each WAV response before returning it.
-
-The player loads only on exact loopback hostnames (`localhost`, `127.0.0.1`, and `[::1]`), independently of Jekyll build mode. Published pages contain a small hostname-checking bootstrap, but it does not load the player, read local storage, or contact the helper on a public hostname. The player itself checks the hostname as a second safeguard. If the local site or relay uses a different port, repeat `--allow-origin` when starting the relay and set `articleTtsRelayUrl` in browser local storage to the new loopback relay URL.
-
-The shared `local_reader.html` include is loaded by the `default` and standalone `review` layouts, covering regular pages, the homepage, project/product pages, blog posts, and unlisted review documents. The site defaults explicitly set `local_reader: true`; add `local_reader: false` to a page's front matter to opt out. Blog posts retain their narrow `.post-content.e-content` reading area; other pages use `[data-local-reader-content]`. Navigation, forms, embedded frames, update listings, comments, and support/footer blocks are omitted. This browser support does not change the Python CLI's default article selector or require `audio` front matter. Redirect and standalone tool pages do not load the player.
-
-Local pre-commit checks rebuild the shared `_site` directory in production mode. Hostname-based loading keeps editorial listening available when those checks overwrite the running development preview. Continue to use an isolated `--destination` for manual validation builds to avoid other preview/build interference.
-
-### Generate retained MP3 narration
-
-`article-audio` uses the same rendered-prose extractor as `article-tts`, but it publishes only the joined MP3 and a privacy-safe identity manifest. It compares the hash of the cleaned rendered article text, the narration profile name, the chunk size, and the MP3 hash. File timestamps are not used, so a metadata-only edit does not force expensive synthesis and touching an unchanged file does not make its narration stale.
-
-Check one post without contacting the TTS Bridge:
-
-```bash
-utils/bin/article-audio --check \
-  html/_posts/technology/2025-04-08-Remote-Debugging-With-VSCode.md
-```
-
-Check every publishable post that the local Jekyll server can render:
-
-```bash
-utils/bin/article-audio --check --all
-```
-
-Generate or refresh one MP3 while the local Jekyll server and TTS engine are available:
-
-```bash
-TTS_BRIDGE_URL="http://127.0.0.1:11440/v1" \
-TTS_BRIDGE_VOICE="narrator" \
-utils/bin/article-audio --generate \
-  html/_posts/technology/2025-04-08-Remote-Debugging-With-VSCode.md
-```
-
-Use `--generate --all` for an intentional batch. Current MP3s are reused; only missing or stale items call TTS. `--force` regenerates selected audio even when the manifest is current. A failed synthesis occurs in a temporary directory and leaves the last complete published MP3 untouched.
-
-Tracked public defaults live in `utils/etc/article-audio.defaults.json`. The file contains no bridge endpoint, model, or voice alias. Supply those private values through `TTS_BRIDGE_URL`, `TTS_BRIDGE_VOICE`, and optional `TTS_BRIDGE_MODEL`. Change the public `profile` value when the intended narration voice, model, or synthesis policy changes and every old manifest should become stale.
-
-Generated files use this layout:
-
-```text
-html/assets/audio/blog/<category>/YYYY-MM-DD-<slug>.mp3
-html/assets/audio/blog/<category>/YYYY-MM-DD-<slug>.audio.json
-```
-
-Generation does not edit post front matter. After listening to and approving an MP3, add the printed `audio` path to that post. The production player appears only after this opt-in.
-
----
-
-## Repo root scripts (outside `utils/`)
-
-Jekyll-specific helpers live next to the site config, not under `utils/`:
-
-- [scripts/backfill_short_url_front_matter.rb](../scripts/backfill_short_url_front_matter.rb) - sync `short_url` front matter with `/s/<code>/` rules. Documented in [docs/templates/blog-templates.md](../docs/templates/blog-templates.md).
-
-**Updated:** 2026-05-02

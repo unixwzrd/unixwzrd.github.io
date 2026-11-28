@@ -1,147 +1,64 @@
-# Testing Guide
+# Testing and validation
 
-This guide covers testing procedures for the file watcher system and Jekyll service integration.
+Use the repository's supported entry points rather than running old one-off checks by memory. The complete canonical file catalog and side-effect notes are in [utils/README.md](../../utils/README.md).
 
-## Quick Test
+## Fast deterministic regressions
 
-For a fast verification that everything is working:
+From the repository root:
 
-```bash
-python utils/bin/quick_test.py
-```
+    utils/bin/check-site test
 
-This runs basic functionality tests:
-- File watcher startup
-- Jekyll service integration
-- Watcher script execution
-- Directory structure verification
+This discovers the canonical Ruby and Python suites under utils/tests/. These tests are intended to be deterministic and offline. It does not build the Jekyll site, send email, crawl public sites, start/stop services, or run browser automation.
 
-## Full Test Suite
+For a rendered-site regression run, point at an already built site:
 
-For comprehensive testing:
+    utils/bin/check-site test --site _site
 
-```bash
-python utils/bin/test_file_watcher.py [--verbose]
-```
+The rendered mode runs the source tests plus permalink, taxonomy, project/short-link redirect, short-link front-matter, and offline HTMLProofer checks against that build. It does not itself build the site or run browser tests. For a clean validation build that will not overwrite the shared preview:
 
-The full test suite covers:
-- File watcher startup and shutdown
-- Dynamic watcher script reloading
-- Watcher script execution
-- Jekyll service integration
-- Error handling with broken scripts
+    review_dir=$(mktemp -d /tmp/dts-site-review.XXXXXX)
+    JEKYLL_ENV=production bundle exec jekyll build --destination "$review_dir/site" --disable-disk-cache
+    python -m pagefind --site "$review_dir/site" --output-subdir pagefind --root-selector '[data-pagefind-body]' --exclude-selectors '[data-pagefind-ignore]' --force-language en
+    utils/bin/check-site test --site "$review_dir/site"
 
-## Manual Testing
+Use a task-owned temporary directory for longer review workflows and remove only that directory after confirming no process is using it.
 
-### 1. Test Jekyll Service Integration
+## Local ordered checks
 
-```bash
-# Start both Jekyll and watcher
-./utils/bin/jekyll-service start
+    utils/bin/check-site checks --list
+    utils/bin/check-site checks
+    utils/bin/check-site checks --run 02_permalinks,07_jekyll_build
 
-# Start only Jekyll
-./utils/bin/jekyll-service start -j
+The local check suite is broader than the deterministic test suite. Some checks may update metadata or source files; inspect the script and review git diff afterward. Network-dependent external-link checking is optional. The Jekyll doctor check may report case-only URL differences on case-insensitive macOS volumes; read its diagnostic rather than assuming a build failure.
 
-# Start only watcher
-./utils/bin/jekyll-service start -w
+The project Git hook invokes the local check workflow. Keep it enabled; do not work around a failing check by bypassing the hook. If a GUI client starts with the wrong environment, restart it from the intended Conda/RVM context or use a terminal with that context. The environment helper selects existing environments and validates packages; it never installs dependencies.
 
-# Stop both
-./utils/bin/jekyll-service stop
+## Browser regressions
 
-# Stop only Jekyll
-./utils/bin/jekyll-service stop -j
+Browser coverage is separate from the offline suites and requires a running local site plus the supported Playwright CLI. Use:
 
-# Stop only watcher
-./utils/bin/jekyll-service stop -w
-```
+    utils/bin/check-browser reader-experience --url http://localhost:4000/
 
-### 2. Test File Watcher Functionality
+Other suite names are local-reader, secrets-kit-product, and short-link-attribution; the attribution suite needs a local URL ending in the generated redirects data path. The runner owns and closes its browser session, blocks outbound requests, rejects production targets, and records screenshots in a timestamped browser output directory. Failed runs are pinned for later review. Do not run against production or use production analytics as test traffic.
 
-```bash
-# Start watcher
-./utils/bin/jekyll-service start -w
+### Known browser-audit findings from November 27, 2026
 
-# Create a test file with image path
-echo '![Test Image](test_image.png)' > html/test_file.md
+The production build, search indexing, and deterministic/rendered regressions passed during the tooling migration. The unchanged `reader-experience` browser function still reported a mobile Projects-dropdown failure after its desktop/scroll/resize sequence; a fresh mobile-page toggle worked. The existing `local-reader` mocked-audio audit also timed out waiting for its simulated playback to finish. These remain separate browser-harness/navigation/playback investigations, not waived assertions or evidence that all browser audits passed. Failed receipts are pinned under ignored browser output. No navigation or playback implementation was changed as part of the tooling migration.
 
-# Check if it was processed (should show absolute URL)
-cat html/test_file.md
+The active shared preview was missing its Pagefind bundle during the audit. Search checks used an isolated production build with a freshly generated index instead; the running Jekyll service was not restarted or modified. If local search is unavailable, verify that the served build includes its Pagefind output before diagnosing the search UI.
 
-# Clean up
-rm html/test_file.md
-```
+## Manual diagnostics are not tests
 
-### 3. Test Dynamic Script Loading
+utils/bin/diagnostics/ contains probes for external links, email, services, and file watchers. They can contact network endpoints, send messages, or interact with running processes. Run them only when that side effect is the purpose of the investigation. They are not discovered by check-site test.
 
-```bash
-# Start watcher
-./utils/bin/jekyll-service start -w
+## CI coverage
 
-# Create a new watcher script
-cat > utils/bin/watchers/test_script.py << 'EOF'
-#!/usr/bin/env python3
-import sys
-print(f"New script loaded for {sys.argv[1]}")
-EOF
+GitHub Actions runs a production build, creates the Pagefind search index, then runs utils/bin/check-site test --site "$GITHUB_WORKSPACE/_site" against that build and reports old browser-artifact candidates. Search-index creation remains a separate workflow step and is not replaced by the local test runner. The workflow does not run public-site crawls, external-link checks, or artifact deletion.
 
-chmod +x utils/bin/watchers/test_script.py
+## Where to look when a check fails
 
-# The watcher should detect and load the new script automatically
-# Check logs for "New watcher script detected" message
+- Environment/package selection: [environment setup](environment-setup.md) and [pre-commit checks](../tools/pre-commit-checks.md).
+- Permalinks, redirects, and page links: [utilities catalog](../../utils/README.md#automated-checks-binchecks).
+- Build or deploy: [troubleshooting](troubleshooting.md) and [deployment](deployment.md).
+- Tool list and safety boundaries: [utils/README.md](../../utils/README.md).
 
-# Clean up
-rm utils/bin/watchers/test_script.py
-```
-
-## Test Results Interpretation
-
-### ✅ Success Indicators
-
-- File watcher starts without errors
-- Jekyll service shows new `-j` and `-w` flags in help
-- Watcher scripts execute when files change
-- New scripts are detected and loaded automatically
-- Error handling works (broken scripts don't crash the watcher)
-
-### ❌ Failure Indicators
-
-- File watcher fails to start
-- Jekyll service doesn't recognize new flags
-- Watcher scripts don't execute
-- New scripts aren't detected
-- Watcher crashes when encountering errors
-
-## Troubleshooting
-
-### Common Issues
-
-1. **File watcher won't start**
-   - Check if target directory exists
-   - Verify Python dependencies are installed
-   - Check file permissions
-
-2. **Watcher scripts not executing**
-   - Ensure scripts are executable (`chmod +x`)
-   - Check script syntax
-   - Verify scripts are in `utils/bin/watchers/` directory
-
-3. **Jekyll service integration issues**
-   - Verify script is executable
-   - Check environment variables
-   - Ensure PID files are writable
-
-### Debug Mode
-
-Run tests with verbose output:
-
-```bash
-python utils/bin/test_file_watcher.py --verbose
-```
-
-This shows detailed test messages and helps identify specific issues.
-
-## Continuous Testing
-
-The file watcher system includes built-in error handling and logging. Monitor the logs during development to ensure everything continues working correctly.
-
-For automated testing in CI/CD pipelines, use the quick test script as it provides fast feedback without extensive setup. 

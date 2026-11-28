@@ -11,7 +11,8 @@ Optional parameters:
 - exclude_series: omit posts with nonempty `series` front matter
 
 Excludes drafts, unpublished posts, _drafts paths, social-post working files,
-and anything marked list_exclude: true.
+and anything marked list_exclude: true. An unpublished post can opt into
+development listings with preview_list: true when built with --unpublished.
 {% endcomment %}
 {% assign discovery_posts = '' | split: '' %}
 {% assign post_source = site.posts %}
@@ -21,7 +22,9 @@ and anything marked list_exclude: true.
     {% assign include_post = false %}
   {% endif %}
   {% if post.published == false %}
-    {% assign include_post = false %}
+    {% unless jekyll.environment == 'development' and site.unpublished == true and post.preview_list == true %}
+      {% assign include_post = false %}
+    {% endunless %}
   {% endif %}
   {% if post.list_exclude %}
     {% assign include_post = false %}
@@ -86,3 +89,4 @@ and anything marked list_exclude: true.
     {% assign discovery_posts = discovery_posts | push: post %}
   {% endif %}
 {% endfor %}
+

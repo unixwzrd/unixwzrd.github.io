@@ -1,138 +1,54 @@
 # Project overview: unixwzrd.ai
 
-**Current status:** May 2026
+This repository builds the Distributed Thinking Systems website at [unixwzrd.ai](https://unixwzrd.ai). Jekyll source lives under [html/](../html/); canonical operational and authoring tools live under [utils/](../utils/). The [documentation index](README.md) is the entry point, and [utils/README.md](../utils/README.md) is the verified command catalog.
 
-This is a working Jekyll repo for **[unixwzrd.ai](https://unixwzrd.ai)** - static site under [`html/`](../html/), plus operator tooling under [`utils/`](../utils/) and [`scripts/`](../scripts/). It is a **private workspace**, not a generic site template; see the root [README.md](../README.md) for license scope and contribution expectations.
+## Repository responsibilities
 
-**Documentation entry point:** [docs/README.md](README.md)
+| Area | Responsibility |
+| --- | --- |
+| [html/](../html/) | Jekyll pages, layouts, includes, collections, posts, product content, and site assets. |
+| [utils/bin/](../utils/bin/) | Maintained authoring, validation, site-service, monitoring, and operator commands. |
+| [utils/bin/checks/](../utils/bin/checks/) | Ordered local check scripts and rendered-site validators. Some checks intentionally edit source; consult the catalog. |
+| [utils/lib/](../utils/lib/) | Shared support for environment selection, regression test execution, browser runs, and artifact handling. |
+| [utils/tests/](../utils/tests/) | Ruby and Python automated regressions plus local-only browser tests. |
+| [utils/bin/diagnostics/](../utils/bin/diagnostics/) | Manual service, email, watcher, and network diagnostics; not the automated test suite. |
+| [.github/workflows/jekyll.yml](../.github/workflows/jekyll.yml) | GitHub Actions production build, search-index generation, local rendered checks, artifact report, and Pages artifact deployment. |
 
----
+## Build and deployment model
 
-## What ships here
+All maintained tools live under utils/. The former root scripts directory and compatibility aliases have been removed, and repository instructions refer directly to the canonical tool paths.
 
-| Area | Role |
-|------|------|
-| [`html/`](../html/) | Jekyll source (layouts, posts, projects, assets). |
-| [`utils/bin/`](../utils/bin/) | Validation (`check_site.sh` + `checks/`), local services, `fetch_og.py`, monitoring, fix-up scripts. |
-| [`scripts/`](../scripts/) | Jekyll helpers (e.g. [`backfill_short_url_front_matter.rb`](../scripts/backfill_short_url_front_matter.rb)). |
-| [`.github/workflows/`](../.github/workflows/) | CI - production Jekyll build and GitHub Pages deploy. |
+Local source changes are reviewed and validated in the working tree. The Actions workflow builds Jekyll in production mode, generates Pagefind search data, runs the rendered-site test suite against the build output, and reports browser artifact retention. It uploads the completed site as a Pages artifact and deploys that artifact with the Pages deployment action; publication is not driven by a gh-pages source branch. See [deployment](guides/deployment.md) and [GitHub Actions](guides/github-actions.md).
 
-**Utilities catalog (clickable index):** [utils/README.md](../utils/README.md)
+The local utils/bin/check-site command provides targeted workflows: checks invokes the ordered local check suite, test runs deterministic Ruby/Python tests, test --site PATH adds rendered-site checks to an existing build, and local/remote/all crawl a site. These commands do not deploy. utils/bin/jekyll-site owns local build/serve conveniences. A LAN preview requires explicit binding and exposes drafts without authentication; use only on a trusted network.
 
----
+## Environment and dependency handling
 
-## Recent changes (2025-2026)
+Local Git clients can inherit the wrong Python or Ruby if started outside the expected shell. The shared environment helper selects the existing project RVM gemset and Conda python-website-dev environment when available, otherwise honoring the caller environment. It does not modify shell defaults or install packages. The environment check validates the frozen Ruby bundle and Python requirement versions without attempting pip install; resolve a mismatch in the intended environment rather than mutating system/uv Python. See [environment setup](guides/environment-setup.md) and [troubleshooting](guides/troubleshooting.md).
 
-- **Post updates and list ordering** - Major updates (`update_notice`) promote in discovery lists; technical corrections (`corrected_at`, `correction_note`) are page-only; series indexes use `series_order`. Policy: [workflows/post-updates-and-ordering.md](workflows/post-updates-and-ordering.md). Plugin: [`html/_plugins/02_post_list_metadata.rb`](../html/_plugins/02_post_list_metadata.rb).
-- **Short links (`/s/<code>/`)** - Deterministic redirects keyed by immutable `short_link_basis`; posts are automatic and selected pages opt in with `short_link: true`. Plugins: [`html/_plugins/01_short_link_injector.rb`](../html/_plugins/01_short_link_injector.rb), [`00_project_post_permalink.rb`](../html/_plugins/00_project_post_permalink.rb) (optional `slug:`). Ops: [templates/blog-templates.md](templates/blog-templates.md), optional [`.pre-commit-config.yaml`](../.pre-commit-config.yaml) for staged content.
-- **`utils/README.md`** - Central index of maintenance scripts with relative links.
-- **Root `README` + `LICENSE`** - README centers on tooling; MIT applies to `utils/` and `scripts/` only; `html/` remains all rights reserved (see [LICENSE](../LICENSE)).
-- **Docs refresh** - [guides/deployment.md](guides/deployment.md) (CI parity, `short_url`), [README.md](README.md) index, troubleshooting and publishing notes aligned with current behavior.
-- **Monitoring / checks** - Existing stack documented in [guides/monitoring.md](guides/monitoring.md) and [tools/pre-commit-checks.md](tools/pre-commit-checks.md); behavior unchanged at a high level.
+## Content and product operations
 
----
+- Blog list order uses publication dates, not editorial update timestamps. Release notices can be driven by explicit product release metadata; historical article URLs and publication dates remain intact. See [post updates and ordering](workflows/post-updates-and-ordering.md).
+- Short-link redirects use canonical mappings and preserve destination behavior; their source tooling is cataloged at [utils/bin/backfill_short_url_front_matter.rb](../utils/bin/backfill_short_url_front_matter.rb).
+- Project help routes ordinary product reports toward the relevant public GitHub issue tracker, with private contact retained for sensitive matters. Issue-form examples are reusable source material and may need to be copied into each product repository.
+- The LogGPT project includes an illustrated iPhone/iPad user guide as product documentation, not a blog entry.
+- Current product release status is defined by each product's public page and its source repository; this overview is not a release qualification record.
 
-## Operational systems (summary)
+## Validation and cleanup boundaries
 
-All are "in use" for day-to-day maintenance unless noted.
+Automated regressions are separate from manual diagnostics. check-site test discovers only the canonical Ruby/Python test suites; browser tests are local-only and block external requests and production URLs. Do not substitute email/network/service probes for automated and rendered-site checks.
 
-1. **Site** - Jekyll + Minima-derived styling; project blogs under `html/projects/`; [site-operations.md](guides/site-operations.md).
-2. **Checks** - [`utils/bin/check_site.sh`](../utils/bin/check_site.sh) and [`utils/bin/checks/`](../utils/bin/checks/).
-3. **Project cards / OG** - [`utils/bin/fetch_og.py`](../utils/bin/fetch_og.py) + [`html/_data/repos.yml`](../html/_data/repos.yml) → `github_projects.yml` (generated).
-4. **Local dev** - [`utils/bin/site-service`](../utils/bin/site-service), [`jekyll-site`](../utils/bin/jekyll-site), watchers as needed.
-5. **Monitoring** - [`utils/bin/site_reliability_monitor.py`](../utils/bin/site_reliability_monitor.py), config under [`utils/etc/`](../utils/etc/).
-6. **CI/CD** - GitHub Actions build + Pages; see [deployment.md](guides/deployment.md) and [github-actions.md](guides/github-actions.md).
+The browser artifact utility only considers old files inside output/playwright/ and .playwright-cli/. The default is a report; deletion requires an exclusive manifest and explicit --apply. Tracked files, symlinks, active/pinned runs, and path escapes are protected. CI reports but does not delete artifacts. Published images, diagrams, narration, logs, utils/etc/, and arbitrary output/ data are outside this cleanup workflow. See [utilities catalog](../utils/README.md#artifact-retention).
 
-Image-path and link hygiene tools remain listed in [utils/README.md](../utils/README.md) and [testing.md](guides/testing.md).
+## Documentation map
 
----
+- [Documentation index](README.md)
+- [Site operations hub](guides/site-operations.md)
+- [Deployment](guides/deployment.md)
+- [Testing](guides/testing.md) and [pre-commit checks](tools/pre-commit-checks.md)
+- [Utilities catalog](../utils/README.md)
+- [Maintenance](guides/maintenance.md)
+- [Change history](../CHANGELOG.md)
 
-## Project pages on the site
+**Last updated:** 2026-11-27
 
-Landing pages for individual efforts live under [`html/projects/`](../html/projects/) (e.g. LogGPT, Case Analytics, TorchDevice, VenvUtil, Secrets Kit, and others). **Source of truth for shipping status** is each project's own repo and its site page - not this overview. Use the site navigation or repo tree for the current list.
-
----
-
-## Documentation layout
-
-```
-docs/
-├── README.md                 # Index (start here)
-├── PROJECT_OVERVIEW.md       # This file
-├── guides/
-│   ├── site-operations.md    # Hub for ops guides
-│   ├── deployment.md         # Build & Pages
-│   ├── monitoring.md         # Reliability monitor
-│   ├── testing.md            # Validation & HTMLProofer
-│   ├── troubleshooting.md    # Common failures
-│   ├── checklist.md          # Improvement / triage list
-│   ├── github-actions.md     # Workflow overview
-│   └── ...                     # environment, security, strategy, etc.
-├── tools/
-│   └── pre-commit-checks.md  # check_site.sh / checks/
-├── workflows/
-│   └── blog-publishing.md
-└── templates/
-    └── blog-templates.md     # Posts, slug, short URLs
-```
-
-Historical snapshot (July 2025): [guides/site-operations-archive-2025-07-09.md](guides/site-operations-archive-2025-07-09.md)
-
----
-
-## Direction / backlog
-
-Priorities drift with actual projects; treat this as **ideas**, not a dated commitment.
-
-- **Monitor & checks** - Optional modularization of the reliability monitor; keep docs and `utils/README` in sync when scripts move.
-- **Content** - Ongoing posts and project updates via normal publishing flow ([workflows/blog-publishing.md](workflows/blog-publishing.md)).
-- **Hygiene** - Image optimization, a11y, spell-check: see [checklist.md](guides/checklist.md).
-
-Large "community platform" items (comments, newsletters, A/B testing) remain **out of scope** unless explicitly reprioritized.
-
----
-
-## Technical stack (short)
-
-- **Jekyll** (Ruby), **GitHub Pages**, **GitHub Actions**
-- **Python** - monitoring, `fetch_og`, many utilities
-- **Bash** - `check_site.sh`, check scripts, glue
-
----
-
-## Quick reference
-
-| Task | Where |
-|------|--------|
-| Full check suite | `./utils/bin/check_site.sh` (repo root) |
-| Production-style build | `JEKYLL_ENV=production bundle exec jekyll build` |
-| OG / project YAML | `python utils/bin/fetch_og.py` (see [reference-utilities.md](guides/reference-utilities.md)) |
-| Short URL drift | `bundle exec ruby scripts/backfill_short_url_front_matter.rb --check` |
-| Broken build | [troubleshooting.md](guides/troubleshooting.md), [deployment.md](guides/deployment.md) |
-| Triage / ideas | [checklist.md](guides/checklist.md) |
-
----
-
-## Contributing
-
-Aligned with the root [README.md](../README.md): **tooling and automation** (`utils/`, `scripts/`, docs for those) are the useful surface for outsiders; **site copy and design** in `html/` are not solicited as drive-by PRs.
-
----
-
-## Maintenance rhythm
-
-- **Automated** - GitHub Actions builds; optional cron / monitor per your machine setup ([monitoring.md](guides/monitoring.md)).
-- **Manual** - Periodic pass over [checklist.md](guides/checklist.md), dependency bumps, link audits when needed.
-
-**Logs / config** - [`utils/log/`](../utils/log/), [`utils/etc/`](../utils/etc/) (adjust paths if you relocate them).
-
----
-
-## Deployment (GitHub Pages)
-
-Branch and workflow behavior is summarized in [guides/deployment.md](guides/deployment.md#github-pages-deployment-branches) and linked from [site-operations.md](guides/site-operations.md).
-
----
-
-**Last updated:** 2026-05-02
-**Next review:** When major tooling or hosting changes - or quarterly, whichever comes first.

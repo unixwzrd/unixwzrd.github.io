@@ -1,6 +1,40 @@
 # Changelog
 
-This changelog records changes to site behavior, operational tooling, scripts, build validation, and shared templates. Routine articles, post corrections, publication dates, and social copy do not require entries. The entries below were backfilled on September 2 from repository history; their dates identify the recorded changes, not a verified deployment date.
+This changelog records changes to site behavior, operational tooling, scripts, build validation, and shared templates. Routine articles, post corrections, publication dates, and social copy do not require entries. Backfilled entries use the repository change date, not a verified deployment date.
+
+## Unreleased: Tooling consolidation and artifact housekeeping
+
+- Consolidate maintained commands under `utils/`, with operator and authoring commands in `utils/bin/`, checks and build verifiers in `utils/bin/checks/`, shared support in `utils/lib/`, automated Ruby/Python/browser suites in `utils/tests/`, and manual network/email/service diagnostics in `utils/bin/diagnostics/`. Remove the old root scripts directory and relocated-tool aliases; update callers and tutorial references to canonical paths without compatibility symlinks.
+- Replace the absolute `utils/bin/pre-commit` symlink with a portable wrapper that skips the networked, staging project-data refresh; leave the installed `.git/hooks/pre-commit` unchanged. Add a local-only Playwright wrapper that blocks external requests, rejects public/production hosts, owns its session lifecycle, and retains timestamped evidence.
+- Add `utils/bin/check-site test` for deterministic local regressions, with `--site PATH` for an existing rendered build, and an artifact command that reports old browser diagnostics by default. Reviewed-manifest cleanup is explicit and is not part of commits or CI. Existing output is not deleted.
+- Update the CHANGELOG and active operator guides to match current Pages artifact deployment, environment selection, support flow, tools, tests, and cleanup safeguards.
+- Make each automatic release-notice heading a direct link to its announcement. Preserve the original notices and product-overview links, with source and rendered regression coverage.
+- Add artifact safety and tooling-catalog coverage, including macOS case aliases, held-directory-descriptor deletion, changed-file refusal, active/pinned evidence, clean-checkout imports, canonical entry points, and rejection of retired paths or tooling symlinks. Declare the existing environment check's `packaging` dependency explicitly.
+
+## 2026-11-27: Local validation environment and permission preservation
+
+- Select the existing project RVM gemset and Conda `python-website-dev` environment for local GUI Git clients instead of inheriting an unrelated Python or Ruby installation. Check requirements without attempting package installation. Add regression coverage for environment selection and failure paths.
+- Preserve the original file mode when text cleanup replaces changed files, preventing executable check scripts from losing permission bits. Add mode-preservation regression coverage.
+- Update the locked `addressable` gem from 2.9.0 to 2.9.1.
+
+## 2026-11-27: Project help, issue tracking, and LogGPT mobile guide
+
+- Add reusable project-help routing and issue-template examples; direct ordinary product reports to repository issue tracking and keep private contact for sensitive or account matters. Add an illustrated LogGPT iPhone/iPad guide and link it from product support.
+- Sort project and blog listings by publication date rather than editorial update date. Generate product release notices from explicit public release metadata so older product posts can point readers to current information without editing historical publication dates.
+
+## 2026-11-23: Trusted-LAN draft preview
+
+- Allow `jekyll-site` to serve draft-inclusive previews on a caller-supplied LAN hostname while binding the listener to all IPv4 interfaces. Preserve localhost-only default, canonical production URLs, and existing build/index steps; document that LAN previews have no authentication and must remain on trusted networks.
+- Add wrapper regression tests and keep the existing GitHub Pages artifact workflow unchanged.
+
+## 2026-11-20: Extract Chat policies and product documentation
+
+- Publish Extract Chat-specific privacy and terms documents with distinct policy titles and links, and update the policy index to distinguish LogGPT from its companion application. Update Secrets-Kit product policy labels to reflect its released status.
+- Add the Extract Chat macOS overview and illustrated workflow, and update project entry points and reader tests.
+
+## 2026-11-18: Product policy and privacy updates
+
+- Add Extract Chat policy drafts and expand the policy index to link product-specific privacy documents.
 
 ## 2026-11-13: Secrets Kit platform badges
 
@@ -290,7 +324,7 @@ This changelog records changes to site behavior, operational tooling, scripts, b
 
 ### Technical Implementation
 
-- Created: Email testing script ([`test_email.py`](utils/bin/test_email.py)) for notification system
+- Created: Email testing script ([`test_email.py`](utils/bin/diagnostics/test_email.py)) for notification system
 - Created: Crontab setup script ([`setup_crontab.sh`](utils/bin/setup_crontab.sh)) for automated monitoring
 - Updated: Site monitor configuration ([`site_monitor_config.json`](utils/etc/site_monitor_config.json)) with corrected URLs and improved structure
 - Implemented: Proper process cleanup to prevent orphaned file watcher processes
@@ -391,13 +425,13 @@ This changelog records changes to site behavior, operational tooling, scripts, b
 
 ### Testing Implementation
 
-- Added: Comprehensive test suite for file watcher system ([`test_file_watcher.py`](utils/bin/test_file_watcher.py))
+- Added: Comprehensive test suite for file watcher system ([`test_file_watcher.py`](utils/bin/diagnostics/test_file_watcher.py))
   - Tests file watcher startup and shutdown
   - Tests dynamic watcher script reloading
   - Tests watcher script execution
   - Tests Jekyll service integration
   - Tests error handling with broken scripts
-- Added: Quick test script for fast verification ([`quick_test.py`](utils/bin/quick_test.py))
+- Added: Quick test script for fast verification ([`quick_test.py`](utils/bin/diagnostics/quick_test.py))
   - Basic functionality tests for rapid feedback
   - Suitable for CI/CD pipelines and development workflow
 - Added: Comprehensive testing documentation ([`testing.md`](docs/guides/testing.md))
@@ -677,6 +711,7 @@ This changelog records changes to site behavior, operational tooling, scripts, b
 - Set up pre-commit hooks
 - Update permalinks to meet new requirements
 - Add required front matter to all pages
+
 
 
 
